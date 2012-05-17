@@ -52,4 +52,14 @@ public class CoinCollection {
 	public void setCp(int cp) {
 		this.cp = cp;
 	}
+	
+	public void add(CoinCollection cc){
+		// add the value to the current CoinCollection.
+		this.pp += cc.pp;
+		this.gp += cc.gp;
+		this.sp += cc.sp;
+		this.cp += cc.cp;
+		// remove the value from the original cc.
+		cc.pp = cc.gp = cc.sp = cc.cp = 0;
+	}
 }
