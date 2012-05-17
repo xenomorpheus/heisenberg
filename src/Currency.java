@@ -17,4 +17,44 @@ public class Currency {
 	Float getGpEquiv(){
 		return (pp * ppAsGp) + (ep * epAsGp) + (gp * 1F) + (sp * spAsGp) + (cp * cpAsGp);
 	}
+
+	public int getPp() {
+		return pp;
+	}
+
+	public void setPp(int pp) {
+		this.pp = pp;
+	}
+
+	public int getEp() {
+		return ep;
+	}
+
+	public void setEp(int ep) {
+		this.ep = ep;
+	}
+
+	public int getGp() {
+		return gp;
+	}
+
+	public void setGp(int gp) {
+		this.gp = gp;
+	}
+
+	public int getSp() {
+		return sp;
+	}
+
+	public void setSp(int sp) {
+		this.sp = sp;
+	}
+
+	public int getCp() {
+		return cp;
+	}
+
+	public void setCp(int cp) {
+		this.cp = cp;
+	}
 }
