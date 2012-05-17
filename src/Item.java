@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 //Item:
 //* An item has a name which is text.
 //* An item has a description which is text.
@@ -27,37 +29,39 @@ public class Item {
 	float baseWeight = 0F;
 	CoinCollection value = new CoinCollection();
 	Item location = null;
-	Boolean alive = false;
-	Boolean extraDimensional = false;
-	Boolean magical = false;
+	boolean alive = false;
+	boolean extraDimensional = false;
+	boolean magical = false;
+
 	// List <Defence> defenceList = new List();
 	// List <Protection> protectionList = new List();
-	
-    Item(){}
 
-    Item(String pName){
-    	this.description = new String(pName);
-    }
-    
-    Item(String pName, String pDescription){
-    	this.name = new String(pName);
-    	this.description = new String(pDescription);
-    }
+	Item() {
+	}
+
+	Item(String pName) {
+		this.name = new String(pName);
+	}
+
+	Item(String pName, String pDescription) {
+		this.name = new String(pName);
+		this.description = new String(pDescription);
+	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String pName) {
+		this.name = new String(pName);
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription(String pDescription) {
+		this.description = new String(pDescription);
 	}
 
 	// For simple items the weight is the baseWeight.
@@ -77,8 +81,8 @@ public class Item {
 		return value;
 	}
 
-	public void setValue(CoinCollection value) {
-		this.value = value;
+	public void setValue(CoinCollection pValue) {
+		this.value = new CoinCollection(pValue);
 	}
 
 	public Item getLocation() {
@@ -89,29 +93,50 @@ public class Item {
 		this.location = location;
 	}
 
-	public Boolean getAlive() {
+	public boolean getAlive() {
 		return alive;
 	}
 
-	public void setAlive(Boolean alive) {
+	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
 
-	public Boolean getExtraDimensional() {
+	public boolean getExtraDimensional() {
 		return extraDimensional;
 	}
 
-	public void setExtraDimensional(Boolean extraDimensional) {
+	public void setExtraDimensional(boolean extraDimensional) {
 		this.extraDimensional = extraDimensional;
 	}
 
-	public Boolean getMagical() {
+	public boolean getMagical() {
 		return magical;
 	}
 
-	public void setMagical(Boolean magical) {
+	public void setMagical(boolean magical) {
 		this.magical = magical;
 	}
-	
-	// TODO equals - all properties the same except location
+
+	public boolean equals(Item other) {
+		if (this == other)
+			return true;
+		if (!name.equals(other.name))
+			return false;
+		if (!description.equals(other.description))
+			return false;
+		if (Math.abs(baseWeight - other.baseWeight) >= 0.0001F)
+			return false;
+		if (!value.equals(other.value))
+			return false;
+		if (alive != other.alive)
+			return false;
+		if (extraDimensional != other.extraDimensional)
+			return false;
+		if (magical != other.magical)
+			return false;
+		// location not important
+		// if (location != other.location)
+		// return false;
+		return true;
+	}
 }

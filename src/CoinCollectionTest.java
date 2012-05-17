@@ -6,7 +6,7 @@ public class CoinCollectionTest {
 
 	
 	@Test
-	public void testCoinCollectionNoParams() {
+	public void testCoinCollectionConstructorNoParams() {
 		CoinCollection cc = new CoinCollection();
 		assertEquals("pp", 0, cc.getPp());
 		assertEquals("gp", 0, cc.getGp());
@@ -15,13 +15,24 @@ public class CoinCollectionTest {
 	}
 
 	@Test
-	public void testCoinCollectionFullParams() {
+	public void testCoinCollectionConstructorWithCoinParams() {
 		CoinCollection cc = new CoinCollection(1,2,4,8);
 		assertEquals("pp", 1, cc.getPp());
 		assertEquals("gp", 2, cc.getGp());
 		assertEquals("sp", 4, cc.getSp());
 		assertEquals("cp", 8, cc.getCp());
 	}
+	
+	@Test
+	public void testCoinCollectionConstructorWithCoinCollection() {
+		CoinCollection cc = new CoinCollection(1,2,4,8);
+		CoinCollection cc2 = new CoinCollection(cc);
+		assertEquals("pp", 1, cc2.getPp());
+		assertEquals("gp", 2, cc2.getGp());
+		assertEquals("sp", 4, cc2.getSp());
+		assertEquals("cp", 8, cc2.getCp());
+	}
+
 	
 	@Test
 	public void testPp() {
@@ -70,4 +81,11 @@ public class CoinCollectionTest {
 	}
 	
 	// TODO equals
+	@Test
+	public void testEquals() {
+		CoinCollection cc = new CoinCollection(1,2,4,8);
+		CoinCollection cc2 = new CoinCollection(1,2,4,8);
+		assertTrue("equals", cc.equals(cc2));
+	}
+
 }

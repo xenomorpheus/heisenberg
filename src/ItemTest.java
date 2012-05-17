@@ -5,11 +5,6 @@ import org.junit.Test;
 public class ItemTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testItemNullParam() {
 		Item i = new Item();
 		assertEquals("Item() name", "", i.getName());
@@ -76,8 +71,9 @@ public class ItemTest {
 	@Test
 	public void testValue() {
 		Item i = new Item();
-		i.setValue(new CoinCollection(0,1,0,0));
-		assertEquals("value", new CoinCollection(0,1,0,0), i.getValue());
+		i.setValue(new CoinCollection(1,2,4,8));
+	    CoinCollection cc = new CoinCollection(1,2,4,8);
+		assertTrue("value",  cc.equals(i.getValue()));
 	}
 
 	@Test

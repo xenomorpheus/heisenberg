@@ -1,4 +1,3 @@
-
 public class CoinCollection {
 	public static final Float ppAsGp = 10F;
 	public static final Float spAsGp = 0.1F;
@@ -8,16 +7,24 @@ public class CoinCollection {
 	int sp = 0;
 	int cp = 0;
 
-	CoinCollection(){}
+	CoinCollection() {
+	}
 
-	CoinCollection(int pPp, int pGp, int pSp, int pCp){
+	CoinCollection(int pPp, int pGp, int pSp, int pCp) {
 		this.pp = pPp;
 		this.gp = pGp;
 		this.sp = pSp;
 		this.cp = pCp;
 	}
 
-	Float getGpEquiv(){
+	CoinCollection(CoinCollection cc) {
+		this.pp = cc.pp;
+		this.gp = cc.gp;
+		this.sp = cc.sp;
+		this.cp = cc.cp;
+	}
+
+	Float getGpEquiv() {
 		return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
 	}
 
@@ -52,8 +59,8 @@ public class CoinCollection {
 	public void setCp(int cp) {
 		this.cp = cp;
 	}
-	
-	public void add(CoinCollection cc){
+
+	public void add(CoinCollection cc) {
 		// add the value to the current CoinCollection.
 		this.pp += cc.pp;
 		this.gp += cc.gp;
@@ -62,6 +69,8 @@ public class CoinCollection {
 		// remove the value from the original cc.
 		cc.pp = cc.gp = cc.sp = cc.cp = 0;
 	}
-	
-	// TODO equals
+
+	public boolean equals(CoinCollection cc) {
+		return (pp == cc.pp) && (gp == cc.gp) && (sp == cc.sp) && (cp == cc.cp);
+	}
 }
