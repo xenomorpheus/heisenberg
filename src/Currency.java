@@ -12,6 +12,7 @@ public class Currency {
 
 	Currency(){
 		
+		
 	}
 	
 	Float getGpEquiv(){
