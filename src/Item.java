@@ -26,7 +26,7 @@ public class Item {
 	String description = "";
 	float baseWeight = 0F;
 	CoinCollection value = new CoinCollection();
-	Item location;
+	Item location = null;
 	Boolean alive = false;
 	Boolean extraDimensional = false;
 	Boolean magical = false;
@@ -34,6 +34,15 @@ public class Item {
 	// List <Protection> protectionList = new List();
 	
     Item(){}
+
+    Item(String pName){
+    	this.description = new String(pName);
+    }
+    
+    Item(String pName, String pDescription){
+    	this.name = new String(pName);
+    	this.description = new String(pDescription);
+    }
 
 	public String getName() {
 		return name;
@@ -104,5 +113,5 @@ public class Item {
 		this.magical = magical;
 	}
 	
-	
+	// TODO equals - all properties the same except location
 }

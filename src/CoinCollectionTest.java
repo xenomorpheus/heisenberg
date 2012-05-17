@@ -69,5 +69,5 @@ public class CoinCollectionTest {
 		assertEquals("add", 0F, cc2.getGpEquiv(), 0.00001F);
 	}
 	
-	
+	// TODO equals
 }

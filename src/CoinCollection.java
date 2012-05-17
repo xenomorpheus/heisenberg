@@ -62,4 +62,6 @@ public class CoinCollection {
 		// remove the value from the original cc.
 		cc.pp = cc.gp = cc.sp = cc.cp = 0;
 	}
+	
+	// TODO equals
 }
