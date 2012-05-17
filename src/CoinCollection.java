@@ -1,5 +1,5 @@
 
-public class Currency {
+public class CoinCollection {
 	public static final Float ppAsGp = 10F;
 	public static final Float spAsGp = 0.1F;
 	public static final Float cpAsGp = 0.01F;
@@ -8,11 +8,15 @@ public class Currency {
 	int sp = 0;
 	int cp = 0;
 
-	Currency(){
-		
-		
+	CoinCollection(){}
+
+	CoinCollection(int pPp, int pGp, int pSp, int pCp){
+		this.pp = pPp;
+		this.gp = pGp;
+		this.sp = pSp;
+		this.cp = pCp;
 	}
-	
+
 	Float getGpEquiv(){
 		return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
 	}
