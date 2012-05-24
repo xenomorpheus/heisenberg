@@ -4,7 +4,7 @@ import java.lang.Math;
 //* An item has a name which is text.
 //* An item has a description which is text.
 //* An item has a weight which is measured in pounds which defaults to zero.
-//* An item has a value measured in coins which defaults to zero.
+//* An item has a cost measured in coins which defaults to zero.
 //* An item has a location (e.g. ground, a bag, an arm)
 //* (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or
 //hit points?
@@ -27,11 +27,8 @@ public class Item {
 	String name = "";
 	String description = "";
 	float baseWeight = 0F;
-	CoinCollection value = new CoinCollection();
+	CoinCollection cost = new CoinCollection();
 	Item location = null;
-	boolean alive = false;
-	boolean extraDimensional = false;
-	boolean magical = false;
 
 	// List <Defence> defenceList = new List();
 	// List <Protection> protectionList = new List();
@@ -77,12 +74,12 @@ public class Item {
 		this.baseWeight = baseWeight;
 	}
 
-	public CoinCollection getValue() {
-		return value;
+	public CoinCollection getCost() {
+		return cost;
 	}
 
-	public void setValue(CoinCollection pValue) {
-		this.value = new CoinCollection(pValue);
+	public void setCost(CoinCollection pCost) {
+		this.cost = new CoinCollection(pCost);
 	}
 
 	public Item getLocation() {
@@ -93,30 +90,23 @@ public class Item {
 		this.location = location;
 	}
 
-	public boolean getAlive() {
-		return alive;
+	public Boolean implementsInterface(Class interf){
+	    for (Class c : getClass().getInterfaces()) {
+	        if (c.equals(interf)) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 
-	public void setAlive(boolean alive) {
-		this.alive = alive;
+	public String toString(){
+		return "Class: "+getClass().getName()+
+				"\nName: "+name+
+				"\nCost: "+ cost+
+				"\nWeight: "+ baseWeight+
+				"\nDescription: "+description+"\n";
 	}
-
-	public boolean getExtraDimensional() {
-		return extraDimensional;
-	}
-
-	public void setExtraDimensional(boolean extraDimensional) {
-		this.extraDimensional = extraDimensional;
-	}
-
-	public boolean getMagical() {
-		return magical;
-	}
-
-	public void setMagical(boolean magical) {
-		this.magical = magical;
-	}
-
+	
 	public boolean equals(Item other) {
 		if (this == other)
 			return true;
@@ -126,17 +116,9 @@ public class Item {
 			return false;
 		if (Math.abs(baseWeight - other.baseWeight) >= 0.0001F)
 			return false;
-		if (!value.equals(other.value))
-			return false;
-		if (alive != other.alive)
-			return false;
-		if (extraDimensional != other.extraDimensional)
-			return false;
-		if (magical != other.magical)
+		if (!cost.equals(other.cost))
 			return false;
 		// location not important
-		// if (location != other.location)
-		// return false;
 		return true;
 	}
 }

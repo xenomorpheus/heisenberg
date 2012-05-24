@@ -11,9 +11,6 @@ public class ItemTest {
 		assertEquals("Item() description", "", i.getDescription());
 		assertEquals("Item() baseWeight", 0F, i.getBaseWeight(), 0.0001F);
 		assertEquals("Item() location", null, i.getLocation());
-		assertEquals("Item() alive", false, i.getAlive());
-		assertEquals("Item() extraDimensional", false, i.getExtraDimensional());
-		assertEquals("Item() magical", false, i.getMagical());
 	}
 
 	@Test
@@ -23,9 +20,6 @@ public class ItemTest {
 		assertEquals("Item() description", "", i.getDescription());
 		assertEquals("Item() baseWeight", 0F, i.getBaseWeight(), 0.0001F);
 		assertEquals("Item() location", null, i.getLocation());
-		assertEquals("Item() alive", false, i.getAlive());
-		assertEquals("Item() extraDimensional", false, i.getExtraDimensional());
-		assertEquals("Item() magical", false, i.getMagical());
 	}
 
 	@Test
@@ -36,9 +30,6 @@ public class ItemTest {
 				i.getDescription());
 		assertEquals("Item() baseWeight", 0F, i.getBaseWeight(), 0.0001F);
 		assertEquals("Item() location", null, i.getLocation());
-		assertEquals("Item() alive", false, i.getAlive());
-		assertEquals("Item() extraDimensional", false, i.getExtraDimensional());
-		assertEquals("Item() magical", false, i.getMagical());
 	}
 
 	@Test
@@ -61,6 +52,7 @@ public class ItemTest {
 		i.setBaseWeight(0.123F);
 		assertEquals("baseWeight", 0.123F, i.getBaseWeight(), 0.0001F);
 	}
+
 	@Test
 	public void testWeight() {
 		Item i = new Item();
@@ -69,11 +61,14 @@ public class ItemTest {
 	}
 
 	@Test
-	public void testValue() {
+	public void testCost() {
 		Item i = new Item();
-		i.setValue(new CoinCollection(1,2,4,8));
-	    CoinCollection cc = new CoinCollection(1,2,4,8);
-		assertTrue("value",  cc.equals(i.getValue()));
+		i.setCost(new CoinCollection(1, 2, 4, 8));
+		assertTrue("Cost", i.getCost().equals(new CoinCollection(1, 2, 4, 8)));
+		assertFalse("Cost", i.getCost().equals(new CoinCollection(2, 2, 4, 8)));
+		assertFalse("Cost", i.getCost().equals(new CoinCollection(1, 3, 4, 8)));
+		assertFalse("Cost", i.getCost().equals(new CoinCollection(1, 2, 5, 8)));
+		assertFalse("Cost", i.getCost().equals(new CoinCollection(1, 2, 4, 9)));
 	}
 
 	@Test
@@ -85,23 +80,16 @@ public class ItemTest {
 	}
 
 	@Test
-	public void testAlive() {
+	public void testImplementsInterface(){
 		Item i = new Item();
-		assertEquals("alive", false, i.getAlive());
+		assertFalse("implementsInterface",i.implementsInterface(Magic.class));
 	}
 
-	@Test
-	public void testExtraDimensional() {
-		Item i = new Item();
-		assertEquals("extraDimensional", false, i.getExtraDimensional());
+	public void testToString(){
+	    Item i = new Item();
+	    assertEquals("toString","some text",i.toString());
+	
 	}
-
-	@Test
-	public void testMagical() {
-		Item i = new Item();
-		assertEquals("magical", false, i.getMagical());
-	}
-
-	// equals
+	
 	
 }
