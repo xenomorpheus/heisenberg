@@ -1,4 +1,16 @@
-package au.net.hal9000.dnd;
+package Scenario;
+
+import au.net.hal9000.dnd.*;
+import au.net.hal9000.dnd.Box;
+import au.net.hal9000.dnd.Cloak;
+import au.net.hal9000.dnd.ExceptionCantWear;
+import au.net.hal9000.dnd.ExceptionTooBig;
+import au.net.hal9000.dnd.ExceptionTooHeavy;
+import au.net.hal9000.dnd.Human;
+import au.net.hal9000.dnd.Scabbard;
+import au.net.hal9000.dnd.Sword;
+import au.net.hal9000.dnd.Torch;
+
 public class Scenario01 {
 
 	public static void sword_into_scabbard() {
