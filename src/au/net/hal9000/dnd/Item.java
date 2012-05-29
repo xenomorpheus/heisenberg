@@ -122,7 +122,7 @@ public class Item {
 				+ "\nCost: " + cost + "\nWeight: " + weightBase
 				+ "\nDescription: " + description + "\n";
 	}
-
+	
 	public boolean equals(Item other) {
 		if (this == other)
 			return true;

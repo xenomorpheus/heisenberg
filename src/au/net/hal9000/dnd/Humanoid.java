@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd;
+
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -7,6 +8,7 @@ public class Humanoid extends Animal {
 	Hand leftHand = new Hand("Left Hand");
 	Hand rightHand = new Hand("Right Hand");
 	Vector<Clothing> clothes = new Vector<Clothing>();
+	Shield shield = null;
 
 	public Humanoid() {
 		super("Humanoid");
@@ -38,5 +40,29 @@ public class Humanoid extends Animal {
 			total += itr.next().getWeight();
 		}
 		return total;
+	}
+	
+	public void dropItem(Item item) throws Exception{
+		if (item == null) {
+			// TODO
+			throw new Exception("TODO: null item passed");
+		}
+        item.setLocation(this.location);
+	}
+
+	public void setShield (Shield pShield) throws Exception {
+		if (pShield == null) {
+			// TODO
+			throw new Exception("TODO: null shield passed");
+		}
+		if (shield != null) {
+			this.dropItem(shield);
+		}
+		pShield.setLocation(this);
+		this.shield = pShield;
+	}
+
+	public Shield getShield() {
+		return this.shield;
 	}
 }

@@ -84,7 +84,12 @@ public class Scenario01 {
 		Shield shield = new Shield();
 		Humanoid humanoid = new Humanoid();
 		System.out.println("Equip the shield.");
-		humanoid.equip(shield);
+		try {
+			humanoid.setShield(shield);
+			// TODO
+		} catch (Exception e) {
+			System.out.println("Humanoid could not wear shield");
+		}
 		System.out.println("Shield location: " + shield.getLocation());
 	}
 
