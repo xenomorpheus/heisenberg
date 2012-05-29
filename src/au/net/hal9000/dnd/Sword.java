@@ -1,7 +1,7 @@
 package au.net.hal9000.dnd;
 
 public class Sword extends Item implements Sharp{
-	Sword(){
+	public Sword(){
 		super("Sword");
 	}
 

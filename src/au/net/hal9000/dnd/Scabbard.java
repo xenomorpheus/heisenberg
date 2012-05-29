@@ -3,7 +3,7 @@ package au.net.hal9000.dnd;
 public class Scabbard extends Item implements SwordSheath {
 	Sword sword = null;
 	
-	Scabbard(){
+	public Scabbard(){
 		super("Scabbard");
 	}
 

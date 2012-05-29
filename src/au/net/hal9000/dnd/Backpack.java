@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd;
 public class Backpack extends Bag {
-	Backpack() {
+	public Backpack() {
 		super("Backpack");
 
 	}
