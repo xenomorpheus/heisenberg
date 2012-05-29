@@ -33,7 +33,7 @@ public class Torch extends Item {
 
 	}
 
-	public String getDescription1() {
+	public String getDescription() {
 		String desc = new String(description);
 
 		if (desc.length() > 0){

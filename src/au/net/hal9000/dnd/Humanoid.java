@@ -2,7 +2,7 @@ package au.net.hal9000.dnd;
 import java.util.Iterator;
 import java.util.Vector;
 
-public class Humanoid extends Item {
+public class Humanoid extends Animal {
 	Item head = new Item("Head");
 	Hand leftHand = new Hand("Left Hand");
 	Hand rightHand = new Hand("Right Hand");

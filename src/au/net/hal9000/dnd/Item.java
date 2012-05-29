@@ -40,11 +40,11 @@ public class Item {
 	}
 
 	public Item(String pName) {
-		this.name = new String(pName);
+		super(pName);
 	}
 
 	public Item(String pName, String pDescription) {
-		this.name = new String(pName);
+		super(pName);
 		this.description = new String(pDescription);
 	}
 

@@ -7,6 +7,7 @@ package au.net.hal9000.dnd;
 		
 public class Ring extends Item {
 	public Ring(){
+		super("Ring");
 		setDescription("small metalic ring");
 		setCost(new CoinCollection(0,5,0,0));
 		setWeightBase(0.02F);
