@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd;
+
 /*
 
  http://www.dandwiki.com/wiki/Bag_of_holding
@@ -15,13 +16,13 @@ public class BagOfHolding extends Bag implements Magical {
 
 	int type;
 
-	BagOfHolding(int type, String pName) {
+	public BagOfHolding(int type, String pName) {
 		super(pName);
 		setType(type);
 		volumeBase = 2F; // TODO
 	}
 
-	BagOfHolding(int type) {
+	public BagOfHolding(int type) {
 		super("Bag of Holding");
 		setType(type);
 		volumeBase = 2F; // TODO

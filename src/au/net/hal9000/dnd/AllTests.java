@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;

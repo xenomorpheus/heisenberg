@@ -35,15 +35,15 @@ public class Item {
 	// List <Defence> defenceList = new List();
 	// List <Protection> protectionList = new List();
 
-	Item() {
+	public Item() {
 		this.name = new String("Item");
 	}
 
-	Item(String pName) {
+	public Item(String pName) {
 		this.name = new String(pName);
 	}
 
-	Item(String pName, String pDescription) {
+	public Item(String pName, String pDescription) {
 		this.name = new String(pName);
 		this.description = new String(pDescription);
 	}

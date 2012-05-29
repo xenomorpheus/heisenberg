@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd;
+
 public class CoinCollection {
 	public static final Float ppAsGp = 10F;
 	public static final Float spAsGp = 0.1F;
@@ -8,17 +9,17 @@ public class CoinCollection {
 	int sp = 0;
 	int cp = 0;
 
-	CoinCollection() {
+	public CoinCollection() {
 	}
 
-	CoinCollection(int pPp, int pGp, int pSp, int pCp) {
+	public CoinCollection(int pPp, int pGp, int pSp, int pCp) {
 		this.pp = pPp;
 		this.gp = pGp;
 		this.sp = pSp;
 		this.cp = pCp;
 	}
 
-	CoinCollection(CoinCollection cc) {
+	public CoinCollection(CoinCollection cc) {
 		this.pp = cc.pp;
 		this.gp = cc.gp;
 		this.sp = cc.sp;

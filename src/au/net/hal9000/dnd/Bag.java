@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd;
+
 public class Bag extends ItemContainer {
 
 	public Bag() {

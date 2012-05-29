@@ -5,7 +5,7 @@ public class Cloak extends Clothing {
 			super("Cloak");
 		}
 
-		Cloak(String pString){
+		public Cloak(String pString){
 			super(pString);
 		}
 

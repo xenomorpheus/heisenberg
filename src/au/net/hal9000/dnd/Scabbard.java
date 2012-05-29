@@ -7,7 +7,7 @@ public class Scabbard extends Item implements SwordSheath {
 		super("Scabbard");
 	}
 
-	Scabbard(String pString){
+	public Scabbard(String pString){
 		super(pString);
 	}
 

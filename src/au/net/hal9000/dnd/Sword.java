@@ -5,7 +5,7 @@ public class Sword extends Item implements Sharp{
 		super("Sword");
 	}
 
-	Sword(String pString){
+	public Sword(String pString){
 		super(pString);
 	}
 
