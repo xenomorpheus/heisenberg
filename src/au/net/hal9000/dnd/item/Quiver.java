@@ -10,8 +10,8 @@ public class Quiver extends ItemContainer {
   }
 
   public void add (Item pItem) throws ExceptionInvalidType{
-	  if (! (pItem instanceof Sword)){
-		  throw new ExceptionInvalidType(pItem.getName()+" is not a Sword");
+	  if (! (pItem instanceof Arrow)){
+		  throw new ExceptionInvalidType(pItem.getName()+" is not a Arrow");
 	  }
 	  this.add(pItem);
   }

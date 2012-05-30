@@ -92,7 +92,9 @@ public class Scenario01 {
 	public static void quiver_is_filled() {
 		System.out.println("\n** A quiver is filled.");
 		Quiver quiver = new Quiver();
+		System.out.println("Quiver created.");
 		Arrow arrow = new Arrow();
+		System.out.println("Arrow created.");
 		try {
 			quiver.add(arrow);
 		} catch (ExceptionInvalidType e) {

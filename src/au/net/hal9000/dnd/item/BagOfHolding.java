@@ -1,7 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-import au.net.hal9000.dnd.item.property.Magical;
-import au.net.hal9000.dnd.item.property.Sharp;
+import au.net.hal9000.dnd.item.property.*;
 
 /*
 
@@ -15,7 +14,7 @@ import au.net.hal9000.dnd.item.property.Sharp;
 
  */
 
-public class BagOfHolding extends Bag implements Magical {
+public class BagOfHolding extends Bag implements Magical,ExtraDimensional {
 
 	private int type;
 
@@ -95,7 +94,8 @@ public class BagOfHolding extends Bag implements Magical {
 		if (item.implementsInterface(Sharp.class)) {
 			this.rupture();
 		}
-		// need to recursively check items, go into bags etc.
+		
+		// TODO need to recursively check items, go into bags etc.
 		// item.implementsInterface(ExtraDimensional.class)) {
 		super.add(item);
 	}
