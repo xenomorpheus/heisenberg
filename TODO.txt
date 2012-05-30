@@ -1,0 +1,4 @@
+Merge classes Magic and Magical.
+Convert Clothing to an Interface.
+Convert Amour to an Interface.
+Add Food as an Interface.
