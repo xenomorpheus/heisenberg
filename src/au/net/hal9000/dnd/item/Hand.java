@@ -2,8 +2,7 @@ package au.net.hal9000.dnd.item;
 import java.util.Iterator;
 import java.util.Vector;
 
-import au.net.hal9000.dnd.item.property.Magical;
-import au.net.hal9000.dnd.item.property.RingWearer;
+import au.net.hal9000.dnd.item.property.*;
 
 // Hand
 // Is like an item except:
@@ -12,7 +11,7 @@ import au.net.hal9000.dnd.item.property.RingWearer;
 // Rings may be removed in any order.
 // Is living  (todo)
 
-public class Hand extends Item implements RingWearer {
+public class Hand extends Item implements Living, RingWearer {
 
 	private Vector<Ring> rings = new Vector<Ring>();
 	private int magicRingCount = 0;

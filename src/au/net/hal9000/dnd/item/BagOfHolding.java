@@ -89,7 +89,7 @@ public class BagOfHolding extends Bag implements Magical {
 		//
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig {
+	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig, ExceptionInvalidType {
 		// Look for items that implement Sharp, ExtraDimensional
 		// if so rupture.
 		if (item.implementsInterface(Sharp.class)) {

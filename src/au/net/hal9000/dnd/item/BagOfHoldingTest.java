@@ -52,7 +52,7 @@ public class BagOfHoldingTest {
 			// Should look like an ordinary bag :-)
 			assertEquals("type=" + type + ", description",
 					boh.getDescription(), ordinaryBag.getDescription());
-			Item i = new Item("Item");
+			Cookie i = new Cookie();
 			i.setVolumeBase(volumeMax);
 			i.setWeightBase(weightMax);
 			try {
@@ -61,6 +61,8 @@ public class BagOfHoldingTest {
 				fail("type=" + type + ", too heavy :"+e.getMessage());
 			} catch (ExceptionTooBig e) {
 				fail("type=" + type + ", too big :"+e.getMessage());
+			} catch (ExceptionInvalidType e) {
+				fail("type=" + type + ", invalid type :"+e.getMessage());
 			}
 		}
 

@@ -34,7 +34,7 @@ public class Torch extends Item {
 	}
 
 	public String getDescription() {
-		String desc = new String(this.getDescription());
+		String desc = new String(super.getDescription());
 
 		if (desc.length() > 0){
 			desc = desc.concat(" ");

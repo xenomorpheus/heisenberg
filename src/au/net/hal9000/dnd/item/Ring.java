@@ -4,13 +4,23 @@ package au.net.hal9000.dnd.item;
 //* Default description is "small metalic ring".
 //* Default value is 5gp ?
 //* Default weight ?
-		
+
 public class Ring extends Item {
-	public Ring(){
+
+	public Ring() {
 		super("Ring");
-		setDescription("small metalic ring");
-		setValueBase(new Currency(0,5,0,0));
-		setWeightBase(0.02F);
+		this.setDefaults(this);
+	}
+	
+	public Ring(String pName) {
+		super(pName);
+		this.setDefaults(this);
+	}
+	
+	void setDefaults(Ring pRing){
+		pRing.setDescription("small metalic ring");
+		pRing.setValueBase(new Currency(0, 5, 0, 0));
+		pRing.setWeightBase(0.02F);
 	}
 
 }

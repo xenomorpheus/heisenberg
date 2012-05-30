@@ -25,7 +25,7 @@ import java.lang.Math;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public class Item {
+public abstract class Item {
 	private String name;
 	private String description = "";
 	private float weightBase = 0F; // pounds
@@ -64,6 +64,7 @@ public class Item {
 	}
 
 	// For simple items the weight is the weightBase.
+	// will be overridden by collections
 	public float getWeight() {
 		return weightBase;
 	}
@@ -77,6 +78,7 @@ public class Item {
 	}
 
 	// For simple items the weight is the weightBase.
+	// will be overridden by collections
 	public float getVolume() {
 		return volumeBase;
 	}
@@ -93,6 +95,7 @@ public class Item {
 		return valueBase;
 	}
 	
+	// For simple items the value is the valueBase.
 	// will be overridden by collections
 	public Currency getValue() {
 		return valueBase;

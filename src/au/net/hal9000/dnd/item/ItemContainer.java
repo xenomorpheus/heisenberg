@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.Stack;
 
+// TODO make abstract
 public class ItemContainer extends Item {
 	float weightMax = -1F; // -1 unlimited
 	float volumeMax = -1F; // -1 unlimited

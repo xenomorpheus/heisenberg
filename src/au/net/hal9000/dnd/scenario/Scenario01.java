@@ -1,7 +1,6 @@
 package au.net.hal9000.dnd.scenario;
 
 import au.net.hal9000.dnd.item.*;
-import au.net.hal9000.dnd.item.property.Humanoid;
 
 public class Scenario01 {
 
@@ -32,12 +31,12 @@ public class Scenario01 {
 			System.out.println("Full backpack placed into box.");
 			System.out.println("Backpack location: "
 					+ backpack.getLocation().getName());
+		} catch (ExceptionInvalidType e) {
+			System.out.println("invalid type");
 		} catch (ExceptionTooHeavy e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("too heavy");
 		} catch (ExceptionTooBig e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("too big");
 		}
 	}
 
@@ -47,20 +46,24 @@ public class Scenario01 {
 		System.out.println("Human created with name: " + human.getName());
 		Cloak cloak = new Cloak();
 		System.out.println("Cloak created with name: " + cloak.getName());
-		// TODO fill it
 		try {
 			human.wear(cloak);
 			System.out.println("Human wearing cloak.");
 		} catch (ExceptionCantWear e) {
-			System.out.println("Human could not wear cloak");
+			System.out.println("Cant wear");
+		} catch (ExceptionInvalidType e) {
+			System.out.println("invalid type");
+		} catch (ExceptionTooHeavy e) {
+			System.out.println("too heavy");
+		} catch (ExceptionTooBig e) {
+			System.out.println("too big");
 		}
 		System.out.println("Cloak location: " + cloak.getLocation().getName());
 	}
 
-    //TODO
 	public static void crossbow_is_loaded() {
 		System.out.println("\n** A crossbow is loaded.");
-
+		System.out.println("TODO");  // TODO
 	}
 
 	public static void torch_is_lit() {
@@ -75,37 +78,47 @@ public class Scenario01 {
 	public static void shield_equip() {
 		System.out.println("\n** A Shield is equipped.");
 		Shield shield = new Shield();
-		Humanoid humanoid = new Humanoid();
+		Human humanoid = new Human();
 		System.out.println("Equip the shield.");
 		try {
 			humanoid.setShield(shield);
-			// TODO
 		} catch (Exception e) {
 			System.out.println("Humanoid could not wear shield");
 		}
-		System.out.println("Shield location: " + shield.getLocation());
+		System.out.println("Shield location: " + shield.getLocation().getName());
 	}
 
 	// TODO
-	public static void quiver_is_field() {
+	public static void quiver_is_filled() {
 		System.out.println("\n** A quiver is filled.");
 		Quiver quiver = new Quiver();
 		Arrow arrow = new Arrow();
-		quiver.add(arrow);
+		try {
+			quiver.add(arrow);
+		} catch (ExceptionInvalidType e) {
+			System.out.println("invalid type");
+		}
 	}
 
     //TODO
 	public static void candle_runs_out() {
 		System.out.println("\n** A candle runs out.");
 		Candle candle = new Candle();
+		System.out.println("TODO");
 	}
 
-    //TODO
 	public static void character_mounts_a_horse() {
 		System.out.println("\n** A character mounts a horse.");
 		Hobbit hobbit = new Hobbit();
 		Horse horse = new Horse();
-		hobbit.setMount(horse);
+		try {
+			hobbit.setMount(horse);
+		} catch (ExceptionInvalidType e) {
+			System.out.println("Horse invalid type");
+		} catch (ExceptionCantWear e) {
+			System.out.println("Horse cant wear");
+		}
+		System.out.println("Horse location: " + horse.getLocation().getName());		
 	}
 
     //TODO
@@ -113,7 +126,8 @@ public class Scenario01 {
 		System.out.println("\n** A hobbit eats a cookie.");
 		Hobbit hobbit = new Hobbit();
 		Cookie cookie = new Cookie();
-		hobbit.eat(cookie);
+		// TODO hobbit.eat(cookie);
+		System.out.println("TODO");
 	}
 
 	public static void main(String arg[]) {
@@ -123,7 +137,7 @@ public class Scenario01 {
 		crossbow_is_loaded();
 		torch_is_lit();
 		shield_equip();
-		quiver_is_field();
+		quiver_is_filled();
 		candle_runs_out();
 		character_mounts_a_horse();
 		hobbit_eats_a_cookie();

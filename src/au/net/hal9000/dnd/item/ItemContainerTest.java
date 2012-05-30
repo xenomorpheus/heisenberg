@@ -14,7 +14,7 @@ public class ItemContainerTest {
 		bag.setWeightMax(weightMax);
 		bag.setVolumeMax(volumeMax);
 		// Item
-		Item i = new Item();
+		Cookie i = new Cookie();
 		// This should just fit
 		i.setVolumeBase(volumeMax);
 		i.setWeightBase(weightMax);
@@ -24,12 +24,14 @@ public class ItemContainerTest {
 			fail("too heavy :"+e.getMessage());
 		} catch (ExceptionTooBig e) {
 			fail("too big: "+e.getMessage());
+		} catch (ExceptionInvalidType e) {
+			fail("invlaid type: "+e.getMessage());
 		}
 		// This should just break the volume
 		Bag bag2 = new Bag();
 		bag2.setWeightMax(weightMax);
 		bag2.setVolumeMax(volumeMax);
-		Item i2 = new Item();
+		Cookie i2 = new Cookie();
 		i2.setVolumeBase(volumeMax+0.01F);
 		i2.setWeightBase(weightMax);
 		try {
@@ -39,12 +41,14 @@ public class ItemContainerTest {
 			fail("too heavy: "+e.getMessage());
 		} catch (ExceptionTooBig e) {
 			// nothing to do
+		} catch (ExceptionInvalidType e) {
+			fail("invlaid type: "+e.getMessage());
 		}
 		// This should just break the weight
 		Bag bag3 = new Bag();
 		bag3.setWeightMax(weightMax);
 		bag3.setVolumeMax(volumeMax);
-		Item i3 = new Item();
+		Cookie i3 = new Cookie();
 		i3.setVolumeBase(volumeMax);
 		i3.setWeightBase(weightMax+0.01F);
 		try {
@@ -54,6 +58,8 @@ public class ItemContainerTest {
 			// nothing to do
 		} catch (ExceptionTooBig e) {
 			fail("too big: "+e.getMessage());
+		} catch (ExceptionInvalidType e) {
+			fail("invlaid type: "+e.getMessage());
 		}
 
 	}
