@@ -1,15 +1,6 @@
 package Scenario;
 
 import au.net.hal9000.dnd.*;
-import au.net.hal9000.dnd.Box;
-import au.net.hal9000.dnd.Cloak;
-import au.net.hal9000.dnd.ExceptionCantWear;
-import au.net.hal9000.dnd.ExceptionTooBig;
-import au.net.hal9000.dnd.ExceptionTooHeavy;
-import au.net.hal9000.dnd.Human;
-import au.net.hal9000.dnd.Scabbard;
-import au.net.hal9000.dnd.Sword;
-import au.net.hal9000.dnd.Torch;
 
 public class Scenario01 {
 
@@ -65,6 +56,7 @@ public class Scenario01 {
 		System.out.println("Cloak location: " + cloak.getLocation().getName());
 	}
 
+    //TODO
 	public static void crossbow_is_loaded() {
 		System.out.println("\n** A crossbow is loaded.");
 
@@ -93,6 +85,7 @@ public class Scenario01 {
 		System.out.println("Shield location: " + shield.getLocation());
 	}
 
+	// TODO
 	public static void quiver_is_field() {
 		System.out.println("\n** A quiver is filled.");
 		Quiver quiver = new Quiver();
@@ -100,18 +93,21 @@ public class Scenario01 {
 		quiver.add(arrow);
 	}
 
+    //TODO
 	public static void candle_runs_out() {
 		System.out.println("\n** A candle runs out.");
 		Candle candle = new Candle();
 	}
 
+    //TODO
 	public static void character_mounts_a_horse() {
 		System.out.println("\n** A character mounts a horse.");
 		Hobbit hobbit = new Hobbit();
 		Horse horse = new Horse();
-		hobbit.mount(horse);
+		hobbit.setMount(horse);
 	}
 
+    //TODO
 	public static void hobbit_eats_a_cookie() {
 		System.out.println("\n** A hobbit eats a cookie.");
 		Hobbit hobbit = new Hobbit();
@@ -130,6 +126,5 @@ public class Scenario01 {
 		candle_runs_out();
 		character_mounts_a_horse();
 		hobbit_eats_a_cookie();
-
 	}
 }
