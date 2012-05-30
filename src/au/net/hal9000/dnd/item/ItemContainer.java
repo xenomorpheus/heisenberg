@@ -83,6 +83,7 @@ public class ItemContainer extends Item {
 		return items.peek();
 	}
 
+	// Empty the bag into this location
 	public void empty(Location newLocation) {
 		Iterator<Item> itr = this.items.iterator();
 		while (itr.hasNext()) {

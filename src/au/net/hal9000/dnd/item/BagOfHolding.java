@@ -14,7 +14,7 @@ import au.net.hal9000.dnd.item.property.*;
 
  */
 
-public class BagOfHolding extends Bag implements Magical,ExtraDimensional {
+public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 
 	private int type;
 
@@ -26,28 +26,6 @@ public class BagOfHolding extends Bag implements Magical,ExtraDimensional {
 	public BagOfHolding(int type) {
 		super("Bag of Holding");
 		setType(type);
-	}
-
-	public Item removeElemement(Item item, Location newLocation)
-			throws ExceptionCantRemove {
-
-		if (!items.removeElement(item)) {
-			throw new ExceptionCantRemove("remove failed");
-		}
-		item.setLocation(newLocation);
-		return item;
-	}
-
-	public float getWeight() {
-		return this.getWeightBase();
-	}
-
-	public float getVolume() {
-		return this.getVolumeBase();
-	}
-
-	public int getType() {
-		return type;
 	}
 
 	private void setType(int pType) {
@@ -83,18 +61,38 @@ public class BagOfHolding extends Bag implements Magical,ExtraDimensional {
 
 	}
 
-	// TODO
-	public void rupture() {
-		//
+	public Item removeElemement(Item item, Location newLocation)
+			throws ExceptionCantRemove {
+
+		if (!items.removeElement(item)) {
+			throw new ExceptionCantRemove("remove failed");
+		}
+		item.setLocation(newLocation);
+		return item;
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig, ExceptionInvalidType {
-		// Look for items that implement Sharp, ExtraDimensional
-		// if so rupture.
-		if (item.implementsInterface(Sharp.class)) {
-			this.rupture();
-		}
-		
+	// Magic
+	public float getWeight() {
+		return this.getWeightBase();
+	}
+
+	// Magic
+	public float getVolume() {
+		return this.getVolumeBase();
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	// TODO - a BOH rupturing is kind of special :-)
+	public void rupture() {
+		// TODO
+	}
+
+	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
+			ExceptionInvalidType {
+
 		// TODO need to recursively check items, go into bags etc.
 		// item.implementsInterface(ExtraDimensional.class)) {
 		super.add(item);
