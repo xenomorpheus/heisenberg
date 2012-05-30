@@ -1,5 +1,7 @@
 package au.net.hal9000.dnd.item;
 
+import java.util.Stack;
+
 import au.net.hal9000.dnd.item.property.*;
 
 /*
@@ -88,13 +90,21 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 	// TODO - a BOH rupturing is kind of special :-)
 	public void rupture() {
 		// TODO
+		// System.out.println("ExtraDimensional rupture");
 	}
 
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 
-		// TODO need to recursively check items, go into bags etc.
-		// item.implementsInterface(ExtraDimensional.class)) {
+		// TODO Do sharp objects cause a ED rupture?
+
+		// Recursively check for ExtraDimensional items.
+		Item extraDimensional = this.findFirstImplements(
+				ExtraDimensional.class, new Stack<Item>());
+		if (extraDimensional != null) {
+			this.rupture();
+			throw new ExceptionInvalidType("ExtraDimensional");
+		}
 		super.add(item);
 	}
 

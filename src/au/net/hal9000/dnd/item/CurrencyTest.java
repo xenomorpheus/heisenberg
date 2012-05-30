@@ -71,14 +71,24 @@ public class CurrencyTest {
 		assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.getGpEquiv(), 0.00001F);
 	}
 
+	// Merging two piles of coins
+	@Test
+	public void testTransferCoinCollection(){
+		Currency cc = new Currency(1,2,4,8);
+		Currency cc2 = new Currency(2,4,6,3);
+		cc.transfer(cc2);
+		assertEquals("transfer cc", 37.11F, cc.getGpEquiv(), 0.00001F);
+		assertEquals("transfer cc2", 0F, cc2.getGpEquiv(), 0.00001F);
+	}
+	
 	// Adding two piles of coins
 	@Test
 	public void testAddCoinCollection(){
 		Currency cc = new Currency(1,2,4,8);
 		Currency cc2 = new Currency(2,4,6,3);
 		cc.add(cc2);
-		assertEquals("add", 37.11F, cc.getGpEquiv(), 0.00001F);
-		assertEquals("add", 0F, cc2.getGpEquiv(), 0.00001F);
+		assertEquals("add cc", 37.11F, cc.getGpEquiv(), 0.00001F);
+		assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), 0.00001F);
 	}
 	
 	// TODO equals

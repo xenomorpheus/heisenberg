@@ -14,18 +14,19 @@ public class Bag extends ItemContainer {
 		super(pName);
 		setDescription("A common cloth sack about 2 feet by 4 feet in size.");
 	}
+
 	// TODO
 	public void rupture() {
-		//
+		// System.out.println("Ordinary rupture");
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig, ExceptionInvalidType {
+	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
+			ExceptionInvalidType {
 		// Look for sharp items. Wrapped sharp items are safe.
 		if (item.implementsInterface(Sharp.class)) {
 			this.rupture();
+			throw new ExceptionInvalidType("Sharp");
 		}
-		else{
-  	       super.add(item);
-		}
+		super.add(item);
 	}
 }

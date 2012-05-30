@@ -1,6 +1,7 @@
 package au.net.hal9000.dnd.item;
 
 import java.util.EmptyStackException;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -30,7 +31,7 @@ public class ItemContainer extends Item {
 
 	// Includes contents
 	public Currency getValue() {
-		Currency total = new Currency (this.getValueBase());
+		Currency total = new Currency(this.getValueBase());
 		total.add(this.getContentsValue());
 		return total;
 	}
@@ -51,7 +52,8 @@ public class ItemContainer extends Item {
 		return volumeMax;
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig, ExceptionInvalidType {
+	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
+			ExceptionInvalidType {
 		if (weightMax >= 0) {
 			float total = item.getWeight() + this.getContentsWeight();
 			if (total > this.weightMax) {
@@ -122,6 +124,29 @@ public class ItemContainer extends Item {
 			total.add(itr.next().getValue());
 		}
 		return total;
+	}
+
+	// Recursively search the container looking for
+	// an item that implements a class.
+	public Item findFirstImplements(Class pClass, Stack<Item> seen) {
+		Enumeration<Item> e = items.elements();
+		while (e.hasMoreElements()) {
+			Item item =  e.nextElement();
+            if (! seen.contains(item)){
+            	if (item.implementsInterface(pClass)){
+            		return item;
+            	}
+            	seen.push(item);
+            	// look inside containers
+                if (item instanceof ItemContainer){
+                	Item inside = ((ItemContainer) item).findFirstImplements(pClass, seen);
+                	if (inside != null){
+                		return inside;
+                	}
+                }
+            }
+		}
+		return null;
 	}
 
 }
