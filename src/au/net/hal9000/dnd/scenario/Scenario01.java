@@ -69,10 +69,10 @@ public class Scenario01 {
 	public static void torch_is_lit() {
 		System.out.println("\n** A torch is lit.");
 		Torch torch = new Torch();
-		System.out.println("Torch description: " + torch.getDescription());
+		System.out.println("Torch description:\n" + torch.getDescription());
 		System.out.println("Light the torch.");
 		torch.light();
-		System.out.println("Torch description: " + torch.getDescription());
+		System.out.println("Torch description:\n" + torch.getDescription());
 	}
 
 	public static void shield_equip() {
@@ -93,13 +93,20 @@ public class Scenario01 {
 		System.out.println("\n** A quiver is filled.");
 		Quiver quiver = new Quiver();
 		System.out.println("Quiver created.");
+		System.out.println("TODO - set quiver size");
 		Arrow arrow = new Arrow();
 		System.out.println("Arrow created.");
 		try {
 			quiver.add(arrow);
+			System.out.println("TODO - add more arrows till filled");
 		} catch (ExceptionInvalidType e) {
 			System.out.println("invalid type");
+		} catch (ExceptionTooHeavy e) {
+			System.out.println("too heavy");
+		} catch (ExceptionTooBig e) {
+			System.out.println("too big");
 		}
+		System.out.println("Arrow location: "+arrow.getLocation().getName());
 	}
 
     //TODO
@@ -116,9 +123,9 @@ public class Scenario01 {
 		try {
 			hobbit.setMount(horse);
 		} catch (ExceptionInvalidType e) {
-			System.out.println("Horse invalid type");
+			System.out.println("invalid type");
 		} catch (ExceptionCantWear e) {
-			System.out.println("Horse cant wear");
+			System.out.println("cant wear");
 		}
 		System.out.println("Horse location: " + horse.getLocation().getName());		
 	}

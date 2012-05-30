@@ -9,11 +9,11 @@ public class Quiver extends ItemContainer {
 	  super(pName);
   }
 
-  public void add (Item pItem) throws ExceptionInvalidType{
+  public void add (Item pItem) throws ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig{
 	  if (! (pItem instanceof Arrow)){
 		  throw new ExceptionInvalidType(pItem.getName()+" is not a Arrow");
 	  }
-	  this.add(pItem);
+	  super.add(pItem);
   }
   
 }

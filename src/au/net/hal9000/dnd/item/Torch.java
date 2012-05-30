@@ -1,10 +1,11 @@
 package au.net.hal9000.dnd.item;
+
 public class Torch extends Item {
 
 	boolean lit = false;
 
 	public Torch() {
-		super("Torch");
+		super("Torch", "A short wooden rod tipped with cloth soaked in oil");
 	}
 
 	public Torch(String pName, String pDescription) {
@@ -34,16 +35,28 @@ public class Torch extends Item {
 	}
 
 	public String getDescription() {
-		String desc = new String(super.getDescription());
+		String full_desc;
 
-		if (desc.length() > 0){
-			desc = desc.concat(" ");
+		// Try to get the base description first.
+		String desc = super.getDescription();
+		String name = super.getName();
+
+		// Otherwise try to get the name.
+		if (desc.length() > 0) {
+			full_desc = desc;
+			full_desc = full_desc.concat(". ");
+		} else if (name.length() > 0) {
+			full_desc = name;
+			full_desc = full_desc.concat(". ");
+		} else {
+			full_desc = new String("");
 		}
 		if (lit) {
-			desc = desc.concat("is lit");
+			full_desc = full_desc.concat("Is lit");
 		} else {
-			desc = desc.concat("is unlit");
+			full_desc = full_desc.concat("Not lit");
 		}
-		return desc;
+
+		return full_desc;
 	}
 }
