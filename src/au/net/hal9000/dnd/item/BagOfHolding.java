@@ -99,7 +99,7 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 		// TODO Do sharp objects cause a ED rupture?
 
 		// Recursively check for ExtraDimensional items.
-		Item extraDimensional = this.findFirstImplements(
+		Item extraDimensional = this.findFirstImplementsDeep(
 				ExtraDimensional.class, new Stack<Item>());
 		if (extraDimensional != null) {
 			this.rupture();

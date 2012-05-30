@@ -128,10 +128,11 @@ public class ItemContainer extends Item {
 
 	// Recursively search the container looking for
 	// an item that implements a class.
-	public Item findFirstImplements(Class pClass, Stack<Item> seen) {
+	public Item findFirstImplementsDeep(Class pClass, Stack<Item> seen) {
 		Enumeration<Item> e = items.elements();
 		while (e.hasMoreElements()) {
 			Item item =  e.nextElement();
+			System.out.println("Looking at item named "+item.getName());
             if (! seen.contains(item)){
             	if (item.implementsInterface(pClass)){
             		return item;
@@ -139,7 +140,7 @@ public class ItemContainer extends Item {
             	seen.push(item);
             	// look inside containers
                 if (item instanceof ItemContainer){
-                	Item inside = ((ItemContainer) item).findFirstImplements(pClass, seen);
+                	Item inside = ((ItemContainer) item).findFirstImplementsDeep(pClass, seen);
                 	if (inside != null){
                 		return inside;
                 	}

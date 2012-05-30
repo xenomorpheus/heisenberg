@@ -84,7 +84,6 @@ public class BagOfHoldingTest {
 		assertEquals("cookie location",bag,cookie.getLocation());
 	}
 	
-	
 	@Test
 	public void sharp_add_rupture() {
 		Sword sword = new Sword();
@@ -102,5 +101,57 @@ public class BagOfHoldingTest {
 			fail("too big");
 		}
 		assertEquals("cookie location",ground,sword.getLocation());
+	}
+
+	// add a wrapped sword to a bag of holding.
+	@Test
+	public void sharp_add_wrapped_sword() {
+		Location ground = new Location("Ground");
+		Sword sword = new Sword();
+		sword.setLocation(ground);
+		Scabbard scabbard = new Scabbard();
+		scabbard.setLocation(ground);
+		try {
+			scabbard.add(sword);
+		} catch (ExceptionCantWear e1) {
+			fail("could not add sword to scabbard");
+		}
+		// Check that locations are what we expect
+		assertEquals("sword location",scabbard,sword.getLocation());
+		assertEquals("scabard location",ground,scabbard.getLocation());
+		BagOfHolding bag = new BagOfHolding(1);
+		
+		// Try adding the scabbard to the BOH
+		try {
+			bag.add(scabbard);
+		} catch (ExceptionInvalidType e) {
+			fail("Expecting invalid type");
+		} catch (ExceptionTooHeavy e) {
+			fail("too heavy");
+		} catch (ExceptionTooBig e) {
+			fail("too big");
+		}
+		// Check that locations are what we expect
+		assertEquals("sword location",scabbard,sword.getLocation());
+		assertEquals("scabard location",bag,scabbard.getLocation());
+	}
+	
+	@Test
+	public void multidimensional_add_rupture() {
+		BagOfHolding bag_inner = new BagOfHolding(1);
+		Location ground = new Location("Ground");
+		bag_inner.setLocation(ground);
+		BagOfHolding bag = new BagOfHolding(1);
+		try {
+			bag.add(bag_inner);
+			fail("Expecting invalid type");
+		} catch (ExceptionInvalidType e) {
+			// nothing to do
+		} catch (ExceptionTooHeavy e) {
+			fail("too heavy");
+		} catch (ExceptionTooBig e) {
+			fail("too big");
+		}
+		assertEquals("cookie location",ground,bag_inner.getLocation());
 	}
 }
