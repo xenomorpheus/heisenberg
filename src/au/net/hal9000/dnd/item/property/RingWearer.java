@@ -1,11 +1,11 @@
 package au.net.hal9000.dnd.item.property;
 
-import au.net.hal9000.dnd.item.ExceptionCantRemove;
-import au.net.hal9000.dnd.item.ExceptionCantWear;
-import au.net.hal9000.dnd.item.Location;
-import au.net.hal9000.dnd.item.Ring;
+import au.net.hal9000.dnd.item.*;
+import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
 
-public interface RingWearer {
-     void ringWear(Ring r) throws ExceptionCantWear;
-     void ringRemove(Ring r, Location newLocation) throws ExceptionCantRemove;
+public interface RingWearer extends ItemProperty {
+	void ringWear(Ring r) throws ExceptionCantWear;
+
+	void ringRemove(Ring r, Location newLocation) throws ExceptionCantRemove;
 }

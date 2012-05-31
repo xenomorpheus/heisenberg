@@ -5,7 +5,7 @@ public class Currency {
 	public static final Float ppAsGp = 10F;
 	public static final Float spAsGp = 0.1F;
 	public static final Float cpAsGp = 0.01F;
-	
+
 	// coin count in this collection
 	private int pp = 0;
 	private int gp = 0;
@@ -74,8 +74,8 @@ public class Currency {
 		this.sp += cc.sp;
 		this.cp += cc.cp;
 	}
-	
-    // transfer all the value of the passed currency object.
+
+	// transfer all the value of the passed currency object.
 	public void transfer(Currency cc) {
 		this.add(cc);
 		// remove the value from the original cc.
@@ -84,5 +84,10 @@ public class Currency {
 
 	public boolean equals(Currency cc) {
 		return (pp == cc.pp) && (gp == cc.gp) && (sp == cc.sp) && (cp == cc.cp);
+	}
+
+	public String toString() {
+		return new String(this.pp + "pp, " + this.gp + "gp, " + this.sp
+				+ "sp, " + this.cp + "cp ");
 	}
 }

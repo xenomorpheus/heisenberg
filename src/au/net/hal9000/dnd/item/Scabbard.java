@@ -1,5 +1,8 @@
 package au.net.hal9000.dnd.item;
 
+import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+
 public class Scabbard extends Item implements SwordSheath {
 	private Sword sword = null;
 	

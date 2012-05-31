@@ -6,6 +6,9 @@ import java.util.Stack;
 
 import org.junit.Test;
 
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
 import au.net.hal9000.dnd.item.property.Sharp;
 
 public class ItemContainerTest {

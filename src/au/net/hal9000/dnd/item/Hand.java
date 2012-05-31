@@ -2,6 +2,8 @@ package au.net.hal9000.dnd.item;
 import java.util.Iterator;
 import java.util.Vector;
 
+import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
 import au.net.hal9000.dnd.item.property.*;
 
 // Hand

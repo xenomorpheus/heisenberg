@@ -5,6 +5,10 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Stack;
 
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+
 // TODO make abstract
 public class ItemContainer extends Item {
 	float weightMax = -1F; // -1 unlimited

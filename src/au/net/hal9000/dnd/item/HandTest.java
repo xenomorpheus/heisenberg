@@ -3,6 +3,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+
 public class HandTest {
 
 	// ringWear

@@ -1,6 +1,8 @@
 package au.net.hal9000.dnd.item;
 
-public class Cookie extends Item {
+import au.net.hal9000.dnd.item.property.HumanoidFood;
+
+public class Cookie extends Item implements HumanoidFood{
 	public Cookie() {
 		super("Cookie");
 	}

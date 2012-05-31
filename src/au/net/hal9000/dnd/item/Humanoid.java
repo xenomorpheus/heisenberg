@@ -2,8 +2,12 @@ package au.net.hal9000.dnd.item;
 
 import java.util.Iterator;
 import java.util.Vector;
-import au.net.hal9000.dnd.item.property.Clothing;
-import au.net.hal9000.dnd.item.property.Mount;
+
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+import au.net.hal9000.dnd.item.property.*;
 
 public abstract class Humanoid extends Animal {
 
@@ -19,9 +23,18 @@ public abstract class Humanoid extends Animal {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public void eat(Item pFood) throws ExceptionInvalidType {
+		if (! pFood.implementsInterface(HumanoidFood.class) ){
+			throw new ExceptionInvalidType(this.getName()+" can't eat "+pFood.getName());
+        }
+		pFood.beNot();
+	}
+	
+	
 	public void wear(Item pClothing) throws ExceptionCantWear, ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig {
 		if (! pClothing.implementsInterface(Clothing.class) ){
-			throw new ExceptionInvalidType(pClothing.getName()+" doesn't implement Clothing");
+			throw new ExceptionInvalidType(this.getName()+" can't wear "+pClothing.getName());
         }
 		clothing.add(pClothing);
 		pClothing.setLocation(this);

@@ -1,6 +1,10 @@
 package au.net.hal9000.dnd.scenario;
 
 import au.net.hal9000.dnd.item.*;
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
 
 public class Scenario01 {
 

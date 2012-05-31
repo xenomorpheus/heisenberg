@@ -1,5 +1,9 @@
 package au.net.hal9000.dnd.item;
 
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+
 public class Quiver extends ItemContainer {
 	
   public Quiver(){

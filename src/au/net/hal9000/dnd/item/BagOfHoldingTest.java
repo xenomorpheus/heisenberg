@@ -3,6 +3,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
+import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
+import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+
 public class BagOfHoldingTest {
 
 	@Test
