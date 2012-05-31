@@ -2,6 +2,8 @@ package au.net.hal9000.dnd.item;
 
 import java.lang.Math;
 
+import au.net.hal9000.dnd.item.property.ItemProperty;
+
 //Item:
 //* An item has a name which is text.
 //* An item has a description which is text.
@@ -27,7 +29,7 @@ import java.lang.Math;
 
 public abstract class Item {
 	private String name;
-	private String description = "";
+	private String description = null;
 	private float weightBase = 0F; // pounds
 	private float volumeBase = 0F; // cubic feet
 	private Currency valueBase = new Currency();
@@ -94,7 +96,7 @@ public abstract class Item {
 	public Currency getValueBase() {
 		return valueBase;
 	}
-	
+
 	// For simple items the value is the valueBase.
 	// will be overridden by collections
 	public Currency getValue() {
@@ -106,26 +108,15 @@ public abstract class Item {
 	}
 
 	public Item getLocation() {
-		return location;
+		return this.location;
 	}
 
 	public void setLocation(Item location) {
 		this.location = location;
 	}
 
-	public Boolean implementsInterface(Class interf) {
-		for (Class c : getClass().getInterfaces()) {
-			if (c.equals(interf)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public String toString() {
-		return "Class: " + getClass().getName() + "\nName: " + name
-				+ "\nCost: " + valueBase + "\nWeight: " + weightBase
-				+ "\nDescription: " + description + "\n";
+	public boolean implementsInterface(Class<ItemProperty> interf) {
+		return interf.isInstance(this);
 	}
 
 	public boolean equals(Item other) {
@@ -156,5 +147,41 @@ public abstract class Item {
 		}
 
 		return true;
+	}
+
+	// Attempt to unlink the item from everything so that
+	// it can be garbage collected.
+	// Won't work if anything is referencing this item.
+	public void beNot() {
+		this.name = null;
+		this.description = null;
+		this.valueBase = null;
+		this.location = null;
+	}
+
+	public String toString() {
+		String str = new String();
+		String temp;
+
+		temp = this.getName();
+		if (temp != null) {
+			str = str.concat("Name: " + temp + "\n");
+		}
+		temp = this.getDescription();
+		if (temp != null) {
+			str = str.concat("Description: " + temp + "\n");
+		}
+		str = str.concat("Weight Base: " + this.getWeightBase() + "\n"
+				+ "Volume Base: " + this.getVolumeBase() + "\n");
+
+		Currency valueBase = this.getValueBase();
+		if (valueBase != null) {
+			str = str.concat("Value Base: " + valueBase + "\n");
+		}
+		Item location = this.getLocation();
+		if (location != null) {
+			str = str.concat("Location: " + location.getName() + "\n");
+		}
+		return str;
 	}
 }
