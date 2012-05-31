@@ -5,9 +5,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Stack;
 
-import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
-import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
-import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+import au.net.hal9000.dnd.item.exception.*;
 
 // TODO make abstract
 public class ItemContainer extends Item {
@@ -90,7 +88,7 @@ public class ItemContainer extends Item {
 	}
 
 	// Empty the bag into this location
-	public void empty(Location newLocation) {
+	public void empty(Item newLocation) {
 		Iterator<Item> itr = this.items.iterator();
 		while (itr.hasNext()) {
 			itr.next().setLocation(newLocation);
