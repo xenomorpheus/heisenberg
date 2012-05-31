@@ -2,6 +2,7 @@ package au.net.hal9000.dnd.item;
 
 import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
 import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.property.SwordSheath;
 
 public class Scabbard extends Item implements SwordSheath {
 	private Sword sword = null;
@@ -22,7 +23,7 @@ public class Scabbard extends Item implements SwordSheath {
         pSword.setLocation(this);
 	}
 
-	public Sword remove(Location pLocation) throws ExceptionCantRemove {
+	public Sword remove(Item pLocation) throws ExceptionCantRemove {
 		if (sword == null){
 			throw new ExceptionCantRemove("scabbard empty");
 		}
@@ -39,4 +40,5 @@ public class Scabbard extends Item implements SwordSheath {
 		}
 		return total;
 	}
+
 }
