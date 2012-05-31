@@ -7,5 +7,5 @@ import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
 public interface RingWearer extends ItemProperty {
 	void ringWear(Ring r) throws ExceptionCantWear;
 
-	void ringRemove(Ring r, Location newLocation) throws ExceptionCantRemove;
+	void ringRemove(Ring r, Item newLocation) throws ExceptionCantRemove;
 }
