@@ -2,6 +2,7 @@ package au.net.hal9000.dnd.item;
 
 import java.util.Stack;
 
+import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
 
 /*
@@ -63,7 +64,7 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 
 	}
 
-	public Item removeElemement(Item item, Location newLocation)
+	public Item removeElemement(Item item, Item newLocation)
 			throws ExceptionCantRemove {
 
 		if (!items.removeElement(item)) {
