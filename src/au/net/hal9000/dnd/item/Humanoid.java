@@ -25,7 +25,7 @@ public abstract class Humanoid extends Animal {
 
 
 	public void eat(Item pFood) throws ExceptionInvalidType {
-		if (! pFood.implementsInterface(HumanoidFood.class) ){
+		if (! (pFood instanceof HumanoidFood)){
 			throw new ExceptionInvalidType(this.getName()+" can't eat "+pFood.getName());
         }
 		pFood.beNot();
@@ -33,7 +33,7 @@ public abstract class Humanoid extends Animal {
 	
 	
 	public void wear(Item pClothing) throws ExceptionCantWear, ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig {
-		if (! pClothing.implementsInterface(Clothing.class) ){
+		if (! (pClothing instanceof Clothing) ){
 			throw new ExceptionInvalidType(this.getName()+" can't wear "+pClothing.getName());
         }
 		clothing.add(pClothing);
@@ -76,7 +76,7 @@ public abstract class Humanoid extends Animal {
 	}
 
 	public void setMount(Item pMount) throws ExceptionInvalidType, ExceptionCantWear {
-		if (! pMount.implementsInterface(Mount.class) ){
+		if (! ( pMount instanceof Mount) ){
 			throw new ExceptionInvalidType(pMount.getName()+" doesn't implement Mount");
         }
         if (mount != null){
@@ -84,6 +84,11 @@ public abstract class Humanoid extends Animal {
         }
         pMount.setLocation(this);
         this.mount = pMount;
+	}
+	
+	public boolean equals(Humanoid pHumanoid){
+		// TODO
+		throw new RuntimeException("Can't do humanoid equals yet"+ this.getName());
 	}
 
 }

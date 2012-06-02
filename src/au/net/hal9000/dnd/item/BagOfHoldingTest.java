@@ -75,7 +75,7 @@ public class BagOfHoldingTest {
 	@Test
 	public void ordinary_add() {
 		Cookie cookie = new Cookie();
-		cookie.setLocation(new Location("Ground"));
+		cookie.setLocation(new Human("Ground"));
 		BagOfHolding bag = new BagOfHolding(1);
 		try {
 			bag.add(cookie);
@@ -92,8 +92,8 @@ public class BagOfHoldingTest {
 	@Test
 	public void sharp_add_rupture() {
 		Sword sword = new Sword();
-		Location ground = new Location("Ground");
-		sword.setLocation(ground);
+		Human human = new Human("Ground");
+		sword.setLocation(human);
 		BagOfHolding bag = new BagOfHolding(1);
 		try {
 			bag.add(sword);
@@ -105,17 +105,17 @@ public class BagOfHoldingTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",ground,sword.getLocation());
+		assertEquals("cookie location",human,sword.getLocation());
 	}
 
 	// add a wrapped sword to a bag of holding.
 	@Test
 	public void sharp_add_wrapped_sword() {
-		Location ground = new Location("Ground");
+		Human human = new Human("Ground");
 		Sword sword = new Sword();
-		sword.setLocation(ground);
+		sword.setLocation(human);
 		Scabbard scabbard = new Scabbard();
-		scabbard.setLocation(ground);
+		scabbard.setLocation(human);
 		try {
 			scabbard.add(sword);
 		} catch (ExceptionCantWear e1) {
@@ -123,7 +123,7 @@ public class BagOfHoldingTest {
 		}
 		// Check that locations are what we expect
 		assertEquals("sword location",scabbard,sword.getLocation());
-		assertEquals("scabard location",ground,scabbard.getLocation());
+		assertEquals("scabard location",human,scabbard.getLocation());
 		BagOfHolding bag = new BagOfHolding(1);
 		
 		// Try adding the scabbard to the BOH
@@ -144,8 +144,8 @@ public class BagOfHoldingTest {
 	@Test
 	public void multidimensional_add_rupture() {
 		BagOfHolding bag_inner = new BagOfHolding(1);
-		Location ground = new Location("Ground");
-		bag_inner.setLocation(ground);
+		Human human = new Human("Ground");
+		bag_inner.setLocation(human);
 		BagOfHolding bag = new BagOfHolding(1);
 		try {
 			bag.add(bag_inner);
@@ -157,6 +157,6 @@ public class BagOfHoldingTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",ground,bag_inner.getLocation());
+		assertEquals("cookie location",human,bag_inner.getLocation());
 	}
 }

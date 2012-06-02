@@ -17,6 +17,33 @@ public class ItemContainer extends Item {
 		super(string);
 	}
 
+	// Getters and Setters
+	public float getWeightMax() {
+		return weightMax;
+	}
+
+	public void setWeightMax(float weightMax) {
+		this.weightMax = weightMax;
+	}
+
+	public void setVolumeMax(float volumeMax) {
+		this.volumeMax = volumeMax;
+	}
+
+	public float getVolumeMax() {
+		return volumeMax;
+	}
+
+	public Stack<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(Stack<Item> items) {
+		this.items = items;
+	}
+
+	// Misc
+
 	// Includes contents
 	public float getWeight() {
 		float total = this.getWeightBase();
@@ -36,22 +63,6 @@ public class ItemContainer extends Item {
 		Currency total = new Currency(this.getValueBase());
 		total.add(this.getContentsValue());
 		return total;
-	}
-
-	public float getWeightMax() {
-		return weightMax;
-	}
-
-	public void setWeightMax(float weightMax) {
-		this.weightMax = weightMax;
-	}
-
-	public void setVolumeMax(float volumeMax) {
-		this.volumeMax = volumeMax;
-	}
-
-	public float getVolumeMax() {
-		return volumeMax;
 	}
 
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
@@ -89,7 +100,7 @@ public class ItemContainer extends Item {
 
 	// Empty the bag into this location
 	public void empty(Item newLocation) {
-		Iterator<Item> itr = this.items.iterator();
+		Iterator<Item> itr = getItems().iterator();
 		while (itr.hasNext()) {
 			itr.next().setLocation(newLocation);
 		}
@@ -100,7 +111,7 @@ public class ItemContainer extends Item {
 	// Magic containers will override getWeight().
 	public float getContentsWeight() {
 		float total = 0F;
-		Iterator<Item> itr = this.items.iterator();
+		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
 			total += itr.next().getWeight();
 		}
@@ -112,7 +123,7 @@ public class ItemContainer extends Item {
 	// Magic containers will override getVolume().
 	public float getContentsVolume() {
 		float total = 0F;
-		Iterator<Item> itr = this.items.iterator();
+		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
 			total += itr.next().getVolume();
 		}
@@ -121,7 +132,7 @@ public class ItemContainer extends Item {
 
 	public Currency getContentsValue() {
 		Currency total = new Currency();
-		Iterator<Item> itr = this.items.iterator();
+		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
 			total.add(itr.next().getValue());
 		}
@@ -131,12 +142,12 @@ public class ItemContainer extends Item {
 	// Recursively search the container looking for
 	// an item that implements a class.
 	public Item findFirstImplementsDeep(Class pClass, Stack<Item> seen) {
-		Enumeration<Item> e = items.elements();
-		while (e.hasMoreElements()) {
-			Item item =  e.nextElement();
+		Iterator <Item> itr = this.getItems().iterator();
+		while (itr.hasNext()) {
+			Item item = itr.next();
 			System.out.println("Looking at item named "+item.getName());
             if (! seen.contains(item)){
-            	if (item.implementsInterface(pClass)){
+            	if (item instanceof pClass){
             		return item;
             	}
             	seen.push(item);

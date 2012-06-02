@@ -24,7 +24,7 @@ public class Bag extends ItemContainer {
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 		// Look for sharp items. Wrapped sharp items are safe.
-		if (item.getClass().isAnnotationPresent(Sharp.class)) {
+		if (item instanceof Sharp) {
 			this.rupture();
 			throw new ExceptionInvalidType("Sharp");
 		}

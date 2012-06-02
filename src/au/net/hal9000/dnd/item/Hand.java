@@ -30,7 +30,7 @@ public class Hand extends Item implements Living, RingWearer {
 
 	public void ringWear(Ring ring) throws ExceptionCantWear {
 
-		if (ring.implementsInterface(Magical.class)) {
+		if (ring instanceof Magical) {
 			if (magicRingCount >= magicRingMax) {
 				throw new ExceptionCantWear("would be exceeded magic ring max of "+ magicRingCount);
 			}
@@ -42,13 +42,13 @@ public class Hand extends Item implements Living, RingWearer {
 		ring.setLocation(this);
 	}
 
-	public void ringRemove(Ring ring, Location newLocation)
+	public void ringRemove(Ring ring, Item newLocation)
 			throws ExceptionCantRemove {
 
 		if (!this.rings.removeElement(ring)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
-		if (ring.implementsInterface(Magical.class)) {
+		if (ring instanceof Magical) {
 			magicRingCount--;
 			assert magicRingCount >= 0;
 		}

@@ -38,6 +38,8 @@ public abstract class Item {
 	// List <Defence> defenceList = new List();
 	// List <Protection> protectionList = new List();
 
+
+	// Class methods
 	public Item(String pName) {
 		super();
 		this.name = pName;
@@ -49,6 +51,8 @@ public abstract class Item {
 		this.description = pDescription;
 	}
 
+	
+	// Getters and Setters	
 	public String getName() {
 		return name;
 	}
@@ -62,13 +66,7 @@ public abstract class Item {
 	}
 
 	public void setDescription(String pDescription) {
-		this.description = new String(pDescription);
-	}
-
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
-	public float getWeight() {
-		return weightBase;
+		this.description = pDescription;
 	}
 
 	public float getWeightBase() {
@@ -104,7 +102,7 @@ public abstract class Item {
 	}
 
 	public void setValueBase(Currency pValueBase) {
-		this.valueBase = new Currency(pValueBase);
+		this.valueBase = pValueBase;
 	}
 
 	public Item getLocation() {
@@ -113,6 +111,15 @@ public abstract class Item {
 
 	public void setLocation(Item location) {
 		this.location = location;
+	}
+
+	
+	// misc methods
+	
+	// For simple items the weight is the weightBase.
+	// will be overridden by collections
+	public float getWeight() {
+		return weightBase;
 	}
 
 	public boolean implementsInterface(Class<ItemProperty> interf) {
@@ -160,6 +167,9 @@ public abstract class Item {
 	}
 
 	public String toString() {
+		return name;
+	}
+	public String detailedDescription(){
 		String str = new String();
 		String temp;
 

@@ -18,7 +18,7 @@ public class RingTest {
 	@Test
 	public void testImplementsMagic() {
 		Ring r = new Ring();
-		assertFalse("Implements Magical", r.implementsInterface(Magical.class));
+		assertFalse("Implements Magical", r instanceof Magical);
 	}
 
 }

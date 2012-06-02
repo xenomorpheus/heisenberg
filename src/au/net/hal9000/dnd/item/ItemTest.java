@@ -11,7 +11,7 @@ public class ItemTest {
 	public void testItemNullParam() {
 		Cookie i = new Cookie();
 		assertEquals("Item() name", "Cookie", i.getName());
-		assertEquals("Item() description", "", i.getDescription());
+		assertEquals("Item() description", null, i.getDescription());
 		assertEquals("Item() weightBase", 0F, i.getWeightBase(), 0.0001F);
 		assertEquals("Item() location", null, i.getLocation());
 	}
@@ -20,7 +20,7 @@ public class ItemTest {
 	public void testItemWithName() {
 		Cookie i = new Cookie("The Name");
 		assertEquals("Item() name", "The Name", i.getName());
-		assertEquals("Item() description", "", i.getDescription());
+		assertEquals("Item() description", null, i.getDescription());
 		assertEquals("Item() weightBase", 0F, i.getWeightBase(), 0.0001F);
 		assertEquals("Item() location", null, i.getLocation());
 	}
@@ -76,15 +76,9 @@ public class ItemTest {
 	@Test
 	public void testLocation() {
 		Cookie cookie = new Cookie();
-		Location floor = new Location("Floor");
-		cookie.setLocation(floor);
-		assertEquals("location", floor, cookie.getLocation());
-	}
-
-	@Test
-	public void testImplementsInterface(){
-		Cookie cookie = new Cookie();
-		assertFalse("implementsInterface",cookie.implementsInterface(Magical.class));
+		Human human = new Human("human");
+		cookie.setLocation(human);
+		assertEquals("location", human, cookie.getLocation());
 	}
 
 	public void testToString(){
