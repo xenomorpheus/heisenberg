@@ -31,6 +31,15 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 		setType(type);
 	}
 
+	// Features
+	public static boolean isExtraDimensional() {
+		return true;
+	}
+	public static boolean isMagical() {
+		return true;
+	}
+
+	// Other methods
 	private void setType(int pType) {
 		if ((pType < 1) || (pType > 4)) {
 			throw new IllegalArgumentException("invalid type=" + pType);
@@ -99,13 +108,13 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 
 		// TODO Do sharp objects cause a ED rupture?
 
-		// Recursively check for ExtraDimensional items.
-		Item extraDimensional = this.findFirstImplementsDeep(
-				ExtraDimensional.class, new Stack<Item>());
-		if (extraDimensional != null) {
-			this.rupture();
-			throw new ExceptionInvalidType("ExtraDimensional");
-		}
+		// TODO Recursively check for ExtraDimensional items.
+		// Item extraDimensional = this.findFirstImplementsDeep(
+		// ExtraDimensional.class, new Stack<Item>());
+		// if (extraDimensional != null) {
+		// this.rupture();
+		// throw new ExceptionInvalidType("ExtraDimensional");
+		// }
 		super.add(item);
 	}
 

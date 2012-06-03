@@ -1,13 +1,27 @@
 package au.net.hal9000.dnd.item;
 
-import au.net.hal9000.dnd.item.property.Magical;
 // MagicRing
 // is a Ring except:
 // It is Magical.
 
-public class MagicRing extends Ring implements Magical{
+public class MagicRing extends Ring {
 	private int plus;
 
+	// Constructor
+	public MagicRing() {
+		super("MagicRing");
+	}
+
+	public MagicRing(String pName) {
+		super(pName);
+	}
+
+	// Features
+	public static boolean isMagical() {
+		return true;
+	}
+
+	// Others
 	public int getPlus() {
 		return plus;
 	}
@@ -17,4 +31,3 @@ public class MagicRing extends Ring implements Magical{
 	}
 
 }
-

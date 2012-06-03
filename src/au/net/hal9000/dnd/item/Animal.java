@@ -8,5 +8,7 @@ public abstract class Animal extends Item implements Living {
 	public Animal(String pName) {
 		super(pName);
 	}
-
+    public static boolean Living(){
+    	return true;
+    }
 }

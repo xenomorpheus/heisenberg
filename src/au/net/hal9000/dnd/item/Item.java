@@ -38,7 +38,6 @@ public abstract class Item {
 	// List <Defence> defenceList = new List();
 	// List <Protection> protectionList = new List();
 
-
 	// Class methods
 	public Item(String pName) {
 		super();
@@ -51,8 +50,44 @@ public abstract class Item {
 		this.description = pDescription;
 	}
 
-	
-	// Getters and Setters	
+	// Feature
+	public static boolean isMagical() {
+		return false;
+	}
+
+	public static boolean isExtraDimensional() {
+		return false;
+	}
+
+	public static boolean isHumanoidFood() {
+		return false;
+	}
+
+	public static boolean isHumanoidMount() {
+		return false;
+	}
+
+	public static boolean isRingWearer() {
+		return false;
+	}
+
+	public static boolean isLiving() {
+		return false;
+	}
+
+	public static boolean isArmour() {
+		return false;
+	}
+
+	public static boolean isClothing() {
+		return false;
+	}
+
+	public static boolean isSharp() {
+		return false;
+	}
+
+	// Getters and Setters
 	public String getName() {
 		return name;
 	}
@@ -113,17 +148,12 @@ public abstract class Item {
 		this.location = location;
 	}
 
-	
 	// misc methods
-	
+
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
 	public float getWeight() {
 		return weightBase;
-	}
-
-	public boolean implementsInterface(Class<ItemProperty> interf) {
-		return interf.isInstance(this);
 	}
 
 	public boolean equals(Item other) {
@@ -169,7 +199,8 @@ public abstract class Item {
 	public String toString() {
 		return name;
 	}
-	public String detailedDescription(){
+
+	public String detailedDescription() {
 		String str = new String();
 		String temp;
 
