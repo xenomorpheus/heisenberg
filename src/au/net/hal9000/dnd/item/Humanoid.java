@@ -14,28 +14,30 @@ public abstract class Humanoid extends Animal {
 	HumanoidHead head = new HumanoidHead();
 	Hand leftHand = new Hand("Left Hand");
 	Hand rightHand = new Hand("Right Hand");
-	ItemContainer clothing = new ItemContainer("Clothing"); // TODO setWeightMax()
+	ItemContainer clothing = new ItemContainer("Clothing"); // TODO
+															// setWeightMax()
 	Shield shield = null;
-	Item mount = null;  // Mounts are worn :-)
+	Item mount = null; // Mounts are worn :-)
 
 	public Humanoid(String pName) {
 		super(pName);
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public void eat(Item pFood) throws ExceptionInvalidType {
-		if (! (pFood instanceof HumanoidFood)){
-			throw new ExceptionInvalidType(this.getName()+" can't eat "+pFood.getName());
-        }
+		if (pFood.isHumanoidFood()) {
+			throw new ExceptionInvalidType(this.getName() + " can't eat "
+					+ pFood.getName());
+		}
 		pFood.beNot();
 	}
-	
-	
-	public void wear(Item pClothing) throws ExceptionCantWear, ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig {
-		if (! (pClothing instanceof Clothing) ){
-			throw new ExceptionInvalidType(this.getName()+" can't wear "+pClothing.getName());
-        }
+
+	public void wear(Item pClothing) throws ExceptionCantWear,
+			ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig {
+		if (!pClothing.isClothing()) {
+			throw new ExceptionInvalidType(this.getName() + " can't wear "
+					+ pClothing.getName());
+		}
 		clothing.add(pClothing);
 		pClothing.setLocation(this);
 	}
@@ -55,7 +57,7 @@ public abstract class Humanoid extends Animal {
 		}
 		if (mount != null) {
 			total += mount.getWeight();
-		}		
+		}
 		return total;
 	}
 
@@ -75,20 +77,23 @@ public abstract class Humanoid extends Animal {
 		return this.shield;
 	}
 
-	public void setMount(Item pMount) throws ExceptionInvalidType, ExceptionCantWear {
-		if (! ( pMount instanceof Mount) ){
-			throw new ExceptionInvalidType(pMount.getName()+" doesn't implement Mount");
-        }
-        if (mount != null){
+	public void setMount(Item pMount) throws ExceptionInvalidType,
+			ExceptionCantWear {
+		if (! pMount.isHumanoidMount()) {
+			throw new ExceptionInvalidType(pMount.getName()
+					+ " doesn't implement Mount");
+		}
+		if (mount != null) {
 			throw new ExceptionCantWear("already mounted");
-        }
-        pMount.setLocation(this);
-        this.mount = pMount;
+		}
+		pMount.setLocation(this);
+		this.mount = pMount;
 	}
-	
-	public boolean equals(Humanoid pHumanoid){
+
+	public boolean equals(Humanoid pHumanoid) {
 		// TODO
-		throw new RuntimeException("Can't do humanoid equals yet"+ this.getName());
+		throw new RuntimeException("Can't do humanoid equals yet"
+				+ this.getName());
 	}
 
 }

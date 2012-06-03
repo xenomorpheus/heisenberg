@@ -1,9 +1,8 @@
 package au.net.hal9000.dnd.item;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import au.net.hal9000.dnd.item.property.Magical;
 
 public class ItemTest {
 
@@ -66,11 +65,16 @@ public class ItemTest {
 	public void testValueBase() {
 		Cookie i = new Cookie();
 		i.setValueBase(new Currency(1, 2, 4, 8));
-		assertTrue("ValueBase", i.getValueBase().equals(new Currency(1, 2, 4, 8)));
-		assertFalse("ValueBase", i.getValueBase().equals(new Currency(2, 2, 4, 8)));
-		assertFalse("ValueBase", i.getValueBase().equals(new Currency(1, 3, 4, 8)));
-		assertFalse("ValueBase", i.getValueBase().equals(new Currency(1, 2, 5, 8)));
-		assertFalse("ValueBase", i.getValueBase().equals(new Currency(1, 2, 4, 9)));
+		assertTrue("ValueBase",
+				i.getValueBase().equals(new Currency(1, 2, 4, 8)));
+		assertFalse("ValueBase",
+				i.getValueBase().equals(new Currency(2, 2, 4, 8)));
+		assertFalse("ValueBase",
+				i.getValueBase().equals(new Currency(1, 3, 4, 8)));
+		assertFalse("ValueBase",
+				i.getValueBase().equals(new Currency(1, 2, 5, 8)));
+		assertFalse("ValueBase",
+				i.getValueBase().equals(new Currency(1, 2, 4, 9)));
 	}
 
 	@Test
@@ -81,11 +85,10 @@ public class ItemTest {
 		assertEquals("location", human, cookie.getLocation());
 	}
 
-	public void testToString(){
-	    Cookie cookie = new Cookie();
-	    assertEquals("toString","some text",cookie.toString());
-	
+	public void testToString() {
+		Cookie cookie = new Cookie();
+		assertEquals("toString", "some text", cookie.toString());
+
 	}
-	
-	
+
 }

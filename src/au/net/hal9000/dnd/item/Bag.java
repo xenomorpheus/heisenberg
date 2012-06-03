@@ -1,7 +1,6 @@
 package au.net.hal9000.dnd.item;
 
 import au.net.hal9000.dnd.item.exception.*;
-import au.net.hal9000.dnd.item.property.Sharp;
 
 public class Bag extends ItemContainer {
 
@@ -24,7 +23,7 @@ public class Bag extends ItemContainer {
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 		// Look for sharp items. Wrapped sharp items are safe.
-		if (item instanceof Sharp) {
+		if (item.isSharp()) {
 			this.rupture();
 			throw new ExceptionInvalidType("Sharp");
 		}

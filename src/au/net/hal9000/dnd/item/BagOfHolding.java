@@ -17,7 +17,7 @@ import au.net.hal9000.dnd.item.property.*;
 
  */
 
-public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
+public class BagOfHolding extends Bag  {
 
 	private int type;
 

@@ -1,8 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-import au.net.hal9000.dnd.item.property.Sharp;
-
-public class Sword extends Item implements Sharp{
+public class Sword extends Item{
 	public Sword(){
 		super("Sword");
 	}
@@ -11,4 +9,8 @@ public class Sword extends Item implements Sharp{
 		super(pString);
 	}
 
+	public static boolean isSharp(){
+		return true;
+	}
+	
 }

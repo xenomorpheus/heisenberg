@@ -3,8 +3,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.dnd.item.property.Magical;
-
 public class RingTest {
 
 	@Test
@@ -18,7 +16,7 @@ public class RingTest {
 	@Test
 	public void testImplementsMagic() {
 		Ring r = new Ring();
-		assertFalse("Implements Magical", r instanceof Magical);
+		assertFalse("Implements Magical", r.isMagical());
 	}
 
 }

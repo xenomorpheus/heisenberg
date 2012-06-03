@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd.item;
+
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -13,24 +14,34 @@ import au.net.hal9000.dnd.item.property.*;
 // Rings may be removed in any order.
 // Is living  (todo)
 
-public class Hand extends Item implements Living, RingWearer {
+public class Hand extends Item {
 
 	private Vector<Ring> rings = new Vector<Ring>();
 	private int magicRingCount = 0;
 	private int magicRingMax = 1;
 
-
 	public Hand() {
 		super("Hand");
 	}
-	
+
 	public Hand(String string) {
 		super(string);
 	}
 
+	// Features
+	public static boolean isLiving() {
+		return true;
+	}
+
+	public static boolean isRingWearer() {
+		return true;
+	}
+
+	// Other
+
 	public void ringWear(Ring ring) throws ExceptionCantWear {
 
-		if (ring instanceof Magical) {
+		if (ring.isMagical()) {
 			if (magicRingCount >= magicRingMax) {
 				throw new ExceptionCantWear("would be exceeded magic ring max of "+ magicRingCount);
 			}
@@ -48,17 +59,17 @@ public class Hand extends Item implements Living, RingWearer {
 		if (!this.rings.removeElement(ring)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
-		if (ring instanceof Magical) {
+		if (ring.isMagical()) {
 			magicRingCount--;
 			assert magicRingCount >= 0;
 		}
 		ring.setLocation(newLocation);
 	}
-	
+
 	public float getWeight() {
 		float total = this.getWeightBase();
 		Iterator<Ring> itr = this.rings.iterator();
-		while( itr.hasNext()){
+		while (itr.hasNext()) {
 			total += itr.next().getWeight();
 		}
 		return total;

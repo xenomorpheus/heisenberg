@@ -2,8 +2,6 @@ package au.net.hal9000.dnd.item;
 
 import java.lang.Math;
 
-import au.net.hal9000.dnd.item.property.ItemProperty;
-
 //Item:
 //* An item has a name which is text.
 //* An item has a description which is text.
