@@ -1,5 +1,10 @@
 package au.net.hal9000.dnd.item;
 
+import java.util.Iterator;
+import java.util.Vector;
+
+import au.net.hal9000.dnd.item.property.ItemSearch;
+
 public class Crossbow extends Item {
 	private CrossbowBolt loadedBolt = null;
 
@@ -36,4 +41,16 @@ public class Crossbow extends Item {
 		}
 		return super.equals(other);
 	}
+
+	// Find items that match the criteria
+	public void searchHelper(ItemSearch pSearch) {
+		// Search fields defined in this class.
+		if (this.loadedBolt != null) {
+			pSearch.searchItem(this.loadedBolt);
+		}
+		// Let our super handle the rest.
+		pSearch.searchItem(this);
+	}	
+    // todo getWeight(), equal()
+
 }

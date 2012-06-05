@@ -1,6 +1,9 @@
 package au.net.hal9000.dnd.item;
 
+import java.util.Vector;
+
 import au.net.hal9000.dnd.item.exception.*;
+import au.net.hal9000.dnd.item.property.ItemSearch;
 
 public class Bag extends ItemContainer {
 
@@ -29,4 +32,5 @@ public class Bag extends ItemContainer {
 		}
 		super.add(item);
 	}
+
 }

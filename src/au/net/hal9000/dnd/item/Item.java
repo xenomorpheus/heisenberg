@@ -1,6 +1,9 @@
 package au.net.hal9000.dnd.item;
 
 import java.lang.Math;
+import java.util.Vector;
+
+import au.net.hal9000.dnd.item.property.ItemSearch;
 
 //Item:
 //* An item has a name which is text.
@@ -223,4 +226,10 @@ public abstract class Item {
 		}
 		return str;
 	}
+	
+	// Find items that match the criteria
+	public void searchHelper(ItemSearch pSearch){
+		pSearch.searchItem(this);
+	}
+
 }

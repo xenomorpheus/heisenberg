@@ -5,7 +5,7 @@ import org.junit.Test;
 import au.net.hal9000.dnd.item.*;
 import au.net.hal9000.dnd.item.exception.*;
 
-public class Scenario01 {
+public class ScenarioSet01 {
 
 	@Test
 	public void sword_into_scabbard() {

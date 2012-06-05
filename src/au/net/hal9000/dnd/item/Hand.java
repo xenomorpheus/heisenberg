@@ -43,7 +43,8 @@ public class Hand extends Item {
 
 		if (ring.isMagical()) {
 			if (magicRingCount >= magicRingMax) {
-				throw new ExceptionCantWear("would be exceeded magic ring max of "+ magicRingCount);
+				throw new ExceptionCantWear(
+						"would be exceeded magic ring max of " + magicRingCount);
 			}
 			magicRingCount++;
 		}
@@ -51,6 +52,18 @@ public class Hand extends Item {
 			throw new ExceptionCantWear("add failed");
 		}
 		ring.setLocation(this);
+	}
+
+	public Vector<Ring> getRings() {
+		return rings;
+	}
+
+	public int getMagicRingCount() {
+		return magicRingCount;
+	}
+
+	public int getMagicRingMax() {
+		return magicRingMax;
 	}
 
 	public void ringRemove(Ring ring, Item newLocation)
@@ -73,5 +86,14 @@ public class Hand extends Item {
 			total += itr.next().getWeight();
 		}
 		return total;
+	}
+
+	// Find items that match the criteria
+	public void searchHelper(ItemSearch pSearch) {
+		Iterator<Ring> itr = this.getRings().iterator();
+		while (itr.hasNext()) {
+			pSearch.searchItem(itr.next());
+		}
+		pSearch.searchItem(this);
 	}
 }

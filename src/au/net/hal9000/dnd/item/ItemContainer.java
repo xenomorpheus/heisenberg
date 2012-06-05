@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import au.net.hal9000.dnd.item.exception.*;
+import au.net.hal9000.dnd.item.property.ItemSearch;
 
 // TODO make abstract
 public class ItemContainer extends Item {
@@ -139,29 +140,15 @@ public class ItemContainer extends Item {
 		return total;
 	}
 
-	// Recursively search the container looking for
-	// an item that implements a class.
-	public Item findFirstImplementsDeep(ItemProperty pClass, Stack<Item> seen) {
+	// TODO equal
+
+	// Find items that match the criteria
+	public void searchHelper(ItemSearch pSearch){
 		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
-			Item item = itr.next();
-			System.out.println("Looking at item named " + item.getName());
-			if (!seen.contains(item)) {
-				if (item instanceof pClass) {
-					return item;
-				}
-				seen.push(item);
-				// look inside containers
-				if (item instanceof ItemContainer) {
-					Item inside = ((ItemContainer) item)
-							.findFirstImplementsDeep(pClass, seen);
-					if (inside != null) {
-						return inside;
-					}
-				}
-			}
+			pSearch.searchItem(itr.next());
 		}
-		return null;
-	}
+		pSearch.searchItem(this);
+	}	
 
 }
