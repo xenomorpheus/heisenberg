@@ -19,7 +19,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 	}
 
 	public void searchItem(Item item) {
-		System.out.println("Checking "+item);
+		System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
 		if (item.isExtraDimensional()) {
 			this.matchingItems.add(item);
 		}
@@ -29,7 +29,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 		Iterator<Item> itr = itemVector.iterator();
 		while (itr.hasNext()) {
 			Item item = itr.next();
-			System.out.println("Checking "+item);
+			System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
 			if (item.isExtraDimensional()) {
 				matchingItems.add(item);
 			}

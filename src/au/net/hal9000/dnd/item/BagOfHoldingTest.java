@@ -1,4 +1,5 @@
 package au.net.hal9000.dnd.item;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -51,9 +52,10 @@ public class BagOfHoldingTest {
 					weightBase, 0.001F);
 			assertEquals("type=" + type + ", volume", boh.getVolume(), 2F,
 					0.001F);
-			assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(), 2F,
-					0.001F);
-			assertTrue("type=" + type + ", cost", boh.getValueBase().equals(cost));
+			assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
+					2F, 0.001F);
+			assertTrue("type=" + type + ", cost",
+					boh.getValueBase().equals(cost));
 			// Should look like an ordinary bag :-)
 			assertEquals("type=" + type + ", description",
 					boh.getDescription(), ordinaryBag.getDescription());
@@ -63,15 +65,28 @@ public class BagOfHoldingTest {
 			try {
 				boh.add(i);
 			} catch (ExceptionTooHeavy e) {
-				fail("type=" + type + ", too heavy :"+e.getMessage());
+				fail("type=" + type + ", too heavy :" + e.getMessage());
 			} catch (ExceptionTooBig e) {
-				fail("type=" + type + ", too big :"+e.getMessage());
+				fail("type=" + type + ", too big :" + e.getMessage());
 			} catch (ExceptionInvalidType e) {
-				fail("type=" + type + ", invalid type :"+e.getMessage());
+				fail("type=" + type + ", invalid type :" + e.getMessage());
 			}
 		}
 
 	}
+
+	@Test
+	public void test_isMagical() {
+		BagOfHolding bag = new BagOfHolding(1);
+		assertTrue("isMagical", bag.isMagical());
+	}
+
+	@Test
+	public void test_isExtraDimensional() {
+		BagOfHolding bag = new BagOfHolding(1);
+		assertTrue("isExtraDimensional", bag.isExtraDimensional());
+	}
+
 	@Test
 	public void ordinary_add() {
 		Cookie cookie = new Cookie();
@@ -86,9 +101,9 @@ public class BagOfHoldingTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",bag,cookie.getLocation());
+		assertEquals("cookie location", bag, cookie.getLocation());
 	}
-	
+
 	@Test
 	public void sharp_add_rupture() {
 		Sword sword = new Sword();
@@ -105,7 +120,7 @@ public class BagOfHoldingTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",human,sword.getLocation());
+		assertEquals("cookie location", human, sword.getLocation());
 	}
 
 	// add a wrapped sword to a bag of holding.
@@ -122,10 +137,10 @@ public class BagOfHoldingTest {
 			fail("could not add sword to scabbard");
 		}
 		// Check that locations are what we expect
-		assertEquals("sword location",scabbard,sword.getLocation());
-		assertEquals("scabard location",human,scabbard.getLocation());
+		assertEquals("sword location", scabbard, sword.getLocation());
+		assertEquals("scabard location", human, scabbard.getLocation());
 		BagOfHolding bag = new BagOfHolding(1);
-		
+
 		// Try adding the scabbard to the BOH
 		try {
 			bag.add(scabbard);
@@ -137,10 +152,10 @@ public class BagOfHoldingTest {
 			fail("too big");
 		}
 		// Check that locations are what we expect
-		assertEquals("sword location",scabbard,sword.getLocation());
-		assertEquals("scabard location",bag,scabbard.getLocation());
+		assertEquals("sword location", scabbard, sword.getLocation());
+		assertEquals("scabard location", bag, scabbard.getLocation());
 	}
-	
+
 	@Test
 	public void multidimensional_add_rupture() {
 		BagOfHolding bag_inner = new BagOfHolding(1);
@@ -157,6 +172,6 @@ public class BagOfHoldingTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",human,bag_inner.getLocation());
+		assertEquals("cookie location", human, bag_inner.getLocation());
 	}
 }

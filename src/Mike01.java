@@ -7,7 +7,8 @@ public class Mike01 {
 
 	public static void main(String arg[]) {
 		Bag bag = new Bag();
-		bag.add(new BagOfHolding(1));
+		BagOfHolding boh = new BagOfHolding(1);
+		bag.add(boh);
 		bag.add(new Cookie());
 		bag.add(new Human());
 
@@ -27,5 +28,13 @@ public class Mike01 {
 			System.out.println("Item " + item);
 		}
 	
+		System.out.println("\nName: "+boh);
+        System.out.println("BOH ExtraDimensional ="+boh.isExtraDimensional());
+        System.out.println("BOH Magical ="+boh.isMagical());
+        System.out.println("BOH Class ="+boh.getClass().getName());
+		System.out.println("\nName: "+bag);
+        System.out.println("Bag ExtraDimensional ="+bag.isExtraDimensional());
+        System.out.println("Bag Magical ="+bag.isMagical());
+        System.out.println("Bag Class ="+bag.getClass().getName());
 	}
 }

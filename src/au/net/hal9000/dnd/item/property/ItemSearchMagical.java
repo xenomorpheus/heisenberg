@@ -19,9 +19,10 @@ public class ItemSearchMagical extends ItemSearch {
 	}
 
 	public void searchItem(Item item) {
-		System.out.println("Checking "+item);
+		System.out.println("Checking for Magical "+item+ " "+item.isMagical());
 		if (item.isMagical()) {
 			this.matchingItems.add(item);
+			System.out.println("Matching "+item+"  count  "+this.matchingItems.size());
 		}
 	}
 
@@ -29,9 +30,10 @@ public class ItemSearchMagical extends ItemSearch {
 		Iterator<Item> itr = itemVector.iterator();
 		while (itr.hasNext()) {
 			Item item = itr.next();
-			System.out.println("Checking "+item);
+			System.out.println("Checking for Magical "+item+ " "+item.isMagical());
 			if (item.isMagical()) {
 				matchingItems.add(item);
+				System.out.println("Matching "+item+"  count  "+this.matchingItems.size());
 			}
 		}
 	}
