@@ -17,7 +17,7 @@ import au.net.hal9000.dnd.item.property.*;
 
  */
 
-public class BagOfHolding extends Bag  {
+public class BagOfHolding extends Bag {
 
 	private int type;
 
@@ -35,6 +35,7 @@ public class BagOfHolding extends Bag  {
 	public static boolean isExtraDimensional() {
 		return true;
 	}
+
 	public static boolean isMagical() {
 		return true;
 	}
@@ -97,24 +98,36 @@ public class BagOfHolding extends Bag  {
 		return type;
 	}
 
-	// TODO - a BOH rupturing is kind of special :-)
+	// TODO
+	public void beNot() {
+		System.out.println("TODO - beNot");
+		// TODO call beNot() on every item declared directly in this class.
+		// TODO call beNot() on super.
+		this.beNot();
+	}
+
+	// A BOH rupturing is kind of special :-)
 	public void rupture() {
-		// TODO
-		// System.out.println("ExtraDimensional rupture");
+		System.out.println("ExtraDimensional rupture");
+		this.beNot();
 	}
 
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 
 		// TODO Do sharp objects cause a ED rupture?
+		if (item.isSharp()) {
+			this.rupture();
+			throw new ExceptionInvalidType("Sharp");
+		}
 
-		// TODO Recursively check for ExtraDimensional items.
-		// Item extraDimensional = this.findFirstImplementsDeep(
-		// ExtraDimensional.class, new Stack<Item>());
-		// if (extraDimensional != null) {
-		// this.rupture();
-		// throw new ExceptionInvalidType("ExtraDimensional");
-		// }
+		// Recursively check for ExtraDimensional items.
+		ItemSearch search = new ItemSearchExtraDimensional();
+		this.searchHelper(search);
+		if (search.getMatchingItemsCount() > 0) {
+			this.rupture();
+			throw new ExceptionInvalidType("ExtraDimensional");
+		}
 		super.add(item);
 	}
 
