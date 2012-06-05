@@ -30,11 +30,11 @@ public class Mike01 {
 	
 		System.out.println("\nName: "+boh);
         System.out.println("BOH ExtraDimensional ="+boh.isExtraDimensional());
-        System.out.println("BOH Magical ="+boh.isMagical());
-        System.out.println("BOH Class ="+boh.getClass().getName());
+        System.out.println("BOH Magical="+boh.isMagical());
+        System.out.println("BOH Class="+boh.getClass().getName());
 		System.out.println("\nName: "+bag);
         System.out.println("Bag ExtraDimensional ="+bag.isExtraDimensional());
-        System.out.println("Bag Magical ="+bag.isMagical());
-        System.out.println("Bag Class ="+bag.getClass().getName());
+        System.out.println("Bag Magical="+bag.isMagical());
+        System.out.println("Bag Class="+bag.getClass().getName());
 	}
 }

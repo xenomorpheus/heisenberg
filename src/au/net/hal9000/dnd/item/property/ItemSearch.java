@@ -13,4 +13,6 @@ public abstract class ItemSearch {
 	public abstract void searchItem(Vector<Item> itemVector);
 
 	public abstract Vector<Item> getMatchingItems();
+
+	public abstract int getMatchingItemsCount();
 }

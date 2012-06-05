@@ -18,8 +18,13 @@ public class ItemSearchMagical extends ItemSearch {
 		return matchingItems;
 	}
 
+	public int getMatchingItemsCount() {
+		return matchingItems.size();
+	}
+
 	public void searchItem(Item item) {
 		System.out.println("Checking for Magical "+item+ " "+item.isMagical());
+		System.out.println("  Class "+item.getClass().getName());
 		if (item.isMagical()) {
 			this.matchingItems.add(item);
 			System.out.println("Matching "+item+"  count  "+this.matchingItems.size());
@@ -31,6 +36,7 @@ public class ItemSearchMagical extends ItemSearch {
 		while (itr.hasNext()) {
 			Item item = itr.next();
 			System.out.println("Checking for Magical "+item+ " "+item.isMagical());
+			System.out.println("  Class "+item.getClass().getName());
 			if (item.isMagical()) {
 				matchingItems.add(item);
 				System.out.println("Matching "+item+"  count  "+this.matchingItems.size());

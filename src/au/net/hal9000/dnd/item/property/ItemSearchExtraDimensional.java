@@ -18,8 +18,13 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 		return matchingItems;
 	}
 
+	public int getMatchingItemsCount() {
+		return matchingItems.size();
+	}
+
 	public void searchItem(Item item) {
 		System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
+		System.out.println("  Class "+item.getClass().getName());
 		if (item.isExtraDimensional()) {
 			this.matchingItems.add(item);
 		}
@@ -30,6 +35,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 		while (itr.hasNext()) {
 			Item item = itr.next();
 			System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
+			System.out.println("  Class "+item.getClass().getName());
 			if (item.isExtraDimensional()) {
 				matchingItems.add(item);
 			}
