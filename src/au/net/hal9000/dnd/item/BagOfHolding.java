@@ -1,5 +1,6 @@
 package au.net.hal9000.dnd.item;
 
+import java.util.*;
 import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
 
@@ -72,10 +73,11 @@ public class BagOfHolding extends Bag {
 
 	}
 
-	public Item removeElemement(Item item, Item newLocation)
-			throws ExceptionCantRemove {
-
-		if (!items.removeElement(item)) {
+	// take the item out of the bag and place
+	// at newLocation
+	public Item getItem(Item item, Item newLocation){
+        Vector <Item> items = this.getContents();
+		if (! items.removeElement(item)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
 		item.setLocation(newLocation);
@@ -92,11 +94,10 @@ public class BagOfHolding extends Bag {
 		return this.getVolumeBase();
 	}
 
+    // BOH Type I,II,III or IV
 	public int getType() {
 		return type;
 	}
-
-
 
 	// A BOH rupturing is kind of special :-)
 	public void rupture() {
@@ -107,19 +108,16 @@ public class BagOfHolding extends Bag {
 	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 
-		// TODO Do sharp objects cause a ED rupture?
-		if (item.isSharp()) {
-			this.rupture();
-			throw new ExceptionInvalidType("Sharp");
-		}
-
 		// Recursively check for ExtraDimensional items.
 		ItemSearch search = new ItemSearchExtraDimensional();
-		this.accept(search);
+		item.accept(search);
 		if (search.getMatchingItemsCount() > 0) {
 			this.rupture();
 			throw new ExceptionInvalidType("ExtraDimensional");
 		}
+		// TODO Do sharp objects cause a ED rupture?
+
+		// Super will check for sharp.
 		super.add(item);
 	}
 

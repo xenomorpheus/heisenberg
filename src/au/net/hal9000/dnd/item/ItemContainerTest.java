@@ -1,6 +1,9 @@
 package au.net.hal9000.dnd.item;
 
 import static org.junit.Assert.*;
+
+import java.util.Vector;
+
 import org.junit.Test;
 import au.net.hal9000.dnd.item.exception.*;
 
@@ -63,6 +66,37 @@ public class ItemContainerTest {
 			fail("invlaid type: " + e.getMessage());
 		}
 
+	}
+
+	@Test
+	public void test_add_multi() {
+		Bag bag = new Bag();
+		Cookie c1 = new Cookie();
+		Cookie c2 = new Cookie();
+		Cookie c3 = new Cookie();
+		Location ground = new Location("Ground");
+		Vector<Item> items = new Vector<Item>();
+		items.add(c1);
+		items.add(c2);
+		items.add(c3);
+		bag.add(items);
+		assertEquals("add multi size", 3, bag.getContentsCount());
+		bag.empty(ground);
+		assertEquals("empty size", 0, bag.getContentsCount());
+	}
+
+	@Test
+	public void test_beNot() {
+		Bag bag = new Bag();
+		Cookie c1 = new Cookie();
+		Cookie c2 = new Cookie();
+		Cookie c3 = new Cookie();
+		bag.add(c1);
+		bag.add(c2);
+		bag.add(c3);
+		assertEquals("add multi size", 3, bag.getContentsCount());
+		bag.beNot();
+		assertEquals("empty size", 0, bag.getContentsCount());
 	}
 
 }

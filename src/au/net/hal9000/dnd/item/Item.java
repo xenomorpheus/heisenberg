@@ -188,14 +188,12 @@ public abstract class Item {
 	// it can be garbage collected.
 	// Won't work if anything is referencing this item.
 	public void beNot() {
-		if (location != null){
-			location.beNot();
-		}
 		System.out.println ("beNot called on "+this.getName());
-		this.location = null;
 		this.name = null;
 		this.description = null;
 		this.valueBase = null;
+		this.location = null;
+		//	We don't call beNot on the location.
 	}
 
 	public String toString() {

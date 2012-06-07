@@ -1,16 +1,16 @@
 package au.net.hal9000.dnd.item;
 
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.Stack;
+import java.util.Vector;
 
 import au.net.hal9000.dnd.item.exception.*;
 
 // TODO make abstract
 public class ItemContainer extends Item {
-	float weightMax = -1F; // -1 unlimited
-	float volumeMax = -1F; // -1 unlimited
-	Stack<Item> items = new Stack<Item>();
+	private float weightMax = -1F; // -1 unlimited
+	private float volumeMax = -1F; // -1 unlimited
+	private Stack<Item> items = new Stack<Item>();
 
 	ItemContainer(String string) {
 		super(string);
@@ -33,12 +33,8 @@ public class ItemContainer extends Item {
 		return volumeMax;
 	}
 
-	public Stack<Item> getItems() {
+	protected Stack<Item> getContents() {
 		return items;
-	}
-
-	public void setItems(Stack<Item> items) {
-		this.items = items;
 	}
 
 	// Misc
@@ -64,8 +60,7 @@ public class ItemContainer extends Item {
 		return total;
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
-			ExceptionInvalidType {
+	public void add(Item item) {
 		if (weightMax >= 0) {
 			float total = item.getWeight() + this.getContentsWeight();
 			if (total > this.weightMax) {
@@ -89,6 +84,13 @@ public class ItemContainer extends Item {
 		item.setLocation(this);
 	}
 
+	// add multiple items
+	public void add(Vector<Item> items) {
+		for (Item item : items) {
+            this.add(item);
+		}
+	}
+
 	public Item pop() throws EmptyStackException {
 		return items.pop();
 	}
@@ -99,21 +101,24 @@ public class ItemContainer extends Item {
 
 	// Empty the bag into this location
 	public void empty(Item newLocation) {
-		Iterator<Item> itr = getItems().iterator();
-		while (itr.hasNext()) {
-			itr.next().setLocation(newLocation);
+		while ( ! items.isEmpty() ){
+			Item item = items.pop();
+			item.setLocation(newLocation);
 		}
 	}
 
+	public int getContentsCount(){
+		return items.size();
+	}
+	
 	// Warning
 	// Use getWeight() to get total including contents.
 	// Magic containers will override getWeight().
 	public float getContentsWeight() {
 		float total = 0F;
-		Iterator<Item> itr = this.getItems().iterator();
-		while (itr.hasNext()) {
-			total += itr.next().getWeight();
-		}
+        for (Item item : getContents()){
+			total += item.getWeight();
+        }
 		return total;
 	}
 
@@ -122,18 +127,16 @@ public class ItemContainer extends Item {
 	// Magic containers will override getVolume().
 	public float getContentsVolume() {
 		float total = 0F;
-		Iterator<Item> itr = this.getItems().iterator();
-		while (itr.hasNext()) {
-			total += itr.next().getVolume();
+		for (Item item : getContents()){
+			total += item.getVolume();
 		}
 		return total;
 	}
 
 	public Currency getContentsValue() {
 		Currency total = new Currency();
-		Iterator<Item> itr = this.getItems().iterator();
-		while (itr.hasNext()) {
-			total.add(itr.next().getValue());
+		for (Item item : getContents()){
+			total.add(item.getValue());
 		}
 		return total;
 	}
@@ -144,9 +147,8 @@ public class ItemContainer extends Item {
 	// Find items that match the criteria
 	public void accept(ItemVisitor visitor) {
 		// Search the Items directly declared in this class.
-		Iterator<Item> itr = this.getItems().iterator();
-		while (itr.hasNext()) {
-			visitor.visit(itr.next());
+		for (Item item : getContents()){
+			visitor.visit(item);
 		}
 		// Get super to do the rest.
 		super.accept(visitor);
@@ -154,9 +156,9 @@ public class ItemContainer extends Item {
 
 	public void beNot() {
 		// Call beNot on the Items directly declared in this class.
-		Iterator<Item> itr = this.getItems().iterator();
-		while (itr.hasNext()) {
-			itr.next().beNot();
+		while ( ! items.isEmpty() ){
+			Item item = items.pop();
+			item.beNot();
 		}
 		// Get super to do the rest.
 		super.beNot();

@@ -59,6 +59,9 @@ public class BagOfHoldingTest {
 			// Should look like an ordinary bag :-)
 			assertEquals("type=" + type + ", description",
 					boh.getDescription(), ordinaryBag.getDescription());
+
+			// Check weight and volume limits.
+			// This cookie should only just fit.
 			Cookie i = new Cookie();
 			i.setVolumeBase(volumeMax);
 			i.setWeightBase(weightMax);
@@ -104,6 +107,7 @@ public class BagOfHoldingTest {
 		assertEquals("cookie location", bag, cookie.getLocation());
 	}
 
+	// sharp exposed object causes rupture.
 	@Test
 	public void sharp_add_rupture() {
 		Sword sword = new Sword();

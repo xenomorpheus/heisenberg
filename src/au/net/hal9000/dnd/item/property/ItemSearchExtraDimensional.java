@@ -12,7 +12,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
     }
 
 	public void visit(Item item) {
-	//	System.out.println("Checking for ExtraDimensial " + item + " "
+	//	System.out.println("\n\nChecking for ExtraDimensial " + item + " "
 	//			+ item.isExtraDimensional());
 	//	System.out.println("  Class " + item.getClass().getName());
 		if (item.isExtraDimensional()) {
