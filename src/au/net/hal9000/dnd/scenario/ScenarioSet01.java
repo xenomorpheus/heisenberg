@@ -1,6 +1,7 @@
 package au.net.hal9000.dnd.scenario;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import au.net.hal9000.dnd.item.*;
 import au.net.hal9000.dnd.item.exception.*;
@@ -11,31 +12,31 @@ public class ScenarioSet01 {
 	public void sword_into_scabbard() {
 		System.out.println("\n** A sword is placed in a scabbard.");
 		Sword sword = new Sword();
-		System.out.println("Sword created with name: " + sword.getName());
+		System.out.println("Sword created with name: " + sword);
 		Scabbard scabbard = new Scabbard();
-		System.out.println("Scabbard created with name: " + scabbard.getName());
+		System.out.println("Scabbard created with name: " + scabbard);
 		try {
 			scabbard.add(sword);
 			System.out.println("Sword now in scabbard.");
 		} catch (ExceptionCantWear e) {
 			fail("Could not sheath the sword.");
 		}
-		System.out.println("Sword location: " + sword.getLocation().getName());
+		System.out.println("Sword location: " + sword.getLocation());
 	}
 
 	@Test
 	public void full_backpack_into_box() {
 		System.out.println("\n** A full backpack is placed in a box.");
 		Backpack backpack = new Backpack();
-		System.out.println("Backpack created with name: " + backpack.getName());
+		System.out.println("Backpack created with name: " + backpack);
 		Box box = new Box();
-		System.out.println("Box created with name: " + box.getName());
+		System.out.println("Box created with name: " + box);
 		// TODO fill it
 		try {
 			box.add(backpack);
 			System.out.println("Full backpack placed into box.");
 			System.out.println("Backpack location: "
-					+ backpack.getLocation().getName());
+					+ backpack.getLocation());
 		} catch (ExceptionInvalidType e) {
 			fail("invalid type");
 		} catch (ExceptionTooHeavy e) {
@@ -49,9 +50,9 @@ public class ScenarioSet01 {
 	public void character_puts_on_cloak() {
 		System.out.println("\n** A character puts on a cloak.");
 		Human human = new Human();
-		System.out.println("Human created with name: " + human.getName());
+		System.out.println("Human created with name: " + human);
 		Cloak cloak = new Cloak();
-		System.out.println("Cloak created with name: " + cloak.getName());
+		System.out.println("Cloak created with name: " + cloak);
 		try {
 			human.wear(cloak);
 			System.out.println("Human wearing cloak.");
@@ -64,18 +65,25 @@ public class ScenarioSet01 {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		System.out.println("Cloak location: " + cloak.getLocation().getName());
+		System.out.println("Cloak location: " + cloak.getLocation());
 	}
 
 	@Test
 	public void crossbow_is_loaded() {
-		Crossbow crossbow = new Crossbow();
-		CrossbowBolt bolt = new CrossbowBolt();
-		crossbow.setLoadedBolt(bolt);
 		System.out.println("\n** A crossbow is loaded.");
-		System.out.println("TODO"); // TODO
+		Crossbow crossbow = new Crossbow();
+		System.out.println("Crossbow created with name: " + crossbow);
+		CrossbowBolt bolt = new CrossbowBolt();
+		System.out.println("CrossbowBolt created with name: " + bolt);
+		Location ground = new Location("Ground");
+		bolt.setLocation(ground);
+		crossbow.setLoadedBolt(bolt);
+		CrossbowBolt got = crossbow.getLoadedBolt();
+        assertEquals("bow's bolt",bolt, got);
+        assertEquals("bolt's location", ground, got.getLocation());
+		System.out.println("Crossbow has been loaded with the bolt");
 	}
-
+	
 	@Test
 	public void torch_is_lit() {
 		System.out.println("\n** A torch is lit.");
@@ -98,7 +106,7 @@ public class ScenarioSet01 {
 			fail("Humanoid could not wear shield");
 		}
 		System.out
-				.println("Shield location: " + shield.getLocation().getName());
+				.println("Shield location: " + shield.getLocation());
 	}
 
 	// TODO
@@ -120,7 +128,7 @@ public class ScenarioSet01 {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		System.out.println("Arrow location: " + arrow.getLocation().getName());
+		System.out.println("Arrow location: " + arrow.getLocation());
 	}
 
 	// TODO
@@ -128,7 +136,10 @@ public class ScenarioSet01 {
 	public void candle_runs_out() {
 		System.out.println("\n** A candle runs out.");
 		Candle candle = new Candle();
+		System.out.println("Candle description:\n" + candle.getDescription());
 		System.out.println("TODO");
+		// candle.run_out();
+		System.out.println("Torch description:\n" + candle.getDescription());
 	}
 
 	@Test
