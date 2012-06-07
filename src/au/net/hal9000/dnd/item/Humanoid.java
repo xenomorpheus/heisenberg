@@ -1,13 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-import java.util.Iterator;
-import java.util.Vector;
-
-import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
-import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
-import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
-import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
-import au.net.hal9000.dnd.item.property.*;
+import au.net.hal9000.dnd.item.exception.*;
 
 public abstract class Humanoid extends Animal {
 
@@ -79,7 +72,7 @@ public abstract class Humanoid extends Animal {
 
 	public void setMount(Item pMount) throws ExceptionInvalidType,
 			ExceptionCantWear {
-		if (! pMount.isHumanoidMount()) {
+		if (!pMount.isHumanoidMount()) {
 			throw new ExceptionInvalidType(pMount.getName()
 					+ " doesn't implement Mount");
 		}
@@ -96,4 +89,23 @@ public abstract class Humanoid extends Animal {
 				+ this.getName());
 	}
 
+	public void beNot() {
+		// Call beNot on the Items directly declared in this class.
+		head.beNot();
+		if (leftHand != null) {
+			leftHand.beNot();
+		}
+		if (rightHand != null) {
+			rightHand.beNot();
+		}
+		clothing.beNot();
+		if (shield != null) {
+			shield.beNot();
+		}
+		if (mount != null) {
+			mount.beNot();
+		}
+		// Get super to do the rest.
+		super.beNot();
+	}
 }

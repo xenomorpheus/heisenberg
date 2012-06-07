@@ -1,8 +1,6 @@
 package au.net.hal9000.dnd.item;
 
 import java.lang.Math;
-import java.util.Vector;
-
 import au.net.hal9000.dnd.item.property.ItemSearch;
 
 //Item:
@@ -191,10 +189,14 @@ public abstract class Item {
 	// it can be garbage collected.
 	// Won't work if anything is referencing this item.
 	public void beNot() {
+		if (location != null){
+			location.beNot();
+		}
+		System.out.println ("beNot called on "+this.getName());
+		this.location = null;
 		this.name = null;
 		this.description = null;
 		this.valueBase = null;
-		this.location = null;
 	}
 
 	public String toString() {

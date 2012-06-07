@@ -1,5 +1,7 @@
 package au.net.hal9000.dnd.item;
 
+
+// This is NOT an Item
 public class Currency {
 	// conversion
 	public static final Float ppAsGp = 10F;

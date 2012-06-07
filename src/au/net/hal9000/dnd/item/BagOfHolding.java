@@ -1,7 +1,5 @@
 package au.net.hal9000.dnd.item;
 
-import java.util.Stack;
-
 import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
 
@@ -23,12 +21,12 @@ public class BagOfHolding extends Bag {
 
 	public BagOfHolding(int type, String pName) {
 		super(pName);
-		setType(type);
+		this.setType(type);
 	}
 
 	public BagOfHolding(int type) {
 		super("Bag of Holding");
-		setType(type);
+		this.setType(type);
 	}
 
 	// Features
@@ -98,13 +96,7 @@ public class BagOfHolding extends Bag {
 		return type;
 	}
 
-	// TODO
-	public void beNot() {
-		System.out.println("TODO - beNot");
-		// TODO call beNot() on every item declared directly in this class.
-		// TODO call beNot() on super.
-		this.beNot();
-	}
+
 
 	// A BOH rupturing is kind of special :-)
 	public void rupture() {

@@ -1,7 +1,6 @@
 package au.net.hal9000.dnd.item;
 
 import java.util.EmptyStackException;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -142,13 +141,26 @@ public class ItemContainer extends Item {
 
 	// TODO equal
 
+	// TODO rename visitor framework style
 	// Find items that match the criteria
-	public void searchHelper(ItemSearch pSearch){
+	public void searchHelper(ItemSearch pSearch) {
+		// Search the Items directly declared in this class.
 		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
 			pSearch.searchItem(itr.next());
 		}
-		pSearch.searchItem(this);
-	}	
+		// Get super to do the rest.
+		super.searchHelper(pSearch);
+	}
+
+	public void beNot() {
+		// Call beNot on the Items directly declared in this class.
+		Iterator<Item> itr = this.getItems().iterator();
+		while (itr.hasNext()) {
+			itr.next().beNot();
+		}
+		// Get super to do the rest.
+		super.beNot();
+	}
 
 }

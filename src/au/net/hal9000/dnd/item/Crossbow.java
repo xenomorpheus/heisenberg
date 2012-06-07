@@ -1,7 +1,5 @@
 package au.net.hal9000.dnd.item;
 
-import java.util.Iterator;
-import java.util.Vector;
 
 import au.net.hal9000.dnd.item.property.ItemSearch;
 
