@@ -17,7 +17,7 @@ public class Ring extends Item {
 		this.setDefaults(this);
 	}
 	
-	void setDefaults(Ring pRing){
+	private void setDefaults(Ring pRing){
 		pRing.setDescription("small metalic ring");
 		pRing.setValueBase(new Currency(0, 5, 0, 0));
 		pRing.setWeightBase(0.02F);

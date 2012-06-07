@@ -13,19 +13,19 @@ public class Mike01 {
 		bag.add(new Human());
 
 		ItemSearch search = new ItemSearchMagical();
-		bag.searchHelper(search);
+		bag.accept(search);
 		Vector <Item>matching = search.getMatchingItems();
 		System.out.println("\nMagical Items:");
 		for (Item item : matching) {
-			System.out.println("Item " + item);
+			System.out.println("*********** Item " + item);
 		}
 
 		search = new ItemSearchExtraDimensional();
-		bag.searchHelper(search);
+		bag.accept(search);
 		matching = search.getMatchingItems();
 		System.out.println("\nExtraDimensional Items:");
 		for (Item item : matching) {
-			System.out.println("Item " + item);
+			System.out.println("*********** Item " + item);
 		}
 	
 		System.out.println("\nName: "+boh);

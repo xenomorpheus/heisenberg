@@ -3,8 +3,7 @@ package au.net.hal9000.dnd.item;
 import java.util.Iterator;
 import java.util.Vector;
 
-import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
-import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
 
 // Hand
@@ -89,11 +88,13 @@ public class Hand extends Item {
 	}
 
 	// Find items that match the criteria
-	public void searchHelper(ItemSearch pSearch) {
-		Iterator<Ring> itr = this.getRings().iterator();
+	public void accept(ItemVisitor visitor) {
+		Iterator<Ring> itr = this.rings.iterator();
 		while (itr.hasNext()) {
-			pSearch.searchItem(itr.next());
+			visitor.visit(itr.next());
 		}
-		pSearch.searchItem(this);
+		// TODO why doesn't the following work?
+		// visitor.visit(rings);
+		super.accept(visitor);
 	}
 }

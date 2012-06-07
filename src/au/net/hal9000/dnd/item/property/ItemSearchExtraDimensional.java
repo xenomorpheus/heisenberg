@@ -7,37 +7,28 @@ import au.net.hal9000.dnd.item.Item;
 
 public class ItemSearchExtraDimensional extends ItemSearch {
 
-	private Vector<Item> matchingItems;
+    public ItemSearchExtraDimensional(){
+    	super();
+    }
 
-	public ItemSearchExtraDimensional() {
-		super();
-		this.matchingItems = new Vector<Item>();
-	}
-
-	public Vector<Item> getMatchingItems() {
-		return matchingItems;
-	}
-
-	public int getMatchingItemsCount() {
-		return matchingItems.size();
-	}
-
-	public void searchItem(Item item) {
-		System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
-		System.out.println("  Class "+item.getClass().getName());
+	public void visit(Item item) {
+	//	System.out.println("Checking for ExtraDimensial " + item + " "
+	//			+ item.isExtraDimensional());
+	//	System.out.println("  Class " + item.getClass().getName());
 		if (item.isExtraDimensional()) {
-			this.matchingItems.add(item);
+			this.addMatchingItems(item);
 		}
 	}
 
-	public void searchItem(Vector<Item> itemVector) {
+	public void visit(Vector<Item> itemVector) {
 		Iterator<Item> itr = itemVector.iterator();
 		while (itr.hasNext()) {
 			Item item = itr.next();
-			System.out.println("Checking for ExtraDimensial "+item+ " "+item.isExtraDimensional());
-			System.out.println("  Class "+item.getClass().getName());
+	//		System.out.println("Checking for ExtraDimensial " + item + " "
+	//				+ item.isExtraDimensional());
+	//		System.out.println("  Class " + item.getClass().getName());
 			if (item.isExtraDimensional()) {
-				matchingItems.add(item);
+				this.addMatchingItems(item);
 			}
 		}
 	}

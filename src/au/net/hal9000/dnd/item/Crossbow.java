@@ -41,13 +41,13 @@ public class Crossbow extends Item {
 	}
 
 	// Find items that match the criteria
-	public void searchHelper(ItemSearch pSearch) {
+	public void visit(ItemVisitor visitor) {
 		// Search fields defined in this class.
 		if (this.loadedBolt != null) {
-			pSearch.searchItem(this.loadedBolt);
+			visitor.visit(this.loadedBolt);
 		}
 		// Let our super handle the rest.
-		pSearch.searchItem(this);
+		super.accept(visitor);
 	}	
     // todo getWeight(), equal()
 

@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import au.net.hal9000.dnd.item.exception.*;
-import au.net.hal9000.dnd.item.property.ItemSearch;
 
 // TODO make abstract
 public class ItemContainer extends Item {
@@ -141,16 +140,16 @@ public class ItemContainer extends Item {
 
 	// TODO equal
 
-	// TODO rename visitor framework style
+	// TODO rename Visitor Pattern style
 	// Find items that match the criteria
-	public void searchHelper(ItemSearch pSearch) {
+	public void accept(ItemVisitor visitor) {
 		// Search the Items directly declared in this class.
 		Iterator<Item> itr = this.getItems().iterator();
 		while (itr.hasNext()) {
-			pSearch.searchItem(itr.next());
+			visitor.visit(itr.next());
 		}
 		// Get super to do the rest.
-		super.searchHelper(pSearch);
+		super.accept(visitor);
 	}
 
 	public void beNot() {

@@ -115,7 +115,7 @@ public class BagOfHolding extends Bag {
 
 		// Recursively check for ExtraDimensional items.
 		ItemSearch search = new ItemSearchExtraDimensional();
-		this.searchHelper(search);
+		this.accept(search);
 		if (search.getMatchingItemsCount() > 0) {
 			this.rupture();
 			throw new ExceptionInvalidType("ExtraDimensional");
