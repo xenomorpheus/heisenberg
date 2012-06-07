@@ -2,7 +2,7 @@ package au.net.hal9000.dnd.item;
 
 public class Torch extends Item {
 
-	boolean lit = false;
+	private boolean lit = false;
 
 	public Torch() {
 		super("Torch", "A short wooden rod tipped with cloth soaked in oil");

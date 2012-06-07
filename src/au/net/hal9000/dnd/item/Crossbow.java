@@ -1,8 +1,5 @@
 package au.net.hal9000.dnd.item;
 
-
-import au.net.hal9000.dnd.item.property.ItemSearch;
-
 public class Crossbow extends Item {
 	private CrossbowBolt loadedBolt = null;
 
@@ -40,15 +37,23 @@ public class Crossbow extends Item {
 		return super.equals(other);
 	}
 
+	// bow plus bolt if present.
+	public float getWeight() {
+		float total = super.getWeight();
+		if (loadedBolt != null) {
+			total += loadedBolt.getWeight();
+		}
+		return total;
+	}
+
 	// Find items that match the criteria
 	public void visit(ItemVisitor visitor) {
 		// Search fields defined in this class.
-		if (this.loadedBolt != null) {
-			visitor.visit(this.loadedBolt);
+		if (loadedBolt != null) {
+			visitor.visit(loadedBolt);
 		}
 		// Let our super handle the rest.
 		super.accept(visitor);
-	}	
-    // todo getWeight(), equal()
+	}
 
 }

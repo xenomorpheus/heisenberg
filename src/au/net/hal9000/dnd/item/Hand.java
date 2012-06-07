@@ -4,14 +4,12 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import au.net.hal9000.dnd.item.exception.*;
-import au.net.hal9000.dnd.item.property.*;
 
 // Hand
 // Is like an item except:
 // May wear at most one magical ring.
 // May wear any number of non-magical rings.
 // Rings may be removed in any order.
-// Is living  (todo)
 
 public class Hand extends Item {
 
