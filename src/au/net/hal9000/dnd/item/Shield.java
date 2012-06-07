@@ -6,7 +6,7 @@ public class Shield extends Item  {
 	}
 
 	// Features
-	public static boolean isArmour() {
+	public boolean isArmour() {
 		return true;
 	}
 }

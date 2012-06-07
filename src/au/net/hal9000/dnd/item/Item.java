@@ -52,39 +52,39 @@ public abstract class Item {
 	}
 
 	// Feature
-	public static boolean isMagical() {
+	public boolean isMagical() {
 		return false;
 	}
 
-	public static boolean isExtraDimensional() {
+	public boolean isExtraDimensional() {
 		return false;
 	}
 
-	public static boolean isHumanoidFood() {
+	public boolean isHumanoidFood() {
 		return false;
 	}
 
-	public static boolean isHumanoidMount() {
+	public boolean isHumanoidMount() {
 		return false;
 	}
 
-	public static boolean isRingWearer() {
+	public boolean isRingWearer() {
 		return false;
 	}
 
-	public static boolean isLiving() {
+	public boolean isLiving() {
 		return false;
 	}
 
-	public static boolean isArmour() {
+	public boolean isArmour() {
 		return false;
 	}
 
-	public static boolean isClothing() {
+	public boolean isClothing() {
 		return false;
 	}
 
-	public static boolean isSharp() {
+	public boolean isSharp() {
 		return false;
 	}
 
@@ -226,9 +226,9 @@ public abstract class Item {
 		}
 		return str;
 	}
-	
+
 	// Find items that match the criteria
-	public void searchHelper(ItemSearch pSearch){
+	public void searchHelper(ItemSearch pSearch) {
 		pSearch.searchItem(this);
 	}
 

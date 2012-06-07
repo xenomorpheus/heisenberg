@@ -29,11 +29,11 @@ public class Hand extends Item {
 	}
 
 	// Features
-	public static boolean isLiving() {
+	public boolean isLiving() {
 		return true;
 	}
 
-	public static boolean isRingWearer() {
+	public boolean isRingWearer() {
 		return true;
 	}
 

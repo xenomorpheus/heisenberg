@@ -1,16 +1,16 @@
 package au.net.hal9000.dnd.item;
 
-public class Sword extends Item{
-	public Sword(){
+public class Sword extends Item {
+	public Sword() {
 		super("Sword");
 	}
 
-	public Sword(String pString){
+	public Sword(String pString) {
 		super(pString);
 	}
 
-	public static boolean isSharp(){
+	public boolean isSharp() {
 		return true;
 	}
-	
+
 }

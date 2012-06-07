@@ -10,7 +10,7 @@ public class Horse extends Animal {
 	}
 
 	// Feature
-	public static boolean isHumanoidMount() {
+	public boolean isHumanoidMount() {
 		return true;
 	}
 

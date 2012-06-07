@@ -10,7 +10,7 @@ public class Cloak extends Item {
 	}
 
 	// Features
-	public static boolean isClothing() {
+	public boolean isClothing() {
 		return true;
 	}
 }

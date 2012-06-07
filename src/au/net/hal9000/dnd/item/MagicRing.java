@@ -17,7 +17,7 @@ public class MagicRing extends Ring {
 	}
 
 	// Features
-	public static boolean isMagical() {
+	public boolean isMagical() {
 		return true;
 	}
 

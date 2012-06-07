@@ -32,11 +32,11 @@ public class BagOfHolding extends Bag {
 	}
 
 	// Features
-	public static boolean isExtraDimensional() {
+	public boolean isExtraDimensional() {
 		return true;
 	}
 
-	public static boolean isMagical() {
+	public boolean isMagical() {
 		return true;
 	}
 
