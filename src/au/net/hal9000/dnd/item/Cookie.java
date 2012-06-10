@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Cookie extends Item{
+public class Cookie extends ItemSimple {
 	public Cookie() {
 		super("Cookie");
 	}
@@ -12,8 +12,9 @@ public class Cookie extends Item{
 	public Cookie(String pName, String pDescription) {
 		super(pName, pDescription);
 	}
+
 	// Feature
-	public static boolean isHumanFood (){
+	public static boolean isHumanFood() {
 		return true;
 	}
 }

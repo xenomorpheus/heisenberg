@@ -11,7 +11,7 @@ import au.net.hal9000.dnd.item.exception.*;
 // May wear any number of non-magical rings.
 // Rings may be removed in any order.
 
-public class Hand extends Item {
+public class Hand extends ItemSimple {
 
 	private Vector<Ring> rings = new Vector<Ring>();
 	private int magicRingCount = 0;

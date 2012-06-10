@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public abstract class Animal extends Item {
+public abstract class Animal extends ItemSimple {
 
 	public Animal(String pName) {
 		super(pName);

@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Crossbow extends Item {
+public class Crossbow extends ItemSimple {
 	private CrossbowBolt loadedBolt = null;
 
 	public Crossbow() {

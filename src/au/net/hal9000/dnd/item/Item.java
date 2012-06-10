@@ -1,234 +1,103 @@
 package au.net.hal9000.dnd.item;
 
-import java.lang.Math;
-
-//Item:
-//* An item has a name which is text.
-//* An item has a description which is text.
-//* An item has a weight which is measured in pounds which defaults to zero.
-//* An item has a valueBase measured in coins which defaults to zero.
-//* An item has a location (e.g. ground, a bag, an arm)
-//* (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or
-//hit points?
-//* An item by default is not alive.
-//* An item by default is not extra-dimensional.
-//* An item by default is not magical.
-//* An item by default does not have a defence (e.g. resistance to fire)
-//* An item may have any number of defences.
-//* An item by default does not offer protection (e.g armour, magic
-//resistance)
-//* An item may offer any number of protections.
-//Actions
-//* An item may be dropped, which will cause the location to be changed to
-//the ground below the object.
-//* An item may be damaged by fire which will...
-//* An item may be damaged by acid which will...
-//* An item may be repaired which will ...
-
-public abstract class Item {
-	private String name;
-	private String description = null;
-	private float weightBase = 0F; // pounds
-	private float volumeBase = 0F; // cubic feet
-	private Currency valueBase = new Currency();
-	private Item location = null;
-
-	// List <Defence> defenceList = new List();
-	// List <Protection> protectionList = new List();
-
-	// Class methods
-	public Item(String pName) {
-		super();
-		this.name = pName;
-	}
-
-	public Item(String pName, String pDescription) {
-		super();
-		this.name = pName;
-		this.description = pDescription;
-	}
+public interface Item {
 
 	// Feature
-	public boolean isMagical() {
-		return false;
-	}
+	public boolean isMagical();
 
-	public boolean isExtraDimensional() {
-		return false;
-	}
+	public boolean isExtraDimensional();
 
-	public boolean isHumanoidFood() {
-		return false;
-	}
+	public boolean isHumanoidFood();
 
-	public boolean isHumanoidMount() {
-		return false;
-	}
+	public boolean isHumanoidMount();
 
-	public boolean isRingWearer() {
-		return false;
-	}
+	public boolean isRingWearer();
 
-	public boolean isLiving() {
-		return false;
-	}
+	public boolean isLiving();
 
-	public boolean isArmour() {
-		return false;
-	}
+	public boolean isArmour();
 
-	public boolean isClothing() {
-		return false;
-	}
+	public boolean isClothing();
 
-	public boolean isSharp() {
-		return false;
-	}
+	public boolean isSharp();
 
-	// Getters and Setters
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public void setName(String pName) {
-		this.name = pName;
-	}
+	public void setName(String pName);
 
-	public String getDescription() {
-		return description;
-	}
+	public String getDescription();
 
-	public void setDescription(String pDescription) {
-		this.description = pDescription;
-	}
+	public void setDescription(String pDescription);
 
-	public float getWeightBase() {
-		return weightBase;
-	}
+	public float getWeightBase();
 
-	public void setWeightBase(float baseWeight) {
-		this.weightBase = baseWeight;
-	}
+	public void setWeightBase(float baseWeight);
+
+	public float getHitPoints();
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
-	public float getVolume() {
-		return volumeBase;
-	}
+	public float getVolume();
 
-	public float getVolumeBase() {
-		return volumeBase;
-	}
+	public float getVolumeBase();
 
-	public void setVolumeBase(float volumeWeight) {
-		this.volumeBase = volumeWeight;
-	}
+	public void setVolumeBase(float volumeWeight);
 
-	public Currency getValueBase() {
-		return valueBase;
-	}
+	public Currency getValueBase();
 
 	// For simple items the value is the valueBase.
 	// will be overridden by collections
-	public Currency getValue() {
-		return valueBase;
-	}
+	public Currency getValue();
 
-	public void setValueBase(Currency pValueBase) {
-		this.valueBase = pValueBase;
-	}
+	public void setValueBase(Currency pValueBase);
 
-	public Item getLocation() {
-		return this.location;
-	}
+	public float getDamageModifierImpact();
 
-	public void setLocation(Item location) {
-		this.location = location;
-	}
+	public void setDamageModifierImpact(float damageModifierImpact);
+
+	public float getDamageModifierFire();
+
+	public void setDamageModifierFire(float damageModifierFire);
+
+	public float getDamageModifierIce();
+
+	public void setDamageModifierIce(float damageModifierIce);
+
+	public float getDamageModifierElectrical();
+
+	public void setDamageModifierElectrical(float damageModifierElectrical);
+
+	public float getDamageModifierSonic();
+
+	public void setDamageModifierSonic(float damageModifierSonic);
+
+	public void setHitPoints(float hitPoints);
+
+	public Item getLocation();
+
+	public void setLocation(Item location);
 
 	// misc methods
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
-	public float getWeight() {
-		return weightBase;
-	}
+	public float getWeight();
 
-	public boolean equals(Item other) {
-		if (this == other)
-			return true;
-		if (!name.equals(other.name))
-			return false;
-		if (!description.equals(other.description))
-			return false;
-		if (Math.abs(weightBase - other.weightBase) >= 0.0001F)
-			return false;
-		if (!valueBase.equals(other.valueBase))
-			return false;
-
-		// location
-		if (location == null) {
-			if (other.location != null) {
-				return false;
-			}
-		} else {
-			if (other.location == null) {
-				return false;
-			}
-
-			if (!location.equals(other.location)) {
-				return false;
-			}
-		}
-
-		return true;
-	}
+	public boolean equals(Item other);
 
 	// Attempt to unlink the item from everything so that
 	// it can be garbage collected.
 	// Won't work if anything is referencing this item.
-	public void beNot() {
-		System.out.println ("beNot called on "+this.getName());
-		this.name = null;
-		this.description = null;
-		this.valueBase = null;
-		this.location = null;
-		//	We don't call beNot on the location.
-	}
+	public void beNot();
 
-	public String toString() {
-		return name;
-	}
+	public String toString();
 
-	public String detailedDescription() {
-		String str = new String();
-		String temp;
-
-		temp = this.getName();
-		if (temp != null) {
-			str = str.concat("Name: " + temp + "\n");
-		}
-		temp = this.getDescription();
-		if (temp != null) {
-			str = str.concat("Description: " + temp + "\n");
-		}
-		str = str.concat("Weight Base: " + this.getWeightBase() + "\n"
-				+ "Volume Base: " + this.getVolumeBase() + "\n");
-
-		Currency valueBase = this.getValueBase();
-		if (valueBase != null) {
-			str = str.concat("Value Base: " + valueBase + "\n");
-		}
-		Item location = this.getLocation();
-		if (location != null) {
-			str = str.concat("Location: " + location.getName() + "\n");
-		}
-		return str;
-	}
+	public String detailedDescription();
 
 	// Find items that match the criteria
-	public void accept(ItemVisitor visitor) {
-		visitor.visit(this);
-	}
+	public void accept(ItemVisitor visitor);
+
+	// Receive damage
+	public void accept(Damage damage);
 
 }

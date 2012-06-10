@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Cloak extends Item {
+public class Cloak extends ItemSimple {
 	public Cloak() {
 		super("Cloak");
 	}

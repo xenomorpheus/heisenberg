@@ -7,7 +7,7 @@ import java.util.Vector;
 import au.net.hal9000.dnd.item.exception.*;
 
 // TODO make abstract
-public class ItemContainer extends Item {
+public class ItemContainer extends ItemSimple {
 	private float weightMax = -1F; // -1 unlimited
 	private float volumeMax = -1F; // -1 unlimited
 	private Stack<Item> items = new Stack<Item>();

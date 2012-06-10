@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Torch extends Item {
+public class Torch extends ItemSimple {
 
 	private boolean lit = false;
 

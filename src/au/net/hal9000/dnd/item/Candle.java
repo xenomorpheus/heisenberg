@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Candle extends Item {
+public class Candle extends ItemSimple {
 
 	private boolean lit = false;
 
