@@ -15,7 +15,7 @@ public class Bag extends ItemContainer {
 		setDescription("A common cloth sack about 2 feet by 4 feet in size.");
 	}
 
-	// TODO
+	// TODO finish rupture
 	public void rupture() {
 		// System.out.println("Ordinary rupture");
 	}
