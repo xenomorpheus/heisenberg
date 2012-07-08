@@ -1,7 +1,8 @@
 package au.net.hal9000.dnd.item;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
+import au.net.hal9000.dnd.units.*;
 
 public class RingTest {
 
@@ -10,7 +11,7 @@ public class RingTest {
 		Ring r = new Ring();
 		assertEquals("description", "small metalic ring", r.getDescription());
 		assertTrue("value", r.getValueBase().equals(new Currency(0, 5, 0, 0)));
-		assertEquals("weightBase", 0.02F, r.getWeightBase(), 0.0001F);
+		assertTrue("weightBase",  r.getWeightBase().equals(0.02F));
 	}
 
 	@Test

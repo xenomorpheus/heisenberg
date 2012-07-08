@@ -3,6 +3,7 @@ package au.net.hal9000.dnd.item;
 import java.util.*;
 import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
+import au.net.hal9000.dnd.units.*;
 
 /*
 
@@ -85,12 +86,12 @@ public class BagOfHolding extends Bag {
 	}
 
 	// Magic
-	public float getWeight() {
+	public Weight getWeight() {
 		return this.getWeightBase();
 	}
 
 	// Magic
-	public float getVolume() {
+	public Volume getVolume() {
 		return this.getVolumeBase();
 	}
 

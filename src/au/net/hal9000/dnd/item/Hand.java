@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import au.net.hal9000.dnd.item.exception.*;
+import au.net.hal9000.dnd.units.*;
 
 // Hand
 // Is like an item except:
@@ -11,7 +12,7 @@ import au.net.hal9000.dnd.item.exception.*;
 // May wear any number of non-magical rings.
 // Rings may be removed in any order.
 
-public class Hand extends ItemSimple {
+public class Hand extends ItemImpl {
 
 	private Vector<Ring> rings = new Vector<Ring>();
 	private int magicRingCount = 0;
@@ -76,11 +77,11 @@ public class Hand extends ItemSimple {
 		ring.setLocation(newLocation);
 	}
 
-	public float getWeight() {
-		float total = this.getWeightBase();
+	public Weight getWeight() {
+		Weight total = this.getWeightBase();
 		Iterator<Ring> itr = this.rings.iterator();
 		while (itr.hasNext()) {
-			total += itr.next().getWeight();
+			total.add( itr.next().getWeight());
 		}
 		return total;
 	}

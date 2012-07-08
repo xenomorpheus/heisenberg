@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class CrossbowBolt extends ItemSimple {
+public class CrossbowBolt extends ItemImpl {
 
 	public CrossbowBolt() {
 		super("CrossbowBolt");

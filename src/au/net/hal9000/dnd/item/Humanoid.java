@@ -1,88 +1,58 @@
 package au.net.hal9000.dnd.item;
 
 import au.net.hal9000.dnd.item.exception.*;
+import au.net.hal9000.dnd.units.*;
 
-public abstract class Humanoid extends Animal {
+public abstract class Humanoid extends Entity {
 
-	HumanoidHead head = new HumanoidHead();
-	Hand leftHand = new Hand("Left Hand");
-	Hand rightHand = new Hand("Right Hand");
-	ItemContainer clothing = new ItemContainer("Clothing"); // TODO
-															// setWeightMax()
-	Shield shield = null;
-	Item mount = null; // Mounts are worn :-)
+	private HumanoidHead head = new HumanoidHead();
+	private Hand leftHand = new Hand("Left Hand");
+	private Hand rightHand = new Hand("Right Hand");
 
+	// Constructors
 	public Humanoid(String pName) {
 		super(pName);
-		// TODO Auto-generated constructor stub
 	}
 
-	public void eat(Item pFood) throws ExceptionInvalidType {
-		if (pFood.isHumanoidFood()) {
-			throw new ExceptionInvalidType(this.getName() + " can't eat "
-					+ pFood.getName());
-		}
-		pFood.beNot();
+	// Getters and Setters
+	public HumanoidHead getHead() {
+		return head;
 	}
 
-	public void wear(Item pClothing) throws ExceptionCantWear,
-			ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig {
-		if (!pClothing.isClothing()) {
-			throw new ExceptionInvalidType(this.getName() + " can't wear "
-					+ pClothing.getName());
-		}
-		clothing.add(pClothing);
-		pClothing.setLocation(this);
+	public Hand getLeftHand() {
+		return leftHand;
 	}
 
-	public float getWeight() {
-		float total = this.getWeightBase();
-		total += head.getWeight();
+	public Hand getRightHand() {
+		return rightHand;
+	}
+
+	// Misc
+	public Weight getWeight() {
+		Weight total = super.getWeight();
+		total.add(head.getWeight());
 		if (leftHand != null) {
-			total += leftHand.getWeight();
+			total.add(leftHand.getWeight());
 		}
 		if (rightHand != null) {
-			total += rightHand.getWeight();
-		}
-		total += clothing.getWeight();
-		if (shield != null) {
-			total += shield.getWeight();
-		}
-		if (mount != null) {
-			total += mount.getWeight();
+			total.add(rightHand.getWeight());
 		}
 		return total;
 	}
 
-	public void setShield(Shield pShield) {
-		if (shield != null) {
-			shield.setLocation(this.getLocation());
-			// in case pShield.setLocation throws exception.
-			this.shield = null;
+	public Volume getVolume() {
+		Volume total = super.getVolume();
+		total.add(head.getVolume());
+		if (leftHand != null) {
+			total.add(leftHand.getVolume());
 		}
-		if (pShield != null) {
-			pShield.setLocation(this);
-			this.shield = pShield;
+		if (rightHand != null) {
+			total.add(rightHand.getVolume());
 		}
+		return total;
 	}
 
-	public Shield getShield() {
-		return this.shield;
-	}
-
-	public void setMount(Item pMount) throws ExceptionInvalidType,
-			ExceptionCantWear {
-		if (!pMount.isHumanoidMount()) {
-			throw new ExceptionInvalidType(pMount.getName()
-					+ " doesn't implement Mount");
-		}
-		if (mount != null) {
-			throw new ExceptionCantWear("already mounted");
-		}
-		pMount.setLocation(this);
-		this.mount = pMount;
-	}
-
+	
 	public boolean equals(Humanoid pHumanoid) {
 		// TODO
 		throw new RuntimeException("Can't do humanoid equals yet"
@@ -97,13 +67,6 @@ public abstract class Humanoid extends Animal {
 		}
 		if (rightHand != null) {
 			rightHand.beNot();
-		}
-		clothing.beNot();
-		if (shield != null) {
-			shield.beNot();
-		}
-		if (mount != null) {
-			mount.beNot();
 		}
 		// Get super to do the rest.
 		super.beNot();

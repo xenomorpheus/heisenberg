@@ -1,5 +1,7 @@
 package au.net.hal9000.dnd.item;
 
+import au.net.hal9000.dnd.units.*;
+
 public interface Item {
 
 	// Feature
@@ -15,34 +17,49 @@ public interface Item {
 
 	public boolean isLiving();
 
-	public boolean isArmour();
-
 	public boolean isClothing();
 
 	public boolean isSharp();
 
+	// Getters and Setters
+
+	// name
 	public String getName();
 
 	public void setName(String pName);
 
+	// description
 	public String getDescription();
 
 	public void setDescription(String pDescription);
 
-	public float getWeightBase();
+	// weightBase - weight before carried items are added
+	public Weight getWeightBase();
 
+	public void setWeightBase(Weight baseWeight);
 	public void setWeightBase(float baseWeight);
-
-	public float getHitPoints();
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
-	public float getVolume();
+	public Weight getWeight();
 
-	public float getVolumeBase();
+	// volumeBase - volume before carried items are added
+	public Volume getVolumeBase();
 
+	public void setVolumeBase(Volume volumeWeight);
 	public void setVolumeBase(float volumeWeight);
 
+	// For simple items the weight is the weightBase.
+	// will be overridden by collections
+	public Volume getVolume();
+
+	// weightMax - max weight that can be carried
+	public Weight getWeightMax();
+
+	public void setWeightMax(Weight loadMax);
+	public void setWeightMax(float loadMax);
+
+	// valueBase
 	public Currency getValueBase();
 
 	// For simple items the value is the valueBase.
@@ -51,37 +68,17 @@ public interface Item {
 
 	public void setValueBase(Currency pValueBase);
 
-	public float getDamageModifierImpact();
-
-	public void setDamageModifierImpact(float damageModifierImpact);
-
-	public float getDamageModifierFire();
-
-	public void setDamageModifierFire(float damageModifierFire);
-
-	public float getDamageModifierIce();
-
-	public void setDamageModifierIce(float damageModifierIce);
-
-	public float getDamageModifierElectrical();
-
-	public void setDamageModifierElectrical(float damageModifierElectrical);
-
-	public float getDamageModifierSonic();
-
-	public void setDamageModifierSonic(float damageModifierSonic);
-
-	public void setHitPoints(float hitPoints);
-
+	// location
 	public Item getLocation();
 
 	public void setLocation(Item location);
 
-	// misc methods
+	// hitPoints
+	public void setHitPoints(float hitPoints);
 
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
-	public float getWeight();
+	public float getHitPoints();
+
+	// misc methods
 
 	public boolean equals(Item other);
 
@@ -97,7 +94,6 @@ public interface Item {
 	// Find items that match the criteria
 	public void accept(ItemVisitor visitor);
 
-	// Receive damage
-	public void accept(Damage damage);
+	// TODO public void accept(Damage damage);
 
 }

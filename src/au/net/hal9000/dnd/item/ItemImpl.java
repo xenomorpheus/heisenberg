@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-import java.lang.Math;
+import au.net.hal9000.dnd.units.*;
 
 //Item:
 //* An item has a name which is text.
@@ -25,30 +25,27 @@ import java.lang.Math;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public abstract class ItemSimple implements Item {
-	private String name;
-	private String description = null;
-	private float weightBase = 0F; // pounds
-	private float volumeBase = 0F; // cubic feet
+public abstract class ItemImpl implements Item {
+
+	// set as many objects as possible.
+	// we don't want to have to keep checking for null
+	private String name = "";
+	private String description = "";
+	private Weight weightBase = new Weight();
+	private Weight weightMax = new Weight();
+	private Volume volumeBase = new Volume();
+	private Volume volumeMax = new Volume();
 	private Currency valueBase = new Currency();
 	private Item location = null;
-	private float hitPoints = 0;
-	private float damageModifierImpact = 1;
-	private float damageModifierFire = 1;
-	private float damageModifierIce = 1;
-	private float damageModifierElectrical = 1;
-	private float damageModifierSonic = 1;
-
-	// List <Defence> defenceList = new List();
-	// List <Protection> protectionList = new List();
+	private float hitPoints = 0F;
 
 	// Class methods
-	public ItemSimple(String pName) {
+	public ItemImpl(String pName) {
 		super();
 		this.name = pName;
 	}
 
-	public ItemSimple(String pName, String pDescription) {
+	public ItemImpl(String pName, String pDescription) {
 		super();
 		this.name = pName;
 		this.description = pDescription;
@@ -79,7 +76,7 @@ public abstract class ItemSimple implements Item {
 		return false;
 	}
 
-	public boolean isArmour() {
+	public boolean isDefence() {
 		return false;
 	}
 
@@ -108,29 +105,65 @@ public abstract class ItemSimple implements Item {
 		this.description = pDescription;
 	}
 
-	public float getWeightBase() {
+	public Weight getWeightBase() {
 		return weightBase;
 	}
 
-	public void setWeightBase(float baseWeight) {
+	public void setWeightBase(Weight baseWeight) {
 		this.weightBase = baseWeight;
 	}
-	public float getHitPoints(){
-		return hitPoints;
+
+	public void setWeightBase(float baseWeight) {
+		this.weightBase = new Weight(baseWeight);
+	}
+
+	// weightMax - max weight that can be carried
+	public Weight getWeightMax() {
+		return weightMax;
+	}
+
+	public void setWeightMax(Weight weightMax) {
+		this.weightMax = weightMax;
+	}
+
+	public void setWeightMax(float weightMax) {
+		this.weightMax = new Weight(weightMax);
 	}
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
-	public float getVolume() {
+	public Volume getVolume() {
 		return volumeBase;
 	}
 
-	public float getVolumeBase() {
+	public Volume getVolumeBase() {
 		return volumeBase;
 	}
 
-	public void setVolumeBase(float volumeWeight) {
-		this.volumeBase = volumeWeight;
+	public void setVolumeBase(Volume volumeBase) {
+		this.volumeBase = volumeBase;
+	}
+
+	public void setVolumeBase(float volumeBase) {
+		if (this.volumeBase == null)
+			this.volumeBase = new Volume(volumeBase);
+		else
+			this.volumeBase.setValue(volumeBase);
+	}
+
+	public Volume getVolumeMax() {
+		return volumeMax;
+	}
+
+	public void setVolumeMax(Volume volumeMax) {
+		this.volumeMax = volumeMax;
+	}
+
+	public void setVolumeMax(float volumeMax) {
+		if (this.volumeMax == null)
+			this.volumeMax = new Volume(volumeMax);
+		else
+			this.volumeMax.setValue(volumeMax);
 	}
 
 	public Currency getValueBase() {
@@ -147,50 +180,6 @@ public abstract class ItemSimple implements Item {
 		this.valueBase = pValueBase;
 	}
 
-	public float getDamageModifierImpact() {
-		return damageModifierImpact;
-	}
-
-	public void setDamageModifierImpact(float damageModifierImpact) {
-		this.damageModifierImpact = damageModifierImpact;
-	}
-
-	public float getDamageModifierFire() {
-		return damageModifierFire;
-	}
-
-	public void setDamageModifierFire(float damageModifierFire) {
-		this.damageModifierFire = damageModifierFire;
-	}
-
-	public float getDamageModifierIce() {
-		return damageModifierIce;
-	}
-
-	public void setDamageModifierIce(float damageModifierIce) {
-		this.damageModifierIce = damageModifierIce;
-	}
-
-	public float getDamageModifierElectrical() {
-		return damageModifierElectrical;
-	}
-
-	public void setDamageModifierElectrical(float damageModifierElectrical) {
-		this.damageModifierElectrical = damageModifierElectrical;
-	}
-
-	public float getDamageModifierSonic() {
-		return damageModifierSonic;
-	}
-
-	public void setDamageModifierSonic(float damageModifierSonic) {
-		this.damageModifierSonic = damageModifierSonic;
-	}
-
-	public void setHitPoints(float hitPoints) {
-		this.hitPoints = hitPoints;
-	}
-
 	public Item getLocation() {
 		return this.location;
 	}
@@ -199,40 +188,54 @@ public abstract class ItemSimple implements Item {
 		this.location = location;
 	}
 
+	public float getHitPoints() {
+		return hitPoints;
+	}
+
+	public void setHitPoints(float hitPoints) {
+		this.hitPoints = hitPoints;
+	}
+
 	// misc methods
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
-	public float getWeight() {
+	public Weight getWeight() {
 		return weightBase;
+	}
+
+	private static boolean _null_safe_compare(Object o1, Object o2) {
+		if (o1 == null) {
+			if (o2 == null) {
+				return true;
+			}
+			return false;
+		}
+
+		if (o2 == null) {
+			return false;
+		}
+
+		return o1.equals(o2);
 	}
 
 	public boolean equals(Item other) {
 		if (this == other)
 			return true;
-		if (!name.equals(other.getName()))
+		if (!_null_safe_compare(name, other.getName()))
 			return false;
-		if (!description.equals(other.getDescription()))
+		if (!_null_safe_compare(description, other.getDescription()))
 			return false;
-		if (Math.abs(weightBase - other.getWeightBase()) >= 0.0001F)
+		if (!_null_safe_compare(weightBase, other.getWeightBase()))
 			return false;
-		if (!valueBase.equals(other.getValueBase()))
+		if (!_null_safe_compare(volumeBase, other.getVolumeBase()))
 			return false;
-
-		// location
-		if (location == null) {
-			if (other.getLocation() != null) {
-				return false;
-			}
-		} else {
-			if (other.getLocation() == null) {
-				return false;
-			}
-
-			if (!location.equals(other.getLocation())) {
-				return false;
-			}
-		}
+		if (!_null_safe_compare(weightMax, other.getWeightMax()))
+			return false;
+		if (!_null_safe_compare(valueBase, other.getValueBase()))
+			return false;
+		if (!_null_safe_compare(location, other.getLocation()))
+			return false;
 
 		return true;
 	}
@@ -284,15 +287,4 @@ public abstract class ItemSimple implements Item {
 		visitor.visit(this);
 	}
 
-	// Receive damage
-	public void accept(Damage damage) {
-		this.hitPoints -= (damage.getImpact() * damageModifierImpact)
-				+ (damage.getFire() * damageModifierFire)
-				+ (damage.getIce() * damageModifierIce)
-				+ (damage.getElectrical() * damageModifierElectrical)
-				+ (damage.getSonic() * damageModifierSonic);
-		if (this.hitPoints < 0){
-			this.beNot();
-		}
-	}
 }

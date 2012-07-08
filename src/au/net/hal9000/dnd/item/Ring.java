@@ -5,7 +5,7 @@ package au.net.hal9000.dnd.item;
 //* Default value is 5gp ?
 //* Default weight ?
 
-public class Ring extends ItemSimple {
+public class Ring extends ItemImpl {
 
 	public Ring() {
 		super("Ring");

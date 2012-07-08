@@ -98,10 +98,10 @@ public class ScenarioSet01 {
 	public void shield_equip() {
 		System.out.println("\n** A Shield is equipped.");
 		Shield shield = new Shield();
-		Human humanoid = new Human();
+		Human human = new Human();
 		System.out.println("Equip the shield.");
 		try {
-			humanoid.setShield(shield);
+			human.equip(shield);
 		} catch (Exception e) {
 			fail("Humanoid could not wear shield");
 		}
@@ -109,7 +109,6 @@ public class ScenarioSet01 {
 				.println("Shield location: " + shield.getLocation());
 	}
 
-	// TODO
 	@Test
 	public void quiver_is_filled() {
 		System.out.println("\n** A quiver is filled.");
@@ -120,7 +119,11 @@ public class ScenarioSet01 {
 		System.out.println("Arrow created.");
 		try {
 			quiver.add(arrow);
-			System.out.println("TODO - add more arrows till filled");
+			quiver.add(arrow);
+			quiver.add(arrow);
+			quiver.add(arrow);
+			quiver.add(arrow);
+			quiver.add(arrow);
 		} catch (ExceptionInvalidType e) {
 			fail("invalid type");
 		} catch (ExceptionTooHeavy e) {
@@ -137,27 +140,11 @@ public class ScenarioSet01 {
 		System.out.println("\n** A candle runs out.");
 		Candle candle = new Candle();
 		System.out.println("Candle description:\n" + candle.getDescription());
-		System.out.println("TODO");
-		// candle.run_out();
+		// TODO candle.run_out();
 		System.out.println("Torch description:\n" + candle.getDescription());
 	}
 
-	@Test
-	public void character_mounts_a_horse() {
-		System.out.println("\n** A character mounts a horse.");
-		Hobbit hobbit = new Hobbit();
-		Horse horse = new Horse();
-		try {
-			hobbit.setMount(horse);
-			System.out.println("Hobbit mounted the Horse");
-		} catch (ExceptionInvalidType e) {
-			fail("invalid type");
-		} catch (ExceptionCantWear e) {
-			fail("cant wear");
-		}
-	}
 
-	// TODO
 	@Test
 	public void hobbit_eats_a_cookie() {
 		System.out.println("\n** A hobbit eats a cookie.");

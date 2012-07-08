@@ -1,13 +1,12 @@
 package au.net.hal9000.dnd.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
 import au.net.hal9000.dnd.item.exception.ExceptionInvalidType;
 import au.net.hal9000.dnd.item.exception.ExceptionTooBig;
 import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
+import au.net.hal9000.dnd.units.*;
 
 public class BagOfHoldingTest {
 
@@ -46,14 +45,13 @@ public class BagOfHoldingTest {
 			}
 			BagOfHolding boh = new BagOfHolding(type);
 			assertEquals("type", boh.getType(), type);
-			assertEquals("type=" + type + ", weight", boh.getWeight(),
-					weightBase, 0.001F);
-			assertEquals("type=" + type + ", weightBase", boh.getWeightBase(),
-					weightBase, 0.001F);
-			assertEquals("type=" + type + ", volume", boh.getVolume(), 2F,
-					0.001F);
-			assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
-					2F, 0.001F);
+			assertTrue("type=" + type + ", weight",
+					boh.getWeight().equals(weightBase));
+			assertTrue("type=" + type + ", weightBase", boh.getWeightBase()
+					.equals(weightBase));
+			assertTrue("type=" + type + ", volume", boh.getVolume().equals(2F));
+			assertTrue("type=" + type + ", volumeBase", boh.getVolumeBase()
+					.equals(2F));
 			assertTrue("type=" + type + ", cost",
 					boh.getValueBase().equals(cost));
 			// Should look like an ordinary bag :-)

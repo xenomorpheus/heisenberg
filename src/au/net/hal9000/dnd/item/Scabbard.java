@@ -3,8 +3,9 @@ package au.net.hal9000.dnd.item;
 import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
 import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
 import au.net.hal9000.dnd.item.property.SwordSheath;
+import au.net.hal9000.dnd.units.Weight;
 
-public class Scabbard extends ItemSimple implements SwordSheath {
+public class Scabbard extends ItemImpl implements SwordSheath {
 	private Sword sword = null;
 	
 	public Scabbard(){
@@ -33,10 +34,10 @@ public class Scabbard extends ItemSimple implements SwordSheath {
         return swordReturn;
 	}
 
-	public float getWeight() {
-		float total = this.getWeightBase();
+	public Weight getWeight() {
+		Weight total = this.getWeightBase();
         if (sword != null){		
-			total += sword.getWeight();
+			total.add( sword.getWeight());
 		}
 		return total;
 	}

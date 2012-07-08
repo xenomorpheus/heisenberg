@@ -2,9 +2,8 @@ package au.net.hal9000.dnd.item;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import au.net.hal9000.dnd.item.exception.ExceptionCantRemove;
-import au.net.hal9000.dnd.item.exception.ExceptionCantWear;
+import au.net.hal9000.dnd.item.exception.*;
+import au.net.hal9000.dnd.units.*;
 
 public class HandTest {
 
@@ -195,7 +194,7 @@ public class HandTest {
 	@Test
 	public void testGetWeightEmpty() {
 		Hand hand = new Hand();
-		assertEquals("weight", hand.getWeight(), 0.0F, 0.0001F);
+		assertTrue("weight", hand.getWeight().equals(0.0F));
 	}
 
 	@Test
@@ -208,7 +207,7 @@ public class HandTest {
 		} catch (Exception e) {
 			fail(e.toString());
 		}
-		assertEquals("weight", hand.getWeight(), 1.1F, 0.0001F);
+		assertTrue("weight", hand.getWeight().equals(1.1F));
 	}
 
 	@Test
@@ -224,6 +223,6 @@ public class HandTest {
 		} catch (Exception e) {
 			fail(e.toString());
 		}
-		assertEquals("weight", hand.getWeight(), 3.3F, 0.0001F);
+		assertTrue("weight", hand.getWeight().equals(3.3F));
 	}
 }

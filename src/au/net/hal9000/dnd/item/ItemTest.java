@@ -3,15 +3,18 @@ package au.net.hal9000.dnd.item;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import au.net.hal9000.dnd.units.*;
 
 public class ItemTest {
 
 	@Test
-	public void testItemNullParam() {
+	public void testItem() {
 		Cookie i = new Cookie();
 		assertEquals("Item() name", "Cookie", i.getName());
-		assertEquals("Item() description", null, i.getDescription());
-		assertEquals("Item() weightBase", 0F, i.getWeightBase(), 0.0001F);
+		assertEquals("Item() description", "", i.getDescription());
+		assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
+		assertTrue("Item() weightMax", i.getWeightMax().equals(0F));
+		assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
 		assertEquals("Item() location", null, i.getLocation());
 	}
 
@@ -19,9 +22,6 @@ public class ItemTest {
 	public void testItemWithName() {
 		Cookie i = new Cookie("The Name");
 		assertEquals("Item() name", "The Name", i.getName());
-		assertEquals("Item() description", null, i.getDescription());
-		assertEquals("Item() weightBase", 0F, i.getWeightBase(), 0.0001F);
-		assertEquals("Item() location", null, i.getLocation());
 	}
 
 	@Test
@@ -30,8 +30,6 @@ public class ItemTest {
 		assertEquals("Item() name", "The Name", i.getName());
 		assertEquals("Item() description", "The Description",
 				i.getDescription());
-		assertEquals("Item() weightBase", 0F, i.getWeightBase(), 0.0001F);
-		assertEquals("Item() location", null, i.getLocation());
 	}
 
 	@Test
@@ -51,14 +49,14 @@ public class ItemTest {
 	public void testBaseWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertEquals("weightBase", 0.123F, i.getWeightBase(), 0.0001F);
+		assertTrue("weightBase", i.getWeightBase().equals(0.123F) );
 	}
 
 	@Test
 	public void testWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertEquals("weight", 0.123F, i.getWeight(), 0.0001F);
+		assertTrue("weight",  i.getWeight().equals(0.123F));
 	}
 
 	@Test
@@ -89,6 +87,19 @@ public class ItemTest {
 		Cookie cookie = new Cookie();
 		assertEquals("toString", "some text", cookie.toString());
 
+	}
+	
+	@Test
+	public void testSetVolumeMax() {
+		float volumeMax = 20F;
+		Cookie cookie = new Cookie();
+		cookie.setVolumeMax(volumeMax);
+		Volume v = cookie.getVolumeMax();
+		if (v == null) {
+			fail("getVolumeMax= null");
+		} else {
+			assertEquals("getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
+		}
 	}
 
 }

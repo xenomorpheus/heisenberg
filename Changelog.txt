@@ -1,0 +1,15 @@
+2012-07-08
+ItemImpl objects now have a WeightMax and VolumeMax, which is the maximum carry.
+ItemContainer objects have had these properties removed as implemented in super class ItemImpl.
+Pros
+- We don't need to check the item type before asking the max carrying volume/weight as all items
+now have this feature.
+
+Weights and Volumes are now objects.
+Pros 
+- should allow for future support of multiple units of weight e.g. SI and Imperial.
+- possibly tighter control over weights and volumes in the future.
+Cons 
+- slower and more work to maintain.
+- some risk of use of null pointer.
+

@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.item;
 
-public class Cookie extends ItemSimple {
+public class Cookie extends ItemImpl {
 	public Cookie() {
 		super("Cookie");
 	}

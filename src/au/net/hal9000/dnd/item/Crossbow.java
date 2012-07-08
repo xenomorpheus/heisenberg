@@ -1,6 +1,8 @@
 package au.net.hal9000.dnd.item;
 
-public class Crossbow extends ItemSimple {
+import au.net.hal9000.dnd.units.Weight;
+
+public class Crossbow extends ItemImpl {
 	private CrossbowBolt loadedBolt = null;
 
 	public Crossbow() {
@@ -38,10 +40,10 @@ public class Crossbow extends ItemSimple {
 	}
 
 	// bow plus bolt if present.
-	public float getWeight() {
-		float total = super.getWeight();
+	public Weight getWeight() {
+		Weight total = super.getWeight();
 		if (loadedBolt != null) {
-			total += loadedBolt.getWeight();
+			total.add(loadedBolt.getWeight());
 		}
 		return total;
 	}

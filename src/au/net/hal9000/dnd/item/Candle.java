@@ -1,15 +1,24 @@
 package au.net.hal9000.dnd.item;
 
-public class Candle extends ItemSimple {
+public class Candle extends ItemImpl {
 
 	private boolean lit = false;
 
 	public Candle() {
 		super("Candle");
+		this.setType(1);
 	}
 
 	public Candle(String pString) {
 		super(pString);
+		this.setType(1);
+	}
+
+	public void setType(int type) {
+		if (type == 1) {
+			this.setVolumeBase(0.5f); // TODO what about liters vs. gallons
+			this.setWeightBase(0.5f); // TODO what about kilos vs. pounds ?
+		}
 	}
 
 	public String getDescription() {

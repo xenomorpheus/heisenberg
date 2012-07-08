@@ -1,37 +1,24 @@
 package au.net.hal9000.dnd.item;
 
-public class Shield extends ItemDecorator {
+/*
+ * Shield  
+ * 
+ * 1) Reduces the chance that a attack will land.
+ * 2) Reduces the effect of an attack.
+ * 3) How can a shield get damaged?
+ * 4) Will there be armour types ?  Brace, shield, body, magical ...
+ *
+ *  TODO perhaps create a protection Interface  
+ */
 
-	float reductionImpact = 0;
+public class Shield extends ItemImpl {
 
-	public Shield(Item decoratedItem) {
-		super(decoratedItem);
+//	ToHitModifier toHitModifier = new ToHitModifier();
+//	DamageModifier damageModifier = new DamageModifier();
+
+	// Constructor(s)
+	public Shield() {
+		super("Shield");
 	}
 
-	public Shield(Item decoratedItem, float pReductionImpact) {
-		super(decoratedItem);
-		this.reductionImpact = pReductionImpact;
-	}
-
-	public void setReductionImpact(float pReductionImpact) {
-		this.reductionImpact = pReductionImpact;
-	}
-
-	// Features
-	public boolean isArmour() {
-		return true;
-	}
-
-	// Receive damage
-	public void accept(Damage damage) {
-		float impact = damage.getImpact();
-		if (impact > 0) {
-			impact -= reductionImpact;
-			if (impact < 0) {
-				impact = 0;
-			}
-			damage.setImpact(impact);
-		}
-		decoratedItem.accept(damage);
-	}
 }
