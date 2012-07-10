@@ -1,3 +1,8 @@
+
+Storage:
+1) Make objects clonable and serialisable.
+2) Investigate JPA vs JDBC
+
 Merge classes Magic and Magical.
 Convert Clothing to an Interface.
 Convert Amour to an Interface.
