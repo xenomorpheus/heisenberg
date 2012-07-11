@@ -112,7 +112,9 @@ public class ItemImplTest {
 	@Test
 	public void testEquals(){
         Cookie cookie = new Cookie();
+        Cookie cookie2 = new Cookie();
         assertTrue("equals true for self", cookie.equals(cookie));
+        assertTrue("equals true for other", cookie2.equals(cookie));
 	}
 	
 	@Test
