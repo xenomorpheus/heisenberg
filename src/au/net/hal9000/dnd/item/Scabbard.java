@@ -6,6 +6,10 @@ import au.net.hal9000.dnd.item.property.SwordSheath;
 import au.net.hal9000.dnd.units.Weight;
 
 public class Scabbard extends ItemImpl implements SwordSheath {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Sword sword = null;
 	
 	public Scabbard(){

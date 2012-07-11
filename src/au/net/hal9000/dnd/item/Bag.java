@@ -4,6 +4,11 @@ import au.net.hal9000.dnd.item.exception.*;
 
 public class Bag extends ItemContainer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Bag() {
 		super("Bag");
 		setDescription("A common cloth sack about 2 feet by 4 feet in size.");

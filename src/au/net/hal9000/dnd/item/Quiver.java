@@ -6,7 +6,12 @@ import au.net.hal9000.dnd.item.exception.ExceptionTooHeavy;
 
 public class Quiver extends ItemContainer {
 	
-  public Quiver(){
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+public Quiver(){
 	  super("Quiver");
   }
   public Quiver(String pName){

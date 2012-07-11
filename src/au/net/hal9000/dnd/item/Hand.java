@@ -14,6 +14,10 @@ import au.net.hal9000.dnd.units.*;
 
 public class Hand extends ItemImpl {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Vector<Ring> rings = new Vector<Ring>();
 	private int magicRingCount = 0;
 	private int magicRingMax = 1;

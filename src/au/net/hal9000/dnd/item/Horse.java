@@ -1,6 +1,11 @@
 package au.net.hal9000.dnd.item;
 
 public class Horse extends Entity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Horse() {
 		super("Horse");
 	}

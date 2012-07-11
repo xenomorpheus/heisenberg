@@ -19,6 +19,10 @@ import au.net.hal9000.dnd.units.*;
 
 public class BagOfHolding extends Bag {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int type;
 
 	public BagOfHolding(int type, String pName) {

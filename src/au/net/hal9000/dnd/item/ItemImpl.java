@@ -3,6 +3,7 @@ package au.net.hal9000.dnd.item;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import au.net.hal9000.dnd.units.*;
 
@@ -29,8 +30,12 @@ import au.net.hal9000.dnd.units.*;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public abstract class ItemImpl implements Item {
+public abstract class ItemImpl implements Item, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// set as many objects as possible.
 	// we don't want to have to keep checking for null
 	private String name = "";

@@ -2,6 +2,10 @@ package au.net.hal9000.dnd.item;
 
 public class Candle extends ItemImpl {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean lit = false;
 
 	public Candle() {

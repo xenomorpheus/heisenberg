@@ -3,6 +3,10 @@ package au.net.hal9000.dnd.item;
 import au.net.hal9000.dnd.units.Weight;
 
 public class Crossbow extends ItemImpl {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CrossbowBolt loadedBolt = null;
 
 	public Crossbow() {

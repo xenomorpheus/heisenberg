@@ -8,6 +8,10 @@ import au.net.hal9000.dnd.units.*;
 import au.net.hal9000.dnd.item.exception.*;
 
 public abstract class ItemContainer extends ItemImpl {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Stack<Item> items = new Stack<Item>();
 
 	public ItemContainer(String string) {

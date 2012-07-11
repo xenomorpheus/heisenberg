@@ -7,6 +7,11 @@ package au.net.hal9000.dnd.item;
 
 public class Ring extends ItemImpl {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Ring() {
 		super("Ring");
 		this.setDefaults(this);

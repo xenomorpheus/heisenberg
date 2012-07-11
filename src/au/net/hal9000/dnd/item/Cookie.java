@@ -1,6 +1,11 @@
 package au.net.hal9000.dnd.item;
 
 public class Cookie extends ItemImpl {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Cookie() {
 		super("Cookie");
 	}
@@ -19,7 +24,6 @@ public class Cookie extends ItemImpl {
 	}
 
 	public boolean equals(Cookie other) {
-		// TODO Auto-generated method stub
-		return false;
+		return super.equals(other);
 	}
 }

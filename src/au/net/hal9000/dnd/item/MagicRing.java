@@ -5,6 +5,10 @@ package au.net.hal9000.dnd.item;
 // It is Magical.
 
 public class MagicRing extends Ring {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int plus;
 
 	// Constructor

@@ -4,6 +4,10 @@ import au.net.hal9000.dnd.units.*;
 
 public abstract class Humanoid extends Entity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HumanoidHead head = new HumanoidHead();
 	private Hand leftHand = new Hand("Left Hand");
 	private Hand rightHand = new Hand("Right Hand");

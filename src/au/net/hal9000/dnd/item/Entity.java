@@ -6,6 +6,10 @@ import au.net.hal9000.dnd.units.*;
 
 public abstract class Entity extends ItemImpl {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Stack<Item> equipment = new Stack<Item>();
 
 	public Entity(String pName) {

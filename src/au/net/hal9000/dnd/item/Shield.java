@@ -16,6 +16,11 @@ public class Shield extends ItemImpl {
 //	ToHitModifier toHitModifier = new ToHitModifier();
 //	DamageModifier damageModifier = new DamageModifier();
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// Constructor(s)
 	public Shield() {
 		super("Shield");
