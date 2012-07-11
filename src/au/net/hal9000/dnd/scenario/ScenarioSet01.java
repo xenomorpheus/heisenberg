@@ -47,28 +47,6 @@ public class ScenarioSet01 {
 	}
 
 	@Test
-	public void character_puts_on_cloak() {
-		System.out.println("\n** A character puts on a cloak.");
-		Human human = new Human();
-		System.out.println("Human created with name: " + human);
-		Cloak cloak = new Cloak();
-		System.out.println("Cloak created with name: " + cloak);
-		try {
-			human.wear(cloak);
-			System.out.println("Human wearing cloak.");
-		} catch (ExceptionCantWear e) {
-			fail("Cant wear");
-		} catch (ExceptionInvalidType e) {
-			fail("invalid type");
-		} catch (ExceptionTooHeavy e) {
-			fail("too heavy");
-		} catch (ExceptionTooBig e) {
-			fail("too big");
-		}
-		System.out.println("Cloak location: " + cloak.getLocation());
-	}
-
-	@Test
 	public void crossbow_is_loaded() {
 		System.out.println("\n** A crossbow is loaded.");
 		Crossbow crossbow = new Crossbow();

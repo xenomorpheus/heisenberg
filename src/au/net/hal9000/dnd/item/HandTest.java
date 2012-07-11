@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import au.net.hal9000.dnd.item.exception.*;
-import au.net.hal9000.dnd.units.*;
 
 public class HandTest {
 

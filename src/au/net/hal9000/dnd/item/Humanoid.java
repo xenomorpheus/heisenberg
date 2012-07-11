@@ -1,6 +1,5 @@
 package au.net.hal9000.dnd.item;
 
-import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.units.*;
 
 public abstract class Humanoid extends Entity {
