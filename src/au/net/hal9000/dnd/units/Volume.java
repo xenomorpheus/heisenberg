@@ -1,10 +1,10 @@
 package au.net.hal9000.dnd.units;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 public class Volume extends Unit {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Volume(){
 		super();
 	}

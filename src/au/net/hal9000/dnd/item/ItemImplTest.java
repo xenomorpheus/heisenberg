@@ -108,8 +108,15 @@ public class ItemImplTest {
 		}
 	}
 
+	
 	@Test
-	public void persistence() {
+	public void testEquals(){
+        Cookie cookie = new Cookie();
+        assertTrue("equals true for self", cookie.equals(cookie));
+	}
+	
+	@Test
+	public void testPersistence() {
 
 		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique filename
 		Cookie old = new Cookie();

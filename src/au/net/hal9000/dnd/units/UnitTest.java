@@ -7,10 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import org.junit.Test;
 
-import au.net.hal9000.dnd.item.Cookie;
 
 public class UnitTest {
 	private static final float WITHING_MARGIN = 0.00009F;
@@ -20,7 +18,7 @@ public class UnitTest {
 		Unit ref = new Unit(1.0F);
 		Unit eq = new Unit(1.0F);
 		Unit within = new Unit(1.0F + WITHING_MARGIN);
-		Unit over = new Unit(1.0F + (3 * WITHING_MARGIN));
+		Unit over = new Unit(1.0F + (2 * WITHING_MARGIN));
 
 		assertTrue("equals 0 to 0", ref.equals(eq));
 		assertTrue("equals 0 to -1", ref.equals(within));
