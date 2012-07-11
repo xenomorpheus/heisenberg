@@ -2,10 +2,16 @@ package au.net.hal9000.dnd.item;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.junit.Test;
 import au.net.hal9000.dnd.units.*;
 
-public class ItemTest {
+public class ItemImplTest {
 
 	@Test
 	public void testItem() {
@@ -49,14 +55,14 @@ public class ItemTest {
 	public void testBaseWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertTrue("weightBase", i.getWeightBase().equals(0.123F) );
+		assertTrue("weightBase", i.getWeightBase().equals(0.123F));
 	}
 
 	@Test
 	public void testWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertTrue("weight",  i.getWeight().equals(0.123F));
+		assertTrue("weight", i.getWeight().equals(0.123F));
 	}
 
 	@Test
@@ -88,7 +94,7 @@ public class ItemTest {
 		assertEquals("toString", "some text", cookie.toString());
 
 	}
-	
+
 	@Test
 	public void testSetVolumeMax() {
 		float volumeMax = 20F;
@@ -100,6 +106,36 @@ public class ItemTest {
 		} else {
 			assertEquals("getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
 		}
+	}
+
+	@Test
+	public void persistence() {
+
+		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique filename
+		Cookie old = new Cookie();
+		// Store the object
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(old);
+			out.close();
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+
+		try {
+			FileInputStream fis = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(fis);
+			Cookie newObj = (Cookie) in.readObject();
+			in.close();
+			assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+
 	}
 
 }

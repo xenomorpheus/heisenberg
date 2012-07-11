@@ -261,9 +261,13 @@ public abstract class ItemImpl implements Item, Serializable {
 		System.out.println("beNot called on " + this.getName());
 		this.name = null;
 		this.description = null;
+		this.weightBase = null;
+		this.weightMax = null;
+		this.volumeBase = null;
+		this.volumeMax = null;
 		this.valueBase = null;
-		this.location = null;
 		// We don't call beNot on the location.
+		this.location = null;
 	}
 
 	public String toString() {

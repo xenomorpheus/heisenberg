@@ -27,6 +27,7 @@ public abstract class ItemContainer extends ItemImpl {
 	// Misc
 
 	// Includes contents
+	@Override
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
 		total.add(this.getContentsWeight());
@@ -34,6 +35,7 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	// Includes contents
+	@Override
 	public Volume getVolume() {
 		Volume total = this.getVolumeBase();
 		total.add(this.getContentsVolume());
@@ -41,6 +43,7 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	// Includes contents
+	@Override
 	public Currency getValue() {
 		Currency total = new Currency(this.getValueBase());
 		total.add(this.getContentsValue());

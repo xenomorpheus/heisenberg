@@ -1,6 +1,12 @@
 package au.net.hal9000.dnd.item;
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.junit.Test;
 
 public class CurrencyTest {
@@ -98,5 +104,34 @@ public class CurrencyTest {
 		Currency cc2 = new Currency(1,2,4,8);
 		assertTrue("equals", cc.equals(cc2));
 	}
+	
+	@Test
+	public void persistence() {
 
+		String filename = "/tmp/currency_persit_test.ser"; // TODO unique filename
+		Currency old = new Currency();
+		// Store the object
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(old);
+			out.close();
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+
+		try {
+			FileInputStream fis = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(fis);
+			Currency newObj = (Currency) in.readObject();
+			in.close();
+			assertTrue("deserialized new equals old", old.equals(newObj));
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+
+	}
 }

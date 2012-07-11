@@ -1,8 +1,17 @@
 package au.net.hal9000.dnd.item;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 
 // This is NOT an Item
-public class Currency {
+public class Currency implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// conversion
 	public static final Float ppAsGp = 10F;
 	public static final Float spAsGp = 0.1F;
@@ -91,5 +100,16 @@ public class Currency {
 	public String toString() {
 		return new String(this.pp + "pp, " + this.gp + "gp, " + this.sp
 				+ "sp, " + this.cp + "cp ");
+	}
+	
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		// our "pseudo-constructor"
+		in.defaultReadObject();
+		// now we are a "live" object again, so let's run rebuild and start
 	}
 }

@@ -2,7 +2,15 @@ package au.net.hal9000.dnd.units;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.junit.Test;
+
+import au.net.hal9000.dnd.item.Cookie;
 
 public class UnitTest {
 	private static final float WITHING_MARGIN = 0.00009F;
@@ -43,4 +51,33 @@ public class UnitTest {
 		assertEquals("compare 0 to 0", 0, u.compare(1.0F));
 	}
 
+	@Test
+	public void persistence() {
+
+		String filename = "/tmp/unit_persit_test.ser"; // TODO unique filename
+		Unit old = new Unit();
+		// Store the object
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(old);
+			out.close();
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+
+		try {
+			FileInputStream fis = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(fis);
+			Unit newObj = (Unit) in.readObject();
+			in.close();
+			assertTrue("deserialized object equals old object", old.equals(newObj));
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+
+	}
 }

@@ -8,9 +8,18 @@ package au.net.hal9000.dnd.units;
  * 
  */
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.Math;
 
-public class Unit {
+public class Unit implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private float value = 0.0F;
 
 	private static final float MARGIN = 0.0001F;
@@ -82,4 +91,14 @@ public class Unit {
 		return (this.value < other) ? -1 : 1;
 	}
 
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		// our "pseudo-constructor"
+		in.defaultReadObject();
+		// now we are a "live" object again, so let's run rebuild and start
+	}
 }
