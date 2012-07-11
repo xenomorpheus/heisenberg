@@ -17,4 +17,9 @@ public class Cookie extends ItemImpl {
 	public static boolean isHumanFood() {
 		return true;
 	}
+
+	public boolean equals(Cookie other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
