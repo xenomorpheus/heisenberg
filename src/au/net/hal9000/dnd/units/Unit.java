@@ -34,6 +34,24 @@ public class Unit implements Serializable{
 		this.value = pValue;
 	}
 
+    // static methods
+	public static boolean null_safe_compare(Unit unit,
+			Unit unitOther) {
+		if (unit == null) {
+			if (unitOther == null) {
+				return true;
+			}
+			return false;
+		}
+
+		if (unitOther == null) {
+			return false;
+		}
+
+		return unit.equals(unitOther);
+	}
+
+	// instance methods
 	// Getters and Setters
 	public float getValue() {
 		return value;

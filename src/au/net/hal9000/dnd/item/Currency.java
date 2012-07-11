@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-
 // This is NOT an Item
 public class Currency implements Serializable {
 	/**
@@ -39,7 +38,24 @@ public class Currency implements Serializable {
 		this.sp = cc.sp;
 		this.cp = cc.cp;
 	}
+    // static methods
+	public static boolean null_safe_compare(Currency currency,
+			Currency currencyOther) {
+		if (currency == null) {
+			if (currencyOther == null) {
+				return true;
+			}
+			return false;
+		}
 
+		if (currencyOther == null) {
+			return false;
+		}
+
+		return currency.equals(currencyOther);
+	}
+
+	// instance methods
 	Float getGpEquiv() {
 		return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
 	}

@@ -60,6 +60,24 @@ public abstract class ItemImpl implements Item, Serializable {
 		this.description = pDescription;
 	}
 
+	// static methods
+	public static boolean null_safe_compare(Item item, Item itemOther) {
+		if (item == null) {
+			if (itemOther == null) {
+				return true;
+			}
+			return false;
+		}
+
+		if (itemOther == null) {
+			return false;
+		}
+
+		return item.equals(itemOther);
+	}
+
+	// instance methods
+
 	// Feature
 	public boolean isMagical() {
 		return false;
@@ -213,40 +231,47 @@ public abstract class ItemImpl implements Item, Serializable {
 		return weightBase;
 	}
 
-	private static boolean _null_safe_compare(Object o1, Object o2) {
-		if (o1 == null) {
-			if (o2 == null) {
-				return true;
-			}
-			return false;
-		}
-
-		if (o2 == null) {
-			return false;
-		}
-
-		return o1.equals(o2);
-	}
-
 	public boolean equals(ItemImpl other) {
 		if (this == other)
 			return true;
 		// Check each of our immediate properties.
-		if (!_null_safe_compare(name, other.getName()))
+		// name
+		{
+			String otherName = other.getName();
+			if (name == null) {
+				if (other != null)
+					return false;
+			} else {
+				if (otherName == null)
+					return false;
+				if (!name.equals(otherName))
+					return false;
+			}
+		}
+		// description
+		{
+			String otherDescription = other.getDescription();
+			if (description == null) {
+				if (other != null)
+					return false;
+			} else {
+				if (otherDescription == null)
+					return false;
+				if (!description.equals(otherDescription))
+					return false;
+			}
+		}
+		if (!Weight.null_safe_compare(weightBase, other.getWeightBase()))
 			return false;
-		if (!_null_safe_compare(description, other.getDescription()))
+		if (!Weight.null_safe_compare(weightMax, other.getWeightMax()))
 			return false;
-		if (!_null_safe_compare(weightBase, other.getWeightBase()))
+		if (!Volume.null_safe_compare(volumeBase, other.getVolumeBase()))
 			return false;
-		if (!_null_safe_compare(weightMax, other.getWeightMax()))
+		if (!Volume.null_safe_compare(volumeMax, other.getVolumeMax()))
 			return false;
-		if (!_null_safe_compare(volumeBase, other.getVolumeBase()))
+		if (!Currency.null_safe_compare(valueBase, other.getValueBase()))
 			return false;
-		if (!_null_safe_compare(volumeMax, other.getVolumeMax()))
-			return false;
-		if (!_null_safe_compare(valueBase, other.getValueBase()))
-			return false;
-		if (!_null_safe_compare(location, other.getLocation()))
+		if (!Location.null_safe_compare(location, other.getLocation()))
 			return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;

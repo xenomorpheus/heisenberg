@@ -12,4 +12,5 @@ public class Weight extends Unit {
 	public Weight(float f){
 		super(f);
 	}
+
 }
