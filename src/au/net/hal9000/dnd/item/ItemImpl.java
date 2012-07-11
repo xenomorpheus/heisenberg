@@ -1,5 +1,9 @@
 package au.net.hal9000.dnd.item;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import au.net.hal9000.dnd.units.*;
 
 //Item:
@@ -219,24 +223,29 @@ public abstract class ItemImpl implements Item {
 		return o1.equals(o2);
 	}
 
-	public boolean equals(Item other) {
+	public boolean equals(ItemImpl other) {
 		if (this == other)
 			return true;
+		// Check each of our immediate properties.
 		if (!_null_safe_compare(name, other.getName()))
 			return false;
 		if (!_null_safe_compare(description, other.getDescription()))
 			return false;
 		if (!_null_safe_compare(weightBase, other.getWeightBase()))
 			return false;
+		if (!_null_safe_compare(weightMax, other.getWeightMax()))
+			return false;
 		if (!_null_safe_compare(volumeBase, other.getVolumeBase()))
 			return false;
-		if (!_null_safe_compare(weightMax, other.getWeightMax()))
+		if (!_null_safe_compare(volumeMax, other.getVolumeMax()))
 			return false;
 		if (!_null_safe_compare(valueBase, other.getValueBase()))
 			return false;
 		if (!_null_safe_compare(location, other.getLocation()))
 			return false;
-
+		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
+			return false;
+		// call equals on any super class.
 		return true;
 	}
 
@@ -285,6 +294,17 @@ public abstract class ItemImpl implements Item {
 	// Find items that match the criteria
 	public void accept(ItemVisitor visitor) {
 		visitor.visit(this);
+	}
+
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		// our "pseudo-constructor"
+		in.defaultReadObject();
+		// now we are a "live" object again, so let's run rebuild and start
 	}
 
 }
