@@ -33,33 +33,40 @@ public interface Item {
 
 	public void setDescription(String pDescription);
 
+	// weight related
 	// weightBase - weight before carried items are added
 	public Weight getWeightBase();
 
 	public void setWeightBase(Weight baseWeight);
+
 	public void setWeightBase(float baseWeight);
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
 	public Weight getWeight();
 
+	// weightMax - max weight that can be carried
+	public Weight getWeightMax();
+
+	public void setWeightMax(Weight loadMax);
+
+	public void setWeightMax(float loadMax);
+
+	// volume related
 	// volumeBase - volume before carried items are added
 	public Volume getVolumeBase();
 
 	public void setVolumeBase(Volume volumeWeight);
+
 	public void setVolumeBase(float volumeWeight);
 
 	// For simple items the weight is the weightBase.
 	// will be overridden by collections
 	public Volume getVolume();
 
-	// weightMax - max weight that can be carried
-	public Weight getWeightMax();
-
-	public void setWeightMax(Weight loadMax);
-	public void setWeightMax(float loadMax);
-
 	// valueBase
+	public Volume getVolumeMax();
+
 	public Currency getValueBase();
 
 	// For simple items the value is the valueBase.
@@ -80,7 +87,7 @@ public interface Item {
 
 	// misc methods
 
-	public boolean equals(Item other);
+	// public boolean equals(Item other);
 
 	// Attempt to unlink the item from everything so that
 	// it can be garbage collected.
