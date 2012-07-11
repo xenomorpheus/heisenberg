@@ -232,42 +232,24 @@ public abstract class ItemImpl implements Item, Serializable {
 		if (this == other)
 			return true;
 		// Check each of our immediate properties.
-		if (!_null_safe_compare(name, other.getName())){
-			System.out.println("name");
+		if (!_null_safe_compare(name, other.getName()))
 			return false;
-		}
-		if (!_null_safe_compare(description, other.getDescription())){
-			System.out.println("des");
+		if (!_null_safe_compare(description, other.getDescription()))
 			return false;
-		}
-		if (!_null_safe_compare(weightBase, other.getWeightBase())){
-			System.out.println("wb");
+		if (!_null_safe_compare(weightBase, other.getWeightBase()))
 			return false;
-		}
-		if (!_null_safe_compare(weightMax, other.getWeightMax())){
-			System.out.println("wn");
+		if (!_null_safe_compare(weightMax, other.getWeightMax()))
 			return false;
-		}
-		if (!_null_safe_compare(volumeBase, other.getVolumeBase())){
-			System.out.println("vb");
+		if (!_null_safe_compare(volumeBase, other.getVolumeBase()))
 			return false;
-		}
-		if (!_null_safe_compare(volumeMax, other.getVolumeMax())){
-			System.out.println("vm");
+		if (!_null_safe_compare(volumeMax, other.getVolumeMax()))
 			return false;
-		}
-		if (!_null_safe_compare(valueBase, other.getValueBase())){
-			System.out.println("valB");
+		if (!_null_safe_compare(valueBase, other.getValueBase()))
 			return false;
-		}
-		if (!_null_safe_compare(location, other.getLocation())){
-			System.out.println("loc");
+		if (!_null_safe_compare(location, other.getLocation()))
 			return false;
-		}
-		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F){
-			System.out.println("hp");
+		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;
-		}
 		// call equals on any super class.
 		return true;
 	}
