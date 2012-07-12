@@ -87,7 +87,7 @@ public class HandTest {
 	public void testRingRemoveRing() {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringWear(ring1);
@@ -104,7 +104,7 @@ public class HandTest {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
 		Ring ring2 = new Ring();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringWear(ring1);
@@ -122,7 +122,7 @@ public class HandTest {
 	public void testRingRemoveMagicRing() {
 		Hand hand = new Hand();
 		MagicRing magicRing1 = new MagicRing();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringWear(magicRing1);
@@ -138,7 +138,7 @@ public class HandTest {
 	public void testRingRemoveRingNotPresent() {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringRemove(ring1, newLocation);
@@ -154,7 +154,7 @@ public class HandTest {
 	public void testRingRemoveMagicRingNotPresent() {
 		Hand hand = new Hand();
 		MagicRing magicRing1 = new MagicRing();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringRemove(magicRing1, newLocation);
@@ -172,7 +172,7 @@ public class HandTest {
 		Ring ring1 = new Ring();
 		Ring ring2 = new Ring();
 		MagicRing magicRing1 = new MagicRing();
-		Location newLocation = new Location("Ground");
+		Cookie newLocation = new Cookie("Ground");
 
 		try {
 			hand.ringWear(ring1);

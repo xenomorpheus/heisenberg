@@ -12,7 +12,8 @@ public class BagTest {
 	@Test
 	public void ordinary_add() {
 		Cookie cookie = new Cookie();
-		cookie.setLocation(new Location("Ground"));
+		// set the location so we can see that it changes
+		cookie.setLocation(new Cookie("Cookie2"));
 		Bag bag = new Bag();
 		try {
 			bag.add(cookie);
@@ -31,8 +32,9 @@ public class BagTest {
 	@Test
 	public void sharp_add_rupture() {
 		Sword sword = new Sword();
-		Location ground = new Location("Ground");
-		sword.setLocation(ground);
+		// set the location so we can see that it changes
+		Cookie cookie = new Cookie("Cookie");
+		sword.setLocation(cookie);
 		Bag bag = new Bag();
 		try {
 			bag.add(sword);
@@ -44,7 +46,7 @@ public class BagTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",ground,sword.getLocation());
+		assertEquals("cookie location",cookie,sword.getLocation());
 	}
 
 

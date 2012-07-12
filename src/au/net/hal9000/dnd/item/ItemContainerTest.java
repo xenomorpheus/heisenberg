@@ -92,14 +92,14 @@ public class ItemContainerTest {
 		Cookie c1 = new Cookie();
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
-		Location ground = new Location("Ground");
+		Cookie location = new Cookie("Location");
 		Vector<Item> items = new Vector<Item>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);
 		bag.add(items);
 		assertEquals("add multi size", 3, bag.getContentsCount());
-		bag.empty(ground);
+		bag.empty(location);
 		assertEquals("empty size", 0, bag.getContentsCount());
 	}
 

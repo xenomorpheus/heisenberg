@@ -45,7 +45,7 @@ public abstract class ItemImpl implements Item, Serializable {
 	private Volume volumeBase = new Volume();
 	private Volume volumeMax = new Volume();
 	private Currency valueBase = new Currency();
-	private Item location = null;
+	private ItemImpl location = null;
 	private float hitPoints = 0F;
 
 	// Class methods
@@ -212,7 +212,7 @@ public abstract class ItemImpl implements Item, Serializable {
 	}
 
 	public void setLocation(Item location) {
-		this.location = location;
+		this.location = (ItemImpl) location;
 	}
 
 	public float getHitPoints() {
@@ -271,7 +271,7 @@ public abstract class ItemImpl implements Item, Serializable {
 			return false;
 		if (!Currency.null_safe_compare(valueBase, other.getValueBase()))
 			return false;
-		if (!Location.null_safe_compare(location, other.getLocation()))
+		if (!ItemImpl.null_safe_compare(location, other.getLocation()))
 			return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;

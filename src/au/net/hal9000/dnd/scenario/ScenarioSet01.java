@@ -53,7 +53,7 @@ public class ScenarioSet01 {
 		System.out.println("Crossbow created with name: " + crossbow);
 		CrossbowBolt bolt = new CrossbowBolt();
 		System.out.println("CrossbowBolt created with name: " + bolt);
-		Location ground = new Location("Ground");
+		Cookie ground = new Cookie("Ground");
 		bolt.setLocation(ground);
 		crossbow.setLoadedBolt(bolt);
 		CrossbowBolt got = crossbow.getLoadedBolt();

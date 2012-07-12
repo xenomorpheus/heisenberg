@@ -1,3 +1,12 @@
+2012-07-12
+Location class removed. location property is now just an Item.
+Fixed a bug in ItemImpl's equals().
+
+2012-07-11
+Working on persistence - Started adding serialisation.
+Started fixing a bug in ItemImpl's equals().
+Added lots of null_safe_compare() static methods to allow easy equals() checks.
+
 2012-07-08
 ItemImpl objects now have a WeightMax and VolumeMax, which is the maximum carry.
 ItemContainer objects have had these properties removed as implemented in super class ItemImpl.

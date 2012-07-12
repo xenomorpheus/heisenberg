@@ -10,12 +10,12 @@ public class CrossbowTest {
 	public void testSetGetLoadedBolt() {
 		Crossbow crossbow = new Crossbow();
 		CrossbowBolt bolt = new CrossbowBolt();
-		Location ground = new Location("Ground");
-		bolt.setLocation(ground);
+		Cookie cookie = new Cookie("Cookie");
+		bolt.setLocation(cookie);
 		crossbow.setLoadedBolt(bolt);
 		CrossbowBolt got = crossbow.getLoadedBolt();
         assertEquals("getLoadedBolt - bolt",bolt, got);
-        assertEquals("getLoadedBolt - bolt location", ground, got.getLocation());
+        assertEquals("getLoadedBolt - bolt location", cookie, got.getLocation());
 	}
 
 	@Test
