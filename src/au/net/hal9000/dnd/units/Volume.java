@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.units;
 
-public class Volume extends Unit {
+public class Volume extends Unit implements Cloneable{
 	/**
 	 * 
 	 */
@@ -12,5 +12,9 @@ public class Volume extends Unit {
 		super(f);
 	}
 
-
+	public Volume clone() throws CloneNotSupportedException {
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+		return (Volume) super.clone();
+	}
 }

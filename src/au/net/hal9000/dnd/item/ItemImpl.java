@@ -1,5 +1,7 @@
 package au.net.hal9000.dnd.item;
 
+import static org.junit.Assert.assertFalse;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +32,7 @@ import au.net.hal9000.dnd.units.*;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public abstract class ItemImpl implements Item, Serializable {
+public abstract class ItemImpl implements Item, Serializable, Cloneable {
 
 	/**
 	 * 
@@ -339,6 +341,48 @@ public abstract class ItemImpl implements Item, Serializable {
 		// our "pseudo-constructor"
 		in.defaultReadObject();
 		// now we are a "live" object again, so let's run rebuild and start
+	}
+	
+	@Override
+	protected ItemImpl clone() throws CloneNotSupportedException {
+		ItemImpl clone = (ItemImpl) super.clone();
+
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+
+		// weightBase
+		Weight weightBase = this.getWeightBase();
+		if (weightBase != null) {
+			clone.setWeightBase( weightBase.clone());
+		}
+
+		// weightMax
+		Weight weightMax = this.getWeightMax();
+		if (weightMax != null) {
+			clone.setWeightMax( weightMax.clone());
+		}
+
+		// volumeBase
+		Volume volumeBase = this.getVolumeBase();
+		if (volumeBase != null) {
+			clone.setVolumeBase( volumeBase.clone());
+		}
+
+		// volumeMax
+		Volume volumeMax = this.getVolumeMax();
+		if (volumeMax != null) {
+			clone.setVolumeMax( volumeMax.clone());
+		}
+
+		// valueBase
+		Currency valueBase = this.getValueBase();
+		if (valueBase != null) {
+			clone.setValueBase( valueBase.clone());
+		}
+
+		// location is *NOT* cloned.
+		return clone;
+		
 	}
 
 }

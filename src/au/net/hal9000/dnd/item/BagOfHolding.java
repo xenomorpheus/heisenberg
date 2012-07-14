@@ -4,6 +4,7 @@ import java.util.*;
 import au.net.hal9000.dnd.item.exception.*;
 import au.net.hal9000.dnd.item.property.*;
 import au.net.hal9000.dnd.units.*;
+import au.net.hal9000.dnd.units.Currency;
 
 /*
 

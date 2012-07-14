@@ -3,6 +3,8 @@ package au.net.hal9000.dnd.item;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import au.net.hal9000.dnd.units.Currency;
+
 public class RingTest {
 
 	@Test

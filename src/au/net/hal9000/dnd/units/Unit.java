@@ -14,15 +14,14 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.Math;
 
-public class Unit implements Serializable{
+public class Unit implements Serializable, Cloneable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final float MARGIN = 0.0001F;
 
 	private float value = 0.0F;
-
-	private static final float MARGIN = 0.0001F;
 
 	// Constructor
 	public Unit() {
@@ -34,9 +33,8 @@ public class Unit implements Serializable{
 		this.value = pValue;
 	}
 
-    // static methods
-	public static boolean null_safe_compare(Unit unit,
-			Unit unitOther) {
+	// static methods
+	public static boolean null_safe_compare(Unit unit, Unit unitOther) {
 		if (unit == null) {
 			if (unitOther == null) {
 				return true;
@@ -86,6 +84,10 @@ public class Unit implements Serializable{
 		this.value -= other.getValue();
 	}
 
+	public void subtract(float f) {
+		this.value -= f;
+	}
+
 	public void multiply(float multiplier) {
 		this.value *= multiplier;
 	}
@@ -118,5 +120,11 @@ public class Unit implements Serializable{
 		// our "pseudo-constructor"
 		in.defaultReadObject();
 		// now we are a "live" object again, so let's run rebuild and start
+	}
+
+	protected Unit clone() throws CloneNotSupportedException {
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+		return (Unit) super.clone();
 	}
 }

@@ -10,16 +10,16 @@ import java.io.ObjectOutputStream;
 
 import org.junit.Test;
 
-public class WeightTest {
+public class VolumeTest {
 
 	private static final float WITHING_MARGIN = 0.00009F;
 
 	@Test
 	public void testEquals() {
-		Weight ref = new Weight(1.0F);
-		Weight eq = new Weight(1.0F);
-		Weight within = new Weight(1.0F + WITHING_MARGIN);
-		Weight over = new Weight(1.0F + (2 * WITHING_MARGIN));
+		Volume ref = new Volume(1.0F);
+		Volume eq = new Volume(1.0F);
+		Volume within = new Volume(1.0F + WITHING_MARGIN);
+		Volume over = new Volume(1.0F + (2 * WITHING_MARGIN));
 
 		assertTrue("equals 0 to 0", ref.equals(eq));
 		assertTrue("equals 0 to -1", ref.equals(within));
@@ -28,8 +28,8 @@ public class WeightTest {
 	@Test
 	public void persistence() {
 
-		String filename = "/tmp/weight_persit_test.ser"; // TODO unique filename
-		Weight old = new Weight();
+		String filename = "/tmp/volume_persit_test.ser"; // TODO unique filename
+		Volume old = new Volume();
 		// Store the object
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);
@@ -44,7 +44,7 @@ public class WeightTest {
 		try {
 			FileInputStream fis = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(fis);
-			Weight newObj = (Weight) in.readObject();
+			Volume newObj = (Volume) in.readObject();
 			in.close();
 			assertTrue("deserialized object equals old object", old.equals(newObj));
 			assertTrue("deserialized object equals old object", newObj.equals(old));
@@ -76,7 +76,7 @@ public class WeightTest {
 				clone.getClass() == x.getClass());
 
 		// By convention, the returned object should be obtained by calling
-		// super.clone. If a class and all of its superclasses (except
+		// super.clone. If a class and all of its super-classes (except
 		// Object)
 		// obey this convention, it will be the case that
 		// x.clone().getClass() == x.getClass().
@@ -91,4 +91,5 @@ public class WeightTest {
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
 	}
+
 }

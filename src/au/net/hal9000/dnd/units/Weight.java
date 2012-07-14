@@ -1,6 +1,6 @@
 package au.net.hal9000.dnd.units;
 
-public class Weight extends Unit {
+public class Weight extends Unit implements Cloneable {
 
 	/**
 	 * 
@@ -13,4 +13,9 @@ public class Weight extends Unit {
 		super(f);
 	}
 
+	public Weight clone() throws CloneNotSupportedException {
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+		return (Weight) super.clone();
+	}
 }

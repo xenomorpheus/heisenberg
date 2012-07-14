@@ -108,15 +108,14 @@ public class ItemImplTest {
 		}
 	}
 
-	
 	@Test
-	public void testEquals(){
-        Cookie cookie = new Cookie();
-        Cookie cookie2 = new Cookie();
-        assertTrue("equals true for self", cookie.equals(cookie));
-        assertTrue("equals true for other", cookie2.equals(cookie));
+	public void testEquals() {
+		Cookie cookie = new Cookie();
+		Cookie cookie2 = new Cookie();
+		assertTrue("equals true for self", cookie.equals(cookie));
+		assertTrue("equals true for other", cookie2.equals(cookie));
 	}
-	
+
 	@Test
 	public void testPersistence() {
 
@@ -138,7 +137,8 @@ public class ItemImplTest {
 			ObjectInputStream in = new ObjectInputStream(fis);
 			Cookie newObj = (Cookie) in.readObject();
 			in.close();
-			assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
+			assertTrue("deserialized Cookie equals old cookie",
+					old.equals(newObj));
 		} catch (IOException ex) {
 			fail(ex.toString());
 		} catch (ClassNotFoundException ex) {
@@ -147,4 +147,84 @@ public class ItemImplTest {
 
 	}
 
+	@Test
+	public void testClone() {
+		Cookie x = new Cookie();
+		Cookie clone = null;
+		try {
+			clone = (Cookie) x.clone();
+		} catch (CloneNotSupportedException e) {
+			fail(e.toString());
+		}
+
+		// x.clone() != x
+		// will be true, and that the expression:
+		assertTrue("x.clone() != x", clone != x);
+
+		// x.clone().getClass() == x.getClass()
+		// will be true, but these are not absolute requirements.
+		assertTrue("x.clone().getClass() == x.getClass()",
+				clone.getClass() == x.getClass());
+
+		// By convention, the returned object should be obtained by calling
+		// super.clone. If a class and all of its superclasses (except
+		// Object)
+		// obey this convention, it will be the case that
+		// x.clone().getClass() == x.getClass().
+		// Already tested above.
+
+		// While it is typically the case that:
+		// x.clone().equals(x)
+		// will be true, this is not an absolute requirement.
+		assertTrue("x.clone().equals(x)", clone.equals(x));
+
+		// Class specific tests
+		// Make sure the cloning is deep, not shallow.
+		// e.g. test the non-mutable, non-primitives
+
+		// weightBase
+		Weight weightBase = x.getWeightBase();
+		if (weightBase != null) {
+			weightBase.add(1f);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			weightBase.subtract(1f);
+		}
+
+		// weightMax
+		Weight weightMax = x.getWeightMax();
+		if (weightMax != null) {
+			weightMax.add(1f);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			weightMax.subtract(1f);
+		}
+
+		// volumeBase
+		Volume volumeBase = x.getVolumeBase();
+		if (volumeBase != null) {
+			volumeBase.add(1f);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			volumeBase.subtract(1f);
+		}
+
+		// volumeMax
+		Volume volumeMax = x.getVolumeMax();
+		if (volumeMax != null) {
+			volumeMax.add(1f);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			volumeMax.subtract(1f);
+		}
+
+		// valueBase
+		Currency valueBase = x.getValueBase();
+		if (valueBase != null) {
+			int gp = valueBase.getGp();
+			gp++;
+			valueBase.setGp(gp);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			valueBase.setGp(gp - 1);
+		}
+
+		// location is *NOT* cloned.
+
+	}
 }

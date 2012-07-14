@@ -1,5 +1,7 @@
 package au.net.hal9000.dnd.item;
 
+import au.net.hal9000.dnd.units.Currency;
+
 //A ring is an Item except:
 //* Default description is "small metalic ring".
 //* Default value is 5gp ?

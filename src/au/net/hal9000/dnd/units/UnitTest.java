@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.junit.Test;
 
+import au.net.hal9000.dnd.item.Cookie;
+
 
 public class UnitTest {
 	private static final float WITHING_MARGIN = 0.00009F;
@@ -44,11 +46,19 @@ public class UnitTest {
 	@Test
 	public void testAdd() {
 		Unit u = new Unit(0.0F);
-		assertEquals("compare 0 to 0", 0, u.compare(0F));
+		assertEquals("add - set 0", 0, u.compare(0F));
 		u.add(1.0F);
-		assertEquals("compare 0 to 0", 0, u.compare(1.0F));
+		assertEquals("add - compare to 1", 0, u.compare(1.0F));
 	}
 
+	@Test
+	public void testSubtract() {
+		Unit u = new Unit(0.0F);
+		assertEquals("subtract - set 0", 0, u.compare(0F));
+		u.subtract(1.0F);
+		assertEquals("subtract - compare to 1", 0, u.compare(-1.0F));
+	}	
+	
 	@Test
 	public void persistence() {
 
@@ -78,4 +88,41 @@ public class UnitTest {
 		}
 
 	}
+	
+	@Test
+	public void testClone() {
+		Unit x = new Unit();
+		Unit clone = null;
+		try {
+			clone = (Unit) x.clone();
+		} catch (CloneNotSupportedException e) {
+			fail(e.toString());
+		}
+
+		// x.clone() != x
+		// will be true, and that the expression:
+		assertTrue("x.clone() != x", clone != x);
+
+		// x.clone().getClass() == x.getClass()
+		// will be true, but these are not absolute requirements.
+		assertTrue("x.clone().getClass() == x.getClass()",
+				clone.getClass() == x.getClass());
+
+		// By convention, the returned object should be obtained by calling
+		// super.clone. If a class and all of its superclasses (except
+		// Object)
+		// obey this convention, it will be the case that
+		// x.clone().getClass() == x.getClass().
+		// Already tested above.
+
+		// While it is typically the case that:
+		// x.clone().equals(x)
+		// will be true, this is not an absolute requirement.
+		assertTrue("x.clone().equals(x)", clone.equals(x));
+
+		// Class specific tests
+		// Make sure the cloning is deep, not shallow.
+		// e.g. test the non-mutable, non-primitives
+	}
+	
 }

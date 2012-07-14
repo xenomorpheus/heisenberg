@@ -1,12 +1,14 @@
-package au.net.hal9000.dnd.item;
+package au.net.hal9000.dnd.units;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import au.net.hal9000.dnd.item.ItemImpl;
+
 // This is NOT an Item
-public class Currency implements Serializable {
+public class Currency implements Serializable, Cloneable {
 	/**
 	 * 
 	 */
@@ -128,4 +130,14 @@ public class Currency implements Serializable {
 		in.defaultReadObject();
 		// now we are a "live" object again, so let's run rebuild and start
 	}
+
+	@Override
+	public Currency clone() throws CloneNotSupportedException {
+		Currency clone = (Currency) super.clone();
+
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+
+		return clone;
+	}	
 }
