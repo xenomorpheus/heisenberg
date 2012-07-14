@@ -1,7 +1,5 @@
 package au.net.hal9000.dnd.item;
 
-import static org.junit.Assert.assertFalse;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
