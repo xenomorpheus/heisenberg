@@ -5,8 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import au.net.hal9000.dnd.item.ItemImpl;
-
 // This is NOT an Item
 public class Currency implements Serializable, Cloneable {
 	/**

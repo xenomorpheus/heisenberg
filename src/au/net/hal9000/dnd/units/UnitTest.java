@@ -9,8 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.junit.Test;
 
-import au.net.hal9000.dnd.item.Cookie;
-
 
 public class UnitTest {
 	private static final float WITHING_MARGIN = 0.00009F;
