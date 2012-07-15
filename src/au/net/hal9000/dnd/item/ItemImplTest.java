@@ -42,6 +42,9 @@ public class ItemImplTest {
 	public void testName() {
 		Cookie i = new Cookie("A Name");
 		assertEquals("name", "A Name", i.getName());
+		
+		i.setName("fred");
+		assertEquals("setname & getname", "fred", i.getName());
 	}
 
 	@Test

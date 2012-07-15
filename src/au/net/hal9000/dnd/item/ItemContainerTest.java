@@ -117,4 +117,54 @@ public class ItemContainerTest {
 		assertEquals("empty size", 0, bag.getContentsCount());
 	}
 
+	@Test
+	public void testClone() {
+		Bag x = new Bag();
+		Cookie c1 = new Cookie();
+		x.add(c1);
+		Bag clone = null;
+		try {
+			clone = (Bag) x.clone();
+		} catch (CloneNotSupportedException e) {
+			fail(e.toString());
+		}
+
+		// x.clone() != x
+		// will be true, and that the expression:
+		assertTrue("x.clone() != x", clone != x);
+
+		// x.clone().getClass() == x.getClass()
+		// will be true, but these are not absolute requirements.
+		assertTrue("x.clone().getClass() == x.getClass()",
+				clone.getClass() == x.getClass());
+
+		// By convention, the returned object should be obtained by calling
+		// super.clone. If a class and all of its super-classes (except
+		// Object)
+		// obey this convention, it will be the case that
+		// x.clone().getClass() == x.getClass().
+		// Already tested above.
+
+		// While it is typically the case that:
+		// x.clone().equals(x)
+		// will be true, this is not an absolute requirement.
+		Boolean foo = clone.equals(x);
+		assertTrue("x.clone().equals(x)", foo);
+
+		// Class specific tests
+		// Make sure the cloning is deep, not shallow.
+		// e.g. test the non-mutable, non-primitives
+
+		// items
+		{
+			// Make a change to a non-primative, non-mutable
+			// 
+			
+			String c1Name = c1.getName();			
+			c1.setName(c1.getName()+"fred");
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			c1.setName(c1Name);
+		}
+
+	}
 }
