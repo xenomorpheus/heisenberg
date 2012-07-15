@@ -34,5 +34,9 @@ public class Bag extends ItemContainer {
 		}
 		super.add(item);
 	}
-
+	// Methods
+	// TODO - is this required? Inherited
+	public boolean equals(Bag other) {
+		return super.equals(other);
+	}
 }

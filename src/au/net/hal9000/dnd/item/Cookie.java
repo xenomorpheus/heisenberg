@@ -23,6 +23,8 @@ public class Cookie extends ItemImpl {
 		return true;
 	}
 
+	// Methods
+	// TODO - is this required? Inherited
 	public boolean equals(Cookie other) {
 		return super.equals(other);
 	}
