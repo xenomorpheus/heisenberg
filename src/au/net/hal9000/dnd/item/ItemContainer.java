@@ -1,6 +1,7 @@
 package au.net.hal9000.dnd.item;
 
 import java.util.EmptyStackException;
+import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
 import au.net.hal9000.dnd.units.*;
@@ -12,7 +13,7 @@ public abstract class ItemContainer extends ItemImpl {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Stack<Item> items = new Stack<Item>();
+	private Stack<Item> contents = new Stack<Item>();
 
 	public ItemContainer(String string) {
 		super(string);
@@ -21,7 +22,11 @@ public abstract class ItemContainer extends ItemImpl {
 	// Getters and Setters
 
 	protected Stack<Item> getContents() {
-		return items;
+		return contents;
+	}
+
+	private void setContents(Stack<Item> contents) {
+		this.contents = contents;
 	}
 
 	// Misc
@@ -78,7 +83,7 @@ public abstract class ItemContainer extends ItemImpl {
 			}
 		}
 
-		items.add(item);
+		contents.add(item);
 		item.setLocation(this);
 	}
 
@@ -90,23 +95,23 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	public Item pop() throws EmptyStackException {
-		return items.pop();
+		return contents.pop();
 	}
 
 	public Item peek() throws EmptyStackException {
-		return items.peek();
+		return contents.peek();
 	}
 
 	// Empty the bag into this location
 	public void empty(Item newLocation) {
-		while (!items.isEmpty()) {
-			Item item = items.pop();
+		while (!contents.isEmpty()) {
+			Item item = contents.pop();
 			item.setLocation(newLocation);
 		}
 	}
 
 	public int getContentsCount() {
-		return items.size();
+		return contents.size();
 	}
 
 	// Warning
@@ -142,7 +147,7 @@ public abstract class ItemContainer extends ItemImpl {
 	// TODO equal
 
 	// TODO rename Visitor Pattern style
-	// Find items that match the criteria
+	// Find contents that match the criteria
 	public void accept(ItemVisitor visitor) {
 		// Search the Items directly declared in this class.
 		for (Item item : getContents()) {
@@ -154,12 +159,57 @@ public abstract class ItemContainer extends ItemImpl {
 
 	public void beNot() {
 		// Call beNot on the Items directly declared in this class.
-		while (!items.isEmpty()) {
-			Item item = items.pop();
+		while (!contents.isEmpty()) {
+			Item item = contents.pop();
 			item.beNot();
 		}
 		// Get super to do the rest.
 		super.beNot();
 	}
 
+	public boolean equals(ItemContainer other) {
+		// call equals on any super class.
+		if (!super.equals(other))
+			return false;
+		// Check each of our immediate properties.
+		// check contents.
+		{
+			Stack<Item> otherContents = other.getContents();
+			if (contents.size() != otherContents.size())
+				return false;
+			Iterator<Item> itr = this.contents.iterator();
+			Iterator<Item> otherItr = otherContents.iterator();
+			while(itr.hasNext()){
+				Item item = itr.next();
+				Item otherItem = otherItr.next();
+				// TODO - which equals is run? Wrong class.
+                if (! item.equals(otherItem))				
+                	return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	protected ItemContainer clone() throws CloneNotSupportedException {
+		ItemContainer clone = (ItemContainer) super.clone();
+
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
+
+		// contents
+		Stack<Item> contents = this.getContents();
+		if (contents != null) {
+			Stack<Item> cloneContents = new Stack<Item>();
+			for (Item item : contents) {
+				// TODO check this.
+				ItemImpl itemImpl = (ItemImpl) item;
+				cloneContents.add(itemImpl.clone());
+			}
+			clone.setContents(cloneContents);
+		}
+
+		// location is *NOT* cloned.
+		return clone;
+	}
 }
