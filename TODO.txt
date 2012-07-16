@@ -1,6 +1,6 @@
 Storage:
 1) Make objects clone-able and serialise-able.
-2) Investigate JPA vs JDBC
+2) Investigate JPA
 
 Merge classes Magic and Magical.
 Convert Clothing to an Interface.
