@@ -61,7 +61,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	// static methods
-	public static boolean null_safe_compare(Item item, Item itemOther) {
+	public static boolean null_safe_equals(Item item, Item itemOther) {
 		if (item == null) {
 			if (itemOther == null) {
 				return true;
@@ -261,17 +261,17 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 					return false;
 			}
 		}
-		if (!Weight.null_safe_compare(weightBase, other.getWeightBase()))
+		if (!Weight.null_safe_equals(weightBase, other.getWeightBase()))
 			return false;
-		if (!Weight.null_safe_compare(weightMax, other.getWeightMax()))
+		if (!Weight.null_safe_equals(weightMax, other.getWeightMax()))
 			return false;
-		if (!Volume.null_safe_compare(volumeBase, other.getVolumeBase()))
+		if (!Volume.null_safe_equals(volumeBase, other.getVolumeBase()))
 			return false;
-		if (!Volume.null_safe_compare(volumeMax, other.getVolumeMax()))
+		if (!Volume.null_safe_equals(volumeMax, other.getVolumeMax()))
 			return false;
-		if (!Currency.null_safe_compare(valueBase, other.getValueBase()))
+		if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
 			return false;
-		if (!ItemImpl.null_safe_compare(location, other.getLocation()))
+		if (!ItemImpl.null_safe_equals(location, other.getLocation()))
 			return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;
