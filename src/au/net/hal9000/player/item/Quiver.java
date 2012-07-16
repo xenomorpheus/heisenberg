@@ -18,7 +18,7 @@ public Quiver(){
 	  super(pName);
   }
 
-  public void add (Item pItem) throws ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig{
+  public void add (ItemImpl pItem) throws ExceptionInvalidType, ExceptionTooHeavy, ExceptionTooBig{
 	  if (! (pItem instanceof Arrow)){
 		  throw new ExceptionInvalidType(pItem.getName()+" is not a Arrow");
 	  }

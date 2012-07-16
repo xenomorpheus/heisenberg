@@ -82,7 +82,7 @@ public class BagOfHolding extends Bag {
 	// take the item out of the bag and place
 	// at newLocation
 	public Item getItem(Item item, Item newLocation){
-        Vector <Item> items = this.getContents();
+        Vector <ItemImpl> items = this.getContents();
 		if (! items.removeElement(item)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
@@ -111,7 +111,7 @@ public class BagOfHolding extends Bag {
 		this.beNot();
 	}
 
-	public void add(Item item) throws ExceptionTooHeavy, ExceptionTooBig,
+	public void add(ItemImpl item) throws ExceptionTooHeavy, ExceptionTooBig,
 			ExceptionInvalidType {
 
 		// Recursively check for ExtraDimensional items.

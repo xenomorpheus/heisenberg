@@ -26,6 +26,7 @@ public class Cookie extends ItemImpl {
 	// Methods
 	// TODO - is this required? Inherited
 	public boolean equals(Cookie other) {
+		System.out.println("Cookie equals()");
 		return super.equals(other);
 	}
 }

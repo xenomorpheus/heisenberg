@@ -13,7 +13,7 @@ public abstract class ItemContainer extends ItemImpl {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Stack<Item> contents = new Stack<Item>();
+	private Stack<ItemImpl> contents = new Stack<ItemImpl>();
 
 	public ItemContainer(String string) {
 		super(string);
@@ -21,11 +21,11 @@ public abstract class ItemContainer extends ItemImpl {
 
 	// Getters and Setters
 
-	protected Stack<Item> getContents() {
+	protected Stack<ItemImpl> getContents() {
 		return contents;
 	}
 
-	private void setContents(Stack<Item> contents) {
+	private void setContents(Stack<ItemImpl> contents) {
 		this.contents = contents;
 	}
 
@@ -55,7 +55,7 @@ public abstract class ItemContainer extends ItemImpl {
 		return total;
 	}
 
-	public void add(Item item) {
+	public void add(ItemImpl item) {
 
 		// check Weight
 		Weight weightMax = this.getWeightMax();
@@ -88,8 +88,8 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	// add multiple items
-	public void add(Vector<Item> items) {
-		for (Item item : items) {
+	public void add(Vector<ItemImpl> items) {
+		for (ItemImpl item : items) {
 			this.add(item);
 		}
 	}
@@ -168,23 +168,19 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	public boolean equals(ItemContainer other) {
+		System.out.println("ItemContainer equals()");
 		// call equals on any super class.
 		if (!super.equals(other))
 			return false;
 		// Check each of our immediate properties.
 		// check contents.
 		{
-			Stack<Item> otherContents = other.getContents();
+			Stack<ItemImpl> otherContents = other.getContents();
 			if (contents.size() != otherContents.size())
 				return false;
-			Iterator<Item> itr = this.contents.iterator();
-			Iterator<Item> otherItr = otherContents.iterator();
-			while(itr.hasNext()){
-				Item item = itr.next();
-				Item otherItem = otherItr.next();
-				// TODO - which equals is run? Wrong class.
-                if (! item.equals(otherItem))				
-                	return false;
+			for (int i = contents.size() -1 ; i>= 0  ; i --){
+               if ( ! this.contents.get(i).equals(otherContents.get(i)) )
+            	   return false;
 			}
 		}
 		return true;
@@ -198,13 +194,11 @@ public abstract class ItemContainer extends ItemImpl {
 		// e.g. set the non-mutable, non-primitives
 
 		// contents
-		Stack<Item> contents = this.getContents();
+		Stack<ItemImpl> contents = this.getContents();
 		if (contents != null) {
-			Stack<Item> cloneContents = new Stack<Item>();
-			for (Item item : contents) {
-				// TODO check this.
-				ItemImpl itemImpl = (ItemImpl) item;
-				cloneContents.add(itemImpl.clone());
+			Stack<ItemImpl> cloneContents = new Stack<ItemImpl>();
+			for (ItemImpl item : contents) {
+				cloneContents.add(item.clone());
 			}
 			clone.setContents(cloneContents);
 		}

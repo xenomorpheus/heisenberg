@@ -232,6 +232,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	public boolean equals(ItemImpl other) {
+		System.out.println("ItemImpl equals()");
 		if (this == other)
 			return true;
 		// Check each of our immediate properties.

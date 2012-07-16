@@ -93,7 +93,7 @@ public class ItemContainerTest {
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
 		Cookie location = new Cookie("Location");
-		Vector<Item> items = new Vector<Item>();
+		Vector<ItemImpl> items = new Vector<ItemImpl>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);
