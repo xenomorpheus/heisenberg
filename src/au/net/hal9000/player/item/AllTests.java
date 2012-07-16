@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ BagOfHoldingTest.class, BagTest.class, CookieTest.class,
 		CrossbowTest.class, EntityTest.class, HandTest.class,
 		HumanoidTest.class, ItemContainerTest.class, ItemImplTest.class,
-		MagicRingTest.class, RingTest.class })
+		LocationTest.class, MagicRingTest.class, RingTest.class })
 public class AllTests {
 
 }

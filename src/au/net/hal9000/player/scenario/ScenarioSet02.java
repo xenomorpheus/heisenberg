@@ -12,8 +12,8 @@ public class ScenarioSet02 {
 		Cookie cookie = new Cookie();
 		Cookie cookie2 = new Cookie();
 		Location world = new Location("world");
-		cookie.setLocation(world);
-		cookie2.setLocation(world);
+		world.add(cookie);
+		world.add(cookie2);
 	}
 
 }

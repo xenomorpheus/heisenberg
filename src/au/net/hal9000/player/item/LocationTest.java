@@ -7,18 +7,18 @@ import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.*;
 
-public class ItemContainerTest {
+public class LocationTest {
 
 	@Test
 	public void testSetVolumeMax() {
 		float volumeMax = 20F;
-		Bag bag = new Bag();
-		bag.setVolumeMax(volumeMax);
-		Volume v = bag.getVolumeMax();
+		Location location = new Location("World");
+		location.setVolumeMax(volumeMax);
+		Volume v = location.getVolumeMax();
 		if (v == null) {
-			fail("bag.getVolumeMax= null");
+			fail("location.getVolumeMax= null");
 		} else {
-			assertEquals("bag.getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
+			assertEquals("location.getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
 		}
 	}
 
@@ -27,17 +27,17 @@ public class ItemContainerTest {
 		float volumeMax = 10F;
 		float weightMax = 20F;
 		{
-			// Bag
-			Bag bag = new Bag();
-			bag.setWeightMax(weightMax);
-			bag.setVolumeMax(volumeMax);
+			// Location
+			Location location = new Location("World");
+			location.setWeightMax(weightMax);
+			location.setVolumeMax(volumeMax);
 			// Item
 			Cookie i = new Cookie();
 			// This should just fit
 			i.setVolumeBase(volumeMax);
 			i.setWeightBase(weightMax);
 			try {
-				bag.add(i);
+				location.add(i);
 			} catch (ExceptionTooHeavy e) {
 				fail("too heavy :" + e.getMessage());
 			} catch (ExceptionTooBig e) {
@@ -48,14 +48,14 @@ public class ItemContainerTest {
 		}
 		{
 			// This should just break the volume
-			Bag bag = new Bag();
-			bag.setWeightMax(weightMax);
-			bag.setVolumeMax(volumeMax);
+			Location location = new Location("World");
+			location.setWeightMax(weightMax);
+			location.setVolumeMax(volumeMax);
 			Cookie i2 = new Cookie();
 			i2.setVolumeBase(volumeMax + 0.01F);
 			i2.setWeightBase(weightMax);
 			try {
-				bag.add(i2);
+				location.add(i2);
 				fail("should fail due to volume");
 			} catch (ExceptionTooHeavy e) {
 				fail("too heavy: " + e.getMessage());
@@ -67,14 +67,14 @@ public class ItemContainerTest {
 		}
 		{
 			// This should just break the weight
-			Bag bag = new Bag();
-			bag.setWeightMax(weightMax);
-			bag.setVolumeMax(volumeMax);
+			Location location = new Location("World");
+			location.setWeightMax(weightMax);
+			location.setVolumeMax(volumeMax);
 			Cookie i3 = new Cookie();
 			i3.setVolumeBase(volumeMax);
 			i3.setWeightBase(weightMax + 0.01F);
 			try {
-				bag.add(i3);
+				location.add(i3);
 				fail("should fail due to size");
 			} catch (ExceptionTooHeavy e) {
 				// nothing to do
@@ -88,44 +88,44 @@ public class ItemContainerTest {
 
 	@Test
 	public void testAddMulti() {
-		Bag bag = new Bag();
+		Location location = new Location("World");
+		Location newLocation = new Location("New Location");
 		Cookie c1 = new Cookie();
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
-		Bag newBag = new Bag("New Bag");
 		Vector<ItemImpl> items = new Vector<ItemImpl>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);
-		bag.add(items);
-		assertEquals("add multi size", 3, bag.getContentsCount());
-		bag.empty(newBag);
-		assertEquals("bag empty size", 0, bag.getContentsCount());
-		assertEquals("New Bag size", 3, newBag.getContentsCount());
+		location.add(items);
+		assertEquals("add multi size", 3, location.getContentsCount());
+		location.empty(newLocation);
+		assertEquals("location size after empty", 0, location.getContentsCount());
+		assertEquals("newLocation size", 3, newLocation.getContentsCount());
 	}
 
 	@Test
 	public void testBeNot() {
-		Bag bag = new Bag();
+		Location location = new Location("World");
 		Cookie c1 = new Cookie();
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
-		bag.add(c1);
-		bag.add(c2);
-		bag.add(c3);
-		assertEquals("add multi size", 3, bag.getContentsCount());
-		bag.beNot();
-		assertEquals("empty size", 0, bag.getContentsCount());
+		location.add(c1);
+		location.add(c2);
+		location.add(c3);
+		assertEquals("add multi size", 3, location.getContentsCount());
+		location.beNot();
+		assertEquals("empty size", 0, location.getContentsCount());
 	}
 
 	@Test
 	public void testClone() {
-		Bag x = new Bag();
+		Location x = new Location("World");
 		Cookie c1 = new Cookie();
 		x.add(c1);
-		Bag clone = null;
+		Location clone = null;
 		try {
-			clone = (Bag) x.clone();
+			clone = (Location) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

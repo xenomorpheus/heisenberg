@@ -102,10 +102,10 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	// Empty the bag into this location
-	public void empty(Item newLocation) {
+	public void empty(ItemContainer newLocation) {
 		while (!contents.isEmpty()) {
-			Item item = contents.pop();
-			item.setLocation(newLocation);
+			ItemImpl item = contents.pop();
+			newLocation.add(item);
 		}
 	}
 
