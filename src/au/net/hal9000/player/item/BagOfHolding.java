@@ -4,6 +4,7 @@ import java.util.*;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.item.property.*;
 import au.net.hal9000.player.units.*;
+import au.net.hal9000.player.units.Currency;
 
 /*
 
