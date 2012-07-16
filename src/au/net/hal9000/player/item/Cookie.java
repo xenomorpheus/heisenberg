@@ -1,5 +1,9 @@
 package au.net.hal9000.player.item;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 public class Cookie extends ItemImpl {
 	/**
 	 * 
@@ -24,4 +28,14 @@ public class Cookie extends ItemImpl {
 	}
 
 	// Methods
+
+	// Static
+	public static Cookie thawFromFile(String filename) throws IOException, ClassNotFoundException {
+		FileInputStream fis = new FileInputStream(filename);
+		ObjectInputStream in = new ObjectInputStream(fis);
+		Cookie newObj = (Cookie) in.readObject();
+		in.close();
+		return newObj;
+	}
+
 }

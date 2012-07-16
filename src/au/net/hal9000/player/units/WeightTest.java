@@ -28,7 +28,7 @@ public class WeightTest {
 	@Test
 	public void persistence() {
 
-		String filename = "/tmp/weight_persit_test.ser"; // TODO unique filename
+		String filename = "/tmp/weight_persit_test.ser"; // TODO unique volatile filename
 		Weight old = new Weight();
 		// Store the object
 		try {

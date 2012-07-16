@@ -2,11 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Vector;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
@@ -178,40 +174,29 @@ public class ItemContainerTest {
 		}
 
 	}
-
 	@Test
 	public void testPersistence() {
 
-		String filename = "/tmp/itemcontainer_persit_test.ser"; // TODO unique
-																// filename
+		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique volatile filename
 		Bag old = new Bag();
-		Cookie c1 = new Cookie();
-		Cookie c2 = new Cookie();
-		Cookie c3 = new Cookie();
-		old.add(c1);
-		old.add(c2);
-		old.add(c3);
 		// Store the object
 		try {
-			FileOutputStream fos = new FileOutputStream(filename);
-			ObjectOutputStream out = new ObjectOutputStream(fos);
-			out.writeObject(old);
-			out.close();
+			old.freezeToFile(filename);
 		} catch (IOException ex) {
 			fail(ex.toString());
 		}
 		// Get the object back
 		Bag newObj = null;
 		try {
-			FileInputStream fis = new FileInputStream(filename);
-			ObjectInputStream in = new ObjectInputStream(fis);
-			newObj = (Bag) in.readObject();
-			in.close();
-		} catch (Exception ex) {
+			newObj = Bag.thawFromFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
 			fail(ex.toString());
 		}
-		assertTrue("new != null", newObj != null );
-		assertTrue("new equals old", old.equals(newObj));
+		assertTrue("newObj not null", newObj != null);
+		assertTrue("deserialized Bag equals old cookie", old.equals(newObj));
+
 	}
 
 }

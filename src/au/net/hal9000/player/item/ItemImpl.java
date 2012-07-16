@@ -1,5 +1,6 @@
 package au.net.hal9000.player.item;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -340,7 +341,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		in.defaultReadObject();
 		// now we are a "live" object again, so let's run rebuild and start
 	}
-	
+
 	@Override
 	protected ItemImpl clone() throws CloneNotSupportedException {
 		ItemImpl clone = (ItemImpl) super.clone();
@@ -351,36 +352,44 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		// weightBase
 		Weight weightBase = this.getWeightBase();
 		if (weightBase != null) {
-			clone.setWeightBase( weightBase.clone());
+			clone.setWeightBase(weightBase.clone());
 		}
 
 		// weightMax
 		Weight weightMax = this.getWeightMax();
 		if (weightMax != null) {
-			clone.setWeightMax( weightMax.clone());
+			clone.setWeightMax(weightMax.clone());
 		}
 
 		// volumeBase
 		Volume volumeBase = this.getVolumeBase();
 		if (volumeBase != null) {
-			clone.setVolumeBase( volumeBase.clone());
+			clone.setVolumeBase(volumeBase.clone());
 		}
 
 		// volumeMax
 		Volume volumeMax = this.getVolumeMax();
 		if (volumeMax != null) {
-			clone.setVolumeMax( volumeMax.clone());
+			clone.setVolumeMax(volumeMax.clone());
 		}
 
 		// valueBase
 		Currency valueBase = this.getValueBase();
 		if (valueBase != null) {
-			clone.setValueBase( valueBase.clone());
+			clone.setValueBase(valueBase.clone());
 		}
 
 		// location is *NOT* cloned.
 		return clone;
-		
+
+	}
+
+	// Store the object in a file
+	public void freezeToFile(String filename) throws IOException {
+		FileOutputStream fos = new FileOutputStream(filename);
+		ObjectOutputStream out = new ObjectOutputStream(fos);
+		out.writeObject(this);
+		out.close();
 	}
 
 }

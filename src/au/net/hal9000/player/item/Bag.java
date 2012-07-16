@@ -1,5 +1,9 @@
 package au.net.hal9000.player.item;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import au.net.hal9000.player.item.exception.*;
 
 public class Bag extends ItemContainer {
@@ -34,5 +38,15 @@ public class Bag extends ItemContainer {
 		}
 		super.add(item);
 	}
+
 	// Methods
+	// Static
+	public static Bag thawFromFile(String filename) throws IOException,
+			ClassNotFoundException {
+		FileInputStream fis = new FileInputStream(filename);
+		ObjectInputStream in = new ObjectInputStream(fis);
+		Bag newObj = (Bag) in.readObject();
+		in.close();
+		return newObj;
+	}
 }

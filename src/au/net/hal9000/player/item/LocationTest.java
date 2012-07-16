@@ -2,6 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
@@ -175,4 +176,28 @@ public class LocationTest {
 		}
 
 	}
+	@Test
+	public void testPersistence() {
+
+		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
+		Location old = new Location("World");
+		// Store the object
+		try {
+			old.freezeToFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+		Location newObj = null;
+		try {
+			newObj = Location.thawFromFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+		assertTrue("newObj not null", newObj != null);
+		assertTrue("deserialized Location equals old cookie", old.equals(newObj));
+
+	}	
 }

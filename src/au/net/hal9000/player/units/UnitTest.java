@@ -60,7 +60,7 @@ public class UnitTest {
 	@Test
 	public void persistence() {
 
-		String filename = "/tmp/unit_persit_test.ser"; // TODO unique filename
+		String filename = "/tmp/unit_persit_test.ser"; // TODO unique volatile filename
 		Unit old = new Unit();
 		// Store the object
 		try {

@@ -2,12 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import org.junit.Test;
 
 import au.net.hal9000.player.units.*;
@@ -43,7 +38,7 @@ public class ItemImplTest {
 	public void testName() {
 		Cookie i = new Cookie("A Name");
 		assertEquals("name", "A Name", i.getName());
-		
+
 		i.setName("fred");
 		assertEquals("setname & getname", "fred", i.getName());
 	}
@@ -123,31 +118,25 @@ public class ItemImplTest {
 	@Test
 	public void testPersistence() {
 
-		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique filename
+		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique volatile filename
 		Cookie old = new Cookie();
 		// Store the object
 		try {
-			FileOutputStream fos = new FileOutputStream(filename);
-			ObjectOutputStream out = new ObjectOutputStream(fos);
-			out.writeObject(old);
-			out.close();
+			old.freezeToFile(filename);
 		} catch (IOException ex) {
 			fail(ex.toString());
 		}
 		// Get the object back
-
+		Cookie newObj = null;
 		try {
-			FileInputStream fis = new FileInputStream(filename);
-			ObjectInputStream in = new ObjectInputStream(fis);
-			Cookie newObj = (Cookie) in.readObject();
-			in.close();
-			assertTrue("deserialized Cookie equals old cookie",
-					old.equals(newObj));
+			newObj = Cookie.thawFromFile(filename);
 		} catch (IOException ex) {
 			fail(ex.toString());
 		} catch (ClassNotFoundException ex) {
 			fail(ex.toString());
 		}
+		assertTrue("newObj not null", newObj != null);
+		assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
 
 	}
 
@@ -231,4 +220,5 @@ public class ItemImplTest {
 		// location is *NOT* cloned.
 
 	}
+
 }

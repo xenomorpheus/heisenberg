@@ -28,7 +28,7 @@ public class VolumeTest {
 	@Test
 	public void persistence() {
 
-		String filename = "/tmp/volume_persit_test.ser"; // TODO unique filename
+		String filename = "/tmp/volume_persit_test.ser"; // TODO unique volatile filename
 		Volume old = new Volume();
 		// Store the object
 		try {
