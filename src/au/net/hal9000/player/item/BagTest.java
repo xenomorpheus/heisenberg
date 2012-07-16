@@ -7,11 +7,10 @@ import au.net.hal9000.player.item.exception.*;
 
 public class BagTest {
 
-	
 	// Normal item into bag.
 	// item's location changes to bag
 	@Test
-	public void ordinary_add() {
+	public void testAddOrdinary() {
 		Cookie cookie = new Cookie();
 		// set the location so we can see that it changes
 		cookie.setLocation(new Cookie("Cookie2"));
@@ -25,13 +24,13 @@ public class BagTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",bag,cookie.getLocation());
+		assertEquals("cookie location", bag, cookie.getLocation());
 	}
-	
+
 	// Sharp items throw ExceptionInvalidType
 	// Item's location remains unchanged.
 	@Test
-	public void sharp_add_rupture() {
+	public void testAddSharpRupture() {
 		Sword sword = new Sword();
 		// set the location so we can see that it changes
 		Cookie cookie = new Cookie("Cookie");
@@ -47,8 +46,7 @@ public class BagTest {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		assertEquals("cookie location",cookie,sword.getLocation());
+		assertEquals("cookie location", cookie, sword.getLocation());
 	}
-
 
 }

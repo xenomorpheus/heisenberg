@@ -1,5 +1,6 @@
 package au.net.hal9000.player.item;
 
+import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.Vector;
@@ -7,7 +8,7 @@ import java.util.Vector;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.*;
 
-public abstract class ItemContainer extends ItemImpl {
+public abstract class ItemContainer extends ItemImpl implements Serializable {
 	/**
 	 * 
 	 */
@@ -142,8 +143,6 @@ public abstract class ItemContainer extends ItemImpl {
 		}
 		return total;
 	}
-
-	// TODO equal
 
 	// TODO rename Visitor Pattern style
 	// Find contents that match the criteria

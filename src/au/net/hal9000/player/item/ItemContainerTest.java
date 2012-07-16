@@ -2,6 +2,11 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
@@ -150,15 +155,13 @@ public class ItemContainerTest {
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
 
-		
 		Boolean bar = clone.equals(x);
 		assertTrue("x.clone().equals(x)", bar);
 
-		
 		// equals from the other direction
 		Boolean foo = x.equals(clone);
 		assertTrue("x.equals(clone)", foo);
-		
+
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
@@ -166,13 +169,49 @@ public class ItemContainerTest {
 		// items
 		{
 			// Make a change to a non-primative, non-mutable
-			// 
-			
-			String c1Name = c1.getName();			
-			c1.setName(c1.getName()+"fred");
+			//
+
+			String c1Name = c1.getName();
+			c1.setName(c1.getName() + "fred");
 			assertFalse("x.clone().equals(x)", clone.equals(x));
 			c1.setName(c1Name);
 		}
 
 	}
+
+	@Test
+	public void testPersistence() {
+
+		String filename = "/tmp/itemcontainer_persit_test.ser"; // TODO unique
+																// filename
+		Bag old = new Bag();
+		Cookie c1 = new Cookie();
+		Cookie c2 = new Cookie();
+		Cookie c3 = new Cookie();
+		old.add(c1);
+		old.add(c2);
+		old.add(c3);
+		// Store the object
+		try {
+			FileOutputStream fos = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(old);
+			out.close();
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+		Bag newObj = null;
+		try {
+			FileInputStream fis = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(fis);
+			newObj = (Bag) in.readObject();
+			in.close();
+		} catch (Exception ex) {
+			fail(ex.toString());
+		}
+		assertTrue("new != null", newObj != null );
+		assertTrue("new equals old", old.equals(newObj));
+	}
+
 }
