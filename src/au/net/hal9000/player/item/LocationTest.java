@@ -177,10 +177,35 @@ public class LocationTest {
 
 	}
 	@Test
+	public void testPersistenceShallow() {
+
+		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
+		Location old = new Location("World");
+		// Store the object
+		try {
+			old.freezeToFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+		Location newObj = null;
+		try {
+			newObj = Location.thawFromFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+		assertTrue("newObj not null", newObj != null);
+		assertTrue("deserialized Location equals old cookie", old.equals(newObj));
+
+	}	
+	@Test
 	public void testPersistence() {
 
 		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
 		Location old = new Location("World");
+		old.add(new Cookie());
 		// Store the object
 		try {
 			old.freezeToFile(filename);
