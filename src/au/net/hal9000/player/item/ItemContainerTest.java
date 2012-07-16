@@ -148,9 +148,16 @@ public class ItemContainerTest {
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		Boolean foo = clone.equals(x);
-		assertTrue("x.clone().equals(x)", foo);
 
+		
+		Boolean bar = clone.equals(x);
+		assertTrue("x.clone().equals(x)", bar);
+
+		
+		// equals from the other direction
+		Boolean foo = x.equals(clone);
+		assertTrue("x.equals(clone)", foo);
+		
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
