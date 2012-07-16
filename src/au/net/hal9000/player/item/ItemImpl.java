@@ -232,7 +232,6 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	public boolean equals(ItemImpl other) {
-		System.out.println("ItemImpl equals()");
 		if (this == other)
 			return true;
 		// Check each of our immediate properties.
@@ -284,7 +283,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	// it can be garbage collected.
 	// Won't work if anything is referencing this item.
 	public void beNot() {
-		System.out.println("beNot called on " + this.getName());
+		// System.out.println("beNot called on " + this.getName());
 		this.name = null;
 		this.description = null;
 		this.weightBase = null;

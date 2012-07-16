@@ -1,9 +1,5 @@
-
-
-Rename null_safe_compare() to null_safe_equals()
-
 Storage:
-1) Make objects clonable and serialisable.
+1) Make objects clone-able and serialise-able.
 2) Investigate JPA vs JDBC
 
 Merge classes Magic and Magical.

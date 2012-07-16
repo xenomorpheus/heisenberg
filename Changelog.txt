@@ -1,3 +1,7 @@
+2012-07-16
+Most references to Item have been replaced with ItemImpl so that the correct 
+version of equals() is run.
+
 2012-07-12
 Location class removed. location property is now just an Item.
 Fixed a bug in ItemImpl's equals().

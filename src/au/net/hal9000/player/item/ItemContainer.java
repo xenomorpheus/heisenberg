@@ -1,7 +1,6 @@
 package au.net.hal9000.player.item;
 
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -168,7 +167,6 @@ public abstract class ItemContainer extends ItemImpl {
 	}
 
 	public boolean equals(ItemContainer other) {
-		System.out.println("ItemContainer equals()");
 		// call equals on any super class.
 		if (!super.equals(other))
 			return false;

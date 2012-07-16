@@ -107,7 +107,6 @@ public class BagOfHolding extends Bag {
 
 	// A BOH rupturing is kind of special :-)
 	public void rupture() {
-		System.out.println("ExtraDimensional rupture");
 		this.beNot();
 	}
 
