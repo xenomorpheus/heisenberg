@@ -34,7 +34,7 @@ public class Unit implements Serializable, Cloneable {
 	}
 
 	// static methods
-	public static boolean null_safe_compare(Unit unit, Unit unitOther) {
+	public static boolean null_safe_equals(Unit unit, Unit unitOther) {
 		if (unit == null) {
 			if (unitOther == null) {
 				return true;

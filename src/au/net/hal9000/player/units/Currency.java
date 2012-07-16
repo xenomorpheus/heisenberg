@@ -39,7 +39,7 @@ public class Currency implements Serializable, Cloneable {
 		this.cp = cc.cp;
 	}
     // static methods
-	public static boolean null_safe_compare(Currency currency,
+	public static boolean null_safe_equals(Currency currency,
 			Currency currencyOther) {
 		if (currency == null) {
 			if (currencyOther == null) {
