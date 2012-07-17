@@ -1,3 +1,12 @@
+JavaDoc templates for auto Javadoc when writing methods, etc.
+1) See examples from eclipse templates.
+
+Always create a default constructor in a class.
+If you don't, the implied constructor will be lost when the first constructor is added,
+which may have a different signature, so your code will break.
+
+Research "this()" and "this(myArg1)" for constructors.
+
 Storage:
 1) Make objects clone-able and serialise-able.
 2) Investigate JPA
