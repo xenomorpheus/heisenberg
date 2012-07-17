@@ -111,10 +111,12 @@ public class Unit implements Serializable, Cloneable {
 		return (this.value < other) ? -1 : 1;
 	}
 
+	// TODO is this required?
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 	}
 
+	// TODO is this required?
 	private void readObject(ObjectInputStream in) throws IOException,
 			ClassNotFoundException {
 		// our "pseudo-constructor"
@@ -122,6 +124,7 @@ public class Unit implements Serializable, Cloneable {
 		// now we are a "live" object again, so let's run rebuild and start
 	}
 
+	// TODO is this required?
 	protected Unit clone() throws CloneNotSupportedException {
 		// Make sure the cloning is deep, not shallow.
 		// e.g. set the non-mutable, non-primitives
