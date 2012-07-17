@@ -175,9 +175,9 @@ public class ItemContainerTest {
 
 	}
 	@Test
-	public void testPersistence() {
+	public void testPersistenceShallow() {
 
-		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/empty_bag_persit_test.ser"; // TODO unique volatile filename
 		Bag old = new Bag();
 		// Store the object
 		try {
@@ -198,5 +198,29 @@ public class ItemContainerTest {
 		assertTrue("deserialized Bag equals old cookie", old.equals(newObj));
 
 	}
+	@Test
+	public void testPersistence() {
 
+		String filename = "/tmp/bag_persit_test.ser"; // TODO unique volatile filename
+		Bag old = new Bag("World");
+		old.add(new Cookie());
+		// Store the object
+		try {
+			old.freezeToFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		}
+		// Get the object back
+		Bag newObj = null;
+		try {
+			newObj = Bag.thawFromFile(filename);
+		} catch (IOException ex) {
+			fail(ex.toString());
+		} catch (ClassNotFoundException ex) {
+			fail(ex.toString());
+		}
+		assertTrue("newObj not null", newObj != null);
+		assertTrue("deserialized equals old", old.equals(newObj));
+
+	}	
 }
