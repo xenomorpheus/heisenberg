@@ -158,8 +158,11 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		this.weightMax = new Weight(weightMax);
 	}
 
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the volume is the volumeBase. Will be overridden by
+	 * collections.
+	 * 
+	 */
 	public Volume getVolume() {
 		return volumeBase;
 	}
@@ -198,8 +201,11 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		return valueBase;
 	}
 
-	// For simple items the value is the valueBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the value is the valueBase. Will be overridden by
+	 * collections
+	 * 
+	 */
 	public Currency getValue() {
 		return valueBase;
 	}
@@ -226,8 +232,11 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 
 	// misc methods
 
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the weight is the weightBase. Will be overridden by
+	 * collections.
+	 * 
+	 */
 	public Weight getWeight() {
 		return weightBase;
 	}
