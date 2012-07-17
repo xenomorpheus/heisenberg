@@ -1,3 +1,7 @@
+2012-07-17
+Started on Javadoc.
+Trying to get deep persistence to work for ItemContainer.
+
 2012-07-16
 Location objects are back and based on ItemContainer.
 Most references to Item have been replaced with ItemImpl so that the correct 
