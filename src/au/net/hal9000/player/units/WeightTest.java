@@ -26,10 +26,10 @@ public class WeightTest {
 		assertFalse("equals 0 to +1", ref.equals(over));
 	}
 	@Test
-	public void persistence() {
+	public void testPersistence() {
 
 		String filename = "/tmp/weight_persit_test.ser"; // TODO unique volatile filename
-		Weight old = new Weight();
+		Weight old = new Weight(1.45f);
 		// Store the object
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);

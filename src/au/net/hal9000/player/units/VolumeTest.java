@@ -26,10 +26,10 @@ public class VolumeTest {
 		assertFalse("equals 0 to +1", ref.equals(over));
 	}
 	@Test
-	public void persistence() {
+	public void testPersistence() {
 
 		String filename = "/tmp/volume_persit_test.ser"; // TODO unique volatile filename
-		Volume old = new Volume();
+		Volume old = new Volume(5.67f);
 		// Store the object
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);

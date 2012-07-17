@@ -106,10 +106,10 @@ public class CurrencyTest {
 	}
 	
 	@Test
-	public void persistence() {
+	public void testPersistence() {
 
 		String filename = "/tmp/currency_persit_test.ser"; // TODO unique volatile filename
-		Currency old = new Currency();
+		Currency old = new Currency(1,2,4,8);
 		// Store the object
 		try {
 			FileOutputStream fos = new FileOutputStream(filename);
