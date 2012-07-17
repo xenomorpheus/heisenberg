@@ -179,7 +179,7 @@ public class LocationTest {
 	@Test
 	public void testPersistenceShallow() {
 
-		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/empty_location_persit_test.ser"; // TODO unique volatile filename
 		Location old = new Location("World");
 		// Store the object
 		try {
