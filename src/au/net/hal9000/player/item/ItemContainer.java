@@ -30,8 +30,9 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	}
 
 	// Misc
-
-	// Includes contents
+	/**
+	 * The total weight including the contents.
+	 */
 	@Override
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
@@ -39,7 +40,9 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return total;
 	}
 
-	// Includes contents
+	/**
+	 * The total volume including the contents.
+	 */
 	@Override
 	public Volume getVolume() {
 		Volume total = this.getVolumeBase();
@@ -47,7 +50,9 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return total;
 	}
 
-	// Includes contents
+	/**
+	 * The total value including the contents.
+	 */
 	@Override
 	public Currency getValue() {
 		Currency total = new Currency(this.getValueBase());
@@ -55,6 +60,11 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return total;
 	}
 
+	/**
+	 * Add the item to the contents.
+	 * 
+	 * @param item
+	 */
 	public void add(ItemImpl item) {
 
 		// check Weight
@@ -87,22 +97,42 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		item.setLocation(this);
 	}
 
-	// add multiple items
+	/**
+	 * Add multiple items to the contents.
+	 * 
+	 * @param items
+	 */
 	public void add(Vector<ItemImpl> items) {
 		for (ItemImpl item : items) {
 			this.add(item);
 		}
 	}
 
+	/**
+	 * Take the top item out of the contents.
+	 * 
+	 * @return the top item in the contents
+	 * @throws EmptyStackException
+	 */
 	public Item pop() throws EmptyStackException {
 		return contents.pop();
 	}
 
+	/**
+	 * Peek at the top item of contents without removing it.
+	 * 
+	 * @return The top item.
+	 * @throws EmptyStackException
+	 */
 	public Item peek() throws EmptyStackException {
 		return contents.peek();
 	}
 
-	// Empty the bag into this location
+	/**
+	 * Empty the bag into this location
+	 * 
+	 * @param newLocation
+	 */
 	public void empty(ItemContainer newLocation) {
 		while (!contents.isEmpty()) {
 			ItemImpl item = contents.pop();
@@ -110,14 +140,24 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		}
 	}
 
+	/**
+	 * Get the number of items in the container.
+	 * 
+	 * @return the number of items directly inside the container. Items with
+	 *         other items don't add to the count as they are *NOT* directly
+	 *         contained.
+	 */
 	public int getContentsCount() {
 		return contents.size();
 	}
 
-	// Warning
-	// Use getWeight() to get total including contents.
-	// Magic containers will override getWeight().
-	public Weight getContentsWeight() {
+	/**
+	 * Use getWeight() to get total including contents. Magic containers will
+	 * override getWeight().
+	 * 
+	 * @return the weight of just the contents.
+	 */
+	private Weight getContentsWeight() {
 		Weight total = new Weight();
 		for (Item item : getContents()) {
 			total.add(item.getWeight());
@@ -125,10 +165,13 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return total;
 	}
 
-	// Warning
-	// Use getVolume() to get total including contents.
-	// Magic containers will override getVolume().
-	public Volume getContentsVolume() {
+	/**
+	 * Use getVolume() to get total including contents. Magic containers will
+	 * override getVolume().
+	 * 
+	 * @return the volume of just the contents.
+	 */
+	private Volume getContentsVolume() {
 		Volume total = new Volume();
 		for (Item item : getContents()) {
 			total.add(item.getVolume());
@@ -136,7 +179,13 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return total;
 	}
 
-	public Currency getContentsValue() {
+	/**
+	 * Use getValue() to get total including contents. Magic containers will
+	 * override getValue().
+	 * 
+	 * @return the value of just the contents.
+	 */
+	private Currency getContentsValue() {
 		Currency total = new Currency();
 		for (Item item : getContents()) {
 			total.add(item.getValue());
@@ -155,6 +204,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		super.accept(visitor);
 	}
 
+	@Override
 	public void beNot() {
 		// Call beNot on the Items directly declared in this class.
 		while (!contents.isEmpty()) {
@@ -175,9 +225,9 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 			Stack<ItemImpl> otherContents = other.getContents();
 			if (contents.size() != otherContents.size())
 				return false;
-			for (int i = contents.size() -1 ; i>= 0  ; i --){
-               if ( ! this.contents.get(i).equals(otherContents.get(i)) )
-            	   return false;
+			for (int i = contents.size() - 1; i >= 0; i--) {
+				if (!this.contents.get(i).equals(otherContents.get(i)))
+					return false;
 			}
 		}
 		return true;
