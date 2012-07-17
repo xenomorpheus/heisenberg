@@ -1,6 +1,8 @@
 package au.net.hal9000.player.units;
 
-public class Volume extends Unit implements Cloneable{
+import java.io.Serializable;
+
+public class Volume extends Unit implements Serializable, Cloneable{
 	/**
 	 * 
 	 */
