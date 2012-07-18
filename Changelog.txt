@@ -1,3 +1,6 @@
+2019-10-19
+Adding PowerWords and Spells
+
 2012-07-17
 Started on Javadoc.
 Trying to get deep persistence to work for ItemContainer.
