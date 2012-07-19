@@ -22,8 +22,7 @@ public abstract class Entity extends ItemImpl {
 	/**
 	 * A list of items ({@link Item}) carried.
 	 */
-	// TODO Convert to ItemCollection
-	private ArrayList<Item> equipment = new ArrayList<Item>();
+	private ItemContainer equipment = new Bag();
 	/**
 	 * A list of {@link PowerWord} list that is known by this Entity.
 	 */
@@ -47,11 +46,11 @@ public abstract class Entity extends ItemImpl {
 
 	// Getters and Setters
 	// equipment
-	public void setEquipment(ArrayList<Item> equipment) {
+	public void setEquipment(ItemContainer equipment) {
 		this.equipment = equipment;
 	}
 
-	private ArrayList<Item> getEquipment() {
+	public ItemContainer getEquipment() {
 		return equipment;
 	}
 
@@ -79,7 +78,7 @@ public abstract class Entity extends ItemImpl {
 	 * 
 	 * @param item
 	 */
-	public void equip(Item item) {
+	public void equip(ItemImpl item) {
 		equipment.add(item);
 	}
 
@@ -90,7 +89,18 @@ public abstract class Entity extends ItemImpl {
 	@Override
 	public Weight getWeight() {
 		Weight total = super.getWeight();
-		total.add(this.getEquipmentWeight());
+		total.add(equipment.getWeight());
+		return total;
+	}
+
+	/**	 <P> Get volume of the Entity, including equipment etc. </P>
+	 * 
+	 * @return The total volume
+	 */
+	@Override
+	public Volume getVolume() {
+		Volume total = super.getVolume();
+		total.add(equipment.getVolume());
 		return total;
 	}
 
@@ -106,19 +116,6 @@ public abstract class Entity extends ItemImpl {
 					+ pFood.getName());
 		}
 		pFood.beNot();
-	}
-
-	/** <P>Get the weight of just the equipment.
-	 * </P>
-	 * 
-	 * @return The weight of the equipment
-	 */
-	public Weight getEquipmentWeight() {
-		Weight total = new Weight();
-		for (Item item : this.getEquipment()) {
-			total.add(item.getWeight());
-		}
-		return total;
 	}
 
 }
