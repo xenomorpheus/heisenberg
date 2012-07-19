@@ -1,0 +1,17 @@
+<list>
+	<spell description="description 1">
+		<powerWord = "ASDFASDFA1"></powerWord>
+	</spell>
+    <spell description="description 2">
+        <powerWord = "ASDFASDFA1"></powerWord>
+        <powerWord = "ASDFASDFA2"></powerWord>
+	</spell>
+    <spell description="description 3">
+        <powerWord = "ASDFASDFA2"></powerWord>
+        <powerWord = "ASDFASDFA3"></powerWord>
+	</spell>
+    <spell description="description 4">
+        <powerWord = "ASDFASDFA3"></powerWord>
+        <powerWord = "ASDFASDFA4"></powerWord>
+	</spell>
+</list>
