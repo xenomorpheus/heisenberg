@@ -24,13 +24,13 @@ public abstract class Entity extends ItemImpl {
 	 */
 	private ItemContainer equipment = new Bag();
 	/**
-	 * A list of {@link PowerWord} list that is known by this Entity.
+	 * A list of {@link Ingredient} list that is known by this Entity.
 	 */
-	private ArrayList<PowerWord> powerWords = new ArrayList<PowerWord>();
+	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 	/**
-	 * The {@link Spell} list that is known by this Entity.
+	 * The {@link Recipe} list that is known by this Entity.
 	 */
-	private ArrayList<Spell> spells = new ArrayList<Spell>();
+	private ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
 	public Entity(String pName) {
 		super(pName);
@@ -54,22 +54,22 @@ public abstract class Entity extends ItemImpl {
 		return equipment;
 	}
 
-	// powerWords
-	public ArrayList<PowerWord> getPowerWords() {
-		return powerWords;
+	// ingredients
+	public ArrayList<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setPowerWords(ArrayList<PowerWord> powerWords) {
-		this.powerWords = powerWords;
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
-	// spells
-	public ArrayList<Spell> getSpells() {
-		return spells;
+	// recipes
+	public ArrayList<Recipe> getRecipes() {
+		return recipes;
 	}
 
-	public void setSpells(ArrayList<Spell> spells) {
-		this.spells = spells;
+	public void setRecipes(ArrayList<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	// Misc
