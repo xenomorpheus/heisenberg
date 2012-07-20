@@ -1,5 +1,6 @@
 2019-10-19
-Adding PowerWords and Spells
+Adding PowerWords and Spells.
+Adding dice.
 
 2012-07-17
 Started on Javadoc.

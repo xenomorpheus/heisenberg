@@ -1,17 +1,18 @@
-<list>
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
 	<spell description="description 1">
-		<powerWord = "ASDFASDFA1"></powerWord>
+		<powerWordName>ASDFASDFA1</powerWordName>
 	</spell>
     <spell description="description 2">
-        <powerWord = "ASDFASDFA1"></powerWord>
-        <powerWord = "ASDFASDFA2"></powerWord>
+        <powerWordName>ASDFASDFA1</powerWordName>
+        <powerWordName>ASDFASDFA2</powerWordName>
 	</spell>
     <spell description="description 3">
-        <powerWord = "ASDFASDFA2"></powerWord>
-        <powerWord = "ASDFASDFA3"></powerWord>
+        <powerWordName>ASDFASDFA2</powerWordName>
+        <powerWordName>ASDFASDFA3</powerWordName>
 	</spell>
     <spell description="description 4">
-        <powerWord = "ASDFASDFA3"></powerWord>
-        <powerWord = "ASDFASDFA4"></powerWord>
+        <powerWordName>ASDFASDFA3</powerWordName>
+        <powerWordName>ASDFASDFA4</powerWordName>
 	</spell>
-</list>
+</config>
