@@ -48,6 +48,8 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	private Currency valueBase = new Currency();
 	private ItemImpl location = null;
 	private float hitPoints = 0F;
+	/** Who owns this item. null means no-one.*/
+	private ItemImpl owner = null;
 
 	// Class methods
 	public ItemImpl(String pName) {
@@ -228,6 +230,14 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 
 	public void setHitPoints(float hitPoints) {
 		this.hitPoints = hitPoints;
+	}
+
+	public ItemImpl getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Item owner) {
+		this.owner = (ItemImpl) owner;
 	}
 
 	// misc methods

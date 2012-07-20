@@ -2,6 +2,7 @@
 Added the ability to read PowerWords and Spells from XML config files.
 Renamed Spell to more generic Recipe
 Renamed PowerWord to more generic Ingredient.
+Items now have an owner.
 
 2019-10-19
 Adding PowerWords and Spells.

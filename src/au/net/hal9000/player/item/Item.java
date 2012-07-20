@@ -85,6 +85,10 @@ public interface Item {
 
 	public float getHitPoints();
 
+	public ItemImpl getOwner();
+
+	public void setOwner(Item owner);
+
 	// misc methods
 
 	// public boolean equals(Item other);
