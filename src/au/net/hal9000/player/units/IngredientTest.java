@@ -1,6 +1,7 @@
 package au.net.hal9000.player.units;
 
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import org.junit.Test;
@@ -17,9 +18,7 @@ public class IngredientTest {
 			fail(e.getMessage());
 		}
 		assertTrue("ingredients !=null", ingredients != null);
-		for (Ingredient pw : ingredients ){
-			// pw.show();
-		}
+		assertEquals("ingredient count", 7, ingredients.size());
 	}
 
 }

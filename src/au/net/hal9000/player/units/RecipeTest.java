@@ -19,9 +19,7 @@ public class RecipeTest {
 			fail(e.getMessage());
 		}
 		assertTrue("recipes !=null", recipes != null);
-		for (Recipe recipe : recipes ){
-			// recipe.show();
-		}
+		assertEquals("recipe count", 4, recipes.size());
 	}
 
 }
