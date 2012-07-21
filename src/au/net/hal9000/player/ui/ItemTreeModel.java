@@ -4,7 +4,6 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
 
 import au.net.hal9000.player.item.Item;
-import au.net.hal9000.player.item.ItemContainer;
 
 /**
  * The methods in this class allow the JTree component to traverse the file
