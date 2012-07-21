@@ -7,8 +7,6 @@ import au.net.hal9000.player.units.*;
 /**
  * Entity is the bases of thinking beings.
  * 
- * 
- * 
  * @author bruins
  * 
  */
@@ -22,7 +20,7 @@ public abstract class Entity extends ItemImpl {
 	/**
 	 * A list of items ({@link Item}) carried.
 	 */
-	private ItemContainer equipment = new Bag();
+	private ItemContainer equipment = new Bag("Equipment");
 	/**
 	 * A list of {@link Ingredient} list that is known by this Entity.
 	 */
@@ -141,20 +139,28 @@ public abstract class Entity extends ItemImpl {
 	// Traverse Tree
 	/** {@inheritDoc} */
 	public boolean isLeaf() {
-		return (equipment == null) || (this.equipment.getChildCount() == 0);
+		return false;
 	}
 
 	/** {@inheritDoc} */
 	public int getChildCount() {
+		// TODO consider Items in super
+		int count = super.getChildCount();
 		if (equipment != null) {
-			return equipment.getChildCount();
+			count++;
 		}
-		return 0;
+		return count;
 	}
 
 	/** {@inheritDoc} */
 	public ItemImpl getChild(int index) {
-		return equipment.getChild(index);
+		// TODO consider Items in super
+		int count = super.getChildCount();
+		// Note the zero offset
+		if (index == count) {
+			return equipment;
+		}
+		return null;
 	}
 
 	/** {@inheritDoc} */

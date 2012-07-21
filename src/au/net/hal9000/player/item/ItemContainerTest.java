@@ -232,8 +232,6 @@ public class ItemContainerTest {
 	public void isLeaf() {
 		Bag bag = new Bag();
 		assertFalse("isLeaf", bag.isLeaf());
-		bag.add(new Cookie());
-		assertTrue("isLeaf", bag.isLeaf());
 	}
 
 	@Test

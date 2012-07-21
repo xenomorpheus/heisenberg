@@ -32,7 +32,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	// Misc
 	/** {@inheritDoc} */
 	public boolean isLeaf() {
-		return (contents == null) || (this.contents.size() == 0);
+ 		return false;
 	}
 
 	/** {@inheritDoc} */
@@ -51,6 +51,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	/** {@inheritDoc} */
 	@Override
 	public int getIndexOfChild(Item child) {
+		// TODO
 		return -1;
 	}
 
