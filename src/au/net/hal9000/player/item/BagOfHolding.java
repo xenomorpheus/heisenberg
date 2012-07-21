@@ -32,8 +32,7 @@ public class BagOfHolding extends Bag {
 	}
 
 	public BagOfHolding(int type) {
-		super("Bag of Holding");
-		this.setType(type);
+		this(type, "Bag of Holding");
 	}
 
 	// Features
