@@ -82,7 +82,10 @@ public abstract class Entity extends ItemImpl {
 		equipment.add(item);
 	}
 
-	/**	 <P> Get weight of the Entity, including equipment etc. </P>
+	/**
+	 * <P>
+	 * Get weight of the Entity, including equipment etc.
+	 * </P>
 	 * 
 	 * @return The total weight
 	 */
@@ -93,7 +96,10 @@ public abstract class Entity extends ItemImpl {
 		return total;
 	}
 
-	/**	 <P> Get volume of the Entity, including equipment etc. </P>
+	/**
+	 * <P>
+	 * Get volume of the Entity, including equipment etc.
+	 * </P>
 	 * 
 	 * @return The total volume
 	 */
@@ -101,6 +107,20 @@ public abstract class Entity extends ItemImpl {
 	public Volume getVolume() {
 		Volume total = super.getVolume();
 		total.add(equipment.getVolume());
+		return total;
+	}
+
+	/**
+	 * <P>
+	 * Get value of the Entity, including equipment etc.
+	 * </P>
+	 * 
+	 * @return The total value
+	 */
+	@Override
+	public Currency getValue() {
+		Currency total = super.getValue();
+		total.add(equipment.getValue());
 		return total;
 	}
 
@@ -116,6 +136,32 @@ public abstract class Entity extends ItemImpl {
 					+ pFood.getName());
 		}
 		pFood.beNot();
+	}
+
+	// Traverse Tree
+	/** {@inheritDoc} */
+	public boolean isLeaf() {
+		return (equipment == null) || (this.equipment.getChildCount() == 0);
+	}
+
+	/** {@inheritDoc} */
+	public int getChildCount() {
+		if (equipment != null) {
+			return equipment.getChildCount();
+		}
+		return 0;
+	}
+
+	/** {@inheritDoc} */
+	public ItemImpl getChild(int index) {
+		return equipment.getChild(index);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int getIndexOfChild(Item child) {
+		// TODO
+		return -1;
 	}
 
 }
