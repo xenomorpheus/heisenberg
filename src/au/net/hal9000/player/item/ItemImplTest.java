@@ -220,5 +220,10 @@ public class ItemImplTest {
 		// location is *NOT* cloned.
 
 	}
+	@Test
+	public void testIsContainer(){
+		Cookie cookie = new Cookie();
+		assertFalse("isContainer", cookie.isContainer());
+	}
 
 }

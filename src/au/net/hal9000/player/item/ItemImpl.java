@@ -48,7 +48,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	private Currency valueBase = new Currency();
 	private ItemImpl location = null;
 	private float hitPoints = 0F;
-	/** Who owns this item. null means no-one.*/
+	/** Who owns this item. null means no-one. */
 	private ItemImpl owner = null;
 
 	// Class methods
@@ -82,6 +82,10 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	// instance methods
 
 	// Feature
+	public boolean isContainer() {
+		return false;
+	}
+
 	public boolean isMagical() {
 		return false;
 	}

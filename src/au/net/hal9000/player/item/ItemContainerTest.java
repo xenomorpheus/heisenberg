@@ -223,4 +223,10 @@ public class ItemContainerTest {
 		assertTrue("deserialized equals old", old.equals(newObj));
 
 	}	
+	
+	@Test
+	public void testIsContainer(){
+		Bag bag = new Bag();
+		assertTrue("isContainer", bag.isContainer());
+	}
 }

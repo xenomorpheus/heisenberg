@@ -5,6 +5,8 @@ import au.net.hal9000.player.units.*;
 public interface Item {
 
 	// Feature
+	public boolean isContainer();
+
 	public boolean isMagical();
 
 	public boolean isExtraDimensional();

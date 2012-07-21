@@ -1,9 +1,10 @@
 package au.net.hal9000.player.ui;
 
-import java.io.File;
-
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
+
+import au.net.hal9000.player.item.Item;
+import au.net.hal9000.player.item.ItemContainer;
 
 /**
  * The methods in this class allow the JTree component to traverse the file
@@ -11,9 +12,9 @@ import javax.swing.tree.*;
  **/
 class ItemTreeModel implements TreeModel {
 	// We specify the root directory when we create the model.
-	protected File root;
+	protected Item root;
 
-	public ItemTreeModel(File root) {
+	public ItemTreeModel(Item root) {
 		this.root = root;
 	}
 
@@ -24,38 +25,24 @@ class ItemTreeModel implements TreeModel {
 
 	// Tell JTree whether an object in the tree is a leaf or not
 	public boolean isLeaf(Object node) {
-		return ((File) node).isFile();
+		return ! ((Item) node).isContainer();
 	}
 
 	// Tell JTree how many children a node has
 	public int getChildCount(Object parent) {
-		String[] children = ((File) parent).list();
-		if (children == null)
-			return 0;
-		return children.length;
+		return ((ItemContainer) parent).getContentsCount();
 	}
 
 	// Fetch any numbered child of a node for the JTree.
-	// Our model returns File objects for all nodes in the tree. The
-	// JTree displays these by calling the File.toString() method.
+	// Our model returns Item objects for all nodes in the tree. The
+	// JTree displays these by calling the Item.toString() method.
 	public Object getChild(Object parent, int index) {
-		String[] children = ((File) parent).list();
-		if ((children == null) || (index >= children.length))
-			return null;
-		return new File((File) parent, children[index]);
+		return ((ItemContainer) parent).getContents().get(index);
 	}
 
 	// Figure out a child's position in its parent node.
 	public int getIndexOfChild(Object parent, Object child) {
-		String[] children = ((File) parent).list();
-		if (children == null)
-			return -1;
-		String childname = ((File) child).getName();
-		for (int i = 0; i < children.length; i++) {
-			if (childname.equals(children[i]))
-				return i;
-		}
-		return -1;
+		return ((ItemContainer) parent).getContents().indexOf(child);
 	}
 
 	// This method is only invoked by the JTree for editable trees.

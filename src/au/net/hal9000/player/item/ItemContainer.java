@@ -21,7 +21,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 
 	// Getters and Setters
 
-	protected Stack<ItemImpl> getContents() {
+	public Stack<ItemImpl> getContents() {
 		return contents;
 	}
 
@@ -30,6 +30,10 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	}
 
 	// Misc
+	public boolean isContainer() {
+		return true;
+	}
+	
 	/**
 	 * The total weight including the contents.
 	 */
