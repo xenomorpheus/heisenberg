@@ -174,10 +174,12 @@ public class ItemContainerTest {
 		}
 
 	}
+
 	@Test
 	public void testPersistenceShallow() {
 
-		String filename = "/tmp/empty_bag_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/empty_bag_persit_test.ser"; // TODO unique
+															// volatile filename
 		Bag old = new Bag();
 		// Store the object
 		try {
@@ -198,10 +200,12 @@ public class ItemContainerTest {
 		assertTrue("deserialized Bag equals old cookie", old.equals(newObj));
 
 	}
+
 	@Test
 	public void testPersistence() {
 
-		String filename = "/tmp/bag_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/bag_persit_test.ser"; // TODO unique volatile
+														// filename
 		Bag old = new Bag("World");
 		old.add(new Cookie());
 		// Store the object
@@ -222,11 +226,38 @@ public class ItemContainerTest {
 		assertTrue("newObj not null", newObj != null);
 		assertTrue("deserialized equals old", old.equals(newObj));
 
-	}	
-	
-	@Test
-	public void testIsContainer(){
-		Bag bag = new Bag();
-		assertTrue("isContainer", bag.isContainer());
 	}
+
+	@Test
+	public void isLeaf() {
+		Bag bag = new Bag();
+		assertFalse("isLeaf", bag.isLeaf());
+		bag.add(new Cookie());
+		assertTrue("isLeaf", bag.isLeaf());
+	}
+
+	@Test
+	public void testGetChildCount() {
+		Bag bag = new Bag();
+		assertEquals("getChildCount", 0, bag.getChildCount());
+		bag.add(new Cookie());
+		assertEquals("getChildCount", 1, bag.getChildCount());
+	}
+
+	@Test
+	public void testGetChild() {
+		Bag bag = new Bag();
+		Cookie cookie = new Cookie();
+		Cookie cookie2 = new Cookie();
+		bag.add(cookie);
+		assertEquals("getChildCount", (ItemImpl)cookie, (ItemImpl)bag.getChild(0));
+		bag.add(cookie2);
+		assertEquals("getChildCount", (ItemImpl)cookie, (ItemImpl)bag.getChild(0));
+		assertEquals("getChildCount", (ItemImpl)cookie2, (ItemImpl)bag.getChild(1));
+	}
+
+	@Test
+	public void testGetIndexOfChild() {
+	}
+
 }

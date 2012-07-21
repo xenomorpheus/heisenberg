@@ -25,24 +25,24 @@ class ItemTreeModel implements TreeModel {
 
 	// Tell JTree whether an object in the tree is a leaf or not
 	public boolean isLeaf(Object node) {
-		return ! ((Item) node).isContainer();
+		return  ((Item) node).isLeaf();
 	}
 
 	// Tell JTree how many children a node has
-	public int getChildCount(Object parent) {
-		return ((ItemContainer) parent).getContentsCount();
+	public int getChildCount(Object node) {
+		return ((Item) node).getChildCount();
 	}
 
 	// Fetch any numbered child of a node for the JTree.
 	// Our model returns Item objects for all nodes in the tree. The
 	// JTree displays these by calling the Item.toString() method.
 	public Object getChild(Object parent, int index) {
-		return ((ItemContainer) parent).getContents().get(index);
+		return ((Item) parent).getChild(index);
 	}
 
 	// Figure out a child's position in its parent node.
 	public int getIndexOfChild(Object parent, Object child) {
-		return ((ItemContainer) parent).getContents().indexOf(child);
+		return ((Item) parent).getIndexOfChild((Item)child);
 	}
 
 	// This method is only invoked by the JTree for editable trees.

@@ -225,10 +225,4 @@ public class LocationTest {
 		assertTrue("deserialized Location equals old cookie", old.equals(newObj));
 
 	}	
-
-	@Test
-	public void testIsContainer(){
-		Location location = new Location("World");
-		assertTrue("isContainer", location.isContainer());
-	}
 }

@@ -30,10 +30,30 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	}
 
 	// Misc
-	public boolean isContainer() {
-		return true;
+	/** {@inheritDoc} */
+	public boolean isLeaf() {
+		return (contents == null) || (this.contents.size() == 0);
 	}
-	
+
+	/** {@inheritDoc} */
+	public int getChildCount() {
+		if (contents != null) {
+			return contents.size();
+		}
+		return 0;
+	}
+
+	/** {@inheritDoc} */
+	public ItemImpl getChild(int index) {
+		return contents.get(index);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int getIndexOfChild(Item child) {
+		return -1;
+	}
+
 	/**
 	 * The total weight including the contents.
 	 */

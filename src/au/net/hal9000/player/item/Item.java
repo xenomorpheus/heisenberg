@@ -5,7 +5,6 @@ import au.net.hal9000.player.units.*;
 public interface Item {
 
 	// Feature
-	public boolean isContainer();
 
 	public boolean isMagical();
 
@@ -36,7 +35,7 @@ public interface Item {
 	public void setDescription(String pDescription);
 
 	// weight related
-	// weightBase - weight before carried items are added
+	/** weight before addition of other items such as those carried */
 	public Weight getWeightBase();
 
 	public void setWeightBase(Weight baseWeight);
@@ -55,7 +54,7 @@ public interface Item {
 	public void setWeightMax(float loadMax);
 
 	// volume related
-	// volumeBase - volume before carried items are added
+	/** volume before addition of other items such as those carried */
 	public Volume getVolumeBase();
 
 	public void setVolumeBase(Volume volumeWeight);
@@ -69,6 +68,7 @@ public interface Item {
 	// valueBase
 	public Volume getVolumeMax();
 
+	/** value before addition of other items such as those carried */
 	public Currency getValueBase();
 
 	// For simple items the value is the valueBase.
@@ -109,4 +109,37 @@ public interface Item {
 
 	// TODO public void accept(Damage damage);
 
+	/**
+	 * This is used for tree traversal.
+	 * 
+	 * @return True unless this Item has child Items.<br>
+	 */
+	public boolean isLeaf();
+
+	/**
+	 * This is used for tree traversal.
+	 * 
+	 * @return the number of directly connected child Items.<br>
+	 */
+	public int getChildCount();
+
+	/**
+	 * Fetch any numbered child of a node for the JTree. Our model returns Item
+	 * objects for all nodes in the tree. The JTree displays these by calling
+	 * the Item.toString() method.
+	 * 
+	 * @param parent
+	 * @param index
+	 * @return
+	 */
+	public Object getChild(int index);
+
+	/**
+	 * Figure out a child's position in its parent node.
+	 * 
+	 * @param parent
+	 * @param child
+	 * @return
+	 */
+	public int getIndexOfChild(Item child) ;
 }

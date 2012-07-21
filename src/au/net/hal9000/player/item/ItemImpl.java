@@ -82,9 +82,6 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	// instance methods
 
 	// Feature
-	public boolean isContainer() {
-		return false;
-	}
 
 	public boolean isMagical() {
 		return false;
@@ -415,4 +412,23 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		out.close();
 	}
 
+	/** {@inheritDoc} */
+	public boolean isLeaf() {
+		return true;
+	}
+
+	/** {@inheritDoc} */
+	public int getChildCount() {
+		return 0;
+	}
+
+	/** {@inheritDoc} */
+	public Item getChild(int index){
+		return null;
+	}
+
+	/** {@inheritDoc} */
+	public int getIndexOfChild(Item child){
+		return -1;
+	}
 }
