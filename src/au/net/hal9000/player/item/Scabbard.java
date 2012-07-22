@@ -15,11 +15,17 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 	private Sword sword = null;
 
 	public Scabbard() {
-		super("Scabbard");
+		this("Scabbard");
 	}
 
 	public Scabbard(String pString) {
 		super(pString);
+	}
+
+	// Features
+	@Override
+	public boolean isClothing() {
+		return true;
 	}
 
 	public void add(Sword pSword) throws ExceptionCantWear {
@@ -56,7 +62,7 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 
 	/** {@inheritDoc} */
 	public ItemImpl getChild(int index) {
-		// TODO 
+		// TODO
 		// int count = super.getChildCount();
 		return sword;
 	}
