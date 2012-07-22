@@ -23,7 +23,8 @@ public class Cookie extends ItemImpl {
 	}
 
 	// Feature
-	public static boolean isHumanFood() {
+	@Override
+	public boolean isHumanoidFood() {
 		return true;
 	}
 
