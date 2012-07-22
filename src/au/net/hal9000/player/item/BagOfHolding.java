@@ -36,10 +36,12 @@ public class BagOfHolding extends Bag {
 	}
 
 	// Features
+	@Override
 	public boolean isExtraDimensional() {
 		return true;
 	}
 
+	@Override
 	public boolean isMagical() {
 		return true;
 	}
@@ -90,11 +92,13 @@ public class BagOfHolding extends Bag {
 	}
 
 	// Magic
+	@Override
 	public Weight getWeight() {
 		return this.getWeightBase();
 	}
 
 	// Magic
+	@Override
 	public Volume getVolume() {
 		return this.getVolumeBase();
 	}
