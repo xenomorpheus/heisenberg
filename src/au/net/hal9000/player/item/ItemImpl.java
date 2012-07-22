@@ -252,6 +252,9 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		return weightBase;
 	}
 
+	/** Items are considered equal if all their
+	 * properties are the same except for location.
+	 */
 	public boolean equals(ItemImpl other) {
 		if (this == other)
 			return true;
@@ -292,8 +295,12 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 			return false;
 		if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
 			return false;
-		if (!ItemImpl.null_safe_equals(location, other.getLocation()))
-			return false;
+		/* We can't check the location because checking of deep persistence 
+		 * will break.  Nested objects will have different locations.
+		 */
+		
+//		if (!ItemImpl.null_safe_equals(location, other.getLocation()))
+//			return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;
 		// call equals on any super class.
