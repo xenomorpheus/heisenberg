@@ -74,19 +74,19 @@ public class BagOfHoldingTest {
 	}
 
 	@Test
-	public void test_isMagical() {
+	public void testIsMagical() {
 		BagOfHolding bag = new BagOfHolding(1);
 		assertTrue("isMagical", bag.isMagical());
 	}
 
 	@Test
-	public void test_isExtraDimensional() {
+	public void testIsExtraDimensional() {
 		BagOfHolding bag = new BagOfHolding(1);
 		assertTrue("isExtraDimensional", bag.isExtraDimensional());
 	}
 
 	@Test
-	public void ordinary_add() {
+	public void testAdd() {
 		Cookie cookie = new Cookie();
 		cookie.setLocation(new Human("Ground"));
 		BagOfHolding bag = new BagOfHolding(1);
@@ -104,7 +104,7 @@ public class BagOfHoldingTest {
 
 	// sharp exposed object causes rupture.
 	@Test
-	public void sharp_add_rupture() {
+	public void testAddSharp() {
 		Sword sword = new Sword();
 		Human human = new Human("Ground");
 		sword.setLocation(human);
@@ -124,7 +124,7 @@ public class BagOfHoldingTest {
 
 	// add a wrapped sword to a bag of holding.
 	@Test
-	public void sharp_add_wrapped_sword() {
+	public void testAddWrappedSharp() {
 		Human human = new Human("Ground");
 		Sword sword = new Sword();
 		sword.setLocation(human);
@@ -156,7 +156,7 @@ public class BagOfHoldingTest {
 	}
 
 	@Test
-	public void multidimensional_add_rupture() {
+	public void testAddMultidimensional() {
 		BagOfHolding bag_inner = new BagOfHolding(1);
 		Human human = new Human("Ground");
 		bag_inner.setLocation(human);
