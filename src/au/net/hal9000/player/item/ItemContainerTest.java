@@ -202,7 +202,7 @@ public class ItemContainerTest {
 	}
 
 	@Test
-	public void testPersistence() {
+	public void testPersistenceDeep() {
 
 		String filename = "/tmp/bag_persit_test.ser"; // TODO unique volatile
 														// filename
