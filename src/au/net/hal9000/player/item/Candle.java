@@ -9,8 +9,7 @@ public class Candle extends ItemImpl {
 	private boolean lit = false;
 
 	public Candle() {
-		super("Candle");
-		this.setType(1);
+		this("Candle");
 	}
 
 	public Candle(String pString) {
