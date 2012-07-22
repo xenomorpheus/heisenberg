@@ -83,6 +83,9 @@ public class Hand extends ItemImpl {
 
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
+		if (total == null){
+			total = new Weight();
+		}
 		Iterator<Ring> itr = this.rings.iterator();
 		while (itr.hasNext()) {
 			total.add( itr.next().getWeight());
