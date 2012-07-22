@@ -73,7 +73,9 @@ public class Unit implements Serializable, Cloneable {
 	}
 
 	public void add(Unit other) {
-		this.value += other.getValue();
+		if (other != null){
+			this.value += other.getValue();
+		}
 	}
 
 	public void add(float other) {
