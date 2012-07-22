@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 
 import au.net.hal9000.player.item.exception.*;
 
-public class Bag extends ItemContainer {
+public class Bag extends Box {
 
 	/**
 	 * 
