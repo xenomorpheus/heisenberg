@@ -7,7 +7,7 @@ public class Box extends ItemContainer {
 	private static final long serialVersionUID = 1L;
 
 	public Box() {
-		super("Box");
+		this("Box");
 	}
 
 	public Box(String pName) {
