@@ -52,5 +52,11 @@ public class CookieTest {
 
 
 	}
+	
+	@Test
+	public void testIsHumanoidFood(){
+		Cookie cookie = new Cookie();
+		assertTrue("is humanoid food", cookie.isHumanoidFood());
+	}
 
 }
