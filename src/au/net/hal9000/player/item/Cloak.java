@@ -7,7 +7,7 @@ public class Cloak extends ItemImpl {
 	private static final long serialVersionUID = 1L;
 
 	public Cloak() {
-		super("Cloak");
+		this("Cloak");
 	}
 
 	public Cloak(String pString) {
@@ -15,7 +15,9 @@ public class Cloak extends ItemImpl {
 	}
 
 	// Features
+	@Override
 	public boolean isClothing() {
 		return true;
 	}
+
 }
