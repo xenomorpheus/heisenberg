@@ -1,5 +1,5 @@
 package au.net.hal9000.player.item;
-public class Box extends Bag {
+public class Box extends ItemContainer {
 
 	/**
 	 * 
