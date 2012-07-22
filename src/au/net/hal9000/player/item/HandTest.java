@@ -1,9 +1,11 @@
 package au.net.hal9000.player.item;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import au.net.hal9000.player.item.exception.*;
+import au.net.hal9000.player.units.Weight;
 
 public class HandTest {
 
@@ -194,7 +196,8 @@ public class HandTest {
 	@Test
 	public void testGetWeightEmpty() {
 		Hand hand = new Hand();
-		assertTrue("weight", hand.getWeight().equals(0.0F));
+		Weight weight = hand.getWeight();
+		assertTrue("weight", (weight == null) || weight.equals(0.0F) );
 	}
 
 	@Test
