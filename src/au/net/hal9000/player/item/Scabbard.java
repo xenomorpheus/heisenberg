@@ -75,6 +75,8 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
 		if (sword != null) {
+			if (total == null)
+				total = new Weight();
 			total.add(sword.getWeight());
 		}
 		return total;
@@ -87,6 +89,8 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 	public Volume getVolume() {
 		Volume total = this.getVolumeBase();
 		if (sword != null) {
+			if (total == null)
+				total = new Volume();
 			total.add(sword.getVolume());
 		}
 		return total;
