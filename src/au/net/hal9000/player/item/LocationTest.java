@@ -19,7 +19,8 @@ public class LocationTest {
 		if (v == null) {
 			fail("location.getVolumeMax= null");
 		} else {
-			assertEquals("location.getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
+			assertEquals("location.getVolumeMax=", volumeMax, v.getValue(),
+					0.0001F);
 		}
 	}
 
@@ -101,7 +102,8 @@ public class LocationTest {
 		location.add(items);
 		assertEquals("add multi size", 3, location.getContentsCount());
 		location.empty(newLocation);
-		assertEquals("location size after empty", 0, location.getContentsCount());
+		assertEquals("location size after empty", 0,
+				location.getContentsCount());
 		assertEquals("newLocation size", 3, newLocation.getContentsCount());
 	}
 
@@ -151,15 +153,13 @@ public class LocationTest {
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
 
-		
 		Boolean bar = clone.equals(x);
 		assertTrue("x.clone().equals(x)", bar);
 
-		
 		// equals from the other direction
 		Boolean foo = x.equals(clone);
 		assertTrue("x.equals(clone)", foo);
-		
+
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
@@ -167,19 +167,22 @@ public class LocationTest {
 		// items
 		{
 			// Make a change to a non-primative, non-mutable
-			// 
-			
-			String c1Name = c1.getName();			
-			c1.setName(c1.getName()+"fred");
+			//
+
+			String c1Name = c1.getName();
+			c1.setName(c1.getName() + "fred");
 			assertFalse("x.clone().equals(x)", clone.equals(x));
 			c1.setName(c1Name);
 		}
 
 	}
+
 	@Test
 	public void testPersistenceShallow() {
 
-		String filename = "/tmp/empty_location_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/empty_location_persit_test.ser"; // TODO unique
+																	// volatile
+																	// filename
 		Location old = new Location("World");
 		// Store the object
 		try {
@@ -197,13 +200,16 @@ public class LocationTest {
 			fail(ex.toString());
 		}
 		assertTrue("newObj not null", newObj != null);
-		assertTrue("deserialized Location equals old cookie", old.equals(newObj));
+		assertTrue("deserialized Location equals old cookie",
+				old.equals(newObj));
 
-	}	
+	}
+
 	@Test
-	public void testPersistence() {
+	public void testPersistenceDeep() {
 
-		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
+		String filename = "/tmp/location_persit_test.ser"; // TODO unique
+															// volatile filename
 		Location old = new Location("World");
 		old.add(new Cookie());
 		// Store the object
@@ -222,7 +228,8 @@ public class LocationTest {
 			fail(ex.toString());
 		}
 		assertTrue("newObj not null", newObj != null);
-		assertTrue("deserialized Location equals old cookie", old.equals(newObj));
+		assertTrue("deserialized Location equals old cookie",
+				old.equals(newObj));
 
-	}	
+	}
 }
