@@ -103,12 +103,8 @@ public class ScenarioSet01 {
 			quiver.add(arrow);
 			quiver.add(arrow);
 			quiver.add(arrow);
-		} catch (ExceptionInvalidType e) {
-			fail("invalid type");
-		} catch (ExceptionTooHeavy e) {
-			fail("too heavy");
-		} catch (ExceptionTooBig e) {
-			fail("too big");
+		} catch (Exception e) {
+			fail(e.toString());
 		}
 		System.out.println("Arrow location: " + arrow.getLocation());
 	}
