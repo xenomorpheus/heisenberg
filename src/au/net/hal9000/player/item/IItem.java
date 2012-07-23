@@ -44,8 +44,11 @@ public interface IItem {
 
 	public void setWeightBase(float baseWeight);
 
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the weight is the weightBase. Will be overridden by
+	 * collections.
+	 * 
+	 */
 	public Weight getWeight();
 
 	// weightMax - max weight that can be carried
@@ -63,8 +66,10 @@ public interface IItem {
 
 	public void setVolumeBase(float volumeWeight);
 
-	// For simple items the weight is the weightBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the weight is the weightBase. Will be overridden by
+	 * collections
+	 */
 	public Volume getVolume();
 
 	// valueBase
@@ -73,8 +78,11 @@ public interface IItem {
 	/** value before addition of other items such as those carried */
 	public Currency getValueBase();
 
-	// For simple items the value is the valueBase.
-	// will be overridden by collections
+	/**
+	 * For simple items the value is the valueBase. Will be overridden by
+	 * collections
+	 * 
+	 */
 	public Currency getValue();
 
 	public void setValueBase(Currency pValueBase);
@@ -141,7 +149,7 @@ public interface IItem {
 	 * @param child
 	 * @return
 	 */
-	public int getIndexOfChild(IItem child) ;
+	public int getIndexOfChild(IItem child);
 
 	/**
 	 * Figure out a child's position in its parent node.
@@ -149,4 +157,8 @@ public interface IItem {
 	 * @return
 	 */
 	public Stack<IItem> getChildren();
+
+	void setVolumeMax(float volumeMax);
+
+	void setVolumeMax(Volume volumeMax);
 }
