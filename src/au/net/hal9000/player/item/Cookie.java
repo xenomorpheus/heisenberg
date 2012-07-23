@@ -23,6 +23,7 @@ public class Cookie extends Item {
 	}
 
 	// Feature
+	/** {@inheritDoc} */
 	@Override
 	public boolean isHumanoidFood() {
 		return true;
