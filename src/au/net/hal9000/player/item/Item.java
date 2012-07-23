@@ -59,8 +59,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	public Item(String pName, String pDescription) {
-		super();
-		this.name = pName;
+		this(pName);
 		this.description = pDescription;
 	}
 
@@ -83,106 +82,136 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	// instance methods
 
 	// Feature
-
+	/** {@inheritDoc} */
 	@Override
 	public boolean isMagical() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isExtraDimensional() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isHumanoidFood() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isHumanoidMount() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isRingWearer() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isLiving() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isClothing() {
 		return false;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isSharp() {
 		return false;
 	}
 
 	// Getters and Setters
+	/** {@inheritDoc} */
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setName(String pName) {
 		this.name = pName;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setDescription(String pDescription) {
 		this.description = pDescription;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public Weight getWeightBase() {
 		return weightBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setWeightBase(Weight baseWeight) {
 		this.weightBase = baseWeight;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setWeightBase(float baseWeight) {
 		this.weightBase = new Weight(baseWeight);
 	}
 
 	// weightMax - max weight that can be carried
+	/** {@inheritDoc} */
+	@Override
 	public Weight getWeightMax() {
 		return weightMax;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setWeightMax(Weight weightMax) {
 		this.weightMax = weightMax;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setWeightMax(float weightMax) {
 		this.weightMax = new Weight(weightMax);
 	}
 
-	/**
-	 * For simple items the volume is the volumeBase. Will be overridden by
-	 * collections.
-	 * 
-	 */
+	/** {@inheritDoc} */
+	@Override
 	public Volume getVolume() {
 		return volumeBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public Volume getVolumeBase() {
 		return volumeBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setVolumeBase(Volume volumeBase) {
 		this.volumeBase = volumeBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setVolumeBase(float volumeBase) {
 		if (this.volumeBase == null)
 			this.volumeBase = new Volume(volumeBase);
@@ -190,14 +219,20 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 			this.volumeBase.setValue(volumeBase);
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public Volume getVolumeMax() {
 		return volumeMax;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setVolumeMax(Volume volumeMax) {
 		this.volumeMax = volumeMax;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setVolumeMax(float volumeMax) {
 		if (this.volumeMax == null)
 			this.volumeMax = new Volume(volumeMax);
@@ -205,54 +240,64 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 			this.volumeMax.setValue(volumeMax);
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public Currency getValueBase() {
 		return valueBase;
 	}
 
-	/**
-	 * For simple items the value is the valueBase. Will be overridden by
-	 * collections
-	 * 
-	 */
+	/** {@inheritDoc} */
+	@Override
 	public Currency getValue() {
 		return valueBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setValueBase(Currency pValueBase) {
 		this.valueBase = pValueBase;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public IItem getLocation() {
 		return this.location;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setLocation(IItem location) {
 		this.location = (Item) location;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public float getHitPoints() {
 		return hitPoints;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setHitPoints(float hitPoints) {
 		this.hitPoints = hitPoints;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public Item getOwner() {
 		return owner;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public void setOwner(IItem owner) {
 		this.owner = (Item) owner;
 	}
 
 	// misc methods
 
-	/**
-	 * For simple items the weight is the weightBase. Will be overridden by
-	 * collections.
-	 * 
-	 */
+	/** {@inheritDoc} */
+	@Override
 	public Weight getWeight() {
 		return weightBase;
 	}
@@ -317,6 +362,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	// Attempt to unlink the item from everything so that
 	// it can be garbage collected.
 	// Won't work if anything is referencing this item.
+	/** {@inheritDoc} */
+	@Override
 	public void beNot() {
 		// System.out.println("beNot called on " + this.getName());
 		this.name = null;
@@ -330,10 +377,14 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		this.location = null;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + ": " + name;
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public String detailedDescription() {
 		String str = new String();
 		String temp;
@@ -361,6 +412,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	// Find items that match the criteria
+	/** {@inheritDoc} */
+	@Override
 	public void accept(ItemVisitor visitor) {
 		visitor.visit(this);
 	}
@@ -376,6 +429,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		// now we are a "live" object again, so let's run rebuild and start
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	protected Item clone() throws CloneNotSupportedException {
 		Item clone = (Item) super.clone();
