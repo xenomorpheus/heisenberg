@@ -54,7 +54,7 @@ public class ScabbardTest {
 		Human human = new Human();
 		Scabbard scabbard = new Scabbard();
 		try {
-			human.wear(scabbard);
+			human.equip(scabbard);
 		} catch (Exception e) {
 			fail(e.toString());
 		}

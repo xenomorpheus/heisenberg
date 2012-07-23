@@ -54,7 +54,7 @@ public class CloakTest {
 		Human human = new Human();
 		Cloak cloak = new Cloak();
 		try {
-			human.wear(cloak);
+			human.equip(cloak);
 		} catch (Exception e) {
 			fail(e.toString());
 		}
