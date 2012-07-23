@@ -111,7 +111,7 @@ public class ScenarioSet01 {
 
 	// TODO
 	@Test
-	public void candle_runs_out() {
+	public void candleRunsOut() {
 		System.out.println("\n** A candle runs out.");
 		Candle candle = new Candle();
 		System.out.println("Candle description:\n" + candle.getDescription());
@@ -121,7 +121,7 @@ public class ScenarioSet01 {
 
 
 	@Test
-	public void hobbit_eats_a_cookie() {
+	public void hobbitEatsACookie() {
 		System.out.println("\n** A hobbit eats a cookie.");
 		Hobbit hobbit = new Hobbit();
 		Cookie cookie = new Cookie();
