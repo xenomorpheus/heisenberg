@@ -17,26 +17,25 @@ public abstract class Entity extends Item {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	// Constructor
+	public Entity(String pName) {
+		super(pName);
+	}
+
+	// Fields
 	/**
-	 * A list of items ({@link IItem}) stowed.
-	 */
-	private ItemContainer worn = new Box("Worn");
-	/**
-	 * A list of {@link Ingredient} list that is known by this Entity.
+	 * A list of equipment items ({@link IItem}).
 	 */
 	private ItemContainer equipment = new Box("Equipment");
 	/**
-	 * A list of items ({@link IItem}) worn.
+	 * A list of {@link Ingredient} list that is known by this Entity.
 	 */
 	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 	/**
 	 * The {@link Recipe} list that is known by this Entity.
 	 */
 	private ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-
-	public Entity(String pName) {
-		super(pName);
-	}
 
 	// Features
 	// TODO Consider moving to a Marker Interface
@@ -55,14 +54,6 @@ public abstract class Entity extends Item {
 
 	public ItemContainer getEquipment() {
 		return equipment;
-	}
-
-	public void setWorn(ItemContainer worn) {
-		this.worn = worn;
-	}
-
-	public ItemContainer getWorn() {
-		return worn;
 	}
 
 	// ingredients
@@ -85,17 +76,6 @@ public abstract class Entity extends Item {
 
 	// Misc
 	/**
-	 * Wear an item
-	 * 
-	 * @param item
-	 */
-	public void wear(Item item) {
-		// TODO check the item is wearable.
-		worn.add(item);
-	}
-	// TODO add unwear
-
-	/**
 	 * Add item to equipment
 	 * 
 	 * @param item
@@ -116,7 +96,6 @@ public abstract class Entity extends Item {
 		Weight total = super.getWeight();
 		if (total == null)
 			total = new Weight();
-		total.add(worn.getWeight());
 		total.add(equipment.getWeight());
 		return total;
 	}
@@ -133,7 +112,6 @@ public abstract class Entity extends Item {
 		Volume total = super.getVolume();
 		if (total == null)
 			total = new Volume();
-		total.add(worn.getVolume());
 		total.add(equipment.getVolume());
 		return total;
 	}
@@ -148,7 +126,6 @@ public abstract class Entity extends Item {
 	@Override
 	public Currency getValue() {
 		Currency total = super.getValue();
-		total.add(worn.getValue());
 		total.add(equipment.getValue());
 		return total;
 	}
@@ -160,7 +137,7 @@ public abstract class Entity extends Item {
 	 * @throws ExceptionInvalidType
 	 */
 	public void eat(IItem pFood) throws ExceptionInvalidType {
-		if (! pFood.isHumanoidFood()) {
+		if (!pFood.isHumanoidFood()) {
 			throw new ExceptionInvalidType(this.getName() + " can't eat "
 					+ pFood.getName());
 		}
@@ -179,9 +156,6 @@ public abstract class Entity extends Item {
 	public int getChildCount() {
 		// TODO consider Items in super
 		int count = super.getChildCount();
-		if (worn != null) {
-			count++;
-		}
 		if (equipment != null) {
 			count++;
 		}
@@ -192,24 +166,16 @@ public abstract class Entity extends Item {
 	@Override
 	public Item getChild(int index) {
 		// Note: index is zero offset, count is not.
-		int child_count = super.getChildCount();		
+		int child_count = super.getChildCount();
 		// Child is on super.
-        if (index < child_count){
-        	return (Item)super.getChild(index);
-        }
-        // Make index relative to this class;
-        index -= child_count;
-
-        // worn
-		if (worn != null){
-			if (index == 0) {
-				return worn;
-			}
-			index--;
+		if (index < child_count) {
+			return (Item) super.getChild(index);
 		}
+		// Make index relative to this class;
+		index -= child_count;
 
 		// equipment
-		if (equipment != null){
+		if (equipment != null) {
 			if (index == 0) {
 				return equipment;
 			}
