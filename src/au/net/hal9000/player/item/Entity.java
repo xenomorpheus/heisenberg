@@ -160,7 +160,7 @@ public abstract class Entity extends Item {
 	 * @throws ExceptionInvalidType
 	 */
 	public void eat(IItem pFood) throws ExceptionInvalidType {
-		if (pFood.isHumanoidFood()) {
+		if (! pFood.isHumanoidFood()) {
 			throw new ExceptionInvalidType(this.getName() + " can't eat "
 					+ pFood.getName());
 		}
