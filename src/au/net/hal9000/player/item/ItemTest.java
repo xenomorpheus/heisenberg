@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import au.net.hal9000.player.units.*;
 
-public class ItemImplTest {
+public class ItemTest {
 
 	@Test
 	public void testItem() {

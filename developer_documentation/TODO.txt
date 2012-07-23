@@ -1,4 +1,4 @@
-Rename ItemImpl to Item
+
 
 
 JavaDoc templates for auto Javadoc when writing methods, etc.

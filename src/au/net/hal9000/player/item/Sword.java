@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class Sword extends ItemImpl {
+public class Sword extends Item {
 	/**
 	 * 
 	 */

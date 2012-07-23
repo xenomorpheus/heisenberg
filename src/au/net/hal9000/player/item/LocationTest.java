@@ -95,7 +95,7 @@ public class LocationTest {
 		Cookie c1 = new Cookie();
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
-		Vector<ItemImpl> items = new Vector<ItemImpl>();
+		Vector<Item> items = new Vector<Item>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);

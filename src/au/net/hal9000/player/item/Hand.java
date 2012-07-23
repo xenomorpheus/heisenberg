@@ -12,7 +12,7 @@ import au.net.hal9000.player.units.*;
 // May wear any number of non-magical rings.
 // Rings may be removed in any order.
 
-public class Hand extends ItemImpl {
+public class Hand extends Item {
 
 	/**
 	 * 

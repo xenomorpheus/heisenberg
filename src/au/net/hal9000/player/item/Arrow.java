@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class Arrow extends ItemImpl {
+public class Arrow extends Item {
 	/**
 	 * 
 	 */

@@ -32,7 +32,7 @@ import au.net.hal9000.player.units.*;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public abstract class ItemImpl implements IItem, Serializable, Cloneable {
+public abstract class Item implements IItem, Serializable, Cloneable {
 
 	/**
 	 * 
@@ -47,18 +47,18 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 	private Volume volumeBase = null;
 	private Volume volumeMax = null;
 	private Currency valueBase = new Currency();
-	private ItemImpl location = null;
+	private Item location = null;
 	private float hitPoints = 0F;
 	/** Who owns this item. null means no-one. */
-	private ItemImpl owner = null;
+	private Item owner = null;
 
 	// Class methods
-	public ItemImpl(String pName) {
+	public Item(String pName) {
 		super();
 		this.name = pName;
 	}
 
-	public ItemImpl(String pName, String pDescription) {
+	public Item(String pName, String pDescription) {
 		super();
 		this.name = pName;
 		this.description = pDescription;
@@ -227,7 +227,7 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 	}
 
 	public void setLocation(IItem location) {
-		this.location = (ItemImpl) location;
+		this.location = (Item) location;
 	}
 
 	public float getHitPoints() {
@@ -238,12 +238,12 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 		this.hitPoints = hitPoints;
 	}
 
-	public ItemImpl getOwner() {
+	public Item getOwner() {
 		return owner;
 	}
 
 	public void setOwner(IItem owner) {
-		this.owner = (ItemImpl) owner;
+		this.owner = (Item) owner;
 	}
 
 	// misc methods
@@ -261,7 +261,7 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 	 * Items are considered equal if all their properties are the same except
 	 * for location.
 	 */
-	public boolean equals(ItemImpl other) {
+	public boolean equals(Item other) {
 		if (this == other)
 			return true;
 		// Check each of our immediate properties.
@@ -306,7 +306,7 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 		 * break. Nested objects will have different locations.
 		 */
 
-		// if (!ItemImpl.null_safe_equals(location, other.getLocation()))
+		// if (!Item.null_safe_equals(location, other.getLocation()))
 		// return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;
@@ -377,8 +377,8 @@ public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 	}
 
 	@Override
-	protected ItemImpl clone() throws CloneNotSupportedException {
-		ItemImpl clone = (ItemImpl) super.clone();
+	protected Item clone() throws CloneNotSupportedException {
+		Item clone = (Item) super.clone();
 
 		// Make sure the cloning is deep, not shallow.
 		// e.g. set the non-mutable, non-primitives

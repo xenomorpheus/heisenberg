@@ -11,7 +11,7 @@ import au.net.hal9000.player.units.*;
  * 
  */
 
-public abstract class Entity extends ItemImpl {
+public abstract class Entity extends Item {
 
 	/**
 	 * 
@@ -89,7 +89,7 @@ public abstract class Entity extends ItemImpl {
 	 * 
 	 * @param item
 	 */
-	public void wear(ItemImpl item) {
+	public void wear(Item item) {
 		// TODO check the item is wearable.
 		worn.add(item);
 	}
@@ -100,7 +100,7 @@ public abstract class Entity extends ItemImpl {
 	 * 
 	 * @param item
 	 */
-	public void equip(ItemImpl item) {
+	public void equip(Item item) {
 		equipment.add(item);
 	}
 
@@ -190,12 +190,12 @@ public abstract class Entity extends ItemImpl {
 
 	/** {@inheritDoc} */
 	@Override
-	public ItemImpl getChild(int index) {
+	public Item getChild(int index) {
 		// Note: index is zero offset, count is not.
 		int child_count = super.getChildCount();		
 		// Child is on super.
         if (index < child_count){
-        	return (ItemImpl)super.getChild(index);
+        	return (Item)super.getChild(index);
         }
         // Make index relative to this class;
         index -= child_count;

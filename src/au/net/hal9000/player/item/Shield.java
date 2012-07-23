@@ -11,7 +11,7 @@ package au.net.hal9000.player.item;
  *  TODO perhaps create a protection Interface  
  */
 
-public class Shield extends ItemImpl {
+public class Shield extends Item {
 
 //	ToHitModifier toHitModifier = new ToHitModifier();
 //	DamageModifier damageModifier = new DamageModifier();

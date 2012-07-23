@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class Torch extends ItemImpl {
+public class Torch extends Item {
 
 	/**
 	 * 

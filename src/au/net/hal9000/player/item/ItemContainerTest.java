@@ -94,7 +94,7 @@ public class ItemContainerTest {
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
 		Bag newBag = new Bag("New Bag");
-		Vector<ItemImpl> items = new Vector<ItemImpl>();
+		Vector<Item> items = new Vector<Item>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);
@@ -248,10 +248,10 @@ public class ItemContainerTest {
 		Cookie cookie = new Cookie();
 		Cookie cookie2 = new Cookie();
 		bag.add(cookie);
-		assertEquals("getChildCount", (ItemImpl)cookie, (ItemImpl)bag.getChild(0));
+		assertEquals("getChildCount", (Item)cookie, (Item)bag.getChild(0));
 		bag.add(cookie2);
-		assertEquals("getChildCount", (ItemImpl)cookie, (ItemImpl)bag.getChild(0));
-		assertEquals("getChildCount", (ItemImpl)cookie2, (ItemImpl)bag.getChild(1));
+		assertEquals("getChildCount", (Item)cookie, (Item)bag.getChild(0));
+		assertEquals("getChildCount", (Item)cookie2, (Item)bag.getChild(1));
 	}
 
 	@Test

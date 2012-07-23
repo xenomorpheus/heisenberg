@@ -2,7 +2,7 @@ package au.net.hal9000.player.item;
 
 import au.net.hal9000.player.units.Weight;
 
-public class Crossbow extends ItemImpl {
+public class Crossbow extends Item {
 	/**
 	 * 
 	 */

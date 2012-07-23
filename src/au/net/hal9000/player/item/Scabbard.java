@@ -7,7 +7,7 @@ import au.net.hal9000.player.units.Currency;
 import au.net.hal9000.player.units.Volume;
 import au.net.hal9000.player.units.Weight;
 
-public class Scabbard extends ItemImpl implements SwordSheath {
+public class Scabbard extends Item implements SwordSheath {
 	/**
 	 * 
 	 */
@@ -61,7 +61,7 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 	}
 
 	/** {@inheritDoc} */
-	public ItemImpl getChild(int index) {
+	public Item getChild(int index) {
 		// TODO
 		// int count = super.getChildCount();
 		return sword;

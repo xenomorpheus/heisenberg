@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class Cloak extends ItemImpl {
+public class Cloak extends Item {
 	/**
 	 * 
 	 */

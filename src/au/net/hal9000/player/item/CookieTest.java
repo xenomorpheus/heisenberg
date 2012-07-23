@@ -2,7 +2,7 @@ package au.net.hal9000.player.item;
 
 /*
  * Note a lot of unit tests for cookie are in
- * ItemImpl as ItemImpl is an abstract class
+ * Item as Item is an abstract class
  * and needs an item to do tests.
  * 
  */

@@ -10,7 +10,7 @@ public class EntityTest {
 
 		// Human
 		Human human = new Human("Human");
-		ItemImpl shield = new Shield();
+		Item shield = new Shield();
 		try {
 			human.equip(shield);
 		} catch (Exception e) {

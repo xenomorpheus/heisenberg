@@ -8,12 +8,12 @@ import java.util.Vector;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.*;
 
-public abstract class ItemContainer extends ItemImpl implements Serializable {
+public abstract class ItemContainer extends Item implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Stack<ItemImpl> contents = new Stack<ItemImpl>();
+	private Stack<Item> contents = new Stack<Item>();
 
 	public ItemContainer(String string) {
 		super(string);
@@ -21,11 +21,11 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 
 	// Getters and Setters
 
-	public Stack<ItemImpl> getContents() {
+	public Stack<Item> getContents() {
 		return contents;
 	}
 
-	private void setContents(Stack<ItemImpl> contents) {
+	private void setContents(Stack<Item> contents) {
 		this.contents = contents;
 	}
 
@@ -44,7 +44,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	}
 
 	/** {@inheritDoc} */
-	public ItemImpl getChild(int index) {
+	public Item getChild(int index) {
 		return contents.get(index);
 	}
 
@@ -103,7 +103,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 * 
 	 * @param item
 	 */
-	public void add(ItemImpl item) {
+	public void add(Item item) {
 
 		// check Weight
 		Weight weightMax = this.getWeightMax();
@@ -140,8 +140,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 * 
 	 * @param items
 	 */
-	public void add(Vector<ItemImpl> items) {
-		for (ItemImpl item : items) {
+	public void add(Vector<Item> items) {
+		for (Item item : items) {
 			this.add(item);
 		}
 	}
@@ -173,7 +173,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 */
 	public void empty(ItemContainer newLocation) {
 		while (!contents.isEmpty()) {
-			ItemImpl item = contents.pop();
+			Item item = contents.pop();
 			newLocation.add(item);
 		}
 	}
@@ -260,7 +260,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		// Check each of our immediate properties.
 		// check contents.
 		{
-			Stack<ItemImpl> otherContents = other.getContents();
+			Stack<Item> otherContents = other.getContents();
 			if (contents.size() != otherContents.size())
 				return false;
 			for (int i = contents.size() - 1; i >= 0; i--) {
@@ -279,10 +279,10 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		// e.g. set the non-mutable, non-primitives
 
 		// contents
-		Stack<ItemImpl> contents = this.getContents();
+		Stack<Item> contents = this.getContents();
 		if (contents != null) {
-			Stack<ItemImpl> cloneContents = new Stack<ItemImpl>();
-			for (ItemImpl item : contents) {
+			Stack<Item> cloneContents = new Stack<Item>();
+			for (Item item : contents) {
 				cloneContents.add(item.clone());
 			}
 			clone.setContents(cloneContents);

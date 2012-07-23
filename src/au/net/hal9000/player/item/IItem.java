@@ -89,7 +89,7 @@ public interface IItem {
 
 	public float getHitPoints();
 
-	public ItemImpl getOwner();
+	public Item getOwner();
 
 	public void setOwner(IItem owner);
 

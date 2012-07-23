@@ -7,7 +7,7 @@ import au.net.hal9000.player.units.Currency;
 //* Default value is 5gp ?
 //* Default weight ?
 
-public class Ring extends ItemImpl {
+public class Ring extends Item {
 
 	/**
 	 * 

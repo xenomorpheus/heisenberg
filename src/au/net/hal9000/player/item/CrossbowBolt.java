@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class CrossbowBolt extends ItemImpl {
+public class CrossbowBolt extends Item {
 
 	/**
 	 * 

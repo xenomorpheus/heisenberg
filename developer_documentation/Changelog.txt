@@ -1,5 +1,6 @@
 2012-10-23
 Rename Item interface to IItem.
+Rename ItemImpl to Item
 
 2019-10-20
 Added the ability to read PowerWords and Spells from XML config files.

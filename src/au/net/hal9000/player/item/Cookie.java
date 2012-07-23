@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class Cookie extends ItemImpl {
+public class Cookie extends Item {
 	/**
 	 * 
 	 */
