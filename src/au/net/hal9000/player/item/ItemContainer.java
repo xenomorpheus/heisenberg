@@ -55,12 +55,23 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 		return -1;
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public Stack <Item> getChildren(){
+		Stack <Item> children = super.getChildren();
+		// TODO what about items in contents ?
+		return children;
+	}
+
 	/**
 	 * The total weight including the contents.
 	 */
 	@Override
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
+		if (total == null){
+			total = new Weight();
+		}
 		total.add(this.getContentsWeight());
 		return total;
 	}
@@ -71,6 +82,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	@Override
 	public Volume getVolume() {
 		Volume total = this.getVolumeBase();
+		if (total == null)
+			total = new Volume();
 		total.add(this.getContentsVolume());
 		return total;
 	}
