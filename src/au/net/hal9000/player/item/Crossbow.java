@@ -10,7 +10,7 @@ public class Crossbow extends Item {
 	private CrossbowBolt loadedBolt = null;
 
 	public Crossbow() {
-		super("Crossbow");
+		this("Crossbow");
 	}
 
 	public Crossbow(String pCrossbow) {
