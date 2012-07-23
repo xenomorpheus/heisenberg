@@ -7,7 +7,7 @@ public class CrossbowBolt extends Item {
 	 */
 	private static final long serialVersionUID = 1L;
 	public CrossbowBolt() {
-		super("CrossbowBolt");
+		this("CrossbowBolt");
 	}
 	public CrossbowBolt(String pString) {
 		super(pString);
