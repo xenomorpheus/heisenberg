@@ -39,6 +39,7 @@ public abstract class Entity extends Item {
 
 	// Features
 	// TODO Consider moving to a Marker Interface
+	/** {@inheritDoc} */
 	@Override
 	public boolean isLiving() {
 		return true;
