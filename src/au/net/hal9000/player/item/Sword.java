@@ -7,13 +7,15 @@ public class Sword extends Item {
 	private static final long serialVersionUID = 1L;
 
 	public Sword() {
-		super("Sword");
+		this("Sword");
 	}
 
 	public Sword(String pString) {
 		super(pString);
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	public boolean isSharp() {
 		return true;
 	}
