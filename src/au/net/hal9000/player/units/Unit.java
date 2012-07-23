@@ -25,7 +25,7 @@ public class Unit implements Serializable, Cloneable {
 
 	// Constructor
 	public Unit() {
-		super();
+		this(0f);
 	}
 
 	public Unit(float pValue) {
