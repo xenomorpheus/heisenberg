@@ -128,8 +128,8 @@ public class ScenarioSet01 {
 		try {
 			hobbit.eat(cookie);
 			System.out.println("Hobbit ate a cookie");
-		} catch (ExceptionInvalidType e) {
-			fail("Failed to eat Cookie");
+		} catch (Exception e) {
+			fail("Failed to eat Cookie because "+e.toString());
 		}
 	}
 
