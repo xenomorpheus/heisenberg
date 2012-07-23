@@ -41,25 +41,23 @@ public class CloakTest {
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
 
-
 	}
-	
+
 	@Test
-	public void testIsHumanoidClothing(){
+	public void testIsHumanoidClothing() {
 		Cloak cloak = new Cloak();
 		assertTrue("is humanoid clothing", cloak.isClothing());
 	}
 
 	@Test
-	public void testIsWearable(){
+	public void testIsWearable() {
 		Human human = new Human();
 		Cloak cloak = new Cloak();
 		try {
-		human.wear(cloak);
-		}
-		catch (Exception e){
-			fail (e.toString());
+			human.wear(cloak);
+		} catch (Exception e) {
+			fail(e.toString());
 		}
 	}
-	
+
 }
