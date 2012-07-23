@@ -32,7 +32,7 @@ public class ItemContainerTest {
 			Bag bag = new Bag();
 			bag.setWeightMax(weightMax);
 			bag.setVolumeMax(volumeMax);
-			// Item
+			// IItem
 			Cookie i = new Cookie();
 			// This should just fit
 			i.setVolumeBase(volumeMax);

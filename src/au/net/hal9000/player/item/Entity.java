@@ -18,7 +18,7 @@ public abstract class Entity extends ItemImpl {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * A list of items ({@link Item}) stowed.
+	 * A list of items ({@link IItem}) stowed.
 	 */
 	private ItemContainer worn = new Box("Worn");
 	/**
@@ -26,7 +26,7 @@ public abstract class Entity extends ItemImpl {
 	 */
 	private ItemContainer equipment = new Box("Equipment");
 	/**
-	 * A list of items ({@link Item}) worn.
+	 * A list of items ({@link IItem}) worn.
 	 */
 	private ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 	/**
@@ -159,7 +159,7 @@ public abstract class Entity extends ItemImpl {
 	 * @param pFood
 	 * @throws ExceptionInvalidType
 	 */
-	public void eat(Item pFood) throws ExceptionInvalidType {
+	public void eat(IItem pFood) throws ExceptionInvalidType {
 		if (pFood.isHumanoidFood()) {
 			throw new ExceptionInvalidType(this.getName() + " can't eat "
 					+ pFood.getName());
@@ -220,7 +220,7 @@ public abstract class Entity extends ItemImpl {
 
 	/** {@inheritDoc} */
 	@Override
-	public int getIndexOfChild(Item child) {
+	public int getIndexOfChild(IItem child) {
 		// TODO
 		return -1;
 	}

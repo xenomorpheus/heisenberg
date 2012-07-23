@@ -36,7 +36,7 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 		pSword.setLocation(this);
 	}
 
-	public Sword remove(Item pLocation) throws ExceptionCantRemove {
+	public Sword remove(IItem pLocation) throws ExceptionCantRemove {
 		if (sword == null) {
 			throw new ExceptionCantRemove("scabbard empty");
 		}
@@ -69,7 +69,7 @@ public class Scabbard extends ItemImpl implements SwordSheath {
 
 	/** {@inheritDoc} */
 	@Override
-	public int getIndexOfChild(Item child) {
+	public int getIndexOfChild(IItem child) {
 		// TODO
 		return -1;
 	}

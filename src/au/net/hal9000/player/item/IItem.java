@@ -4,7 +4,7 @@ import java.util.Stack;
 
 import au.net.hal9000.player.units.*;
 
-public interface Item {
+public interface IItem {
 
 	// Feature
 
@@ -80,9 +80,9 @@ public interface Item {
 	public void setValueBase(Currency pValueBase);
 
 	// location
-	public Item getLocation();
+	public IItem getLocation();
 
-	public void setLocation(Item location);
+	public void setLocation(IItem location);
 
 	// hitPoints
 	public void setHitPoints(float hitPoints);
@@ -91,11 +91,11 @@ public interface Item {
 
 	public ItemImpl getOwner();
 
-	public void setOwner(Item owner);
+	public void setOwner(IItem owner);
 
 	// misc methods
 
-	// public boolean equals(Item other);
+	// public boolean equals(IItem other);
 
 	// Attempt to unlink the item from everything so that
 	// it can be garbage collected.
@@ -114,7 +114,7 @@ public interface Item {
 	/**
 	 * This is used for tree traversal.
 	 * 
-	 * @return True unless this Item has child Items.<br>
+	 * @return True unless this IItem has child Items.<br>
 	 */
 	public boolean isLeaf();
 
@@ -126,9 +126,9 @@ public interface Item {
 	public int getChildCount();
 
 	/**
-	 * Fetch any numbered child of a node for the JTree. Our model returns Item
+	 * Fetch any numbered child of a node for the JTree. Our model returns IItem
 	 * objects for all nodes in the tree. The JTree displays these by calling
-	 * the Item.toString() method.
+	 * the IItem.toString() method.
 	 * 
 	 * @param index
 	 * @return
@@ -141,12 +141,12 @@ public interface Item {
 	 * @param child
 	 * @return
 	 */
-	public int getIndexOfChild(Item child) ;
+	public int getIndexOfChild(IItem child) ;
 
 	/**
 	 * Figure out a child's position in its parent node.
 	 * 
 	 * @return
 	 */
-	public Stack<Item> getChildren();
+	public Stack<IItem> getChildren();
 }

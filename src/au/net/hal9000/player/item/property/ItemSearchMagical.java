@@ -3,7 +3,7 @@ package au.net.hal9000.player.item.property;
 import java.util.Iterator;
 import java.util.Vector;
 
-import au.net.hal9000.player.item.Item;
+import au.net.hal9000.player.item.IItem;
 
 public class ItemSearchMagical extends ItemSearch {
 
@@ -11,27 +11,27 @@ public class ItemSearchMagical extends ItemSearch {
 		super();
 	}
 
-	public void visit(Item item) {
+	public void visit(IItem iItem) {
 		// System.out.println("Checking for Magical " + item + " "
 		// 		+ item.isMagical());
 		// System.out.println("  Class " + item.getClass().getName());
-		if (item.isMagical()) {
-			this.addMatchingItems(item);
-			System.out.println("Matching " + item + "  count  "
+		if (iItem.isMagical()) {
+			this.addMatchingItems(iItem);
+			System.out.println("Matching " + iItem + "  count  "
 					+ this.getMatchingItemsCount());
 		}
 	}
 
-	public void visit(Vector<Item> itemVector) {
-		Iterator<Item> itr = itemVector.iterator();
+	public void visit(Vector<IItem> itemVector) {
+		Iterator<IItem> itr = itemVector.iterator();
 		while (itr.hasNext()) {
-			Item item = itr.next();
+			IItem iItem = itr.next();
 			// System.out.println("Checking for Magical " + item + " "
 			//		+ item.isMagical());
 			// System.out.println("  Class " + item.getClass().getName());
-			if (item.isMagical()) {
-				this.addMatchingItems(item);
-				System.out.println("Matching " + item + "  count  "
+			if (iItem.isMagical()) {
+				this.addMatchingItems(iItem);
+				System.out.println("Matching " + iItem + "  count  "
 						+ this.getMatchingItemsCount());
 			}
 		}

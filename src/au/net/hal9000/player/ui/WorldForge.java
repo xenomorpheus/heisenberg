@@ -77,7 +77,7 @@ public class WorldForge {
 		JScrollPane scrollpane = new JScrollPane(tree);
 
 		// Display it all in a window and make the window appear
-		JFrame frame = new JFrame("Item Tree Demo");
+		JFrame frame = new JFrame("IItem Tree Demo");
 		frame.addWindowListener(new ExitListener());
 		frame.getContentPane().add(scrollpane, "Center");
 		frame.setSize(400, 600);

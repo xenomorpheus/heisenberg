@@ -68,7 +68,7 @@ public class Hand extends ItemImpl {
 		return magicRingMax;
 	}
 
-	public void ringRemove(Ring ring, Item newLocation)
+	public void ringRemove(Ring ring, IItem newLocation)
 			throws ExceptionCantRemove {
 
 		if (!this.rings.removeElement(ring)) {

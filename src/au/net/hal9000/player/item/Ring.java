@@ -2,7 +2,7 @@ package au.net.hal9000.player.item;
 
 import au.net.hal9000.player.units.Currency;
 
-//A ring is an Item except:
+//A ring is an IItem except:
 //* Default description is "small metalic ring".
 //* Default value is 5gp ?
 //* Default weight ?

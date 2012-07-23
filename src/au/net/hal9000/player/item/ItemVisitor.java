@@ -3,8 +3,8 @@ package au.net.hal9000.player.item;
 import java.util.Vector;
 
 public interface ItemVisitor {
-	void visit(Item item);
+	void visit(IItem iItem);
 
-	void visit(Vector<Item> items);
+	void visit(Vector<IItem> iItems);
 
 }

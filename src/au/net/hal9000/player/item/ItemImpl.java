@@ -9,7 +9,7 @@ import java.util.Stack;
 
 import au.net.hal9000.player.units.*;
 
-//Item:
+//IItem:
 //* An item has a name which is text.
 //* An item has a description which is text.
 //* An item has a weight which is measured in pounds which defaults to zero.
@@ -32,7 +32,7 @@ import au.net.hal9000.player.units.*;
 //* An item may be damaged by acid which will...
 //* An item may be repaired which will ...
 
-public abstract class ItemImpl implements Item, Serializable, Cloneable {
+public abstract class ItemImpl implements IItem, Serializable, Cloneable {
 
 	/**
 	 * 
@@ -65,8 +65,8 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	// static methods
-	public static boolean null_safe_equals(Item item, Item itemOther) {
-		if (item == null) {
+	public static boolean null_safe_equals(IItem iItem, IItem itemOther) {
+		if (iItem == null) {
 			if (itemOther == null) {
 				return true;
 			}
@@ -77,7 +77,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 			return false;
 		}
 
-		return item.equals(itemOther);
+		return iItem.equals(itemOther);
 	}
 
 	// instance methods
@@ -222,11 +222,11 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		this.valueBase = pValueBase;
 	}
 
-	public Item getLocation() {
+	public IItem getLocation() {
 		return this.location;
 	}
 
-	public void setLocation(Item location) {
+	public void setLocation(IItem location) {
 		this.location = (ItemImpl) location;
 	}
 
@@ -242,7 +242,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		return owner;
 	}
 
-	public void setOwner(Item owner) {
+	public void setOwner(IItem owner) {
 		this.owner = (ItemImpl) owner;
 	}
 
@@ -353,7 +353,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		if (valueBase != null) {
 			str = str.concat("Value Base: " + valueBase + "\n");
 		}
-		Item location = this.getLocation();
+		IItem location = this.getLocation();
 		if (location != null) {
 			str = str.concat("Location: " + location.getName() + "\n");
 		}
@@ -440,19 +440,19 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 
 	/** {@inheritDoc} */
 	@Override
-	public Item getChild(int index) {
+	public IItem getChild(int index) {
 		return null;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public int getIndexOfChild(Item child) {
+	public int getIndexOfChild(IItem child) {
 		return -1;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Stack<Item> getChildren() {
-		return new Stack<Item>();
+	public Stack<IItem> getChildren() {
+		return new Stack<IItem>();
 	}
 }

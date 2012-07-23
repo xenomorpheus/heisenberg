@@ -12,25 +12,25 @@ public class ItemImplTest {
 	@Test
 	public void testItem() {
 		Cookie i = new Cookie();
-		assertEquals("Item() name", "Cookie", i.getName());
-		assertEquals("Item() description", "", i.getDescription());
-//		assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
-//		assertTrue("Item() weightMax", i.getWeightMax().equals(0F));
-//		assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
-		assertEquals("Item() location", null, i.getLocation());
+		assertEquals("IItem() name", "Cookie", i.getName());
+		assertEquals("IItem() description", "", i.getDescription());
+//		assertTrue("IItem() weightBase", i.getWeightBase().equals(0F));
+//		assertTrue("IItem() weightMax", i.getWeightMax().equals(0F));
+//		assertTrue("IItem() volumeBase", i.getVolumeBase().equals(0F));
+		assertEquals("IItem() location", null, i.getLocation());
 	}
 
 	@Test
 	public void testItemWithName() {
 		Cookie i = new Cookie("The Name");
-		assertEquals("Item() name", "The Name", i.getName());
+		assertEquals("IItem() name", "The Name", i.getName());
 	}
 
 	@Test
 	public void testItemWithNameAndDescription() {
 		Cookie i = new Cookie("The Name", "The Description");
-		assertEquals("Item() name", "The Name", i.getName());
-		assertEquals("Item() description", "The Description",
+		assertEquals("IItem() name", "The Name", i.getName());
+		assertEquals("IItem() description", "The Description",
 				i.getDescription());
 	}
 

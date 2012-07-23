@@ -50,15 +50,15 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 
 	/** {@inheritDoc} */
 	@Override
-	public int getIndexOfChild(Item child) {
+	public int getIndexOfChild(IItem child) {
 		// TODO
 		return -1;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Stack <Item> getChildren(){
-		Stack <Item> children = super.getChildren();
+	public Stack <IItem> getChildren(){
+		Stack <IItem> children = super.getChildren();
 		// TODO what about items in contents ?
 		return children;
 	}
@@ -152,7 +152,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 * @return the top item in the contents
 	 * @throws EmptyStackException
 	 */
-	public Item pop() throws EmptyStackException {
+	public IItem pop() throws EmptyStackException {
 		return contents.pop();
 	}
 
@@ -162,7 +162,7 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 * @return The top item.
 	 * @throws EmptyStackException
 	 */
-	public Item peek() throws EmptyStackException {
+	public IItem peek() throws EmptyStackException {
 		return contents.peek();
 	}
 
@@ -197,8 +197,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 */
 	private Weight getContentsWeight() {
 		Weight total = new Weight();
-		for (Item item : getContents()) {
-			total.add(item.getWeight());
+		for (IItem iItem : getContents()) {
+			total.add(iItem.getWeight());
 		}
 		return total;
 	}
@@ -211,8 +211,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 */
 	private Volume getContentsVolume() {
 		Volume total = new Volume();
-		for (Item item : getContents()) {
-			total.add(item.getVolume());
+		for (IItem iItem : getContents()) {
+			total.add(iItem.getVolume());
 		}
 		return total;
 	}
@@ -225,8 +225,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	 */
 	private Currency getContentsValue() {
 		Currency total = new Currency();
-		for (Item item : getContents()) {
-			total.add(item.getValue());
+		for (IItem iItem : getContents()) {
+			total.add(iItem.getValue());
 		}
 		return total;
 	}
@@ -235,8 +235,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	// Find contents that match the criteria
 	public void accept(ItemVisitor visitor) {
 		// Search the Items directly declared in this class.
-		for (Item item : getContents()) {
-			visitor.visit(item);
+		for (IItem iItem : getContents()) {
+			visitor.visit(iItem);
 		}
 		// Get super to do the rest.
 		super.accept(visitor);
@@ -246,8 +246,8 @@ public abstract class ItemContainer extends ItemImpl implements Serializable {
 	public void beNot() {
 		// Call beNot on the Items directly declared in this class.
 		while (!contents.isEmpty()) {
-			Item item = contents.pop();
-			item.beNot();
+			IItem iItem = contents.pop();
+			iItem.beNot();
 		}
 		// Get super to do the rest.
 		super.beNot();

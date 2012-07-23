@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-// This is NOT an Item
+// This is NOT an IItem
 /**
  * A representation of currency, value, wealth.
  * 

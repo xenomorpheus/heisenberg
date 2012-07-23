@@ -33,7 +33,7 @@ public class LocationTest {
 			Location location = new Location("World");
 			location.setWeightMax(weightMax);
 			location.setVolumeMax(volumeMax);
-			// Item
+			// IItem
 			Cookie i = new Cookie();
 			// This should just fit
 			i.setVolumeBase(volumeMax);

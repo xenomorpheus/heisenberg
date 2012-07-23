@@ -1,3 +1,7 @@
+Rename Item to IItem
+Rename ItemImpl to Item
+
+
 JavaDoc templates for auto Javadoc when writing methods, etc.
 1) See examples from eclipse templates.
 

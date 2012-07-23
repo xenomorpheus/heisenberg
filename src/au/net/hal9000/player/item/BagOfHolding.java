@@ -82,13 +82,13 @@ public class BagOfHolding extends Bag {
 
 	// take the item out of the bag and place
 	// at newLocation
-	public Item getItem(Item item, Item newLocation){
+	public IItem getItem(IItem iItem, IItem newLocation){
         Vector <ItemImpl> items = this.getContents();
-		if (! items.removeElement(item)) {
+		if (! items.removeElement(iItem)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
-		item.setLocation(newLocation);
-		return item;
+		iItem.setLocation(newLocation);
+		return iItem;
 	}
 
 	// Magic

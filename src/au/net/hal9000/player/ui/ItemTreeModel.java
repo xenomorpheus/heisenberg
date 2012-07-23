@@ -3,7 +3,7 @@ package au.net.hal9000.player.ui;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
 
-import au.net.hal9000.player.item.Item;
+import au.net.hal9000.player.item.IItem;
 
 /**
  * The methods in this class allow the JTree component to traverse the file
@@ -11,9 +11,9 @@ import au.net.hal9000.player.item.Item;
  **/
 class ItemTreeModel implements TreeModel {
 	// We specify the root directory when we create the model.
-	protected Item root;
+	protected IItem root;
 
-	public ItemTreeModel(Item root) {
+	public ItemTreeModel(IItem root) {
 		this.root = root;
 	}
 
@@ -24,24 +24,24 @@ class ItemTreeModel implements TreeModel {
 
 	// Tell JTree whether an object in the tree is a leaf or not
 	public boolean isLeaf(Object node) {
-		return  ((Item) node).isLeaf();
+		return  ((IItem) node).isLeaf();
 	}
 
 	// Tell JTree how many children a node has
 	public int getChildCount(Object node) {
-		return ((Item) node).getChildCount();
+		return ((IItem) node).getChildCount();
 	}
 
 	// Fetch any numbered child of a node for the JTree.
-	// Our model returns Item objects for all nodes in the tree. The
-	// JTree displays these by calling the Item.toString() method.
+	// Our model returns IItem objects for all nodes in the tree. The
+	// JTree displays these by calling the IItem.toString() method.
 	public Object getChild(Object parent, int index) {
-		return ((Item) parent).getChild(index);
+		return ((IItem) parent).getChild(index);
 	}
 
 	// Figure out a child's position in its parent node.
 	public int getIndexOfChild(Object parent, Object child) {
-		return ((Item) parent).getIndexOfChild((Item)child);
+		return ((IItem) parent).getIndexOfChild((IItem)child);
 	}
 
 	// This method is only invoked by the JTree for editable trees.
