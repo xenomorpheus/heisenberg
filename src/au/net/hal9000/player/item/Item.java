@@ -1,5 +1,7 @@
 package au.net.hal9000.player.item;
 
+import java.util.Stack;
+
 import au.net.hal9000.player.units.*;
 
 public interface Item {
@@ -128,7 +130,6 @@ public interface Item {
 	 * objects for all nodes in the tree. The JTree displays these by calling
 	 * the Item.toString() method.
 	 * 
-	 * @param parent
 	 * @param index
 	 * @return
 	 */
@@ -137,9 +138,15 @@ public interface Item {
 	/**
 	 * Figure out a child's position in its parent node.
 	 * 
-	 * @param parent
 	 * @param child
 	 * @return
 	 */
 	public int getIndexOfChild(Item child) ;
+
+	/**
+	 * Figure out a child's position in its parent node.
+	 * 
+	 * @return
+	 */
+	public Stack<Item> getChildren();
 }
