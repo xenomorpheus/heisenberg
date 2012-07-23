@@ -64,7 +64,7 @@ public class WorldForge {
 
 		Scabbard scabbard2 = new Scabbard("Scabbard2");
 		scabbard2.add(new Sword());
-		human.wear(scabbard2);
+		human.equip(scabbard2);
 		
 		// Create a TreeModel object to represent our tree of files
 		ItemTreeModel model = new ItemTreeModel(world);
