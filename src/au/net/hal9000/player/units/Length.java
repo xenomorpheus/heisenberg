@@ -15,14 +15,10 @@ public class Length extends Unit implements Serializable, Cloneable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// TODO is this explicit constructor best practice?
 	public Length(){
-		// TODO is this explicit super() J.B.P.?
 		super();
 	}
-	// TODO is this explicit constructor best practice?
 	public Length(float f){
-		// TODO is this explicit super() J.B.P.?
 		super(f);
 	}
 
