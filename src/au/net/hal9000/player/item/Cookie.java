@@ -11,7 +11,7 @@ public class Cookie extends Item {
 	private static final long serialVersionUID = 1L;
 
 	public Cookie() {
-		super("Cookie");
+		this("Cookie");
 	}
 
 	public Cookie(String pName) {
@@ -31,7 +31,8 @@ public class Cookie extends Item {
 	// Methods
 
 	// Static
-	public static Cookie thawFromFile(String filename) throws IOException, ClassNotFoundException {
+	public static Cookie thawFromFile(String filename) throws IOException,
+			ClassNotFoundException {
 		FileInputStream fis = new FileInputStream(filename);
 		ObjectInputStream in = new ObjectInputStream(fis);
 		Cookie newObj = (Cookie) in.readObject();
