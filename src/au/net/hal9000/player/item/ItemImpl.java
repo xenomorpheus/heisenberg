@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Stack;
 
 import au.net.hal9000.player.units.*;
 
@@ -41,10 +42,10 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	// we don't want to have to keep checking for null
 	private String name = "";
 	private String description = "";
-	private Weight weightBase = new Weight();
-	private Weight weightMax = new Weight();
-	private Volume volumeBase = new Volume();
-	private Volume volumeMax = new Volume();
+	private Weight weightBase = null;
+	private Weight weightMax = null;
+	private Volume volumeBase = null;
+	private Volume volumeMax = null;
 	private Currency valueBase = new Currency();
 	private ItemImpl location = null;
 	private float hitPoints = 0F;
@@ -83,38 +84,42 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 
 	// Feature
 
+	@Override
 	public boolean isMagical() {
 		return false;
 	}
 
+	@Override
 	public boolean isExtraDimensional() {
 		return false;
 	}
 
+	@Override
 	public boolean isHumanoidFood() {
 		return false;
 	}
 
+	@Override
 	public boolean isHumanoidMount() {
 		return false;
 	}
 
+	@Override
 	public boolean isRingWearer() {
 		return false;
 	}
 
+	@Override
 	public boolean isLiving() {
 		return false;
 	}
 
-	public boolean isDefence() {
-		return false;
-	}
-
+	@Override
 	public boolean isClothing() {
 		return false;
 	}
 
+	@Override
 	public boolean isSharp() {
 		return false;
 	}
@@ -252,8 +257,9 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 		return weightBase;
 	}
 
-	/** Items are considered equal if all their
-	 * properties are the same except for location.
+	/**
+	 * Items are considered equal if all their properties are the same except
+	 * for location.
 	 */
 	public boolean equals(ItemImpl other) {
 		if (this == other)
@@ -295,12 +301,13 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 			return false;
 		if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
 			return false;
-		/* We can't check the location because checking of deep persistence 
-		 * will break.  Nested objects will have different locations.
+		/*
+		 * We can't check the location because checking of deep persistence will
+		 * break. Nested objects will have different locations.
 		 */
-		
-//		if (!ItemImpl.null_safe_equals(location, other.getLocation()))
-//			return false;
+
+		// if (!ItemImpl.null_safe_equals(location, other.getLocation()))
+		// return false;
 		if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
 			return false;
 		// call equals on any super class.
@@ -324,7 +331,7 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	public String toString() {
-		return name;
+		return this.getClass().getSimpleName() + ": " + name;
 	}
 
 	public String detailedDescription() {
@@ -420,22 +427,32 @@ public abstract class ItemImpl implements Item, Serializable, Cloneable {
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public boolean isLeaf() {
 		return true;
 	}
 
 	/** {@inheritDoc} */
+	@Override
 	public int getChildCount() {
 		return 0;
 	}
 
 	/** {@inheritDoc} */
-	public Item getChild(int index){
+	@Override
+	public Item getChild(int index) {
 		return null;
 	}
 
 	/** {@inheritDoc} */
-	public int getIndexOfChild(Item child){
+	@Override
+	public int getIndexOfChild(Item child) {
 		return -1;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Stack<Item> getChildren() {
+		return new Stack<Item>();
 	}
 }
