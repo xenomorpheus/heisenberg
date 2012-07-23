@@ -40,6 +40,7 @@ public abstract class Entity extends ItemImpl {
 
 	// Features
 	// TODO Consider moving to a Marker Interface
+	@Override
 	public boolean isLiving() {
 		return true;
 	}
