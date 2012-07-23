@@ -15,6 +15,7 @@ public class Cloak extends Item {
 	}
 
 	// Features
+	/** {@inheritDoc} */
 	@Override
 	public boolean isClothing() {
 		return true;
