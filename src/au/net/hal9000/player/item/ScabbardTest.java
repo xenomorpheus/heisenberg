@@ -41,24 +41,22 @@ public class ScabbardTest {
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
 
-
 	}
-	
+
 	@Test
-	public void testIsHumanoidClothing(){
+	public void testIsHumanoidClothing() {
 		Scabbard scabbard = new Scabbard();
 		assertTrue("is humanoid clothing", scabbard.isClothing());
 	}
 
 	@Test
-	public void testIsWearable(){
+	public void testIsWearable() {
 		Human human = new Human();
 		Scabbard scabbard = new Scabbard();
 		try {
-		human.wear(scabbard);
-		}
-		catch (Exception e){
-			fail (e.toString());
+			human.wear(scabbard);
+		} catch (Exception e) {
+			fail(e.toString());
 		}
 	}
 
