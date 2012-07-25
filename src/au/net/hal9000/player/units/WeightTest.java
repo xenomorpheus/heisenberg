@@ -2,6 +2,7 @@ package au.net.hal9000.player.units;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,8 +28,9 @@ public class WeightTest {
 	}
 	@Test
 	public void testPersistence() {
-
-		String filename = "/tmp/weight_persit_test.ser"; // TODO unique volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"weight_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();
 		Weight old = new Weight(1.45f);
 		// Store the object
 		try {

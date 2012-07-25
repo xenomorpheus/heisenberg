@@ -125,7 +125,6 @@ public interface IItem {
 	// Find items that match the criteria
 	public void accept(ItemVisitor visitor);
 
-	// TODO public void accept(Damage damage);
 
 	/**
 	 * This is used for tree traversal.

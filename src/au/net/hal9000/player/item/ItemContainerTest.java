@@ -2,6 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
@@ -178,8 +179,9 @@ public class ItemContainerTest {
 	@Test
 	public void testPersistenceShallow() {
 
-		String filename = "/tmp/empty_bag_persit_test.ser"; // TODO unique
-															// volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"empty_bag_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();
 		Bag old = new Bag();
 		// Store the object
 		try {
@@ -203,9 +205,9 @@ public class ItemContainerTest {
 
 	@Test
 	public void testPersistenceDeep() {
-
-		String filename = "/tmp/bag_persit_test.ser"; // TODO unique volatile
-														// filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"bag_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();		
 		Bag old = new Bag("World");
 		old.add(new Cookie());
 		// Store the object
@@ -248,10 +250,10 @@ public class ItemContainerTest {
 		Cookie cookie = new Cookie();
 		Cookie cookie2 = new Cookie();
 		bag.add(cookie);
-		assertEquals("getChildCount", (Item)cookie, (Item)bag.getChild(0));
+		assertEquals("getChildCount", (Item) cookie, (Item) bag.getChild(0));
 		bag.add(cookie2);
-		assertEquals("getChildCount", (Item)cookie, (Item)bag.getChild(0));
-		assertEquals("getChildCount", (Item)cookie2, (Item)bag.getChild(1));
+		assertEquals("getChildCount", (Item) cookie, (Item) bag.getChild(0));
+		assertEquals("getChildCount", (Item) cookie2, (Item) bag.getChild(1));
 	}
 
 	@Test

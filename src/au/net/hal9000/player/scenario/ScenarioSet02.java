@@ -3,6 +3,7 @@ package au.net.hal9000.player.scenario;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -20,7 +21,9 @@ public class ScenarioSet02 {
 		old.add(cookie);
 		old.add(cookie2);
 
-		String filename = "/tmp/location_persit_test.ser"; // TODO unique volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"location_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();
 		// Store the object
 		try {
 			old.freezeToFile(filename);

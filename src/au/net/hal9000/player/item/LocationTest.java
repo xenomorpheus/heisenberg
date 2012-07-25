@@ -2,6 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
@@ -180,9 +181,9 @@ public class LocationTest {
 	@Test
 	public void testPersistenceShallow() {
 
-		String filename = "/tmp/empty_location_persit_test.ser"; // TODO unique
-																	// volatile
-																	// filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"empty_location_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();		
 		Location old = new Location("World");
 		// Store the object
 		try {
@@ -207,9 +208,9 @@ public class LocationTest {
 
 	@Test
 	public void testPersistenceDeep() {
-
-		String filename = "/tmp/location_persit_test.ser"; // TODO unique
-															// volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"location_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();		
 		Location old = new Location("World");
 		old.add(new Cookie());
 		// Store the object

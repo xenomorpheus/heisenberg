@@ -1,6 +1,7 @@
 package au.net.hal9000.player.units;
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -97,18 +98,21 @@ public class CurrencyTest {
 		assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), 0.00001F);
 	}
 	
-	// TODO equals
 	@Test
 	public void testEquals() {
 		Currency cc = new Currency(1,2,4,8);
-		Currency cc2 = new Currency(1,2,4,8);
-		assertTrue("equals", cc.equals(cc2));
+		assertTrue("equals", cc.equals(new Currency(1,2,4,8)));
+		assertFalse("not equals", cc.equals(new Currency(2,2,4,8)));
+		assertFalse("not equals", cc.equals(new Currency(1,3,4,8)));
+		assertFalse("not equals", cc.equals(new Currency(1,2,5,8)));
+		assertFalse("not equals", cc.equals(new Currency(1,2,4,9)));
 	}
 	
 	@Test
 	public void testPersistence() {
-
-		String filename = "/tmp/currency_persit_test.ser"; // TODO unique volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"currency_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();		
 		Currency old = new Currency(1,2,4,8);
 		// Store the object
 		try {

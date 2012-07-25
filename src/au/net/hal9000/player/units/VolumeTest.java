@@ -2,6 +2,7 @@ package au.net.hal9000.player.units;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,8 +28,9 @@ public class VolumeTest {
 	}
 	@Test
 	public void testPersistence() {
-
-		String filename = "/tmp/volume_persit_test.ser"; // TODO unique volatile filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"volume_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();
 		Volume old = new Volume(5.67f);
 		// Store the object
 		try {

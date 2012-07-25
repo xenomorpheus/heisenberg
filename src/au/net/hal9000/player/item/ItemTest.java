@@ -2,6 +2,7 @@ package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
 
@@ -117,9 +118,9 @@ public class ItemTest {
 
 	@Test
 	public void testPersistence() {
-
-		String filename = "/tmp/cookie_persit_test.ser"; // TODO unique volatile
-															// filename
+		File fileObj = new File(System.getProperty("java.io.tmpdir"),
+				"cookie_persit_test.ser");
+		String filename = fileObj.getAbsolutePath();
 		Cookie old = new Cookie();
 		// Store the object
 		try {
