@@ -94,14 +94,14 @@ public class BagOfHolding extends Bag {
 	}
 
 	// Magic
-	/** {@inheritDoc} */
+	/** Contents don't add to weight for a BoH */
 	@Override
 	public Weight getWeight() {
 		return this.getWeightBase();
 	}
 
 	// Magic
-	/** {@inheritDoc} */
+	/** Contents don't add to volume for a BoH */
 	@Override
 	public Volume getVolume() {
 		return this.getVolumeBase();

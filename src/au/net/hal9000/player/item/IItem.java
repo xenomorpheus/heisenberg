@@ -8,20 +8,28 @@ public interface IItem {
 
 	// Feature
 
+	/** Is this item magical? */
 	public boolean isMagical();
 
+	/** Is a part of this item in another dimension ? */
 	public boolean isExtraDimensional();
 
+	/** Is this food for humans? */
 	public boolean isHumanoidFood();
 
+	/** Is a Humanoid able to ride this item? */
 	public boolean isHumanoidMount();
 
+	/** Is this item able to wear a ring? */
 	public boolean isRingWearer();
 
+	/** Is this item living? */
 	public boolean isLiving();
 
+	/** Is this an item of clothing? */
 	public boolean isClothing();
 
+	/** Is this item sharp? e.g. knife, blade */
 	public boolean isSharp();
 
 	// Getters and Setters

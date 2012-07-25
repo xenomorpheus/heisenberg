@@ -63,9 +63,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 		return children;
 	}
 
-	/**
-	 * The total weight including the contents.
-	 */
+	/** Total weight, including contents. */
 	@Override
 	public Weight getWeight() {
 		Weight total = this.getWeightBase();
@@ -76,9 +74,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 		return total;
 	}
 
-	/**
-	 * The total volume including the contents.
-	 */
+	/** Total volume, including contents. */
 	@Override
 	public Volume getVolume() {
 		Volume total = this.getVolumeBase();
@@ -88,9 +84,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 		return total;
 	}
 
-	/**
-	 * The total value including the contents.
-	 */
+	/** Total value, including contents. */
 	@Override
 	public Currency getValue() {
 		Currency total = new Currency(this.getValueBase());
