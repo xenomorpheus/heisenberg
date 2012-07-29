@@ -155,7 +155,6 @@ public abstract class Entity extends Item {
 	/** {@inheritDoc} */
 	@Override
 	public int getChildCount() {
-		// TODO consider Items in super
 		int count = super.getChildCount();
 		if (equipment != null) {
 			count++;
