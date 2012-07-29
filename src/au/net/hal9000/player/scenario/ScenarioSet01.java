@@ -109,7 +109,7 @@ public class ScenarioSet01 {
 		System.out.println("Arrow location: " + arrow.getLocation());
 	}
 
-	// TODO
+	// TODO candle runs out
 	@Test
 	public void candleRunsOut() {
 		System.out.println("\n** A candle runs out.");
