@@ -1,6 +1,6 @@
 package au.net.hal9000.player.item;
 
-public class HumanoidHead extends Entity {
+public class HumanoidHead extends Item {
 
 	/**
 	 * 
