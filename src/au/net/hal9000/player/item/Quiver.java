@@ -6,6 +6,8 @@ public class Quiver extends ItemContainer {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    private static final float defaultVolumeMax = 20; // TODO quiver volume default
+    // 20 times volume of an arrow ?
 
 	public Quiver() {
 		this("Quiver");
@@ -13,6 +15,7 @@ public class Quiver extends ItemContainer {
 
 	public Quiver(String pName) {
 		super(pName);
+		this.setVolumeMax(defaultVolumeMax);
 	}
 
 	public void add(Arrow pArrow) {
