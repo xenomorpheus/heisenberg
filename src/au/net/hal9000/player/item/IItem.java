@@ -113,9 +113,10 @@ public interface IItem {
 
 	// public boolean equals(IItem other);
 
-	// Attempt to unlink the item from everything so that
-	// it can be garbage collected.
-	// Won't work if anything is referencing this item.
+	/** Attempt to unlink the item from everything so that
+	 * it can be garbage collected.
+	 *  Won't work if anything is referencing this item.
+	 */
 	public void beNot();
 
 	public String toString();

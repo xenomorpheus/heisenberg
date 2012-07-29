@@ -359,9 +359,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		return true;
 	}
 
-	// Attempt to unlink the item from everything so that
-	// it can be garbage collected.
-	// Won't work if anything is referencing this item.
 	/** {@inheritDoc} */
 	@Override
 	public void beNot() {
