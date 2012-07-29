@@ -35,8 +35,6 @@ public class WorldForge {
 		Bag backpack = new Backpack("Backpack1");
 		backpack.setWeightMax(100000);
 		backpack.setVolumeMax(100000);
-		backpack.add(new Arrow("Arrow1"));
-		backpack.add(new Backpack("Backpack1"));
 		backpack.add(new Bag("Bag1"));
 		backpack.add(new BagOfHolding(1));
 		backpack.add(new Box("Box1"));
@@ -45,16 +43,19 @@ public class WorldForge {
 		backpack.add(new Cookie("Cookie1"));
 		backpack.add(new Crossbow());
 		backpack.add(new CrossbowBolt());
-		backpack.add(new Hand());
-		backpack.add(new Human());
 		backpack.add(new Location("Location"));
 		backpack.add(new MagicRing());
-		backpack.add(new Quiver());
 		backpack.add(new Ring());
 		backpack.add(scabbard);
-		backpack.add(new Shield());
 		backpack.add(new Torch());
 		human.equip(backpack);
+		human.equip(new Shield());
+
+		Quiver quiver = new Quiver();
+		quiver.add(new Arrow());
+		quiver.add(new Arrow());
+		quiver.add(new Arrow());
+		human.equip(quiver);
 
 		Bag bag2 = new Bag("Bag2");
 		human.equip(bag2);
