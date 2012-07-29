@@ -102,4 +102,69 @@ public abstract class Humanoid extends Entity {
 		// Get super to do the rest.
 		super.beNot();
 	}
+
+	// Traverse Tree
+	/** {@inheritDoc} */
+	@Override
+	public boolean isLeaf() {
+		return false;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int getChildCount() {
+		int count = super.getChildCount();
+		count++; // head
+		if (leftHand != null) {
+			count++;
+		}
+		if (rightHand != null) {
+			count++;
+		}
+		return count;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Item getChild(int index) {
+		// Note: index is zero offset, count is not.
+		int child_count = super.getChildCount();
+		// Child is on super.
+		if (index < child_count) {
+			return (Item) super.getChild(index);
+		}
+		// Make index relative to this class;
+		index -= child_count;
+
+		// head
+		if (index == 0) {
+			return head;
+		}
+		index--;
+
+		// leftHand
+		if (leftHand != null) {
+			if (index == 0) {
+				return leftHand;
+			}
+			index--;
+		}
+
+		// rightHand
+		if (rightHand != null) {
+			if (index == 0) {
+				return rightHand;
+			}
+			index--;
+		}
+		return null;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public int getIndexOfChild(IItem child) {
+		// TODO
+		return -1;
+	}
+
 }
