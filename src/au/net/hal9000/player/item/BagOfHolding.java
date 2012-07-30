@@ -78,7 +78,7 @@ public class BagOfHolding extends Bag {
 			this.setVolumeMax(150F);
 			this.setValueBase(new Currency(0, 10000, 0, 0));
 		}
-		this.setVolumeBase(2F); // TODO
+		this.setVolumeBase(2F); // TODO set default volume
 
 	}
 
