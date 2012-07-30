@@ -51,7 +51,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 	/** {@inheritDoc} */
 	@Override
 	public int getIndexOfChild(IItem child) {
-		// TODO
+		// TODO getIndexOfChild
 		return -1;
 	}
 

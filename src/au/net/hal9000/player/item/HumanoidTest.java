@@ -73,5 +73,7 @@ public class HumanoidTest {
 		}
 
 	}
+	// TODO clone
+	// TODO persistence
 
 }

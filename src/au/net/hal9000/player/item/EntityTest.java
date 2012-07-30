@@ -18,4 +18,7 @@ public class EntityTest {
 		}
 	}
 
+	// TODO equals
+	// TODO clone
+	// TODO persistence
 }

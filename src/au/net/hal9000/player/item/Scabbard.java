@@ -62,7 +62,7 @@ public class Scabbard extends Item implements SwordSheath {
 
 	/** {@inheritDoc} */
 	public Item getChild(int index) {
-		// TODO
+		// TODO consider any super
 		// int count = super.getChildCount();
 		return sword;
 	}
@@ -70,7 +70,7 @@ public class Scabbard extends Item implements SwordSheath {
 	/** {@inheritDoc} */
 	@Override
 	public int getIndexOfChild(IItem child) {
-		// TODO
+		// TODO getIndexOfChild
 		return -1;
 	}
 

@@ -163,8 +163,16 @@ public abstract class Humanoid extends Entity {
 	/** {@inheritDoc} */
 	@Override
 	public int getIndexOfChild(IItem child) {
-		// TODO
+		// TODO getIndexOfChild
 		return -1;
+	}
+
+	// Find items that match the criteria
+	/** {@inheritDoc} */
+	@Override
+	public void accept(ItemVisitor visitor) {
+		// TODO visit head, optional hands then super
+		visitor.visit(this);
 	}
 
 }

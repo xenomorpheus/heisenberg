@@ -415,10 +415,12 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		visitor.visit(this);
 	}
 
+	// TODO what about Weight/Volume/Currency etc
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
 	}
 
+	// TODO what about Weight/Volume/Currency etc
 	private void readObject(ObjectInputStream in) throws IOException,
 			ClassNotFoundException {
 		// our "pseudo-constructor"
@@ -477,6 +479,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		out.close();
 	}
 
+	// TODO thawFormFile
+	
 	/** {@inheritDoc} */
 	@Override
 	public boolean isLeaf() {
