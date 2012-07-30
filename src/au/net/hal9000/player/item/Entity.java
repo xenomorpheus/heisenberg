@@ -187,8 +187,17 @@ public abstract class Entity extends Item {
 	/** {@inheritDoc} */
 	@Override
 	public int getIndexOfChild(IItem child) {
-		// TODO
+		// TODO getIndexOfChild
 		return -1;
 	}
 
+	// Find items that match the criteria
+	/** {@inheritDoc} */
+	@Override
+	public void accept(ItemVisitor visitor) {
+		// TODO visit equipment then super
+		visitor.visit(this);
+	}
+
+	
 }
