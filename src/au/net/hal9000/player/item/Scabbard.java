@@ -4,8 +4,6 @@ import au.net.hal9000.player.item.exception.ExceptionCantRemove;
 import au.net.hal9000.player.item.exception.ExceptionCantWear;
 import au.net.hal9000.player.item.property.SwordSheath;
 import au.net.hal9000.player.units.Currency;
-import au.net.hal9000.player.units.Volume;
-import au.net.hal9000.player.units.Weight;
 
 public class Scabbard extends Item implements SwordSheath {
 	/**
@@ -78,12 +76,10 @@ public class Scabbard extends Item implements SwordSheath {
 	 * The total weight including the contents.
 	 */
 	@Override
-	public Weight getWeight() {
-		Weight total = this.getWeightBase();
+	public float getWeight() {
+		float total = this.getWeightBase();
 		if (sword != null) {
-			if (total == null)
-				total = new Weight();
-			total.add(sword.getWeight());
+			total +=sword.getWeight();
 		}
 		return total;
 	}
@@ -92,12 +88,10 @@ public class Scabbard extends Item implements SwordSheath {
 	 * The total volume including the contents.
 	 */
 	@Override
-	public Volume getVolume() {
-		Volume total = this.getVolumeBase();
+	public float getVolume() {
+		float total = this.getVolumeBase();
 		if (sword != null) {
-			if (total == null)
-				total = new Volume();
-			total.add(sword.getVolume());
+			total +=sword.getVolume();
 		}
 		return total;
 	}

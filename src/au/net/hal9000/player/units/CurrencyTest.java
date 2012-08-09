@@ -141,10 +141,10 @@ public class CurrencyTest {
 	
 	@Test
 	public void testClone() {
-		Unit x = new Unit();
-		Unit clone = null;
+		Currency x = new Currency();
+		Currency clone = null;
 		try {
-			clone = (Unit) x.clone();
+			clone = (Currency) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

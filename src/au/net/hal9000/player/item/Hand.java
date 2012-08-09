@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import au.net.hal9000.player.item.exception.*;
-import au.net.hal9000.player.units.*;
 
 // Hand
 // Is like an item except:
@@ -81,18 +80,28 @@ public class Hand extends Item {
 		ring.setLocation(newLocation);
 	}
 
-	public Weight getWeight() {
-		Weight total = this.getWeightBase();
-		if (total == null){
-			total = new Weight();
-		}
+	/** Total weight, including contents. */
+	@Override
+	public float getWeight() {
+		float total = this.getWeightBase();
 		Iterator<Ring> itr = this.rings.iterator();
 		while (itr.hasNext()) {
-			total.add( itr.next().getWeight());
+			total += itr.next().getWeight();
 		}
 		return total;
 	}
 
+	/** Total volume, including contents. */
+	@Override
+	public float getVolume() {
+		float total = this.getVolumeBase();
+		Iterator<Ring> itr = this.rings.iterator();
+		while (itr.hasNext()) {
+			total += itr.next().getWeight();
+		}
+		return total;
+	}	
+	
 	// Find items that match the criteria
 	public void accept(ItemVisitor visitor) {
 		Iterator<Ring> itr = this.rings.iterator();

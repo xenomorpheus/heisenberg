@@ -32,7 +32,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 	// Misc
 	/** {@inheritDoc} */
 	public boolean isLeaf() {
- 		return false;
+		return false;
 	}
 
 	/** {@inheritDoc} */
@@ -57,30 +57,25 @@ public abstract class ItemContainer extends Item implements Serializable {
 
 	/** {@inheritDoc} */
 	@Override
-	public Stack <IItem> getChildren(){
-		Stack <IItem> children = super.getChildren();
+	public Stack<IItem> getChildren() {
+		Stack<IItem> children = super.getChildren();
 		// TODO what about items in contents ?
 		return children;
 	}
 
 	/** Total weight, including contents. */
 	@Override
-	public Weight getWeight() {
-		Weight total = this.getWeightBase();
-		if (total == null){
-			total = new Weight();
-		}
-		total.add(this.getContentsWeight());
+	public float getWeight() {
+		float total = this.getWeightBase();
+		total += this.getContentsWeight();
 		return total;
 	}
 
 	/** Total volume, including contents. */
 	@Override
-	public Volume getVolume() {
-		Volume total = this.getVolumeBase();
-		if (total == null)
-			total = new Volume();
-		total.add(this.getContentsVolume());
+	public float getVolume() {
+		float total = this.getVolumeBase();
+		total += this.getContentsVolume();
 		return total;
 	}
 
@@ -100,28 +95,28 @@ public abstract class ItemContainer extends Item implements Serializable {
 	public void add(Item item) {
 
 		// check Weight
-		Weight weightMax = this.getWeightMax();
-		if (weightMax != null) {
-			Weight total = this.getContentsWeight();
-			total.add(item.getWeight());
-			if (total.compare(weightMax) > 0) {
+		float weightMax = this.getWeightMax();
+		if (weightMax >= 0) {
+			float total = this.getContentsWeight();
+			total += item.getWeight();
+			if (total > weightMax) {
 				throw new ExceptionTooHeavy("Adding " + item.getName()
 						+ " weighing " + item.getWeight() + " will total "
 						+ total + ", which is too heavy for " + this.getName()
-						+ ", weightMax=" + weightMax.getValue());
+						+ ", weightMax=" + weightMax);
 			}
 		}
 
 		// check Volume
-		Volume volumeMax = this.getVolumeMax();
-		if (volumeMax != null) {
-			Volume total = this.getContentsVolume();
-			total.add(item.getVolume());
-			if (total.compare(volumeMax) > 0) {
+		float volumeMax = this.getVolumeMax();
+		if (volumeMax >= 0) {
+			float total = this.getContentsVolume();
+			total += item.getVolume();
+			if (total > volumeMax) {
 				throw new ExceptionTooBig("Adding " + item.getName()
 						+ " of volume " + item.getVolume() + " will total "
 						+ total + ", which is too big for " + this.getName()
-						+ ", volumeMax=" + volumeMax.getValue());
+						+ ", volumeMax=" + volumeMax);
 			}
 		}
 
@@ -189,10 +184,10 @@ public abstract class ItemContainer extends Item implements Serializable {
 	 * 
 	 * @return the weight of just the contents.
 	 */
-	private Weight getContentsWeight() {
-		Weight total = new Weight();
+	private float getContentsWeight() {
+		float total = 0;
 		for (IItem iItem : getContents()) {
-			total.add(iItem.getWeight());
+			total += iItem.getWeight();
 		}
 		return total;
 	}
@@ -203,10 +198,10 @@ public abstract class ItemContainer extends Item implements Serializable {
 	 * 
 	 * @return the volume of just the contents.
 	 */
-	private Volume getContentsVolume() {
-		Volume total = new Volume();
+	private float getContentsVolume() {
+		float total = 0;
 		for (IItem iItem : getContents()) {
-			total.add(iItem.getVolume());
+			total += iItem.getVolume();
 		}
 		return total;
 	}
@@ -266,7 +261,8 @@ public abstract class ItemContainer extends Item implements Serializable {
 	}
 
 	@Override
-	protected ItemContainer clone() throws CloneNotSupportedException {
+	protected ItemContainer clone(Item toClone)
+			throws CloneNotSupportedException {
 		ItemContainer clone = (ItemContainer) super.clone();
 
 		// Make sure the cloning is deep, not shallow.
@@ -277,7 +273,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 		if (contents != null) {
 			Stack<Item> cloneContents = new Stack<Item>();
 			for (Item item : contents) {
-				cloneContents.add(item.clone());
+				cloneContents.add(item.clone(item));
 			}
 			clone.setContents(cloneContents);
 		}

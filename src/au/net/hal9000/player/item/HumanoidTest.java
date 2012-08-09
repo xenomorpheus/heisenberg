@@ -6,6 +6,8 @@ import org.junit.Test;
 import au.net.hal9000.player.units.Weight;
 
 public class HumanoidTest {
+	private static final float WITHIN_MARGIN = 0.00009F;
+
 
 	@Test
 	public void testGetWeight() {
@@ -13,7 +15,7 @@ public class HumanoidTest {
 		human.getHead().setWeightBase(1F);
 		human.getLeftHand().setWeightBase(2F);
 		human.getRightHand().setWeightBase(4F);
-		assertTrue("getWeight", human.getWeight().equals(7F));
+		assertEquals("getWeight", human.getWeight(),7F, WITHIN_MARGIN);
 	}
 
 	@Test
@@ -25,28 +27,22 @@ public class HumanoidTest {
 		// Alter head
 		{
 			HumanoidHead headOld = human.getHead(); // Save old
-			Weight weightMaxNew = headOld.getWeightMax();
+			float weightMaxNew = headOld.getWeightMax();
 			HumanoidHead headNew = new HumanoidHead();
-			if (weightMaxNew == null){
-				weightMaxNew = new Weight();
-				headNew.setWeightMax(weightMaxNew);
-			}
-			weightMaxNew.add(0.1f);
+			weightMaxNew += 0.1f;
+			headNew.setWeightMax(weightMaxNew);
 			human.setHead(headNew);
 			assertFalse("not equals. head differs", human.equals(other));
 			human.setHead(headOld); // Restore old
 			assertTrue("equals basic", human.equals(other)); // Check restore
+			headNew.setWeightMax(weightMaxNew);
 																// old
 		}
 		// Alter leftHand
 		{
 			Hand leftHandOld = human.getLeftHand(); // Save old
-			Weight weightMaxNew = leftHandOld.getWeightMax();
+			float weightMaxNew = leftHandOld.getWeightMax();
 			Hand leftHandNew = new Hand();
-			if (weightMaxNew == null){
-				weightMaxNew = new Weight();
-				leftHandNew.setWeightMax(weightMaxNew);
-			}
 			weightMaxNew.add(0.1f);
 			human.setLeftHand(leftHandNew);
 			assertFalse("not equals. left hand differ", human.equals(other));
@@ -60,10 +56,6 @@ public class HumanoidTest {
 			Hand rightHandOld = human.getRightHand(); // Save old
 			Weight weightMaxNew = rightHandOld.getWeightMax();
 			Hand rightHandNew = new Hand();
-			if (weightMaxNew == null){
-				weightMaxNew = new Weight();
-				rightHandNew.setWeightMax(weightMaxNew);
-			}
 			weightMaxNew.add(0.1f);
 			human.setRightHand(rightHandNew);
 			assertFalse("not equals. right hand differ", human.equals(other));

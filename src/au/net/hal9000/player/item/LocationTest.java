@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
-import au.net.hal9000.player.units.*;
 
 public class LocationTest {
 
@@ -16,13 +15,8 @@ public class LocationTest {
 		float volumeMax = 20F;
 		Location location = new Location("World");
 		location.setVolumeMax(volumeMax);
-		Volume v = location.getVolumeMax();
-		if (v == null) {
-			fail("location.getVolumeMax= null");
-		} else {
-			assertEquals("location.getVolumeMax=", volumeMax, v.getValue(),
-					0.0001F);
-		}
+		float v = location.getVolumeMax();
+		assertEquals("location.getVolumeMax=", volumeMax, v, 0.0001F);
 	}
 
 	@Test
@@ -129,7 +123,7 @@ public class LocationTest {
 		x.add(c1);
 		Location clone = null;
 		try {
-			clone = (Location) x.clone();
+			clone = (Location) x.clone(x);
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
@@ -183,7 +177,7 @@ public class LocationTest {
 
 		File fileObj = new File(System.getProperty("java.io.tmpdir"),
 				"empty_location_persit_test.ser");
-		String filename = fileObj.getAbsolutePath();		
+		String filename = fileObj.getAbsolutePath();
 		Location old = new Location("World");
 		// Store the object
 		try {
@@ -210,7 +204,7 @@ public class LocationTest {
 	public void testPersistenceDeep() {
 		File fileObj = new File(System.getProperty("java.io.tmpdir"),
 				"location_persit_test.ser");
-		String filename = fileObj.getAbsolutePath();		
+		String filename = fileObj.getAbsolutePath();
 		Location old = new Location("World");
 		old.add(new Cookie());
 		// Store the object

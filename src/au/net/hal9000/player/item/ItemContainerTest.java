@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
-import au.net.hal9000.player.units.*;
 
 public class ItemContainerTest {
 
@@ -16,12 +15,8 @@ public class ItemContainerTest {
 		float volumeMax = 20F;
 		Bag bag = new Bag();
 		bag.setVolumeMax(volumeMax);
-		Volume v = bag.getVolumeMax();
-		if (v == null) {
-			fail("bag.getVolumeMax= null");
-		} else {
-			assertEquals("bag.getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
-		}
+		float v = bag.getVolumeMax();
+		assertEquals("bag.getVolumeMax=", volumeMax, v, 0.0001F);
 	}
 
 	@Test
@@ -127,7 +122,7 @@ public class ItemContainerTest {
 		x.add(c1);
 		Bag clone = null;
 		try {
-			clone = (Bag) x.clone();
+			clone = (Bag) x.clone(x);
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

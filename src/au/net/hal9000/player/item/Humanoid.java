@@ -48,28 +48,28 @@ public abstract class Humanoid extends Entity {
 	// Misc
 	/** {@inheritDoc} */
 	@Override
-	public Weight getWeight() {
-		Weight total = super.getWeight();
-		total.add(head.getWeight());
+	public float getWeight() {
+		float total = super.getWeight();
+		total += head.getWeight();
 		if (leftHand != null) {
-			total.add(leftHand.getWeight());
+			total += leftHand.getWeight();
 		}
 		if (rightHand != null) {
-			total.add(rightHand.getWeight());
+			total += rightHand.getWeight();
 		}
 		return total;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Volume getVolume() {
-		Volume total = super.getVolume();
-		total.add(head.getVolume());
+	public float getVolume() {
+		float total = super.getVolume();
+		total += head.getVolume();
 		if (leftHand != null) {
-			total.add(leftHand.getVolume());
+			total += leftHand.getVolume();
 		}
 		if (rightHand != null) {
-			total.add(rightHand.getVolume());
+			total += rightHand.getVolume();
 		}
 		return total;
 	}

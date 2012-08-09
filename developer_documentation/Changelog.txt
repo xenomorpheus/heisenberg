@@ -1,14 +1,18 @@
-2012-10-23
+2012-08-10
+Replaced Unit classes for Weight, Length and Volume as they over-complicated things.
+Fixes to cloning. Accepts and object and works up the the class path, not down. - From RM Review
+
+2012-07-23
 Rename Item interface to IItem.
 Rename ItemImpl to Item
 
-2019-10-20
+2019-07-20
 Added the ability to read PowerWords and Spells from XML config files.
 Renamed Spell to more generic Recipe
 Renamed PowerWord to more generic Ingredient.
 Items now have an owner.
 
-2019-10-19
+2019-07-19
 Adding PowerWords and Spells.
 Adding dice.
 

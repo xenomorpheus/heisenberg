@@ -46,9 +46,8 @@ public interface IItem {
 
 	// weight related
 	/** weight before addition of other items such as those carried */
-	public Weight getWeightBase();
+	public float getWeightBase();
 
-	public void setWeightBase(Weight baseWeight);
 
 	public void setWeightBase(float baseWeight);
 
@@ -57,20 +56,16 @@ public interface IItem {
 	 * collections.
 	 * 
 	 */
-	public Weight getWeight();
+	public float getWeight();
 
 	// weightMax - max weight that can be carried
-	public Weight getWeightMax();
-
-	public void setWeightMax(Weight loadMax);
+	public float getWeightMax();
 
 	public void setWeightMax(float loadMax);
 
 	// volume related
 	/** volume before addition of other items such as those carried */
-	public Volume getVolumeBase();
-
-	public void setVolumeBase(Volume volumeWeight);
+	public float getVolumeBase();
 
 	public void setVolumeBase(float volumeWeight);
 
@@ -78,10 +73,10 @@ public interface IItem {
 	 * For simple items the weight is the weightBase. Will be overridden by
 	 * collections
 	 */
-	public Volume getVolume();
+	public float getVolume();
 
 	// valueBase
-	public Volume getVolumeMax();
+	public float getVolumeMax();
 
 	/** value before addition of other items such as those carried */
 	public Currency getValueBase();
@@ -168,5 +163,4 @@ public interface IItem {
 
 	void setVolumeMax(float volumeMax);
 
-	void setVolumeMax(Volume volumeMax);
 }

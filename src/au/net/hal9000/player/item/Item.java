@@ -38,14 +38,15 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final float WITHIN_MARGIN = 0.00009F;
 	// set as many objects as possible.
 	// we don't want to have to keep checking for null
 	private String name = "";
 	private String description = "";
-	private Weight weightBase = null;
-	private Weight weightMax = null;
-	private Volume volumeBase = null;
-	private Volume volumeMax = null;
+	private float weightBase = 0;
+	private float weightMax = 0;
+	private float volumeBase = 0;
+	private float volumeMax = 0;
 	private Currency valueBase = new Currency();
 	private Item location = null;
 	private float hitPoints = 0F;
@@ -64,24 +65,12 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	// static methods
-	public static boolean null_safe_equals(IItem iItem, IItem itemOther) {
-		if (iItem == null) {
-			if (itemOther == null) {
-				return true;
-			}
-			return false;
-		}
-
-		if (itemOther == null) {
-			return false;
-		}
-
-		return iItem.equals(itemOther);
-	}
 
 	// instance methods
 
 	// Feature
+	
+	// MOVE back to interfaces
 	/** {@inheritDoc} */
 	@Override
 	public boolean isMagical() {
@@ -157,88 +146,59 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
 	/** {@inheritDoc} */
 	@Override
-	public Weight getWeightBase() {
+	public float getWeightBase() {
 		return weightBase;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setWeightBase(Weight baseWeight) {
-		this.weightBase = baseWeight;
-	}
-
-	/** {@inheritDoc} */
-	@Override
 	public void setWeightBase(float baseWeight) {
-		this.weightBase = new Weight(baseWeight);
+		this.weightBase = baseWeight;
 	}
 
 	// weightMax - max weight that can be carried
 	/** {@inheritDoc} */
 	@Override
-	public Weight getWeightMax() {
+	public float getWeightMax() {
 		return weightMax;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setWeightMax(Weight weightMax) {
+	public void setWeightMax(float weightMax) {
 		this.weightMax = weightMax;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setWeightMax(float weightMax) {
-		this.weightMax = new Weight(weightMax);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Volume getVolume() {
+	public float getVolume() {
 		return volumeBase;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Volume getVolumeBase() {
+	public float getVolumeBase() {
 		return volumeBase;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setVolumeBase(Volume volumeBase) {
-		this.volumeBase = volumeBase;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public void setVolumeBase(float volumeBase) {
-		if (this.volumeBase == null)
-			this.volumeBase = new Volume(volumeBase);
-		else
-			this.volumeBase.setValue(volumeBase);
+		this.volumeBase = volumeBase;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public Volume getVolumeMax() {
+	public float getVolumeMax() {
 		return volumeMax;
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public void setVolumeMax(Volume volumeMax) {
+	public void setVolumeMax(float volumeMax) {
 		this.volumeMax = volumeMax;
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public void setVolumeMax(float volumeMax) {
-		if (this.volumeMax == null)
-			this.volumeMax = new Volume(volumeMax);
-		else
-			this.volumeMax.setValue(volumeMax);
-	}
 
 	/** {@inheritDoc} */
 	@Override
@@ -298,7 +258,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
 	/** {@inheritDoc} */
 	@Override
-	public Weight getWeight() {
+	public float getWeight() {
 		return weightBase;
 	}
 
@@ -307,8 +267,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	 * for location.
 	 */
 	public boolean equals(Item other) {
-		if (this == other)
-			return true;
+		if (!super.equals(other))
+			return false;
 		// Check each of our immediate properties.
 		// name
 		{
@@ -336,14 +296,14 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 					return false;
 			}
 		}
-		if (!Weight.null_safe_equals(weightBase, other.getWeightBase()))
+		if (Math.abs(weightBase - other.getWeightBase()) >= WITHIN_MARGIN)
 			return false;
-		if (!Weight.null_safe_equals(weightMax, other.getWeightMax()))
+		if (Math.abs(weightMax - other.getWeightMax()) >= WITHIN_MARGIN)
 			return false;
-		if (!Volume.null_safe_equals(volumeBase, other.getVolumeBase()))
+		if (Math.abs(volumeBase - other.getVolumeBase()) >= WITHIN_MARGIN)
 			return false;
-		if (!Volume.null_safe_equals(volumeMax, other.getVolumeMax()))
-			return false;
+		if (Math.abs(volumeMax - other.getVolumeMax()) >= WITHIN_MARGIN)
+			return false;		
 		if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
 			return false;
 		/*
@@ -365,11 +325,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		// System.out.println("beNot called on " + this.getName());
 		this.name = null;
 		this.description = null;
-		this.weightBase = null;
-		this.weightMax = null;
-		this.volumeBase = null;
-		this.volumeMax = null;
-		this.valueBase = null;
 		// We don't call beNot on the location.
 		this.location = null;
 	}
@@ -429,36 +384,17 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	/** {@inheritDoc} */
-	@Override
-	protected Item clone() throws CloneNotSupportedException {
-		Item clone = (Item) super.clone();
+	//TODO public abstract Item clone() throws CloneNotSupportedException;
 
+
+	protected Item clone(Item clone) throws CloneNotSupportedException {
+		if (clone == null) {
+			throw new RuntimeException("Missing object");
+		}
+		
 		// Make sure the cloning is deep, not shallow.
 		// e.g. set the non-mutable, non-primitives
 
-		// weightBase
-		Weight weightBase = this.getWeightBase();
-		if (weightBase != null) {
-			clone.setWeightBase(weightBase.clone());
-		}
-
-		// weightMax
-		Weight weightMax = this.getWeightMax();
-		if (weightMax != null) {
-			clone.setWeightMax(weightMax.clone());
-		}
-
-		// volumeBase
-		Volume volumeBase = this.getVolumeBase();
-		if (volumeBase != null) {
-			clone.setVolumeBase(volumeBase.clone());
-		}
-
-		// volumeMax
-		Volume volumeMax = this.getVolumeMax();
-		if (volumeMax != null) {
-			clone.setVolumeMax(volumeMax.clone());
-		}
 
 		// valueBase
 		Currency valueBase = this.getValueBase();
@@ -480,7 +416,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	// TODO thawFormFile
-	
+
 	/** {@inheritDoc} */
 	@Override
 	public boolean isLeaf() {

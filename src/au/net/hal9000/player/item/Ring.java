@@ -30,4 +30,11 @@ public class Ring extends Item {
 		pRing.setWeightBase(0.02F);
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public Item clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

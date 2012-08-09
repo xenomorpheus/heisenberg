@@ -93,11 +93,9 @@ public abstract class Entity extends Item {
 	 * @return The total weight
 	 */
 	@Override
-	public Weight getWeight() {
-		Weight total = super.getWeight();
-		if (total == null)
-			total = new Weight();
-		total.add(equipment.getWeight());
+	public float getWeight() {
+		float total = super.getWeight();
+		total += equipment.getWeight();
 		return total;
 	}
 
@@ -109,11 +107,9 @@ public abstract class Entity extends Item {
 	 * @return The total volume
 	 */
 	@Override
-	public Volume getVolume() {
-		Volume total = super.getVolume();
-		if (total == null)
-			total = new Volume();
-		total.add(equipment.getVolume());
+	public float getVolume() {
+		float total = super.getVolume();
+		total += equipment.getVolume();
 		return total;
 	}
 
@@ -199,5 +195,4 @@ public abstract class Entity extends Item {
 		visitor.visit(this);
 	}
 
-	
 }

@@ -11,7 +11,7 @@ public class ScabbardTest {
 		Scabbard x = new Scabbard();
 		Scabbard clone = null;
 		try {
-			clone = (Scabbard) x.clone();
+			clone = (Scabbard) x.clone(x);
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

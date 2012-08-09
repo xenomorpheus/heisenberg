@@ -22,6 +22,16 @@ public class Cookie extends Item {
 		super(pName, pDescription);
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	protected Cookie clone() throws CloneNotSupportedException {
+		Cookie clone = new Cookie();				
+		super.clone(clone);
+
+		// location is *NOT* cloned.
+		return clone;
+
+	}
 	// Feature
 	/** {@inheritDoc} */
 	@Override

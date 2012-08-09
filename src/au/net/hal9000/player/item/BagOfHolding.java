@@ -3,7 +3,6 @@ package au.net.hal9000.player.item;
 import java.util.*;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.item.property.*;
-import au.net.hal9000.player.units.*;
 import au.net.hal9000.player.units.Currency;
 
 /*
@@ -96,14 +95,14 @@ public class BagOfHolding extends Bag {
 	// Magic
 	/** Contents don't add to weight for a BoH */
 	@Override
-	public Weight getWeight() {
+	public float getWeight() {
 		return this.getWeightBase();
 	}
 
 	// Magic
 	/** Contents don't add to volume for a BoH */
 	@Override
-	public Volume getVolume() {
+	public float getVolume() {
 		return this.getVolumeBase();
 	}
 

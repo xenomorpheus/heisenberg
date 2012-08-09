@@ -1,6 +1,5 @@
 package au.net.hal9000.player.item;
 
-import au.net.hal9000.player.units.Weight;
 
 public class Crossbow extends Item {
 	/**
@@ -44,10 +43,10 @@ public class Crossbow extends Item {
 	}
 
 	// bow plus bolt if present.
-	public Weight getWeight() {
-		Weight total = super.getWeight();
+	public float getWeight() {
+		float total = super.getWeight();
 		if (loadedBolt != null) {
-			total.add(loadedBolt.getWeight());
+			total += loadedBolt.getWeight();
 		}
 		return total;
 	}

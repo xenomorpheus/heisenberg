@@ -6,6 +6,7 @@ import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.Currency;
 
 public class BagOfHoldingTest {
+	private static final float WITHIN_MARGIN = 0.00009F;
 
 	@Test
 	public void typeTest() {
@@ -42,13 +43,14 @@ public class BagOfHoldingTest {
 			}
 			BagOfHolding boh = new BagOfHolding(type);
 			assertEquals("type", boh.getType(), type);
-			assertTrue("type=" + type + ", weight",
-					boh.getWeight().equals(weightBase));
-			assertTrue("type=" + type + ", weightBase", boh.getWeightBase()
-					.equals(weightBase));
-			assertTrue("type=" + type + ", volume", boh.getVolume().equals(2F));
-			assertTrue("type=" + type + ", volumeBase", boh.getVolumeBase()
-					.equals(2F));
+			assertEquals("type=" + type + ", weight", boh.getWeight(),
+					weightBase, WITHIN_MARGIN);
+			assertEquals("type=" + type + ", weightBase", boh.getWeightBase(),
+					weightBase, WITHIN_MARGIN);
+			assertEquals("type=" + type + ", volume", boh.getVolume(), 2F,
+					WITHIN_MARGIN);
+			assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
+					2F, WITHIN_MARGIN);
 			assertTrue("type=" + type + ", cost",
 					boh.getValueBase().equals(cost));
 			// Should look like an ordinary bag :-)

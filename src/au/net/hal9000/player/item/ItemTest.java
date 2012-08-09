@@ -9,15 +9,16 @@ import org.junit.Test;
 import au.net.hal9000.player.units.*;
 
 public class ItemTest {
+	private static final float WITHIN_MARGIN = 0.00009F;
 
 	@Test
 	public void testItem() {
 		Cookie i = new Cookie();
 		assertEquals("IItem() name", "Cookie", i.getName());
 		assertEquals("IItem() description", "", i.getDescription());
-//		assertTrue("IItem() weightBase", i.getWeightBase().equals(0F));
-//		assertTrue("IItem() weightMax", i.getWeightMax().equals(0F));
-//		assertTrue("IItem() volumeBase", i.getVolumeBase().equals(0F));
+		// assertTrue("IItem() weightBase", i.getWeightBase().equals(0F));
+		// assertTrue("IItem() weightMax", i.getWeightMax().equals(0F));
+		// assertTrue("IItem() volumeBase", i.getVolumeBase().equals(0F));
 		assertEquals("IItem() location", null, i.getLocation());
 	}
 
@@ -55,14 +56,14 @@ public class ItemTest {
 	public void testBaseWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertTrue("weightBase", i.getWeightBase().equals(0.123F));
+		assertEquals("weightBase", i.getWeightBase(), 0.123F, WITHIN_MARGIN);
 	}
 
 	@Test
 	public void testWeight() {
 		Cookie i = new Cookie();
 		i.setWeightBase(0.123F);
-		assertTrue("weight", i.getWeight().equals(0.123F));
+		assertEquals("weight", i.getWeight(), 0.123F, WITHIN_MARGIN);
 	}
 
 	@Test
@@ -100,12 +101,8 @@ public class ItemTest {
 		float volumeMax = 20F;
 		Cookie cookie = new Cookie();
 		cookie.setVolumeMax(volumeMax);
-		Volume v = cookie.getVolumeMax();
-		if (v == null) {
-			fail("getVolumeMax= null");
-		} else {
-			assertEquals("getVolumeMax=", volumeMax, v.getValue(), 0.0001F);
-		}
+		float v = cookie.getVolumeMax();
+		assertEquals("getVolumeMax=", volumeMax, v, 0.0001F);
 	}
 
 	@Test
@@ -178,36 +175,36 @@ public class ItemTest {
 		// e.g. test the non-mutable, non-primitives
 
 		// weightBase
-		Weight weightBase = x.getWeightBase();
-		if (weightBase != null) {
-			weightBase.add(1f);
-			assertFalse("x.clone().equals(x)", clone.equals(x));
-			weightBase.subtract(1f);
-		}
+		float weightBase = x.getWeightBase();
+		weightBase += 1f;
+		x.setWeightBase(weightBase);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		weightBase -= 1f;
+		x.setWeightBase(weightBase);
 
 		// weightMax
-		Weight weightMax = x.getWeightMax();
-		if (weightMax != null) {
-			weightMax.add(1f);
-			assertFalse("x.clone().equals(x)", clone.equals(x));
-			weightMax.subtract(1f);
-		}
+		float weightMax = x.getWeightMax();
+		weightMax += 1f;
+		x.setWeightMax(weightMax);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		weightMax -= 1f;
+		x.setWeightMax(weightMax);
 
 		// volumeBase
-		Volume volumeBase = x.getVolumeBase();
-		if (volumeBase != null) {
-			volumeBase.add(1f);
-			assertFalse("x.clone().equals(x)", clone.equals(x));
-			volumeBase.subtract(1f);
-		}
+		float volumeBase = x.getVolumeBase();
+		volumeBase += 1f;
+		x.setVolumeBase(volumeBase);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		volumeBase -= 1f;
+		x.setVolumeBase(volumeBase);
 
 		// volumeMax
-		Volume volumeMax = x.getVolumeMax();
-		if (volumeMax != null) {
-			volumeMax.add(1f);
-			assertFalse("x.clone().equals(x)", clone.equals(x));
-			volumeMax.subtract(1f);
-		}
+		float volumeMax = x.getVolumeMax();
+		volumeMax += 1f;
+		x.setVolumeMax(volumeMax);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		volumeMax -= 1f;
+		x.setVolumeMax(volumeMax);
 
 		// valueBase
 		Currency valueBase = x.getValueBase();
