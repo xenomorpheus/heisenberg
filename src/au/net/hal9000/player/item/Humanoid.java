@@ -1,6 +1,5 @@
 package au.net.hal9000.player.item;
 
-import au.net.hal9000.player.units.*;
 
 public abstract class Humanoid extends Entity {
 

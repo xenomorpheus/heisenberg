@@ -1,6 +1,7 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class EntityTest {
@@ -17,8 +18,8 @@ public class EntityTest {
 			fail("equip failed " + e);
 		}
 	}
-
+	
+	// TODO clone - On an abstract class ?
 	// TODO equals
-	// TODO clone
 	// TODO persistence
 }

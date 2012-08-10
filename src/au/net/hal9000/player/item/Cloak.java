@@ -25,8 +25,8 @@ public class Cloak extends Item {
 	/** {@inheritDoc} 
 	 * @throws CloneNotSupportedException */
 	@Override
-	public Cloak clone() throws CloneNotSupportedException {
-		return (Cloak)super.clone(new Cloak());
+	public Item clone(Item item) throws CloneNotSupportedException {
+		return super.clone(item);
 	}
 
 }

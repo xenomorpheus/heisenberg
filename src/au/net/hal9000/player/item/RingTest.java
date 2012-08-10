@@ -12,7 +12,7 @@ public class RingTest {
 		Ring r = new Ring();
 		assertEquals("description", "small metalic ring", r.getDescription());
 		assertTrue("value", r.getValueBase().equals(new Currency(0, 5, 0, 0)));
-		assertEquals("weightBase",  r.getWeightBase(),0.02F);
+		assertEquals("weightBase", r.getWeightBase(), 5f, 0.02F);
 	}
 
 	@Test

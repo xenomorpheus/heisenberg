@@ -1,6 +1,7 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.Currency;
@@ -175,4 +176,45 @@ public class BagOfHoldingTest {
 		}
 		assertEquals("cookie location", human, bag_inner.getLocation());
 	}
+
+	@Test
+	public void testClone() {
+		BagOfHolding x = new BagOfHolding(1);
+		BagOfHolding clone = null;
+		try {
+			clone = (BagOfHolding) x.clone(x);
+		} catch (CloneNotSupportedException e) {
+			fail(e.toString());
+		}
+
+		// x.clone() != x
+		// will be true, and that the expression:
+		assertTrue("x.clone() != x", clone != x);
+
+		// x.clone().getClass() == x.getClass()
+		// will be true, but these are not absolute requirements.
+		assertTrue("x.clone().getClass() == x.getClass()",
+				clone.getClass() == x.getClass());
+
+		// By convention, the returned object should be obtained by calling
+		// super.clone. If a class and all of its superclasses (except
+		// Object)
+		// obey this convention, it will be the case that
+		// x.clone().getClass() == x.getClass().
+		// Already tested above.
+
+		// While it is typically the case that:
+		// x.clone().equals(x)
+		// will be true, this is not an absolute requirement.
+		assertTrue("x.clone().equals(x)", clone.equals(x));
+
+		// Class specific tests
+		// Make sure the cloning is deep, not shallow.
+		// e.g. test the non-mutable, non-primitives
+
+	}
+
 }
+
+
+

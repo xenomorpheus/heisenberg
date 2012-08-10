@@ -11,7 +11,7 @@ public class CloakTest {
 		Cloak x = new Cloak();
 		Cloak clone = null;
 		try {
-			clone = (Cloak) x.clone();
+			clone = (Cloak) x.clone(x);
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
