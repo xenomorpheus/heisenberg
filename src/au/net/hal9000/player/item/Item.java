@@ -69,7 +69,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	// instance methods
 
 	// Feature
-	
+
 	// MOVE back to interfaces
 	/** {@inheritDoc} */
 	@Override
@@ -199,7 +199,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		this.volumeMax = volumeMax;
 	}
 
-
 	/** {@inheritDoc} */
 	@Override
 	public Currency getValueBase() {
@@ -267,8 +266,11 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	 * for location.
 	 */
 	public boolean equals(Item other) {
-		if (!super.equals(other))
+		if (other == null)
 			return false;
+		if (this == other)
+			return true;
+
 		// Check each of our immediate properties.
 		// name
 		{
@@ -303,7 +305,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 		if (Math.abs(volumeBase - other.getVolumeBase()) >= WITHIN_MARGIN)
 			return false;
 		if (Math.abs(volumeMax - other.getVolumeMax()) >= WITHIN_MARGIN)
-			return false;		
+			return false;
 		if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
 			return false;
 		/*
@@ -384,17 +386,19 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	}
 
 	/** {@inheritDoc} */
-	//TODO public abstract Item clone() throws CloneNotSupportedException;
+	// TODO public abstract Item clone() throws CloneNotSupportedException;
 
+	protected Item clone() throws CloneNotSupportedException {
+		return this.clone(this);
+	}
 
 	protected Item clone(Item clone) throws CloneNotSupportedException {
 		if (clone == null) {
 			throw new RuntimeException("Missing object");
 		}
-		
+
 		// Make sure the cloning is deep, not shallow.
 		// e.g. set the non-mutable, non-primitives
-
 
 		// valueBase
 		Currency valueBase = this.getValueBase();

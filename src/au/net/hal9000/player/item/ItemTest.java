@@ -148,7 +148,7 @@ public class ItemTest {
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
-
+		
 		// x.clone() != x
 		// will be true, and that the expression:
 		assertTrue("x.clone() != x", clone != x);
@@ -220,4 +220,88 @@ public class ItemTest {
 
 	}
 
+	// TODO re-factor and combine with above.
+	@Test
+	public void testCloneItem() {
+		Cookie x = new Cookie();
+		Cookie clone = null;
+		try {
+			clone = (Cookie) x.clone(x);
+		} catch (CloneNotSupportedException e) {
+			fail(e.toString());
+		}
+		
+		// x.clone() != x
+		// will be true, and that the expression:
+		assertTrue("x.clone() != x", clone != x);
+
+		// x.clone().getClass() == x.getClass()
+		// will be true, but these are not absolute requirements.
+		assertTrue("x.clone().getClass() == x.getClass()",
+				clone.getClass() == x.getClass());
+
+		// By convention, the returned object should be obtained by calling
+		// super.clone. If a class and all of its superclasses (except
+		// Object)
+		// obey this convention, it will be the case that
+		// x.clone().getClass() == x.getClass().
+		// Already tested above.
+
+		// While it is typically the case that:
+		// x.clone().equals(x)
+		// will be true, this is not an absolute requirement.
+		assertTrue("x.clone().equals(x)", clone.equals(x));
+
+		// Class specific tests
+		// Make sure the cloning is deep, not shallow.
+		// e.g. test the non-mutable, non-primitives
+
+		// weightBase
+		float weightBase = x.getWeightBase();
+		weightBase += 1f;
+		x.setWeightBase(weightBase);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		weightBase -= 1f;
+		x.setWeightBase(weightBase);
+
+		// weightMax
+		float weightMax = x.getWeightMax();
+		weightMax += 1f;
+		x.setWeightMax(weightMax);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		weightMax -= 1f;
+		x.setWeightMax(weightMax);
+
+		// volumeBase
+		float volumeBase = x.getVolumeBase();
+		volumeBase += 1f;
+		x.setVolumeBase(volumeBase);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		volumeBase -= 1f;
+		x.setVolumeBase(volumeBase);
+
+		// volumeMax
+		float volumeMax = x.getVolumeMax();
+		volumeMax += 1f;
+		x.setVolumeMax(volumeMax);
+		assertFalse("x.clone().equals(x)", clone.equals(x));
+		volumeMax -= 1f;
+		x.setVolumeMax(volumeMax);
+
+		// valueBase
+		Currency valueBase = x.getValueBase();
+		if (valueBase != null) {
+			int gp = valueBase.getGp();
+			gp++;
+			valueBase.setGp(gp);
+			assertFalse("x.clone().equals(x)", clone.equals(x));
+			valueBase.setGp(gp - 1);
+		}
+
+		// location is *NOT* cloned.
+
+	}
+
+	
+	
 }
