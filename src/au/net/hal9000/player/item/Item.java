@@ -389,7 +389,10 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 	// TODO public abstract Item clone() throws CloneNotSupportedException;
 
 	protected Item clone() throws CloneNotSupportedException {
-		return this.clone(this);
+		throw new RuntimeException("Missing object");
+		
+		// This causes a stack overflow
+		// return this.clone(this);
 	}
 
 	protected Item clone(Item clone) throws CloneNotSupportedException {

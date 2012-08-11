@@ -116,13 +116,13 @@ public class ItemContainerTest {
 	}
 
 	@Test
-	public void testClone() {
+	public void testCloneItem() {
 		Bag x = new Bag();
 		Cookie c1 = new Cookie();
 		x.add(c1);
 		Bag clone = null;
 		try {
-			clone = (Bag) x.clone(x);
+			clone = (Bag) x.clone(new Bag());
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
@@ -163,10 +163,10 @@ public class ItemContainerTest {
 			// Make a change to a non-primative, non-mutable
 			//
 
-			String c1Name = c1.getName();
+			String c1NameOld = c1.getName();
 			c1.setName(c1.getName() + "fred");
 			assertFalse("x.clone().equals(x)", clone.equals(x));
-			c1.setName(c1Name);
+			c1.setName(c1NameOld);
 		}
 
 	}

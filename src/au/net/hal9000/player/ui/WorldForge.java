@@ -43,7 +43,6 @@ public class WorldForge {
 		backpack.add(new Cookie("Cookie1"));
 		backpack.add(new Crossbow());
 		backpack.add(new CrossbowBolt());
-		backpack.add(new Location("Location"));
 		backpack.add(new MagicRing());
 		backpack.add(new Ring());
 		backpack.add(scabbard);

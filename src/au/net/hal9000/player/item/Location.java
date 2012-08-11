@@ -40,4 +40,12 @@ public class Location extends ItemContainer implements Serializable {
 		in.close();
 		return newObj;
 	}
+	
+
+	/** {@inheritDoc} */
+	@Override
+	protected Location clone(Item toClone) throws CloneNotSupportedException {
+		return (Location) super.clone(toClone);
+	}
+	
 }

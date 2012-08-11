@@ -230,11 +230,11 @@ public class HandTest {
 	}
 	
 	@Test
-	public void testClone() {
+	public void testCloneItem() {
 		Hand x = new Hand();
 		Hand clone = null;
 		try {
-			clone = (Hand) x.clone(x);
+			clone = (Hand) x.clone(new Hand());
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

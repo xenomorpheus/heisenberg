@@ -188,7 +188,7 @@ public class Currency implements Serializable, Cloneable {
 		this.sp += otherCollection.sp;
 		this.cp += otherCollection.cp;
 	}
-
+	
 	// transfer all the value of the passed currency object.
 	public void transfer(Currency otherCollection) {
 		this.add(otherCollection);

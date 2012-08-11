@@ -263,7 +263,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 	@Override
 	protected ItemContainer clone(Item toClone)
 			throws CloneNotSupportedException {
-		ItemContainer clone = (ItemContainer) super.clone();
+		ItemContainer clone = (ItemContainer) super.clone(toClone);
 
 		// Make sure the cloning is deep, not shallow.
 		// e.g. set the non-mutable, non-primitives

@@ -226,7 +226,7 @@ public class ItemTest {
 		Cookie x = new Cookie();
 		Cookie clone = null;
 		try {
-			clone = (Cookie) x.clone(x);
+			clone = (Cookie) x.clone(new Cookie());
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
