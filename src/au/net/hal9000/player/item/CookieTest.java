@@ -20,7 +20,7 @@ public class CookieTest {
 		Cookie x = new Cookie();
 		Cookie clone = null;
 		try {
-			clone = (Cookie) x.clone();
+			clone = (Cookie) x.clone(new Cookie());
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
