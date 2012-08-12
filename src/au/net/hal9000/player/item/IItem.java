@@ -1,166 +1,207 @@
 package au.net.hal9000.player.item;
 
 import java.util.Stack;
+import au.net.hal9000.player.units.Currency;
 
-import au.net.hal9000.player.units.*;
-
+/**
+ * @author bruins
+ */
 public interface IItem {
 
-	// Feature
+    // Feature
 
-	/** Is this item magical? */
-	public boolean isMagical();
+    /** @return Is this item magical? */
+    boolean isMagical();
 
-	/** Is a part of this item in another dimension ? */
-	public boolean isExtraDimensional();
+    /** @return Is a part of this item in another dimension ? */
+    boolean isExtraDimensional();
 
-	/** Is this food for humans? */
-	public boolean isHumanoidFood();
+    /** @return Is this food for humans? */
+    boolean isHumanoidFood();
 
-	/** Is a Humanoid able to ride this item? */
-	public boolean isHumanoidMount();
+    /** @return Is a Humanoid able to ride this item? */
+    boolean isHumanoidMount();
 
-	/** Is this item able to wear a ring? */
-	public boolean isRingWearer();
+    /** @return Is this item able to wear a ring? */
+    boolean isRingWearer();
 
-	/** Is this item living? */
-	public boolean isLiving();
+    /** @return Is this item living? */
+    boolean isLiving();
 
-	/** Is this an item of clothing? */
-	public boolean isClothing();
+    /** @return Is this an item of clothing? */
+    boolean isClothing();
 
-	/** Is this item sharp? e.g. knife, blade */
-	public boolean isSharp();
+    /** @return Is this item sharp? e.g. knife, blade */
+    boolean isSharp();
 
-	// Getters and Setters
+    // Getters and Setters
 
-	// name
-	public String getName();
+    /**
+     * get the name of the item.
+     * 
+     * @return the name
+     */
+    String getName();
 
-	public void setName(String pName);
+    /**
+     * Set the name
+     * 
+     * @param pName
+     *            the name to set
+     */
+    void setName(String pName);
 
-	// description
-	public String getDescription();
+    /**
+     * Get the description
+     * 
+     * @return the description
+     */
+    String getDescription();
 
-	public void setDescription(String pDescription);
+    /**
+     * Set the description
+     * 
+     * @param pDescription
+     *            the description
+     */
+    void setDescription(String pDescription);
 
-	// weight related
-	/** weight before addition of other items such as those carried */
-	public float getWeightBase();
+    // weight related
+    /**
+     * @return weight before addition of other items such as those carried
+     */
+    float getWeightBase();
 
+    /**
+     * @param baseWeight
+     *            weight before addition of other items such as those carried.
+     */
+    void setWeightBase(float baseWeight);
 
-	public void setWeightBase(float baseWeight);
+    /**
+     * The total weight. For simple items the weight is the weightBase. Will be
+     * overridden by collections.
+     * 
+     * @return the total weight
+     */
+    float getWeight();
 
-	/**
-	 * For simple items the weight is the weightBase. Will be overridden by
-	 * collections.
-	 * 
-	 */
-	public float getWeight();
+    /**
+     * @return The max weight that can be carried.
+     */
+    float getWeightMax();
 
-	// weightMax - max weight that can be carried
-	public float getWeightMax();
+    /**
+     * Set the max weight that may be carried.
+     * 
+     * @param loadMax
+     *            The max weight that can be carried.
+     */
+    void setWeightMax(float loadMax);
 
-	public void setWeightMax(float loadMax);
+    // volume related
+    /** volume before addition of other items such as those carried */
+    float getVolumeBase();
 
-	// volume related
-	/** volume before addition of other items such as those carried */
-	public float getVolumeBase();
+    void setVolumeBase(float volumeWeight);
 
-	public void setVolumeBase(float volumeWeight);
+    /**
+     * For simple items the weight is the weightBase. Will be overridden by
+     * collections
+     */
+    float getVolume();
 
-	/**
-	 * For simple items the weight is the weightBase. Will be overridden by
-	 * collections
-	 */
-	public float getVolume();
+    // valueBase
+    float getVolumeMax();
 
-	// valueBase
-	public float getVolumeMax();
+    /**
+     * value before addition of other items such as those carried.
+     * 
+     * @return The value before any items are added.
+     */
+    Currency getValueBase();
 
-	/** value before addition of other items such as those carried */
-	public Currency getValueBase();
+    /**
+     * For simple items the value is the valueBase. Will be overridden by
+     * collections
+     * 
+     */
+    Currency getValue();
 
-	/**
-	 * For simple items the value is the valueBase. Will be overridden by
-	 * collections
-	 * 
-	 */
-	public Currency getValue();
+    void setValueBase(Currency pValueBase);
 
-	public void setValueBase(Currency pValueBase);
+    // location
+    IItem getLocation();
 
-	// location
-	public IItem getLocation();
+    void setLocation(IItem location);
 
-	public void setLocation(IItem location);
+    // hitPoints
+    void setHitPoints(float hitPoints);
 
-	// hitPoints
-	public void setHitPoints(float hitPoints);
+    float getHitPoints();
 
-	public float getHitPoints();
+    Item getOwner();
 
-	public Item getOwner();
+    void setOwner(IItem owner);
 
-	public void setOwner(IItem owner);
+    // misc methods
 
-	// misc methods
+    // boolean equals(IItem other);
 
-	// public boolean equals(IItem other);
+    /**
+     * Attempt to unlink the item from everything so that it can be garbage
+     * collected. Won't work if anything is referencing this item.
+     */
+    void beNot();
 
-	/** Attempt to unlink the item from everything so that
-	 * it can be garbage collected.
-	 *  Won't work if anything is referencing this item.
-	 */
-	public void beNot();
+    String toString();
 
-	public String toString();
+    String detailedDescription();
 
-	public String detailedDescription();
+    // Find items that match the criteria
+    void accept(ItemVisitor visitor);
 
-	// Find items that match the criteria
-	public void accept(ItemVisitor visitor);
+    /**
+     * This is used for tree traversal.
+     * 
+     * @return True unless this IItem has child Items.<br>
+     */
+    boolean isLeaf();
 
+    /**
+     * This is used for tree traversal.
+     * 
+     * @return the number of directly connected child Items.<br>
+     */
+    int getChildCount();
 
-	/**
-	 * This is used for tree traversal.
-	 * 
-	 * @return True unless this IItem has child Items.<br>
-	 */
-	public boolean isLeaf();
+    /**
+     * Fetch any numbered child of a node for the JTree. Our model returns IItem
+     * objects for all nodes in the tree. The JTree displays these by calling
+     * the IItem.toString() method.
+     * 
+     * @param index
+     *            the index of the object
+     * @return the object at that index
+     */
+    Object getChild(int index);
 
-	/**
-	 * This is used for tree traversal.
-	 * 
-	 * @return the number of directly connected child Items.<br>
-	 */
-	public int getChildCount();
+    /**
+     * Figure out a child's position in its parent node.
+     * 
+     * @param child
+     *            the child we want the index of
+     * @return index the of the child
+     */
+    int getIndexOfChild(IItem child);
 
-	/**
-	 * Fetch any numbered child of a node for the JTree. Our model returns IItem
-	 * objects for all nodes in the tree. The JTree displays these by calling
-	 * the IItem.toString() method.
-	 * 
-	 * @param index
-	 * @return
-	 */
-	public Object getChild(int index);
+    /**
+     * Figure out a child's position in its parent node.
+     * 
+     * @return
+     */
+    Stack<IItem> getChildren();
 
-	/**
-	 * Figure out a child's position in its parent node.
-	 * 
-	 * @param child
-	 * @return
-	 */
-	public int getIndexOfChild(IItem child);
-
-	/**
-	 * Figure out a child's position in its parent node.
-	 * 
-	 * @return
-	 */
-	public Stack<IItem> getChildren();
-
-	void setVolumeMax(float volumeMax);
+    void setVolumeMax(float volumeMax);
 
 }
