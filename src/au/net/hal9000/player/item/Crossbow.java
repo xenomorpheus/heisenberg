@@ -23,14 +23,14 @@ public class Crossbow extends Item {
         this.loadedBolt = bolt;
     }
 
-    // TODO should other be Item? if not will super's equals be used?
     /** {@inheritDoc} */
-    // @Override
+    @Override
     public boolean equals(final Object other) {
         // loadedBolt
         boolean isEqual = false;
         if (other instanceof Crossbow) {
             final Crossbow otherCrossbow = (Crossbow) other;
+            isEqual = true;
             if (loadedBolt == null) {
                 if (otherCrossbow.loadedBolt != null) {
                     isEqual = false;
