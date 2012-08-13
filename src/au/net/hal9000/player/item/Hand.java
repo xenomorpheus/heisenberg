@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.item.property.Magical;
+import au.net.hal9000.player.item.property.RingWearer;
 
 // Hand
 // Is like an item except:
@@ -11,7 +12,7 @@ import au.net.hal9000.player.item.property.Magical;
 // May wear any number of non-magical rings.
 // Rings may be removed in any order.
 
-public class Hand extends Item {
+public class Hand extends Item implements RingWearer {
 
 	/**
 	 * 
@@ -31,10 +32,6 @@ public class Hand extends Item {
 
 	// Features
 	public boolean isLiving() {
-		return true;
-	}
-
-	public boolean isRingWearer() {
 		return true;
 	}
 

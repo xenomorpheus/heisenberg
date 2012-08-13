@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is this item able to wear a ring? */
-    boolean isRingWearer();
-
     /** @return Is this item living? */
     boolean isLiving();
 

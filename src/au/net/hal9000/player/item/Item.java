@@ -107,12 +107,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isRingWearer() {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isLiving() {
         return false;
     }
