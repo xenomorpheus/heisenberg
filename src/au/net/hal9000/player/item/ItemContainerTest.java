@@ -165,7 +165,7 @@ public class ItemContainerTest {
 
 			String c1NameOld = c1.getName();
 			c1.setName(c1.getName() + "fred");
-			assertFalse("x.clone().equals(x)", clone.equals(x));
+			assertFalse("deep clone", clone.equals(x));
 			c1.setName(c1NameOld);
 		}
 
