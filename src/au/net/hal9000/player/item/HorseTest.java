@@ -1,9 +1,8 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
+import au.net.hal9000.player.item.property.HumanoidMount;
 
 public class HorseTest {
 
@@ -48,7 +47,7 @@ public class HorseTest {
 	@Test
 	public void testIsHumanoidMount(){
 		Horse horse = new Horse();
-		assertTrue("is humanoid mount", horse.isHumanoidMount());
+		assertTrue("is humanoid mount", horse instanceof HumanoidMount);
 	}
 
 }

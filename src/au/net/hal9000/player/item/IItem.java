@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is a Humanoid able to ride this item? */
-    boolean isHumanoidMount();
-
     /** @return Is this item able to wear a ring? */
     boolean isRingWearer();
 
