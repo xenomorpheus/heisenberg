@@ -24,34 +24,34 @@ public class QuiverTest {
 	}
 	@Test
 	public void testClone() {
-		Quiver x = new Quiver();
+		Quiver original = new Quiver();
 		Quiver clone = null;
 		try {
-			clone = (Quiver) x.clone();
+			clone = (Quiver) original.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
 
 		// x.clone() != x
 		// will be true, and that the expression:
-		assertTrue("x.clone() != x", clone != x);
+		assertTrue("original.clone() != original", clone != original);
 
-		// x.clone().getClass() == x.getClass()
+		// original.clone().getClass() == original.getClass()
 		// will be true, but these are not absolute requirements.
-		assertTrue("x.clone().getClass() == x.getClass()",
-				clone.getClass() == x.getClass());
+		assertTrue("original.clone().getClass() == original.getClass()",
+				clone.getClass() == original.getClass());
 
 		// By convention, the returned object should be obtained by calling
 		// super.clone. If a class and all of its superclasses (except
 		// Object)
 		// obey this convention, it will be the case that
-		// x.clone().getClass() == x.getClass().
+		// original.clone().getClass() == original.getClass().
 		// Already tested above.
 
 		// While it is typically the case that:
-		// x.clone().equals(x)
+		// original.clone().equals(original)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(x));
+		assertTrue("original.clone().equals(original)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.

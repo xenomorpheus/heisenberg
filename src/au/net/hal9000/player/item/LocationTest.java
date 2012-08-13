@@ -118,24 +118,24 @@ public class LocationTest {
 
     @Test
     public void testClone() {
-	Location x = new Location("World");
+	Location original = new Location("World");
 	Cookie c1 = new Cookie();
-	x.add(c1);
+	original.add(c1);
 	Location clone = null;
 	try {
-	    clone = (Location) x.clone();
+	    clone = (Location) original.clone();
 	} catch (CloneNotSupportedException e) {
 	    fail(e.toString());
 	}
 
 	// x.clone() != x
 	// will be true, and that the expression:
-	assertTrue("x.clone() != x", clone != x);
+	assertTrue("x.clone() != original", clone != original);
 
 	// x.clone().getClass() == x.getClass()
 	// will be true, but these are not absolute requirements.
-	assertTrue("x.clone().getClass() == x.getClass()",
-		clone.getClass() == x.getClass());
+	assertTrue("x.clone().getClass() == original.getClass()",
+		clone.getClass() == original.getClass());
 
 	/*
 	 * By convention, the returned object should be obtained by calling
@@ -149,12 +149,12 @@ public class LocationTest {
 	 * While it is typically the case that: x.clone().equals(x) will be
 	 * true, this is not an absolute requirement.
 	 */
-	Boolean bar = clone.equals(x);
-	assertTrue("x.clone().equals(x)", bar);
+	Boolean bar = clone.equals(original);
+	assertTrue("original.clone().equals(original)", bar);
 
 	// equals from the other direction
-	Boolean foo = x.equals(clone);
-	assertTrue("x.equals(clone)", foo);
+	Boolean foo = original.equals(clone);
+	assertTrue("original.equals(clone)", foo);
 
 	// Class specific tests
 	// Make sure the cloning is deep, not shallow.
@@ -166,7 +166,7 @@ public class LocationTest {
 	{
 	String c1Name = c1.getName();
 	c1.setName(c1.getName() + "fred");
-	assertFalse("x.clone().equals(x)", clone.equals(x));
+	assertFalse("original.clone().equals(original)", clone.equals(original));
 	c1.setName(c1Name);
 	}
     }
