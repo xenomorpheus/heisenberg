@@ -19,211 +19,200 @@ import java.io.Serializable;
  * 
  */
 public class Currency implements Serializable, Cloneable {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Coin conversion: 1PP = 10 GP.
-	 */
-	public static final Float ppAsGp = 10F;
+    /**
+     * Coin conversion: 1PP = 10 GP.
+     */
+    public static final Float ppAsGp = 10F;
 
-	/**
-	 * Coin conversion: 1GP = 10 SP.
-	 */
-	public static final Float spAsGp = 0.1F;
+    /**
+     * Coin conversion: 1GP = 10 SP.
+     */
+    public static final Float spAsGp = 0.1F;
 
-	/**
-	 * Coin conversion: 1 SP = 10 GP.
-	 */
-	public static final Float cpAsGp = 0.01F;
+    /**
+     * Coin conversion: 1 SP = 10 GP.
+     */
+    public static final Float cpAsGp = 0.01F;
 
-	// coin count in this collection
-	private int pp = 0;
-	private int gp = 0;
-	private int sp = 0;
-	private int cp = 0;
+    // coin count in this collection
+    private int pp = 0;
+    private int gp = 0;
+    private int sp = 0;
+    private int cp = 0;
 
-	// Constructors
-	/**
-	 * Creates a zero value Currency object that can be modified later.
-	 * 
-	 */
-	public Currency() {
-		super();
-	}
+    // Constructors
+    /**
+     * Creates a zero value Currency object that can be modified later.
+     * 
+     */
+    public Currency() {
+        super();
+    }
 
-	/**
-	 * Creates a Currency object that can be modified later.
-	 * 
-	 * @param pPp
-	 *            Number of Platinum Pieces in this object.
-	 * @param pGp
-	 *            Number of Gold Pieces in this object.
-	 * @param pSp
-	 *            Number of Silver Pieces in this object.
-	 * @param pCp
-	 *            Number of Copper Pieces in this object.
-	 */
-	public Currency(int pPp, int pGp, int pSp, int pCp) {
-		super();
-		this.pp = pPp;
-		this.gp = pGp;
-		this.sp = pSp;
-		this.cp = pCp;
-	}
+    /**
+     * Creates a Currency object that can be modified later.
+     * 
+     * @param pPp
+     *            Number of Platinum Pieces in this object.
+     * @param pGp
+     *            Number of Gold Pieces in this object.
+     * @param pSp
+     *            Number of Silver Pieces in this object.
+     * @param pCp
+     *            Number of Copper Pieces in this object.
+     */
+    public Currency(int pPp, int pGp, int pSp, int pCp) {
+        super();
+        this.pp = pPp;
+        this.gp = pGp;
+        this.sp = pSp;
+        this.cp = pCp;
+    }
 
-	/**
-	 * Clones an exiting Currency object. Each can be independently modified
-	 * later.
-	 * 
-	 * @param otherCollection
-	 *            The Currency object being cloned.
-	 */
-	public Currency(Currency otherCollection) {
-		super();
-		this.pp = otherCollection.pp;
-		this.gp = otherCollection.gp;
-		this.sp = otherCollection.sp;
-		this.cp = otherCollection.cp;
-	}
+    /**
+     * Clones an exiting Currency object. Each can be independently modified
+     * later.
+     * 
+     * @param otherCollection
+     *            The Currency object being cloned.
+     */
+    public Currency(final Currency otherCollection) {
+        super();
+        this.pp = otherCollection.pp;
+        this.gp = otherCollection.gp;
+        this.sp = otherCollection.sp;
+        this.cp = otherCollection.cp;
+    }
 
-	// static methods
-	public static boolean null_safe_equals(Currency currency,
-			Currency currencyOther) {
-		if (currency == null) {
-			if (currencyOther == null) {
-				return true;
-			}
-			return false;
-		}
+    // instance methods
+    public Float getGpEquiv() {
+        return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
+    }
 
-		if (currencyOther == null) {
-			return false;
-		}
+    /**
+     * Get the number of platinum pieces.
+     */
+    public int getPp() {
+        return pp;
+    }
 
-		return currency.equals(currencyOther);
-	}
+    /**
+     * Set the number of platinum pieces.
+     * 
+     * @param pp
+     *            The number of platinum pieces.
+     */
+    public void setPp(final int pp) {
+        this.pp = pp;
+    }
 
-	// instance methods
-	Float getGpEquiv() {
-		return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
-	}
+    /**
+     * Get the number of gold pieces.
+     */
+    public int getGp() {
+        return gp;
+    }
 
-	/**
-	 * Get the number of platinum pieces.
-	 */
-	public int getPp() {
-		return pp;
-	}
+    /**
+     * Set the number of gold pieces.
+     * 
+     * @param gp
+     *            The number of gold pieces.
+     */
+    public void setGp(final int gp) {
+        this.gp = gp;
+    }
 
-	/**
-	 * Set the number of platinum pieces.
-	 * 
-	 * @param pp
-	 *            The number of platinum pieces.
-	 */
-	public void setPp(int pp) {
-		this.pp = pp;
-	}
+    /**
+     * Get the number of silver pieces.
+     */
+    public int getSp() {
+        return sp;
+    }
 
-	/**
-	 * Get the number of gold pieces.
-	 */
-	public int getGp() {
-		return gp;
-	}
+    /**
+     * Set the number of silver pieces.
+     * 
+     * @param sp
+     *            The number of silver pieces.
+     */
+    public void setSp(final int sp) {
+        this.sp = sp;
+    }
 
-	/**
-	 * Set the number of gold pieces.
-	 * 
-	 * @param gp
-	 *            The number of gold pieces.
-	 */
-	public void setGp(int gp) {
-		this.gp = gp;
-	}
+    /**
+     * Get the number of copper pieces.
+     */
+    public int getCp() {
+        return cp;
+    }
 
-	/**
-	 * Get the number of silver pieces.
-	 */
-	public int getSp() {
-		return sp;
-	}
+    /**
+     * Set the number of coper pieces.
+     * 
+     * @param cp
+     *            The number of coper pieces.
+     */
+    public void setCp(final int cp) {
+        this.cp = cp;
+    }
 
-	/**
-	 * Set the number of silver pieces.
-	 * 
-	 * @param sp
-	 *            The number of silver pieces.
-	 */
-	public void setSp(int sp) {
-		this.sp = sp;
-	}
+    // increment the current object by the argument currency.
+    // note that the currency arg is not changed.
+    public void add(final Currency otherCollection) {
+        // add the value to the current Currency.
+        this.pp += otherCollection.getPp();
+        this.gp += otherCollection.getGp();
+        this.sp += otherCollection.getSp();
+        this.cp += otherCollection.getCp();
+    }
 
-	/**
-	 * Get the number of copper pieces.
-	 */
-	public int getCp() {
-		return cp;
-	}
+    // transfer all the value of the passed currency object.
+    public void transfer(Currency otherCollection) {
+        this.add(otherCollection);
+        // remove the value from the original otherCollection.
+        otherCollection.pp = otherCollection.gp = otherCollection.sp = otherCollection.cp = 0;
+    }
 
-	/**
-	 * Set the number of coper pieces.
-	 * 
-	 * @param cp
-	 *            The number of coper pieces.
-	 */
-	public void setCp(int cp) {
-		this.cp = cp;
-	}
+    @Override
+    public boolean equals(Object object) {
+        Boolean isEqual = false;
+        if (object instanceof Currency) {
+            final Currency otherCurrency = (Currency) object;
+            isEqual = (pp == otherCurrency.getPp()) && (gp == otherCurrency.getGp())
+                    && (sp == otherCurrency.getSp()) && (cp == otherCurrency.getCp());
+        }
+        return isEqual;
+    }
 
-	// increment the current object by the argument currency.
-	// note that the currency arg is not changed.
-	public void add(Currency otherCollection) {
-		// add the value to the current Currency.
-		this.pp += otherCollection.pp;
-		this.gp += otherCollection.gp;
-		this.sp += otherCollection.sp;
-		this.cp += otherCollection.cp;
-	}
-	
-	// transfer all the value of the passed currency object.
-	public void transfer(Currency otherCollection) {
-		this.add(otherCollection);
-		// remove the value from the original otherCollection.
-		otherCollection.pp = otherCollection.gp = otherCollection.sp = otherCollection.cp = 0;
-	}
+    public String toString() {
+        return new String(this.pp + "pp, " + this.gp + "gp, " + this.sp
+                + "sp, " + this.cp + "cp ");
+    }
 
-	public boolean equals(Currency otherCollection) {
-		return (pp == otherCollection.pp) && (gp == otherCollection.gp)
-				&& (sp == otherCollection.sp) && (cp == otherCollection.cp);
-	}
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
 
-	public String toString() {
-		return new String(this.pp + "pp, " + this.gp + "gp, " + this.sp
-				+ "sp, " + this.cp + "cp ");
-	}
+    private void readObject(ObjectInputStream in) throws IOException,
+            ClassNotFoundException {
+        // our "pseudo-constructor"
+        in.defaultReadObject();
+        // now we are a "live" object again, so let's run rebuild and start
+    }
 
-	private void writeObject(ObjectOutputStream out) throws IOException {
-		out.defaultWriteObject();
-	}
+    @Override
+    public Currency clone() throws CloneNotSupportedException {
+        Currency clone = (Currency) super.clone();
 
-	private void readObject(ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
-		// our "pseudo-constructor"
-		in.defaultReadObject();
-		// now we are a "live" object again, so let's run rebuild and start
-	}
+        // Make sure the cloning is deep, not shallow.
+        // e.g. set the non-mutable, non-primitives
 
-	@Override
-	public Currency clone() throws CloneNotSupportedException {
-		Currency clone = (Currency) super.clone();
-
-		// Make sure the cloning is deep, not shallow.
-		// e.g. set the non-mutable, non-primitives
-
-		return clone;
-	}
+        return clone;
+    }
 }

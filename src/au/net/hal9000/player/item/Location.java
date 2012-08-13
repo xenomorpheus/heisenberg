@@ -14,12 +14,12 @@ public class Location extends ItemContainer implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Location(String pName) {
+	public Location(final String pName) {
 		super(pName);
 	}
 
 	// Store the object in a file
-	public void freezeToFile(String filename) throws IOException {
+	public void freezeToFile(final String filename) throws IOException {
 		FileOutputStream fos = new FileOutputStream(filename);
 		ObjectOutputStream out = new ObjectOutputStream(fos);
 		out.writeObject(this);
@@ -32,7 +32,7 @@ public class Location extends ItemContainer implements Serializable {
 //	}
 
 	// Static
-	public static Location thawFromFile(String filename) throws IOException,
+	public static Location thawFromFile(final String filename) throws IOException,
 			ClassNotFoundException {
 		FileInputStream fis = new FileInputStream(filename);
 		ObjectInputStream in = new ObjectInputStream(fis);
@@ -44,7 +44,7 @@ public class Location extends ItemContainer implements Serializable {
 
 	/** {@inheritDoc} */
 	@Override
-	public Location clone(Item toClone) {
+	public Location clone(final Item toClone) {
 		return (Location) super.clone(toClone);
 	}
 	

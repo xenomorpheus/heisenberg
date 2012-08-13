@@ -1,25 +1,26 @@
 package au.net.hal9000.player.item;
 
 public class Arrow extends Item {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-    private static final float defaultVolumeBase = 1; // TODO arrow volume default
-	// Constructor
-	public Arrow() {
-		this("Arrow");
-	}
+    private static final long serialVersionUID = 1L;
+    private static final float VOLUME_BASE = 1; // TODO arrow volume default
 
-	public Arrow(String pString) {
-		super(pString);
-		this.setVolumeBase(defaultVolumeBase);
-	}
+    // Constructor
+    public Arrow() {
+        this("Arrow");
+    }
 
-	// Feature
-	/** {@inheritDoc} */
-	@Override
-	public boolean isSharp() {
-		return true;
-	}
+    public Arrow(final String pString) {
+        super(pString);
+        this.setVolumeBase(VOLUME_BASE);
+    }
+
+    // Feature
+    /** {@inheritDoc} */
+    @Override
+    public boolean isSharp() {
+        return true;
+    }
 }

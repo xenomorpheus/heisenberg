@@ -31,26 +31,28 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     // Misc
     /** {@inheritDoc} */
+    @Override
     public boolean isLeaf() {
 	return false;
     }
 
     /** {@inheritDoc} */
     public int getChildCount() {
+        int count = 0;
 	if (contents != null) {
-	    return contents.size();
+	    count = contents.size();
 	}
-	return 0;
+	return count;
     }
 
     /** {@inheritDoc} */
-    public Item getChild(int index) {
+    public Item getChild(final int index) {
 	return contents.get(index);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getIndexOfChild(IItem child) {
+    public int getIndexOfChild(final IItem child) {
 	// TODO getIndexOfChild
 	return -1;
     }
@@ -95,7 +97,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     public void add(Item item) {
 
 	// check Weight
-	float weightMax = this.getWeightMax();
+	final float weightMax = this.getWeightMax();
 	if (weightMax >= 0) {
 	    float total = this.getContentsWeight();
 	    total += item.getWeight();
@@ -108,7 +110,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 	}
 
 	// check Volume
-	float volumeMax = this.getVolumeMax();
+	final float volumeMax = this.getVolumeMax();
 	if (volumeMax >= 0) {
 	    float total = this.getContentsVolume();
 	    total += item.getVolume();
@@ -242,10 +244,12 @@ public abstract class ItemContainer extends Item implements Serializable {
 	super.beNot();
     }
 
+    // TODO should other be Item ?
     public boolean equals(ItemContainer other) {
 	// call equals on any super class.
-	if (!super.equals(other))
+	if (!super.equals(other)){
 	    return false;
+	}
 	// Check each of our immediate properties.
 	// check contents.
 	{

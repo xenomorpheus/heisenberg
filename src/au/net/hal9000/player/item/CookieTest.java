@@ -7,56 +7,60 @@ package au.net.hal9000.player.item;
  * 
  */
 
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
 public class CookieTest {
+    @Test
+    public void testEquals() {
+        Cookie first = new Cookie();
+        Cookie second = new Cookie();
+        assertTrue("equals true for self", first.equals(second));
+        assertTrue("equals true for other", second.equals(first));
+    }
 
-	@Test
-	public void testClone() {
-		Cookie x = new Cookie();
-		Cookie clone = null;
-		try {
-			clone = (Cookie) x.clone();
-		} catch (CloneNotSupportedException e) {
-			fail(e.toString());
-		}
+    @Test
+    public void testClone() {
+        Cookie x = new Cookie();
+        Cookie clone = null;
+        try {
+            clone = (Cookie) x.clone();
+        } catch (CloneNotSupportedException e) {
+            fail(e.toString());
+        }
 
-		// x.clone() != x
-		// will be true, and that the expression:
-		assertTrue("x.clone() != x", clone != x);
+        // x.clone() != x
+        // will be true, and that the expression:
+        assertTrue("x.clone() != x", clone != x);
 
-		// x.clone().getClass() == x.getClass()
-		// will be true, but these are not absolute requirements.
-		assertTrue("x.clone().getClass() == x.getClass()",
-				clone.getClass() == x.getClass());
+        // x.clone().getClass() == x.getClass()
+        // will be true, but these are not absolute requirements.
+        assertTrue("x.clone().getClass() == x.getClass()",
+                clone.getClass() == x.getClass());
 
-		// By convention, the returned object should be obtained by calling
-		// super.clone. If a class and all of its superclasses (except
-		// Object)
-		// obey this convention, it will be the case that
-		// x.clone().getClass() == x.getClass().
-		// Already tested above.
+        // By convention, the returned object should be obtained by calling
+        // super.clone. If a class and all of its superclasses (except
+        // Object)
+        // obey this convention, it will be the case that
+        // x.clone().getClass() == x.getClass().
+        // Already tested above.
 
-		// While it is typically the case that:
-		// x.clone().equals(x)
-		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(x));
+        // While it is typically the case that:
+        // x.clone().equals(x)
+        // will be true, this is not an absolute requirement.
+        assertTrue("x.clone().equals(x)", clone.equals(x));
 
-		// Class specific tests
-		// Make sure the cloning is deep, not shallow.
-		// e.g. test the non-mutable, non-primitives
+        // Class specific tests
+        // Make sure the cloning is deep, not shallow.
+        // e.g. test the non-mutable, non-primitives
 
+    }
 
-	}
-	
-	@Test
-	public void testIsHumanoidFood(){
-		Cookie cookie = new Cookie();
-		assertTrue("is humanoid food", cookie.isHumanoidFood());
-	}
+    @Test
+    public void testIsHumanoidFood() {
+        Cookie cookie = new Cookie();
+        assertTrue("is humanoid food", cookie.isHumanoidFood());
+    }
 
 }

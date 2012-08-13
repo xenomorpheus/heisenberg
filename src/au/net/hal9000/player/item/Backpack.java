@@ -10,7 +10,7 @@ public class Backpack extends Bag {
 		this("Backpack");
 	}
 
-	public Backpack(String pString) {
+	public Backpack(final String pString) {
 		super(pString);
 	}
 

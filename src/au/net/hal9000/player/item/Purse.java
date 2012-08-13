@@ -15,7 +15,7 @@ public class Purse extends Item {
 		this("Purse");
 	}
 
-	public Purse(String pString) {
+	public Purse(final String pString) {
 		super(pString);
 	}
 

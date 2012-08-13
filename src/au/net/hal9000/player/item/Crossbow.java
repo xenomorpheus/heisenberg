@@ -1,64 +1,76 @@
 package au.net.hal9000.player.item;
 
-
 public class Crossbow extends Item {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private CrossbowBolt loadedBolt = null;
+    private static final long serialVersionUID = 1L;
+    private CrossbowBolt loadedBolt = null;
 
-	public Crossbow() {
-		this("Crossbow");
-	}
+    public Crossbow() {
+        this("Crossbow");
+    }
 
-	public Crossbow(String pCrossbow) {
-		super(pCrossbow);
-	}
+    public Crossbow(final String pName) {
+        super(pName);
+    }
 
-	public CrossbowBolt getLoadedBolt() {
-		return loadedBolt;
-	}
+    public CrossbowBolt getLoadedBolt() {
+        return loadedBolt;
+    }
 
-	public void setLoadedBolt(CrossbowBolt bolt) {
-		this.loadedBolt = bolt;
-	}
+    public void setLoadedBolt(final CrossbowBolt bolt) {
+        this.loadedBolt = bolt;
+    }
 
-	public boolean equals(Crossbow other) {
-		// loadedBolt
-		if (loadedBolt == null) {
-			if (other.loadedBolt != null) {
-				return false;
-			}
-		} else {
-			if (other.loadedBolt == null) {
-				return false;
-			}
+    // TODO should other be Item? if not will super's equals be used?
+    /** {@inheritDoc} */
+    // @Override
+    public boolean equals(final Object other) {
+        // loadedBolt
+        boolean isEqual = false;
+        if (other instanceof Crossbow) {
+            final Crossbow otherCrossbow = (Crossbow) other;
+            if (loadedBolt == null) {
+                if (otherCrossbow.loadedBolt != null) {
+                    isEqual = false;
+                }
+            } else {
+                if (otherCrossbow.loadedBolt == null) {
+                    isEqual = false;
+                }
 
-			if (!loadedBolt.equals(other.loadedBolt)) {
-				return false;
-			}
-		}
-		return super.equals(other);
-	}
+                else {
+                    if (!loadedBolt.equals(otherCrossbow.loadedBolt)) {
+                        isEqual = false;
+                    }
+                }
+            }
+            // Check the super properties as well.
+            if (isEqual){
+                isEqual =  super.equals(other);
+            }
+        }
+        return isEqual;
+    }
 
-	// bow plus bolt if present.
-	public float getWeight() {
-		float total = super.getWeight();
-		if (loadedBolt != null) {
-			total += loadedBolt.getWeight();
-		}
-		return total;
-	}
+    // bow plus bolt if present.
+    public float getWeight() {
+        float total = super.getWeight();
+        if (loadedBolt != null) {
+            total += loadedBolt.getWeight();
+        }
+        return total;
+    }
 
-	// Find items that match the criteria
-	public void visit(ItemVisitor visitor) {
-		// Search fields defined in this class.
-		if (loadedBolt != null) {
-			visitor.visit(loadedBolt);
-		}
-		// Let our super handle the rest.
-		super.accept(visitor);
-	}
+    // Find items that match the criteria
+    public void visit(final ItemVisitor visitor) {
+        // Search fields defined in this class.
+        if (loadedBolt != null) {
+            visitor.visit(loadedBolt);
+        }
+        // Let our super handle the rest.
+        super.accept(visitor);
+    }
 
 }

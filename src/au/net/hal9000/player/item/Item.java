@@ -40,8 +40,9 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
     private static final float WITHIN_MARGIN = 0.00009F;
     // set as many objects as possible.
-    // we don't want to have to keep checking for null
+    /** name may not be null */
     private String name = "";
+    /** description may not be null */
     private String description = "";
     private float weightBase = 0;
     private float weightMax = 0;
@@ -54,12 +55,12 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     private Item owner = null;
 
     // Class methods
-    public Item(String pName) {
+    public Item(final String pName) {
         super();
         this.name = pName;
     }
 
-    public Item(String pName, String pDescription) {
+    public Item(final String pName, final String pDescription) {
         this(pName);
         this.description = pDescription;
     }
@@ -80,13 +81,13 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         // e.g. set the non-mutable, non-primitives
 
         // valueBase
-        Currency valueBase = this.getValueBase();
+        final Currency valueBase = this.getValueBase();
         if (valueBase == null) {
             clone.setValueBase(null);
         } else {
             try {
-            clone.setValueBase(valueBase.clone());
-            } catch (CloneNotSupportedException e){
+                clone.setValueBase(valueBase.clone());
+            } catch (CloneNotSupportedException e) {
                 throw new RuntimeException("Failed to clone Currency");
             }
         }
@@ -160,7 +161,10 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public void setName(String pName) {
+    public void setName(final String pName) {
+        if (pName == null) {
+            throw new IllegalArgumentException("Not null");
+        }
         this.name = pName;
     }
 
@@ -172,7 +176,10 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public void setDescription(String pDescription) {
+    public void setDescription(final String pDescription) {
+        if (pDescription == null) {
+            throw new IllegalArgumentException("Not null");
+        }
         this.description = pDescription;
     }
 
@@ -184,7 +191,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public void setWeightBase(float baseWeight) {
+    public void setWeightBase(final float baseWeight) {
         this.weightBase = baseWeight;
     }
 
@@ -245,7 +252,10 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public void setValueBase(Currency pValueBase) {
+    public void setValueBase(final Currency pValueBase) {
+        if (pValueBase == null) {
+            throw new IllegalArgumentException("Not null");
+        }
         this.valueBase = pValueBase;
     }
 
@@ -297,49 +307,39 @@ public abstract class Item implements IItem, Serializable, Cloneable {
      * Items are considered equal if all their properties are the same except
      * for location.
      */
-    public boolean equals(Item other) {
-        if (other == null)
+    public boolean equals(Object other) {
+        if (other == null) {
             return false;
-        if (this == other)
+        }
+        if (this == other) {
             return true;
+        }
+        if (!(other instanceof Item)) {
+            return false;
+        }
+        Item otherItem = (Item) other;
 
         // Check each of our immediate properties.
         // name
-        {
-            String otherName = other.getName();
-            if (name == null) {
-                if (other != null)
-                    return false;
-            } else {
-                if (otherName == null)
-                    return false;
-                if (!name.equals(otherName))
-                    return false;
-            }
+        if (!name.equals(otherItem.getName())) {
+            return false;
         }
         // description
-        {
-            String otherDescription = other.getDescription();
-            if (description == null) {
-                if (other != null)
-                    return false;
-            } else {
-                if (otherDescription == null)
-                    return false;
-                if (!description.equals(otherDescription))
-                    return false;
-            }
+        if (!description.equals(otherItem.getDescription())) {
+            return false;
         }
-        if (Math.abs(weightBase - other.getWeightBase()) >= WITHIN_MARGIN)
+        if (Math.abs(weightBase - otherItem.getWeightBase()) >= WITHIN_MARGIN)
             return false;
-        if (Math.abs(weightMax - other.getWeightMax()) >= WITHIN_MARGIN)
+        if (Math.abs(weightMax - otherItem.getWeightMax()) >= WITHIN_MARGIN)
             return false;
-        if (Math.abs(volumeBase - other.getVolumeBase()) >= WITHIN_MARGIN)
+        if (Math.abs(volumeBase - otherItem.getVolumeBase()) >= WITHIN_MARGIN)
             return false;
-        if (Math.abs(volumeMax - other.getVolumeMax()) >= WITHIN_MARGIN)
+        if (Math.abs(volumeMax - otherItem.getVolumeMax()) >= WITHIN_MARGIN) {
             return false;
-        if (!Currency.null_safe_equals(valueBase, other.getValueBase()))
+        }
+        if (!(valueBase.equals(otherItem.getValueBase()))) {
             return false;
+        }
         /*
          * We can't check the location because checking of deep persistence will
          * break. Nested objects will have different locations.
@@ -347,7 +347,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
         // if (!Item.null_safe_equals(location, other.getLocation()))
         // return false;
-        if (Math.abs(hitPoints - other.getHitPoints()) > 0.0001F)
+        if (Math.abs(hitPoints - otherItem.getHitPoints()) > 0.0001F)
             return false;
         // call equals on any super class.
         return true;
@@ -356,10 +356,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     /** {@inheritDoc} */
     @Override
     public void beNot() {
-        // System.out.println("beNot called on " + this.getName());
-        this.name = null;
-        this.description = null;
-        // We don't call beNot on the location.
         this.location = null;
     }
 

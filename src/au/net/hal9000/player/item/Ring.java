@@ -19,7 +19,7 @@ public class Ring extends Item {
 		this.setDefaults(this);
 	}
 	
-	public Ring(String pName) {
+	public Ring(final String pName) {
 		super(pName);
 		this.setDefaults(this);
 	}
