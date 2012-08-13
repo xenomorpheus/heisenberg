@@ -1,3 +1,6 @@
+2012-08-13
+Moved "Features" such as isMagical to java interfaces.
+
 2012-08-10
 Replaced Unit classes for Weight, Length and Volume as they over-complicated things.
 Fixes to cloning. Accepts and object and works up the the class path, not down. - From RM Review

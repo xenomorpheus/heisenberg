@@ -17,10 +17,6 @@ import au.net.hal9000.player.units.*;
 //* An item has a location (e.g. ground, a bag, an arm)
 //* (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or
 //hit points?
-//* An item by default is not alive.
-//* An item by default is not extra-dimensional.
-//* An item by default is not magical.
-//* An item by default does not have a defence (e.g. resistance to fire)
 //* An item may have any number of defences.
 //* An item by default does not offer protection (e.g armour, magic
 //resistance)

@@ -2,14 +2,11 @@ package au.net.hal9000.player.item;
 
 public class Quiver extends ItemContainer {
 
-    /**
-	 * 
-	 */
-    private static final long serialVersionUID = 1L;
-    private static final float VOLUME_MAX_DFT = 20; // TODO quiver volume
-                                                    // default
 
+    private static final long serialVersionUID = 1L;
+    // TODO quiver volume default
     // 20 times volume of an arrow ?
+    private static final float VOLUME_MAX_DFT = 20; 
 
     public Quiver() {
         this("Quiver");
@@ -23,7 +20,8 @@ public class Quiver extends ItemContainer {
     public void add(final Arrow pArrow) {
         super.add(pArrow);
     }
-    public void add(final Item pItem) {
-        throw new RuntimeException("Invalid Type");
+
+    public void add(final Object object) {
+        throw new IllegalArgumentException("Only Arrows accepted");
     }
 }
