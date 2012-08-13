@@ -10,7 +10,7 @@ public class Box extends ItemContainer {
 		this("Box");
 	}
 
-	public Box(String pName) {
+	public Box(final String pName) {
 		super(pName);
 	}
 

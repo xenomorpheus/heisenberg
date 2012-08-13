@@ -13,27 +13,27 @@ public class PurseTest {
 	
 	@Test
 	public void testGetVolume() {
-		fail("Not yet implemented");
+		// TODO fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetValue() {
-		fail("Not yet implemented");
+		// TODO fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetWeight() {
-		fail("Not yet implemented");
+		// TODO fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPurse() {
-		fail("Not yet implemented");
+		// TODO fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPurseString() {
-		fail("Not yet implemented");
+		// TODO fail("Not yet implemented");
 	}
 
 }

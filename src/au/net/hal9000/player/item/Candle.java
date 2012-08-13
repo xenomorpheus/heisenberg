@@ -12,12 +12,12 @@ public class Candle extends Item {
         this("Candle");
     }
 
-    public Candle(String pString) {
+    public Candle(final String pString) {
         super(pString);
         this.setType(1);
     }
 
-    public void setType(int type) {
+    public final void setType(final int type) {
         if (type == 1) {
             this.setVolumeBase(0.5f); // TODO what about liters vs. gallons
             this.setWeightBase(0.5f); // TODO what about kilos vs. pounds ?
@@ -38,11 +38,11 @@ public class Candle extends Item {
     }
 
     public String getDescription() {
-        String full_desc;
+        String full_desc = new String("");
 
         // Try to get the base description first.
-        String desc = super.getDescription();
-        String name = super.getName();
+        final String desc = super.getDescription();
+        final String name = super.getName();
 
         // Otherwise try to get the name.
         if (desc.length() > 0) {
@@ -51,9 +51,8 @@ public class Candle extends Item {
         } else if (name.length() > 0) {
             full_desc = name;
             full_desc = full_desc.concat(". ");
-        } else {
-            full_desc = new String("");
         }
+
         if (lit) {
             full_desc = full_desc.concat("Is lit");
         } else {
