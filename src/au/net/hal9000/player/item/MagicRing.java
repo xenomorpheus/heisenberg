@@ -4,7 +4,9 @@ package au.net.hal9000.player.item;
 // is a Ring except:
 // It is Magical.
 
-public class MagicRing extends Ring {
+import au.net.hal9000.player.item.property.Magical;
+
+public class MagicRing extends Ring implements Magical {
 	/**
 	 * 
 	 */
@@ -18,11 +20,6 @@ public class MagicRing extends Ring {
 
 	public MagicRing(String pName) {
 		super(pName);
-	}
-
-	// Features
-	public boolean isMagical() {
-		return true;
 	}
 
 	// Others

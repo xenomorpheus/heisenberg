@@ -1,6 +1,8 @@
 package au.net.hal9000.player.item;
 
-public class Sword extends Item {
+import au.net.hal9000.player.item.property.Sharp;
+
+public class Sword extends Item implements Sharp{
 	/**
 	 * 
 	 */
@@ -10,14 +12,8 @@ public class Sword extends Item {
 		this("Sword");
 	}
 
-	public Sword(String pString) {
+	public Sword(final String pString) {
 		super(pString);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public boolean isSharp() {
-		return true;
 	}
 
 }

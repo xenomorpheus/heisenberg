@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.Currency;
+import au.net.hal9000.player.item.property.Magical;
 
 public class BagOfHoldingTest {
 	private static final float WITHIN_MARGIN = 0.00009F;
@@ -77,9 +78,9 @@ public class BagOfHoldingTest {
 	}
 
 	@Test
-	public void testIsMagical() {
+	public void testMagical() {
 		BagOfHolding bag = new BagOfHolding(1);
-		assertTrue("isMagical", bag.isMagical());
+		assertTrue("Magical", bag instanceof Magical);
 	}
 
 	@Test

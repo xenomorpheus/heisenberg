@@ -1,8 +1,8 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import au.net.hal9000.player.item.property.Sharp;
 
 public class CrossbowTest {
 
@@ -19,9 +19,9 @@ public class CrossbowTest {
     }
 
     @Test
-    public void testIsSharp() {
-        Crossbow crossbow = new Crossbow();
-        assertEquals("not sharp", false, crossbow.isSharp());
+    public void testSharp() {
+        final Crossbow crossbow = new Crossbow();
+        assertFalse("not sharp", crossbow instanceof Sharp);
     }
 
     @Test

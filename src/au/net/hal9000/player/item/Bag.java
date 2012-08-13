@@ -3,6 +3,7 @@ package au.net.hal9000.player.item;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import au.net.hal9000.player.item.property.Sharp;
 
 import au.net.hal9000.player.item.exception.*;
 
@@ -32,7 +33,7 @@ public class Bag extends Box {
     public void add(final Item item) throws ExceptionTooHeavy, ExceptionTooBig,
             ExceptionInvalidType {
         // Look for sharp items. Wrapped sharp items are safe.
-        if (item.isSharp()) {
+        if (item instanceof Sharp) {
             this.rupture();
             throw new ExceptionInvalidType("Sharp");
         }

@@ -1,8 +1,8 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import au.net.hal9000.player.item.property.Magical;
 
 import au.net.hal9000.player.units.Currency;
 
@@ -20,7 +20,7 @@ public class RingTest {
     @Test
     public void testImplementsMagic() {
         final Ring ring = new Ring();
-        assertFalse("Implements Magical", ring.isMagical());
+        assertFalse("Implements Magical", ring instanceof Magical);
     }
 
     @Test

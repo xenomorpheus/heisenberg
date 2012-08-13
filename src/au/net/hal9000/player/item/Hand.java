@@ -2,8 +2,8 @@ package au.net.hal9000.player.item;
 
 import java.util.Iterator;
 import java.util.Vector;
-
 import au.net.hal9000.player.item.exception.*;
+import au.net.hal9000.player.item.property.Magical;
 
 // Hand
 // Is like an item except:
@@ -42,7 +42,7 @@ public class Hand extends Item {
 
 	public void ringWear(Ring ring) throws ExceptionCantWear {
 
-		if (ring.isMagical()) {
+		if (ring instanceof Magical) {
 			if (magicRingCount >= magicRingMax) {
 				throw new ExceptionCantWear(
 						"would be exceeded magic ring max of " + magicRingCount);
@@ -73,7 +73,7 @@ public class Hand extends Item {
 		if (!this.rings.removeElement(ring)) {
 			throw new ExceptionCantRemove("remove failed");
 		}
-		if (ring.isMagical()) {
+		if (ring instanceof Magical) {
 			magicRingCount--;
 			assert magicRingCount >= 0;
 		}

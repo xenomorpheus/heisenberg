@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is this item magical? */
-    boolean isMagical();
-
     /** @return Is a part of this item in another dimension ? */
     boolean isExtraDimensional();
 
@@ -37,9 +34,6 @@ public interface IItem {
 
     /** @return Is this an item of clothing? */
     boolean isClothing();
-
-    /** @return Is this item sharp? e.g. knife, blade */
-    boolean isSharp();
 
     // Getters and Setters
 

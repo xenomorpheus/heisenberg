@@ -1,6 +1,8 @@
 package au.net.hal9000.player.item;
 
-public class Arrow extends Item {
+import au.net.hal9000.player.item.property.Sharp;
+
+public class Arrow extends Item implements Sharp{
     /**
 	 * 
 	 */
@@ -17,10 +19,4 @@ public class Arrow extends Item {
         this.setVolumeBase(VOLUME_BASE);
     }
 
-    // Feature
-    /** {@inheritDoc} */
-    @Override
-    public boolean isSharp() {
-        return true;
-    }
 }

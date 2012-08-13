@@ -104,11 +104,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     // Feature
 
     // MOVE back to interfaces
-    /** {@inheritDoc} */
-    @Override
-    public boolean isMagical() {
-        return false;
-    }
 
     /** {@inheritDoc} */
     @Override
@@ -143,12 +138,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     /** {@inheritDoc} */
     @Override
     public boolean isClothing() {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isSharp() {
         return false;
     }
 
