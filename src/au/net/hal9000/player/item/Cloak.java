@@ -21,11 +21,4 @@ public class Cloak extends Item {
 		return true;
 	}
 
-	/** {@inheritDoc} 
-	 * @throws CloneNotSupportedException */
-	@Override
-	public Item clone(Item item)  {
-		return super.clone(item);
-	}
-
 }
