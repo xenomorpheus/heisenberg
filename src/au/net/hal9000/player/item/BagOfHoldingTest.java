@@ -1,11 +1,11 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.units.Currency;
 import au.net.hal9000.player.item.property.Magical;
+import au.net.hal9000.player.item.property.ExtraDimensional;
 
 public class BagOfHoldingTest {
 	private static final float WITHIN_MARGIN = 0.00009F;
@@ -84,9 +84,9 @@ public class BagOfHoldingTest {
 	}
 
 	@Test
-	public void testIsExtraDimensional() {
+	public void testExtraDimensional() {
 		BagOfHolding bag = new BagOfHolding(1);
-		assertTrue("isExtraDimensional", bag.isExtraDimensional());
+		assertTrue("is ExtraDimensional", bag instanceof ExtraDimensional);
 	}
 
 	@Test

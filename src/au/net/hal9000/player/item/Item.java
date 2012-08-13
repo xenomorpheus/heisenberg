@@ -107,12 +107,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isExtraDimensional() {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isHumanoidFood() {
         return false;
     }

@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is a part of this item in another dimension ? */
-    boolean isExtraDimensional();
-
     /** @return Is this food for humans? */
     boolean isHumanoidFood();
 

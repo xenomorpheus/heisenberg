@@ -17,7 +17,7 @@ import au.net.hal9000.player.units.Currency;
 
  */
 
-public class BagOfHolding extends Bag implements Magical {
+public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 
 	/**
 	 * 
@@ -32,13 +32,6 @@ public class BagOfHolding extends Bag implements Magical {
 
 	public BagOfHolding(int type) {
 		this(type, "Bag of Holding");
-	}
-
-	// Features
-	/** {@inheritDoc} */
-	@Override
-	public boolean isExtraDimensional() {
-		return true;
 	}
 
 	// Other methods

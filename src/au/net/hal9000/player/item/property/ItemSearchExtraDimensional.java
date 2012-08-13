@@ -2,6 +2,7 @@ package au.net.hal9000.player.item.property;
 
 import java.util.Iterator;
 import java.util.Vector;
+import au.net.hal9000.player.item.property.ExtraDimensional;
 
 import au.net.hal9000.player.item.IItem;
 
@@ -12,10 +13,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
     }
 
 	public void visit(IItem iItem) {
-	//	System.out.println("\n\nChecking for ExtraDimensial " + item + " "
-	//			+ item.isExtraDimensional());
-	//	System.out.println("  Class " + item.getClass().getName());
-		if (iItem.isExtraDimensional()) {
+		if (iItem instanceof ExtraDimensional) {
 			this.addMatchingItems(iItem);
 		}
 	}
@@ -24,10 +22,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 		Iterator<IItem> itr = itemVector.iterator();
 		while (itr.hasNext()) {
 			IItem iItem = itr.next();
-	//		System.out.println("Checking for ExtraDimensial " + item + " "
-	//				+ item.isExtraDimensional());
-	//		System.out.println("  Class " + item.getClass().getName());
-			if (iItem.isExtraDimensional()) {
+			if (iItem instanceof ExtraDimensional) {
 				this.addMatchingItems(iItem);
 			}
 		}
