@@ -3,6 +3,7 @@ package au.net.hal9000.player.item;
 import java.util.ArrayList;
 import au.net.hal9000.player.item.exception.ExceptionInvalidType;
 import au.net.hal9000.player.units.*;
+import au.net.hal9000.player.item.property.HumanoidFood;
 
 /**
  * Entity is the bases of thinking beings.
@@ -134,7 +135,7 @@ public abstract class Entity extends Item {
 	 * @throws ExceptionInvalidType
 	 */
 	public void eat(IItem pFood) throws ExceptionInvalidType {
-		if (!pFood.isHumanoidFood()) {
+		if (!( pFood instanceof HumanoidFood)) {
 			throw new ExceptionInvalidType(this.getName() + " can't eat "
 					+ pFood.getName());
 		}

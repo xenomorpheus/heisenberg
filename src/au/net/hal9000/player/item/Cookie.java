@@ -3,8 +3,9 @@ package au.net.hal9000.player.item;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import au.net.hal9000.player.item.property.HumanoidFood;
 
-public class Cookie extends Item {
+public class Cookie extends Item implements HumanoidFood{
 	/**
 	 * 
 	 */
@@ -26,13 +27,6 @@ public class Cookie extends Item {
 	@Override
 	public Cookie clone(Item toClone) {
 		return (Cookie) super.clone(toClone);
-	}
-
-	// Feature
-	/** {@inheritDoc} */
-	@Override
-	public boolean isHumanoidFood() {
-		return true;
 	}
 
 	// Methods

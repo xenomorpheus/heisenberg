@@ -8,8 +8,8 @@ package au.net.hal9000.player.item;
  */
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import au.net.hal9000.player.item.property.HumanoidFood;
 
 public class CookieTest {
     @Test
@@ -60,7 +60,7 @@ public class CookieTest {
     @Test
     public void testIsHumanoidFood() {
         Cookie cookie = new Cookie();
-        assertTrue("is humanoid food", cookie.isHumanoidFood());
+        assertTrue("is humanoid food", cookie instanceof HumanoidFood);
     }
 
 }

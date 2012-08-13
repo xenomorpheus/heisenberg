@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
 
+import au.net.hal9000.player.item.property.HumanoidFood;
 import au.net.hal9000.player.units.*;
 
 public class ItemTest {

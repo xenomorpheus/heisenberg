@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is this food for humans? */
-    boolean isHumanoidFood();
-
     /** @return Is a Humanoid able to ride this item? */
     boolean isHumanoidMount();
 
