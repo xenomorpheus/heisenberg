@@ -15,11 +15,6 @@ public interface IItem {
      */
     public Item clone(Item toClone);
 
-    // Feature
-
-    /** @return Is this an item of clothing? */
-    boolean isClothing();
-
     // Getters and Setters
 
     /**

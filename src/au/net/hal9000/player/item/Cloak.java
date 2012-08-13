@@ -1,6 +1,7 @@
 package au.net.hal9000.player.item;
 
-public class Cloak extends Item {
+import au.net.hal9000.player.item.property.Clothing;
+public class Cloak extends Item implements Clothing {
 	/**
 	 * 
 	 */
@@ -12,13 +13,6 @@ public class Cloak extends Item {
 
 	public Cloak(String pString) {
 		super(pString);
-	}
-
-	// Features
-	/** {@inheritDoc} */
-	@Override
-	public boolean isClothing() {
-		return true;
 	}
 
 }

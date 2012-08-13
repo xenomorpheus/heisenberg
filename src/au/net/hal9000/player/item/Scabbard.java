@@ -3,9 +3,10 @@ package au.net.hal9000.player.item;
 import au.net.hal9000.player.item.exception.ExceptionCantRemove;
 import au.net.hal9000.player.item.exception.ExceptionCantWear;
 import au.net.hal9000.player.item.property.SwordSheath;
+import au.net.hal9000.player.item.property.Clothing;
 import au.net.hal9000.player.units.Currency;
 
-public class Scabbard extends Item implements SwordSheath {
+public class Scabbard extends Item implements SwordSheath, Clothing {
 	/**
 	 * 
 	 */
@@ -18,12 +19,6 @@ public class Scabbard extends Item implements SwordSheath {
 
 	public Scabbard(String pString) {
 		super(pString);
-	}
-
-	// Features
-	@Override
-	public boolean isClothing() {
-		return true;
 	}
 
 	public void add(Sword pSword) throws ExceptionCantWear {

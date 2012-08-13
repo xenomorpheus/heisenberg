@@ -1,8 +1,8 @@
 package au.net.hal9000.player.item;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import au.net.hal9000.player.item.property.Clothing;
 
 public class CloakTest {
 
@@ -46,7 +46,7 @@ public class CloakTest {
 	@Test
 	public void testIsHumanoidClothing() {
 		Cloak cloak = new Cloak();
-		assertTrue("is humanoid clothing", cloak.isClothing());
+		assertTrue("is Clothing", cloak instanceof Clothing);
 	}
 
 	@Test

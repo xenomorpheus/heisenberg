@@ -101,16 +101,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     // instance methods
 
-    // Feature
-
-    // MOVE back to interfaces
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isClothing() {
-        return false;
-    }
-
     // Getters and Setters
     /** {@inheritDoc} */
     @Override
