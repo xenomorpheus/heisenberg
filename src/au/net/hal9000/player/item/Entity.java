@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import au.net.hal9000.player.item.exception.ExceptionInvalidType;
 import au.net.hal9000.player.units.*;
 import au.net.hal9000.player.item.property.HumanoidFood;
+import au.net.hal9000.player.item.property.Living;
 
 /**
  * Entity is the bases of thinking beings.
@@ -12,7 +13,7 @@ import au.net.hal9000.player.item.property.HumanoidFood;
  * 
  */
 
-public abstract class Entity extends Item {
+public abstract class Entity extends Item implements Living{
 
 	/**
 	 * 
@@ -37,14 +38,6 @@ public abstract class Entity extends Item {
 	 * The {@link Recipe} list that is known by this Entity.
 	 */
 	private ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-
-	// Features
-	// TODO Consider moving to a Marker Interface
-	/** {@inheritDoc} */
-	@Override
-	public boolean isLiving() {
-		return true;
-	}
 
 	// Methods
 

@@ -17,9 +17,6 @@ public interface IItem {
 
     // Feature
 
-    /** @return Is this item living? */
-    boolean isLiving();
-
     /** @return Is this an item of clothing? */
     boolean isClothing();
 

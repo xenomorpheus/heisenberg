@@ -5,12 +5,13 @@ import java.util.Vector;
 import au.net.hal9000.player.item.exception.*;
 import au.net.hal9000.player.item.property.Magical;
 import au.net.hal9000.player.item.property.RingWearer;
+import au.net.hal9000.player.item.property.Living;
 
 /**
  * Hand Is like an item except: May wear at most one magical ring. May wear any
  * number of non-magical rings. Rings may be removed in any order.
  */
-public class Hand extends Item implements RingWearer {
+public class Hand extends Item implements RingWearer, Living {
 
     private static final long serialVersionUID = 1L;
     private Vector<Ring> rings = new Vector<Ring>();
@@ -23,11 +24,6 @@ public class Hand extends Item implements RingWearer {
 
     public Hand(String string) {
         super(string);
-    }
-
-    // Features
-    public boolean isLiving() {
-        return true;
     }
 
     // Other

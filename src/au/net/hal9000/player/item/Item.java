@@ -107,12 +107,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isLiving() {
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isClothing() {
         return false;
     }
