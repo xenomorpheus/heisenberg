@@ -18,11 +18,11 @@ public class ShieldTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Shield x = new Shield();
 		Shield clone = null;
 		try {
-			clone = (Shield) x.clone(new Shield());
+			clone = (Shield) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

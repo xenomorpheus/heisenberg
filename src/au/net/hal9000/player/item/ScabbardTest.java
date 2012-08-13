@@ -7,11 +7,11 @@ import org.junit.Test;
 public class ScabbardTest {
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Scabbard x = new Scabbard();
 		Scabbard clone = null;
 		try {
-			clone = (Scabbard) x.clone(new Scabbard());
+			clone = (Scabbard) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

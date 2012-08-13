@@ -21,11 +21,10 @@ public class Cloak extends Item {
 		return true;
 	}
 
-	// TODO remove when RM has replacement in Item
 	/** {@inheritDoc} 
 	 * @throws CloneNotSupportedException */
 	@Override
-	public Item clone(Item item) throws CloneNotSupportedException {
+	public Item clone(Item item)  {
 		return super.clone(item);
 	}
 

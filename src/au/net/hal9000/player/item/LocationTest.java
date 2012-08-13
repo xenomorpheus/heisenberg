@@ -117,13 +117,13 @@ public class LocationTest {
     }
 
     @Test
-    public void testCloneItem() {
+    public void testClone() {
 	Location x = new Location("World");
 	Cookie c1 = new Cookie();
 	x.add(c1);
 	Location clone = null;
 	try {
-	    clone = (Location) x.clone(new Location("World"));
+	    clone = (Location) x.clone();
 	} catch (CloneNotSupportedException e) {
 	    fail(e.toString());
 	}

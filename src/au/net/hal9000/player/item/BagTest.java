@@ -51,11 +51,11 @@ public class BagTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Bag x = new Bag();
 		Bag clone = null;
 		try {
-			clone = (Bag) x.clone(new Bag());
+			clone = (Bag) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

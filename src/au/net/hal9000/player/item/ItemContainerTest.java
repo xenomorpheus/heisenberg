@@ -116,13 +116,13 @@ public class ItemContainerTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Bag x = new Bag();
 		Cookie c1 = new Cookie();
 		x.add(c1);
 		Bag clone = null;
 		try {
-			clone = (Bag) x.clone(new Bag());
+			clone = (Bag) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

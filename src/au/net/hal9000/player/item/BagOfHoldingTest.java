@@ -178,11 +178,11 @@ public class BagOfHoldingTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		BagOfHolding x = new BagOfHolding(1);
 		BagOfHolding clone = null;
 		try {
-			clone = (BagOfHolding) x.clone(new BagOfHolding(1));
+			clone = (BagOfHolding) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

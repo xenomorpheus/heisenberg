@@ -24,7 +24,7 @@ public class Cookie extends Item {
 
 	/** {@inheritDoc} */
 	@Override
-	protected Cookie clone(Item toClone) throws CloneNotSupportedException {
+	public Cookie clone(Item toClone) {
 		return (Cookie) super.clone(toClone);
 	}
 

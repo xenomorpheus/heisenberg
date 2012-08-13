@@ -23,11 +23,11 @@ public class QuiverTest {
         assertEquals("Arrow location ", quiver, arrow.getLocation());
 	}
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Quiver x = new Quiver();
 		Quiver clone = null;
 		try {
-			clone = (Quiver) x.clone(new Quiver());
+			clone = (Quiver) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

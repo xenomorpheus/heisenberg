@@ -25,11 +25,11 @@ public class CrossbowTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Crossbow x = new Crossbow();
 		Crossbow clone = null;
 		try {
-			clone = (Crossbow) x.clone(new Crossbow());
+			clone = (Crossbow) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

@@ -8,6 +8,13 @@ import au.net.hal9000.player.units.Currency;
  */
 public interface IItem {
 
+    /**
+     * @param Item
+     *            toClone the item to clone.
+     * @return the clone of the cloned item.
+     */
+    public Item clone(Item toClone);
+
     // Feature
 
     /** @return Is this item magical? */

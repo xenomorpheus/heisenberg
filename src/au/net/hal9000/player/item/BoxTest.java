@@ -28,11 +28,11 @@ public class BoxTest {
 	}
 	
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Box x = new Box();
 		Box clone = null;
 		try {
-			clone = (Box) x.clone(new Box());
+			clone = (Box) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

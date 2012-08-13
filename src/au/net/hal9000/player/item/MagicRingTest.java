@@ -20,11 +20,11 @@ public class MagicRingTest {
 	}
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		MagicRing x = new MagicRing();
 		MagicRing clone = null;
 		try {
-			clone = (MagicRing) x.clone(new MagicRing());
+			clone = (MagicRing) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}

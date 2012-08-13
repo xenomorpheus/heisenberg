@@ -144,7 +144,7 @@ public class ItemTest {
 		Cookie x = new Cookie();
 		Cookie clone = null;
 		try {
-			clone = (Cookie) x.clone(new Cookie());
+			clone = (Cookie) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
@@ -225,11 +225,7 @@ public class ItemTest {
 	public void testCloneItem() {
 		Cookie x = new Cookie();
 		Cookie clone = null;
-		try {
-			clone = (Cookie) x.clone(new Cookie());
-		} catch (CloneNotSupportedException e) {
-			fail(e.toString());
-		}
+		clone = (Cookie) x.clone(new Cookie());
 		
 		// x.clone() != x
 		// will be true, and that the expression:

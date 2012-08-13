@@ -7,11 +7,11 @@ import org.junit.Test;
 public class CloakTest {
 
 	@Test
-	public void testCloneItem() {
+	public void testClone() {
 		Cloak x = new Cloak();
 		Cloak clone = null;
 		try {
-			clone = (Cloak) x.clone(new Cloak());
+			clone = (Cloak) x.clone();
 		} catch (CloneNotSupportedException e) {
 			fail(e.toString());
 		}
