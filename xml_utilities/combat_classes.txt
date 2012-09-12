@@ -1,0 +1,161 @@
+Combat Classes Magic Classes
+Soldier
+Warrior
+Paladin
+Wizard
+Priest
+Druid
+7
+7
+6
+4
+4
+4
+Health
+0
+0
+3
+4
+4
+4
+Mana
+8
+8
+8
+8
+8
+8
+Action Point
+4/+1
+3/+1
+4/+1
+1
+1/+1
+2
+Combat Defense
+2
+2
+4/+1
+4/+1
+4/+1
+4/+1
+Magic Defense
+3
+3
+3
+1
+2
+2
+Resistance
+~
+~
+~
+~
+~
+~
+Size
+~
+~
+~
+~
+~
+~
+Gender
+~
+~
+~
+~
+~
+~
+Race
+100 lbs
+100 lbs
+100 lbs
+100 lbs
+100 lbs
+100 lbs
+Encumbrance
+3/+1
+4/+1
+3/+1
+1
+2/+1
+2
+Melee Attack
+3/+1
+3/+1
+2/+1
+1
+1
+2
+Ranged Attack
+2
+2
+1
+0
+1
+1
+Advantage Attack
+0
+0
+3/+1
+4/+1
+3/+1
+3/+1
+Magical Attack
+0
+0
+0
+3/+1
+2/+1
+1/+1
+Enchantment
+0
+0
+2
+4/+1
+3
+2
+Dweomer Lore
+2
+3/+1
+0
+0
+0
+3/+1
+Sneak
+0
+0
+0
+0
+0
+0
+Mechanisms
+0
+1/+1
+0
+0
+1
+0
+Trickery
+3/+1
+2
+1
+3
+2
+0
+Appraisal
+4
+4
+3
+3
+3
+4
+Perception
+3/+1
+2
+1
+3/+1
+1
+2/+1
+Crafting
