@@ -1,0 +1,28 @@
+Investigate JPA
+
+EclispeLink
+
+Via Eclipse Marketplace install EclipseLink Eclipse plugin.
+
+?? Download http://www.eclipse.org/eclipselink/downloads/
+
+
+
+EclipseLink Setup:
+
+http://wiki.eclipse.org/EclipseLink/Installing_and_Configuring_EclipseLink
+
+Download the EclipseLink jars from http://www.eclipse.org/eclipselink/downloads/
+Unpack and move eclipselink folder to somewhere eg. under Eclipse application.
+mv -i ~/Downloads/eclipselink  /Applications/eclipse/
+
+Set the env path in .bashrc (or whatever shell you use)
+
+export ECLIPSELINK_HOME=/Applications/eclipse/eclipselink
+
+JPA Code Examples here:
+http://dev.eclipse.org/svnroot/rt/org.eclipse.persistence/trunk/examples/
+
+
+Eclipse Plugin
+Using Eclipsemarketplace install the EclipseLink plugin into Eclipse.

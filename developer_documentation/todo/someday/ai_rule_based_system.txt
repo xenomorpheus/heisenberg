@@ -1,0 +1,21 @@
+AI Ideas:
+
+Rule Based System ?
+
+Goals:
+
+Short term goals:
+Health:
+Avoidance of harm (versus reward).
+Breathing
+Thirst
+Hunger
+Rest
+
+
+
+
+Actions:
+"Recipes" could be incorporated into "Rule based systems".
+
+Recipe "eat" could achieve goal of reducing "Hunger".

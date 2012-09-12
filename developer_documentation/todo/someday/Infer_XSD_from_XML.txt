@@ -1,0 +1,3 @@
+Infer XSD from XML.
+
+http://www.freeformatter.com/xsd-generator.html

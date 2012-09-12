@@ -1,0 +1,171 @@
+2012-09-11
+Character sheet UI tool can now choose PcClass and display the dice.
+
+2012-09-09
+PcClass objects can now be read from XML config.
+Character sheet can now be created.
+Started work on the UI tool to build Character sheets.
+
+2012-09-8
+Added AbilityScore class and unit tests.
+Much more difficult in java than it needs to be.
+
+2012-09-7
+Started adding PcClass (PC Class) java class.
+
+2012-09-06
+Replaced ArrayList with Vector to improve be thread safety.
+
+2012-09-05
+Merged character class properties from designer doco into XML config.
+
+2012-09-04
+Merging XML config into one configuration file.
+Updating XML config readers.
+
+2012-09-03
+Renamed test classes back.
+Fixed JavaDoc warnings.
+Changed the ordering of Items in Humanoid so Head is first then limbs.
+This is done so the UI ItemCreator application shows them in this order.
+Re-ordered the demo items in the ItemCreator UI to look a less boring.
+
+2012-09-02
+Development of the Cooker and related classes.
+For now removed the auto allocation of Item objects.
+This greatly simplifies the requirement checking process.
+Worked on the ItemContainer class. 
+It is now much easier to transfer an Item between ItemContainer objects.
+The Cooker is now an ItemContainer, which greatly simplifies
+transferring Item objects into the cooker.
+
+2012-09-01
+Worked on IngredientsItem Class.
+This Class is key to deciding if an Item meets the needs of a Recipe.
+Working on the Cooker class.
+
+2012-08-31
+Significant changes to XML configuration files.
+Marked many methods as deprecated.
+Cooker development.
+
+2012-08-30
+Powerword removed an merged into Skills.
+
+2012-08-28
+Project rename to Heisenberg. 
+  * It is all about the quality of the Cook (Recipe class, Breaking Bad).
+  * At any point in time we can't tell where we are and how fast we are going.
+Added unit tests for Item Factory.
+Item Factory re-implemented using newInstance method.
+More unit tests added for ItemSearch sub-classes.
+Significant restructure of the crafting mechanism.
+  Most Ingredient subclasses have been removed as no longer required.
+  General simplification of the process.
+Renamed packages to Heisenberg.
+Moved JUnit tests to "src/test".
+Rename JUnit tests into "TestMyClass.java" style.
+
+2012-08-27
+Added h2 database library (http://www.h2database.com/)
+Tutorials can be found here: http://www.h2database.com/html/tutorial.html
+To start a console: java -classpath /path/to/h2/library.jar org.h2.tools.Console
+
+2012-08-27
+Worked on Cooker.
+Now creating simple items.
+Chef is being debited mana and ActionPoints.
+There is now a simple Factory class for Items.
+
+2012-08-26
+Reading XML files for Recipes, Ingredients etc.
+All unit tests pass.
+Renamed package recipe to crafting because it better describes the intent.
+Renamed class Entity to Being to avoid confusion with Java terms.
+In package ui, renamed WorldForge to ItemCreator to avoid name conflict with other gaming system.
+Re-factored Item and ItemContainer so that ItemContainer now implements VolumeMax and WeightMax.
+Added Interface for ItemContainer and moved doco to it. ItemInterface now inherits doco.
+Beings are now ItemContainers rather than Items.
+  Removes duplicated functionality.
+  Removes the hack of equipment being stored in a private Box.
+  Allows easy control over maximum Volume/Weight contained.
+Removed the AllTest test suites as all tests sets can be run from the folder they are in.
+  Removing the AllTest test suites stops the double running of the tests when running
+  unit tests by upper folders.
+Removed console output from unit tests.
+
+2012-08-25
+Trying to get Recipe, Cooker and Ingredients to work.
+
+2012-08-22
+Development on/for the Recipe, Cooker, and Ingredient classes.
+Added Item property (Interface) SplitByWeight. 
+This interface marks an item as being able to be split by weight.
+Added the Water class.
+Water Items can be SplitByWeight.
+
+
+2012-08-21
+Some Recipe Ingredient sub-classes are now using set theory e.g. for Skills and PowerWords.
+This will greatly simplify the code to determine if Player meets the Skill and PowerWord
+requirements for a recipe.  See Java Interface Set - containsAll method. 
+
+2012-08-19
+Starting to flesh out "Ingredient" classes.  
+Ingredients are required for "Recipes" which will be the underlying mechanism
+for PCs to cast spells, build mundane objects and possibly other actions.
+
+2012-08-13
+Moved "Features" such as isMagical to java interfaces.
+
+2012-08-10
+Replaced Unit classes for Weight, Length and Volume as they over-complicated things.
+Fixes to cloning. Accepts and object and works up the the class path, not down. - From RM Review
+
+2012-07-23
+Rename Item interface to IItem.
+Rename ItemImpl to Item
+
+2019-07-20
+Added the ability to read PowerWords and Spells from XML config files.
+Renamed Spell to more generic Recipe
+Renamed PowerWord to more generic Ingredient.
+Items now have an owner.
+
+2019-07-19
+Adding PowerWords and Spells.
+Adding dice.
+
+2012-07-17
+Started on Javadoc.
+Trying to get deep persistence to work for ItemContainer.
+
+2012-07-16
+Location objects are back and based on ItemContainer.
+Most references to Item have been replaced with ItemImpl so that the correct 
+version of equals() is run.
+
+2012-07-12
+Location class removed. location property is now just an Item.
+Fixed a bug in ItemImpl's equals().
+
+2012-07-11
+Working on persistence - Started adding serialisation.
+Started fixing a bug in ItemImpl's equals().
+Added lots of null_safe_compare() static methods to allow easy equals() checks.
+
+2012-07-08
+ItemImpl objects now have a WeightMax and VolumeMax, which is the maximum carry.
+ItemContainer objects have had these properties removed as implemented in super class ItemImpl.
+Pros
+- We don't need to check the item type before asking the max carrying volume/weight as all items
+now have this feature.
+
+Weights and Volumes are now objects.
+Pros 
+- should allow for future support of multiple units of weight e.g. SI and Imperial.
+- possibly tighter control over weights and volumes in the future.
+Cons 
+- slower and more work to maintain.
+- some risk of use of null pointer.
+

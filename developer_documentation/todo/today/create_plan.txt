@@ -1,0 +1,21 @@
+Work out some objectives both short and long term.
+Work out some deliverables, starting with small and building upon them.
+Work out a road map to meet the objectives.
+
+Long term goal: 
+
+Mike:
++ Character based MUD.
+TODO add the rest.
+
+Adam:
++ 3D Shooter 
+TODO add the rest.
+
+
+Medium term goal: 
+
+
+Short term goal: 
+
+

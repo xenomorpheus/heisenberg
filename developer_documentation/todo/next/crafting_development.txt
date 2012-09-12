@@ -1,0 +1,20 @@
+Possible products:
+* new Items
+** With modifiers e.g. as per existing items.
+* modification to existing Items:
+** Restore mana
+** Restore action points
+** Thirst reduction
+** Hunger reduction
+** Need to have a "SELF" placeholder.
+** Need to have a "TARGET" placeholder
+*** Modifier: Allowed classes of TARGET.
+*** Modifier: TARGET is unwilling
+
+
+<products>
+<item class="Cookie">
+<modifier setName="The Name" />
+<modifier setWeightBase="0.1" />
+</item>
+</products>

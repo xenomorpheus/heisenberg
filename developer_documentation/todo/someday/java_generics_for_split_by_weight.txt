@@ -1,0 +1,5 @@
+Investigate if it is good practice to use Generics (or something else?) to implement SplitByWeight Interface.
+That way we don't have lots of duplicated code.
+
+See Water Class for example of SplitByWeight implimentation.
+

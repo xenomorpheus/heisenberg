@@ -1,0 +1,14 @@
+These are ideas for goals. Nothing confirmed.
+
+Character sheet generator V0.1
++ Read-only.
++ Display default attributes.
+
+Character sheet generator V0.2
++ Allow storing and reading of character sheet.
++ Allow changes to properties that are simple, e.g. gender.
+
+Character sheet generator V0.3
++ Allow changes to properties some complex properties e.g. items, recipes, power words.
+
+

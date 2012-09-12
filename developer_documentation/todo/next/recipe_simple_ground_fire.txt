@@ -1,0 +1,1 @@
+To test the recipe mechanism use it to build a simple ground fire. 

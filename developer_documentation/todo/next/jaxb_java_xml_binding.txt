@@ -1,0 +1,9 @@
+jaxb
+
+http://www.oracle.com/technetwork/articles/javase/index-140168.html
+
+http://jaxb.java.net/
+
+http://jaxb.java.net/tutorial/
+
+http://www.vogella.com/articles/JAXB/article.html

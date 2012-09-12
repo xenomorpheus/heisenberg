@@ -1,0 +1,41 @@
+
+
+
+"Entity"
+==================
+
+Human randomWizard = ...
+// create a small light orb and place it in left hand.
+// TODO Perhaps consider left/right handed.
+randomWizard.castSpellCreatingItem("small light orb", randomWizard.getLeftHand());
+
+public boolean castSpellCreatingItem(String spellName, Location newItemLocation){
+   Recipe recipe = this.getRecipe(spellName);
+   Cooker cooker = recipe.getCooker();
+   boolean result = true;
+
+   // short cut for all the setXSource
+   if ( result && (! cooker.setSource(this))) {
+       result = false;
+   }
+
+   // set location of new item
+   if ( result && ( !   cooker.setProductLocation(newItemLocation) ) ){
+      result = false;
+   }
+
+   // create item(s) at the location
+   if ( result && ( ! cooker.cook() ) ){
+        result = false;
+   }
+
+   return result;
+}
+
+
+================================================================
+
+Cooker ...
+
+
+
