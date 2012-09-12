@@ -13,11 +13,8 @@ public class ItemSearchMagical extends ItemSearch {
     }
 
     public void visit(IItem iItem) {
-        // System.out.println("  Class " + item.getClass().getName());
         if (iItem instanceof Magical) {
             this.addMatchingItems(iItem);
-            System.out.println("Matching " + iItem + "  count  "
-                    + this.getMatchingItemsCount());
         }
     }
 
@@ -25,11 +22,8 @@ public class ItemSearchMagical extends ItemSearch {
         Iterator<IItem> itr = itemVector.iterator();
         while (itr.hasNext()) {
             IItem iItem = itr.next();
-            // System.out.println("  Class " + item.getClass().getName());
             if (iItem instanceof Magical) {
                 this.addMatchingItems(iItem);
-                System.out.println("Matching " + iItem + "  count  "
-                        + this.getMatchingItemsCount());
             }
         }
     }

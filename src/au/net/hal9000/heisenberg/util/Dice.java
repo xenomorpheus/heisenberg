@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.util;
 public class Dice {
 
 	/** constructor */
-	Dice() {
+	public Dice() {
 		super();
 	}
 
@@ -17,11 +17,12 @@ public class Dice {
 		return roll(1, sides);
 	}
 
-	/** specify the number of rolls and of a dice with number of sides specified */
+	/** specify the number of rolls and of a dice with number of sides specified<br>
+	 * e.g. 3d6 is roll(3,6) */
 	public int roll(int rolls, int sides) {
 		int total = 0;
 		if (rolls < 1)
-			throw new IllegalArgumentException("Invalid nuber of rolls");
+			throw new IllegalArgumentException("Invalid number of rolls");
 		if (sides < 1)
 			throw new IllegalArgumentException("Invalid number of sides");
 		for (int roll = 0; roll < rolls; roll++) {
