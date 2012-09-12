@@ -9,181 +9,170 @@ import au.net.hal9000.heisenberg.units.Currency;
  */
 public interface IItem {
 
-    /**
-     * @param Item
-     *            toClone the item to clone.
-     * @return the clone of the cloned item.
-     */
-    public Item clone(Item toClone);
+	/**
+	 * @param toClone
+	 *            toClone the item to clone.
+	 * @return the clone of the cloned item.
+	 */
+	public Item clone(Item toClone);
 
-    // Getters and Setters
+	// Getters and Setters
 
-    /**
-     * get the name of the item.
-     * 
-     * @return the name
-     */
-    String getName();
+	/**
+	 * get the name of the item.
+	 * 
+	 * @return the name
+	 */
+	String getName();
 
-    /**
-     * Set the name
-     * 
-     * @param pName
-     *            the name to set
-     */
-    void setName(String pName);
+	/**
+	 * Set the name
+	 * 
+	 * @param pName
+	 *            the name to set
+	 */
+	void setName(String pName);
 
-    /**
-     * Get the description
-     * 
-     * @return the description
-     */
-    String getDescription();
+	/**
+	 * Get the description
+	 * 
+	 * @return the description
+	 */
+	String getDescription();
 
-    /**
-     * Set the description
-     * 
-     * @param pDescription
-     *            the description
-     */
-    void setDescription(String pDescription);
+	/**
+	 * Set the description
+	 * 
+	 * @param pDescription
+	 *            the description
+	 */
+	void setDescription(String pDescription);
 
-    // weight related
-    /**
-     * @return weight before addition of other items such as those carried
-     */
-    float getWeightBase();
+	// weight related
+	/**
+	 * @return weight before addition of other items such as those carried
+	 */
+	float getWeightBase();
 
-    /**
-     * @param baseWeight
-     *            weight before addition of other items such as those carried.
-     */
-    void setWeightBase(float baseWeight);
+	/**
+	 * @param baseWeight
+	 *            weight before addition of other items such as those carried.
+	 */
+	void setWeightBase(float baseWeight);
 
-    /**
-     * The total weight. For simple items the weight is the weightBase. Will be
-     * overridden by collections.
-     * 
-     * @return the total weight
-     */
-    float getWeight();
+	/**
+	 * The total weight. For simple items the weight is the weightBase. Will be
+	 * overridden by collections.
+	 * 
+	 * @return the total weight
+	 */
+	float getWeight();
 
-    /**
-     * @return The max weight that can be carried.
-     */
-    float getWeightMax();
+	// volume related
+	/**
+	 * volume before addition of other items such as those carried.
+	 * 
+	 * @return the volume that this item occupies without any contained items.
+	 */
+	float getVolumeBase();
 
-    /**
-     * Set the max weight that may be carried.
-     * 
-     * @param loadMax
-     *            The max weight that can be carried.
-     */
-    void setWeightMax(float loadMax);
+	void setVolumeBase(float volumeWeight);
 
-    // volume related
-    /** volume before addition of other items such as those carried */
-    float getVolumeBase();
+	/**
+	 * For simple items the weight is the weightBase. Will be overridden by
+	 * collections
+	 * 
+	 * @return the amount of 3D space that this item occupies.
+	 */
+	float getVolume();
 
-    void setVolumeBase(float volumeWeight);
+	// valueBase
+	/**
+	 * value before addition of other items such as those carried.
+	 * 
+	 * @return The value before any contained items.
+	 */
+	Currency getValueBase();
 
-    /**
-     * For simple items the weight is the weightBase. Will be overridden by
-     * collections
-     */
-    float getVolume();
+	/**
+	 * For simple items the value is the valueBase. Will be overridden by
+	 * collections
+	 * @return the total value including contained items.
+	 */
+	Currency getValue();
 
-    // valueBase
-    float getVolumeMax();
+	void setValueBase(Currency pValueBase);
 
-    /**
-     * value before addition of other items such as those carried.
-     * 
-     * @return The value before any items are added.
-     */
-    Currency getValueBase();
+	// location
+	IItem getLocation();
 
-    /**
-     * For simple items the value is the valueBase. Will be overridden by
-     * collections
-     * 
-     */
-    Currency getValue();
+	void setLocation(IItem location);
 
-    void setValueBase(Currency pValueBase);
+	// hitPoints
+	void setHitPoints(float hitPoints);
 
-    // location
-    IItem getLocation();
+	float getHitPoints();
 
-    void setLocation(IItem location);
+	Item getOwner();
 
-    // hitPoints
-    void setHitPoints(float hitPoints);
+	void setOwner(IItem owner);
 
-    float getHitPoints();
+	// misc methods
 
-    Item getOwner();
+	// boolean equals(IItem other);
 
-    void setOwner(IItem owner);
+	/**
+	 * Attempt to unlink the item from everything so that it can be garbage
+	 * collected. Won't work if anything is referencing this item.
+	 */
+	void beNot();
 
-    // misc methods
+	String toString();
 
-    // boolean equals(IItem other);
+	String detailedDescription();
 
-    /**
-     * Attempt to unlink the item from everything so that it can be garbage
-     * collected. Won't work if anything is referencing this item.
-     */
-    void beNot();
+	// Find items that match the criteria
+	void accept(ItemVisitor visitor);
 
-    String toString();
+	/**
+	 * This is used for tree traversal.
+	 * 
+	 * @return True unless this IItem has child Items.<br>
+	 */
+	boolean isLeaf();
 
-    String detailedDescription();
+	/**
+	 * This is used for tree traversal.
+	 * 
+	 * @return the number of directly connected child Items.<br>
+	 */
+	int getChildCount();
 
-    // Find items that match the criteria
-    void accept(ItemVisitor visitor);
+	/**
+	 * Fetch any numbered child of a node for the JTree. Our model returns IItem
+	 * objects for all nodes in the tree. The JTree displays these by calling
+	 * the IItem.toString() method.
+	 * 
+	 * @param index
+	 *            the index of the object
+	 * @return the object at that index
+	 */
+	Object getChild(int index);
 
-    /**
-     * This is used for tree traversal.
-     * 
-     * @return True unless this IItem has child Items.<br>
-     */
-    boolean isLeaf();
+	/**
+	 * Figure out a child's position in its parent node.
+	 * 
+	 * @param child
+	 *            the child we want the index of
+	 * @return index the of the child
+	 */
+	int getIndexOfChild(IItem child);
 
-    /**
-     * This is used for tree traversal.
-     * 
-     * @return the number of directly connected child Items.<br>
-     */
-    int getChildCount();
-
-    /**
-     * Fetch any numbered child of a node for the JTree. Our model returns IItem
-     * objects for all nodes in the tree. The JTree displays these by calling
-     * the IItem.toString() method.
-     * 
-     * @param index
-     *            the index of the object
-     * @return the object at that index
-     */
-    Object getChild(int index);
-
-    /**
-     * Figure out a child's position in its parent node.
-     * 
-     * @param child
-     *            the child we want the index of
-     * @return index the of the child
-     */
-    int getIndexOfChild(IItem child);
-
-    /**
-     * Figure out a child's position in its parent node.
-     * 
-     * @return
-     */
-    Stack<IItem> getChildren();
-
-    void setVolumeMax(float volumeMax);
+	/**
+	 * Get the children of a node.
+	 * 
+	 * @return the child {@link IItem} objects of a node
+	 */
+	Stack<IItem> getChildren();
 
 }

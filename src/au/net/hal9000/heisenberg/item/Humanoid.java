@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-
-public abstract class Humanoid extends Entity {
+public abstract class Humanoid extends Being {
 
 	/**
 	 * 
@@ -74,15 +73,18 @@ public abstract class Humanoid extends Entity {
 	}
 
 	public boolean equals(Humanoid other) {
-		if (!head.equals(other.getHead()))
+		if (!head.equals(other.getHead())) {
 			return false;
+		}
 		if (leftHand != null) {
-			if (!leftHand.equals(other.getLeftHand()))
+			if (!leftHand.equals(other.getLeftHand())) {
 				return false;
+			}
 		}
 		if (rightHand != null) {
-			if (!rightHand.equals(other.getRightHand()))
+			if (!rightHand.equals(other.getRightHand())) {
 				return false;
+			}
 		}
 		return super.equals(other);
 	}
@@ -112,29 +114,21 @@ public abstract class Humanoid extends Entity {
 	/** {@inheritDoc} */
 	@Override
 	public int getChildCount() {
-		int count = super.getChildCount();
-		count++; // head
+		int count = 1; // head
 		if (leftHand != null) {
 			count++;
 		}
 		if (rightHand != null) {
 			count++;
 		}
+		count += super.getChildCount();
 		return count;
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public Item getChild(int index) {
-		// Note: index is zero offset, count is not.
-		int child_count = super.getChildCount();
-		// Child is on super.
-		if (index < child_count) {
-			return (Item) super.getChild(index);
-		}
-		// Make index relative to this class;
-		index -= child_count;
-
+		// index is zero offset.
 		// head
 		if (index == 0) {
 			return head;
@@ -156,7 +150,9 @@ public abstract class Humanoid extends Entity {
 			}
 			index--;
 		}
-		return null;
+
+		// Child is on super.
+		return super.getChild(index);
 	}
 
 	/** {@inheritDoc} */

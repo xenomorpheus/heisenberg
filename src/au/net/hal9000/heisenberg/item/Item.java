@@ -41,9 +41,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     /** description may not be null */
     private String description = "";
     private float weightBase = 0;
-    private float weightMax = 0;
     private float volumeBase = 0;
-    private float volumeMax = 0;
     private Currency valueBase = new Currency();
     private Item location = null;
     private float hitPoints = 0F;
@@ -63,7 +61,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    protected Item clone() throws CloneNotSupportedException {
+	public Item clone() throws CloneNotSupportedException {
         Item clone = (Item) super.clone();
         this.clone(clone);
         return clone;
@@ -140,19 +138,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.weightBase = baseWeight;
     }
 
-    // weightMax - max weight that can be carried
-    /** {@inheritDoc} */
-    @Override
-    public float getWeightMax() {
-        return weightMax;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setWeightMax(float weightMax) {
-        this.weightMax = weightMax;
-    }
-
     /** {@inheritDoc} */
     @Override
     public float getVolume() {
@@ -169,18 +154,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     @Override
     public void setVolumeBase(float volumeBase) {
         this.volumeBase = volumeBase;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getVolumeMax() {
-        return volumeMax;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setVolumeMax(float volumeMax) {
-        this.volumeMax = volumeMax;
     }
 
     /** {@inheritDoc} */
@@ -252,6 +225,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
      * Items are considered equal if all their properties are the same except
      * for location.
      */
+    @Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -275,13 +249,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         }
         if (Math.abs(weightBase - otherItem.getWeightBase()) >= WITHIN_MARGIN)
             return false;
-        if (Math.abs(weightMax - otherItem.getWeightMax()) >= WITHIN_MARGIN)
-            return false;
         if (Math.abs(volumeBase - otherItem.getVolumeBase()) >= WITHIN_MARGIN)
             return false;
-        if (Math.abs(volumeMax - otherItem.getVolumeMax()) >= WITHIN_MARGIN) {
-            return false;
-        }
         if (!(valueBase.equals(otherItem.getValueBase()))) {
             return false;
         }
@@ -301,6 +270,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     /** {@inheritDoc} */
     @Override
     public void beNot() {
+    	// TODO - Help Required - How do I delete an object that
+    	// may be referenced by other objects?
         this.location = null;
     }
 

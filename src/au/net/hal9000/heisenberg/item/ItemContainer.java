@@ -8,287 +8,340 @@ import java.util.Vector;
 import au.net.hal9000.heisenberg.item.exception.*;
 import au.net.hal9000.heisenberg.units.*;
 
-public abstract class ItemContainer extends Item implements Serializable {
-    /**
+public abstract class ItemContainer extends Item implements IItemContainer,
+		Serializable {
+	/**
 	 * 
 	 */
-    private static final long serialVersionUID = 1L;
-    private Stack<Item> contents = new Stack<Item>();
+	private static final long serialVersionUID = 1L;
+    private static final float WITHIN_MARGIN = 0.00009F;
+	private float weightMax = 0;
+	private float volumeMax = 0;
+	private Stack<Item> contents = new Stack<Item>();
 
-    public ItemContainer(String string) {
-        super(string);
-    }
+	public ItemContainer(String string) {
+		super(string);
+	}
 
-    // Getters and Setters
+	// Getters and Setters
+	public Stack<Item> getContents() {
+		return contents;
+	}
 
-    public Stack<Item> getContents() {
-        return contents;
-    }
+	private void setContents(Stack<Item> contents) {
+		this.contents = contents;
+	}
 
-    private void setContents(Stack<Item> contents) {
-        this.contents = contents;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public float getWeightMax() {
+		return weightMax;
+	}
 
-    // Misc
-    /** {@inheritDoc} */
-    @Override
-    public boolean isLeaf() {
-        return false;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void setWeightMax(float weightMax) {
+		this.weightMax = weightMax;
+	}
 
-    /** {@inheritDoc} */
-    public int getChildCount() {
-        int count = 0;
-        if (contents != null) {
-            count = contents.size();
-        }
-        return count;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public float getVolumeMax() {
+		return volumeMax;
+	}
 
-    /** {@inheritDoc} */
-    public Item getChild(final int index) {
-        return contents.get(index);
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void setVolumeMax(float volumeMax) {
+		this.volumeMax = volumeMax;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public int getIndexOfChild(final IItem child) {
-        // TODO getIndexOfChild
-        return -1;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public boolean contains(Item item) {
+		return contents.contains(item);
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public Stack<IItem> getChildren() {
-        Stack<IItem> children = super.getChildren();
-        // TODO what about items in contents ?
-        return children;
-    }
+	
+	// Misc
+	/** {@inheritDoc} */
+	@Override
+	public boolean isLeaf() {
+		return false;
+	}
 
-    /** Total weight, including contents. */
-    @Override
-    public float getWeight() {
-        float total = this.getWeightBase();
-        total += this.getContentsWeight();
-        return total;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public int getChildCount() {
+		int count = 0;
+		if (contents != null) {
+			count = contents.size();
+		}
+		return count;
+	}
 
-    /** Total volume, including contents. */
-    @Override
-    public float getVolume() {
-        float total = this.getVolumeBase();
-        total += this.getContentsVolume();
-        return total;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public Item getChild(final int index) {
+		return contents.get(index);
+	}
 
-    /** Total value, including contents. */
-    @Override
-    public Currency getValue() {
-        Currency total = new Currency(this.getValueBase());
-        total.add(this.getContentsValue());
-        return total;
-    }
+	/** {@inheritDoc} */
+	@Override
+	public int getIndexOfChild(final IItem child) {
+		// TODO getIndexOfChild
+		return -1;
+	}
 
-    /**
-     * Add the item to the contents.
-     * 
-     * @param item
-     */
-    public void add(Item item) {
+	/** {@inheritDoc} */
+	@Override
+	public Stack<IItem> getChildren() {
+		Stack<IItem> children = super.getChildren();
+		// TODO what about items in contents ?
+		return children;
+	}
 
-        // check Weight
-        final float weightMax = this.getWeightMax();
-        if (weightMax >= 0) {
-            float total = this.getContentsWeight();
-            total += item.getWeight();
-            if (total > weightMax) {
-                throw new ExceptionTooHeavy("Adding " + item.getName()
-                        + " weighing " + item.getWeight() + " will total "
-                        + total + ", which is too heavy for " + this.getName()
-                        + ", weightMax=" + weightMax);
-            }
-        }
+	/** Total weight, including contents. */
+	@Override
+	public float getWeight() {
+		float total = this.getWeightBase();
+		total += this.getContentsWeight();
+		return total;
+	}
 
-        // check Volume
-        final float volumeMax = this.getVolumeMax();
-        if (volumeMax >= 0) {
-            float total = this.getContentsVolume();
-            total += item.getVolume();
-            if (total > volumeMax) {
-                throw new ExceptionTooBig("Adding " + item.getName()
-                        + " of volume " + item.getVolume() + " will total "
-                        + total + ", which is too big for " + this.getName()
-                        + ", volumeMax=" + volumeMax);
-            }
-        }
+	/** Total volume, including contents. */
+	@Override
+	public float getVolume() {
+		float total = this.getVolumeBase();
+		total += this.getContentsVolume();
+		return total;
+	}
 
-        contents.add(item);
-        item.setLocation(this);
-    }
+	/** Total value, including contents. */
+	@Override
+	public Currency getValue() {
+		Currency total = new Currency(this.getValueBase());
+		total.add(this.getContentsValue());
+		return total;
+	}
 
-    /**
-     * Add multiple items to the contents.
-     * 
-     * @param items
-     */
-    public void add(Vector<Item> items) {
-        for (Item item : items) {
-            this.add(item);
-        }
-    }
+	/** {@inheritDoc} 
+	 * @deprecated use transfer instead*/
+	@Override
+	public void add(Item item) {
 
-    /**
-     * Take the top item out of the contents.
-     * 
-     * @return the top item in the contents
-     * @throws EmptyStackException
-     */
-    public IItem pop() throws EmptyStackException {
-        return contents.pop();
-    }
+		// check Weight
+		final float weightMax = this.getWeightMax();
+		if (weightMax >= 0) {
+			float total = this.getContentsWeight();
+			total += item.getWeight();
+			if (total > weightMax) {
+				throw new ExceptionTooHeavy("Adding " + item.getName()
+						+ " weighing " + item.getWeight() + " will total "
+						+ total + ", which is too heavy for " + this.getName()
+						+ ", weightMax=" + weightMax);
+			}
+		}
 
-    /**
-     * Peek at the top item of contents without removing it.
-     * 
-     * @return The top item.
-     * @throws EmptyStackException
-     */
-    public IItem peek() throws EmptyStackException {
-        return contents.peek();
-    }
+		// check Volume
+		final float volumeMax = this.getVolumeMax();
+		if (volumeMax >= 0) {
+			float total = this.getContentsVolume();
+			total += item.getVolume();
+			if (total > volumeMax) {
+				throw new ExceptionTooBig("Adding " + item.getName()
+						+ " of volume " + item.getVolume() + " will total "
+						+ total + ", which is too big for " + this.getName()
+						+ ", volumeMax=" + volumeMax);
+			}
+		}
 
-    /**
-     * Empty the bag into this location
-     * 
-     * @param newLocation
-     */
-    public void empty(ItemContainer newLocation) {
-        while (!contents.isEmpty()) {
-            Item item = contents.pop();
-            newLocation.add(item);
-        }
-    }
+		contents.add(item);
+		item.setLocation(this);
+	}
 
-    /**
-     * Get the number of items in the container.
-     * 
-     * @return the number of items directly inside the container. Items with
-     *         other items don't add to the count as they are *NOT* directly
-     *         contained.
-     */
-    public int getContentsCount() {
-        return contents.size();
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void add(Vector<Item> items) {
+		for (Item item : items) {
+			this.add(item);
+		}
+	}
 
-    /**
-     * Use getWeight() to get total including contents. Magic containers will
-     * override getWeight().
-     * 
-     * @return the weight of just the contents.
-     */
-    private float getContentsWeight() {
-        float total = 0;
-        for (IItem iItem : getContents()) {
-            total += iItem.getWeight();
-        }
-        return total;
-    }
+	/**
+	 * Take the top item out of the contents.
+	 * 
+	 * @return the top item in the contents
+	 * @throws EmptyStackException
+	 */
+	public IItem pop() throws EmptyStackException {
+		return contents.pop();
+	}
 
-    /**
-     * Use getVolume() to get total including contents. Magic containers will
-     * override getVolume().
-     * 
-     * @return the volume of just the contents.
-     */
-    private float getContentsVolume() {
-        float total = 0;
-        for (IItem iItem : getContents()) {
-            total += iItem.getVolume();
-        }
-        return total;
-    }
+	/**
+	 * Peek at the top item of contents without removing it.
+	 * 
+	 * @return The top item.
+	 * @throws EmptyStackException
+	 */
+	public IItem peek() throws EmptyStackException {
+		return contents.peek();
+	}
 
-    /**
-     * Use getValue() to get total including contents. Magic containers will
-     * override getValue().
-     * 
-     * @return the value of just the contents.
-     */
-    private Currency getContentsValue() {
-        Currency total = new Currency();
-        for (IItem iItem : getContents()) {
-            total.add(iItem.getValue());
-        }
-        return total;
-    }
+	/**
+	 * Empty the bag into this location
+	 * 
+	 * @param newLocation
+	 */
+	public void empty(ItemContainer newLocation) {
+		while (!contents.isEmpty()) {
+			Item item = contents.pop();
+			newLocation.add(item);
+		}
+	}
 
-    // TODO rename Visitor Pattern style
-    // Find contents that match the criteria
-    public void accept(ItemVisitor visitor) {
-        // Search the Items directly declared in this class.
-        for (IItem iItem : getContents()) {
-            visitor.visit(iItem);
-        }
-        // Get super to do the rest.
-        super.accept(visitor);
-    }
+	/**
+	 * Get the number of items in the container.
+	 * 
+	 * @return the number of items directly inside the container. Items with
+	 *         other items don't add to the count as they are *NOT* directly
+	 *         contained.
+	 */
+	public int getContentsCount() {
+		return contents.size();
+	}
 
-    @Override
-    public void beNot() {
-        // Call beNot on the Items directly declared in this class.
-        while (!contents.isEmpty()) {
-            IItem iItem = contents.pop();
-            iItem.beNot();
-        }
-        // Get super to do the rest.
-        super.beNot();
-    }
+	/**
+	 * Use getWeight() to get total including contents. Magic containers will
+	 * override getWeight().
+	 * 
+	 * @return the weight of just the contents.
+	 */
+	private float getContentsWeight() {
+		float total = 0;
+		for (IItem iItem : getContents()) {
+			total += iItem.getWeight();
+		}
+		return total;
+	}
 
-    // TODO should other be Item ?
-    public boolean equals(ItemContainer other) {
-        // call equals on any super class.
-        if (!super.equals(other)) {
+	/**
+	 * Use getVolume() to get total including contents. Magic containers will
+	 * override getVolume().
+	 * 
+	 * @return the volume of just the contents.
+	 */
+	private float getContentsVolume() {
+		float total = 0;
+		for (IItem iItem : getContents()) {
+			total += iItem.getVolume();
+		}
+		return total;
+	}
+
+	/**
+	 * Use getValue() to get total including contents. Magic containers will
+	 * override getValue().
+	 * 
+	 * @return the value of just the contents.
+	 */
+	private Currency getContentsValue() {
+		Currency total = new Currency();
+		for (IItem iItem : getContents()) {
+			total.add(iItem.getValue());
+		}
+		return total;
+	}
+
+	// TODO rename Visitor Pattern style
+	// Find contents that match the criteria
+	public void accept(ItemVisitor visitor) {
+		// Search the Items directly declared in this class.
+		for (IItem iItem : getContents()) {
+			visitor.visit(iItem);
+		}
+		// Get super to do the rest.
+		super.accept(visitor);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void beNot() {
+		// Call beNot on the Items directly declared in this class.
+		while (!contents.isEmpty()) {
+			IItem iItem = contents.pop();
+			iItem.beNot();
+		}
+		// Get super to do the rest.
+		super.beNot();
+	}
+
+	// TODO should other be Item ?
+	public boolean equals(ItemContainer other) {
+		// call equals on any super class.
+		if (!super.equals(other)) {
+			return false;
+		}
+		// Check each of our immediate properties.
+        if (Math.abs(weightMax - other.getWeightMax()) >= WITHIN_MARGIN)
+            return false;
+        if (Math.abs(volumeMax - other.getVolumeMax()) >= WITHIN_MARGIN) {
             return false;
         }
-        // Check each of our immediate properties.
-        // check contents.
-        {
-            Stack<Item> otherContents = other.getContents();
-            if (contents.size() != otherContents.size())
-                return false;
-            for (int i = contents.size() - 1; i >= 0; i--) {
-                if (!this.contents.get(i).equals(otherContents.get(i)))
-                    return false;
-            }
-        }
-        return true;
-    }
+		// check contents.
+		{
+			Stack<Item> otherContents = other.getContents();
+			if (contents.size() != otherContents.size())
+				return false;
+			for (int i = contents.size() - 1; i >= 0; i--) {
+				if (!this.contents.get(i).equals(otherContents.get(i)))
+					return false;
+			}
+		}
+		return true;
+	}
 
-    @Override
-    public ItemContainer clone(Item toClone) {
-        ItemContainer clone = (ItemContainer) super.clone(toClone);
+	/** {@inheritDoc} */
+	@Override
+	public ItemContainer clone(Item toClone) {
+		ItemContainer clone = (ItemContainer) super.clone(toClone);
 
-        // Make sure the cloning is deep, not shallow.
-        // e.g. set the non-mutable, non-primitives
+		// Make sure the cloning is deep, not shallow.
+		// e.g. set the non-mutable, non-primitives
 
-        // contents
-        Stack<Item> contents = this.getContents();
-        if (contents == null) {
-            clone.setContents(null);
-        } else {
-            Stack<Item> cloneContents = new Stack<Item>();
-            for (Item item : contents) {
+		// contents
+		Stack<Item> contents = this.getContents();
+		if (contents == null) {
+			clone.setContents(null);
+		} else {
+			Stack<Item> cloneContents = new Stack<Item>();
+			for (Item item : contents) {
 
-                try {
-                    cloneContents.add(item.clone());
-                } catch (CloneNotSupportedException e) {
-                    throw new RuntimeException("clone() failure");
-                }
-            }
-            clone.setContents(cloneContents);
-        }
+				try {
+					cloneContents.add(item.clone());
+				} catch (CloneNotSupportedException e) {
+					throw new RuntimeException("clone() failure");
+				}
+			}
+			clone.setContents(cloneContents);
+		}
 
-        // location is *NOT* cloned.
-        return clone;
-    }
+		// location is *NOT* cloned.
+		return clone;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public void transfer(Item item, ItemContainer container) {
+		// TODO Add unit tests
+		if (item == null){
+			throw new IllegalArgumentException("item may not be null");
+		}
+		if (container == null){
+			throw new IllegalArgumentException("container may not be null");
+		}
+		contents.remove(item);
+		// This will set location
+		container.add(item);
+	}
 }

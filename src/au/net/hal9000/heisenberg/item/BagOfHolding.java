@@ -31,8 +31,20 @@ public class BagOfHolding extends Bag implements Magical, ExtraDimensional {
 		this.setType(type);
 	}
 
+	public BagOfHolding(Integer type, String pName) {
+		this((int)type, pName);
+	}
+
 	public BagOfHolding(int type) {
 		this(type, "Bag of Holding");
+	}
+
+	public BagOfHolding(Integer type) {
+		this((int)type);
+	}
+
+	public BagOfHolding() {
+		this(1);
 	}
 
 	// Other methods

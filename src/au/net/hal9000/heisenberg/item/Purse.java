@@ -43,4 +43,7 @@ public class Purse extends Item {
 		return total;
 	}
 
+	// TODO add Coin
+	// TODO add Coins
+	
 }
