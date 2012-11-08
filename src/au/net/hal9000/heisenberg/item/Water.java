@@ -4,9 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import au.net.hal9000.heisenberg.item.property.SplitByWeight;
-
-public class Water extends Item implements SplitByWeight {
+public class Water extends ItemSplitByWeight  {
 	/**
 	 * Some plain water.
 	 */
@@ -40,34 +38,6 @@ public class Water extends Item implements SplitByWeight {
 		Water newObj = (Water) in.readObject();
 		in.close();
 		return newObj;
-	}
-
-    /** {@inheritDoc} */
-    @Override
-	public Water splitByWeight(float newItemWeight) {
-		// TODO Auto-generated method stub
-		if (newItemWeight <= 0) {
-			throw new IllegalArgumentException(
-					"weight must be strictly positive");
-		}
-		Water newWater = null;
-		// New weight must be strictly less than current weight
-		float oldItemWeight = getWeightBase();
-		if (newItemWeight < oldItemWeight) {
-			// Create new Item
-			newWater = new Water();
-			// Split old item by weight, volume, etc.
-			newWater.setWeightBase(newItemWeight);
-			float factor = newItemWeight / oldItemWeight;
-			float oldItemVolume = getVolumeBase();
-			newWater.setVolumeBase(oldItemVolume * factor);
-
-			// Update new item weight, volume, etc
-			setWeightBase(oldItemWeight - newWater.getWeightBase());
-			setVolumeBase(oldItemVolume - newWater.getVolumeBase());
-		}
-
-		return newWater;
 	}
 
 }

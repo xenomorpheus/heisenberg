@@ -7,7 +7,7 @@ import au.net.hal9000.heisenberg.item.IItem;
 
 /**
  * The methods in this class allow the JTree component to traverse the file
- * system tree, and display the files and directories.
+ * system m_tree, and display the files and directories.
  **/
 class ItemTreeModel implements TreeModel {
 	// We specify the root directory when we create the model.
@@ -17,12 +17,12 @@ class ItemTreeModel implements TreeModel {
 		this.root = root;
 	}
 
-	// The model knows how to return the root object of the tree
+	// The model knows how to return the root object of the m_tree
 	public Object getRoot() {
 		return root;
 	}
 
-	// Tell JTree whether an object in the tree is a leaf or not
+	// Tell JTree whether an object in the m_tree is a leaf or not
 	public boolean isLeaf(Object node) {
 		return  ((IItem) node).isLeaf();
 	}
@@ -33,7 +33,7 @@ class ItemTreeModel implements TreeModel {
 	}
 
 	// Fetch any numbered child of a node for the JTree.
-	// Our model returns IItem objects for all nodes in the tree. The
+	// Our model returns IItem objects for all nodes in the m_tree. The
 	// JTree displays these by calling the IItem.toString() method.
 	public Object getChild(Object parent, int index) {
 		return ((IItem) parent).getChild(index);
@@ -48,13 +48,28 @@ class ItemTreeModel implements TreeModel {
 	// This TreeModel does not allow editing, so we do not implement
 	// this method. The JTree editable property is false by default.
 	public void valueForPathChanged(TreePath path, Object newvalue) {
+		System.out.println("valueForPathChanged");
 	}
 
-	// Since this is not an editable tree model, we never fire any events,
+	// Since this is not an editable m_tree model, we never fire any events,
 	// so we don't actually have to keep track of interested listeners.
 	public void addTreeModelListener(TreeModelListener l) {
+		System.out.println("addTreeModelListener");
 	}
 
 	public void removeTreeModelListener(TreeModelListener l) {
+		System.out.println("removeTreeModelListener");
 	}
+
+	public void insertNodeInto(IItem newNode, IItem selNode, int childCount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public TreeNode[] getPathToRoot(IItem newNode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

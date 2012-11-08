@@ -13,10 +13,6 @@ package au.net.hal9000.heisenberg.units;
 
 public class KeywordDetail implements Comparable<KeywordDetail> {
 	/**
-		 * 
-		 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * the id
 	 */
 	private String id;

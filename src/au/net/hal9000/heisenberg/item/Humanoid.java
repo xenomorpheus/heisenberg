@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
-public abstract class Humanoid extends Being {
+// TODO Redesign.  I don't think all Humanoids should be PcRace.
+public abstract class Humanoid extends PcRace {
 
 	/**
 	 * 
@@ -169,5 +170,9 @@ public abstract class Humanoid extends Being {
 		// TODO visit head, optional hands then super
 		visitor.visit(this);
 	}
-
+	@Override
+	public
+	String getRace() {
+		return this.getClass().getSimpleName();
+	}
 }

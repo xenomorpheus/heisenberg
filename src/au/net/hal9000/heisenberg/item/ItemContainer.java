@@ -344,4 +344,15 @@ public abstract class ItemContainer extends Item implements IItemContainer,
 		// This will set location
 		container.add(item);
 	}
+	
+    /**
+     * Shallow copy properties from one object to another.
+     * @param item
+     */
+	public void setAllFrom(ItemContainer ic) {
+        setAllFrom((Item) ic);
+        setWeightMax(ic.getWeightMax());
+    	setVolumeMax(ic.getVolumeMax());
+    	setContents(ic.getContents());
+	}	
 }

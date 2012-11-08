@@ -1,15 +1,9 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.Vector;
-import java.util.Set;
-import java.util.TreeSet;
-
-import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
 import au.net.hal9000.heisenberg.item.property.Clothing;
 import au.net.hal9000.heisenberg.item.property.HumanoidFood;
 import au.net.hal9000.heisenberg.item.property.Living;
-import au.net.hal9000.heisenberg.units.*;
 
 /**
  * Being is the bases of conscious entities.
@@ -21,25 +15,8 @@ import au.net.hal9000.heisenberg.units.*;
 public abstract class Being extends ItemContainer implements Living {
 	private static final long serialVersionUID = 1L;
 
-	// Fields
-	/**
-	 * The {@link Recipe} list that is known by this Being.
-	 */
-	private Vector<Recipe> recipes = new Vector<Recipe>();
-	/**
-	 * A measure of the amount of things the entity can do in the current round.
-	 * This is the remaining, not the maximum.
-	 */
-	private int actionPoints = 0;
-	/**
-	 * The size of the magic user's fuel tank. This is the remaining, not the
-	 * maximum.
-	 */
-	private int mana = 0;
-	/**
-	 * The {@link Skill} objects required.
-	 */
-	private Set<Skill> skills = new TreeSet<Skill>();
+	String gender;
+	String size;
 
 	// Constructor
 	public Being(String pName) {
@@ -50,98 +27,36 @@ public abstract class Being extends ItemContainer implements Living {
 
 	// Getters and Setters
 
-	// recipes
-	public Vector<Recipe> getRecipes() {
-		return recipes;
-	}
-
-	public void setRecipes(Vector<Recipe> recipes) {
-		this.recipes = recipes;
-	}
-
-	// actionPoints
-	public int getActionPoints() {
-		return actionPoints;
-	}
-
-	public void setActionPoints(int actionPoints) {
-		this.actionPoints = actionPoints;
-	}
-
-	public void actionPointsAdjust(int adjust) {
-		actionPoints += adjust;
-	}
-
-	// mana
-	public int getMana() {
-		return mana;
-	}
-
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
-
-	public void manaAdjust(int adjust) {
-		mana += adjust;
-
-	}
-
-	// skills
 	/**
-	 * Get the Skill objects.
-	 * 
-	 * @return a set of Skill objects
+	 * @return the gender
 	 */
-	public final Set<Skill> getSkills() {
-		return skills;
-	}
-
-	public final void setSkills(final Set<Skill> skills) {
-		this.skills = skills;
+	public final String getGender() {
+		return gender;
 	}
 
 	/**
-	 * Set the PowerWords
-	 * 
-	 * @param newSkills
-	 *            list of powerWord IDs as Strings.
+	 * @param gender
+	 *            the gender to set
 	 */
-	public void setSkills(final String[] newSkills) {
-		skills.clear();
-		skillsAdd(newSkills);
+	public final void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	/**
-	 * Add extra Skills to the list of required ingredients.
-	 * 
-	 * @param skills
+	 * @return the size
 	 */
-	public final void skillsAdd(final Set<Skill> skills) {
-		skills.addAll(skills);
+	public final String getSize() {
+		return size;
 	}
 
 	/**
-	 * Add extra PowerWords to the list of required ingredients.
-	 * 
-	 * @param powerWords
-	 *            a Set of PowerWord objects to add.
+	 * @param size
+	 *            the size to set
 	 */
-	public final void skillsAddAll(final Set<Skill> powerWords) {
-		powerWords.addAll(powerWords);
+	public final void setSize(String size) {
+		this.size = size;
 	}
 
-	/**
-	 * Add extra Skills to the list of required ingredients.
-	 * 
-	 * @param newSkills
-	 */
-	public final void skillsAdd(final String[] newSkills) {
-		for (int i = newSkills.length - 1; i >= 0; i--) {
-			skills.add(new Skill(newSkills[i]));
-		}
-	}
-
-	// Misc
 
 	/**
 	 * Wear an item
@@ -181,6 +96,16 @@ public abstract class Being extends ItemContainer implements Living {
 	public Item search(Item item) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+    /**
+     * Shallow copy properties from one object to another.
+     * @param item
+     */
+	public void setAllFrom(Being being) {
+        setAllFrom((ItemContainer) being);
+    	setGender(being.getGender());
+    	setSize(being.getSize());
 	}
 
 }

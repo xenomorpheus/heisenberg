@@ -26,13 +26,17 @@ import au.net.hal9000.heisenberg.units.Skill;
  */
 public class Cooker extends ItemContainer {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * recipe describes the process to make the products.
 	 */
 	private Recipe recipe = null;
 	/**
 	 * The Being doing the cooking. Supplies any actionPoints and mana.
 	 */
-	private Being chef = null;
+	private PcRace chef = null;
 	/**
 	 * Where to put any freshly created Items objects.
 	 */
@@ -58,7 +62,7 @@ public class Cooker extends ItemContainer {
 	}
 
 	// Setters and Getters
-	public final void setChef(final Being chef) {
+	public final void setChef(final PcRace chef) {
 		this.chef = chef;
 	}
 
@@ -258,6 +262,7 @@ public class Cooker extends ItemContainer {
 	/**
 	 * Create all the products of the recipe.
 	 */
+	@SuppressWarnings("deprecation")
 	private void createProducts() {
 		// TODO Not final version. Only a demonstration.
 		Vector<String> products = recipe.getProducts();

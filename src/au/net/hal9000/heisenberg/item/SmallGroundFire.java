@@ -4,8 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import au.net.hal9000.heisenberg.item.property.HumanoidFood;
-
 public class SmallGroundFire extends Item {
 	/**
 	 * 

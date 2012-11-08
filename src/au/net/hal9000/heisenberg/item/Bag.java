@@ -30,7 +30,8 @@ public class Bag extends Box {
     }
 
     /** {@inheritDoc} */
-    @Override
+	@SuppressWarnings("deprecation")
+	@Override
     public void add(final Item item) throws ExceptionTooHeavy, ExceptionTooBig,
             ExceptionInvalidType {
         // Look for sharp items. Wrapped sharp items are safe.

@@ -274,12 +274,12 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     	// may be referenced by other objects?
         this.location = null;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + ": " + name;
-    }
+    
+	/** {@inheritDoc} */
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 
     /** {@inheritDoc} */
     @Override
@@ -368,4 +368,20 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     public Stack<IItem> getChildren() {
         return new Stack<IItem>();
     }
+    
+    /**
+     * Shallow copy properties from one object to another.
+     * @param item
+     */
+	public void setAllFrom(Item item) {
+		setName(item.getName());
+		setDescription(item.getDescription());
+		setWeightBase(item.getWeightBase());
+        setVolumeBase(item.getVolumeBase());
+        setValueBase(item.getValueBase());
+        setLocation(item.getLocation());
+        setHitPoints(item.getHitPoints());
+        setOwner(item.getOwner());
+	}	    
+    
 }

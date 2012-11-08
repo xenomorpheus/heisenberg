@@ -17,10 +17,6 @@ package au.net.hal9000.heisenberg.units;
  */
 public class SkillDetail extends KeywordDetail {
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * The word that is invoked as part of a spell.
 	 */
 	public SkillDetail(String id, String description) {

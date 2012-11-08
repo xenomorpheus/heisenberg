@@ -1,11 +1,74 @@
 package au.net.hal9000.heisenberg.itemCreator;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.item.Box;
 
 public class ItemCreator {
+	Location location = null;
+
+	// Create a TreeModel object to represent our m_tree of files
+	ItemTreeModel model = null;
+	JTree m_tree = null;
+
+	public ItemCreator(Location pLocation) {
+		location = pLocation;
+		// Create a TreeModel object to represent our m_tree of files
+		model = new ItemTreeModel(location);
+		m_tree = new JTree();
+
+		// Create a JTree and tell it to display our model
+		m_tree.setModel(model);
+		m_tree.setEditable(true);
+		m_tree.setSelectionRow(0);
+
+		// The JTree can get big, so allow it to scroll.
+		JScrollPane scrollpane = new JScrollPane(m_tree);
+
+		// Display it all in a window and make the window appear
+		JFrame frame = new JFrame("Item Creator");
+		frame.addWindowListener(new ExitListener());
+		frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+
+		JPanel addPanel = new JPanel();
+		JButton addButton = new JButton("Add");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				IItem selNode = (IItem) m_tree.getLastSelectedPathComponent();
+				// TODO also check for Item Container
+				if (selNode != null) {
+					// TODO Temp - Change the type of the new node to a Bag.
+					// TODO Later - Use a popup window to choose the type of
+					// item.
+					IItem newNode = new Bag("New Node");
+					model.insertNodeInto(newNode, selNode,
+							selNode.getChildCount());
+					TreeNode[] nodes = model.getPathToRoot(newNode);
+					TreePath path = new TreePath(nodes);
+					m_tree.scrollPathToVisible(path);
+					m_tree.setSelectionPath(path);
+					m_tree.startEditingAtPath(path);
+				}
+			}
+		});
+		addPanel.add(addButton);
+		frame.getContentPane().add(addPanel, BorderLayout.SOUTH);
+
+		frame.setSize(400, 600);
+		frame.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new ItemCreator(getWorld());
+	}
 
 	@SuppressWarnings("deprecation")
 	public static Location getWorld() {
@@ -74,24 +137,4 @@ public class ItemCreator {
 		return world;
 	}
 
-	public static void main(String[] args) {
-		Location location = getWorld();
-
-		// Create a TreeModel object to represent our tree of files
-		ItemTreeModel model = new ItemTreeModel(location);
-
-		// Create a JTree and tell it to display our model
-		JTree tree = new JTree();
-		tree.setModel(model);
-
-		// The JTree can get big, so allow it to scroll.
-		JScrollPane scrollpane = new JScrollPane(tree);
-
-		// Display it all in a window and make the window appear
-		JFrame frame = new JFrame("IItem Tree Demo");
-		frame.addWindowListener(new ExitListener());
-		frame.getContentPane().add(scrollpane, "Center");
-		frame.setSize(400, 600);
-		frame.setVisible(true);
-	}
 }

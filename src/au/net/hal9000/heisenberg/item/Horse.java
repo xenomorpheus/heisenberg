@@ -15,4 +15,8 @@ public class Horse extends Being implements HumanoidMount {
 	public Horse(String string) {
 		super(string);
 	}
+
+	protected String getRace() {
+		return null;
+	}
 }

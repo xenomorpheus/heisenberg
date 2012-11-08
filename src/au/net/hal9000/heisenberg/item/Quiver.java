@@ -17,7 +17,8 @@ public class Quiver extends ItemContainer {
         this.setVolumeMax(VOLUME_MAX_DFT);
     }
 
-    public void add(final Arrow pArrow) {
+    @SuppressWarnings("deprecation")
+	public void add(final Arrow pArrow) {
         super.add(pArrow);
     }
 

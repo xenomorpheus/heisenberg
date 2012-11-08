@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
@@ -19,8 +19,6 @@ import au.net.hal9000.heisenberg.crafting.IngredientItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.pc.AbilityScore;
-import au.net.hal9000.heisenberg.pc.PcClass;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
@@ -28,8 +26,10 @@ public class Configuration {
 
 	private Vector<SkillDetail> skillDetails;
 	private Vector<Recipe> recipes;
-	private HashMap<String,PcClass> pcClasses;
-	// TODO private HashMap<String,PcClass> npcClasses;
+	private TreeMap<String, PcClass> pcClasses;
+	// TODO private TreeMap<String,PcClass> npcClasses;
+	private Vector<String> races;
+	private Vector<String> genders;
 
 	public Configuration(String filename) throws ValidityException,
 			IOException, Exception {
@@ -57,48 +57,48 @@ public class Configuration {
 
 		// skills
 		Element skillsElement = root.getFirstChildElement("skills");
-		skillDetails = XmlToSkillDetails(skillsElement);
+		skillDetails = xmlToSkillDetails(skillsElement);
 		// recipes
 		Element recipesElement = root.getFirstChildElement("recipes");
-		recipes = XmlToRecipes(recipesElement);
+		recipes = xmlToRecipes(recipesElement);
 
 		// character
-		Element characterElement = root.getFirstChildElement("character");		
+		Element characterElement = root.getFirstChildElement("character");
 		// character - classes - pcClass
-		Elements pcClassesElements = characterElement.getChildElements("pcClass");
-		pcClasses = XmlToPcClasses(pcClassesElements);
+		Elements pcClassesElements = characterElement
+				.getChildElements("pcClass");
+		pcClasses = xmlToPcClasses(pcClassesElements);
 		// character - classes - npcClass
-		Elements npcClassesElements = characterElement.getChildElements("npcClass");
-		// TODO npcClasses = XmlToNpcClasses(npcClassesElements);
+		// Elements npcClassesElements = characterElement
+		//		.getChildElements("npcClass");
+		// TODO npcClasses = xmlToNpcClasses(npcClassesElements);
 		// character - traits
-		Element traits = characterElement.getFirstChildElement("traits");
+		// TODO Element traitElements = characterElement.getFirstChildElement("traits");
+		// TODO traits = xmlToTraits(traitElements);
 		// character - genders
-		Element genders = characterElement.getFirstChildElement("genders");
+		Element genderElement = characterElement
+				.getFirstChildElement("genders");
+		genders = xmlToIdList(genderElement.getChildElements());
+		Element raceElement = characterElement
+				.getFirstChildElement("races");
+		races = xmlToIdList(raceElement.getChildElements());
 	}
 
-	private HashMap<String, PcClass> XmlToPcClasses(Elements pcClassesElements) {
-		HashMap<String, PcClass> classes = new HashMap<String, PcClass>();
+	private Vector<String> xmlToIdList(Elements elements) {
+		Vector<String> list = new Vector<String>();
+		for (int i = 0; i < elements.size() ; i++){
+			list.add(elements.get(i).getAttributeValue("id").toString());
+		}
+		return list;
+	}
+
+	private TreeMap<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
+		TreeMap<String, PcClass> classes = new TreeMap<String, PcClass>();
 		for (int current = 0; current < pcClassesElements.size(); current++) {
-			PcClass pcClass = XmlToPcClass(pcClassesElements.get(current));			
+			PcClass pcClass = xmlToPcClass(pcClassesElements.get(current));
 			classes.put(pcClass.getId(), pcClass);
 		}
 		return classes;
-	}
-
-	// misc
-	public String toString() {
-		// skills
-		String string = "Skills:\n";
-		for (SkillDetail skillDetail : skillDetails) {
-			string = string.concat("  " + skillDetail.toString() + "\n");
-		}
-
-		// recipes
-		string = string.concat("Recipes:\n");
-		for (Recipe recipe : recipes) {
-			string = string.concat("Recipe:\n" + recipe.toString() + "\n");
-		}
-		return string;
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class Configuration {
 	 *            XML list of Skill IDs
 	 * @return Set of Skill Objects.
 	 */
-	public static Set<Skill> XmlToSkills(Elements entries) {
+	public static Set<Skill> xmlToSkills(Elements entries) {
 		Set<Skill> skills = new TreeSet<Skill>();
 
 		for (int current = 0; current < entries.size(); current++) {
@@ -127,7 +127,7 @@ public class Configuration {
 	 *            XML list of Item details.
 	 * @return A list of IngredientItem objects.
 	 */
-	public static Vector<IngredientItem> XmlToIngredientItem(Elements entries) {
+	public static Vector<IngredientItem> xmlToIngredientItem(Elements entries) {
 		Vector<IngredientItem> ingredients = new Vector<IngredientItem>();
 		for (int current = 0; current < entries.size(); current++) {
 			// get current ingredient
@@ -145,11 +145,11 @@ public class Configuration {
 	 * @param entry
 	 *            an XML Ingredient element.
 	 */
-	public static Vector<Ingredient> XmlToIngredients(Element entry) {
+	public static Vector<Ingredient> xmlToIngredients(Element entry) {
 		Vector<Ingredient> ingredients = new Vector<Ingredient>();
 
 		Elements items = entry.getChildElements("item");
-		ingredients.addAll(XmlToIngredientItem(items));
+		ingredients.addAll(xmlToIngredientItem(items));
 
 		// TODO locations
 		// TODO <&lt;>location id="ground" /<&gt;>
@@ -165,7 +165,7 @@ public class Configuration {
 	 *            XML details of a Recipe.
 	 * @return a Recipe object.
 	 */
-	public static Recipe XmlToRecipe(Element recipeElement) {
+	public static Recipe xmlToRecipe(Element recipeElement) {
 		String id = recipeElement.getAttributeValue("id");
 		String description = recipeElement.getAttributeValue("description");
 
@@ -186,7 +186,7 @@ public class Configuration {
 		// Skills
 		Set<Skill> skills = new TreeSet<Skill>();
 		Elements skillElements = recipeElement.getChildElements("skill");
-		skills.addAll(XmlToSkills(skillElements));
+		skills.addAll(xmlToSkills(skillElements));
 
 		// Ingredients
 		Vector<Ingredient> ingredients = new Vector<Ingredient>();
@@ -194,7 +194,7 @@ public class Configuration {
 				.getChildElements("ingredients");
 		for (int current = 0; current < ingredientElements.size(); current++) {
 			ingredients
-					.addAll(XmlToIngredients(ingredientElements.get(current)));
+					.addAll(xmlToIngredients(ingredientElements.get(current)));
 		}
 
 		// TODO Add Product items.
@@ -214,7 +214,7 @@ public class Configuration {
 	 * @throws ParsingException
 	 * @throws IOException
 	 */
-	public static Vector<Recipe> XmlToRecipes(Element recipes)
+	public static Vector<Recipe> xmlToRecipes(Element recipes)
 			throws ParsingException, IOException {
 
 		Elements recipeElementSet = recipes.getChildElements("recipe");
@@ -222,13 +222,13 @@ public class Configuration {
 		for (int recipeCurrent = 0; recipeCurrent < recipeElementSet.size(); recipeCurrent++) {
 			// get current Recipe
 			Element recipeElement = recipeElementSet.get(recipeCurrent);
-			Recipe recipe = XmlToRecipe(recipeElement);
+			Recipe recipe = xmlToRecipe(recipeElement);
 			Recipes.add(recipe);
 		}
 		return Recipes;
 	}
 
-	private static Vector<SkillDetail> XmlToSkillDetails(Element element) {
+	private static Vector<SkillDetail> xmlToSkillDetails(Element element) {
 		Elements entries = element.getChildElements("skill");
 		Vector<SkillDetail> skillDetails = new Vector<SkillDetail>();
 		for (int current = 0; current < entries.size(); current++) {
@@ -241,7 +241,7 @@ public class Configuration {
 		return skillDetails;
 	}
 
-	private static PcClass XmlToPcClass(Element element) {
+	private static PcClass xmlToPcClass(Element element) {
 		PcClass pcClass = new PcClass();
 
 		// id
@@ -303,15 +303,14 @@ public class Configuration {
 
 		// <ability id="dweomerLore" value="0/2" />
 		Elements abilityScores = element.getChildElements("ability");
-        for (int i = 0; i < abilityScores.size(); i++){
-        	pcClass.setAbilityScore( XmlToAbilityScore(abilityScores.get(i)));
-        }
-        		
+		for (int i = 0; i < abilityScores.size(); i++) {
+			pcClass.setAbilityScore(xmlToAbilityScore(abilityScores.get(i)));
+		}
+
 		return pcClass;
 	}
-	
 
-	private static AbilityScore XmlToAbilityScore(Element element) {
+	private static AbilityScore xmlToAbilityScore(Element element) {
 
 		String id = element.getAttributeValue("id");
 		if (id == null) {
@@ -325,16 +324,43 @@ public class Configuration {
 	}
 
 	/**
-	 * @param id the class name e.g. Soldier
+	 * @param id
+	 *            the class name e.g. Soldier
 	 * @return the PC Character Class.
 	 */
 	public PcClass getPcClass(String id) {
 		return pcClasses.get(id);
 	}
-	
+
 	// TODO remove/refactor so caller can't modify pcClasses
-	public HashMap<String, PcClass> getPcClasses(){
+	public TreeMap<String, PcClass> getPcClasses() {
 		return pcClasses;
 	}
-	
+
+	// TODO read from config.
+	public Vector<String> getRaces() {
+		return races;
+	}
+
+	// TODO read from config.
+	public Vector<String> getGenders() {
+		return genders;
+	}
+
+	// misc
+	public String description() {
+		// skills
+		String string = "Skills:\n";
+		for (SkillDetail skillDetail : skillDetails) {
+			string = string.concat("  " + skillDetail.toString() + "\n");
+		}
+
+		// recipes
+		string = string.concat("Recipes:\n");
+		for (Recipe recipe : recipes) {
+			string = string.concat("Recipe:\n" + recipe.toString() + "\n");
+		}
+		return string;
+	}
+
 }
