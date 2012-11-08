@@ -17,11 +17,11 @@ public class Backlog {
 	@Test
 	public void character_mounts_a_horse() {
 		println("\n** A character mounts a horse.");
-		// Hobbit hobbit = new Hobbit();
+		// Halfling hobbit = new Halfling();
 		// Horse horse = new Horse();
 		try {
 			// TODO hobbit.setMount(horse);
-			println("Hobbit mounted the Horse");
+			println("Halfling mounted the Horse");
 		} catch (ExceptionInvalidType e) {
 			fail("invalid type");
 		} catch (ExceptionCantWear e) {

@@ -128,11 +128,11 @@ public class ScenarioSet01 {
 	@Test
 	public void hobbitEatsACookie() {
 		println("\n** A hobbit eats a cookie.");
-		Halfling hobbit = new Halfling();
+		Halfling halfling = new Halfling();
 		Cookie cookie = new Cookie();
 		try {
-			hobbit.eat(cookie);
-			println("Hobbit ate a cookie");
+			halfling.eat(cookie);
+			println("Halfling ate a cookie");
 		} catch (Exception e) {
 			fail("Failed to eat Cookie because "+e.toString());
 		}

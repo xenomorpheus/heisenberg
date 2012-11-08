@@ -2,16 +2,15 @@ package test.au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.util.Vector;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.PcClass;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.PcClass;
 
 public class ConfigurationTest {
 	Configuration config = null;
@@ -29,10 +28,24 @@ public class ConfigurationTest {
 
 	@Test
 	public void testCharacter() {
+		// TODO
 	}
 
 	@Test
 	public void testTraits() {
+		// TODO
+	}
+
+	@Test
+	public void testRaces() {
+		Vector<String> races = config.getRaces();
+		assertEquals("count", races.size(), 3);
+	}
+
+	@Test
+	public void testGenders() {
+		Vector<String> genders = config.getGenders();
+		assertEquals("count", genders.size(), 7);
 	}
 
 	@Test
@@ -86,13 +99,12 @@ public class ConfigurationTest {
 		// TODO assertEquals("product count", 1,
 		// recipe1.getProducts().size());
 	}
-	
-	
-    @Test
+
+	@Test
 	public void testValues() {
 		PcClass warrior = config.getPcClass("Warrior");
 		// System.out.print(warrior);
- 
+
 		assertEquals("Warrior", warrior.getId());
 		// dice
 		assertEquals(20, warrior.getCombatDice());
@@ -135,11 +147,10 @@ public class ConfigurationTest {
 		assertEquals(1, warrior.getAbilityScore("Combat Defence").getMod());
 		assertEquals(3, warrior.getAbilityScore("Sneak").getValue());
 		assertEquals(1, warrior.getAbilityScore("Sneak").getMod());
-		// TODO required? 
+		// TODO required?
 		// assertEquals("~", warrior.getGenderAllow());
 		// assertEquals("~", warrior.getSizeAllow());
 		// assertEquals("~", warrior.getRaceAllow());
 	}
 
-	
 }

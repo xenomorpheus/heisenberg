@@ -26,7 +26,7 @@ public class Configuration {
 
 	private Vector<SkillDetail> skillDetails;
 	private Vector<Recipe> recipes;
-	private TreeMap<String, PcClass> pcClasses;
+	private TreeMap<String, PcRace> pcClasses;
 	// TODO private TreeMap<String,PcClass> npcClasses;
 	private Vector<String> races;
 	private Vector<String> genders;
@@ -92,10 +92,10 @@ public class Configuration {
 		return list;
 	}
 
-	private TreeMap<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
-		TreeMap<String, PcClass> classes = new TreeMap<String, PcClass>();
+	private TreeMap<String, PcRace> xmlToPcClasses(Elements pcClassesElements) {
+		TreeMap<String, PcRace> classes = new TreeMap<String, PcRace>();
 		for (int current = 0; current < pcClassesElements.size(); current++) {
-			PcClass pcClass = xmlToPcClass(pcClassesElements.get(current));
+			PcRace pcClass = xmlToPcClass(pcClassesElements.get(current));
 			classes.put(pcClass.getId(), pcClass);
 		}
 		return classes;
@@ -241,8 +241,8 @@ public class Configuration {
 		return skillDetails;
 	}
 
-	private static PcClass xmlToPcClass(Element element) {
-		PcClass pcClass = new PcClass();
+	private static PcRace xmlToPcClass(Element element) {
+		PcRace pcClass = new PcRace();
 
 		// id
 		String id = element.getAttributeValue("id");
@@ -328,12 +328,12 @@ public class Configuration {
 	 *            the class name e.g. Soldier
 	 * @return the PC Character Class.
 	 */
-	public PcClass getPcClass(String id) {
+	public PcRace getPcClass(String id) {
 		return pcClasses.get(id);
 	}
 
 	// TODO remove/refactor so caller can't modify pcClasses
-	public TreeMap<String, PcClass> getPcClasses() {
+	public TreeMap<String, PcRace> getPcClasses() {
 		return pcClasses;
 	}
 
