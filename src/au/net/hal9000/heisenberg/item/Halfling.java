@@ -1,18 +1,18 @@
 package au.net.hal9000.heisenberg.item;
 
 
-public class Hobbit extends Humanoid {
+public class Halfling extends Humanoid {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Hobbit() {
+	public Halfling() {
 		super("Hobbit");
 	}
 
-	public Hobbit(String string) {
+	public Halfling(String string) {
 		super(string);
 	}
 

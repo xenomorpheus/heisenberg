@@ -155,7 +155,7 @@ public class CookerTest {
 				"Null case. No requirements", 0, 0, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 
 		// Get a cooker
 		Cooker cooker = recipe.getNewCooker();
@@ -182,7 +182,7 @@ public class CookerTest {
 				0, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setMana(1);
 
 		// Get a cooker
@@ -223,7 +223,7 @@ public class CookerTest {
 				0, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setMana(2);
 
 		// Get a cooker
@@ -262,7 +262,7 @@ public class CookerTest {
 				"Mana test, more than enough.", 3, 0, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setMana(4);
 
 		// Get a cooker
@@ -303,7 +303,7 @@ public class CookerTest {
 				"ActionPoints test, just enough.", 0, 1, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setActionPoints(1);
 
 		// Get a cooker
@@ -344,7 +344,7 @@ public class CookerTest {
 				"ActionPoints test, not enough.", 0, 3, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setActionPoints(2);
 
 		// Get a cooker
@@ -383,7 +383,7 @@ public class CookerTest {
 				"ActionPoints test, more than enough.", 0, 3, null, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setActionPoints(4);
 
 		// Get a cooker
@@ -429,7 +429,7 @@ public class CookerTest {
 				0, 0, null, skillsRequired, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setSkills(skillsGot);
 
 		// Get a cooker
@@ -475,7 +475,7 @@ public class CookerTest {
 				"Less skills than required", 0, 0, null, skillsRequired, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setSkills(skillsGot);
 
 		// Get a cooker
@@ -521,7 +521,7 @@ public class CookerTest {
 				"More skills than required", 0, 0, null, skillsRequired, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 		chef.setSkills(skillsGot);
 
 		// Get a cooker
@@ -570,7 +570,7 @@ public class CookerTest {
 				null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 
 		// Get a cooker
 		Cooker cooker = recipe.getNewCooker();
@@ -627,7 +627,7 @@ public class CookerTest {
 				ingredients, null, null);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 
 		// Get a cooker
 		Cooker cooker = recipe.getNewCooker();
@@ -720,7 +720,7 @@ public class CookerTest {
 				products);
 
 		// Set the chef
-		Being chef = new Human();
+		PcRace chef = new Human();
 
 		chef.setMana(REQUIRED_MANA + 1);
 		chef.setActionPoints(REQUIRED_ACTION_POINTS + 2);

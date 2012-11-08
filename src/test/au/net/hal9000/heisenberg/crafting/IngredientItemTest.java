@@ -62,7 +62,7 @@ public class IngredientItemTest {
 	public void testToString() {
 		Cookie cookie = new Cookie();
 		IngredientItem ingredientItem = new IngredientItem(cookie);
-        assertEquals("toString","Item: Cookie: Cookie",ingredientItem.toString());
+        assertEquals("toString","Item: Cookie",ingredientItem.toString());
 	}
 	
 }

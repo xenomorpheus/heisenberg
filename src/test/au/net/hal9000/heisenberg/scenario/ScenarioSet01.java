@@ -128,7 +128,7 @@ public class ScenarioSet01 {
 	@Test
 	public void hobbitEatsACookie() {
 		println("\n** A hobbit eats a cookie.");
-		Hobbit hobbit = new Hobbit();
+		Halfling hobbit = new Halfling();
 		Cookie cookie = new Cookie();
 		try {
 			hobbit.eat(cookie);
