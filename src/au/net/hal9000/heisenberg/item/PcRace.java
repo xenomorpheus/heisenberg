@@ -23,7 +23,7 @@ import au.net.hal9000.heisenberg.util.AbilityScore;
  * 
  */
 
-public class PcClass {
+public class PcRace {
 
 	// e.g. "Soldier"
 	private String id;
@@ -42,7 +42,7 @@ public class PcClass {
 	private int encumbrance = 0;
 	TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 
-	public PcClass() {
+	public PcRace() {
 	}
 
 

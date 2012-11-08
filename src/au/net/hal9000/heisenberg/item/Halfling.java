@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-
 public class Halfling extends Humanoid {
 
 	/**
@@ -9,11 +8,10 @@ public class Halfling extends Humanoid {
 	private static final long serialVersionUID = 1L;
 
 	public Halfling() {
-		super("Hobbit");
+		super("Halfling");
 	}
 
 	public Halfling(String string) {
 		super(string);
 	}
-
 }
