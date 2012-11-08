@@ -9,8 +9,8 @@ import org.junit.Test;
 import nu.xom.ValidityException;
 
 
+import au.net.hal9000.heisenberg.item.PcClass;
 import au.net.hal9000.heisenberg.pc.CharacterSheet;
-import au.net.hal9000.heisenberg.pc.PcClass;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 public class CharacterSheetTest {

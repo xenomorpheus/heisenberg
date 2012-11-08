@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.pc;
+package au.net.hal9000.heisenberg.util;
 
 import java.util.Vector;
 import java.util.regex.Pattern;

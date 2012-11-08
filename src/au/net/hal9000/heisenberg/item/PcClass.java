@@ -1,7 +1,9 @@
-package au.net.hal9000.heisenberg.pc;
+package au.net.hal9000.heisenberg.item;
 
 import java.util.TreeMap;
 import java.util.Iterator;
+
+import au.net.hal9000.heisenberg.util.AbilityScore;
 
 /**
  * 

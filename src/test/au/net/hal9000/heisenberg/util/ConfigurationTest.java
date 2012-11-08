@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.pc.PcClass;
+import au.net.hal9000.heisenberg.item.PcClass;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.util.Configuration;
 

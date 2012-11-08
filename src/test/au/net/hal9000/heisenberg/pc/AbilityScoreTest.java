@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.pc.AbilityScore;
+import au.net.hal9000.heisenberg.util.AbilityScore;
 
 public class AbilityScoreTest {
 
