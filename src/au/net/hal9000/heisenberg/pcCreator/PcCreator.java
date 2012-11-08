@@ -64,7 +64,7 @@ public class PcCreator {
 
 				// Class
 				if (comboBox == classComboBox) {
-					PcClass pcClass = (PcClass) comboBox.getSelectedItem();
+					PcRace pcClass = (PcRace) comboBox.getSelectedItem();
 					pc.setPcClass(pcClass);
 				}
 
@@ -199,8 +199,8 @@ public class PcCreator {
 		classComboBox.setBounds(421, 7, 164, 27);
 		pcClassPanel.add(classComboBox);
 
-		Collection<PcClass> pcClassesItr = config.getPcClasses().values();
-		for (PcClass pcClass : pcClassesItr) {
+		Collection<PcRace> pcClassesItr = config.getPcClasses().values();
+		for (PcRace pcClass : pcClassesItr) {
 			classComboBox.addItem(pcClass);
 		}
 
@@ -373,7 +373,7 @@ public class PcCreator {
 
 		// Set some initial values
 		pc = (PcRace) raceComboBox.getSelectedItem();
-		pc.setPcClass((PcClass) classComboBox.getSelectedItem());
+		pc.setPcClass((PcRace) classComboBox.getSelectedItem());
 		pc.setSize((String) sizeComboBox.getSelectedItem());
 		pc.setGender((String) genderComboBox.getSelectedItem());
 		int pcLevel = Integer.parseInt(((SpinnerNumberModel) levelModel)
