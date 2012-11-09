@@ -21,4 +21,10 @@ public class HumanTest {
 		assertTrue("is item", human instanceof Item);
 		assertFalse("is Cookie", humanItem instanceof Cookie);
 	}
+
+	@Test
+	public void testGetRace() {
+		Human human = new Human();
+		assertEquals("Human", human.getName());
+	}
 }
