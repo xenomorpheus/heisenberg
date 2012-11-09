@@ -1,4 +1,4 @@
-package test.au.net.hal9000.heisenberg.units;
+package test.au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.*;
 

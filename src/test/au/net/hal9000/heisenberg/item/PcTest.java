@@ -1,20 +1,36 @@
-package test.au.net.hal9000.heisenberg.pcCreator;
+package test.au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
-
 import java.io.IOException;
-
+import nu.xom.ValidityException;
 import org.junit.Test;
 
-import nu.xom.ValidityException;
-
-
-import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.pc.CharacterSheet;
+import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.PcClass;
 
-public class CharacterSheetTest {
+public class PcTest {
 
+	@Test
+	public void testMana() {
+
+		// Human
+		Human human = new Human("Human");
+        assertEquals(0, human.getMana());
+        human.setMana(5);
+        assertEquals(5, human.getMana());
+	}
+	
+	@Test
+	public void testActionPoints() {
+
+		// Human
+		Human human = new Human("Human");
+        assertEquals(0, human.getActionPoints());
+        human.setActionPoints(43);
+        assertEquals(43, human.getActionPoints());
+	}
+	
 	@Test
 	public void testValues() {
 		
@@ -31,9 +47,10 @@ public class CharacterSheetTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		PcRace warrior = config.getPcClass("Warrior");
-		CharacterSheet pc = new CharacterSheet(warrior);
-
+		PcClass warrior = config.getPcClass("Warrior");
+		Human pc = new Human("Mr Warrior");
+        pc.setPcClass(warrior);
+		
 		// dice
 		assertEquals(20, pc.getCombatDice());
 		assertEquals(4, pc.getMagicDice());
@@ -50,5 +67,7 @@ public class CharacterSheetTest {
 		// TODO assertEquals("~", pc.getGender());
 		// TODO assertEquals("~", pc.getSize());
 		// TODO assertEquals("~", pc.getRace());
-	}
+	}	
+
+
 }
