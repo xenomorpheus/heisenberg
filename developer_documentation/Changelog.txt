@@ -1,3 +1,91 @@
+2012-12-01
+Working on UI world editor to allow addtion of new types of items.
+Refactored HumanFood interface into ItemProperty.
+
+2012-11-31
+Using JTable for showing AbilityScore, Skill, PowerWord and Recipe.
+
+2012-11-29
+UI PcCreator now has extra tabs for AbilityScores, Skills and PowerWords.
+Fixed UI PcCreator so that scroll panel works when showing description.
+Added various fields to the description of PcClass.
+PcRace now only holds recipe IDs, not recipes.  
+Recipes fetched from Configuration.
+Configuration now uses a singleton to fetch last config.
+
+2012-11-28
+Renamed Being back to Entity
+A horse should not inherit from Entity, nor PcRace.
+Added some unit tests to Purse.
+
+2012-11-26
+IItems now have properties.
+Testing for magical IItems is now based on properties.
+IItems can now dynamically change magical status.
+Refactored Living interface to item property.
+Refactored Clothing interface to item property.
+Refactored Magical interface to item property.
+
+
+2012-11-25
+Fixed a bug in the relocateItem.
+ItemContainer's add() method is not longer deprecated.
+Item relocation now looks to be working.
+Removed all the deprecated override narrations.
+All unit tests pass.
+
+2012-11-23
+Item objects may only be located at ItemLocation objects.
+
+2012-11-21
+Added PowerWord support to the Configuration class.
+Moved SplitByWeight into a utility and created an interface.
+Fixed the unit test for the Quiver of Arrow objects.
+
+2012-11-20
+IItem (Item Interface) and IItemContainer (Item Container Interface) 
+have been fixed so that they only mention IItem not Item, and IItemContainer 
+not ItemContainer.  Item and ItemContainer have been updated to match.
+Unit tests updated to match.
+
+All Item related classes have had equals() updated to only rely on the
+UUID.
+
+The result of the UUID, clones are no longer equals() to the original
+object.
+
+Clothing added to several classes so that they may be worn by a Humanoid.
+
+Item name and description are now optional.
+
+Humanoid class' getIndexOfChild has been added.
+
+2012-11-19
+All Item objects now have an ID.
+This was needed because UI code needs to be able to call getIndexOfChild,
+  which requires being able to tell the difference between two objects with the same properties.
+  E.g. consider a Quiver and 5 identical arrows are inserted then getIndexOfChild() called 
+  on the third arrow, which must return 2 (zero offset).
+  Used globally pseudo-unique Id generator.
+  http://www.java2s.com/Code/Java/Development-Class/GeneratepseudoGUIDsequences.htm
+
+  To have objects with world pseudo unique identifiers with the following properties:
+  * Multiple isolated systems can generate globally (almost guaranteed unique) UIDs.
+  * No dependency between systems, e.g. no shared databases, or services.
+  * Later it would be fairly simple to move objects between systems without changing the UID,
+     or at least very little renumbering.
+
+2012-11-18
+PowerWord classes are once again separate from Skill classes.
+2012-11-15
+UI Item Creator starting to work. Can add a Bag to ItemContainer objects.
+
+2012-10-11
+Work on UI Pc Creator continues.
+
+2012-09-12
+Character sheet UI tool has tabs and more fields.
+
 2012-09-11
 Character sheet UI tool can now choose PcClass and display the dice.
 

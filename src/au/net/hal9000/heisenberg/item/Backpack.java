@@ -1,5 +1,9 @@
 package au.net.hal9000.heisenberg.item;
-public class Backpack extends Bag {
+
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
+
+
+public class Backpack extends Bag  {
 
 	/**
 	 * 
@@ -12,6 +16,7 @@ public class Backpack extends Bag {
 
 	public Backpack(final String pString) {
 		super(pString);
+		ItemProperty.setClothing(this, true);
 	}
 
 }

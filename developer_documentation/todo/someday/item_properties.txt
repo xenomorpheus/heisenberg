@@ -1,0 +1,10 @@
+Replace Magical class with new properties field on IItem.
+Magical items to have an expiration.
+"permanent" magical items to have a long expiration.
+
+Have a properties class in ItemProperty package.
+subroutine isMagical(object) will look at an item's properties.
+subroutine getCreatedTime(object) returns time.
+subroutine getCreatedBy(object) returns ??
+subroutine getOwner(object) returns ??
+

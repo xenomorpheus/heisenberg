@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Being;
+import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Halfling;
 import au.net.hal9000.heisenberg.item.Item;
@@ -18,7 +18,7 @@ public class HalflingTest {
 		Item halflingItem = (Item) halfling;
 		assertTrue("is Halfling", halfling instanceof Halfling);
 		assertTrue("is Halflingoid", halfling instanceof Halfling);
-		assertTrue("is Being", halfling instanceof Being);
+		assertTrue("is Entity", halfling instanceof Entity);
 		assertTrue("is item", halfling instanceof Item);
 		assertFalse("is Cookie", halflingItem instanceof Cookie);
 	}

@@ -29,7 +29,6 @@ public class ScenarioSet01 {
 		println("Sword location: " + sword.getLocation());
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void full_backpack_into_box() {
 		println("\n** A full backpack is placed in a box.");
@@ -59,7 +58,7 @@ public class ScenarioSet01 {
 		println("Crossbow created with name: " + crossbow);
 		CrossbowBolt bolt = new CrossbowBolt();
 		println("CrossbowBolt created with name: " + bolt);
-		Cookie ground = new Cookie("Ground");
+		Location ground = new Location("Ground");
 		bolt.setLocation(ground);
 		crossbow.setLoadedBolt(bolt);
 		CrossbowBolt got = crossbow.getLoadedBolt();
@@ -78,7 +77,6 @@ public class ScenarioSet01 {
 		println("Torch description:\n" + torch.getDescription());
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void shieldAdd() {
 		println("\n** A Shield is equipped.");
@@ -99,19 +97,23 @@ public class ScenarioSet01 {
 		Quiver quiver = new Quiver();
 		println("Quiver created.");
 		println("TODO - set quiver size");
-		Arrow arrow = new Arrow();
-		println("Arrow created.");
 		try {
-			quiver.add(arrow);
-			quiver.add(arrow);
-			quiver.add(arrow);
-			quiver.add(arrow);
-			quiver.add(arrow);
-			quiver.add(arrow);
+	        println("Arrow created.");
+			quiver.add(new Arrow());
+	        println("Arrow created.");
+			quiver.add(new Arrow());
+	        println("Arrow created.");
+			quiver.add(new Arrow());
+	        println("Arrow created.");
+			quiver.add(new Arrow());
+	        println("Arrow created.");
+			quiver.add(new Arrow());
+	        println("Arrow created.");
+			quiver.add(new Arrow());
 		} catch (Exception e) {
 			fail(e.toString());
 		}
-		println("Arrow location: " + arrow.getLocation());
+		println("Quiver Description: " + quiver.detailedDescription());
 	}
 
 	// TODO candle runs out

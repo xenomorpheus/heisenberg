@@ -1,18 +1,22 @@
 package au.net.hal9000.heisenberg.item;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Vector;
+import java.util.Properties;
 
+import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
+import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
-// TODO Don't extend Being.
-public abstract class PcRace extends Being {
+public abstract class PcRace extends Entity {
 
 	/**
 	 * 
@@ -40,13 +44,12 @@ public abstract class PcRace extends Being {
 	 */
 	private int mana;
 	/**
-	 * Being object has a list of AbiltyScore objects.<br>
-	 * PcClass object has a list of AbiltyScore objects.
+	 * This object has a list of {@link AbilityScore} objects.<br>
 	 * 
-	 * To set up a Being, just work through the list on the PcClass.
+	 * To set up, just work through the list on the {@link PcClass}.
 	 * 
-	 * Create a new AbilityScore object on Being for each one on PC. Set the
-	 * modifier to 0. Set the name = pcClassAbility.getName()
+	 * Create a new AbilityScore object for each one on PC. Set the modifier to
+	 * 0. Set the name = pcClassAbility.getName()
 	 * 
 	 * Call the reCalculateAllAbilityScores() function<br>
 	 * Set the value = pcClassAbility.getValue() + (level *
@@ -54,9 +57,13 @@ public abstract class PcRace extends Being {
 	 */
 	TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 	/**
-	 * The {@link Recipe} list that is known by this Being.
+	 * The {@link Recipe} list that is known by this object.
 	 */
-	private Vector<Recipe> recipes = new Vector<Recipe>();
+	private Set<String> recipes = new TreeSet<String>();
+	/**
+	 * The {@link PowerWord} objects required.
+	 */
+	private Set<PowerWord> powerWords = new TreeSet<PowerWord>();
 	/**
 	 * The {@link Skill} objects required.
 	 */
@@ -66,13 +73,15 @@ public abstract class PcRace extends Being {
 	 * Give me a PC that is a Warrior, then customise.
 	 */
 	public PcRace(String pName, PcClass pPcClass) {
-		super(pName);
+		this(pName);
 		pcClass = pPcClass;
 		init();
 	}
 
 	public PcRace(String pName) {
 		super(pName);
+		// By default PCs are living, but this may be changed at any time.
+		ItemProperty.setLiving(this, true);
 	}
 
 	/**
@@ -86,7 +95,7 @@ public abstract class PcRace extends Being {
 	 * @param level
 	 *            the level to set
 	 */
-	public final void setLevel(int level) {
+	public final void setLevel(final int level) {
 		this.level = level;
 		abilityScoresRecalculate();
 	}
@@ -102,7 +111,7 @@ public abstract class PcRace extends Being {
 	 * @param pcClass
 	 *            the pcClass to set
 	 */
-	public final void setPcClass(PcClass pcClass) {
+	public final void setPcClass(final PcClass pcClass) {
 		this.pcClass = pcClass;
 		if (pcClass == null) {
 			clearClassBasedFields();
@@ -122,7 +131,7 @@ public abstract class PcRace extends Being {
 	 * @param combatDice
 	 *            the combatDice to set
 	 */
-	public final void setCombatDice(int combatDice) {
+	public final void setCombatDice(final int combatDice) {
 		this.combatDice = combatDice;
 	}
 
@@ -152,7 +161,7 @@ public abstract class PcRace extends Being {
 	 * @param stealthDice
 	 *            the stealthDice to set
 	 */
-	public final void setStealthDice(int stealthDice) {
+	public final void setStealthDice(final int stealthDice) {
 		this.stealthDice = stealthDice;
 	}
 
@@ -167,7 +176,7 @@ public abstract class PcRace extends Being {
 	 * @param generalDice
 	 *            the generalDice to set
 	 */
-	public final void setGeneralDice(int generalDice) {
+	public final void setGeneralDice(final int generalDice) {
 		this.generalDice = generalDice;
 	}
 
@@ -182,7 +191,7 @@ public abstract class PcRace extends Being {
 	 * @param encumbrance
 	 *            the encumbrance to set
 	 */
-	public final void setEncumbrance(int encumbrance) {
+	public final void setEncumbrance(final int encumbrance) {
 		this.encumbrance = encumbrance;
 	}
 
@@ -197,7 +206,7 @@ public abstract class PcRace extends Being {
 	 * @param health
 	 *            the health to set
 	 */
-	public final void setHealth(int health) {
+	public final void setHealth(final int health) {
 		this.health = health;
 	}
 
@@ -212,11 +221,11 @@ public abstract class PcRace extends Being {
 	 * @param actionPoints
 	 *            the actionPoints to set
 	 */
-	public final void setActionPoints(int actionPoint) {
-		this.actionPoints = actionPoint;
+	public final void setActionPoints(final int actionPoints) {
+		this.actionPoints = actionPoints;
 	}
 
-	public void actionPointsAdjust(int adjust) {
+	public void actionPointsAdjust(final int adjust) {
 		actionPoints += adjust;
 	}
 
@@ -265,7 +274,7 @@ public abstract class PcRace extends Being {
 	}
 
 	/**
-	 * @param AbilityScore
+	 * @param abilityScore
 	 *            the AbilityScore to put.<br>
 	 *            Any existing AbilityScore with this name will be removed.
 	 */
@@ -273,14 +282,93 @@ public abstract class PcRace extends Being {
 		abilityScores.put(abilityScore.getName(), abilityScore);
 	}
 
-	public Vector<Recipe> getRecipes() {
+	// Recipe objects
+	/**
+	 * Get the Recipe objects this PcRace object knows.
+	 * 
+	 * @return the set of Recipe objects
+	 */
+	public Set<String> getRecipes() {
 		return recipes;
 	}
 
-	public void setRecipes(Vector<Recipe> recipes) {
-		this.recipes = recipes;
+	/**
+	 * Set the Recipe objects this PcRace object knows.
+	 * 
+	 * @param set
+	 *            the set of Recipe objects
+	 */
+	public void setRecipes(Set<String> set) {
+		this.recipes = set;
 	}
 
+	/**
+	 * Add to the of Recipe objects this PcRace object knows.
+	 * 
+	 * @param recipeId
+	 *            a Recipe id
+	 */
+	public void recipesAdd(String recipeId) {
+		this.recipes.add(recipeId);
+	}
+
+	// PowerWords
+	/**
+	 * Get the PowerWord objects.
+	 * 
+	 * @return a set of PowerWord objects
+	 */
+	public final Set<PowerWord> getPowerWords() {
+		return powerWords;
+	}
+
+	public final void setPowerWords(final Set<PowerWord> powerWords) {
+		this.powerWords = powerWords;
+	}
+
+	/**
+	 * Set the PowerWord objects
+	 * 
+	 * @param newPowerWords
+	 *            list of powerWord IDs as Strings.
+	 */
+	public void setPowerWords(final String[] newPowerWords) {
+		powerWords.clear();
+		powerWordsAdd(newPowerWords);
+	}
+
+	/**
+	 * Add extra PowerWords to the list of required ingredients.
+	 * 
+	 * @param powerWords
+	 */
+	public final void powerWordsAdd(final Set<PowerWord> powerWords) {
+		powerWords.addAll(powerWords);
+	}
+
+	/**
+	 * The PcRace has learnt new PowerWord(s).
+	 * 
+	 * @param newPowerWords
+	 *            an array of PowerWord IDs to add.
+	 */
+	public final void powerWordsAdd(final String[] newPowerWords) {
+		for (int i = newPowerWords.length - 1; i >= 0; i--) {
+			powerWords.add(new PowerWord(newPowerWords[i]));
+		}
+	}
+
+	/**
+	 * The PcRace object has learnt a new PowerWord.
+	 * 
+	 * @param powerWord
+	 *            the freshly learnt PowerWord
+	 */
+	public final void powerWordsAdd(final PowerWord powerWord) {
+		powerWords.add(powerWord);
+	}
+
+	// Skills
 	/**
 	 * Get the Skill objects.
 	 * 
@@ -295,7 +383,7 @@ public abstract class PcRace extends Being {
 	}
 
 	/**
-	 * Set the PowerWords
+	 * Set the Skill objects
 	 * 
 	 * @param newSkills
 	 *            list of powerWord IDs as Strings.
@@ -315,16 +403,6 @@ public abstract class PcRace extends Being {
 	}
 
 	/**
-	 * Add extra PowerWords to the list of required ingredients.
-	 * 
-	 * @param powerWords
-	 *            a Set of PowerWord objects to add.
-	 */
-	public final void skillsAddAll(final Set<Skill> powerWords) {
-		powerWords.addAll(powerWords);
-	}
-
-	/**
 	 * Add extra Skills to the list of required ingredients.
 	 * 
 	 * @param newSkills
@@ -333,6 +411,16 @@ public abstract class PcRace extends Being {
 		for (int i = newSkills.length - 1; i >= 0; i--) {
 			skills.add(new Skill(newSkills[i]));
 		}
+	}
+
+	/**
+	 * The PcRace object has learnt a new Skill.
+	 * 
+	 * @param skill
+	 *            The freshly learnt Skill.
+	 */
+	public final void skillsAdd(final Skill skill) {
+		skills.add(skill);
 	}
 
 	// Misc
@@ -353,7 +441,7 @@ public abstract class PcRace extends Being {
 	// public String toString() {
 	// String string = getName();
 	// if (pcClass != null) {
-	// string = string.concat(" the " + pcClass.getId());
+	// string += " the " + pcClass.getId();
 	// }
 	// return string;
 	// }
@@ -423,8 +511,8 @@ public abstract class PcRace extends Being {
 	 * @return Plain text description of the object
 	 */
 	public String description() {
-		String string = "Name: " + getName() + "\nLevel: " + level + "\nRace: "
-				+ getRace() + "\nClass: " + pcClass.getId()
+		String description = "Name: " + getName() + "\nLevel: " + level
+				+ "\nRace: " + getRace() + "\nClass: " + pcClass.getId()
 				+ "\nCombat Dice: D" + combatDice + "\nMagic Dice: D"
 				+ magicDice + "\nStealth Dice: D" + stealthDice
 				+ "\nGeneral Dice: D" + generalDice + "\nAction Points: "
@@ -433,13 +521,39 @@ public abstract class PcRace extends Being {
 				+ "\nEncumbrance: " + encumbrance + "\n";
 
 		if (abilityScores != null) {
-			string = string.concat("Abilities:\n");
-			Iterator<AbilityScore> itr = abilityScores.values().iterator();
-			while (itr.hasNext()) {
-				string = string.concat("  " + itr.next().toString() + "\n");
+			description += "Abilities:\n";
+			for (AbilityScore abilityScore : abilityScores.values()) {
+				description += "  " + abilityScore + "\n";
 			}
 		}
-		return string;
+		if (skills != null && !skills.isEmpty()) {
+			description += "Skills:\n";
+			for (Skill skill : skills) {
+				description += "  " + skill + "\n";
+			}
+		}
+		if (powerWords != null && !powerWords.isEmpty()) {
+			description += "Power Words:\n";
+			for (PowerWord powerWord : powerWords) {
+				description += "  " + powerWord + "\n";
+			}
+		}
+		if (recipes != null && !recipes.isEmpty()) {
+			description += "Recipes:\n";
+			for (String recipeId : recipes) {
+				description += "  " + recipeId + "\n";
+			}
+		}
+		Properties properties = this.getProperties();
+		if (properties != null && !properties.isEmpty()) {
+			description += "Properties:\n";
+			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+				description += " " + entry.getKey() + ": " + entry.getValue()
+						+ "\n";
+			}
+		}
+		description += "Done.\n";
+		return description;
 	}
 
 	public abstract String getRace();
@@ -447,10 +561,11 @@ public abstract class PcRace extends Being {
 	/**
 	 * Shallow copy properties from one object to another.
 	 * 
-	 * @param item
+	 * @param pc
+	 *            source
 	 */
 	public void setAllFrom(PcRace pc) {
-		setAllFrom((Being) pc);
+		setAllFrom((Entity) pc);
 		setLevel(pc.getLevel());
 		setPcClass(pc.getPcClass());
 		setCombatDice(pc.getCombatDice());
@@ -464,6 +579,19 @@ public abstract class PcRace extends Being {
 		setAbilityScores(pc.getAbilityScores());
 		setRecipes(pc.getRecipes());
 		setSkills(pc.getSkills());
+	}
+
+	/**
+	 * Create a new cooker
+	 * 
+	 * @param recipeId
+	 * @return a new cooker object
+	 */
+	public Cooker getCooker(String recipeId) {
+	    Configuration configuration = Configuration.lastConfig();
+		Cooker cooker = configuration.getRecipe(recipeId).getNewCooker();
+		cooker.setChef(this);
+		return cooker;
 	}
 
 }

@@ -24,7 +24,7 @@ public class FlintAndTinder extends Item {
 
 	/** {@inheritDoc} */
 	@Override
-	public FlintAndTinder clone(Item toClone) {
+	public FlintAndTinder clone(IItem toClone) throws CloneNotSupportedException {
 		return (FlintAndTinder) super.clone(toClone);
 	}
 

@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.IItem;
-import au.net.hal9000.heisenberg.item.property.Magical;
 
 public class ItemSearchMagical extends ItemSearch {
 
@@ -13,7 +12,7 @@ public class ItemSearchMagical extends ItemSearch {
     }
 
     public void visit(IItem iItem) {
-        if (iItem instanceof Magical) {
+        if (ItemProperty.isMagical(iItem)) {
             this.addMatchingItems(iItem);
         }
     }
@@ -22,7 +21,7 @@ public class ItemSearchMagical extends ItemSearch {
         Iterator<IItem> itr = itemVector.iterator();
         while (itr.hasNext()) {
             IItem iItem = itr.next();
-            if (iItem instanceof Magical) {
+            if (ItemProperty.isMagical(iItem)) {
                 this.addMatchingItems(iItem);
             }
         }

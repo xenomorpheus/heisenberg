@@ -1,0 +1,1 @@
+        <skill id="ARMANISUIT" description="The best suit of armour money can buy, and then some" />

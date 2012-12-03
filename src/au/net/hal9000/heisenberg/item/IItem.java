@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.Stack;
+import java.util.Properties;
+import java.util.UUID;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
@@ -9,170 +10,194 @@ import au.net.hal9000.heisenberg.units.Currency;
  */
 public interface IItem {
 
-	/**
-	 * @param toClone
-	 *            toClone the item to clone.
-	 * @return the clone of the cloned item.
-	 */
-	public Item clone(Item toClone);
+    /**
+     * @return the clone of the cloned item.
+     * @throws CloneNotSupportedException
+     */
+    public IItem clone() throws CloneNotSupportedException;
 
-	// Getters and Setters
+    /**
+     * @param toClone
+     *            toClone the item to clone.
+     * @return the clone of the cloned item.
+     * @throws CloneNotSupportedException
+     */
+    // TODO Remove?
+    public IItem clone(IItem toClone) throws CloneNotSupportedException;
 
-	/**
-	 * get the name of the item.
-	 * 
-	 * @return the name
-	 */
-	String getName();
+    // Getters and Setters
 
-	/**
-	 * Set the name
-	 * 
-	 * @param pName
-	 *            the name to set
-	 */
-	void setName(String pName);
+    /**
+     * get the ID of the item.
+     * 
+     * @return the Id
+     */
+    UUID getId();
 
-	/**
-	 * Get the description
-	 * 
-	 * @return the description
-	 */
-	String getDescription();
+    /**
+     * Set the Id
+     * 
+     * @param id
+     *            the Id to set
+     */
+    void setId(UUID id);
 
-	/**
-	 * Set the description
-	 * 
-	 * @param pDescription
-	 *            the description
-	 */
-	void setDescription(String pDescription);
+    /**
+     * get the name of the item.
+     * 
+     * @return the name
+     */
+    String getName();
 
-	// weight related
-	/**
-	 * @return weight before addition of other items such as those carried
-	 */
-	float getWeightBase();
+    /**
+     * Set the name
+     * 
+     * @param pName
+     *            the name to set
+     */
+    void setName(String pName);
 
-	/**
-	 * @param baseWeight
-	 *            weight before addition of other items such as those carried.
-	 */
-	void setWeightBase(float baseWeight);
+    /**
+     * Get the description
+     * 
+     * @return the description
+     */
+    String getDescription();
 
-	/**
-	 * The total weight. For simple items the weight is the weightBase. Will be
-	 * overridden by collections.
-	 * 
-	 * @return the total weight
-	 */
-	float getWeight();
+    /**
+     * Set the description
+     * 
+     * @param pDescription
+     *            the description
+     */
+    void setDescription(String pDescription);
 
-	// volume related
-	/**
-	 * volume before addition of other items such as those carried.
-	 * 
-	 * @return the volume that this item occupies without any contained items.
-	 */
-	float getVolumeBase();
+    // weight related
+    /**
+     * @return weight before addition of other items such as those carried
+     */
+    float getWeightBase();
 
-	void setVolumeBase(float volumeWeight);
+    /**
+     * @param baseWeight
+     *            weight before addition of other items such as those carried.
+     */
+    void setWeightBase(float baseWeight);
 
-	/**
-	 * For simple items the weight is the weightBase. Will be overridden by
-	 * collections
-	 * 
-	 * @return the amount of 3D space that this item occupies.
-	 */
-	float getVolume();
+    /**
+     * The total weight. For simple items the weight is the weightBase. Will be
+     * overridden by collections.
+     * 
+     * @return the total weight
+     */
+    float getWeight();
 
-	// valueBase
-	/**
-	 * value before addition of other items such as those carried.
-	 * 
-	 * @return The value before any contained items.
-	 */
-	Currency getValueBase();
+    // volume related
+    /**
+     * volume before addition of other items such as those carried.
+     * 
+     * @return the volume that this item occupies without any contained items.
+     */
+    float getVolumeBase();
 
-	/**
-	 * For simple items the value is the valueBase. Will be overridden by
-	 * collections
-	 * @return the total value including contained items.
-	 */
-	Currency getValue();
+    void setVolumeBase(float volumeWeight);
 
-	void setValueBase(Currency pValueBase);
+    /**
+     * For simple items the weight is the weightBase. Will be overridden by
+     * collections
+     * 
+     * @return the amount of 3D space that this item occupies.
+     */
+    float getVolume();
 
-	// location
-	IItem getLocation();
+    // valueBase
+    /**
+     * value before addition of other items such as those carried.
+     * 
+     * @return The value before any contained items.
+     */
+    Currency getValueBase();
 
-	void setLocation(IItem location);
+    /**
+     * For simple items the value is the valueBase. Will be overridden by
+     * collections
+     * 
+     * @return the total value including contained items.
+     */
+    Currency getValue();
 
-	// hitPoints
-	void setHitPoints(float hitPoints);
+    void setValueBase(Currency pValueBase);
 
-	float getHitPoints();
+    // location
+    IItemContainer getLocation();
 
-	Item getOwner();
+    void setLocation(IItemContainer location);
 
-	void setOwner(IItem owner);
+    // hitPoints
+    void setHitPoints(float hitPoints);
 
-	// misc methods
+    float getHitPoints();
 
-	// boolean equals(IItem other);
+    IItem getOwner();
 
-	/**
-	 * Attempt to unlink the item from everything so that it can be garbage
-	 * collected. Won't work if anything is referencing this item.
-	 */
-	void beNot();
+    void setOwner(IItem owner);
 
-	String toString();
+    /**
+     * Get a property
+     * @param key key name
+     * @return the value
+     */
+    Object getProperty(String key);
 
-	String detailedDescription();
+    /**
+     * Set a property
+     * @param key key name
+     * @param value the value to set
+     */
+    void setProperty(String key, Object value);
+    
+    /**
+     * Remove a property
+     * @param key key name
+     */
+    void removeProperty(String key);
+    
+    public Properties getProperties();
+    /**
+     * 
+     * @param properties set the properties object.
+     */
+    public void setProperties(Properties properties);
+    
+    // misc methods
 
-	// Find items that match the criteria
-	void accept(ItemVisitor visitor);
+    /**
+     * Return true iff items are equal.
+     * 
+     * @param other
+     *            other item
+     * @return true iff items are equal.
+     */
+    boolean equals(Object other);
 
-	/**
-	 * This is used for tree traversal.
-	 * 
-	 * @return True unless this IItem has child Items.<br>
-	 */
-	boolean isLeaf();
+    /**
+     * Attempt to unlink the item from everything so that it can be garbage
+     * collected. Won't work if anything is referencing this item.
+     */
+    void beNot();
 
-	/**
-	 * This is used for tree traversal.
-	 * 
-	 * @return the number of directly connected child Items.<br>
-	 */
-	int getChildCount();
+    String toString();
 
-	/**
-	 * Fetch any numbered child of a node for the JTree. Our model returns IItem
-	 * objects for all nodes in the tree. The JTree displays these by calling
-	 * the IItem.toString() method.
-	 * 
-	 * @param index
-	 *            the index of the object
-	 * @return the object at that index
-	 */
-	Object getChild(int index);
+    String detailedDescription();
 
-	/**
-	 * Figure out a child's position in its parent node.
-	 * 
-	 * @param child
-	 *            the child we want the index of
-	 * @return index the of the child
-	 */
-	int getIndexOfChild(IItem child);
+    // Find items that match the criteria
+    void accept(ItemVisitor visitor);
 
-	/**
-	 * Get the children of a node.
-	 * 
-	 * @return the child {@link IItem} objects of a node
-	 */
-	Stack<IItem> getChildren();
+    /**
+     * This is used for tree traversal.
+     * 
+     * @return True unless this IItem has child Items.<br>
+     */
+    boolean isLeaf();
 
 }

@@ -1,0 +1,58 @@
+What will be the primary way to move an IItem between IItemContainer objects ?
+Should we have a primary way, or should both work?
+
+
+IItemContainer.add(IItem item)
+IItemContainer.remove(IItem item)
+IItemContainer.relocateItem(IItem item, IItemContainer location)
+IItem.relocate(IItemContainer location)
+
+
+Perhaps:
+Any should be acceptable.
+Call each other if required.
+
+
+IItemContainer.add(IItem item):
+a) If item's current location is (not null) and (not "this" location):
+   item.getLocation().remove(item);
+b) Add to this container's storage.
+    storage.add(item);
+c) Update item's location
+   item.setLocation(this).
+
+
+IItemContainer.remove(IItem item):
+Consider assert testing if item is present in this container.
+a) remove from container storage.
+b) item.setLocation(null);
+
+
+IItemContainer.relocateItem(IItem item, IItemContainer location) 
+   Must handle the case where the current location is null - e.g. Freshly created IItem.
+   JUnit test for this.
+ a) if (losingContainer != null) { losingContainer.remove(item); }
+ b) this.add(item);
+ c) item.setLocation(this);
+
+
+IItem.relocate(IItemContainer location)
+  IItemContainer currentLocation = this.getLocation();
+  // Handle a bad value
+  if (newLocation == null){
+    warn "bad call" + stacktrace.
+    if (currentLocation != null){
+       currentLocation.remove(this);
+    }
+  }
+  // Move only if required
+  else if (! newLocation.equals(currentLocation){
+    newLocation.relocateItem(this, newLocation);
+  }
+
+
+IItem.setLocation() 
+Add notes: should only set the IItem property, no calls should be made.
+Add notes: Relocations should be implemented in other methods.
+
+

@@ -5,52 +5,62 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Stack;
+import java.util.UUID;
+import java.util.Properties;
 
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.*;
 
-//IItem:
-//* An item has a name which is text.
-//* An item has a description which is text.
-//* An item has a weight which is measured in pounds which defaults to zero.
-//* An item has a valueBase measured in coins which defaults to zero.
-//* An item has a location (e.g. ground, a bag, an arm)
-//* (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or
-//hit points?
-//* An item may have any number of defences.
-//* An item by default does not offer protection (e.g armour, magic
-//resistance)
-//* An item may offer any number of protections.
-//Actions
-//* An item may be dropped, which will cause the location to be changed to
-//the ground below the object.
-//* An item may be damaged by fire which will...
-//* An item may be damaged by acid which will...
-//* An item may be repaired which will ...
-
+/*
+ * Item:
+ *
+ * An item has a globally pseudo-unique identifier.
+ * An item has a name which is text.
+ * An item has a description which is text.
+ * An item has a weight which is measured in pounds which defaults to zero.
+ * An item has a valueBase measured in coins which defaults to zero.
+ * An item has a location (e.g. ground, a bag, an arm)
+ * (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or hit points?
+ * An item may have any number of defences.
+ * An item by default does not offer protection (e.g armour, magic resistance)
+ * An item may offer any number of protections.
+ Actions
+ * An item may be dropped, which will cause the location to be changed to
+ the ground below the object.
+ * An item may be damaged by fire which will...
+ * An item may be damaged by acid which will...
+ * An item may be repaired which will ...
+ */
 public abstract class Item implements IItem, Serializable, Cloneable {
 
-    /**
-	 * 
-	 */
     private static final long serialVersionUID = 1L;
-    private static final float WITHIN_MARGIN = 0.00009F;
-    // set as many objects as possible.
-    /** name may not be null */
-    private String name = "";
-    /** description may not be null */
-    private String description = "";
+
+    // Initialise as many values as possible.
+    // Note: Id is required so UI getIndexOfChild() will work
+    // when two objects have the same properties.
+    private UUID id = UUID.randomUUID();
+    private String name = null;
+    private String description = null;
     private float weightBase = 0;
     private float volumeBase = 0;
     private Currency valueBase = new Currency();
-    private Item location = null;
+    private IItemContainer location = null;
     private float hitPoints = 0F;
     /** Who owns this item. null means no-one. */
     private Item owner = null;
+    private Properties properties = new Properties();
 
     // Class methods
-    public Item(final String pName) {
+    public Item() {
         super();
+        ItemProperty.setMagical(this, false);
+        ItemProperty.setClothing(this, false);
+        ItemProperty.setLiving(this, false);
+        ItemProperty.setHumanoidFood(this, false);
+    }
+
+    public Item(final String pName) {
+        this();
         this.name = pName;
     }
 
@@ -59,9 +69,13 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.description = pDescription;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     * 
+     * @throws CloneNotSupportedException
+     */
     @Override
-	public Item clone() throws CloneNotSupportedException {
+    public IItem clone() throws CloneNotSupportedException {
         Item clone = (Item) super.clone();
         this.clone(clone);
         return clone;
@@ -69,7 +83,9 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public Item clone(Item clone) {
+    public IItem clone(IItem clone) throws CloneNotSupportedException {
+        // Clones must have a unique ID
+        clone.setId(UUID.randomUUID());
 
         // Make sure the cloning is deep, not shallow.
         // e.g. set the non-mutable, non-primitives
@@ -79,16 +95,26 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         if (valueBase == null) {
             clone.setValueBase(null);
         } else {
-            try {
-                clone.setValueBase(valueBase.clone());
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException("Failed to clone Currency");
-            }
+            clone.setValueBase(valueBase.clone());
         }
+
+        // Properties
+        clone.setProperties((Properties)this.getProperties().clone());
 
         // location is *NOT* cloned.
         return clone;
+    }
 
+    /** {@inheritDoc} */
+    @Override
+    public Properties getProperties() {
+        return properties;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
     // static methods
@@ -96,6 +122,19 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     // instance methods
 
     // Getters and Setters
+
+    /** {@inheritDoc} */
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setId(final UUID pId) {
+        this.id = pId;
+    }
+
     /** {@inheritDoc} */
     @Override
     public String getName() {
@@ -120,9 +159,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     /** {@inheritDoc} */
     @Override
     public void setDescription(final String pDescription) {
-        if (pDescription == null) {
-            throw new IllegalArgumentException("Not null");
-        }
         this.description = pDescription;
     }
 
@@ -179,14 +215,14 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public IItem getLocation() {
+    public IItemContainer getLocation() {
         return this.location;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setLocation(IItem location) {
-        this.location = (Item) location;
+    public void setLocation(IItemContainer location) {
+        this.location = location;
     }
 
     /** {@inheritDoc} */
@@ -213,6 +249,24 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.owner = (Item) owner;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public Object getProperty(String key) {
+        return properties.get(key);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setProperty(String key, Object value) {
+        properties.put(key, value);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void removeProperty(String key) {
+        properties.remove(key);
+    }
+
     // misc methods
 
     /** {@inheritDoc} */
@@ -221,10 +275,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         return weightBase;
     }
 
-    /**
-     * Items are considered equal if all their properties are the same except
-     * for location.
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -237,49 +288,26 @@ public abstract class Item implements IItem, Serializable, Cloneable {
             return false;
         }
         Item otherItem = (Item) other;
-
-        // Check each of our immediate properties.
-        // name
-        if (!name.equals(otherItem.getName())) {
-            return false;
-        }
-        // description
-        if (!description.equals(otherItem.getDescription())) {
-            return false;
-        }
-        if (Math.abs(weightBase - otherItem.getWeightBase()) >= WITHIN_MARGIN)
-            return false;
-        if (Math.abs(volumeBase - otherItem.getVolumeBase()) >= WITHIN_MARGIN)
-            return false;
-        if (!(valueBase.equals(otherItem.getValueBase()))) {
-            return false;
-        }
-        /*
-         * We can't check the location because checking of deep persistence will
-         * break. Nested objects will have different locations.
-         */
-
-        // if (!Item.null_safe_equals(location, other.getLocation()))
-        // return false;
-        if (Math.abs(hitPoints - otherItem.getHitPoints()) > 0.0001F)
-            return false;
-        // call equals on any super class.
-        return true;
+        return id.equals(otherItem.getId());
     }
 
     /** {@inheritDoc} */
     @Override
     public void beNot() {
-    	// TODO - Help Required - How do I delete an object that
-    	// may be referenced by other objects?
-        this.location = null;
+        // TODO - Help Required - How do I delete an object that
+        // may be referenced by other objects?
+        // Perhaps listeners on the containers?
+        IItemContainer location = (IItemContainer) this.getLocation();
+        if (location != null) {
+            location.remove(this);
+        }
     }
-    
-	/** {@inheritDoc} */
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName();
-	}
+
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -289,22 +317,22 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
         temp = this.getName();
         if (temp != null) {
-            str = str.concat("Name: " + temp + "\n");
+            str += "Name: " + temp + "\n";
         }
         temp = this.getDescription();
         if (temp != null) {
-            str = str.concat("Description: " + temp + "\n");
+            str += "Description: " + temp + "\n";
         }
-        str = str.concat("Weight Base: " + this.getWeightBase() + "\n"
-                + "Volume Base: " + this.getVolumeBase() + "\n");
+        str += "Weight Base: " + this.getWeightBase() + "\n"
+                + "Volume Base: " + this.getVolumeBase() + "\n";
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
-            str = str.concat("Value Base: " + valueBase + "\n");
+            str += "Value Base: " + valueBase + "\n";
         }
-        IItem location = this.getLocation();
+        IItemContainer location = this.getLocation();
         if (location != null) {
-            str = str.concat("Location: " + location.getName() + "\n");
+            str += "Location: " + location.getName() + "\n";
         }
         return str;
     }
@@ -345,43 +373,20 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         return true;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public int getChildCount() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public IItem getChild(int index) {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getIndexOfChild(IItem child) {
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Stack<IItem> getChildren() {
-        return new Stack<IItem>();
-    }
-    
     /**
      * Shallow copy properties from one object to another.
+     * 
      * @param item
      */
-	public void setAllFrom(Item item) {
-		setName(item.getName());
-		setDescription(item.getDescription());
-		setWeightBase(item.getWeightBase());
+    public void setAllFrom(Item item) {
+        setName(item.getName());
+        setDescription(item.getDescription());
+        setWeightBase(item.getWeightBase());
         setVolumeBase(item.getVolumeBase());
         setValueBase(item.getValueBase());
         setLocation(item.getLocation());
         setHitPoints(item.getHitPoints());
         setOwner(item.getOwner());
-	}	    
-    
+    }
+
 }

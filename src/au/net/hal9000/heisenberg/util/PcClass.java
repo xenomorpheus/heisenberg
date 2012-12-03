@@ -129,8 +129,8 @@ public class PcClass implements Comparable<PcClass> {
 	 * @param actionPoints
 	 *            the actionPoints to set
 	 */
-	public final void setActionPoints(int actionPoint) {
-		this.actionPoints = actionPoint;
+	public final void setActionPoints(int actionPoints) {
+		this.actionPoints = actionPoints;
 	}
 
 	/**
@@ -251,7 +251,7 @@ public class PcClass implements Comparable<PcClass> {
 	}
 
 	/**
-	 * @param AbilityScore
+	 * @param abilityScore
 	 *            the AbilityScore to put.<br>
 	 *            Any existing AbilityScore with this name will be removed.
 	 */
@@ -279,10 +279,10 @@ public class PcClass implements Comparable<PcClass> {
 				+ "\nencumbrance: " + encumbrance + "\n";
 
 		if (abilityScores != null) {
-			string = string.concat("Abilities:\n");
+			string += "Abilities:\n";
 			Iterator<AbilityScore> itr = abilityScores.values().iterator();
 			while (itr.hasNext()) {
-				string = string.concat("  " + itr.next().toString() + "\n");
+				string += "  " + itr.next().toString() + "\n";
 			}
 		}
 		return string;

@@ -12,7 +12,6 @@ import au.net.hal9000.heisenberg.item.property.ItemSearchExtraDimensional;
 
 public class ItemSearchExtraDimensionalTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testAccept() {
 

@@ -1,0 +1,7 @@
+PcRace refactored to Player
+Consider removing all Human, Halfling, Elf, etc. and replace with enum Race.
+Player class to have a field race which is enum Race.
+Greatly simplifies UI Pc editor.
+Allows changing of race without removing and reinserting PC object.
+Currently no race based properties anyway.
+

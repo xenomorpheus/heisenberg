@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.property.Clothing;
-public class Cloak extends Item implements Clothing {
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
+public class Cloak extends Item {
 	/**
 	 * 
 	 */
@@ -13,6 +13,7 @@ public class Cloak extends Item implements Clothing {
 
 	public Cloak(String pString) {
 		super(pString);
+        ItemProperty.setClothing(this, true);
 	}
 
 }

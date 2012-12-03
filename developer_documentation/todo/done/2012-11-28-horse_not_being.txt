@@ -1,0 +1,3 @@
+A horse should not inherit from being / PC.
+
+Perhaps rename Being to Entity

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Ring;
-import au.net.hal9000.heisenberg.item.property.Magical;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
 
@@ -22,7 +22,7 @@ public class RingTest {
     @Test
     public void testImplementsMagic() {
         final Ring ring = new Ring();
-        assertFalse("Implements Magical", ring instanceof Magical);
+        assertFalse("Implements Magical", ItemProperty.isMagical(ring));
     }
 
     @Test
@@ -51,10 +51,11 @@ public class RingTest {
         // x.clone().getClass() == x.getClass().
         // Already tested above.
 
+        // Clones have differen IDs
         // While it is typically the case that:
         // x.clone().equals(x)
         // will be true, this is not an absolute requirement.
-        assertEquals("x.clone().equals(x)", clone, original);
+        // assertEquals("x.clone().equals(x)", clone, original);
 
         // Class specific tests
         // Make sure the cloning is deep, not shallow.

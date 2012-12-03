@@ -11,15 +11,15 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.property.HumanoidFood;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class CookieTest {
     @Test
     public void testEquals() {
         Cookie first = new Cookie();
         Cookie second = new Cookie();
-        assertTrue("equals true for self", first.equals(second));
-        assertTrue("equals true for other", second.equals(first));
+        assertTrue("equals true for self", first.equals(first));
+        assertFalse("equals false for other", first.equals(second));
     }
 
     @Test
@@ -48,10 +48,11 @@ public class CookieTest {
         // x.clone().getClass() == x.getClass().
         // Already tested above.
 
+        // Clones have different IDs
         // While it is typically the case that:
         // x.clone().equals(x)
         // will be true, this is not an absolute requirement.
-        assertTrue("x.clone().equals(x)", clone.equals(original));
+        // assertTrue("x.clone().equals(x)", clone.equals(original));
 
         // Class specific tests
         // Make sure the cloning is deep, not shallow.
@@ -62,7 +63,7 @@ public class CookieTest {
     @Test
     public void testIsHumanoidFood() {
         Cookie cookie = new Cookie();
-        assertTrue("is humanoid food", cookie instanceof HumanoidFood);
+        assertTrue("is humanoid food", ItemProperty.isHumanoidFood(cookie));
     }
 
 }

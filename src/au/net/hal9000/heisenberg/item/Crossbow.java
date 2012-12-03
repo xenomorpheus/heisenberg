@@ -23,37 +23,6 @@ public class Crossbow extends Item {
         this.loadedBolt = bolt;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean equals(final Object other) {
-        // loadedBolt
-        boolean isEqual = false;
-        if (other instanceof Crossbow) {
-            final Crossbow otherCrossbow = (Crossbow) other;
-            isEqual = true;
-            if (loadedBolt == null) {
-                if (otherCrossbow.loadedBolt != null) {
-                    isEqual = false;
-                }
-            } else {
-                if (otherCrossbow.loadedBolt == null) {
-                    isEqual = false;
-                }
-
-                else {
-                    if (!loadedBolt.equals(otherCrossbow.loadedBolt)) {
-                        isEqual = false;
-                    }
-                }
-            }
-            // Check the super properties as well.
-            if (isEqual){
-                isEqual =  super.equals(other);
-            }
-        }
-        return isEqual;
-    }
-
     // bow plus bolt if present.
     public float getWeight() {
         float total = super.getWeight();

@@ -12,7 +12,6 @@ import au.net.hal9000.heisenberg.item.property.ItemSearchMagical;
 
 public class ItemSearchMagicalTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testAccept() {
 

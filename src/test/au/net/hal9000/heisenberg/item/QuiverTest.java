@@ -51,10 +51,11 @@ public class QuiverTest {
 		// original.clone().getClass() == original.getClass().
 		// Already tested above.
 
+        // Clones have differen IDs
 		// While it is typically the case that:
 		// original.clone().equals(original)
 		// will be true, this is not an absolute requirement.
-		assertTrue("original.clone().equals(original)", clone.equals(original));
+		// assertTrue("original.clone().equals(original)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.

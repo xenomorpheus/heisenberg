@@ -1,34 +1,26 @@
 package au.net.hal9000.heisenberg.item;
 
-// MagicRing
-// is a Ring except:
-// It is Magical.
+/**
+ *  MagicRing
+ * is a Ring except, it is Magical.
+ */
 
-import au.net.hal9000.heisenberg.item.property.Magical;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
-public class MagicRing extends Ring implements Magical {
-	/**
+public class MagicRing extends Ring {
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private int plus;
+    private static final long serialVersionUID = 1L;
 
-	// Constructor
-	public MagicRing() {
-		super("MagicRing");
-	}
+    // Constructor
+    public MagicRing() {
+        this("MagicRing");
+    }
 
-	public MagicRing(String pName) {
-		super(pName);
-	}
-
-	// Others
-	public int getPlus() {
-		return plus;
-	}
-
-	public void setPlus(int plus) {
-		this.plus = plus;
-	}
+    public MagicRing(String pName) {
+        super(pName);
+        ItemProperty.setMagical(this, true);
+    }
 
 }

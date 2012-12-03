@@ -24,7 +24,7 @@ public class SmallGroundFire extends Item {
 
 	/** {@inheritDoc} */
 	@Override
-	public SmallGroundFire clone(Item toClone) {
+	public SmallGroundFire clone(IItem toClone) throws CloneNotSupportedException {
 		return (SmallGroundFire) super.clone(toClone);
 	}
 

@@ -22,7 +22,9 @@ public class Bag extends Box {
     public Bag(final String pName) {
         super(pName);
         setDescription("A common cloth sack about 2 feet by 4 feet in size.");
-    }
+        this.setWeightMax(100);  // TODO config
+        this.setVolumeMax(100);  // TODO config
+        }
 
     // TODO finish rupture
     public void rupture() {
@@ -30,9 +32,8 @@ public class Bag extends Box {
     }
 
     /** {@inheritDoc} */
-	@SuppressWarnings("deprecation")
 	@Override
-    public void add(final Item item) throws ExceptionTooHeavy, ExceptionTooBig,
+    public void add(final IItem item) throws ExceptionTooHeavy, ExceptionTooBig,
             ExceptionInvalidType {
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {

@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
-public class Quiver extends ItemContainer {
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
+
+public class Quiver extends ItemContainer  {
 
 
     private static final long serialVersionUID = 1L;
@@ -12,14 +14,14 @@ public class Quiver extends ItemContainer {
         this("Quiver");
     }
 
-    public Quiver(final String pName) {
-        super(pName);
+    public Quiver(final String name) {
+        super(name);
         this.setVolumeMax(VOLUME_MAX_DFT);
+        ItemProperty.setClothing(this, true);
     }
 
-    @SuppressWarnings("deprecation")
-	public void add(final Arrow pArrow) {
-        super.add(pArrow);
+	public void add(final Arrow arrow) {
+        super.add(arrow);
     }
 
     public void add(final Object object) {

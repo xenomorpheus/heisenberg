@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Being;
+import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Elf;
 import au.net.hal9000.heisenberg.item.Humanoid;
@@ -19,7 +19,7 @@ public class ElfTest {
 		Item elfItem = (Item) elf;
 		assertTrue("is Elf", elf instanceof Elf);
 		assertTrue("is Humanoid", elf instanceof Humanoid);
-		assertTrue("is Being", elf instanceof Being);
+		assertTrue("is Entity", elf instanceof Entity);
 		assertTrue("is item", elf instanceof Item);
 		assertFalse("is Cookie", elfItem instanceof Cookie);
 	}

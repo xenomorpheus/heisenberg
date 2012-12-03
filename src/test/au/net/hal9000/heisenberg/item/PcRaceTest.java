@@ -1,15 +1,17 @@
 package test.au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
+
 import java.io.IOException;
 import nu.xom.ValidityException;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
-public class PcTest {
+public class PcRaceTest {
 
 	@Test
 	public void testMana() {
@@ -31,6 +33,13 @@ public class PcTest {
         assertEquals(43, human.getActionPoints());
 	}
 	
+    @Test
+    public void testLiving() {
+        Human human = new Human(); // Close enough
+        // By default PCs are living.
+        assertTrue("living", ItemProperty.isLiving(human));
+    }
+
 	@Test
 	public void testValues() {
 		
@@ -64,9 +73,7 @@ public class PcTest {
 		assertEquals(8, pc.getActionPoints());
 		assertEquals(7, pc.getHealth());
 		assertEquals(0, pc.getMana());
-		// TODO assertEquals("~", pc.getGender());
-		// TODO assertEquals("~", pc.getSize());
-		// TODO assertEquals("~", pc.getRace());
+
 	}	
 
 

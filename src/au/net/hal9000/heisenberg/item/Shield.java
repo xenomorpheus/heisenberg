@@ -1,5 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
+
+
 /*
  * Shield  
  * 
@@ -11,7 +14,7 @@ package au.net.hal9000.heisenberg.item;
  *  TODO perhaps create a protection Interface  
  */
 
-public class Shield extends Item {
+public class Shield extends Item{
 
 //	ToHitModifier toHitModifier = new ToHitModifier();
 //	DamageModifier damageModifier = new DamageModifier();
@@ -24,6 +27,7 @@ public class Shield extends Item {
 	// Constructor(s)
 	public Shield() {
 		super("Shield");
+        ItemProperty.setClothing(this, true);
 	}
 
 }

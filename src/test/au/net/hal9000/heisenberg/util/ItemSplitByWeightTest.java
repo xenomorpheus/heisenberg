@@ -1,8 +1,8 @@
-package test.au.net.hal9000.heisenberg.item;
+package test.au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import au.net.hal9000.heisenberg.item.ItemSplitByWeight;
+
 import au.net.hal9000.heisenberg.item.Water;
 
 public class ItemSplitByWeightTest {
@@ -13,7 +13,7 @@ public class ItemSplitByWeightTest {
 
 		// Test for illegal argument throwing
 		try {
-			ItemSplitByWeight water = new Water();
+			Water water = new Water();
 			water.splitByWeight(0.0f);
 			fail("Expected exception");
 		} catch (IllegalArgumentException e) {
@@ -24,7 +24,7 @@ public class ItemSplitByWeightTest {
 
 		// Test for illegal argument throwing
 		try {
-			ItemSplitByWeight water = new Water();
+			Water water = new Water();
 			water.setWeightBase(1.0f);
 			water.splitByWeight(1.0f);
 			fail("Expected exception");
@@ -36,10 +36,10 @@ public class ItemSplitByWeightTest {
 
 		{
 			// Test for working
-			ItemSplitByWeight water = new Water();
+			Water water = new Water();
 			water.setWeightBase(6f);
 			water.setVolumeBase(3f);
-			ItemSplitByWeight water2 = null;
+			Water water2 = null;
 			try {
 				water2 = water.splitByWeight(2.0f);
 			} catch (Exception e) {

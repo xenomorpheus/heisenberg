@@ -45,18 +45,18 @@ public class Candle extends Item {
         final String name = super.getName();
 
         // Otherwise try to get the name.
-        if (desc.length() > 0) {
+        if ((desc != null) && (desc.length() > 0)) {
             full_desc = desc;
-            full_desc = full_desc.concat(". ");
-        } else if (name.length() > 0) {
+            full_desc += ". ";
+        } else if ((name != null) && (name.length() > 0)) {
             full_desc = name;
-            full_desc = full_desc.concat(". ");
+            full_desc += ". ";
         }
 
         if (lit) {
-            full_desc = full_desc.concat("Is lit");
+            full_desc += "Is lit";
         } else {
-            full_desc = full_desc.concat("Not lit");
+            full_desc += "Not lit";
         }
 
         return full_desc;

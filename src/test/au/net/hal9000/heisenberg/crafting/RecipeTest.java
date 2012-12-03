@@ -35,8 +35,8 @@ public class RecipeTest {
 		ingredients.add(wood);
 
 		// Build a recipe with the list of required ingredients
-		Recipe recipe = new Recipe("recipe1", "the first recipe", 0, 0,
-				ingredients, null, null);
+		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0,
+				0, ingredients, null, null, null);
 
 		assertEquals("ingredient count", ingredients.size(),
 				recipe.getIngredientsCount());
@@ -73,8 +73,8 @@ public class RecipeTest {
 		}
 
 		// Build a recipe with the list of required ingredients
-		Recipe recipe = new Recipe("recipe1", "the first recipe", 2, 42,
-				ingredients, skills, products);
+		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2,
+				42, ingredients, null, skills, products);
 
 		assertEquals("id", "recipe1", recipe.getId());
 		assertEquals("description", "the first recipe", recipe.getDescription());

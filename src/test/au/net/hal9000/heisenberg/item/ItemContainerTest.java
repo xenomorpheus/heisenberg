@@ -7,17 +7,15 @@ import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Bag;
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.item.exception.*;
 
 public class ItemContainerTest {
 
-	
-	// TODO Add unit test for respecting max weight and volumen of outer bag, when adding Item to an inner bag.
-    // Will require some kind of change notification system.
-	
+	// TODO Add unit test for respecting max weight and volumen of outer bag,
+	// when adding Item to an inner bag.
+	// Will require some kind of change notification system.
+
 	@Test
 	public void testSetVolumeMax() {
 		float volumeMax = 20F;
@@ -44,7 +42,7 @@ public class ItemContainerTest {
 			try {
 				bag.add(i);
 			} catch (Exception e) {
-				fail( e.getMessage());
+				fail(e.getMessage());
 			}
 			// Check location is set
 			assertEquals("location set", bag, i.getLocation());
@@ -96,7 +94,7 @@ public class ItemContainerTest {
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
 		Bag newBag = new Bag("New Bag");
-		Vector<Item> items = new Vector<Item>();
+		Vector<IItem> items = new Vector<IItem>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);
@@ -153,12 +151,14 @@ public class ItemContainerTest {
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
 
-		Boolean bar = clone.equals(original);
-		assertTrue("x.clone().equals(x)", bar);
+		// Clones have differen IDs
+		// Boolean bar = clone.equals(original);
+		// assertTrue("x.clone().equals(x)", bar);
 
+        // Clones have differen IDs
 		// equals from the other direction
-		Boolean foo = original.equals(clone);
-		assertTrue("x.equals(clone)", foo);
+		// Boolean foo = original.equals(clone);
+		// assertTrue("x.equals(clone)", foo);
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
@@ -168,19 +168,19 @@ public class ItemContainerTest {
 		float weightMax = original.getWeightMax();
 		weightMax += 1f;
 		original.setWeightMax(weightMax);
-		assertFalse("x.clone().equals(x) weightMax", clone.equals(original));
+		// TODO assertFalse("x.clone().equals(x) weightMax", clone.equals(original));
 		weightMax -= 1f;
 		original.setWeightMax(weightMax);
-		assertTrue("x.clone().equals(x) weightMax restored ", clone.equals(original));
+		// TODO assertTrue("x.clone().equals(x) weightMax restored ",		clone.equals(original));
 
 		// volumeMax
 		float volumeMax = original.getVolumeMax();
 		volumeMax += 1f;
 		original.setVolumeMax(volumeMax);
-		assertFalse("x.clone().equals(x) volumeMax", clone.equals(original));
+		// TODO assertFalse("x.clone().equals(x) volumeMax", clone.equals(original));
 		volumeMax -= 1f;
 		original.setVolumeMax(volumeMax);
-		assertTrue("x.clone().equals(x) volumeMaxrestored ", clone.equals(original));
+		// TODO assertTrue("x.clone().equals(x) volumeMaxrestored ",clone.equals(original));
 
 		// items
 		{
@@ -188,8 +188,9 @@ public class ItemContainerTest {
 			//
 
 			String c1NameOld = c1.getName();
+			// TODO test the name is the same
 			c1.setName(c1.getName() + "fred");
-			assertFalse("deep clone", clone.equals(original));
+			// TODO test the name is different assertFalse("deep clone", clone.equals(original));
 			c1.setName(c1NameOld);
 		}
 
@@ -267,17 +268,36 @@ public class ItemContainerTest {
 	public void testGetChild() {
 		Bag bag = new Bag();
 		Cookie cookie = new Cookie();
-		Cookie cookie2 = new Cookie();
+		Scabbard scabbard = new Scabbard();
 		bag.add(cookie);
-		assertEquals("getChildCount", (Item) cookie, (Item) bag.getChild(0));
-		bag.add(cookie2);
-		assertEquals("getChildCount", (Item) cookie, (Item) bag.getChild(0));
-		assertEquals("getChildCount", (Item) cookie2, (Item) bag.getChild(1));
+		assertEquals("getChildCount", cookie, bag.getChild(0));
+		bag.add(scabbard);
+		assertEquals("getChildCount", cookie, bag.getChild(0));
+		assertEquals("getChildCount", scabbard, bag.getChild(1));
 	}
 
 	@Test
 	public void testGetIndexOfChild() {
-		// TODO add unit test
+		Bag bag = new Bag();
+		Cookie cookie1 = new Cookie();
+		Scabbard scabbard = new Scabbard();
+		Cookie cookie2 = new Cookie("Cookie2");
+		Cookie cookie3 = new Cookie();
+		assertEquals("getIndexOfChild - empty", -1,
+				bag.getIndexOfChild(cookie1));
+		bag.add(cookie1);
+		assertEquals("getIndexOfChild - only child", 0,
+				bag.getIndexOfChild(cookie1));
+		bag.add(scabbard);
+		assertEquals("getIndexOfChild - first child", 0,
+				bag.getIndexOfChild(cookie1));
+		assertEquals("getIndexOfChild - second child", 1,
+				bag.getIndexOfChild(scabbard));
+		assertEquals("getIndexOfChild - not present", -1,
+				bag.getIndexOfChild(cookie2));
+		assertEquals(
+				"getIndexOfChild - not present but cookie3 equal to cookie1",
+				-1, bag.getIndexOfChild(cookie3));
 	}
-	
+
 }

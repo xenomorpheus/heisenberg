@@ -1,0 +1,6 @@
+The test I am using is:
+Create object x.
+Add object x into container at position y.
+Ask container why position in container is item x, should respond with y.
+
+Test with a Quiver and adding Arrow objects.

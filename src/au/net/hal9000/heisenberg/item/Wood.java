@@ -4,40 +4,50 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class Wood extends ItemSplitByWeight {
-	/**
+import test.au.net.hal9000.heisenberg.util.ItemSplitByWeight;
+
+import au.net.hal9000.heisenberg.item.property.SplitByWeight;
+
+public class Wood extends Item implements SplitByWeight {
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Wood() {
-		this("Wood");
-	}
+    public Wood() {
+        this("Wood");
+    }
 
-	public Wood(String pName) {
-		this(pName, "some wood");
-	}
+    public Wood(String pName) {
+        this(pName, "some wood");
+    }
 
-	public Wood(String pName, String pDescription) {
-		super(pName, pDescription);
-	}
+    public Wood(String pName, String pDescription) {
+        super(pName, pDescription);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public Wood clone(Item toClone) {
-		return (Wood) super.clone(toClone);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public Wood clone(IItem toClone) throws CloneNotSupportedException {
+        return (Wood) super.clone(toClone);
+    }
 
-	// Methods
+    // Methods
 
-	// Static
-	public static Wood thawFromFile(String filename) throws IOException,
-			ClassNotFoundException {
-		FileInputStream fis = new FileInputStream(filename);
-		ObjectInputStream in = new ObjectInputStream(fis);
-		Wood newObj = (Wood) in.readObject();
-		in.close();
-		return newObj;
-	}
+    // Static
+    public static Wood thawFromFile(String filename) throws IOException,
+            ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(filename);
+        ObjectInputStream in = new ObjectInputStream(fis);
+        Wood newObj = (Wood) in.readObject();
+        in.close();
+        return newObj;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Wood splitByWeight(float newItemWeight) {
+        return (Wood)ItemSplitByWeight.splitByWeight(this, newItemWeight);
+    }
 
 }

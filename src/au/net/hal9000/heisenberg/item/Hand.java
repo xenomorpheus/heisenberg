@@ -4,15 +4,14 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.exception.*;
-import au.net.hal9000.heisenberg.item.property.Living;
-import au.net.hal9000.heisenberg.item.property.Magical;
 import au.net.hal9000.heisenberg.item.property.RingWearer;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
  * Hand Is like an item except: May wear at most one magical ring. May wear any
  * number of non-magical rings. Rings may be removed in any order.
  */
-public class Hand extends Item implements RingWearer, Living {
+public class Hand extends ItemContainer implements RingWearer {
 
     private static final long serialVersionUID = 1L;
     private Vector<Ring> rings = new Vector<Ring>();
@@ -20,18 +19,21 @@ public class Hand extends Item implements RingWearer, Living {
     private int magicRingMax = 1;
 
     public Hand() {
-        super("Hand");
+        this("Hand");
     }
 
     public Hand(String string) {
         super(string);
+        ItemProperty.setLiving(this, true);
+        this.setWeightMax(2); // TODO config
+        this.setVolumeMax(2); // TODO config
     }
 
     // Other
 
     public void ringWear(Ring ring) throws ExceptionCantWear {
 
-        if (ring instanceof Magical) {
+        if (ItemProperty.isMagical(ring)) {
             if (magicRingCount >= magicRingMax) {
                 throw new ExceptionCantWear(
                         "would be exceeded magic ring max of " + magicRingCount);
@@ -56,13 +58,13 @@ public class Hand extends Item implements RingWearer, Living {
         return magicRingMax;
     }
 
-    public void ringRemove(Ring ring, IItem newLocation)
+    public void ringRemove(Ring ring, IItemContainer newLocation)
             throws ExceptionCantRemove {
 
         if (!this.rings.removeElement(ring)) {
             throw new ExceptionCantRemove("remove failed");
         }
-        if (ring instanceof Magical) {
+        if (ItemProperty.isMagical(ring)) {
             magicRingCount--;
             assert magicRingCount >= 0;
         }

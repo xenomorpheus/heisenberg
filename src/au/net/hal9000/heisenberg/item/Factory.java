@@ -7,10 +7,21 @@ public class Factory {
 
     static String packageName = Factory.class.getPackage().getName();
 
+    /**
+     * Create a new IItem of the specified type.
+     * @param type the type of IItem to create.
+     * @return the new IItem.
+     */
 	static public Item createItem(String type) {
 		return createItem(type, null);
 	}
 
+	/**
+     * Create a new IItem of the specified type.
+     * @param type the type of IItem to create.
+	 * @param arguments
+     * @return the new IItem.
+	 */
 	static public Item createItem(String type, Object[] arguments) {
 		try {
 			Class<?> itemClass = Class.forName(packageName + "." + type);

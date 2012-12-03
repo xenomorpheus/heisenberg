@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import au.net.hal9000.heisenberg.item.IItem;
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
@@ -35,7 +36,8 @@ public class IngredientItem extends Ingredient {
 	/**
 	 * Minimum weight of this item.<br>
 	 * e.g. 3 weight units of wood.<br>
-	 * default is 0; TODO Refactor to IngredientItemPoroperty
+	 * default is 0; <br>
+	 * TODO Refactor to IngredientItemPoroperty
 	 */
 	private float weightMin = 0;
 
@@ -83,15 +85,15 @@ public class IngredientItem extends Ingredient {
 	/**
 	 * Does the Item meet the requirements?
 	 * 
-	 * @param pItem
+	 * @param item2
 	 *            the Item being evaluated.
 	 * @return true if the Item meets the requirements.
 	 */
-	public final boolean meetsRequirements(Item pItem) {
+	public final boolean meetsRequirements(IItem item2) {
 		// Correct Class
-		boolean successSoFar = item.getClass().isInstance(pItem);
+		boolean successSoFar = item.getClass().isInstance(item2);
 		// Correct Weight
-		successSoFar = successSoFar && pItem.getWeight() >= weightMin;
+		successSoFar = successSoFar && item2.getWeight() >= weightMin;
 		return successSoFar;
 	}
 
@@ -100,10 +102,10 @@ public class IngredientItem extends Ingredient {
 	String getDescription() {
 		String string = "Item: " + this.item.toString();
 		if (weightMin > 0) {
-			string = string.concat(", weightMin=" + weightMin);
+			string += ", weightMin=" + weightMin;
 		}
 		if (!isConsumed) {
-			string = string.concat(", consumed=" + isConsumed);
+			string += ", consumed=" + isConsumed;
 		}
 		return string;
 	}

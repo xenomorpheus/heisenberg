@@ -4,11 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Hand;
+import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.MagicRing;
 import au.net.hal9000.heisenberg.item.Ring;
 import au.net.hal9000.heisenberg.item.exception.*;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class HandTest {
 	private static final float WITHIN_MARGIN = 0.00009F;
@@ -94,7 +95,7 @@ public class HandTest {
 	public void testRingRemoveRing() {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringWear(ring1);
@@ -111,7 +112,7 @@ public class HandTest {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
 		Ring ring2 = new Ring();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringWear(ring1);
@@ -129,7 +130,7 @@ public class HandTest {
 	public void testRingRemoveMagicRing() {
 		Hand hand = new Hand();
 		MagicRing magicRing1 = new MagicRing();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringWear(magicRing1);
@@ -145,7 +146,7 @@ public class HandTest {
 	public void testRingRemoveRingNotPresent() {
 		Hand hand = new Hand();
 		Ring ring1 = new Ring();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringRemove(ring1, newLocation);
@@ -161,7 +162,7 @@ public class HandTest {
 	public void testRingRemoveMagicRingNotPresent() {
 		Hand hand = new Hand();
 		MagicRing magicRing1 = new MagicRing();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringRemove(magicRing1, newLocation);
@@ -179,7 +180,7 @@ public class HandTest {
 		Ring ring1 = new Ring();
 		Ring ring2 = new Ring();
 		MagicRing magicRing1 = new MagicRing();
-		Cookie newLocation = new Cookie("Ground");
+		Location newLocation = new Location("Ground");
 
 		try {
 			hand.ringWear(ring1);
@@ -233,6 +234,12 @@ public class HandTest {
 		assertEquals("weight", hand.getWeight(),3.3f, WITHIN_MARGIN);
 	}
 	
+	   @Test
+	    public void testLiving() {
+	        Hand hand = new Hand();
+            assertTrue("living",ItemProperty.isLiving(hand));
+	    }
+	   
 	@Test
 	public void testClone() {
 		Hand original = new Hand();
@@ -259,10 +266,11 @@ public class HandTest {
 		// x.clone().getClass() == x.getClass().
 		// Already tested above.
 
+        // Clones have differen IDs
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(original));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.

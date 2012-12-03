@@ -12,14 +12,10 @@ import au.net.hal9000.heisenberg.item.*;
 
 public class ScenarioSet02 {
 
-	private void println(String string){
-		// System.out.println(string);
-	}
 	
-	@SuppressWarnings("deprecation")
 	@Test
-	public void forgeAddTwoCookies() {
-		println("\n** Worldforge world with two cookies.");
+	public void persistTwoCookies() {
+		// System.out.println("\n** persist two cookies.");
 		Location old = new Location("world");
 		Cookie cookie = new Cookie();
 		Cookie cookie2 = new Cookie();

@@ -1,0 +1,1 @@
+        <skill id="GLOCK" description="The sweet spot for damage, accuracy, speed and handling" />

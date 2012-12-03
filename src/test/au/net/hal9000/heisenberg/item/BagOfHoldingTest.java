@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.exception.*;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
-import au.net.hal9000.heisenberg.item.property.Magical;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
 public class BagOfHoldingTest {
@@ -87,7 +87,7 @@ public class BagOfHoldingTest {
 	@Test
 	public void testMagical() {
 		BagOfHolding bag = new BagOfHolding(1);
-		assertTrue("Magical", bag instanceof Magical);
+		assertTrue("Magical", ItemProperty.isMagical(bag));
 	}
 
 	@Test
@@ -211,7 +211,7 @@ public class BagOfHoldingTest {
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(original));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.

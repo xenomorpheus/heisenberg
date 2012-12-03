@@ -1,0 +1,16 @@
+Is it a problem that Item equals() function can't tell the difference between different objects with the same properties?
+
+e.g. Arrow objects in a quiver.
+
+Does it actually matter getting the wrong object? 
+Perhaps normally no.
+
+What about UI when getIndexOfChild() returns the first object it finds.
+Example problem, quiver full of arrows returns the wrong ID when an arrow added.
+
+The test I am using is:
+Create object x.
+Add object x into container at position y.
+Ask container why position in container is item x, should respond with y.
+
+Test with a Quiver and adding Arrow objects.

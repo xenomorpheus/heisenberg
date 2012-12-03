@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -90,321 +91,390 @@ import au.net.hal9000.heisenberg.units.Skill;
  * <P>
  * Developer Notes: <br>
  * No need for more than one instance of a recipe.<br>
- * Lets try making Recipes immutable and see how it goes Consider moving Recipe
- * to units package.<br>
+ * Lets try making Recipes immutable and see how it goes.<br>
+ * TODO Consider moving Recipe to units package.<br>
  * </P>
  * 
  * @author bruins
  */
 public class Recipe {
 
-	/**
-	 * The identifier for this recipe.
-	 */
-	private String id = new String();
-	/**
-	 * Describe the recipe in terms a game player understands.
-	 */
-	private String description = new String();
-	/**
-	 * The amount of Mana required for this recipe.
-	 */
-	private int mana = 0;
-	/**
-	 * The amount of ActionPoints required for this recipe.
-	 */
-	private int actionPoints = 0;
-	/**
-	 * The total items required for this recipe.
-	 */
-	private Vector<Ingredient> ingredients;
-	/**
-	 * The {@link Skill} objects required.
-	 */
-	private Set<Skill> skills = new TreeSet<Skill>();
-	/**
-	 * What the recipe produces.
-	 */
-	private Vector<String> products = new Vector<String>();
+    /**
+     * The identifier for this recipe.
+     */
+    private String id;
+    /**
+     * Describe the recipe in terms a game player understands.
+     */
+    private String description;
+    /**
+     * The name given to the subroutine.
+     */
+    private String process;
+    /**
+     * The amount of Mana required for this recipe.
+     */
+    private int mana = 0;
+    /**
+     * The amount of ActionPoints required for this recipe.
+     */
+    private int actionPoints = 0;
+    /**
+     * The total items required for this recipe.
+     */
+    private Vector<Ingredient> ingredients;
+    /**
+     * The {@link PowerWord} objects required.
+     */
+    private Set<PowerWord> powerWords = new TreeSet<PowerWord>();
+    /**
+     * The {@link Skill} objects required.
+     */
+    private Set<Skill> skills = new TreeSet<Skill>();
+    /**
+     * What the recipe produces.
+     */
+    private Vector<String> products = new Vector<String>();
 
-	/**
-	 * 
-	 * @param id
-	 *            Identifier
-	 * @param description
-	 *            Description.
-	 * @param mana
-	 *            amount of mana required
-	 * @param actionPoints
-	 *            number of actionPoints required.
-	 * @param ingredients
-	 *            the Ingredient list.
-	 * @param skills
-	 *            the Skill objects required
-	 * @param products
-	 *            the results that will be produced.
-	 */
-	public Recipe(final String id, final String description, final int mana,
-			final int actionPoints, final Vector<Ingredient> ingredients,
-			final Set<Skill> skills, final Vector<String> products) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.mana = mana;
-		this.actionPoints = actionPoints;
-		this.ingredients = ingredients;
-		this.skills = skills;
-		this.products = products;
-	}
+    /**
+     * 
+     * @param id
+     *            Identifier
+     * @param description
+     *            Description.
+     * @param process
+     *            The label for the code to run. e.g. produce new Item objects.
+     * @param mana
+     *            amount of mana required
+     * @param actionPoints
+     *            number of actionPoints required.
+     * @param ingredients
+     *            the Ingredient list.
+     * @param skills
+     *            the Skill objects required
+     * @param products
+     *            the results that will be produced.
+     */
+    public Recipe(final String id, final String description, String process,
+            final int mana, final int actionPoints,
+            final Vector<Ingredient> ingredients,
+            final Set<PowerWord> powerWords, final Set<Skill> skills,
+            final Vector<String> products) {
+        super();
+        this.id = id;
+        this.description = description;
+        this.process = process;
+        this.mana = mana;
+        this.actionPoints = actionPoints;
+        this.ingredients = ingredients;
+        this.powerWords = powerWords;
+        this.skills = skills;
+        this.products = products;
+    }
 
-	// getters and setters
-	// id
-	/**
-	 * Get the ID
-	 * 
-	 * @return The short identifier for this Recipe.
-	 */
-	public final String getId() {
-		return id;
-	}
+    // getters and setters
+    // id
+    /**
+     * Get the ID
+     * 
+     * @return The short identifier for this Recipe.
+     */
+    public final String getId() {
+        return id;
+    }
 
-	/**
-	 * Set the ID
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param id
-	 *            the ID
-	 */
-	public final void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * Set the ID
+     * 
+     * @deprecated only here for JPA.
+     * @param id
+     *            the ID
+     */
+    public final void setId(String id) {
+        this.id = id;
+    }
 
-	// description
-	/**
-	 * Get the Description
-	 * 
-	 * @return the description
-	 */
-	public final String getDescription() {
-		return description;
-	}
+    // description
+    /**
+     * Get the Description
+     * 
+     * @return the description
+     */
+    public final String getDescription() {
+        return description;
+    }
 
-	/**
-	 * Set the Description
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param description
-	 *            human text description
-	 */
-	public final void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * Set the Description
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param description
+     *            human text description
+     */
+    public final void setDescription(String description) {
+        this.description = description;
+    }
 
-	// mana
-	/**
-	 * Get the mana
-	 * 
-	 * @return the amount of mana required.
-	 */
-	public final int getMana() {
-		return mana;
-	}
+    /**
+     * @return the process
+     */
+    public final String getProcess() {
+        return process;
+    }
 
-	/**
-	 * Set the mana required
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param points
-	 *            the amount of mana.
-	 */
-	public final void setMana(final int points) {
-		mana = points;
-	}
+    /**
+     * @param process
+     *            the process to set
+     */
+    public final void setProcess(String process) {
+        this.process = process;
+    }
 
-	// actionPoints
-	/**
-	 * Get the action points required.
-	 * 
-	 * @return the action points required.
-	 */
-	public final int getActionPoints() {
-		return actionPoints;
-	}
+    // mana
+    /**
+     * Get the mana
+     * 
+     * @return the amount of mana required.
+     */
+    public final int getMana() {
+        return mana;
+    }
 
-	/**
-	 * Set the action points required.
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param points
-	 *            the points required.
-	 */
-	public final void setActionPoints(final int points) {
-		actionPoints = points;
-	}
+    /**
+     * Set the mana required
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param points
+     *            the amount of mana.
+     */
+    public final void setMana(final int points) {
+        mana = points;
+    }
 
-	// ingredients
-	/**
-	 * Get the list of Ingredients.
-	 * 
-	 * @return the list of Ingredients.
-	 */
-	public final Vector<Ingredient> getIngredients() {
-		return ingredients;
-	}
+    // actionPoints
+    /**
+     * Get the action points required.
+     * 
+     * @return the action points required.
+     */
+    public final int getActionPoints() {
+        return actionPoints;
+    }
 
-	/**
-	 * Return the Ingredient at the specified index.
-	 * 
-	 * @param index
-	 *            the index of the Ingredient requested
-	 * @return the Ingredient at this index.
-	 */
-	public final Ingredient getIngredients(final int index) {
-		return ingredients.get(index);
-	}
+    /**
+     * Set the action points required.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param points
+     *            the points required.
+     */
+    public final void setActionPoints(final int points) {
+        actionPoints = points;
+    }
 
-	/**
-	 * Return the number of ingredients.
-	 * 
-	 * @return the number of ingredients.
-	 */
-	public final int getIngredientsCount() {
-		return ingredients.size();
-	}
+    // ingredients
+    /**
+     * Get the list of Ingredients.
+     * 
+     * @return the list of Ingredients.
+     */
+    public final Vector<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
-	/**
-	 * Set the Ingredients
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param ingredients
-	 *            the required Ingredient objects.
-	 */
-	public final void setIngredients(final Vector<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
+    /**
+     * Return the Ingredient at the specified index.
+     * 
+     * @param index
+     *            the index of the Ingredient requested
+     * @return the Ingredient at this index.
+     */
+    public final Ingredient getIngredients(final int index) {
+        return ingredients.get(index);
+    }
 
-	/**
-	 * Add a list of Ingredient objects.
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param ingredients
-	 *            a list of Ingredient objects.
-	 */
-	public final void ingredientsAddAll(final Vector<Ingredient> ingredients) {
-		this.ingredients.addAll(ingredients);
-	}
+    /**
+     * Return the number of ingredients.
+     * 
+     * @return the number of ingredients.
+     */
+    public final int getIngredientsCount() {
+        return ingredients.size();
+    }
 
-	/**
-	 * Add a an Ingredient object.
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param ingredient
-	 *            an Ingredient object.
-	 */
-	public final void ingredientsAdd(final Ingredient ingredient) {
-		ingredients.add(ingredient);
-	}
+    /**
+     * Set the Ingredients
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param ingredients
+     *            the required Ingredient objects.
+     */
+    public final void setIngredients(final Vector<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
-	// products
-	/**
-	 * @return the products that this recipe produces.
-	 */
-	public final Vector<String> getProducts() {
-		return products;
-	}
+    /**
+     * Add a list of Ingredient objects.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param ingredients
+     *            a list of Ingredient objects.
+     */
+    public final void ingredientsAddAll(final Vector<Ingredient> ingredients) {
+        this.ingredients.addAll(ingredients);
+    }
 
-	// skills
-	/**
-	 * Get the Skill objects.
-	 * 
-	 * @return a set of Skill objects
-	 */
-	public final Set<Skill> getSkills() {
-		return skills;
-	}
+    /**
+     * Add a an Ingredient object.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param ingredient
+     *            an Ingredient object.
+     */
+    public final void ingredientsAdd(final Ingredient ingredient) {
+        ingredients.add(ingredient);
+    }
 
-	/**
-	 * Set the Skill objects.
-	 * 
-	 * @deprecated only here for JPA.
-	 */
-	public final void setSkills(final Set<Skill> skills) {
-		this.skills = skills;
-	}
+    // products
+    /**
+     * @return the products that this recipe produces.
+     */
+    public final Vector<String> getProducts() {
+        return products;
+    }
 
-	/**
-	 * Add extra Skills to the list of required ingredients.
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param skills
-	 */
-	public final void skillsAdd(final Set<Skill> skills) {
-		skills.addAll(skills);
-	}
+    // powerWords
+    /**
+     * Get the PowerWord objects.
+     * 
+     * @return a set of PowerWord objects
+     */
+    public final Set<PowerWord> getPowerWords() {
+        return powerWords;
+    }
 
-	/**
-	 * Add extra PowerWords to the list of required ingredients.
-	 * 
-	 * @deprecated only here for JPA.
-	 * @param powerWords
-	 *            a Set of PowerWord objects to add.
-	 */
-	public final void skillsAddAll(final Set<Skill> powerWords) {
-		powerWords.addAll(powerWords);
-	}
+    /**
+     * Set the PowerWord objects.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     */
+    public final void setPowerWords(final Set<PowerWord> powerWords) {
+        this.powerWords = powerWords;
+    }
 
-	// Misc Methods
-	/**
-	 * 
-	 * @return A Cooker object for this recipe.
-	 */
-	public final Cooker getNewCooker() {
-		return new Cooker(this);
-	}
+    /**
+     * Add extra PowerWords to the list of required ingredients.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param powerWords
+     */
+    public final void powerWordsAdd(final Set<PowerWord> powerWords) {
+        powerWords.addAll(powerWords);
+    }
 
-	/**
-	 * @return a description
-	 */
-	public String toString() {
-		return details();
-	}
+    /**
+     * Add extra PowerWords to the list of required ingredients.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param powerWords
+     *            a Set of PowerWord objects to add.
+     */
+    public final void powerWordsAddAll(final Set<PowerWord> powerWords) {
+        powerWords.addAll(powerWords);
+    }
 
-	/**
-	 * @return a description
-	 */
-	public String details() {
-		String string = new String("Id: " + id + "\n" + "Description: "
-				+ description + "\n" + "Mana:" + mana + "\n"
-				+ "Action Point(s):" + actionPoints + "\n");
+    // skills
+    /**
+     * Get the Skill objects.
+     * 
+     * @return a set of Skill objects
+     */
+    public final Set<Skill> getSkills() {
+        return skills;
+    }
 
-		if (skills != null) {
-			int index = 0;
-			string = string.concat("Skill(s):\n");
-			for (Iterator<Skill> itr = skills.iterator(); itr.hasNext();) {
-				string = string.concat("  " + index + ": "
-						+ itr.next().toString() + "\n");
-				index++;
-			}
-		}
-		if (ingredients != null) {
-			int index = 0;
-			string = string.concat("Ingredient(s):\n");
-			for (Iterator<Ingredient> itr = ingredients.iterator(); itr
-					.hasNext();) {
-				string = string.concat("  " + index + ": "
-						+ itr.next().getDescription() + "\n");
-				index++;
-			}
-		}
-		if (products != null) {
-			int index = 0;
-			string = string.concat("Product(s):\n");
-			for (Iterator<String> itr = products.iterator(); itr.hasNext();) {
-				string = string.concat("  " + index + ": " + itr.next() + "\n");
-				index++;
-			}
-		}
-		return string;
-	}
+    /**
+     * Set the Skill objects.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     */
+    public final void setSkills(final Set<Skill> skills) {
+        this.skills = skills;
+    }
+
+    /**
+     * Add extra Skills to the list of required ingredients.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param skills
+     */
+    public final void skillsAdd(final Set<Skill> skills) {
+        skills.addAll(skills);
+    }
+
+    /**
+     * Add extra PowerWords to the list of required ingredients.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param powerWords
+     *            a Set of PowerWord objects to add.
+     */
+    public final void skillsAddAll(final Set<Skill> powerWords) {
+        powerWords.addAll(powerWords);
+    }
+
+    // Misc Methods
+    /**
+     * 
+     * @return A Cooker object for this recipe.
+     */
+    public final Cooker getNewCooker() {
+        return new Cooker(this);
+    }
+
+    /**
+     * @return a description
+     */
+    public String toString() {
+        return details();
+    }
+
+    /**
+     * @return a description
+     */
+    public String details() {
+        String string = new String("Id: " + id + "\nDescription: "
+                + description + "\nProcess: " + process + "\nMana:" + mana
+                + "\nAction Point(s):" + actionPoints + "\n");
+
+        if (skills != null) {
+            int index = 0;
+            string += "Skill(s):\n";
+            for (Iterator<Skill> itr = skills.iterator(); itr.hasNext();) {
+                string += "  " + index + ": "
+                        + itr.next().toString() + "\n";
+                index++;
+            }
+        }
+        if (ingredients != null) {
+            int index = 0;
+            string += "Ingredient(s):\n";
+            for (Iterator<Ingredient> itr = ingredients.iterator(); itr
+                    .hasNext();) {
+                string += "  " + index + ": "
+                        + itr.next().getDescription() + "\n";
+                index++;
+            }
+        }
+        if (products != null) {
+            int index = 0;
+            string += "Product(s):\n";
+            for (Iterator<String> itr = products.iterator(); itr.hasNext();) {
+                string += "  " + index + ": " + itr.next() + "\n";
+                index++;
+            }
+        }
+        return string;
+    }
 
 }

@@ -3,9 +3,8 @@ package test.au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Human;
-import au.net.hal9000.heisenberg.item.Scabbard;
-import au.net.hal9000.heisenberg.item.property.Clothing;
+import au.net.hal9000.heisenberg.item.*;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class ScabbardTest {
 
@@ -35,10 +34,11 @@ public class ScabbardTest {
 		// x.clone().getClass() == x.getClass().
 		// Already tested above.
 
+        // Clones have different IDs
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(original));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
@@ -49,10 +49,9 @@ public class ScabbardTest {
 	@Test
 	public void testIsHumanoidClothing() {
 		Scabbard scabbard = new Scabbard();
-		assertTrue("is humanoid clothing", scabbard instanceof Clothing);
+		assertTrue("is humanoid clothing", ItemProperty.isClothing(scabbard));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testIsWearable() {
 		Human human = new Human();
@@ -62,6 +61,26 @@ public class ScabbardTest {
 		} catch (Exception e) {
 			fail(e.toString());
 		}
+	}
+
+	@Test
+	public void testAddSword() {
+		Scabbard scabbard = new Scabbard();
+		Sword sword = new Sword();
+		try {
+			scabbard.add(sword);
+		} catch (Exception e) {
+			fail(e.toString());
+		}
+	}
+
+	@Test
+	public void testGetIndexOfChild() {
+		Scabbard scabbard = new Scabbard();
+		Sword sword = new Sword();
+		assertEquals("empty", -1, scabbard.getIndexOfChild(sword));
+		scabbard.add(sword);
+		assertEquals("has sword", 0, scabbard.getIndexOfChild(sword));
 	}
 
 }

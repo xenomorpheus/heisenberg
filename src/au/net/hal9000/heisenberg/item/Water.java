@@ -4,7 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-public class Water extends ItemSplitByWeight  {
+import test.au.net.hal9000.heisenberg.util.ItemSplitByWeight;
+
+import au.net.hal9000.heisenberg.item.property.SplitByWeight;
+
+public class Water extends Item implements SplitByWeight  {
 	/**
 	 * Some plain water.
 	 */
@@ -24,7 +28,7 @@ public class Water extends ItemSplitByWeight  {
 
 	/** {@inheritDoc} */
 	@Override
-	public Water clone(Item toClone) {
+	public Water clone(IItem toClone) throws CloneNotSupportedException{
 		return (Water) super.clone(toClone);
 	}
 
@@ -39,5 +43,11 @@ public class Water extends ItemSplitByWeight  {
 		in.close();
 		return newObj;
 	}
+
+    /** {@inheritDoc} */
+    @Override
+    public Water splitByWeight(float newItemWeight) {
+        return (Water)ItemSplitByWeight.splitByWeight(this, newItemWeight);
+    }
 
 }

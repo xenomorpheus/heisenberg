@@ -4,9 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import au.net.hal9000.heisenberg.item.property.HumanoidFood;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
-public class Cookie extends Item implements HumanoidFood{
+
+public class Cookie extends Item {
 	/**
 	 * 
 	 */
@@ -18,15 +19,16 @@ public class Cookie extends Item implements HumanoidFood{
 
 	public Cookie(String pName) {
 		super(pName);
+		ItemProperty.setHumanoidFood(this, true);
 	}
 
 	public Cookie(String pName, String pDescription) {
 		super(pName, pDescription);
 	}
 
-	/** {@inheritDoc} */
+	/** {@inheritDoc}  */
 	@Override
-	public Cookie clone(Item toClone) {
+	public Cookie clone(IItem toClone) throws CloneNotSupportedException {
 		return (Cookie) super.clone(toClone);
 	}
 

@@ -13,7 +13,6 @@ public class BoxTest {
 
 	// Normal item into box.
 	// item's location changes to box
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddOrdinary() {
 		Location world = new Location("World");
@@ -59,10 +58,11 @@ public class BoxTest {
 		// x.clone().getClass() == x.getClass().
 		// Already tested above.
 
+        // Clones have different IDs
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(original));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.

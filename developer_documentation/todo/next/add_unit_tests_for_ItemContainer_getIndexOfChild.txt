@@ -1,0 +1,18 @@
+Be sure to have a test with some identical items.
+
+  Arrow a1 = new Arrow();
+  Arrow a2 = new Arrow();
+  Arrow a3 = new Arrow();
+  Cookie c1 = new Cookie();
+  Cookie c2 = new Cookie();
+  Bag bag = new Bag();
+  bag.add(a1);
+  bag.add(a2);
+  bag.add(a3);
+  bag.add(c1);
+  assertEquals(bag.getIndexOfChild(a1), 0, "a1");
+  assertEquals(bag.getIndexOfChild(a2), 1, "a2");
+  assertEquals(bag.getIndexOfChild(a3), 2, "a3");
+  assertEquals(bag.getIndexOfChild(c1), 3, "a3");
+  assertEquals(bag.getIndexOfChild(c2), -1, "c2");
+    

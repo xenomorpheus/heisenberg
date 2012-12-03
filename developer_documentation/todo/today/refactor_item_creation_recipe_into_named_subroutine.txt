@@ -1,0 +1,25 @@
+Changes to the Recipe / Cooker mechanism.
+Effectively this will merge Item creation and subroutine into one simplified solution.
+
+Overview:
+Create RecipeRoutine package to hold subroutines.
+Convert Item creation into a named subroutine in the config.
+
+Idea:
+New types of ingredients - place-holders.
+Move existing ingredients from vector to a Set with named entries.
+Some mechanism to auto generate names and descriptions based on properties.
+Recipe for item creation becomes folded into normal spell, calling the item creation spell (subroutine).
+
+Also ingredients to have names.
+
+name :newItemLocation
+description : String : The location of the new item.
+type : IItemContainer
+consumed: false
+
+name : target
+description : String : The target of the spell.
+type : IItem
+consumed: false 
+

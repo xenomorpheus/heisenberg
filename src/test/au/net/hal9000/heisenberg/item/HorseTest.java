@@ -2,9 +2,9 @@ package test.au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
-import au.net.hal9000.heisenberg.item.Horse;
+import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.item.property.HumanoidMount;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class HorseTest {
 
@@ -37,7 +37,7 @@ public class HorseTest {
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(original));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
@@ -47,9 +47,14 @@ public class HorseTest {
 	}
 	
 	@Test
-	public void testIsHumanoidMount(){
+	public void testInstanceof() {
 		Horse horse = new Horse();
-		assertTrue("is humanoid mount", horse instanceof HumanoidMount);
+		Item item = (Item) horse;
+		assertTrue("is humanoid mount", item instanceof HumanoidMount);
+		assertTrue("is Entity", item instanceof Entity);
+		assertTrue("is Living", ItemProperty.isLiving(item));
+		assertFalse("is Cookie", item instanceof Cookie);
+		assertFalse("is Humanoid", item instanceof Humanoid);
 	}
-
+	
 }

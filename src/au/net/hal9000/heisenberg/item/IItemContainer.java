@@ -1,19 +1,25 @@
 package au.net.hal9000.heisenberg.item;
 
 import java.util.EmptyStackException;
-import java.util.Stack;
 import java.util.Vector;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
+public interface IItemContainer extends IItem {
 
-/**
- *
- * TODO consider replave Item with IItem.
- */
+    
+    /**
+     * Get the contents
+     * @return the contents
+     */
+    Vector<IItem> getContents();
+    /**
+     * Set the contents
+     * @param contents
+     */
+    public void setContents(Vector<IItem> contents);
 
-public interface IItemContainer {
-
+    
 	/**
 	 * @return The max weight that can be carried.
 	 */
@@ -47,7 +53,7 @@ public interface IItemContainer {
 	 * 
 	 * @return get all the first level contents
 	 */
-	public Stack<IItem> getChildren();
+	public Vector<IItem> getChildren();
 
 	/**
 	 * 
@@ -68,22 +74,27 @@ public interface IItemContainer {
 	public Currency getValue();
 
 	/**
-	 * Add the Item to the contents.
+	 * Add the IItem to the contents.
 	 * @deprecated use transfer. add() is only for testing.
+	 * @param index
 	 * @param item
 	 */
-	public void add(Item item);
+	public void add(int index, IItem item);
+
+	/**
+	 * Add the IItem to the contents.
+	 * @param item
+	 */
+	public void add(IItem item);
 
 	/**
 	 * Add multiple items to the contents.
-	 * @deprecated use transfer. add() is only for testing.
 	 * @param items
 	 */
-	public void add(Vector<Item> items);
+	public void add(Vector<IItem> items);
 
 	/**
 	 * Take the top item out of the contents.
-	 * @deprecated use transfer. add() is only for testing.
 	 * @return the top item in the contents
 	 * @throws EmptyStackException
 	 */
@@ -117,12 +128,25 @@ public interface IItemContainer {
 	// Find contents that match the criteria
 	public void accept(ItemVisitor visitor);
 
+	/**
+	 * Destroy this object.
+	 */
 	public void beNot();
 
-	// TODO should other be Item ?
-	public boolean equals(ItemContainer other);
-
-	public ItemContainer clone(Item toClone);
+    /**
+     * Clone this object.
+     * @return the clone
+     * @throws CloneNotSupportedException
+     */
+    // TODO public ItemContainer clone() throws CloneNotSupportedException;
+	/**
+	 * Clone this object.
+	 * @param toClone object to clone
+	 * @return the clone
+     * @throws CloneNotSupportedException
+	 */
+    // TODO Remove?
+	public ItemContainer clone(IItem toClone) throws CloneNotSupportedException;
 
 	/**
 	 * Used for tree display.
@@ -148,10 +172,11 @@ public interface IItemContainer {
 	 * @param index get child with with this index in list of items.
 	 * @return the item requested.
 	 */
-	public Item getChild(final int index);
+	public IItem getChild(final int index);
 
 	/**
-	 * Used for tree display.
+	 * Used for tree display etc. <br>
+	 * 0-based index, -1 for missing.
 	 * 
 	 * @param child
 	 * @return the index of the child item.
@@ -159,17 +184,23 @@ public interface IItemContainer {
 	public int getIndexOfChild(final IItem child);
 
 	/**
-	 * Transfer an IItem from one container to another
-	 * @param item the IItem object to move.
-	 * @param container the destination container.
-	 */
-	void transfer(Item item, ItemContainer container);
-
-	/**
-	 * Does the Item exist in the ItemContainer ?
-	 * @param item Item looking for
+	 * Does the IItem exist in the ItemContainer ?
+	 * @param item IItem looking for
 	 * @return true iff found
 	 */
-	boolean contains(Item item);
+	boolean contains(IItem item);
+	
+	/**
+	 * Remove the IItem from the container.
+	 * @param item the time to remove.
+	 */
+    void remove(IItem item);
+    
+    /**
+     * Relocate the IItem to the new 
+     * @param item item to relocate.
+     * @param container new container.
+     */
+    void relocateItem(IItem item, IItemContainer container);
 
 }

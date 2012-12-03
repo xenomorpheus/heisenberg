@@ -91,22 +91,22 @@ public class PcClassTest {
 		assertEquals(pc.getEncumbrance(), 100);
 	}
 
-	// TODO
+	// TODO testAbilityScores
 	@Test
 	public final void testAbilityScores() {
 	}
 
-	// TODO
+	// TODO testAbilityScore
 	@Test
 	public final void testAbilityScore() {
 	}
 
-	// TODO
+	// TODO PcClass testToString
 	@Test
 	public final void testToString() {
 	}
 
-	// TODO
+	// TODO PcClass testDescription
 	@Test
 	public final void testDescription() {
 	}

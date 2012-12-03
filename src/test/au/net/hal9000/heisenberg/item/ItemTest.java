@@ -17,7 +17,7 @@ public class ItemTest {
 	public void testItem() {
 		Cookie i = new Cookie();
 		assertEquals("IItem() name", "Cookie", i.getName());
-		assertEquals("IItem() description", "", i.getDescription());
+		assertEquals("IItem() description", null, i.getDescription());
 		// assertTrue("IItem() weightBase", i.getWeightBase().equals(0F));
 		// assertTrue("IItem() weightMax", i.getWeightMax().equals(0F));
 		// assertTrue("IItem() volumeBase", i.getVolumeBase().equals(0F));
@@ -111,8 +111,8 @@ public class ItemTest {
 	public void testEquals() {
 		Cookie first = new Cookie();
 		Cookie second = new Cookie();
-		assertTrue("equals true for self", first.equals(second));
-		assertTrue("equals true for other", second.equals(first));
+		assertTrue("equals true for self", first.equals(first));
+		assertFalse("equals false for other", first.equals(second));
 	}
 
 	@Test
@@ -167,10 +167,11 @@ public class ItemTest {
 		// x.clone().getClass() == x.getClass().
 		// Already tested above.
 
+        // Clones have different IDs
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertEquals("x.clone().equals(x)", clone, original);
+		// assertEquals("x.clone().equals(x)", clone, original);
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
@@ -183,8 +184,7 @@ public class ItemTest {
 		assertFalse("x.clone().equals(x) weightBase", clone.equals(original));
 		weightBase -= 1f;
 		original.setWeightBase(weightBase);
-		assertTrue("x.clone().equals(x) weightBase restored",
-				clone.equals(original));
+		// TODO test just the property.  assertTrue("x.clone().equals(x) weightBase restored",clone.equals(original));
 
 		// volumeBase
 		float volumeBase = original.getVolumeBase();
@@ -193,8 +193,7 @@ public class ItemTest {
 		assertFalse("x.clone().equals(x) volumeBase", clone.equals(original));
 		volumeBase -= 1f;
 		original.setVolumeBase(volumeBase);
-		assertTrue("x.clone().equals(x) volumeBase restored",
-				clone.equals(original));
+		// TODO test just the property.assertTrue("x.clone().equals(x) volumeBase restored",clone.equals(original));
 
 		// valueBase
 		Currency valueBase = original.getValueBase();
@@ -204,7 +203,7 @@ public class ItemTest {
 			valueBase.setGp(gp);
 			assertFalse("x.clone().equals(x) valueBase", clone.equals(original));
 			valueBase.setGp(gp - 1);
-			assertTrue("x.clone().equals(x) valueBase restored", clone.equals(original));
+			// TODO test just the property. assertTrue("x.clone().equals(x) valueBase restored", clone.equals(original));
 		}
 
 		// location is *NOT* cloned.
@@ -214,18 +213,22 @@ public class ItemTest {
 	// TODO re-factor and combine with above.
 	@Test
 	public void testCloneItem() {
-		Cookie origianl = new Cookie();
+		Cookie original = new Cookie();
 		Cookie clone = null;
-		clone = (Cookie) origianl.clone(new Cookie());
+        try {
+            clone = (Cookie) original.clone();
+        } catch (CloneNotSupportedException e) {
+            fail (e.toString());
+        }
 
 		// x.clone() != x
 		// will be true, and that the expression:
-		assertTrue("x.clone() != x", clone != origianl);
+		assertTrue("x.clone() != x", clone != original);
 
 		// x.clone().getClass() == x.getClass()
 		// will be true, but these are not absolute requirements.
 		assertTrue("x.clone().getClass() == x.getClass()",
-				clone.getClass() == origianl.getClass());
+				clone.getClass() == original.getClass());
 
 		// By convention, the returned object should be obtained by calling
 		// super.clone. If a class and all of its superclasses (except
@@ -234,46 +237,55 @@ public class ItemTest {
 		// x.clone().getClass() == x.getClass().
 		// Already tested above.
 
+		// Different Ids
 		// While it is typically the case that:
 		// x.clone().equals(x)
 		// will be true, this is not an absolute requirement.
-		assertTrue("x.clone().equals(x)", clone.equals(origianl));
+		// assertTrue("x.clone().equals(x)", clone.equals(original));
 
 		// Class specific tests
 		// Make sure the cloning is deep, not shallow.
 		// e.g. test the non-mutable, non-primitives
 
 		// weightBase
-		float weightBase = origianl.getWeightBase();
+		float weightBase = original.getWeightBase();
 		weightBase += 1f;
-		origianl.setWeightBase(weightBase);
-		assertFalse("x.clone().equals(x)", clone.equals(origianl));
+		original.setWeightBase(weightBase);
+		assertFalse("x.clone().equals(x)", clone.equals(original));
 		weightBase -= 1f;
-		origianl.setWeightBase(weightBase);
-		assertTrue("x.clone().equals(x) restored", clone.equals(origianl));
+		original.setWeightBase(weightBase);
+		// TODO check the property. assertTrue("x.clone().equals(x) restored", clone.equals(original));
 
 		// volumeBase
-		float volumeBase = origianl.getVolumeBase();
+		float volumeBase = original.getVolumeBase();
 		volumeBase += 1f;
-		origianl.setVolumeBase(volumeBase);
-		assertFalse("x.clone().equals(x)", clone.equals(origianl));
+		original.setVolumeBase(volumeBase);
+		assertFalse("x.clone().equals(x)", clone.equals(original));
 		volumeBase -= 1f;
-		origianl.setVolumeBase(volumeBase);
-		assertTrue("x.clone().equals(x) restored", clone.equals(origianl));
+		original.setVolumeBase(volumeBase);
+		// TODO check the property.  assertTrue("x.clone().equals(x) restored", clone.equals(original));
 
 		// valueBase
-		Currency valueBase = origianl.getValueBase();
+		Currency valueBase = original.getValueBase();
 		if (valueBase != null) {
 			int gp = valueBase.getGp();
 			gp++;
 			valueBase.setGp(gp);
-			assertFalse("x.clone().equals(x)", clone.equals(origianl));
+			// TODO check the property. assertFalse("x.clone().equals(x)", clone.equals(original));
 			valueBase.setGp(gp - 1);
-			assertTrue("x.clone().equals(x) restored", clone.equals(origianl));
+			// TODO check the property. assertTrue("x.clone().equals(x) restored", clone.equals(original));
 		}
 
 		// location is *NOT* cloned.
 
+	}
+	
+	@Test
+	public void testProperties(){
+		Cookie cookie = new Cookie();
+		cookie.setProperty("myKey", "myVal");
+		assertEquals("get property", "myVal", cookie.getProperty("myKey"));
+		cookie.removeProperty("myKey");
 	}
 
 }

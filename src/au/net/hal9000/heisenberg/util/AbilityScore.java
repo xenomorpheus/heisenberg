@@ -112,9 +112,9 @@ public class AbilityScore implements Comparable<AbilityScore> {
 		String string = name + ": " + value;
 		if (mod != 0) {
 			if (mod > 0) {
-				string = string.concat("/+" + mod);
+				string += "/+" + mod;
 			} else {
-				string = string.concat("/" + mod);
+				string += "/" + mod;
 			}
 		}
 		return string;
