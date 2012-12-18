@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * Recipes describe the process of crafting, spells, cooking etc.
  * 
  * <P>
- * Recipes are comprised of a list of Ingredients ({@link Ingredient}).
+ * Recipes are comprised of a list of Requirement objects ({@link Requirement}).
  * <P>
  * <P>
  * Recipes produce outcomes, eg. ({@link au.net.hal9000.heisenberg.item.Item}).
@@ -122,7 +122,7 @@ public class Recipe {
     /**
      * The total items required for this recipe.
      */
-    private Vector<Ingredient> ingredients;
+    private Vector<Requirement> requirements;
     /**
      * The {@link PowerWord} objects required.
      */
@@ -148,8 +148,8 @@ public class Recipe {
      *            amount of mana required
      * @param actionPoints
      *            number of actionPoints required.
-     * @param ingredients
-     *            the Ingredient list.
+     * @param requirements
+     *            the Requirement list.
      * @param skills
      *            the Skill objects required
      * @param products
@@ -157,7 +157,7 @@ public class Recipe {
      */
     public Recipe(final String id, final String description, String process,
             final int mana, final int actionPoints,
-            final Vector<Ingredient> ingredients,
+            final Vector<Requirement> requirements,
             final Set<PowerWord> powerWords, final Set<Skill> skills,
             final Vector<String> products) {
         super();
@@ -166,7 +166,7 @@ public class Recipe {
         this.process = process;
         this.mana = mana;
         this.actionPoints = actionPoints;
-        this.ingredients = ingredients;
+        this.requirements = requirements;
         this.powerWords = powerWords;
         this.skills = skills;
         this.products = products;
@@ -272,67 +272,67 @@ public class Recipe {
         actionPoints = points;
     }
 
-    // ingredients
+    // requirements
     /**
-     * Get the list of Ingredients.
+     * Get the list of Requirement objects.
      * 
-     * @return the list of Ingredients.
+     * @return the list of Requirement objects.
      */
-    public final Vector<Ingredient> getIngredients() {
-        return ingredients;
+    public final Vector<Requirement> getRequirements() {
+        return requirements;
     }
 
     /**
-     * Return the Ingredient at the specified index.
+     * Return the Requirement at the specified index.
      * 
      * @param index
-     *            the index of the Ingredient requested
-     * @return the Ingredient at this index.
+     *            the index of the Requirement requested
+     * @return the Requirement at this index.
      */
-    public final Ingredient getIngredients(final int index) {
-        return ingredients.get(index);
+    public final Requirement getRequirement(final int index) {
+        return requirements.get(index);
     }
 
     /**
-     * Return the number of ingredients.
+     * Return the number of requirements.
      * 
-     * @return the number of ingredients.
+     * @return the number of requirements.
      */
-    public final int getIngredientsCount() {
-        return ingredients.size();
+    public final int getRequirementsCount() {
+        return requirements.size();
     }
 
     /**
-     * Set the Ingredients
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param ingredients
-     *            the required Ingredient objects.
-     */
-    public final void setIngredients(final Vector<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    /**
-     * Add a list of Ingredient objects.
+     * Set the Requirement objects
      * 
      * @deprecated only here for JPA and Configuration.
-     * @param ingredients
-     *            a list of Ingredient objects.
+     * @param requirements
+     *            the required Requirement objects.
      */
-    public final void ingredientsAddAll(final Vector<Ingredient> ingredients) {
-        this.ingredients.addAll(ingredients);
+    public final void setRequirements(final Vector<Requirement> requirements) {
+        this.requirements = requirements;
     }
 
     /**
-     * Add a an Ingredient object.
+     * Add a list of Requirement objects.
      * 
      * @deprecated only here for JPA and Configuration.
-     * @param ingredient
-     *            an Ingredient object.
+     * @param requirements
+     *            a list of Requirement objects.
      */
-    public final void ingredientsAdd(final Ingredient ingredient) {
-        ingredients.add(ingredient);
+    public final void requirementsAddAll(final Vector<Requirement> requirements) {
+        this.requirements.addAll(requirements);
+    }
+
+    /**
+     * Add a an Requirement object.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param requirement
+     *            an Requirement object.
+     */
+    public final void requirementsAdd(final Requirement requirement) {
+        requirements.add(requirement);
     }
 
     // products
@@ -363,7 +363,7 @@ public class Recipe {
     }
 
     /**
-     * Add extra PowerWords to the list of required ingredients.
+     * Add extra PowerWords to the list of required requirements.
      * 
      * @deprecated only here for JPA and Configuration.
      * @param powerWords
@@ -373,7 +373,7 @@ public class Recipe {
     }
 
     /**
-     * Add extra PowerWords to the list of required ingredients.
+     * Add extra PowerWords to the list of required requirements.
      * 
      * @deprecated only here for JPA and Configuration.
      * @param powerWords
@@ -403,7 +403,7 @@ public class Recipe {
     }
 
     /**
-     * Add extra Skills to the list of required ingredients.
+     * Add extra Skills to the list of required requirements.
      * 
      * @deprecated only here for JPA and Configuration.
      * @param skills
@@ -413,7 +413,7 @@ public class Recipe {
     }
 
     /**
-     * Add extra PowerWords to the list of required ingredients.
+     * Add extra PowerWords to the list of required requirements.
      * 
      * @deprecated only here for JPA and Configuration.
      * @param powerWords
@@ -456,10 +456,10 @@ public class Recipe {
                 index++;
             }
         }
-        if (ingredients != null) {
+        if (requirements != null) {
             int index = 0;
-            string += "Ingredient(s):\n";
-            for (Iterator<Ingredient> itr = ingredients.iterator(); itr
+            string += "Requirement(s):\n";
+            for (Iterator<Requirement> itr = requirements.iterator(); itr
                     .hasNext();) {
                 string += "  " + index + ": "
                         + itr.next().getDescription() + "\n";

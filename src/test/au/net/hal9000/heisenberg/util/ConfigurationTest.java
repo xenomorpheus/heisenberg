@@ -98,7 +98,7 @@ public class ConfigurationTest {
         assertEquals("description", "item test 1", recipe1.getDescription());
         assertEquals("process", "createItem1", recipe1.getProcess());
         assertEquals("actionPoints", 10, recipe1.getActionPoints());
-        assertEquals("ingredient count", 0, recipe1.getIngredients().size());
+        assertEquals("ingredient count", 0, recipe1.getRequirements().size());
         assertEquals("powerWord count", 1, recipe1.getPowerWords().size());
         assertEquals("skill count", 1, recipe1.getSkills().size());
         assertEquals("product count", 1, recipe1.getProducts().size());
@@ -110,7 +110,7 @@ public class ConfigurationTest {
         assertEquals("process", "spellTest1", recipe2.getProcess());
         assertEquals("mana", 2, recipe2.getMana());
         assertEquals("actionPoints", 10, recipe2.getActionPoints());
-        assertEquals("ingredient count", 0, recipe2.getIngredients().size());
+        assertEquals("ingredient count", 0, recipe2.getRequirements().size());
         assertEquals("powerWord count", 1, recipe2.getPowerWords().size());
         assertTrue(
                 "powerWord 0",

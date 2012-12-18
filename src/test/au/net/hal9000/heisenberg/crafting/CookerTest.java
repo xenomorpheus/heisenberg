@@ -112,11 +112,11 @@ public class CookerTest {
         Cookie cookie = new Cookie();
         world.add(cookie);
 
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
-        // IngredientItem
-        IngredientItem ingredientItem = new IngredientItem(cookie);
-        ingredients.add(ingredientItem);
+        // RequirementItem
+        RequirementItem requirementItem = new RequirementItem(cookie);
+        requirements.add(requirementItem);
 
         // Product(s)
         Vector<String> products = new Vector<String>();
@@ -136,7 +136,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("magicCookie1", "a magic cookie",
-                null, REQUIRED_MANA, REQUIRED_ACTION_POINTS, ingredients,
+                null, REQUIRED_MANA, REQUIRED_ACTION_POINTS, requirements,
                 powerWords, skills, products);
 
         // Set the chef
@@ -175,37 +175,37 @@ public class CookerTest {
     }
 
     /**
-     * Testing IngredientItem objects.<br>
+     * Testing RequirementItem objects.<br>
      * No actual cooking done (yet)
      */
     @SuppressWarnings("deprecation")
     @Test
     public void testRecipeIngredients() {
 
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
-        // IngredientItem
+        // RequirementItem
         // 0 - FlintAndTinder (not consumed)
         // 1 - Wood, min weight 3.
-        IngredientItem ingredientFlintAndTinder = new IngredientItem(
+        RequirementItem ingredientFlintAndTinder = new RequirementItem(
                 new FlintAndTinder());
         ingredientFlintAndTinder.setConsumed(false);
-        ingredients.add(ingredientFlintAndTinder);
+        requirements.add(ingredientFlintAndTinder);
 
-        IngredientItem ingredientWood = new IngredientItem(new Wood());
+        RequirementItem ingredientWood = new RequirementItem(new Wood());
         ingredientWood.setWeightMin(3);
-        ingredients.add(ingredientWood);
+        requirements.add(ingredientWood);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0,
-                0, ingredients, null, null, null);
+                0, requirements, null, null, null);
         Cooker cooker = recipe.getNewCooker();
 
-        assertEquals("ingredient count", ingredients.size(),
-                cooker.getIngredientsCount());
+        assertEquals("ingredient count", requirements.size(),
+                cooker.getRequirementsCount());
         assertEquals("ingredient 0", ingredientFlintAndTinder,
-                cooker.getIngredients(0));
-        assertEquals("ingredient 1", ingredientWood, cooker.getIngredients(1));
+                cooker.getRequirement(0));
+        assertEquals("ingredient 1", ingredientWood, cooker.getRequirement(1));
     }
 
     @SuppressWarnings("deprecation")
@@ -215,34 +215,34 @@ public class CookerTest {
         Location world = new Location("world");
         world.setVolumeMax(-1);
         world.setWeightMax(-1);
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
-        // IngredientItem
+        // RequirementItem
         // 0 - FlintAndTinder, not consumed
         FlintAndTinder flintAndTinder = new FlintAndTinder();
         world.add(flintAndTinder);
-        IngredientItem ingredientFlintAndTinder = new IngredientItem(
+        RequirementItem ingredientFlintAndTinder = new RequirementItem(
                 flintAndTinder);
         ingredientFlintAndTinder.setConsumed(false);
-        ingredients.add(ingredientFlintAndTinder);
+        requirements.add(ingredientFlintAndTinder);
 
         // 1 - Wood, min weight 3
         Wood wood = new Wood();
         wood.setWeightBase(3);
         world.add(wood);
-        IngredientItem ingredientWood = new IngredientItem(wood);
+        RequirementItem ingredientWood = new RequirementItem(wood);
         ingredientWood.setWeightMin(3);
-        ingredients.add(ingredientWood);
+        requirements.add(ingredientWood);
 
         // 2 - Wood
         Wood wood2 = new Wood();
         world.add(wood2);
-        IngredientItem ingredientWood2 = new IngredientItem(wood2);
-        ingredients.add(ingredientWood2);
+        RequirementItem ingredientWood2 = new RequirementItem(wood2);
+        requirements.add(ingredientWood2);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0,
-                0, ingredients, null, null, null);
+                0, requirements, null, null, null);
         Cooker cooker = recipe.getNewCooker();
 
         // Item 0 - FlintAndTinder
@@ -857,14 +857,14 @@ public class CookerTest {
         Cookie cookie = new Cookie();
         world.add(cookie);
 
-        // IngredientItem
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
-        IngredientItem ingredientItem = new IngredientItem(cookie);
-        ingredients.add(ingredientItem);
+        // RequirementItem
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        RequirementItem requirementItem = new RequirementItem(cookie);
+        requirements.add(requirementItem);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-1",
-                "simplest test of one required item", null, 0, 0, ingredients,
+                "simplest test of one required item", null, 0, 0, requirements,
                 null, null, null);
 
         // Set the chef
@@ -914,16 +914,16 @@ public class CookerTest {
         Cookie cookie = new Cookie();
         world.add(cookie);
 
-        // IngredientItem
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
-        IngredientItem ingredientItem = new IngredientItem(new Cookie());
-        ingredientItem.setConsumed(false);
-        ingredients.add(ingredientItem);
+        // RequirementItem
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        RequirementItem requirementItem = new RequirementItem(new Cookie());
+        requirementItem.setConsumed(false);
+        requirements.add(requirementItem);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-11-catalyst",
                 "simplest test of one required item NOT consumed", null, 0,
-                0, ingredients, null, null, null);
+                0, requirements, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();

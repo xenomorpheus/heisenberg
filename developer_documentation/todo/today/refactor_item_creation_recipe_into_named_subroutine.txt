@@ -2,7 +2,7 @@ Changes to the Recipe / Cooker mechanism.
 Effectively this will merge Item creation and subroutine into one simplified solution.
 
 Overview:
-Create RecipeRoutine package to hold subroutines.
+Create RecipeProcess package to hold subroutines.
 Convert Item creation into a named subroutine in the config.
 
 Idea:

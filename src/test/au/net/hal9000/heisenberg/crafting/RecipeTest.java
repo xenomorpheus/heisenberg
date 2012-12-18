@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.crafting.Ingredient;
-import au.net.hal9000.heisenberg.crafting.IngredientItem;
+import au.net.hal9000.heisenberg.crafting.Requirement;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -23,25 +23,25 @@ public class RecipeTest {
 	@Test
 	public void testRecipeIngredients() {
 
-		Vector<Ingredient> ingredients = new Vector<Ingredient>();
+		Vector<Requirement> requirements = new Vector<Requirement>();
 
-		// IngredientItem
-		IngredientItem flintAndTinder = new IngredientItem(new FlintAndTinder());
+		// RequirementItem
+		RequirementItem flintAndTinder = new RequirementItem(new FlintAndTinder());
 		flintAndTinder.setConsumed(false);
-		ingredients.add(flintAndTinder);
+		requirements.add(flintAndTinder);
 
-		IngredientItem wood = new IngredientItem(new Wood());
+		RequirementItem wood = new RequirementItem(new Wood());
 		wood.setWeightMin(3);
-		ingredients.add(wood);
+		requirements.add(wood);
 
 		// Build a recipe with the list of required ingredients
 		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0,
-				0, ingredients, null, null, null);
+				0, requirements, null, null, null);
 
-		assertEquals("ingredient count", ingredients.size(),
-				recipe.getIngredientsCount());
-        assertEquals("ingredient 0",flintAndTinder,recipe.getIngredients(0));
-        assertEquals("ingredient 1",wood,recipe.getIngredients(1));
+		assertEquals("ingredient count", requirements.size(),
+				recipe.getRequirementsCount());
+        assertEquals("ingredient 0",flintAndTinder,recipe.getRequirement(0));
+        assertEquals("ingredient 1",wood,recipe.getRequirement(1));
 	}
 
 	private void println(String string) {
@@ -51,16 +51,16 @@ public class RecipeTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testRecipe() {
-		Vector<Ingredient> ingredients = new Vector<Ingredient>();
+		Vector<Requirement> requirements = new Vector<Requirement>();
 
-		// IngredientItem
-		IngredientItem flintAndTinder = new IngredientItem(new FlintAndTinder());
+		// RequirementItem
+		RequirementItem flintAndTinder = new RequirementItem(new FlintAndTinder());
 		flintAndTinder.setConsumed(false);
-		ingredients.add(flintAndTinder);
+		requirements.add(flintAndTinder);
 
-		IngredientItem wood = new IngredientItem(new Wood());
+		RequirementItem wood = new RequirementItem(new Wood());
 		wood.setWeightMin(3);
-		ingredients.add(wood);
+		requirements.add(wood);
 
 		// Product(s)
 		Vector<String> products = new Vector<String>();
@@ -74,18 +74,18 @@ public class RecipeTest {
 
 		// Build a recipe with the list of required ingredients
 		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2,
-				42, ingredients, null, skills, products);
+				42, requirements, null, skills, products);
 
 		assertEquals("id", "recipe1", recipe.getId());
 		assertEquals("description", "the first recipe", recipe.getDescription());
 		assertEquals("mana", 2, recipe.getMana());
 		assertEquals("actionPoints", 42, recipe.getActionPoints());
-		assertEquals("ingredient count", ingredients.size(), recipe
-				.getIngredients().size());
+		assertEquals("ingredient count", requirements.size(), recipe
+				.getRequirements().size());
 		assertEquals("skill count", REQUIRED_SKILLS.length, recipe.getSkills()
 				.size());
-		assertEquals("ingredient count", ingredients.size(),
-				recipe.getIngredientsCount());
+		assertEquals("ingredient count", requirements.size(),
+				recipe.getRequirementsCount());
 
 		println(recipe.toString());
 	}

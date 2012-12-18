@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.item.Item;
  * for JPA.
  * 
  * A Recipe may required any number of Item objects. There will be exactly one
- * IngredientItem object for each required Item. In addition for the noting the
+ * RequirementItem object for each required Item. In addition for the noting the
  * type of Item, this object will also note if it is consumed, minimum weight
  * etc.
  * <ul>
@@ -22,7 +22,7 @@ import au.net.hal9000.heisenberg.item.Item;
  * @author bruins
  * 
  */
-public class IngredientItem extends Ingredient {
+public class RequirementItem extends Requirement {
 	/**
 	 * The ingredient item.
 	 */
@@ -46,7 +46,7 @@ public class IngredientItem extends Ingredient {
 	 * 
 	 * @param item
 	 */
-	public IngredientItem(final Item item) {
+	public RequirementItem(final Item item) {
 		super();
 		this.item = item;
 	}

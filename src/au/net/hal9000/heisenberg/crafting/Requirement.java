@@ -2,8 +2,8 @@ package au.net.hal9000.heisenberg.crafting;
 
 /**
  * 
- * An Ingredient object hold details about a requirement for a Recipe objects.
- * A Recipe may have any number of Ingredient objects.
+ * An Requirement object hold details about a requirement for a Recipe objects.
+ * A Recipe may have any number of Requirement objects.
  * 
  * e.g.<ul>
  * <li> Item - Wood with a minimum of 3 weight units.
@@ -13,7 +13,7 @@ package au.net.hal9000.heisenberg.crafting;
  * @author bruins
  *
  */
-public abstract class Ingredient {
+public abstract class Requirement {
 
 	/**
 	 * @return Return a description of the object.

@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.crafting.IngredientItem;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Cookie;
 
-public class IngredientItemTest {
+public class RequirementItemTest {
 
 	
 	@Test
@@ -25,17 +25,17 @@ public class IngredientItemTest {
 	public void testMeetsRequirements() {
 		
 		// The requirement
-		IngredientItem ingredientItem = new IngredientItem(new Cookie());
-        assertTrue("meetsRequirements",ingredientItem.meetsRequirements(new Cookie()));
-        assertFalse("meetsRequirements",ingredientItem.meetsRequirements(new Arrow()));
+		RequirementItem requirementItem = new RequirementItem(new Cookie());
+        assertTrue("meetsRequirements",requirementItem.meetsRequirements(new Cookie()));
+        assertFalse("meetsRequirements",requirementItem.meetsRequirements(new Arrow()));
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testMeetsRequirementsMinWeight() {
 		// The requirement
-		IngredientItem ingredientItem = new IngredientItem(new Cookie());
-		ingredientItem.setWeightMin(3);
+		RequirementItem requirementItem = new RequirementItem(new Cookie());
+		requirementItem.setWeightMin(3);
 
 
 		// Correct type and weight
@@ -51,9 +51,9 @@ public class IngredientItemTest {
 		arrow.setWeightBase(3);
 		
         // Tests
-		assertTrue("correct type, just meets weight",ingredientItem.meetsRequirements(cookie));
-        assertFalse("incorrect type, meets weight",ingredientItem.meetsRequirements(arrow));
-		assertFalse("correct type, too lite",ingredientItem.meetsRequirements(cookieLite));
+		assertTrue("correct type, just meets weight",requirementItem.meetsRequirements(cookie));
+        assertFalse("incorrect type, meets weight",requirementItem.meetsRequirements(arrow));
+		assertFalse("correct type, too lite",requirementItem.meetsRequirements(cookieLite));
 	}
 	
 
@@ -61,8 +61,8 @@ public class IngredientItemTest {
 	@Test
 	public void testToString() {
 		Cookie cookie = new Cookie();
-		IngredientItem ingredientItem = new IngredientItem(cookie);
-        assertEquals("toString","Item: Cookie",ingredientItem.toString());
+		RequirementItem requirementItem = new RequirementItem(cookie);
+        assertEquals("toString","Item: Cookie",requirementItem.toString());
 	}
 	
 }

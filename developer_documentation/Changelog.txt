@@ -1,6 +1,6 @@
 2012-12-01
-Working on UI world editor to allow addtion of new types of items.
-Refactored HumanFood interface into ItemProperty.
+Working on UI world editor to allow addition of new types of items.
+Re-factored HumanFood interface into ItemProperty.
 
 2012-11-31
 Using JTable for showing AbilityScore, Skill, PowerWord and Recipe.
@@ -22,9 +22,9 @@ Added some unit tests to Purse.
 IItems now have properties.
 Testing for magical IItems is now based on properties.
 IItems can now dynamically change magical status.
-Refactored Living interface to item property.
-Refactored Clothing interface to item property.
-Refactored Magical interface to item property.
+Re-factored Living interface to item property.
+Re-factored Clothing interface to item property.
+Re-factored Magical interface to item property.
 
 
 2012-11-25

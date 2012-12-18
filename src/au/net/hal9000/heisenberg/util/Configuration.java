@@ -14,8 +14,8 @@ import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
 import nu.xom.ValidityException;
-import au.net.hal9000.heisenberg.crafting.Ingredient;
-import au.net.hal9000.heisenberg.crafting.IngredientItem;
+import au.net.hal9000.heisenberg.crafting.Requirement;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
@@ -179,15 +179,15 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Item details.
-     * @return A list of IngredientItem objects.
+     * @return A list of RequirementItem objects.
      */
-    public static Vector<IngredientItem> xmlToIngredientItem(Elements entries) {
-        Vector<IngredientItem> ingredients = new Vector<IngredientItem>();
+    public static Vector<RequirementItem> xmlToIngredientItem(Elements entries) {
+        Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
             // get current ingredient
             Item item = Factory.createItem(entries.get(current)
                     .getAttributeValue("id").toString());
-            IngredientItem iItem = new IngredientItem(item);
+            RequirementItem iItem = new RequirementItem(item);
             ingredients.add(iItem);
         }
         return ingredients;
@@ -227,21 +227,21 @@ public class Configuration {
     }
 
     /**
-     * Read in XML Ingredient details and produce Ingredient object(s).<br>
+     * Read in XML Requirement details and produce Requirement object(s).<br>
      * 
      * @param entry
-     *            an XML Ingredient element.
+     *            an XML Requirement element.
      */
-    public static Vector<Ingredient> xmlToIngredients(Element entry) {
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
+    public static Vector<Requirement> xmlToIngredients(Element entry) {
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
         Elements items = entry.getChildElements("item");
-        ingredients.addAll(xmlToIngredientItem(items));
+        requirements.addAll(xmlToIngredientItem(items));
 
         // TODO Config Recipe locations e.g. <location id="ground" />
         // Elements locations = entry.getChildElements("location");
 
-        return ingredients;
+        return requirements;
     }
 
     /**
@@ -289,11 +289,11 @@ public class Configuration {
         skills.addAll(xmlToSkills(skillElements));
 
         // Ingredients
-        Vector<Ingredient> ingredients = new Vector<Ingredient>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
         Elements ingredientElements = recipeElement
                 .getChildElements("ingredients");
         for (int current = 0; current < ingredientElements.size(); current++) {
-            ingredients
+            requirements
                     .addAll(xmlToIngredients(ingredientElements.get(current)));
         }
 
@@ -306,7 +306,7 @@ public class Configuration {
 
         // Return the completed recipe
         return new Recipe(id, description, process, mana, actionPoints,
-                ingredients, powerWords, skills, products);
+                requirements, powerWords, skills, products);
 
     }
 

@@ -9,11 +9,11 @@ import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
- * The Cooker takes the {@link Recipe} and ingredients and build the products <br>
+ * The Cooker takes the {@link Recipe} and ingredients and build the products. <br>
  * <br>
  * <h3>User process for Recipe:</h3><br>
  * <ol>
- * <li>Recipe requirements represented as a list of Ingredient objects.
+ * <li>Recipe requirements represented as a list of Requirement objects.
  * <li>For each requirement load a matching Item into the corresponding position
  * in the Cooker.
  * <li>Item objects that don't meet the requirements will be rejected by the
@@ -90,11 +90,11 @@ public class Cooker extends ItemContainer {
         successSoFar = successSoFar && container != null;
         // not already in itemsAvailalbe
         successSoFar = successSoFar && (!this.contains(item));
-        // fulfils Ingredient requirement
+        // fulfils Requirement requirement
         if (successSoFar) {
-            IngredientItem ingredientItem = (IngredientItem) recipe
-                    .getIngredients(index);
-            successSoFar = ingredientItem.meetsRequirements(item);
+            RequirementItem requirementItem = (RequirementItem) recipe
+                    .getRequirement(index);
+            successSoFar = requirementItem.meetsRequirements(item);
         }
         // If conditions met then accept the item.
         if (successSoFar) {
@@ -114,34 +114,34 @@ public class Cooker extends ItemContainer {
 
     // misc
 
-    // ingredients
+    // requirements
     /**
-     * Get the list of Ingredients.
+     * Get the list of Requirement objects.
      * 
-     * @return the list of Ingredients.
+     * @return the list of Requirement objects.
      */
-    public final Vector<Ingredient> getIngredients() {
-        return recipe.getIngredients();
+    public final Vector<Requirement> getRequirements() {
+        return recipe.getRequirements();
     }
 
     /**
-     * Return the Ingredient at the specified index.
+     * Return the Requirement at the specified index.
      * 
      * @param index
-     *            the index of the Ingredient requested
-     * @return the Ingredient at this index.
+     *            the index of the Requirement requested
+     * @return the Requirement at this index.
      */
-    public final Ingredient getIngredients(final int index) {
-        return recipe.getIngredients(index);
+    public final Requirement getRequirement(final int index) {
+        return recipe.getRequirement(index);
     }
 
     /**
-     * Return the number of ingredients.
+     * Return the number of requirements.
      * 
-     * @return the number of ingredients.
+     * @return the number of requirements.
      */
-    public final int getIngredientsCount() {
-        return recipe.getIngredientsCount();
+    public final int getRequirementsCount() {
+        return recipe.getRequirementsCount();
     }
 
     /**
@@ -198,10 +198,10 @@ public class Cooker extends ItemContainer {
             }
         }
 
-        // ingredients (Item)
-        String ingredientsRequired = ingredientRequirementsMet();
-        if (ingredientsRequired != null) {
-            return ingredientsRequired;
+        // Requirement - Item objects
+        String requiredItems = requirementsItemMet();
+        if (requiredItems != null) {
+            return requiredItems;
         }
 
         // there needs to be a valid location for any created Items.
@@ -215,27 +215,27 @@ public class Cooker extends ItemContainer {
     }
 
     /**
-     * Check that every required Ingredient is matched by an Item.
+     * Check that every required Requirement is matched by an Item.
      * 
      * @return null iff all requirements are met.
      */
-    public String ingredientRequirementsMet() {
+    public String requirementsItemMet() {
 
-        Vector<Ingredient> required = getIngredients();
+        Vector<Requirement> required = getRequirements();
         // No requirements
         if (required == null) {
             return null;
         }
         int requiredSize = required.size();
-        // Not enough Ingredient Items.
+        // Not enough Requirement Items.
         if (requiredSize > this.getChildCount()) {
             return "Too few ingredients";
         }
         for (int index = requiredSize - 1; index >= 0; index--) {
             IItem item = this.getChild(index);
-            IngredientItem ingredientItem = (IngredientItem) required
+            RequirementItem requirementItem = (RequirementItem) required
                     .get(index);
-            if (!ingredientItem.meetsRequirements(item)) {
+            if (!requirementItem.meetsRequirements(item)) {
                 return "Missing ingredient " + index;
             }
         }
@@ -243,9 +243,9 @@ public class Cooker extends ItemContainer {
     }
 
     /**
-     * Remove the ingredients that are consumed.
+     * Remove the Ingredient objects, mana, action points etc. that are consumed.
      */
-    private final void ingredientsConsume() {
+    private final void requirementsConsume() {
 
         // mana
         int manaRequired = recipe.getMana();
@@ -258,16 +258,16 @@ public class Cooker extends ItemContainer {
             chef.actionPointsAdjust(-1 * actionPointsRequired);
         }
 
-        Vector<Ingredient> required = recipe.getIngredients();
+        Vector<Requirement> required = recipe.getRequirements();
 
         if (required != null) {
 
             // Go in reverse so deleting items doesn't effect positions.
             for (int index = required.size() - 1; index >= 0; index--) {
                 IItem item = this.getChild(index);
-                IngredientItem ingredientItem = (IngredientItem) required
+                RequirementItem requirementItem = (RequirementItem) required
                         .get(index);
-                if (ingredientItem.isConsumed()) {
+                if (requirementItem.isConsumed()) {
                     // unlink from other objects
                     item.beNot();
                 }
@@ -300,7 +300,7 @@ public class Cooker extends ItemContainer {
             // System.out.println(message);
             return message;
         }
-        ingredientsConsume();
+        requirementsConsume();
         createProducts();
         return null;
     }
