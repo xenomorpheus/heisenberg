@@ -173,6 +173,11 @@ public abstract class ItemContainer extends Item implements IItemContainer,
                         + ", volumeMax=" + volumeMax);
             }
         }
+        // remove item from existing location
+        IItemContainer currentLocation = item.getLocation();
+        if (currentLocation != null) {
+            currentLocation.remove(item);
+        }
 
         // Add the item and update the item's location.
         contents.add(index, item);

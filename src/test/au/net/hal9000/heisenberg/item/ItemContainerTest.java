@@ -85,6 +85,24 @@ public class ItemContainerTest {
 				fail("invlaid type: " + e.getMessage());
 			}
 		}
+
+		{
+		    // add function should be smart enough to cause the removal
+		    // from the losing container.
+            Bag bag1 = new Bag();
+            Bag bag2 = new Bag();
+            Cookie cookie = new Cookie();
+            assertEquals("bag1 count setup ",0, bag1.getChildCount());            	    
+            assertEquals("bag2 count setup ",0, bag2.getChildCount());                  
+            // add cookie to one bag
+            bag1.add(cookie);
+            assertEquals("bag1 count setup ",1, bag1.getChildCount());                  
+            // transfer cookie to other bag
+            bag2.add(cookie);
+            assertEquals("bag1 count setup ",0, bag1.getChildCount());                  
+            assertEquals("bag2 count setup ",1, bag2.getChildCount());                  		    
+		}
+	
 	}
 
 	@Test

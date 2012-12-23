@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="config.xsd">
+	xsi:noNamespaceSchemaLocation="config.xsd">
 	<character>
 		<pcClass id="Soldier" combatDice="20" magicDice="4"
 			stealthDice="8" generalDice="12" encumbrance="100" mana="0"
@@ -422,7 +422,7 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 		</races>
 	</character>
 	<items>
-	<!--  Items that may be instantiated -->
+		<!-- Items that may be instantiated -->
 		<item id="Arrow" />
 		<item id="Backpack" />
 		<item id="Bag" />
@@ -468,7 +468,8 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 	<skills>
 		<!-- Game Skills -->
 		<skill id="FireLighting" description="lighting a fire, typically with flint and tinder" />
-		<!-- Unit Test PowerWords -->
+		<!-- Unit Test Skills -->
+		<skill id="testFireLighting" description="lighting a fire, typically with flint and tinder" />
 		<skill id="testSkill1" description="skill description 1" />
 		<skill id="testSkill2" description="skill description 2" />
 		<skill id="testSkill3" description="skill description 3" />
@@ -477,8 +478,8 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 		<!-- Crafting of Item objects -->
 		<!-- skill entries are mentioned by id only. -->
 		<!-- powerWord entries are mentioned by id only. -->
-		<!-- ingredient entries are mentioned by id only. -->
-		<!-- Rules for Ingredients in Precedence Order -->
+		<!-- requirements entries are mentioned by id only. -->
+		<!-- Rules for requirements in Precedence Order -->
 		<!-- (This will aid auto-allocation of Item objects if this process is 
 			added) -->
 		<!-- 1. Consumed Ingredient objects before non-consumed so non-consumed 
@@ -488,11 +489,12 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 		<!-- Game Recipes -->
 		<recipe id="FireGround1" description="small open ground fire"
 			actionPoints="42" process="createItem1">
-			<ingredients>
+			<skill id="FireLighting" />
+			<requirements>
 				<item id="Wood" consumed="yes" weightMin="3" />
 				<item id="FlintAndTinder" consumed="no" />
-			</ingredients>
-			<skill id="FireLighting" />
+				<item id="Location" type="ItemContainer" consumed="no" />
+			</requirements>
 			<products>
 				<item id="smallGroundFire" />
 			</products>
@@ -500,6 +502,9 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 		<recipe id="LightOrb1" description="small light orb" mana="2"
 			actionPoints="10" process="createItem1">
 			<powerWord id="SmallLight1" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="no" />
+			</requirements>
 			<products>
 				<item id="OrbOfLight" />
 			</products>
@@ -509,13 +514,31 @@ xsi:noNamespaceSchemaLocation="config.xsd">
 			actionPoints="10" process="createItem1">
 			<skill id="testSkill1" />
 			<powerWord id="testPowerWord1" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="no" />
+			</requirements>
 			<products>
 				<item id="Cookie" />
+			</products>
+		</recipe>
+		<recipe id="testFireGround1" description="small open ground fire"
+			actionPoints="42" process="createItem1">
+			<skill id="testFireLighting" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="no" />
+				<item id="Wood" consumed="yes" weightMin="3" />
+				<item id="FlintAndTinder" consumed="no" />
+			</requirements>
+			<products>
+				<item id="smallGroundFire" />
 			</products>
 		</recipe>
 		<recipe id="testSpell1" description="spell test 1" mana="2"
 			actionPoints="10" process="spellTest1">
 			<powerWord id="testPowerWord1" />
+			<requirements>
+				<!-- TODO <item id="Target" class="PC" consumed="no" /> -->
+			</requirements>
 		</recipe>
 	</recipes>
 </config>

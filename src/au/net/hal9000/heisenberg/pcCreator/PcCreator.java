@@ -101,7 +101,7 @@ public class PcCreator {
         tabbedPane.addTab("Abilities", null, abilityScoresPanel(), null);
         tabbedPane.addTab("Skills", null, skillsPanel(), null);
         tabbedPane.addTab("PowerWords", null, powerWordsPanel(), null);
-        tabbedPane.addTab("Recips", null, recipesPanel(), null);
+        tabbedPane.addTab("Recipes", null, recipesPanel(), null);
         tabbedPane.addTab("Description", null, descriptionPanel(), null);
 
         frame.getContentPane().add(tabbedPane);

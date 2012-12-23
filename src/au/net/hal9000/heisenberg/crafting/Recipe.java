@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Iterator;
 import java.util.Set;
@@ -122,7 +123,7 @@ public class Recipe {
     /**
      * The total items required for this recipe.
      */
-    private Vector<Requirement> requirements;
+    private TreeMap<String, Requirement> requirements;
     /**
      * The {@link PowerWord} objects required.
      */
@@ -157,7 +158,7 @@ public class Recipe {
      */
     public Recipe(final String id, final String description, String process,
             final int mana, final int actionPoints,
-            final Vector<Requirement> requirements,
+            final TreeMap<String, Requirement> requirements,
             final Set<PowerWord> powerWords, final Set<Skill> skills,
             final Vector<String> products) {
         super();
@@ -274,32 +275,35 @@ public class Recipe {
 
     // requirements
     /**
+     * Get the count of Requirement objects.
+     * 
+     * @return the count of Requirement objects.
+     */
+    public final int getRequirementCount() {
+        if (requirements == null) {
+            return 0;
+        }
+        return requirements.size();
+    }
+
+    /**
      * Get the list of Requirement objects.
      * 
      * @return the list of Requirement objects.
      */
-    public final Vector<Requirement> getRequirements() {
+    public final TreeMap<String, Requirement> getRequirements() {
         return requirements;
     }
 
     /**
      * Return the Requirement at the specified index.
      * 
-     * @param index
+     * @param key
      *            the index of the Requirement requested
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final int index) {
-        return requirements.get(index);
-    }
-
-    /**
-     * Return the number of requirements.
-     * 
-     * @return the number of requirements.
-     */
-    public final int getRequirementsCount() {
-        return requirements.size();
+    public final Requirement getRequirement(final String key) {
+        return requirements.get(key);
     }
 
     /**
@@ -309,7 +313,8 @@ public class Recipe {
      * @param requirements
      *            the required Requirement objects.
      */
-    public final void setRequirements(final Vector<Requirement> requirements) {
+    public final void setRequirements(
+            final TreeMap<String, Requirement> requirements) {
         this.requirements = requirements;
     }
 
@@ -320,8 +325,22 @@ public class Recipe {
      * @param requirements
      *            a list of Requirement objects.
      */
+    public final void requirementsAddAll(
+            final TreeMap<String, Requirement> requirements) {
+        this.requirements.putAll(requirements);
+    }
+
+    /**
+     * Add a list of Requirement objects.
+     * 
+     * @deprecated only here for JPA and Configuration.
+     * @param requirements
+     *            a list of Requirement objects.
+     */
     public final void requirementsAddAll(final Vector<Requirement> requirements) {
-        this.requirements.addAll(requirements);
+        for (Requirement requirement : requirements) {
+            this.requirementsAdd(requirement);
+        }
     }
 
     /**
@@ -332,18 +351,44 @@ public class Recipe {
      *            an Requirement object.
      */
     public final void requirementsAdd(final Requirement requirement) {
-        requirements.add(requirement);
+        requirements.put(requirement.getId(), requirement);
     }
 
     // products
+
     /**
-     * @return the products that this recipe produces.
+     * @param index
+     *            the index of the product we want details of.
+     * @return the info for product at the given index.
      */
-    public final Vector<String> getProducts() {
-        return products;
+    public final String getProduct(final int index) {
+        return products.get(index);
+    }
+
+    /**
+     * @return the number of products that this recipe produces.
+     */
+    public final int getProductCount() {
+        if (products == null) {
+            return 0;
+        }
+        return products.size();
     }
 
     // powerWords
+
+    /**
+     * Get the count of PowerWord objects.
+     * 
+     * @return the count of PowerWord objects
+     */
+    public final int getPowerWordCount() {
+        if (powerWords == null) {
+            return 0;
+        }
+        return powerWords.size();
+    }
+
     /**
      * Get the PowerWord objects.
      * 
@@ -384,6 +429,15 @@ public class Recipe {
     }
 
     // skills
+    /**
+     * Get the count of Skill objects.
+     * 
+     * @return a count of Skill objects
+     */
+    public final int getSkillCount() {
+        return skills.size();
+    }
+
     /**
      * Get the Skill objects.
      * 
@@ -451,19 +505,16 @@ public class Recipe {
             int index = 0;
             string += "Skill(s):\n";
             for (Iterator<Skill> itr = skills.iterator(); itr.hasNext();) {
-                string += "  " + index + ": "
-                        + itr.next().toString() + "\n";
+                string += "  " + index + ": " + itr.next().toString() + "\n";
                 index++;
             }
         }
         if (requirements != null) {
-            int index = 0;
             string += "Requirement(s):\n";
-            for (Iterator<Requirement> itr = requirements.iterator(); itr
-                    .hasNext();) {
-                string += "  " + index + ": "
-                        + itr.next().getDescription() + "\n";
-                index++;
+            for (String id : requirements.keySet()){
+                  Requirement requirement = requirements.get(id);
+                string += "  " + id + ": " + requirement.getDescription()
+                        + "\n";
             }
         }
         if (products != null) {

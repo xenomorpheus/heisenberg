@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.PowerWord;
+import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.units.PowerWordDetail;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -86,7 +88,7 @@ public class ConfigurationTest {
 
         TreeMap<String, Recipe> recipes = config.getRecipes();
         assertTrue("ingredients !=null", recipes != null);
-        assertTrue("ingredient count", 2 <= recipes.size());
+        assertTrue("requirement count", 2 <= recipes.size());
         for (Recipe recipe : recipes.values()) {
             assertTrue("id", recipe.getId().length() > 0);
             assertTrue("toDescription", recipe.getDescription().length() > 0);
@@ -94,30 +96,57 @@ public class ConfigurationTest {
 
         // recipe1
         Recipe recipe1 = recipes.get("testItem1");
-
         assertEquals("description", "item test 1", recipe1.getDescription());
         assertEquals("process", "createItem1", recipe1.getProcess());
         assertEquals("actionPoints", 10, recipe1.getActionPoints());
-        assertEquals("ingredient count", 0, recipe1.getRequirements().size());
-        assertEquals("powerWord count", 1, recipe1.getPowerWords().size());
-        assertEquals("skill count", 1, recipe1.getSkills().size());
-        assertEquals("product count", 1, recipe1.getProducts().size());
-        assertEquals("product type", "Cookie", recipe1.getProducts().get(0));
-
-        // recipe2
-        Recipe recipe2 = recipes.get("testSpell1");
-        assertEquals("description", "spell test 1", recipe2.getDescription());
-        assertEquals("process", "spellTest1", recipe2.getProcess());
-        assertEquals("mana", 2, recipe2.getMana());
-        assertEquals("actionPoints", 10, recipe2.getActionPoints());
-        assertEquals("ingredient count", 0, recipe2.getRequirements().size());
-        assertEquals("powerWord count", 1, recipe2.getPowerWords().size());
+        assertEquals("requirement count", 1, recipe1.getRequirementCount());
+        RequirementItem requirementItem = (RequirementItem)recipe1.getRequirement("Location");
+        assertNotNull("requirement not null",requirementItem);
+        assertEquals("requirement id", "Location", requirementItem.getId());
+        assertEquals("requirement itemType", "ItemContainer", requirementItem.getItemType());
+        assertEquals("powerWord count", 1, recipe1.getPowerWordCount());
         assertTrue(
                 "powerWord 0",
-                recipe2.getPowerWords().contains(
+                recipe1.getPowerWords().contains(
                         new PowerWord("testPowerWord1")));
-        assertEquals("skill count", 0, recipe2.getSkills().size());
-        assertEquals("product count", 0, recipe2.getProducts().size());
+
+        assertEquals("skill count", 1, recipe1.getSkillCount());
+        assertTrue("skill 0",
+                recipe1.getSkills().contains(new Skill("testSkill1")));
+        assertEquals("product count", 1, recipe1.getProductCount());
+        assertEquals("product 0 type", "Cookie", recipe1.getProduct(0));
+
+        // recipe2
+        Recipe recipe2 = recipes.get("testFireGround1");
+        assertEquals("description", "small open ground fire",
+                recipe2.getDescription());
+        assertEquals("process", "createItem1", recipe2.getProcess());
+        assertEquals("mana", 0, recipe2.getMana());
+        assertEquals("actionPoints", 42, recipe2.getActionPoints());
+        assertEquals("requirement count", 3, recipe2.getRequirementCount());
+        // TODO requirement
+        assertEquals("powerWord count", 0, recipe2.getPowerWordCount());
+        assertEquals("skill count", 1, recipe2.getSkillCount());
+        assertTrue("skill 0",
+                recipe2.getSkills().contains(new Skill("testFireLighting")));
+        assertEquals("product count", 1, recipe2.getProductCount());
+        assertEquals("product 0 type", "smallGroundFire", recipe2.getProduct(0));
+
+        // recipe3
+        Recipe recipe3 = recipes.get("testSpell1");
+        assertEquals("description", "spell test 1", recipe3.getDescription());
+        assertEquals("process", "spellTest1", recipe3.getProcess());
+        assertEquals("mana", 2, recipe3.getMana());
+        assertEquals("actionPoints", 10, recipe3.getActionPoints());
+        assertEquals("requirement count", 0, recipe3.getRequirementCount());
+        assertEquals("powerWord count", 1, recipe3.getPowerWordCount());
+        assertTrue(
+                "powerWord 0",
+                recipe3.getPowerWords().contains(
+                        new PowerWord("testPowerWord1")));
+        assertEquals("skill count", 0, recipe3.getSkillCount());
+        assertEquals("product count", 0, recipe3.getProductCount());
+
     }
 
     @Test
@@ -173,4 +202,13 @@ public class ConfigurationTest {
         // assertEquals("~", warrior.getRaceAllow());
     }
 
+    
+    @Test
+    public void testRequirementItem(){
+        Recipe recipe1 = config.getRecipe("testItem1");
+        RequirementItem requirementItem = (RequirementItem)recipe1.getRequirement("Location");
+        assertNotNull("requirement not null",requirementItem);
+        assertEquals("requirement id", "Location", requirementItem.getId());
+        assertEquals("requirement itemType", "ItemContainer", requirementItem.getItemType());
+    }
 }

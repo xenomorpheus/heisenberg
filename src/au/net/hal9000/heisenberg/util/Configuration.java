@@ -17,8 +17,6 @@ import nu.xom.ValidityException;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.PowerWordDetail;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -185,10 +183,13 @@ public class Configuration {
         Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
             // get current ingredient
-            Item item = Factory.createItem(entries.get(current)
-                    .getAttributeValue("id").toString());
-            RequirementItem iItem = new RequirementItem(item);
-            ingredients.add(iItem);
+            String itemId = entries.get(current).getAttributeValue("id");
+            String itemType = entries.get(current).getAttributeValue("type");
+            RequirementItem requirement = new RequirementItem(itemId);
+            if (itemType != null){
+                requirement.setType(itemType);
+            }
+            ingredients.add(requirement);
         }
         return ingredients;
     }
@@ -288,13 +289,17 @@ public class Configuration {
         Elements skillElements = recipeElement.getChildElements("skill");
         skills.addAll(xmlToSkills(skillElements));
 
-        // Ingredients
+        // Requirement objects
         Vector<Requirement> requirements = new Vector<Requirement>();
         Elements ingredientElements = recipeElement
-                .getChildElements("ingredients");
+                .getChildElements("requirements");
         for (int current = 0; current < ingredientElements.size(); current++) {
             requirements
                     .addAll(xmlToIngredients(ingredientElements.get(current)));
+        }
+        TreeMap<String, Requirement> requirementsSet = new TreeMap<String,Requirement>();
+        for (Requirement requirement : requirements){
+            requirementsSet.put(requirement.getId(), requirement);
         }
 
         // Add Product items.
@@ -306,7 +311,7 @@ public class Configuration {
 
         // Return the completed recipe
         return new Recipe(id, description, process, mana, actionPoints,
-                requirements, powerWords, skills, products);
+                requirementsSet, powerWords, skills, products);
 
     }
 

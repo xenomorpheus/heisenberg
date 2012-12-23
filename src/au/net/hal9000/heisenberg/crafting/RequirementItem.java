@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.IItem;
-import au.net.hal9000.heisenberg.item.Item;
 
 /**
  * As much as possible consider this object immutable. The Setters are here only
@@ -23,91 +23,110 @@ import au.net.hal9000.heisenberg.item.Item;
  * 
  */
 public class RequirementItem extends Requirement {
-	/**
-	 * The ingredient item.
-	 */
-	// TODO should this just be the simple class name ?
-	private Item item;
-	/**
-	 * Will the item be consumed as part of the cooking process.<br>
-	 * default is true.
-	 */
-	private boolean isConsumed = true;
-	/**
-	 * Minimum weight of this item.<br>
-	 * e.g. 3 weight units of wood.<br>
-	 * default is 0; <br>
-	 * TODO Refactor to IngredientItemPoroperty
-	 */
-	private float weightMin = 0;
+    /**
+     * The item type.
+     */
+    private String itemType;
+    /**
+     * Will the item be consumed as part of the cooking process.<br>
+     * default is true.
+     */
+    private boolean isConsumed = true;
+    /**
+     * Minimum weight of this item.<br>
+     * e.g. 3 weight units of wood.<br>
+     * default is 0; <br>
+     * TODO Re-factor to IngredientItemProperty
+     */
+    private float weightMin = 0;
 
-	/**
-	 * Constuctor
-	 * 
-	 * @param item
-	 */
-	public RequirementItem(final Item item) {
-		super();
-		this.item = item;
-	}
+    /**
+     * Constructor
+     * 
+     * @param item
+     */
+    public RequirementItem(final String id) {
+        super();
+        this.id = id;
+        this.itemType = id;
+    }
 
-	// Getters and Setters
-	public boolean isConsumed() {
-		return isConsumed;
-	}
+    // Getters and Setters
+    /**
+     * Set the itemType
+     * @param itemType the new itemType
+     */
+    public void setType(final String itemType) {
+        this.itemType = itemType;
+    }
 
-	/**
-	 * @deprecated only here for JPA.
-	 * @param isConsumed
-	 *            true if the Item will be consumed.
-	 */
-	public void setConsumed(boolean isConsumed) {
-		this.isConsumed = isConsumed;
-	}
+    /**
+     * @return the itemType
+     */
+    public final String getItemType() {
+        return itemType;
+    }
 
-	public float getWeightMin() {
-		return weightMin;
-	}
+    public boolean isConsumed() {
+        return isConsumed;
+    }
 
-	/**
-	 * @deprecated only here for JPA.
-	 * @param weightMin
-	 *            minimum weight requried of item.
-	 */
-	public void setWeightMin(float weightMin) {
-		this.weightMin = weightMin;
-	}
+    /**
+     * @deprecated only here for JPA.
+     * @param isConsumed
+     *            true if the Item will be consumed.
+     */
+    public void setConsumed(boolean isConsumed) {
+        this.isConsumed = isConsumed;
+    }
 
-	public final String toString() {
-		return getDescription();
-	}
+    public float getWeightMin() {
+        return weightMin;
+    }
 
-	/**
-	 * Does the Item meet the requirements?
-	 * 
-	 * @param item2
-	 *            the Item being evaluated.
-	 * @return true if the Item meets the requirements.
-	 */
-	public final boolean meetsRequirements(IItem item2) {
-		// Correct Class
-		boolean successSoFar = item.getClass().isInstance(item2);
-		// Correct Weight
-		successSoFar = successSoFar && item2.getWeight() >= weightMin;
-		return successSoFar;
-	}
+    /**
+     * @deprecated only here for JPA.
+     * @param weightMin
+     *            minimum weight required of item.
+     */
+    public void setWeightMin(float weightMin) {
+        this.weightMin = weightMin;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	String getDescription() {
-		String string = "Item: " + this.item.toString();
-		if (weightMin > 0) {
-			string += ", weightMin=" + weightMin;
-		}
-		if (!isConsumed) {
-			string += ", consumed=" + isConsumed;
-		}
-		return string;
-	}
+    public final String toString() {
+        return getDescription();
+    }
+
+    /**
+     * Does the Item meet the requirements?
+     * 
+     * @param item2
+     *            the Item being evaluated.
+     * @return true if the Item meets the requirements.
+     */
+    public final String meetsRequirements(final IItem item) {
+        // Correct Class
+        if (!Factory.instanceOf(itemType, item)) {
+            return "item must be a " + itemType;
+        }
+        // Correct Weight
+        if (item.getWeight() < weightMin) {
+            return "item must weigh at least " + weightMin;
+        }
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final String getDescription() {
+        String string = "of type " + itemType;
+        if (weightMin > 0) {
+            string += ", weighing at least " + weightMin;
+        }
+        if (!isConsumed) {
+            string += ", not consumed";
+        }
+        return string;
+    }
 
 }

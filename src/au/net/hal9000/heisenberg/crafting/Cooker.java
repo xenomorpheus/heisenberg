@@ -1,8 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import java.util.Vector;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeMap;
 
 import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.units.PowerWord;
@@ -40,10 +39,18 @@ public class Cooker extends ItemContainer {
      * The PcRace doing the cooking. Supplies any actionPoints and mana.
      */
     private PcRace chef = null;
-    /**
-     * Where to put any freshly created Items objects.
+
+    /*
+     * Ingredients we will cook with.
      */
-    private Location newItemLocation = null;
+    private TreeMap<String, IItem> ingredients = new TreeMap<String, IItem>();
+
+    /* error messages */
+    public static String itemMayNotBeNull = "item must exist";
+    public static String alreadyContainsThatItem = "already contains that item";
+    public static String noSuchRequirement = "no such requirement";
+    public static String alreadyOccupied = "already occupied";
+    public static String badKey = "bad key";
 
     /**
      * Constructor
@@ -72,67 +79,59 @@ public class Cooker extends ItemContainer {
     /**
      * Add an Item to a particular index in the list of itemsAvailable
      * 
-     * @param index
+     * @param key
      *            where to add Item
      * @param item
      * @param container
      *            where to take the item from
-     * @return true iff all worked.
+     * @return error message or null if it worked
      */
-    public final boolean setItemsAvailable(final int index, final Item item,
-            final ItemContainer container) {
-        // spot to add is empty
-        boolean successSoFar = (index >= getContentsCount())
-                || (this.getChild(index) == null);
+    public final String setItemsAvailable(final String key, final Item item) {
         // item exists
-        successSoFar = successSoFar && item != null;
-        // container exists
-        successSoFar = successSoFar && container != null;
-        // not already in itemsAvailalbe
-        successSoFar = successSoFar && (!this.contains(item));
+        if (item == null) {
+            return itemMayNotBeNull;
+        }
+        // bad key
+        if (key == null) {
+            return badKey;
+        }
+        // spot is free?
+        if (ingredients.get(key) != null) {
+            return alreadyOccupied;
+        }
+        // already in this container?
+        if (this.contains(item)) {
+            return alreadyContainsThatItem;
+        }
+        // is there a requirement to fulfil ?
+        RequirementItem requirementItem = (RequirementItem) recipe
+                .getRequirement(key);
+        if (requirementItem == null) {
+            return noSuchRequirement;
+        }
+
         // fulfils Requirement requirement
-        if (successSoFar) {
-            RequirementItem requirementItem = (RequirementItem) recipe
-                    .getRequirement(index);
-            successSoFar = requirementItem.meetsRequirements(item);
+        String reason = requirementItem.meetsRequirements(item);
+        if (reason != null) {
+            return reason;
         }
-        // If conditions met then accept the item.
-        if (successSoFar) {
-            container.relocateItem(item, this);
-        }
-        return successSoFar;
-    }
-
-    // newItemLocation
-    public final Location getNewItemLocation() {
-        return newItemLocation;
-    }
-
-    public final void setNewItemLocation(final Location newItemLocation) {
-        this.newItemLocation = newItemLocation;
+        this.add(item);
+        ingredients.put(key, item);
+        return null;
     }
 
     // misc
 
     // requirements
     /**
-     * Get the list of Requirement objects.
-     * 
-     * @return the list of Requirement objects.
-     */
-    public final Vector<Requirement> getRequirements() {
-        return recipe.getRequirements();
-    }
-
-    /**
      * Return the Requirement at the specified index.
      * 
-     * @param index
+     * @param key
      *            the index of the Requirement requested
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final int index) {
-        return recipe.getRequirement(index);
+    public final Requirement getRequirement(final String key) {
+        return recipe.getRequirement(key);
     }
 
     /**
@@ -140,8 +139,8 @@ public class Cooker extends ItemContainer {
      * 
      * @return the number of requirements.
      */
-    public final int getRequirementsCount() {
-        return recipe.getRequirementsCount();
+    public final int getRequirementCount() {
+        return recipe.getRequirementCount();
     }
 
     /**
@@ -205,10 +204,11 @@ public class Cooker extends ItemContainer {
         }
 
         // there needs to be a valid location for any created Items.
-        Vector<String> products = recipe.getProducts();
-        if ((products != null) && (products.size() > 0)
-                && (newItemLocation == null)) {
-            return "missing location for new products";
+        if (recipe.getProductCount() > 0) {
+            IItemContainer newItemLocation = (IItemContainer) ingredients.get("Location");
+            if (newItemLocation == null) {
+                return "missing location for new products";
+            }
         }
 
         return null;
@@ -221,29 +221,31 @@ public class Cooker extends ItemContainer {
      */
     public String requirementsItemMet() {
 
-        Vector<Requirement> required = getRequirements();
+        int requirementCount = getRequirementCount();
         // No requirements
-        if (required == null) {
+        if (requirementCount == 0) {
             return null;
         }
-        int requiredSize = required.size();
         // Not enough Requirement Items.
-        if (requiredSize > this.getChildCount()) {
-            return "Too few ingredients";
+        if (requirementCount > ingredients.size()) {
+            return "Too few ingredients " + requirementCount + " vs "
+                    + ingredients.size();
         }
-        for (int index = requiredSize - 1; index >= 0; index--) {
-            IItem item = this.getChild(index);
-            RequirementItem requirementItem = (RequirementItem) required
-                    .get(index);
-            if (!requirementItem.meetsRequirements(item)) {
-                return "Missing ingredient " + index;
+        for (String key : recipe.getRequirements().keySet()) {
+            IItem item = ingredients.get(key);
+            RequirementItem requirementItem = (RequirementItem) getRequirement(key);
+            String reason = requirementItem.meetsRequirements(item);
+            if (reason != null) {
+                return "Missing/bad ingredient named " + key + " because "
+                        + reason;
             }
         }
         return null;
     }
 
     /**
-     * Remove the Ingredient objects, mana, action points etc. that are consumed.
+     * Remove the Ingredient objects, mana, action points etc. that are
+     * consumed.
      */
     private final void requirementsConsume() {
 
@@ -258,15 +260,12 @@ public class Cooker extends ItemContainer {
             chef.actionPointsAdjust(-1 * actionPointsRequired);
         }
 
-        Vector<Requirement> required = recipe.getRequirements();
+        int requirementCount = recipe.getRequirementCount();
 
-        if (required != null) {
-
-            // Go in reverse so deleting items doesn't effect positions.
-            for (int index = required.size() - 1; index >= 0; index--) {
-                IItem item = this.getChild(index);
-                RequirementItem requirementItem = (RequirementItem) required
-                        .get(index);
+        if (requirementCount > 0) {
+            for (String key : recipe.getRequirements().keySet()) {
+                IItem item = ingredients.get(key);
+                RequirementItem requirementItem = (RequirementItem) getRequirement(key);
                 if (requirementItem.isConsumed()) {
                     // unlink from other objects
                     item.beNot();
@@ -280,11 +279,11 @@ public class Cooker extends ItemContainer {
      */
     private void createProducts() {
         // TODO Not final version. Only a demonstration.
-        Vector<String> products = recipe.getProducts();
-        if (products != null) {
-            Iterator<String> itr = products.iterator();
-            while (itr.hasNext()) {
-                Item item = Factory.createItem(itr.next());
+        int productCount = recipe.getProductCount();
+        if (productCount > 0) {
+            IItemContainer newItemLocation = (IItemContainer) ingredients.get("Location");
+            for (int index = 0; index < productCount; index++) {
+                Item item = Factory.createItem(recipe.getProduct(index));
                 newItemLocation.add(item);
             }
         }
@@ -321,12 +320,13 @@ public class Cooker extends ItemContainer {
      *            destination ItemContainer.
      * @return true iff successfully moved. TODO consider return type void
      */
-    public boolean clearItemsAvailable(int index, ItemContainer container) {
+    public boolean clearItemsAvailable(String key, ItemContainer container) {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }
-        IItem item = getChild(index);
+        IItem item = ingredients.get(key);
         this.relocateItem(item, container);
+        ingredients.remove(key);
         return true;
     }
 

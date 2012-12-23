@@ -2,6 +2,7 @@ package test.au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.*;
 
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
@@ -10,84 +11,78 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.units.Skill;
 
 public class RecipeTest {
-	static int REQUIRED_ACTION_POINTS = 42;
-	static int REQUIRED_MANA = 3;
-	static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
-			"Skill2" };
+    static int REQUIRED_ACTION_POINTS = 42;
+    static int REQUIRED_MANA = 3;
+    static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
+            "Skill2" };
 
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testRecipeIngredients() {
+    @SuppressWarnings("deprecation")
+    @Test
+    public void testRecipeIngredients() {
 
-		Vector<Requirement> requirements = new Vector<Requirement>();
+        TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
 
-		// RequirementItem
-		RequirementItem flintAndTinder = new RequirementItem(new FlintAndTinder());
-		flintAndTinder.setConsumed(false);
-		requirements.add(flintAndTinder);
+        // RequirementItem
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
+        flintAndTinder.setConsumed(false);
+        requirements.put(flintAndTinder.getId(), flintAndTinder);
 
-		RequirementItem wood = new RequirementItem(new Wood());
-		wood.setWeightMin(3);
-		requirements.add(wood);
+        RequirementItem wood = new RequirementItem("Wood");
+        wood.setWeightMin(3);
+        requirements.put(wood.getId(), wood);
 
-		// Build a recipe with the list of required ingredients
-		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0,
-				0, requirements, null, null, null);
+        // Build a recipe with the list of required ingredients
+        Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
+                requirements, null, null, null);
 
-		assertEquals("ingredient count", requirements.size(),
-				recipe.getRequirementsCount());
-        assertEquals("ingredient 0",flintAndTinder,recipe.getRequirement(0));
-        assertEquals("ingredient 1",wood,recipe.getRequirement(1));
-	}
+        assertEquals("ingredient count", requirements.size(),
+                recipe.getRequirementCount());
+        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement(flintAndTinder.getId()));
+        assertEquals("ingredient 1", wood, recipe.getRequirement(wood.getId()));
+    }
 
-	private void println(String string) {
-		// System.out.println(string);
-	}
+    @SuppressWarnings("deprecation")
+    @Test
+    public void testRecipe() {
+        TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
 
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testRecipe() {
-		Vector<Requirement> requirements = new Vector<Requirement>();
+        // RequirementItem
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
+        flintAndTinder.setConsumed(false);
+        requirements.put(flintAndTinder.getId(), flintAndTinder);
 
-		// RequirementItem
-		RequirementItem flintAndTinder = new RequirementItem(new FlintAndTinder());
-		flintAndTinder.setConsumed(false);
-		requirements.add(flintAndTinder);
+        RequirementItem wood = new RequirementItem("Wood");
+        wood.setWeightMin(3);
+        requirements.put(wood.getId(),wood);
 
-		RequirementItem wood = new RequirementItem(new Wood());
-		wood.setWeightMin(3);
-		requirements.add(wood);
+        // Product(s)
+        Vector<String> products = new Vector<String>();
+        products.add("SmallGroundFire");
 
-		// Product(s)
-		Vector<String> products = new Vector<String>();
-		products.add("SmallGroundFire");
+        // Skills
+        Set<Skill> skills = new TreeSet<Skill>();
+        for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
+            skills.add(new Skill(REQUIRED_SKILLS[i]));
+        }
 
-		// Skills
-		Set<Skill> skills = new TreeSet<Skill>();
-		for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-			skills.add(new Skill(REQUIRED_SKILLS[i]));
-		}
+        // Build a recipe with the list of required ingredients
+        Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2, 42,
+                requirements, null, skills, products);
 
-		// Build a recipe with the list of required ingredients
-		Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2,
-				42, requirements, null, skills, products);
+        assertEquals("id", "recipe1", recipe.getId());
+        assertEquals("description", "the first recipe", recipe.getDescription());
+        assertEquals("mana", 2, recipe.getMana());
+        assertEquals("actionPoints", 42, recipe.getActionPoints());
+        assertEquals("ingredient count", requirements.size(),
+                recipe.getRequirementCount());
+        assertEquals("skill count", REQUIRED_SKILLS.length,
+                recipe.getSkillCount());
+        assertEquals("ingredient count", requirements.size(),
+                recipe.getRequirementCount());
 
-		assertEquals("id", "recipe1", recipe.getId());
-		assertEquals("description", "the first recipe", recipe.getDescription());
-		assertEquals("mana", 2, recipe.getMana());
-		assertEquals("actionPoints", 42, recipe.getActionPoints());
-		assertEquals("ingredient count", requirements.size(), recipe
-				.getRequirements().size());
-		assertEquals("skill count", REQUIRED_SKILLS.length, recipe.getSkills()
-				.size());
-		assertEquals("ingredient count", requirements.size(),
-				recipe.getRequirementsCount());
-
-		println(recipe.toString());
-	}
+    }
 
 }

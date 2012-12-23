@@ -1,3 +1,23 @@
+2012-12-21
+Cooking errors are now strings to give more information on what went wrong.
+   Was boolean and false for failure.
+RequirementItem properly handles inheritance of item classes.
+   e.g. A Bag of Holding may be used when the requirement is for a bag.
+RequirementItem objects and Recipe objects now use Strings to 
+    index their requirements.
+Cooker objects now use Strings to index their requirements.
+The location for new Item objects is now just another RequirementItem.
+  It has the name "Location".
+
+2012-12-19
+Re-factored RequirementItem so that the item class is stored as a
+string, rather than an instance of the item.
+
+2012-12-18
+Re-factoring Recipe Ingredient classes into Requirement classes.
+Added more unit tests to Recipe objects from XML.
+Recipe Product objects no longer available by list.
+
 2012-12-01
 Working on UI world editor to allow addition of new types of items.
 Re-factored HumanFood interface into ItemProperty.
