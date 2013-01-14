@@ -1,0 +1,1 @@
+From http://www.vogella.com/articles/JavaPersistenceAPI/article.html

@@ -4,6 +4,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
 public class SmallGroundFire extends Item {
 	/**
 	 * 

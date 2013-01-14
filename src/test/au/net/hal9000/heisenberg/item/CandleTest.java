@@ -36,11 +36,11 @@ public class CandleTest {
 	@Test
 	public void testIsLit() {
 		Candle candle = new Candle("TheCandle");
-		assertEquals("unlit description", "TheCandle. Not lit", candle.getDescription());
+		assertEquals("unlit description", "TheCandle. Not lit", candle.getDetailedDescription());
 		assertFalse("isLit", candle.isLit());
 		candle.light();
 		assertTrue("isLit", candle.isLit());
-		assertEquals("unlit description", "TheCandle. Is lit", candle.getDescription());
+		assertEquals("unlit description", "TheCandle. Is lit", candle.getDetailedDescription());
 	}
 
 

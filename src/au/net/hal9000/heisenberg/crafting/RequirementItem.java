@@ -43,7 +43,7 @@ public class RequirementItem extends Requirement {
     /**
      * Constructor
      * 
-     * @param item
+     * @param id the short name of the required item class.
      */
     public RequirementItem(final String id) {
         super();
@@ -100,7 +100,7 @@ public class RequirementItem extends Requirement {
     /**
      * Does the Item meet the requirements?
      * 
-     * @param item2
+     * @param item
      *            the Item being evaluated.
      * @return true if the Item meets the requirements.
      */

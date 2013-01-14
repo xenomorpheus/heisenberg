@@ -28,17 +28,32 @@ public interface IItem {
     // Getters and Setters
 
     /**
+     * get the Table ID of the item.<br>
+     * JPA requires a primary key.
+     * @return the Id
+     */
+    long getTableId();
+
+    /**
+     * Set the Table Id. <br>
+     * JPA requires a primary key.
+     * @param id
+     *            the Id to set
+     */
+    void setTableId(long id);
+    /**
      * get the ID of the item.
-     * 
+     * We need to be ale to tell the difference between<br>
+     * two items with the same properties.
      * @return the Id
      */
     UUID getId();
 
     /**
      * Set the Id
-     * 
-     * @param id
-     *            the Id to set
+     * We need to be ale to tell the difference between<br>
+     * two items with the same properties.<br>
+     * @param id the Id to set
      */
     void setId(UUID id);
 

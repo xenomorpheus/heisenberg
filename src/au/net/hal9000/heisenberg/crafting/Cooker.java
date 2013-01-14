@@ -82,8 +82,6 @@ public class Cooker extends ItemContainer {
      * @param key
      *            where to add Item
      * @param item
-     * @param container
-     *            where to take the item from
      * @return error message or null if it worked
      */
     public final String setItemsAvailable(final String key, final Item item) {
@@ -314,8 +312,6 @@ public class Cooker extends ItemContainer {
     /**
      * Remove indexed Item and move to specified ItemContainer.
      * 
-     * @param index
-     *            index of Item to relocate.
      * @param container
      *            destination ItemContainer.
      * @return true iff successfully moved. TODO consider return type void

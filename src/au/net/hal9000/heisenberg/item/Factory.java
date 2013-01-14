@@ -91,7 +91,6 @@ public class Factory {
      * 
      * @param type
      *            the type of IItem to create.
-     * @param arguments
      * @return the new IItem.
      */
     static public boolean instanceOf(String type, IItem item) {

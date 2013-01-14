@@ -3,6 +3,13 @@ package au.net.hal9000.heisenberg.item;
 import java.util.Iterator;
 import java.util.Vector;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import au.net.hal9000.heisenberg.item.exception.*;
 import au.net.hal9000.heisenberg.item.property.RingWearer;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -11,10 +18,24 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  * Hand Is like an item except: May wear at most one magical ring. May wear any
  * number of non-magical rings. Rings may be removed in any order.
  */
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
 public class Hand extends ItemContainer implements RingWearer {
 
     private static final long serialVersionUID = 1L;
-    private Vector<Ring> rings = new Vector<Ring>();
+/*
+ * TODO 
+ *     
+ *     @OneToMany(cascade=CascadeType.ALL)
+    @JoinTable(name = "HandRing", joinColumns = {
+    @JoinColumn(name="ID", unique = true) 
+    },
+    inverseJoinColumns = {
+    @JoinColumn(name="ID")
+    }
+    )    
+*/    private Vector<Ring> rings = new Vector<Ring>();
     private int magicRingCount = 0;
     private int magicRingMax = 1;
 

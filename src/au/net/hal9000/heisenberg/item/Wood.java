@@ -4,10 +4,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import test.au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
 public class Wood extends Item implements SplitByWeight {
     /**
 	 * 

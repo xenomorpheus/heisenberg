@@ -8,6 +8,14 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.util.Properties;
 
+// Persistence
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+// Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.*;
 
@@ -31,13 +39,18 @@ import au.net.hal9000.heisenberg.units.*;
  * An item may be damaged by acid which will...
  * An item may be repaired which will ...
  */
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Item implements IItem, Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
     // Initialise as many values as possible.
+    // tableId is used for JPA
+    @Id @GeneratedValue 
+    private long tableId;
     // Note: Id is required so UI getIndexOfChild() will work
-    // when two objects have the same properties.
+    // when two objects have the same properties.    
     private UUID id = UUID.randomUUID();
     private String name = null;
     private String description = null;
@@ -125,6 +138,18 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
+    public long getTableId() {
+        return tableId;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setTableId(final long pTableId) {
+        this.tableId = pTableId;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public UUID getId() {
         return id;
     }
@@ -134,7 +159,9 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     public void setId(final UUID pId) {
         this.id = pId;
     }
-
+    
+    
+    
     /** {@inheritDoc} */
     @Override
     public String getName() {

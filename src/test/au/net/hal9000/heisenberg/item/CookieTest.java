@@ -8,6 +8,7 @@ package test.au.net.hal9000.heisenberg.item;
  */
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
@@ -65,5 +66,6 @@ public class CookieTest {
         Cookie cookie = new Cookie();
         assertTrue("is humanoid food", ItemProperty.isHumanoidFood(cookie));
     }
+
 
 }
