@@ -4,6 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/xom-1.2.8.jar"/>
-	<classpathentry kind="lib" path="swingx-all-1.6.4.jar"/>
+	<classpathentry kind="lib" path="lib/derby.jar"/>
+	<classpathentry kind="lib" path="lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence_2.0.4.v201112161009.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
