@@ -1,20 +1,18 @@
 package au.net.hal9000.heisenberg.item;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
 //A ring is an IItem except:
-//* Default description is "small metalic ring".
+//* Default description is "small metallic ring".
 //* Default value is 5gp ?
 //* Default weight ?
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+
 public class Ring extends Item {
 
 	/**
