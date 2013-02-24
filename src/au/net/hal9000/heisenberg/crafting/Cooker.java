@@ -77,7 +77,7 @@ public class Cooker extends ItemContainer {
     }
 
     /**
-     * Add an Item to a particular index in the list of itemsAvailable
+     * Add an Item to a particular key in the list of itemsAvailable
      * 
      * @param key
      *            where to add Item
@@ -108,11 +108,13 @@ public class Cooker extends ItemContainer {
             return noSuchRequirement;
         }
 
-        // fulfils Requirement requirement
-        String reason = requirementItem.meetsRequirements(item);
-        if (reason != null) {
-            return reason;
+        // Does the Item fulfil the Requirement?
+        String rejectionReason = requirementItem.meetsRequirements(item);
+        if (rejectionReason != null) {
+            return rejectionReason;
         }
+        
+        // success
         this.add(item);
         ingredients.put(key, item);
         return null;
