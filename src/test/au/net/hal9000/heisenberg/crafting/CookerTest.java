@@ -34,6 +34,7 @@ public class CookerTest {
     }
 
     /**
+     * Magically create a Cookie. e.g. using only magic and time.
      * An example of common use - create an IItem.
      */
 

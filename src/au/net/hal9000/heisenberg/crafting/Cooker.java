@@ -12,8 +12,8 @@ import au.net.hal9000.heisenberg.units.Skill;
  * <br>
  * <h3>User process for Recipe:</h3><br>
  * <ol>
- * <li>Recipe requirements represented as a list of Requirement objects.
- * <li>For each requirement load a matching Item into the corresponding position
+ * <li>Recipe requirements are represented as a list of {@link Requirement} objects.
+ * <li>For each requirement, load a matching Item into the corresponding position
  * in the Cooker.
  * <li>Item objects that don't meet the requirements will be rejected by the
  * cooker.
