@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.itemCreator;
+package au.net.hal9000.heisenberg.itemcreator;
 
 import java.util.ArrayList;
 import javax.swing.event.TreeModelEvent;
