@@ -44,8 +44,7 @@ public class PersistenceTest {
                     + item.getTableId());
             item.setName("This is a " + itemClass + " Name");
             item.setDescription("This is a " + itemClass + " Description");
-            em.persist(item);
-            em.getTransaction().commit();
+             em.getTransaction().commit();
             long tableId = item.getTableId();
             System.out
                     .println("The " + itemClass + " tableId after=" + tableId);
