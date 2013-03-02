@@ -32,7 +32,7 @@ public interface IItem {
      * JPA requires a primary key.
      * @return the Id
      */
-    long getTableId();
+    long getJpaId();
 
     /**
      * Set the Table Id. <br>
@@ -40,7 +40,7 @@ public interface IItem {
      * @param id
      *            the Id to set
      */
-    void setTableId(long id);
+    void setJpaId(long id);
     /**
      * get the ID of the item.
      * We need to be ale to tell the difference between<br>

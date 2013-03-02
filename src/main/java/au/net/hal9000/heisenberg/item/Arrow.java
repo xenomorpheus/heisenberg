@@ -3,14 +3,14 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
+// import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+// @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
 public class Arrow extends Item implements Sharp{
     /**
 	 * 

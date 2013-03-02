@@ -40,17 +40,19 @@ public class PersistenceTest {
             // Create a new Item
             em.getTransaction().begin();
             Item item = Factory.createItem(itemClass);
-            System.out.println("The " + itemClass + " tableId before="
-                    + item.getTableId());
+//            System.out.println("The " + itemClass + " jpaID before="
+//                    + item.getJpaId());
             item.setName("This is a " + itemClass + " Name");
             item.setDescription("This is a " + itemClass + " Description");
-             em.getTransaction().commit();
-            long tableId = item.getTableId();
-            System.out
-                    .println("The " + itemClass + " tableId after=" + tableId);
+            
+            // Persist it
+            em.persist(item);
+            em.getTransaction().commit();
+            long jpaId = item.getJpaId();
+//            System.out.println("The " + itemClass + " jpaID after=" + jpaId);
 
             Query q = em.createQuery("select c from " + itemClass
-                    + " c where c.tableId = " + tableId);
+                    + " c where c.jpaId = " + jpaId);
             List<Item> itemList = q.getResultList();
             assertEquals("select count", 1, itemList.size());
             for (Item item2 : itemList) {

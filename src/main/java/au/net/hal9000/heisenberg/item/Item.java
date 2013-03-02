@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Column;
 
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -40,18 +41,29 @@ import au.net.hal9000.heisenberg.units.*;
  * An item may be repaired which will ...
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item implements IItem, Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
     // Initialise as many values as possible.
-    // tableId is used for JPA
-    @Id @GeneratedValue 
-    private long tableId;
+    /**
+     * The ID of the object. JPA doesn't care if we change this.
+     */
     // Note: Id is required so UI getIndexOfChild() will work
-    // when two objects have the same properties.    
+    // when two objects have the same properties.
+    @Column(name = "id")
     private UUID id = UUID.randomUUID();
+
+    /**
+     * Use by JPA.
+     */
+    @Id
+    @Column(name = "jpaid", nullable = false)
+    @GeneratedValue
+    private long jpaId;
+
+    @Column(name = "name")
     private String name = null;
     private String description = null;
     private float weightBase = 0;
@@ -112,7 +124,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         }
 
         // Properties
-        clone.setProperties((Properties)this.getProperties().clone());
+        clone.setProperties((Properties) this.getProperties().clone());
 
         // location is *NOT* cloned.
         return clone;
@@ -138,14 +150,14 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public long getTableId() {
-        return tableId;
+    public long getJpaId() {
+        return jpaId;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setTableId(final long pTableId) {
-        this.tableId = pTableId;
+    public void setJpaId(final long pJpaId) {
+        this.jpaId = pJpaId;
     }
 
     /** {@inheritDoc} */
@@ -159,9 +171,7 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     public void setId(final UUID pId) {
         this.id = pId;
     }
-    
-    
-    
+
     /** {@inheritDoc} */
     @Override
     public String getName() {
@@ -350,8 +360,8 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         if (temp != null) {
             str += "Description: " + temp + "\n";
         }
-        str += "Weight Base: " + this.getWeightBase() + "\n"
-                + "Volume Base: " + this.getVolumeBase() + "\n";
+        str += "Weight Base: " + this.getWeightBase() + "\n" + "Volume Base: "
+                + this.getVolumeBase() + "\n";
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
