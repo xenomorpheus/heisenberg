@@ -30,9 +30,7 @@ public class PersistenceTest {
         Vector<String> itemClasses = config.getItemClasses();
 
         final String PERSISTENCE_UNIT_NAME = "items";
-        EntityManagerFactory factory;
-
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
 
         for (String itemClass : itemClasses) {
