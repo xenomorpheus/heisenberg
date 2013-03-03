@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.*;
+import javax.swing.JMenu;
 import javax.swing.tree.TreePath;
 
 import nu.xom.ValidityException;
@@ -59,45 +60,94 @@ public class ItemCreator {
         frame.addWindowListener(new ExitListener());
         frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
 
+        // Add Panel
         JPanel addPanel = new JPanel();
 
         // A JComboBox of Items we can add
         Vector<String> itemClasses = config.getItemClasses();
-         itemClassesList = new JComboBox(itemClasses.toArray());
+        itemClassesList = new JComboBox(itemClasses.toArray());
         addPanel.add(itemClassesList);
 
         // The "Add" Button
         JButton addButton = new JButton("Add");
         // http://www.chka.de/swing/tree/DefaultTreeModel.html
-        addButton.addActionListener(new ActionListener() {
+        ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+
+                System.out.println("Selected: " + event.getActionCommand());
+
                 // TODO get from event
-                IItem selNode = (IItem) m_tree.getLastSelectedPathComponent();
-                if ((selNode != null) && !selNode.isLeaf()) {
-                    IItemContainer selContainer = (IItemContainer) selNode;
-                    // Add the desired item.
-                    // A list of Items that could be added.
-                    
-                    // TODO get from event
-                    String itemClass = itemClassesList.getSelectedItem().toString();
-                    IItem newNode = Factory.createItem(itemClass);
-                    model.insertNodeInto(newNode, selContainer,
-                            selContainer.getChildCount());
-                    IItem[] nodes = model.getPathToRoot(newNode);
-                    TreePath path = new TreePath(nodes);
-                    m_tree.scrollPathToVisible(path);
-                    m_tree.setSelectionPath(path);
-                    m_tree.startEditingAtPath(path);
+                String eventName = event.getActionCommand();
+                if ("Add".equals(eventName)) {
+                    IItem selNode = (IItem) m_tree
+                            .getLastSelectedPathComponent();
+                    if ((selNode != null) && !selNode.isLeaf()) {
+                        IItemContainer selContainer = (IItemContainer) selNode;
+                        // Add the desired item.
+                        // A list of Items that could be added.
+
+                        // TODO get from event
+                        String itemClass = itemClassesList.getSelectedItem()
+                                .toString();
+                        IItem newNode = Factory.createItem(itemClass);
+                        model.insertNodeInto(newNode, selContainer,
+                                selContainer.getChildCount());
+                        IItem[] nodes = model.getPathToRoot(newNode);
+                        TreePath path = new TreePath(nodes);
+                        m_tree.scrollPathToVisible(path);
+                        m_tree.setSelectionPath(path);
+                        m_tree.startEditingAtPath(path);
+                    }
                 }
             }
-        });
+
+        };
+        addButton.addActionListener(actionListener);
 
         addPanel.add(addButton);
-
         frame.getContentPane().add(addPanel, BorderLayout.SOUTH);
+
+        // Menu
+        JMenuBar jmb = getMenus(actionListener);
+        frame.setJMenuBar(jmb);
 
         frame.setSize(400, 600);
         frame.setVisible(true);
+    }
+
+    public static JMenuBar getMenus(ActionListener actionListener) {
+        JMenuBar menubar = new JMenuBar();
+        // File Menu
+        JMenu filemenu = new JMenu("File");
+        JMenuItem fileItem1 = new JMenuItem("New");
+        fileItem1.addActionListener(actionListener);
+        filemenu.add(fileItem1);
+        JMenuItem fileItem2 = new JMenuItem("Open");
+        fileItem2.addActionListener(actionListener);
+        filemenu.add(fileItem2);
+        JMenuItem fileItem3 = new JMenuItem("Close");
+        fileItem3.addActionListener(actionListener);
+        filemenu.add(fileItem3);
+        JMenuItem fileItem4 = new JMenuItem("Save");
+        fileItem4.addActionListener(actionListener);
+        filemenu.add(fileItem4);
+        menubar.add(filemenu);
+        // Edit Menu
+        JMenu editmenu = new JMenu("Edit");
+        JMenuItem editItem1 = new JMenuItem("Cut");
+        editItem1.addActionListener(actionListener);
+        editmenu.add(editItem1);
+        JMenuItem editItem2 = new JMenuItem("Copy");
+        editItem2.addActionListener(actionListener);
+        editmenu.add(editItem2);
+        JMenuItem editItem3 = new JMenuItem("Paste");
+        editItem3.addActionListener(actionListener);
+        editmenu.add(editItem3);
+        JMenuItem editItem4 = new JMenuItem("Insert");
+        editItem4.addActionListener(actionListener);
+        editmenu.add(editItem4);
+        menubar.add(editmenu);
+        return menubar;
     }
 
     public static void main(String[] args) {
