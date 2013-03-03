@@ -1,13 +1,20 @@
 package au.net.hal9000.heisenberg.itemcreator;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.*;
-import javax.swing.JMenu;
 import javax.swing.tree.TreePath;
 
 import nu.xom.ValidityException;
@@ -74,8 +81,6 @@ public class ItemCreator {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
 
-                System.out.println("Selected: " + event.getActionCommand());
-
                 // TODO get from event
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
@@ -99,8 +104,17 @@ public class ItemCreator {
                         m_tree.startEditingAtPath(path);
                     }
                 }
+                if ("Save".equals(eventName)) {
+                    final String PERSISTENCE_UNIT_NAME = "items";
+                    EntityManagerFactory factory = Persistence
+                            .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+                    EntityManager em = factory.createEntityManager();
+                    em.getTransaction().begin();
+                    em.persist(location);
+                    em.getTransaction().commit();
+                    em.close();
+                }
             }
-
         };
         addButton.addActionListener(actionListener);
 
