@@ -1,19 +1,16 @@
 package au.net.hal9000.heisenberg.itemcreator;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 
@@ -25,15 +22,15 @@ import au.net.hal9000.heisenberg.util.Configuration;
 
 public class ItemCreator {
     Configuration config = null;
-
     Location location = null;
+    EntityManager em = null;
 
     // Create a TreeModel object to represent our m_tree of files
     ItemTreeModel model = null;
     JTree m_tree = null;
     JComboBox itemClassesList = null;
 
-    public ItemCreator(Location pLocation) {
+    public ItemCreator() {
         // Load some config
         try {
             config = new Configuration("test/config/config.xml");
@@ -48,8 +45,16 @@ public class ItemCreator {
             e.printStackTrace();
         }
 
+        final String PERSISTENCE_UNIT_NAME = "items";
+        EntityManagerFactory factory = Persistence
+                .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = factory.createEntityManager();
+
         // The world
-        location = pLocation;
+        location = new Location("World");
+        location.setWeightMax(100000);
+        location.setVolumeMax(100000);
+
         // Create a TreeModel object to represent our m_tree of files
         model = new ItemTreeModel(location);
         m_tree = new JTree();
@@ -64,7 +69,12 @@ public class ItemCreator {
 
         // Display it all in a window and make the window appear
         JFrame frame = new JFrame("Item Creator");
-        frame.addWindowListener(new ExitListener());
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent event) {
+                exitProgram();
+            }
+        });
+
         frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
 
         // Add Panel
@@ -104,16 +114,27 @@ public class ItemCreator {
                         m_tree.startEditingAtPath(path);
                     }
                 }
+                if ("Demo".equals(eventName)) {
+                    location = null; // TODO free old world
+                    location = getDemoWorld();
+                    model = new ItemTreeModel(location);
+                    // Create a JTree and tell it to display our model
+                    m_tree.setModel(model);
+                    m_tree.setEditable(true);
+                    m_tree.setSelectionRow(0);
+                }
+                if ("Open".equals(eventName)) {
+                    location = null; // TODO free old world
+                }
                 if ("Save".equals(eventName)) {
-                    final String PERSISTENCE_UNIT_NAME = "items";
-                    EntityManagerFactory factory = Persistence
-                            .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-                    EntityManager em = factory.createEntityManager();
                     em.getTransaction().begin();
                     em.persist(location);
                     em.getTransaction().commit();
-                    em.close();
                 }
+                if ("Quit".equals(eventName)) {
+                    exitProgram();
+                }
+
             }
         };
         addButton.addActionListener(actionListener);
@@ -129,8 +150,21 @@ public class ItemCreator {
         frame.setVisible(true);
     }
 
+    public void exitProgram() {
+        em.close();
+        em = null;
+        System.out.println("End");
+        System.exit(0);
+    }
+
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
+        // File Menu
+        JMenu appemenu = new JMenu("ItemCreator");
+        JMenuItem appItem1 = new JMenuItem("Quit");
+        appItem1.addActionListener(actionListener);
+        appemenu.add(appItem1);
+        menubar.add(appemenu);
         // File Menu
         JMenu filemenu = new JMenu("File");
         JMenuItem fileItem1 = new JMenuItem("New");
@@ -145,6 +179,9 @@ public class ItemCreator {
         JMenuItem fileItem4 = new JMenuItem("Save");
         fileItem4.addActionListener(actionListener);
         filemenu.add(fileItem4);
+        JMenuItem fileItem5 = new JMenuItem("Demo");
+        fileItem5.addActionListener(actionListener);
+        filemenu.add(fileItem5);
         menubar.add(filemenu);
         // Edit Menu
         JMenu editmenu = new JMenu("Edit");
@@ -165,10 +202,10 @@ public class ItemCreator {
     }
 
     public static void main(String[] args) {
-        new ItemCreator(getWorld());
+        new ItemCreator();
     }
 
-    public static Location getWorld() {
+    public static Location getDemoWorld() {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(100000);
