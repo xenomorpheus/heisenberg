@@ -96,7 +96,10 @@ class ItemTreeModel implements TreeModel {
     // This method is only invoked by the JTree for editable trees.
     public void valueForPathChanged(TreePath path, Object newvalue) {
         // TODO add valueForPathChanged
-        System.out.println("valueForPathChanged");
+        System.out.println("valueForPathChanged: path="+path+"\nnewvalue="+newvalue);
+        // TODO How to change the value ?
+        // newvalue is the new string name.
+        // path contains the path to the object.
     }
 
     public void removeTreeModelListener(TreeModelListener l) {
@@ -144,11 +147,11 @@ class ItemTreeModel implements TreeModel {
         }
 
         public void treeNodesRemoved(TreeModelEvent e) {
-            System.out.println("Node Removed.");
+            System.out.println("treeNodesRemoved - Node Removed.");
         }
 
         public void treeStructureChanged(TreeModelEvent e) {
-            System.out.println("Node Changed.");
+            System.out.println("treeStructureChanged - Node Changed.");
         }
     }
 }

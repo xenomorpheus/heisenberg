@@ -23,7 +23,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 public class ItemCreator {
     Configuration config = null;
     Location location = null;
-    EntityManager em = null;
+    EntityManager entityManager = null;
 
     // Create a TreeModel object to represent our m_tree of files
     ItemTreeModel model = null;
@@ -48,7 +48,7 @@ public class ItemCreator {
         final String PERSISTENCE_UNIT_NAME = "items";
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        em = factory.createEntityManager();
+        entityManager = factory.createEntityManager();
 
         // The world
         location = new Location("World");
@@ -91,7 +91,7 @@ public class ItemCreator {
         ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
 
-                // TODO get from event
+                // TODO get from event. How?
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
                     IItem selNode = (IItem) m_tree
@@ -125,11 +125,13 @@ public class ItemCreator {
                 }
                 if ("Open".equals(eventName)) {
                     location = null; // TODO free old world
+                    // TODO load.
+                    // TODO Create a project object to contain details and a pointer to top location.
                 }
                 if ("Save".equals(eventName)) {
-                    em.getTransaction().begin();
-                    em.persist(location);
-                    em.getTransaction().commit();
+                    entityManager.getTransaction().begin();
+                    entityManager.persist(location);
+                    entityManager.getTransaction().commit();
                 }
                 if ("Quit".equals(eventName)) {
                     exitProgram();
@@ -151,8 +153,8 @@ public class ItemCreator {
     }
 
     public void exitProgram() {
-        em.close();
-        em = null;
+        entityManager.close();
+        entityManager = null;
         System.out.println("End");
         System.exit(0);
     }
