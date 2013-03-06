@@ -81,10 +81,12 @@ public class PersistenceTest {
         // Persist it
         em.getTransaction().begin();
         em.persist(bag);
+        em.persist(cookie1);
+        em.persist(cookie2);
         em.getTransaction().commit();
+        assertNotEquals(0L, bag.getJpaId());
         assertNotEquals(0L, cookie1.getJpaId());
         assertNotEquals(0L, cookie2.getJpaId());
-        assertNotEquals(0L, bag.getJpaId());
 
         em.close();
     }
@@ -170,9 +172,7 @@ public class PersistenceTest {
         em.getTransaction().begin();
         em.persist(loc);
         em.getTransaction().commit();
-        long jpaId = loc.getJpaId();
-        System.out.println("The loc jpaId=" + jpaId);
-
+        assertNotEquals(0L, loc.getJpaId());
         em.close();
     }
 

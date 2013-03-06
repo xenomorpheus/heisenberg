@@ -8,44 +8,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 public class ScabbardTest {
 
 	@Test
-	public void testClone() {
-		Scabbard original = new Scabbard();
-		Scabbard clone = null;
-		try {
-			clone = (Scabbard) original.clone();
-		} catch (CloneNotSupportedException e) {
-			fail(e.toString());
-		}
-
-		// x.clone() != x
-		// will be true, and that the expression:
-		assertTrue("x.clone() != x", clone != original);
-
-		// x.clone().getClass() == x.getClass()
-		// will be true, but these are not absolute requirements.
-		assertTrue("x.clone().getClass() == x.getClass()",
-				clone.getClass() == original.getClass());
-
-		// By convention, the returned object should be obtained by calling
-		// super.clone. If a class and all of its superclasses (except
-		// Object)
-		// obey this convention, it will be the case that
-		// x.clone().getClass() == x.getClass().
-		// Already tested above.
-
-        // Clones have different IDs
-		// While it is typically the case that:
-		// x.clone().equals(x)
-		// will be true, this is not an absolute requirement.
-		// assertTrue("x.clone().equals(x)", clone.equals(original));
-
-		// Class specific tests
-		// Make sure the cloning is deep, not shallow.
-		// e.g. test the non-mutable, non-primitives
-
-	}
-
-	@Test
 	public void testIsHumanoidClothing() {
 		Scabbard scabbard = new Scabbard();
 		assertTrue("is humanoid clothing", ItemProperty.isClothing(scabbard));
@@ -73,6 +35,10 @@ public class ScabbardTest {
 		}
 	}
 
+	// TODO Add test for adding non-sword, should fail.
+	// Perhaps consider volume so a penny would fit. 
+	
+	
 	@Test
 	public void testGetIndexOfChild() {
 		Scabbard scabbard = new Scabbard();

@@ -10,21 +10,6 @@ import au.net.hal9000.heisenberg.units.Currency;
  */
 public interface IItem {
 
-    /**
-     * @return the clone of the cloned item.
-     * @throws CloneNotSupportedException
-     */
-    public IItem clone() throws CloneNotSupportedException;
-
-    /**
-     * @param toClone
-     *            toClone the item to clone.
-     * @return the clone of the cloned item.
-     * @throws CloneNotSupportedException
-     */
-    // TODO Remove?
-    public IItem clone(IItem toClone) throws CloneNotSupportedException;
-
     // Getters and Setters
 
     /**

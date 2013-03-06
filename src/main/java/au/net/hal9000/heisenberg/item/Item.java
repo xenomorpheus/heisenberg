@@ -94,42 +94,6 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.description = pDescription;
     }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @throws CloneNotSupportedException
-     */
-    @Override
-    public IItem clone() throws CloneNotSupportedException {
-        Item clone = (Item) super.clone();
-        this.clone(clone);
-        return clone;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public IItem clone(IItem clone) throws CloneNotSupportedException {
-        // Clones must have a unique ID
-        clone.setId(UUID.randomUUID());
-
-        // Make sure the cloning is deep, not shallow.
-        // e.g. set the non-mutable, non-primitives
-
-        // valueBase
-        final Currency valueBase = this.getValueBase();
-        if (valueBase == null) {
-            clone.setValueBase(null);
-        } else {
-            clone.setValueBase(valueBase.clone());
-        }
-
-        // Properties
-        clone.setProperties((Properties) this.getProperties().clone());
-
-        // location is *NOT* cloned.
-        return clone;
-    }
-
     /** {@inheritDoc} */
     @Override
     public Properties getProperties() {

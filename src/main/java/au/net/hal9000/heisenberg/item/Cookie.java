@@ -37,12 +37,6 @@ public class Cookie extends Item {
 		super(pName, pDescription);
 	}
 
-	/** {@inheritDoc}  */
-	@Override
-	public Cookie clone(IItem toClone) throws CloneNotSupportedException {
-		return (Cookie) super.clone(toClone);
-	}
-
 	// Methods
 
 	// Static

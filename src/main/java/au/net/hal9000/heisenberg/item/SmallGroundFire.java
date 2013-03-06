@@ -10,42 +10,36 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class SmallGroundFire extends Item {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public SmallGroundFire() {
-		this("SmallGroundFire");
-	}
+    public SmallGroundFire() {
+        this("SmallGroundFire");
+    }
 
-	public SmallGroundFire(String pName) {
-		this(pName, "a small ground fire");
-	}
+    public SmallGroundFire(String pName) {
+        this(pName, "a small ground fire");
+    }
 
-	public SmallGroundFire(String pName, String pDescription) {
-		super(pName, pDescription);
-	}
+    public SmallGroundFire(String pName, String pDescription) {
+        super(pName, pDescription);
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public SmallGroundFire clone(IItem toClone) throws CloneNotSupportedException {
-		return (SmallGroundFire) super.clone(toClone);
-	}
+    // Methods
 
-	// Methods
-
-	// Static
-	public static SmallGroundFire thawFromFile(String filename) throws IOException,
-			ClassNotFoundException {
-		FileInputStream fis = new FileInputStream(filename);
-		ObjectInputStream in = new ObjectInputStream(fis);
-		SmallGroundFire newObj = (SmallGroundFire) in.readObject();
-		in.close();
-		return newObj;
-	}
+    // Static
+    public static SmallGroundFire thawFromFile(String filename)
+            throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(filename);
+        ObjectInputStream in = new ObjectInputStream(fis);
+        SmallGroundFire newObj = (SmallGroundFire) in.readObject();
+        in.close();
+        return newObj;
+    }
 
 }

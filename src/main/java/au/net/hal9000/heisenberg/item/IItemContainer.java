@@ -133,21 +133,6 @@ public interface IItemContainer extends IItem {
 	 */
 	public void beNot();
 
-    /**
-     * Clone this object.
-     * @return the clone
-     * @throws CloneNotSupportedException
-     */
-    // TODO public ItemContainer clone() throws CloneNotSupportedException;
-	/**
-	 * Clone this object.
-	 * @param toClone object to clone
-	 * @return the clone
-     * @throws CloneNotSupportedException
-	 */
-    // TODO Remove?
-	public ItemContainer clone(IItem toClone) throws CloneNotSupportedException;
-
 	/**
 	 * Used for tree display.
 	 * 

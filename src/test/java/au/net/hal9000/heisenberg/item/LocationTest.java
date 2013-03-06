@@ -121,65 +121,6 @@ public class LocationTest {
 	}
 
 	@Test
-	public void testClone() {
-		Location original = new Location("World");
-		Cookie c1 = new Cookie();
-		original.add(c1);
-		Location clone = null;
-		try {
-			clone = (Location) original.clone();
-		} catch (CloneNotSupportedException e) {
-			fail(e.toString());
-		}
-
-		// x.clone() != x
-		// will be true, and that the expression:
-		assertTrue("x.clone() != original", clone != original);
-
-		// x.clone().getClass() == x.getClass()
-		// will be true, but these are not absolute requirements.
-		assertTrue("x.clone().getClass() == original.getClass()",
-				clone.getClass() == original.getClass());
-
-		/*
-		 * By convention, the returned object should be obtained by calling
-		 * super.clone. If a class and all of its super-classes (except Object)
-		 * obey this convention, it will be the case that.
-		 * 
-		 * x.clone().get == x.getClass().
-		 * 
-		 * Already tested above.
-		 * 
-		 * While it is typically the case that: x.clone().equals(x) will be
-		 * true, this is not an absolute requirement.
-		 */
-        // Clones have different IDs
-		// Boolean bar = clone.equals(original);
-		// assertTrue("original.clone().equals(original)", bar);
-
-        // Clones have different IDs
-		// equals from the other direction
-		// Boolean foo = original.equals(clone);
-		//assertTrue("original.equals(clone)", foo);
-
-		// Class specific tests
-		// Make sure the cloning is deep, not shallow.
-		// e.g. test the non-mutable, non-primitives
-
-		// items
-		// Make a change to a non-primative, non-mutable
-		//
-		{
-		    // TODO ensure copy is deep.
-			String c1Name = c1.getName();
-            // TODO Ensure the cookie names are the same
-			c1.setName(c1.getName() + "fred");
-			// TODO Ensure the cookie names are different
-			c1.setName(c1Name);
-		}
-	}
-
-	@Test
 	public void testPersistenceShallow() {
 
 		File fileObj = new File(System.getProperty("java.io.tmpdir"),

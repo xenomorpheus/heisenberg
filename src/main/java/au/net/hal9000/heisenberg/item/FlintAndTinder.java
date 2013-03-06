@@ -30,12 +30,6 @@ public class FlintAndTinder extends Item {
 		super(pName, pDescription);
 	}
 
-	/** {@inheritDoc} */
-	@Override
-	public FlintAndTinder clone(IItem toClone) throws CloneNotSupportedException {
-		return (FlintAndTinder) super.clone(toClone);
-	}
-
 	// Methods
 
 	// Static

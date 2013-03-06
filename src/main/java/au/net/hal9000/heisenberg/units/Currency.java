@@ -184,8 +184,10 @@ public class Currency implements Serializable, Cloneable {
         Boolean isEqual = false;
         if (object instanceof Currency) {
             final Currency otherCurrency = (Currency) object;
-            isEqual = (pp == otherCurrency.getPp()) && (gp == otherCurrency.getGp())
-                    && (sp == otherCurrency.getSp()) && (cp == otherCurrency.getCp());
+            isEqual = (pp == otherCurrency.getPp())
+                    && (gp == otherCurrency.getGp())
+                    && (sp == otherCurrency.getSp())
+                    && (cp == otherCurrency.getCp());
         }
         return isEqual;
     }

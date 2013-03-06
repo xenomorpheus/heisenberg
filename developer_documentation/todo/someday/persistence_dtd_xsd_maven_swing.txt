@@ -25,4 +25,4 @@ satisfying/obtaining/packaging dependencies. Our apps also use Spring to set up 
 Cheers, Ads
 
 --
-Adam Da
+Adam Day

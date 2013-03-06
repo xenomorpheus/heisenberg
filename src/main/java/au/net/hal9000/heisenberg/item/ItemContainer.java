@@ -300,35 +300,6 @@ public abstract class ItemContainer extends Item implements IItemContainer,
         super.beNot();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public ItemContainer clone(IItem toClone) throws CloneNotSupportedException {
-        ItemContainer clone = (ItemContainer) super.clone(toClone);
-
-        // Make sure the cloning is deep, not shallow.
-        // e.g. set the non-mutable, non-primitives
-
-        // contents
-        Vector<IItem> contents = this.getContents();
-        if (contents == null) {
-            clone.setContents(null);
-        } else {
-            Vector<IItem> cloneContents = new Vector<IItem>();
-            for (IItem item : contents) {
-
-                try {
-                    cloneContents.add(item.clone());
-                } catch (CloneNotSupportedException e) {
-                    throw new RuntimeException("clone() failure");
-                }
-            }
-            clone.setContents(cloneContents);
-        }
-
-        // location is *NOT* cloned.
-        return clone;
-    }
-
     /**
      * Shallow copy properties from one object to another.
      * 

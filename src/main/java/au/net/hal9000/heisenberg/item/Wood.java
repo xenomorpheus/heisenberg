@@ -11,12 +11,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 
-
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Wood extends Item implements SplitByWeight {
     /**
 	 * 
@@ -35,12 +34,6 @@ public class Wood extends Item implements SplitByWeight {
         super(pName, pDescription);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Wood clone(IItem toClone) throws CloneNotSupportedException {
-        return (Wood) super.clone(toClone);
-    }
-
     // Methods
 
     // Static
@@ -56,7 +49,7 @@ public class Wood extends Item implements SplitByWeight {
     /** {@inheritDoc} */
     @Override
     public Wood splitByWeight(float newItemWeight) {
-        return (Wood)ItemSplitByWeight.splitByWeight(this, newItemWeight);
+        return (Wood) ItemSplitByWeight.splitByWeight(this, newItemWeight);
     }
 
 }
