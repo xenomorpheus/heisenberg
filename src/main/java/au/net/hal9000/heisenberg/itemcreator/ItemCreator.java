@@ -94,20 +94,20 @@ public class ItemCreator {
                 // TODO get from event. How?
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
-                    IItem selNode = (IItem) m_tree
+                    Item selNode = (Item) m_tree
                             .getLastSelectedPathComponent();
                     if ((selNode != null) && !selNode.isLeaf()) {
-                        IItemContainer selContainer = (IItemContainer) selNode;
+                        ItemContainer selContainer = (ItemContainer) selNode;
                         // Add the desired item.
                         // A list of Items that could be added.
 
                         // TODO get from event
                         String itemClass = itemClassesList.getSelectedItem()
                                 .toString();
-                        IItem newNode = Factory.createItem(itemClass);
+                        Item newNode = Factory.createItem(itemClass);
                         model.insertNodeInto(newNode, selContainer,
                                 selContainer.getChildCount());
-                        IItem[] nodes = model.getPathToRoot(newNode);
+                        Item[] nodes = model.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
                         m_tree.scrollPathToVisible(path);
                         m_tree.setSelectionPath(path);

@@ -86,7 +86,7 @@ public class ItemSearchMagicalTest {
 			Box box = new Box();
 			BagOfHolding boh = new BagOfHolding(1);
 			Cookie cookie = new Cookie();
-			Vector<IItem> container = new Vector<IItem>();
+			Vector<Item> container = new Vector<Item>();
 			container.add(box);
 			container.add(boh);
 			container.add(cookie);

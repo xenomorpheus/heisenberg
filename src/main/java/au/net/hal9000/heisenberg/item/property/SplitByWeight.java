@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import au.net.hal9000.heisenberg.item.IItem;
+import au.net.hal9000.heisenberg.item.Item;
 
 /**
  * Can this item be split into smaller items? e.g water, flour, sand, pile of
@@ -16,9 +16,9 @@ import au.net.hal9000.heisenberg.item.IItem;
 public interface SplitByWeight {
     
     /**
-     * Split the current IItem into two.
-     * @param newItemWeight the amount to carve off the original IItem.
-     * @return the carved off new IItem.
+     * Split the current Item into two.
+     * @param newItemWeight the amount to carve off the original Item.
+     * @return the carved off new Item.
      */
-    public IItem splitByWeight(float newItemWeight);
+    public Item splitByWeight(float newItemWeight);
 }

@@ -1,11 +1,11 @@
 package au.net.hal9000.heisenberg.util;
 
 import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.IItem;
+import au.net.hal9000.heisenberg.item.Item;
 
 public abstract class ItemSplitByWeight {
 
-    public static IItem splitByWeight(IItem item, float newItemWeight) {
+    public static Item splitByWeight(Item item, float newItemWeight) {
         if (newItemWeight <= 0) {
             throw new IllegalArgumentException(
                     "New weight must be strictly positive");
@@ -19,7 +19,7 @@ public abstract class ItemSplitByWeight {
         }
 
         // Create new Item
-        IItem newItem = Factory.createItem(item.getClass().getSimpleName());
+        Item newItem = Factory.createItem(item.getClass().getSimpleName());
         // Split old item by weight, volume, etc.
         newItem.setWeightBase(newItemWeight);
         float factor = newItemWeight / oldItemWeight;

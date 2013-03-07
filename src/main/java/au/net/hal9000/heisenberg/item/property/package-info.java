@@ -1,6 +1,6 @@
 /**
 
-Properties of IItems that appear in the world. <br>
+Properties of Items that appear in the world. <br>
 e.g. magical, living, sharp, food for humanoids.
 
 @author Mike Bruins

@@ -53,7 +53,7 @@ public abstract class Humanoid extends PcRace {
      * @param pFood
      * @throws ExceptionInvalidType
      */
-    public void eat(IItem pFood) throws ExceptionInvalidType {
+    public void eat(Item pFood) throws ExceptionInvalidType {
         if (!ItemProperty.isHumanoidFood(pFood)) {
             throw new ExceptionInvalidType(this.getName() + " can't eat "
                     + pFood.getName());
@@ -67,7 +67,7 @@ public abstract class Humanoid extends PcRace {
      * @param item
      * @throws ExceptionInvalidType
      */
-    public void add(IItem item) throws ExceptionInvalidType {
+    public void add(Item item) throws ExceptionInvalidType {
         if (!ItemProperty.isClothing(item)) {
             throw new ExceptionInvalidType(this.getName() + " can't wear "
                     + item.getName());
@@ -140,7 +140,7 @@ public abstract class Humanoid extends PcRace {
 
     /** {@inheritDoc} */
     @Override
-    public IItem getChild(int index) {
+    public Item getChild(int index) {
         // index is zero offset.
         // head
         if (index == 0) {
@@ -170,7 +170,7 @@ public abstract class Humanoid extends PcRace {
 
     /** {@inheritDoc} */
     @Override
-    public int getIndexOfChild(IItem child) {
+    public int getIndexOfChild(Item child) {
         // TODO getIndexOfChild
         System.out.println("TODO Humanoid getIndexOfChild");
 

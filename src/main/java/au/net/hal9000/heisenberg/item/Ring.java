@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
-//A ring is an IItem except:
+//A ring is an Item except:
 //* Default description is "small metallic ring".
 //* Default value is 5gp ?
 //* Default weight ?

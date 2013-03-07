@@ -77,8 +77,6 @@ public class Torch extends Item implements LightSource {
     }
 
     // TODO rename / remove
-    /** {@inheritDoc} */
-    //@Override
     public String getDescription2() {
         String full_desc;
 

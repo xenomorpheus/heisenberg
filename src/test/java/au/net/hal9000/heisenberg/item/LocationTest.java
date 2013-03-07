@@ -8,7 +8,6 @@ import java.util.Vector;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.IItem;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.exception.*;
 
@@ -32,7 +31,7 @@ public class LocationTest {
 			Location location = new Location("World");
 			location.setWeightMax(weightMax);
 			location.setVolumeMax(volumeMax);
-			// IItem
+			// Item
 			Cookie i = new Cookie();
 			// This should just fit
 			i.setVolumeBase(volumeMax);
@@ -94,7 +93,7 @@ public class LocationTest {
 		Cookie c1 = new Cookie();
 		Cookie c2 = new Cookie();
 		Cookie c3 = new Cookie();
-		Vector<IItem> items = new Vector<IItem>();
+		Vector<Item> items = new Vector<Item>();
 		items.add(c1);
 		items.add(c2);
 		items.add(c3);

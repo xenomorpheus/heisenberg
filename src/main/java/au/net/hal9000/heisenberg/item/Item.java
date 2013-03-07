@@ -40,9 +40,17 @@ import au.net.hal9000.heisenberg.units.*;
  * An item may be damaged by acid which will...
  * An item may be repaired which will ...
  */
+/**
+ * @author bruins
+ *
+ */
+/**
+ * @author bruins
+ * 
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Item implements IItem, Serializable, Cloneable {
+public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -62,20 +70,18 @@ public abstract class Item implements IItem, Serializable, Cloneable {
     @Column(name = "jpaid", nullable = false)
     @GeneratedValue
     private long jpaId;
-
-    @Column(name = "name")
-    private String name = null;
-    private String description = null;
+    private Properties properties = new Properties();
     private float weightBase = 0;
     private float volumeBase = 0;
     private Currency valueBase = new Currency();
-    private IItemContainer location = null;
+    private String name = null;
+    private String description = null;
+    private ItemContainer location = null;
     private float hitPoints = 0F;
     /** Who owns this item. null means no-one. */
     private Item owner = null;
-    private Properties properties = new Properties();
 
-    // Class methods
+    // Constructors
     public Item() {
         super();
         ItemProperty.setMagical(this, false);
@@ -94,119 +100,185 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.description = pDescription;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Properties getProperties() {
-        return properties;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
-
-    // static methods
-
-    // instance methods
-
     // Getters and Setters
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * get the Table ID of the item.<br>
+     * JPA requires a primary key.
+     * 
+     * @return the Id
+     */
     public long getJpaId() {
         return jpaId;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the Table Id. <br>
+     * JPA requires a primary key.
+     * 
+     * @param pJpaId
+     *            the Id to set
+     */
     public void setJpaId(final long pJpaId) {
         this.jpaId = pJpaId;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * get the ID of the item. We need to be ale to tell the difference between<br>
+     * two items with the same properties.
+     * 
+     * @return the Id
+     */
     public UUID getId() {
         return id;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the Id We need to be ale to tell the difference between<br>
+     * two items with the same properties.<br>
+     * 
+     * @param pId
+     *            the Id to set
+     */
     public void setId(final UUID pId) {
         this.id = pId;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getName() {
-        return name;
+    // property related
+    /**
+     * @return the properties - A set of key/value pairs that don't warrant real
+     *         setters and getters.
+     */
+    public Properties getProperties() {
+        return properties;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setName(final String pName) {
-        if (pName == null) {
-            throw new IllegalArgumentException("Not null");
-        }
-        this.name = pName;
+    /**
+     * 
+     * @param properties
+     *            set the properties object. A set of key/value pairs that don't
+     *            warrant real setters and getters.
+     */
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public String getDescription() {
-        return description;
+    /**
+     * Get a property
+     * 
+     * @param key
+     *            key name
+     * @return the value
+     */
+    public Object getProperty(String key) {
+        return properties.get(key);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setDescription(final String pDescription) {
-        this.description = pDescription;
+    /**
+     * Set a property
+     * 
+     * @param key
+     *            key name
+     * @param value
+     *            the value to set
+     */
+    public void setProperty(String key, Object value) {
+        properties.put(key, value);
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Remove a property
+     * 
+     * @param key
+     *            key name
+     */
+    public void removeProperty(String key) {
+        properties.remove(key);
+    }
+
+    // weight related
+
+    /**
+     * The total weight. For simple items the weight is the weightBase. Will be
+     * overridden by collections.
+     * 
+     * @return the total weight
+     */
+    public float getWeight() {
+        return weightBase;
+    }
+
+    /**
+     * @return weight before addition of other items such as those carried
+     */
     public float getWeightBase() {
         return weightBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @param baseWeight
+     *            weight before addition of other items such as those carried.
+     */
     public void setWeightBase(final float baseWeight) {
         this.weightBase = baseWeight;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    // volume related
+
+    /**
+     * For simple items the weight is the weightBase. Will be overridden by
+     * collections
+     * 
+     * @return the amount of 3D space that this item occupies.
+     */
+
     public float getVolume() {
         return volumeBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * volume before addition of other items such as those carried.
+     * 
+     * @return the volume that this item occupies without any contained items.
+     */
     public float getVolumeBase() {
         return volumeBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the volume before addition of other items such as those carried.
+     * 
+     * @param volumeBase
+     */
     public void setVolumeBase(float volumeBase) {
         this.volumeBase = volumeBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * value before addition of other items such as those carried.
+     * 
+     * @return The value before any contained items.
+     */
     public Currency getValueBase() {
         return valueBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * For simple items the value is the valueBase. Will be overridden by
+     * collections
+     * 
+     * @return the total value including contained items.
+     */
     public Currency getValue() {
         return valueBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * value before addition of other items such as those carried.
+     * 
+     * @param pValueBase
+     *            The value before any contained items.
+     */
     public void setValueBase(final Currency pValueBase) {
         if (pValueBase == null) {
             throw new IllegalArgumentException("Not null");
@@ -214,70 +286,103 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         this.valueBase = pValueBase;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public IItemContainer getLocation() {
+    /**
+     * Get the current location.
+     * 
+     * @return the current location {@link ItemContainer}.
+     */
+    public ItemContainer getLocation() {
         return this.location;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setLocation(IItemContainer location) {
+    /**
+     * Set the current location.
+     * 
+     * @param location
+     *            the new location {@link ItemContainer}.
+     */
+    public void setLocation(ItemContainer location) {
         this.location = location;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @return the structural indegrity / health.
+     */
     public float getHitPoints() {
         return hitPoints;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @param hitPoints
+     *            the structural indegrity / health.
+     */
     public void setHitPoints(float hitPoints) {
         this.hitPoints = hitPoints;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /** @return The owner of this item */
     public Item getOwner() {
         return owner;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setOwner(IItem owner) {
+    /**
+     * @param owner
+     *            set the owner of this item
+     */
+    public void setOwner(Item owner) {
         this.owner = (Item) owner;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Object getProperty(String key) {
-        return properties.get(key);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setProperty(String key, Object value) {
-        properties.put(key, value);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void removeProperty(String key) {
-        properties.remove(key);
     }
 
     // misc methods
 
-    /** {@inheritDoc} */
-    @Override
-    public float getWeight() {
-        return weightBase;
+    /**
+     * get the name of the item.
+     * 
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the name
+     * 
+     * @param pName
+     *            the name to set
+     */
+    public void setName(final String pName) {
+        if (pName == null) {
+            throw new IllegalArgumentException("Not null");
+        }
+        this.name = pName;
+    }
+
+    /**
+     * Get the description
+     * 
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set the description
+     * 
+     * @param pDescription
+     *            the description
+     */
+    public void setDescription(final String pDescription) {
+        this.description = pDescription;
+    }
+
+    /**
+     * Return true iff items are equal.
+     * 
+     * @param other
+     *            other item
+     * @return true iff items are equal.
+     */
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -292,26 +397,33 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         return id.equals(otherItem.getId());
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Attempt to unlink the item from everything so that it can be garbage
+     * collected. Won't work if anything is referencing this item.
+     */
     public void beNot() {
         // TODO - Help Required - How do I delete an object that
         // may be referenced by other objects?
         // Perhaps listeners on the containers?
-        IItemContainer location = (IItemContainer) this.getLocation();
+        ItemContainer location = (ItemContainer) this.getLocation();
         if (location != null) {
             location.remove(this);
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @return A short identifying string. e.g. 'Cookie', 'John Smith'
+     * 
+     */
+
     public String toString() {
+        // TODO Make this lower case.
         return this.getClass().getSimpleName();
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @return A description. e.g. 'A lit candle'
+     */
     public String detailedDescription() {
         String str = new String();
         String temp;
@@ -331,16 +443,14 @@ public abstract class Item implements IItem, Serializable, Cloneable {
         if (valueBase != null) {
             str += "Value Base: " + valueBase + "\n";
         }
-        IItemContainer location = this.getLocation();
+        ItemContainer location = this.getLocation();
         if (location != null) {
             str += "Location: " + location.getName() + "\n";
         }
         return str;
     }
 
-    // Find items that match the criteria
-    /** {@inheritDoc} */
-    @Override
+    /** Find items that match the criteria */
     public void accept(ItemVisitor visitor) {
         visitor.visit(this);
     }
@@ -368,8 +478,11 @@ public abstract class Item implements IItem, Serializable, Cloneable {
 
     // TODO thawFormFile
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * This is used for tree traversal.
+     * 
+     * @return True unless this Item has child Items.<br>
+     */
     public boolean isLeaf() {
         return true;
     }

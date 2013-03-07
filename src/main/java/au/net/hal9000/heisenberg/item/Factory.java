@@ -8,23 +8,23 @@ public class Factory {
     static String packageName = Factory.class.getPackage().getName();
 
     /**
-     * Create a new IItem of the specified type.
+     * Create a new Item of the specified type.
      * 
      * @param type
-     *            the type of IItem to create.
-     * @return the new IItem.
+     *            the type of Item to create.
+     * @return the new Item.
      */
     static public Item createItem(String type) {
         return createItem(type, null);
     }
 
     /**
-     * Create a new IItem of the specified type.
+     * Create a new Item of the specified type.
      * 
      * @param type
-     *            the type of IItem to create.
+     *            the type of Item to create.
      * @param arguments
-     * @return the new IItem.
+     * @return the new Item.
      */
     static public Item createItem(String type, Object[] arguments) {
         try {
@@ -87,13 +87,13 @@ public class Factory {
     }
 
     /**
-     * Create a new IItem of the specified type.
+     * Create a new Item of the specified type.
      * 
      * @param type
-     *            the type of IItem to create.
-     * @return the new IItem.
+     *            the type of Item to create.
+     * @return the new Item.
      */
-    static public boolean instanceOf(String type, IItem item) {
+    static public boolean instanceOf(String type, Item item) {
         try {
             Class<?> itemClass = Class.forName(packageName + "." + type);
             return itemClass.isInstance(item);

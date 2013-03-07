@@ -34,7 +34,7 @@ public class BagTest {
 	}
 
 	// Sharp items throw ExceptionInvalidType
-	// IItem's location remains unchanged.
+	// Item's location remains unchanged.
 	@Test
 	public void testAddSharpRupture() {
 		Sword sword = new Sword();

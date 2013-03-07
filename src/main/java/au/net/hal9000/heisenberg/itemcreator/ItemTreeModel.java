@@ -13,12 +13,12 @@ import au.net.hal9000.heisenberg.item.*;
  **/
 class ItemTreeModel implements TreeModel {
     // We specify the root directory when we create the model.
-    protected IItem root;
+    protected Item root;
 
     // prepare fix issue 1: instantiate the notification support
     private TreeModelSupport support;
 
-    public ItemTreeModel(IItem root) {
+    public ItemTreeModel(Item root) {
         this.root = root;
         support = new TreeModelSupport(this);
     }
@@ -30,7 +30,7 @@ class ItemTreeModel implements TreeModel {
 
     // Tell JTree whether an object in the m_tree is a leaf or not
     public boolean isLeaf(Object node) {
-        return ((IItem) node).isLeaf();
+        return ((Item) node).isLeaf();
     }
 
     // fix issue 1: accept listener
@@ -51,7 +51,7 @@ class ItemTreeModel implements TreeModel {
 
     // fix issue 2: notify the listeners on inserts
     @SuppressWarnings("deprecation")
-    public void insertNodeInto(final IItem newNode, final IItemContainer selNode,
+    public void insertNodeInto(final Item newNode, final ItemContainer selNode,
             final int childCount) {
         selNode.add(childCount, (Item)newNode);
         newNode.setLocation(selNode);
@@ -67,30 +67,30 @@ class ItemTreeModel implements TreeModel {
      * @return an array of nodes starting at the root
      */
 
-    public IItem[] getPathToRoot(IItem node) {
-        ArrayList<IItem> itemArrayList = new ArrayList<IItem>();
+    public Item[] getPathToRoot(Item node) {
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
         while ((node != null)) {
             itemArrayList.add(0, node);
             node = node.getLocation();
         }
-        return itemArrayList.toArray(new IItem[itemArrayList.size()]);
+        return itemArrayList.toArray(new Item[itemArrayList.size()]);
     }
 
     // Tell JTree how many children a node has
     public int getChildCount(Object node) {
-        return ((IItemContainer) node).getChildCount();
+        return ((ItemContainer) node).getChildCount();
     }
 
     // Fetch any numbered child of a node for the JTree.
-    // Our model returns IItem objects for all nodes in the m_tree. The
-    // JTree displays these by calling the IItem.toString() method.
+    // Our model returns Item objects for all nodes in the m_tree. The
+    // JTree displays these by calling the Item.toString() method.
     public Object getChild(Object parent, int index) {
-        return ((IItemContainer) parent).getChild(index);
+        return ((ItemContainer) parent).getChild(index);
     }
 
     // Figure out a child's position in its parent node.
     public int getIndexOfChild(Object parent, Object child) {
-        return ((IItemContainer) parent).getIndexOfChild((IItem) child);
+        return ((ItemContainer) parent).getIndexOfChild((Item) child);
     }
 
     // This method is only invoked by the JTree for editable trees.
@@ -137,10 +137,10 @@ class ItemTreeModel implements TreeModel {
          * @param selNode the location for the new node.
          * @param childCount the index number in the selNode where the newNode is.
          */
-        public void insertNodeInto(final IItem newNode, final IItem selNode,
+        public void insertNodeInto(final Item newNode, final Item selNode,
                 final int childCount) {
-            if (selNode instanceof IItemContainer) {
-                ((IItemContainer) selNode).add(childCount, (Item) newNode);
+            if (selNode instanceof ItemContainer) {
+                ((ItemContainer) selNode).add(childCount, (Item) newNode);
             } else {
                 System.out.println("bad parent container:" + selNode);
             }

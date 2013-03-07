@@ -7,72 +7,104 @@ import java.util.Vector;
 import au.net.hal9000.heisenberg.item.exception.*;
 import au.net.hal9000.heisenberg.units.*;
 
-public abstract class ItemContainer extends Item implements IItemContainer,
-        Serializable {
+public abstract class ItemContainer extends Item implements Serializable {
     /**
-	 * 
-	 */
+     * 
+     */
     private static final long serialVersionUID = 1L;
     private float weightMax = 0;
     private float volumeMax = 0;
-    private Vector<IItem> contents = new Vector<IItem>();
+    private Vector<Item> contents = new Vector<Item>();
 
     public ItemContainer(String string) {
         super(string);
     }
 
     // Getters and Setters
-    /** {@inheritDoc} */
-    @Override
-    public Vector<IItem> getContents() {
+    /**
+     * Get the contents
+     * 
+     * @return the contents
+     */
+    public Vector<Item> getContents() {
         return contents;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void setContents(Vector<IItem> contents) {
+    /**
+     * Set the contents
+     * 
+     * @param contents
+     */
+    public void setContents(Vector<Item> contents) {
         this.contents = contents;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * @return The max weight that can be carried.
+     */
     public float getWeightMax() {
         return weightMax;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the max weight that may be carried.
+     * 
+     * @param weightMax
+     *            The max weight that can be carried.
+     */
     public void setWeightMax(float weightMax) {
         this.weightMax = weightMax;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * get the maximum volume that this item can hold.
+     * 
+     * @return the maximum volume that this item can hold.
+     */
     public float getVolumeMax() {
         return volumeMax;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the maximum volume that this item can hold.
+     * 
+     * @param volumeMax
+     *            the maximum volume that this item can hold.
+     */
     public void setVolumeMax(float volumeMax) {
         this.volumeMax = volumeMax;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean contains(IItem item) {
+    /**
+     * Does the Item exist in the ItemContainer ?
+     * 
+     * @param item
+     *            Item looking for
+     * @return true iff found
+     */
+    public boolean contains(Item item) {
         return contents.contains(item);
     }
 
     // Misc
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Used for tree display.
+     * 
+     * We aren't a leaf as we can hold items.
+     * 
+     * @return false
+     */
     public boolean isLeaf() {
         return false;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Used for tree display.
+     * 
+     * Return the number of first-level items this in this container.
+     * 
+     * @return the number of children.
+     */
     public int getChildCount() {
         int count = 0;
         if (contents != null) {
@@ -81,42 +113,60 @@ public abstract class ItemContainer extends Item implements IItemContainer,
         return count;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public IItem getChild(final int index) {
+    /**
+     * Used for tree display.
+     * 
+     * @param index
+     *            get child with with this index in list of items.
+     * @return the item requested.
+     */
+    public Item getChild(final int index) {
         return contents.get(index);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public int getIndexOfChild(final IItem child) {
+    /**
+     * Used for tree display etc. <br>
+     * 0-based index, -1 for missing.
+     * 
+     * @param child
+     * @return the index of the child item.
+     */
+    public int getIndexOfChild(final Item child) {
         return contents.indexOf(child);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Vector<IItem> getChildren() {
+    /**
+     * 
+     * @return get all the first level contents
+     */
+    public Vector<Item> getChildren() {
         return contents;
     }
 
-    /** Total weight, including contents. */
-    @Override
+    /**
+     * 
+     * @return Total weight, including contents.
+     */
     public float getWeight() {
         float total = this.getWeightBase();
         total += this.getContentsWeight();
         return total;
     }
 
-    /** Total volume, including contents. */
-    @Override
+    /**
+     * 
+     * @return Total volume, including contents.
+     */
     public float getVolume() {
         float total = this.getVolumeBase();
         total += this.getContentsVolume();
         return total;
     }
 
-    /** Total value, including contents. */
-    @Override
+    /**
+     * 
+     * @return Total value, including contents.
+     */
     public Currency getValue() {
         Currency total = new Currency(this.getValueBase());
         total.add(this.getContentsValue());
@@ -124,21 +174,24 @@ public abstract class ItemContainer extends Item implements IItemContainer,
     }
 
     /**
-     * {@inheritDoc}
+     * Add the Item to the contents.
+     * 
+     * @param item
      */
-    @Override
-    public void add(IItem item) {
+    public void add(Item item) {
         add(contents.size(), item);
     }
 
     /**
-     * {@inheritDoc}
+     * Add the Item to the contents.
      * 
+     * @deprecated use transfer. add() is only for testing.
+     * @param index
+     * @param item
      * @deprecated use transfer instead
      */
-    @Override
-    public void add(int index, IItem item) {
-        IItemContainer itemCurrentContainer = item.getLocation();
+    public void add(int index, Item item) {
+        ItemContainer itemCurrentContainer = item.getLocation();
         if (itemCurrentContainer != null) {
             if (this.equals(itemCurrentContainer)) {
                 // TODO Move to assert or log
@@ -174,7 +227,7 @@ public abstract class ItemContainer extends Item implements IItemContainer,
             }
         }
         // remove item from existing location
-        IItemContainer currentLocation = item.getLocation();
+        ItemContainer currentLocation = item.getLocation();
         if (currentLocation != null) {
             currentLocation.remove(item);
         }
@@ -184,10 +237,13 @@ public abstract class ItemContainer extends Item implements IItemContainer,
         item.setLocation(this);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void add(Vector<IItem> items) {
-        for (IItem item : items) {
+    /**
+     * Add multiple items to the contents.
+     * 
+     * @param items
+     */
+    public void add(Vector<Item> items) {
+        for (Item item : items) {
             this.add(item);
         }
     }
@@ -198,7 +254,7 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      * @return the top item in the contents
      * @throws EmptyStackException
      */
-    public IItem pop() throws EmptyStackException {
+    public Item pop() throws EmptyStackException {
         return contents.remove(contents.size() - 1);
     }
 
@@ -208,7 +264,7 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      * @return The top item.
      * @throws EmptyStackException
      */
-    public IItem peek() throws EmptyStackException {
+    public Item peek() throws EmptyStackException {
         return contents.lastElement();
     }
 
@@ -219,7 +275,7 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      */
     public void empty(ItemContainer newLocation) {
         while (!contents.isEmpty()) {
-            IItem item = contents.remove(0);
+            Item item = contents.remove(0);
             newLocation.add(item);
         }
     }
@@ -243,8 +299,8 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      */
     private float getContentsWeight() {
         float total = 0;
-        for (IItem iItem : getContents()) {
-            total += iItem.getWeight();
+        for (Item Item : getContents()) {
+            total += Item.getWeight();
         }
         return total;
     }
@@ -257,8 +313,8 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      */
     private float getContentsVolume() {
         float total = 0;
-        for (IItem iItem : getContents()) {
-            total += iItem.getVolume();
+        for (Item Item : getContents()) {
+            total += Item.getVolume();
         }
         return total;
     }
@@ -271,8 +327,8 @@ public abstract class ItemContainer extends Item implements IItemContainer,
      */
     private Currency getContentsValue() {
         Currency total = new Currency();
-        for (IItem iItem : getContents()) {
-            total.add(iItem.getValue());
+        for (Item Item : getContents()) {
+            total.add(Item.getValue());
         }
         return total;
     }
@@ -281,20 +337,21 @@ public abstract class ItemContainer extends Item implements IItemContainer,
     // Find contents that match the criteria
     public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
-        for (IItem iItem : getContents()) {
-            visitor.visit(iItem);
+        for (Item Item : getContents()) {
+            visitor.visit(Item);
         }
         // Get super to do the rest.
         super.accept(visitor);
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Destroy this object.
+     */
     public void beNot() {
         // Call beNot on the Items directly declared in this class.
         while (!contents.isEmpty()) {
-            IItem iItem = contents.remove(0);
-            iItem.beNot();
+            Item Item = contents.remove(0);
+            Item.beNot();
         }
         // Get super to do the rest.
         super.beNot();
@@ -313,21 +370,31 @@ public abstract class ItemContainer extends Item implements IItemContainer,
         setContents(container.getContents());
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void remove(IItem item) {
+    /**
+     * Remove the Item from the container.
+     * 
+     * @param item
+     *            the time to remove.
+     */
+    public void remove(Item item) {
         contents.remove(item);
         item.setLocation(null);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void relocateItem(IItem item, IItemContainer location) {
-        IItemContainer losingContainer = item.getLocation();
+    /**
+     * Relocate the Item to the new
+     * 
+     * @param item
+     *            item to relocate.
+     * @param container
+     *            new container.
+     */
+    public void relocateItem(Item item, ItemContainer container) {
+        ItemContainer losingContainer = item.getLocation();
         if (losingContainer != null) {
             losingContainer.remove(item);
         }
-        location.add(item);
+        container.add(item);
     }
 
 }

@@ -94,13 +94,13 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
     // take the item out of the bag and place
     // at newLocation
-    public IItem getItem(IItem iItem, IItemContainer newLocation) {
-        Vector<IItem> items = this.getContents();
-        if (!items.removeElement(iItem)) {
+    public Item getItem(Item Item, ItemContainer newLocation) {
+        Vector<Item> items = this.getContents();
+        if (!items.removeElement(Item)) {
             throw new ExceptionCantRemove("remove failed");
         }
-        iItem.setLocation(newLocation);
-        return iItem;
+        Item.setLocation(newLocation);
+        return Item;
     }
 
     // Magic

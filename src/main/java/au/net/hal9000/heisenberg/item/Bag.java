@@ -40,7 +40,7 @@ public class Bag extends Box {
 
     /** {@inheritDoc} */
 	@Override
-    public void add(final IItem item) throws ExceptionTooHeavy, ExceptionTooBig,
+    public void add(final Item item) throws ExceptionTooHeavy, ExceptionTooBig,
             ExceptionInvalidType {
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {

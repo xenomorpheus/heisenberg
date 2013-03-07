@@ -43,7 +43,7 @@ public class Cooker extends ItemContainer {
     /*
      * Ingredients we will cook with.
      */
-    private TreeMap<String, IItem> ingredients = new TreeMap<String, IItem>();
+    private TreeMap<String, Item> ingredients = new TreeMap<String, Item>();
 
     /* error messages */
     public static String itemMayNotBeNull = "item must exist";
@@ -205,7 +205,7 @@ public class Cooker extends ItemContainer {
 
         // there needs to be a valid location for any created Items.
         if (recipe.getProductCount() > 0) {
-            IItemContainer newItemLocation = (IItemContainer) ingredients.get("Location");
+            ItemContainer newItemLocation = (ItemContainer) ingredients.get("Location");
             if (newItemLocation == null) {
                 return "missing location for new products";
             }
@@ -232,7 +232,7 @@ public class Cooker extends ItemContainer {
                     + ingredients.size();
         }
         for (String key : recipe.getRequirements().keySet()) {
-            IItem item = ingredients.get(key);
+            Item item = ingredients.get(key);
             RequirementItem requirementItem = (RequirementItem) getRequirement(key);
             String reason = requirementItem.meetsRequirements(item);
             if (reason != null) {
@@ -264,7 +264,7 @@ public class Cooker extends ItemContainer {
 
         if (requirementCount > 0) {
             for (String key : recipe.getRequirements().keySet()) {
-                IItem item = ingredients.get(key);
+                Item item = ingredients.get(key);
                 RequirementItem requirementItem = (RequirementItem) getRequirement(key);
                 if (requirementItem.isConsumed()) {
                     // unlink from other objects
@@ -281,7 +281,7 @@ public class Cooker extends ItemContainer {
         // TODO Not final version. Only a demonstration.
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
-            IItemContainer newItemLocation = (IItemContainer) ingredients.get("Location");
+            ItemContainer newItemLocation = (ItemContainer) ingredients.get("Location");
             for (int index = 0; index < productCount; index++) {
                 Item item = Factory.createItem(recipe.getProduct(index));
                 newItemLocation.add(item);
@@ -322,7 +322,7 @@ public class Cooker extends ItemContainer {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }
-        IItem item = ingredients.get(key);
+        Item item = ingredients.get(key);
         this.relocateItem(item, container);
         ingredients.remove(key);
         return true;

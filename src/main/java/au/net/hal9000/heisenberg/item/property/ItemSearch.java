@@ -6,17 +6,17 @@ import java.util.Vector;
 
 public abstract class ItemSearch implements ItemVisitor {
 
-	private Vector<IItem> matchingItems;
+	private Vector<Item> matchingItems;
 
 	public ItemSearch() {
 		super();
-		this.matchingItems = new Vector<IItem>();
+		this.matchingItems = new Vector<Item>();
 	}
 
-	public void addMatchingItems(IItem iItem) {
-		matchingItems.add(iItem);
+	public void addMatchingItems(Item Item) {
+		matchingItems.add(Item);
 	}
-	public Vector<IItem> getMatchingItems() {
+	public Vector<Item> getMatchingItems() {
 		return matchingItems;
 	}
 
@@ -24,7 +24,7 @@ public abstract class ItemSearch implements ItemVisitor {
 		return matchingItems.size();
 	}
 	
-	public abstract void visit(IItem iItem);
+	public abstract void visit(Item Item);
 
-	public abstract void visit(Vector<IItem> iItem);
+	public abstract void visit(Vector<Item> Item);
 }

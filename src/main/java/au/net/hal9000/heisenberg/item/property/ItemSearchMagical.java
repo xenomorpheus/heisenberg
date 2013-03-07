@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item.property;
 import java.util.Iterator;
 import java.util.Vector;
 
-import au.net.hal9000.heisenberg.item.IItem;
+import au.net.hal9000.heisenberg.item.Item;
 
 public class ItemSearchMagical extends ItemSearch {
 
@@ -11,18 +11,18 @@ public class ItemSearchMagical extends ItemSearch {
         super();
     }
 
-    public void visit(IItem iItem) {
-        if (ItemProperty.isMagical(iItem)) {
-            this.addMatchingItems(iItem);
+    public void visit(Item Item) {
+        if (ItemProperty.isMagical(Item)) {
+            this.addMatchingItems(Item);
         }
     }
 
-    public void visit(Vector<IItem> itemVector) {
-        Iterator<IItem> itr = itemVector.iterator();
+    public void visit(Vector<Item> itemVector) {
+        Iterator<Item> itr = itemVector.iterator();
         while (itr.hasNext()) {
-            IItem iItem = itr.next();
-            if (ItemProperty.isMagical(iItem)) {
-                this.addMatchingItems(iItem);
+            Item Item = itr.next();
+            if (ItemProperty.isMagical(Item)) {
+                this.addMatchingItems(Item);
             }
         }
     }

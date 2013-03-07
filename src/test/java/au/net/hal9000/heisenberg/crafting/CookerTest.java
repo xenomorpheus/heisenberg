@@ -34,7 +34,7 @@ public class CookerTest {
 
     /**
      * Magically create a Cookie. e.g. using only magic and time.
-     * An example of common use - create an IItem.
+     * An example of common use - create an Item.
      */
 
     @Test
@@ -61,7 +61,7 @@ public class CookerTest {
         assertEquals("location has new item", 1,
                 newItemLocation.getChildCount());
         // Check the item produced
-        IItem item = newItemLocation.getChild(0);
+        Item item = newItemLocation.getChild(0);
         assertEquals("item type", "Cookie", item.getClass().getSimpleName());
 
         // Check the chef has paid in Mana and ActionPoints
@@ -165,7 +165,7 @@ public class CookerTest {
 
         // Does the location now contain a Cookie?
         assertEquals("1 item", 1, newItemLocation.getChildCount());
-        IItem newItem = newItemLocation.getChild(0);
+        Item newItem = newItemLocation.getChild(0);
         assertEquals("item type", "Cookie", newItem.getClass().getSimpleName());
         assertEquals("new item location", newItemLocation,
                 newItem.getLocation());

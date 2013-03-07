@@ -33,7 +33,7 @@ public class ItemContainerTest {
             Bag bag = new Bag();
             bag.setWeightMax(weightMax);
             bag.setVolumeMax(volumeMax);
-            // IItem
+            // Item
             Cookie i = new Cookie();
             // This should just fit
             i.setVolumeBase(volumeMax);
@@ -111,7 +111,7 @@ public class ItemContainerTest {
         Cookie c2 = new Cookie();
         Cookie c3 = new Cookie();
         Bag newBag = new Bag("New Bag");
-        Vector<IItem> items = new Vector<IItem>();
+        Vector<Item> items = new Vector<Item>();
         items.add(c1);
         items.add(c2);
         items.add(c3);

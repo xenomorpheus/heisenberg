@@ -29,8 +29,8 @@ public class Scabbard extends Box  {
 
 	/** {@inheritDoc} */
 	@Override
-	public void add(IItem item) throws ExceptionCantWear {
-	// We need to accept all IItems, not just swords,
+	public void add(Item item) throws ExceptionCantWear {
+	// We need to accept all Items, not just swords,
 	// otherwise our super will accept them for us 
 	// with is bad.
 		if (!(item instanceof Sword)){

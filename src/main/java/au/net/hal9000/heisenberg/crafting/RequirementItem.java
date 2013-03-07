@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
 import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.IItem;
+import au.net.hal9000.heisenberg.item.Item;
 
 /**
  * As much as possible consider this object immutable. The Setters are here only
@@ -104,7 +104,7 @@ public class RequirementItem extends Requirement {
      *            the Item being evaluated.
      * @return true if the Item meets the requirements.
      */
-    public final String meetsRequirements(final IItem item) {
+    public final String meetsRequirements(final Item item) {
         // Correct Class
         if (!Factory.instanceOf(itemType, item)) {
             return "item must be a " + itemType;
