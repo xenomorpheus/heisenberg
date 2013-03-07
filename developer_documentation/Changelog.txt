@@ -1,6 +1,9 @@
+2013-03-07
+Clutter removal - Removed interfaces IItem and IItemContainer.
+
 2013-03-06
 Added Maven build targets.
-Removed Item clone.
+Clutter removal - Removed clone() method from Item and sub-classes.
 
 2013-03-01
 Restructured into Maven project, including dependencies.
