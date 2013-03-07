@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.itemcreator;
 
-import java.util.ArrayList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.*;
+import java.util.ArrayList;
 import org.jdesktop.swingx.tree.TreeModelSupport;
 import au.net.hal9000.heisenberg.item.*;
 
@@ -53,9 +53,9 @@ class ItemTreeModel implements TreeModel {
     @SuppressWarnings("deprecation")
     public void insertNodeInto(final Item newNode, final ItemContainer selNode,
             final int childCount) {
-        selNode.add(childCount, (Item)newNode);
+        selNode.add(childCount, (Item) newNode);
         newNode.setLocation(selNode);
-        support.fireChildAdded(new TreePath(getPathToRoot((Item)selNode)),
+        support.fireChildAdded(new TreePath(getPathToRoot((Item) selNode)),
                 childCount, newNode);
     }
 
@@ -95,12 +95,11 @@ class ItemTreeModel implements TreeModel {
 
     // This method is only invoked by the JTree for editable trees.
     public void valueForPathChanged(TreePath path, Object newvalue) {
-        // TODO add valueForPathChanged
-        System.out.println("valueForPathChanged: path="+path+"\nnewvalue="+newvalue);
-        // TODO How to change the value ?
-        // newvalue is the new string name.
-        // path contains the path to the object.
+        Item item = (Item) path.getLastPathComponent();
+        item.setName((String) newvalue);
+        // fireTreeNodesChanged(new TreeModelEvent(this, path));
     }
+
 
     public void removeTreeModelListener(TreeModelListener l) {
         System.out.println("removeTreeModelListener");

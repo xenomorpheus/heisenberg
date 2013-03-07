@@ -256,6 +256,7 @@ public class ItemCreator {
         human.setWeightMax(100000);
         human.setVolumeMax(100000);
 
+        // TODO backpack, quiver, shield not showing.
         human.add(new Shield());
         human.add(scabbard2);
         human.add(quiver);

@@ -417,8 +417,8 @@ public abstract class Item implements Serializable {
      */
 
     public String toString() {
-        // TODO Make this lower case.
-        return this.getClass().getSimpleName();
+        // return this.getClass().getSimpleName().toLowerCase();
+        return getName();
     }
 
     /**
