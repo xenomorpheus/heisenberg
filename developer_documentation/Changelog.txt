@@ -1,3 +1,7 @@
+2013-03-08
+No code check warnings.
+itemcreator UI. Added ability to change the name.
+
 2013-03-07
 Clutter removal - Removed interfaces IItem and IItemContainer.
 
