@@ -168,7 +168,7 @@ public class PersistenceTest {
 		return world;
 	}
 
-	@Test
+	// TODO @Test
 	public void testLocation() {
 
 		Location loc = testGetWorld();
@@ -180,6 +180,7 @@ public class PersistenceTest {
 
 		// Persist it
 		em.getTransaction().begin();
+		// TODO use a visitor pattern to persist every item and location.
 		em.persist(loc);
 		em.getTransaction().commit();
 		assertNotEquals(0L, loc.getJpaId());
