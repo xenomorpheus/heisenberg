@@ -4,12 +4,14 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Vector;
 import org.junit.Test;
 
 // Custom
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.units.*;
+import au.net.hal9000.heisenberg.util.Configuration;
 
 public class ItemTest {
     private static final float WITHIN_MARGIN = 0.00009F;
@@ -93,10 +95,23 @@ public class ItemTest {
         assertEquals("location", human, cookie.getLocation());
     }
 
+    @Test
     public void testToString() {
-        Cookie cookie = new Cookie();
-        assertEquals("toString", "some text", cookie.toString());
 
+        Configuration config = null;
+        try {
+            config = new Configuration("test/config/config.xml");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            fail(e.getStackTrace().toString());
+        }
+        Vector<String> itemClasses = config.getItemClasses();
+
+        for (String itemClass : itemClasses) {
+            String string = Factory.createItem(itemClass).toString();
+            assertTrue(itemClass + ".toString not null", string != null);
+            assertTrue(itemClass + ".toString length", string.length() > 0);
+        }
     }
 
     @Test
@@ -149,7 +164,5 @@ public class ItemTest {
         assertEquals("get property", "myVal", cookie.getProperty("myKey"));
         cookie.removeProperty("myKey");
     }
-
-
 
 }

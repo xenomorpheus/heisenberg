@@ -417,8 +417,11 @@ public abstract class Item implements Serializable {
      */
 
     public String toString() {
-        // return this.getClass().getSimpleName().toLowerCase();
-        return getName();
+        String string = getName();
+        if ((string == null ) || (string.length() == 0)){
+            string = this.getClass().getSimpleName().toLowerCase();
+        }
+        return string;
     }
 
     /**
