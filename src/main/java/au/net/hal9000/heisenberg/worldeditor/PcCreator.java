@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.pccreator;
+package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

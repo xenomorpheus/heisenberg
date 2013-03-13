@@ -1,3 +1,6 @@
+2012-03-13
+Started work merging PcCreator and ItemCreator into WorldEditor.
+
 2013-03-08
 No code check warnings.
 itemcreator UI. Added ability to change the name.

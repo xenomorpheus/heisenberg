@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.itemcreator;
+package au.net.hal9000.heisenberg.worldeditor;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;

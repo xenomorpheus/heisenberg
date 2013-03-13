@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.itemcreator;
+package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.item.Box; // Ambiguous otherwise.
 import au.net.hal9000.heisenberg.util.Configuration;
 
-public class ItemCreator {
+public class WorldEditor {
     Configuration config = null;
     Location location = null;
     EntityManager entityManager = null;
@@ -30,7 +30,7 @@ public class ItemCreator {
     JTree m_tree = null;
     JComboBox itemClassesList = null;
 
-    public ItemCreator() {
+    public WorldEditor() {
         // Load some config
         try {
             config = new Configuration("test/config/config.xml");
@@ -162,7 +162,7 @@ public class ItemCreator {
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
         // File Menu
-        JMenu appemenu = new JMenu("ItemCreator");
+        JMenu appemenu = new JMenu("WorldEditor");
         JMenuItem appItem1 = new JMenuItem("Quit");
         appItem1.addActionListener(actionListener);
         appemenu.add(appItem1);
@@ -204,7 +204,7 @@ public class ItemCreator {
     }
 
     public static void main(String[] args) {
-        new ItemCreator();
+        new WorldEditor();
     }
 
     public static Location getDemoWorld() {

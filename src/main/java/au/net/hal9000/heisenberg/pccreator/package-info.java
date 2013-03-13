@@ -1,6 +1,6 @@
 /**
 
-GUI Tool. Character Sheet Editor. Add {@link au.net.hal9000.heisenberg.item.Item} objects.
+
 
 
 @author Mike Bruins

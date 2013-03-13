@@ -1,11 +1,11 @@
-package au.net.hal9000.heisenberg.pccreator;
+package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.itemcreator.ItemCreator;
+import au.net.hal9000.heisenberg.worldeditor.WorldEditor;
 
-public class ItemCreatorTest {
+public class WorldEditorTest {
 
 	@Test
 	public void testGetDemoWorld() {
@@ -15,7 +15,7 @@ public class ItemCreatorTest {
 		 * 2) Code coverage.
 		 */
 		try {
-		  ItemCreator.getDemoWorld();
+		  WorldEditor.getDemoWorld();
 		}
 		catch (Exception e){
 			fail(e.toString());

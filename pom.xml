@@ -55,7 +55,7 @@
 					<archive>
 						<manifest>
 							<!-- add to the Jar's manifest to tell it the main. -->
-							<mainClass>au.net.hal9000.heisenberg.itemcreator.ItemCreator</mainClass>
+							<mainClass>au.net.hal9000.heisenberg.worldeditor.WorldEditor</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
