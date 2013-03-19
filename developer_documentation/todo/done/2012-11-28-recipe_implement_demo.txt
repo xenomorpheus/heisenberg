@@ -6,7 +6,7 @@
 
 Human randomWizard = ...
 // create a small light orb and place it in left hand.
-// TODO Perhaps consider left/right handed.
+// Perhaps consider left/right handed.
 randomWizard.castSpellCreatingItem("small light orb", randomWizard.getLeftHand());
 
 public boolean castSpellCreatingItem(String spellName, Location newItemLocation){
