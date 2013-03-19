@@ -13,36 +13,82 @@ import au.net.hal9000.heisenberg.util.PcClass;
 
 public class PcRaceTest {
 
+	/*
+	 * Most tests will use a Human as a representative of the PcRace.
+	 */
+
+	@Test
+	public void testLiving() {
+		Human human = new Human();
+		// By default PCs are living.
+		assertTrue("living", ItemProperty.isLiving(human));
+	}
+
+	@Test
+	public void testCombatDice() {
+		final int expected = 12;
+		Human human = new Human();
+		// assertEquals(0, human.getCombatDice());
+		human.setCombatDice(expected);
+		assertEquals(expected, human.getCombatDice());
+	}
+
+
+	@Test
+	public void testMagicDice() {
+		final int expected = 13;
+		Human human = new Human();
+		// assertEquals(0, human.getMagicDice());
+		human.setMagicDice(expected);
+		assertEquals(expected, human.getMagicDice());
+	}
+	@Test
+	public void testStealthDice() {
+		final int expected = 14;
+		Human human = new Human();
+		// assertEquals(0, human.getStealthDice());
+		human.setStealthDice(expected);
+		assertEquals(expected, human.getStealthDice());
+	}
+	@Test
+	public void testGeneralDice() {
+		final int expected = 15;
+		Human human = new Human();
+		// assertEquals(0, human.getGeneralDice());
+		human.setGeneralDice(expected);
+		assertEquals(expected, human.getGeneralDice());
+	}
+	
 	@Test
 	public void testMana() {
-
-		// Human
-		Human human = new Human("Human");
-        assertEquals(0, human.getMana());
-        human.setMana(5);
-        assertEquals(5, human.getMana());
+		final int expected = 16;
+		Human human = new Human();
+		assertEquals(0, human.getMana());
+		human.setMana(expected);
+		assertEquals(expected, human.getMana());
 	}
-	
+
 	@Test
 	public void testActionPoints() {
-
-		// Human
-		Human human = new Human("Human");
-        assertEquals(0, human.getActionPoints());
-        human.setActionPoints(43);
-        assertEquals(43, human.getActionPoints());
+		final int expected = 17;
+		Human human = new Human();
+		assertEquals(0, human.getActionPoints());
+		human.setActionPoints(expected);
+		assertEquals(expected, human.getActionPoints());
 	}
-	
-    @Test
-    public void testLiving() {
-        Human human = new Human(); // Close enough
-        // By default PCs are living.
-        assertTrue("living", ItemProperty.isLiving(human));
-    }
+
+	@Test
+	public void testLevel() {
+		final int expected = 18;
+		Human human = new Human();
+		assertEquals(0, human.getLevel());
+		human.setLevel(expected);
+		assertEquals(expected, human.getLevel());
+	}
 
 	@Test
 	public void testValues() {
-		
+
 		Configuration config = null;
 		try {
 			config = new Configuration("test/config/config.xml");
@@ -58,8 +104,8 @@ public class PcRaceTest {
 		}
 		PcClass warrior = config.getPcClass("Warrior");
 		Human pc = new Human("Mr Warrior");
-        pc.setPcClass(warrior);
-		
+		pc.setPcClass(warrior);
+
 		// dice
 		assertEquals(20, pc.getCombatDice());
 		assertEquals(4, pc.getMagicDice());
@@ -67,14 +113,12 @@ public class PcRaceTest {
 		assertEquals(8, pc.getGeneralDice());
 		// Attributes
 
-		
 		// misc
 		assertEquals(100, pc.getEncumbrance());
 		assertEquals(8, pc.getActionPoints());
 		assertEquals(7, pc.getHealth());
 		assertEquals(0, pc.getMana());
 
-	}	
-
+	}
 
 }
