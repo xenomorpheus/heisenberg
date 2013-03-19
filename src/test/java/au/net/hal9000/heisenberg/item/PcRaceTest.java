@@ -68,6 +68,24 @@ public class PcRaceTest {
 		assertEquals(expected, human.getMana());
 	}
 
+    @Test
+    public void testEncumbrance() {
+        final int expected = 16;
+        Human human = new Human();
+        assertEquals(0, human.getEncumbrance());
+        human.setEncumbrance(expected);
+        assertEquals(expected, human.getEncumbrance());
+    }
+
+    @Test
+    public void testHealth() {
+        final int expected = 16;
+        Human human = new Human();
+        assertEquals(0, human.getHealth());
+        human.setHealth(expected);
+        assertEquals(expected, human.getHealth());
+    }
+
 	@Test
 	public void testActionPoints() {
 		final int expected = 17;
@@ -75,6 +93,8 @@ public class PcRaceTest {
 		assertEquals(0, human.getActionPoints());
 		human.setActionPoints(expected);
 		assertEquals(expected, human.getActionPoints());
+		human.actionPointsAdjust(2);
+        assertEquals(expected+2, human.getActionPoints());
 	}
 
 	@Test
