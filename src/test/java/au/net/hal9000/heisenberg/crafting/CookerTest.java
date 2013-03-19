@@ -76,14 +76,16 @@ public class CookerTest {
     @Test
     public void testSpell() {
 
+    	final int manaRemaining = 1;
+    	final int actionPointsRemaining = 2;
         Recipe recipe = config.getRecipe("testSpell1");
 
         // Setup the chef
         Location world = new Location("World");
         PcRace chef = new Human();
         chef.setLocation(world);
-        chef.setMana(recipe.getMana() + 1);
-        chef.setActionPoints(recipe.getActionPoints() + 2);
+        chef.setMana(recipe.getMana() + manaRemaining);
+        chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
         chef.powerWordsAdd(new PowerWord("testPowerWord1"));
         chef.recipesAdd("testSpell1");
 
@@ -94,8 +96,8 @@ public class CookerTest {
         // TODO - check the spell method was run.
 
         // Check the chef has paid in Mana and ActionPoints
-        assertEquals("mana", 1, chef.getMana());
-        assertEquals("actionPoints", 2, chef.getActionPoints());
+        assertEquals("mana", manaRemaining, chef.getMana());
+        assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
     }
 
     /**
