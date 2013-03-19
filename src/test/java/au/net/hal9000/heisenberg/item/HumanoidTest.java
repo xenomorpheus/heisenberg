@@ -17,4 +17,24 @@ public class HumanoidTest {
         assertEquals("getWeight", human.getWeight(), 7F, WITHIN_MARGIN);
     }
 
+    @Test
+    public void testGetIndexOfChild() {
+        Human human = new Human(); // Close enough for this abstract class
+
+        assertEquals("getIndexOfChild head", 0,
+                human.getIndexOfChild(human.getHead()));
+        assertEquals("getIndexOfChild left hand", 1,
+                human.getIndexOfChild(human.getLeftHand()));
+        assertEquals("getIndexOfChild right hand", 2,
+                human.getIndexOfChild(human.getRightHand()));
+
+        Scabbard scabbard = new Scabbard();
+        assertEquals("getIndexOfChild scabbard before add", -1,
+                human.getIndexOfChild(scabbard));
+        human.add(scabbard);
+        assertEquals("getIndexOfChild scabbard before add", 3,
+                human.getIndexOfChild(scabbard));
+
+    }
+
 }
