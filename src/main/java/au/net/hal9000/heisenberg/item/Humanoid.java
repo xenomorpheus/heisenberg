@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class Humanoid extends PcRace {
 
@@ -16,6 +17,10 @@ public abstract class Humanoid extends PcRace {
     // Constructors
     public Humanoid(String pName) {
         super(pName);
+    }
+
+    public Humanoid(String name, PcClass pcClass) {
+        super(name, pcClass);
     }
 
     // Getters and Setters
@@ -62,7 +67,7 @@ public abstract class Humanoid extends PcRace {
     }
 
     /**
-     * Wear an item
+     * add - Wear an item
      * 
      * @param item
      * @throws ExceptionInvalidType
@@ -72,6 +77,7 @@ public abstract class Humanoid extends PcRace {
             throw new ExceptionInvalidType(this.getName() + " can't wear "
                     + item.getName());
         }
+        super.add(item);
     }
 
     /** {@inheritDoc} */

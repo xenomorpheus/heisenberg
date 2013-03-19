@@ -53,20 +53,6 @@ public abstract class Entity extends ItemContainer {
         this.size = size;
     }
 
-
-    // Find items that match the criteria
-    /** {@inheritDoc} */
-    @Override
-    public void accept(ItemVisitor visitor) {
-        // TODO visit equipment then super
-        visitor.visit(this);
-    }
-
-    public Item search(Item item) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     /**
      * Shallow copy properties from one object to another.
      * 

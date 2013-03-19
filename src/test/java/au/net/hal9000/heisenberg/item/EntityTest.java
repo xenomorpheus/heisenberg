@@ -15,31 +15,47 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class EntityTest {
 
-	@Test
-	public void testInstanceof() {
-		Human human = new Human();
-		Item item = (Item) human;
-		assertTrue("is Humanoid", item instanceof Humanoid);
-		assertTrue("is Entity", item instanceof Entity);
-		assertTrue("is Living", ItemProperty.isLiving(item));
-		assertFalse("is Cookie", item instanceof Cookie);
-		assertFalse("is humanoid mount", item instanceof HumanoidMount);
-	}
+    @Test
+    public void testGender() {
+        final String expected = "some name";
+        Human human = new Human();
+        human.setGender(expected);
+        assertEquals(expected, human.getGender());
+    }
 
-	@Test
-	public void testAdd() {
+    @Test
+    public void testSize() {
+        final String expected = "some name";
+        Human human = new Human();
+        human.setSize(expected);
+        assertEquals(expected, human.getSize());
+    }
 
-		// Human
-		Human human = new Human("Human"); // Close enough
-		Item shield = new Shield();
-		try {
-			human.add(shield);
-		} catch (Exception e) {
-			fail("equip failed " + e);
-		}
-	}
+    @Test
+    public void testInstanceof() {
+        Human human = new Human();
+        Item item = (Item) human;
+        assertTrue("is Humanoid", item instanceof Humanoid);
+        assertTrue("is Entity", item instanceof Entity);
+        assertTrue("is Living", ItemProperty.isLiving(item));
+        assertFalse("is Cookie", item instanceof Cookie);
+        assertFalse("is humanoid mount", item instanceof HumanoidMount);
+    }
 
-	// TODO clone - On an abstract class ?
-	// TODO equals
-	// TODO persistence
+    @Test
+    public void testAdd() {
+
+        // Human
+        Human human = new Human("Human"); // Close enough
+        Item shield = new Shield();
+        try {
+            human.add(shield);
+        } catch (Exception e) {
+            fail("equip failed " + e);
+        }
+    }
+
+    // TODO clone - On an abstract class ?
+    // TODO equals
+    // TODO persistence
 }

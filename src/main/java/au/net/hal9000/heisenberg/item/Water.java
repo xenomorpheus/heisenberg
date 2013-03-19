@@ -23,11 +23,11 @@ public class Water extends Item implements SplitByWeight {
     private static final long serialVersionUID = 1L;
 
     public Water() {
-        this("Water");
+        this("Water", "water");
     }
 
     public Water(String pName) {
-        super(pName);
+        this(pName, "water");
     }
 
     public Water(String pName, String pDescription) {
