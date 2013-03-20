@@ -2,8 +2,6 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Vector;
 import org.junit.Test;
 
@@ -129,32 +127,6 @@ public class ItemTest {
         Cookie second = new Cookie();
         assertTrue("equals true for self", first.equals(first));
         assertFalse("equals false for other", first.equals(second));
-    }
-
-    @Test
-    public void testFilePersistence() {
-        File fileObj = new File(System.getProperty("java.io.tmpdir"),
-                "cookie_persit_test.ser");
-        String filename = fileObj.getAbsolutePath();
-        Cookie old = new Cookie();
-        // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
-        // Get the object back
-        Cookie newObj = null;
-        try {
-            newObj = Cookie.thawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
-        assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
-
     }
 
     @Test

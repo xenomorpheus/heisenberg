@@ -1,9 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -31,15 +27,5 @@ public class SmallGroundFire extends Item {
     }
 
     // Methods
-
-    // Static
-    public static SmallGroundFire thawFromFile(String filename)
-            throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(filename);
-        ObjectInputStream in = new ObjectInputStream(fis);
-        SmallGroundFire newObj = (SmallGroundFire) in.readObject();
-        in.close();
-        return newObj;
-    }
 
 }

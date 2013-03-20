@@ -2,8 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.Vector;
 import org.junit.Test;
 
@@ -134,60 +133,6 @@ public class ItemContainerTest {
         assertEquals("add multi size", 3, bag.getContentsCount());
         bag.beNot();
         assertEquals("empty size", 0, bag.getContentsCount());
-    }
-
-    @Test
-    public void testPersistenceShallow() {
-
-        File fileObj = new File(System.getProperty("java.io.tmpdir"),
-                "empty_bag_persit_test.ser");
-        String filename = fileObj.getAbsolutePath();
-        Bag old = new Bag();
-        // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
-        // Get the object back
-        Bag newObj = null;
-        try {
-            newObj = Bag.thawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
-        assertTrue("deserialized Bag equals old cookie", old.equals(newObj));
-
-    }
-
-    @Test
-    public void testPersistenceDeep() {
-        File fileObj = new File(System.getProperty("java.io.tmpdir"),
-                "bag_persit_test.ser");
-        String filename = fileObj.getAbsolutePath();
-        Bag old = new Bag("World");
-        old.add(new Cookie());
-        // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
-        // Get the object back
-        Bag newObj = null;
-        try {
-            newObj = Bag.thawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
-        assertTrue("deserialized equals old", old.equals(newObj));
-
     }
 
     @Test

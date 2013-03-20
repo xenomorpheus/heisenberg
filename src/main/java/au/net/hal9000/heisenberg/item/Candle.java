@@ -27,7 +27,7 @@ public class Candle extends Item {
 
     public final void setType(final int type) {
         if (type == 1) {
-            this.setVolumeBase(0.5f); // TODO what about liters vs. gallons
+            this.setVolumeBase(0.5f); // TODO what about litres vs. gallons
             this.setWeightBase(0.5f); // TODO what about kilos vs. pounds ?
         }
     }

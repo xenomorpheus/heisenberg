@@ -233,7 +233,16 @@ public abstract class ItemContainer extends Item implements Serializable {
         }
 
         // Add the item and update the item's location.
+        int currentSize = contents.size();
+        if (index > (currentSize+1) ){
+            throw new RuntimeException("Requested possition "+index+" much greater "+currentSize+". container is a "+this.getName()+", added item is "+item.getName());
+        }
         contents.add(index, item);
+        // check
+        int pos = contents.indexOf(item);
+        if (pos != index){
+            throw new RuntimeException("Requested possition "+index+" != reported possition "+pos);
+        }
         item.setLocation(this);
     }
 
@@ -363,7 +372,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @param container
      *            source of the properties we copy.
      */
-    public void setAllFrom(ItemContainer container) {
+    public void setAllFrom2(ItemContainer container) {
         setAllFrom((Item) container);
         setWeightMax(container.getWeightMax());
         setVolumeMax(container.getVolumeMax());
