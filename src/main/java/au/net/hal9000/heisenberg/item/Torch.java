@@ -76,8 +76,7 @@ public class Torch extends Item implements LightSource {
 
     }
 
-    // TODO rename / remove
-    public String getDescription2() {
+    public String getDetaildDescription() {
         String full_desc;
 
         // Try to get the base description first.
@@ -87,17 +86,15 @@ public class Torch extends Item implements LightSource {
         // Otherwise try to get the name.
         if (desc.length() > 0) {
             full_desc = desc;
-            full_desc += ". ";
         } else if (name.length() > 0) {
             full_desc = name;
-            full_desc += ". ";
         } else {
-            full_desc = new String("");
+            full_desc = this.getClass().getSimpleName();
         }
         if (lit) {
-            full_desc += "Is lit";
+            full_desc += ". Is lit";
         } else {
-            full_desc += "Not lit";
+            full_desc += ". Not lit";
         }
 
         return full_desc;
