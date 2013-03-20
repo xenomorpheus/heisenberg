@@ -11,6 +11,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
 @Entity
@@ -32,19 +33,12 @@ public class Water extends Item implements SplitByWeight {
 
     public Water(String pName, String pDescription) {
         super(pName, pDescription);
+        ItemProperty.setHumanoidFood(this, true);
     }
 
     // Methods
 
     // Static
-    public static Water thawFromFile(String filename) throws IOException,
-            ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(filename);
-        ObjectInputStream in = new ObjectInputStream(fis);
-        Water newObj = (Water) in.readObject();
-        in.close();
-        return newObj;
-    }
 
     /** {@inheritDoc} */
     @Override
