@@ -1,3 +1,7 @@
+2013-03-20
+Moved the file based persistence out of Item classes, and into a util class.
+Added more unit tests.
+
 2012-03-13
 Started work merging PcCreator and ItemCreator into WorldEditor.
 

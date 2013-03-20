@@ -1,0 +1,4 @@
+Use inheritance.
+Remove duplicate code.
+Take the best code from each.
+Only unit test the code in a class.
