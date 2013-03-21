@@ -5,48 +5,36 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TorchTest {
+    private static final float MARGIN = 0.00001f;
 
+    // Name and Description
     @Test
     public void testName() {
-        final String expected = "my torch";
-        Torch torch = new Torch(expected);
-        assertEquals(expected, torch.getName());
-    }
-
-    @Test
-    public void testLit() {
+        final String defaultName = "Torch";
+        final String defaultDescription = "a short wooden rod tipped with cloth soaked in oil";
         Torch torch = new Torch();
-        assertFalse(torch.isLit());
-        assertFalse(torch.getLit());
-        torch.setLit(true);
-        assertTrue(torch.isLit());
-        assertTrue(torch.getLit());
-        torch.extinghish();
-        assertFalse(torch.isLit());
-        assertFalse(torch.getLit());
-        torch.light();
-        assertTrue(torch.isLit());
-        assertTrue(torch.getLit());
+        assertEquals(defaultName, torch.getName());
+        assertEquals(defaultDescription, torch.getDescription());
+        // custom
+        final String expectedName = "my torch";
+        final String expectedDescription = "the description";
+        Torch custom = new Torch(expectedName, expectedDescription);
+        assertEquals(expectedName, custom.getName());
+        assertEquals(expectedDescription, custom.getDescription());
     }
 
+    // TODO test light from Torch / Candle
+    // TODO test *NOT* lit from OrbOfLight
+
+    
     @Test
-    public void testGetDetailedDescription() {
-        // Name and description
-        Torch torch = new Torch("My Name", "My Description");
-        assertEquals("My Description. Not lit", torch.getDetaildDescription());
-        torch.light();
-        assertEquals("My Description. Is lit", torch.getDetaildDescription());
-        // Name only
-        torch.setDescription("");
-        torch.extinghish();
-        assertEquals("My Name. Not lit", torch.getDetaildDescription());
-        torch.light();
-        assertEquals("My Name. Is lit", torch.getDetaildDescription());
-        // Neither name nor description
-        torch.setName("");
-        torch.extinghish();
-        assertEquals("Torch. Not lit", torch.getDetaildDescription());
-        torch.light();
-        assertEquals("Torch. Is lit", torch.getDetaildDescription());
+    public void testSetType() {
+        int type = 1;
+        Torch torch = new Torch();
+        torch.setType(type);
+        if (type == 1) {
+            assertEquals("volumeBase", 1.0f, torch.getVolumeBase(), MARGIN);
+            assertEquals("weightBase", 1.0f, torch.getWeightBase(), MARGIN);
+        }
     }
 }

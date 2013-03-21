@@ -11,13 +11,15 @@ public interface LightSource {
 
     /**
      * Start the light.
+     * @param ignighter TODO
+     * @return TODO
      */
-    public void light();
+    public boolean lightWith(Object ignighter);
 
     /**
      * Stop the light.
      */
-    public void extinghish();
+    public void extinguish();
 
     /**
      * Is this torch lit?

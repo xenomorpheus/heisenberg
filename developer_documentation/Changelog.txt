@@ -1,3 +1,11 @@
+2013-03-21
+Refactor Candle, Torch and Orb of Light.
+Light Candle or Torch from FintAndTinder or a lit Candle or Torch.
+Use inheritance.
+Remove duplicate code.
+Only unit test the code in a class.
+
+
 2013-03-20
 Moved the file based persistence out of Item classes, and into a util class.
 Added more unit tests.
