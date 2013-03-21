@@ -177,9 +177,6 @@ public abstract class Humanoid extends PcRace {
     /** {@inheritDoc} */
     @Override
     public int getIndexOfChild(Item child) {
-        // TODO getIndexOfChild
-        System.out.println("TODO Humanoid getIndexOfChild");
-
         // index is zero offset.
         int index = 0;
         // head
