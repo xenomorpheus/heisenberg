@@ -6,7 +6,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.item.property.*;
 
-public class ScenarioSet03 {
+public class ScenarioSet02 {
 
 	/**
 	 * Example of making an existing sword Magical

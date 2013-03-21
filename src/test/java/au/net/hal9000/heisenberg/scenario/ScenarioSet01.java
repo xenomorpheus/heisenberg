@@ -73,7 +73,10 @@ public class ScenarioSet01 {
 		Torch torch = new Torch();
 		println("Torch description:\n" + torch.getDescription());
 		println("Light the torch.");
-		torch.light();
+		FlintAndTinder flintAndTinder = new FlintAndTinder();
+		assertFalse("torch unlit", torch.isLit());
+		torch.lightWith(flintAndTinder);
+		assertTrue("torch unlit", torch.isLit());
 		println("Torch description:\n" + torch.getDescription());
 	}
 
