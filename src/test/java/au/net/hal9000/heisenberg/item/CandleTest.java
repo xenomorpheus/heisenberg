@@ -68,8 +68,26 @@ public class CandleTest {
         assertFalse("candle2 not lit from unlit candle", candle2.isLit());
         candle2.lightWith(candle);
         assertTrue("candle2 lit from lit candle", candle2.isLit());
-        // TODO test light from Torch
+
+        // test light from Torch
+        candle2.extinguish();
+        Torch torch = new Torch();
+        Torch unlitTorch = new Torch();
+        torch.setLit(true);
+        candle2.lightWith(unlitTorch);
+        assertFalse("candle2 not lit from unlit Torch", candle2.isLit());
+        candle2.lightWith(torch);
+        assertTrue("candle2 lit from lit Torch", candle2.isLit());        
+
         // TODO test *NOT* lit from OrbOfLight
+        candle2.extinguish();
+        OrbOfLight ool = new OrbOfLight();
+        OrbOfLight unlitOrbOfLight = new OrbOfLight();
+        ool.setLit(true);
+        candle2.lightWith(unlitOrbOfLight);
+        assertFalse("candle2 not lit from unlit OrbOfLight", candle2.isLit());
+        candle2.lightWith(ool);
+        assertFalse("candle2 NOT lit from lit OrbOfLight", candle2.isLit());
 
     }
 
