@@ -94,8 +94,7 @@ public class WorldEditor {
                 // TODO get from event. How?
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
-                    Item selNode = (Item) m_tree
-                            .getLastSelectedPathComponent();
+                    Item selNode = (Item) m_tree.getLastSelectedPathComponent();
                     if ((selNode != null) && !selNode.isLeaf()) {
                         ItemContainer selContainer = (ItemContainer) selNode;
                         // Add the desired item.
@@ -109,6 +108,7 @@ public class WorldEditor {
                                 selContainer.getChildCount());
                         Item[] nodes = model.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
+                        System.out.println("DEBUG: path is "+path);
                         m_tree.scrollPathToVisible(path);
                         m_tree.setSelectionPath(path);
                         m_tree.startEditingAtPath(path);
@@ -126,12 +126,15 @@ public class WorldEditor {
                 if ("Open".equals(eventName)) {
                     location = null; // TODO free old world
                     // TODO load.
-                    // TODO Create a project object to contain details and a pointer to top location.
+                    // TODO Create a project object to contain details and a
+                    // pointer to top location.
                 }
                 if ("Save".equals(eventName)) {
-                    entityManager.getTransaction().begin();
-                    entityManager.persist(location);
-                    entityManager.getTransaction().commit();
+                    if (entityManager != null) {
+                        entityManager.getTransaction().begin();
+                        entityManager.persist(location);
+                        entityManager.getTransaction().commit();
+                    }
                 }
                 if ("Quit".equals(eventName)) {
                     exitProgram();
@@ -153,8 +156,10 @@ public class WorldEditor {
     }
 
     public void exitProgram() {
-        entityManager.close();
-        entityManager = null;
+        if (entityManager != null) {
+            entityManager.close();
+            entityManager = null;
+        }
         System.out.println("End");
         System.exit(0);
     }
@@ -252,7 +257,6 @@ public class WorldEditor {
 
         // a human with a bag of cookies
         Human human = new Human("Human1");
-        world.add(human);
         human.setWeightMax(100000);
         human.setVolumeMax(100000);
 
@@ -261,6 +265,7 @@ public class WorldEditor {
         human.add(scabbard2);
         human.add(quiver);
         human.add(backpack);
+        world.add(human);
 
         world.add(new Sword());
         world.add(new Horse());
