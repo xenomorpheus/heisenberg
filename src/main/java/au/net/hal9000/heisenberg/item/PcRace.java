@@ -510,7 +510,7 @@ public abstract class PcRace extends Entity {
 	/**
 	 * @return Plain text description of the object
 	 */
-	public String description() {
+	public String getDetailedDescription() {
 		String description = "Name: " + getName() + "\nLevel: " + level
 				+ "\nRace: " + getRace() + "\nClass: " + pcClass.getId()
 				+ "\nCombat Dice: D" + combatDice + "\nMagic Dice: D"
