@@ -24,7 +24,7 @@ public class Scabbard extends Box  {
 	public Scabbard(String pString) {
 		super(pString);
         ItemProperty.setClothing(this, true);
-		// TODO set max volumen&weight to that of a sword.
+		// TODO set max volume & weight to that of a sword.
 	}
 
 	/** {@inheritDoc} */
@@ -32,7 +32,9 @@ public class Scabbard extends Box  {
 	public void add(Item item) throws ExceptionCantWear {
 	// We need to accept all Items, not just swords,
 	// otherwise our super will accept them for us 
-	// with is bad.
+	// which is bad.
+        // Currently there are no plans to allow low volume items 
+        // such a coins to be added instead of a sword.
 		if (!(item instanceof Sword)){
 			throw new ExceptionCantWear("non sword");
 		}

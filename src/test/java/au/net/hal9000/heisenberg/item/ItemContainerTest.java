@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.item.exception.*;
 
 public class ItemContainerTest {
 
-    // TODO Add unit test for respecting max weight and volumen of outer bag,
+    // TODO Add unit test for respecting max weight and volume of outer bag,
     // when adding Item to an inner bag.
     // Will require some kind of change notification system.
 
