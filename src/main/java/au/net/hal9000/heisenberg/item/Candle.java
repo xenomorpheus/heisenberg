@@ -65,14 +65,19 @@ public class Candle extends Item implements LightSource {
     /** {@inheritDoc} */
     @Override
     public boolean lightWith(Object ignighter) {
-        if (ignighter instanceof FlintAndTinder){
+        if (ignighter instanceof FlintAndTinder) {
             this.setLit(true);
+        }
+        // Order important, before Candle.
+        // OrbOfLight (or sub-class) won't light it.
+        else if (ignighter instanceof OrbOfLight) {
+            ; // NOP
         }
         // Candle (or sub-class) and MUST BE LIT.
         else if (ignighter instanceof Candle) {
             Candle candle = (Candle) ignighter;
-            if (candle.isLit()){
-              this.setLit(true);
+            if (candle.isLit()) {
+                this.setLit(true);
             }
         }
         // Note may already be lit.
