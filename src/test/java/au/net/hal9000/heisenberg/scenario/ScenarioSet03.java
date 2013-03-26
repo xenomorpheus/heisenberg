@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.*;
-import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.crafting.*;
