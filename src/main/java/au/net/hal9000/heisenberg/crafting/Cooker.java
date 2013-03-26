@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -12,9 +14,10 @@ import au.net.hal9000.heisenberg.units.Skill;
  * <br>
  * <h3>User process for Recipe:</h3><br>
  * <ol>
- * <li>Recipe requirements are represented as a list of {@link Requirement} objects.
- * <li>For each requirement, load a matching Item into the corresponding position
- * in the Cooker.
+ * <li>Recipe requirements are represented as a list of {@link Requirement}
+ * objects.
+ * <li>For each requirement, load a matching Item into the corresponding
+ * position in the Cooker.
  * <li>Item objects that don't meet the requirements will be rejected by the
  * cooker.
  * <li>Set the chef and ensure they have the required actionPoints and mana.
@@ -23,10 +26,21 @@ import au.net.hal9000.heisenberg.units.Skill;
  * <li>Any new Item objects will be at the newItemLocation.
  * </ol>
  * 
+ * // Example:
+ * // Create a SmallGroundFire. <br>
+ * PcRace pc = new Human("Fred the Fighter");
+ * Cooker cooker = pc.getCooker("testFireGround1"); <br>
+ * cooker.setItemsAvailable("Location", location); <br>
+ * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
+ * cooker.setItemsAvailable("Wood", wood); <br>
+ * cooker.cook(); <br>
+ * 
+ * 
  * @author bruins
  * 
  */
 public class Cooker extends ItemContainer {
+
     /**
 	 * 
 	 */
@@ -113,7 +127,7 @@ public class Cooker extends ItemContainer {
         if (rejectionReason != null) {
             return rejectionReason;
         }
-        
+
         // success
         this.add(item);
         ingredients.put(key, item);
@@ -205,7 +219,8 @@ public class Cooker extends ItemContainer {
 
         // there needs to be a valid location for any created Items.
         if (recipe.getProductCount() > 0) {
-            ItemContainer newItemLocation = (ItemContainer) ingredients.get("Location");
+            ItemContainer newItemLocation = (ItemContainer) ingredients
+                    .get("Location");
             if (newItemLocation == null) {
                 return "missing location for new products";
             }
@@ -281,7 +296,8 @@ public class Cooker extends ItemContainer {
         // TODO Not final version. Only a demonstration.
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
-            ItemContainer newItemLocation = (ItemContainer) ingredients.get("Location");
+            ItemContainer newItemLocation = (ItemContainer) ingredients
+                    .get("Location");
             for (int index = 0; index < productCount; index++) {
                 Item item = Factory.createItem(recipe.getProduct(index));
                 newItemLocation.add(item);
