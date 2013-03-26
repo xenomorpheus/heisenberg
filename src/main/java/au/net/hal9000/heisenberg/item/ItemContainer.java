@@ -372,6 +372,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @param container
      *            source of the properties we copy.
      */
+    // TODO remove
     public void setAllFrom2(ItemContainer container) {
         setAllFrom((Item) container);
         setWeightMax(container.getWeightMax());
