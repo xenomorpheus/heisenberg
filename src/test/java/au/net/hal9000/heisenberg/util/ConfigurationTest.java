@@ -54,11 +54,18 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void testGenders() {
-        Vector<String> genders = config.getGenders();
-        assertEquals("count", 7, genders.size());
+    public void testSizes() {
+        Vector<String> sizes = config.getSizes();
+        assertEquals("count", 3, sizes.size());
     }
 
+    @Test
+    public void testGenders() {
+        Vector<String> genders = config.getGenders();
+        assertEquals("count", 4, genders.size());
+    }
+    
+    
     @Test
     public void testPowerWords() {
         TreeMap<String, PowerWordDetail> skillDetails = config

@@ -99,11 +99,28 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
+                            <xs:element name="sizes">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="size" maxOccurs="unbounded"
+                                            minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute type="xs:string" name="id"
+                                                            use="required" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
 							<xs:element name="genders">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="gender" maxOccurs="unbounded"
-											minOccurs="0">
+											minOccurs="1">
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
@@ -120,7 +137,7 @@
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="race" maxOccurs="unbounded"
-											minOccurs="0">
+											minOccurs="1">
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
@@ -140,7 +157,7 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="item" maxOccurs="unbounded"
-								minOccurs="0">
+								minOccurs="1">
 								<xs:annotation>
 									<xs:documentation>Items that may be instantiated
 									</xs:documentation>

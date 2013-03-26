@@ -32,6 +32,7 @@ public class Configuration {
     private TreeMap<String, PcClass> pcClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
     private Vector<String> races;
+    private Vector<String> sizes;
     private Vector<String> genders;
 
     public Configuration(String filename) throws ValidityException,
@@ -40,17 +41,17 @@ public class Configuration {
         this.init(filename);
         lastConfig = this;
     }
-    
-    public static Configuration lastConfig(){
-        if (lastConfig == null){
-            throw new RuntimeException("Please fetch config before using Singleton");
+
+    public static Configuration lastConfig() {
+        if (lastConfig == null) {
+            throw new RuntimeException(
+                    "Please fetch config before using Singleton");
         }
         return lastConfig;
     }
 
     // Getters and Setters
-    
-    
+
     /**
      * @return the itemClasses
      */
@@ -109,10 +110,18 @@ public class Configuration {
         // TODO Element traitElements =
         // characterElement.getFirstChildElement("traits");
         // TODO traits = xmlToTraits(traitElements);
+
+        // character - sizes
+        Element sizeElement = characterElement
+                .getFirstChildElement("sizes");
+        sizes = xmlToIdList(sizeElement.getChildElements());
+
         // character - genders
         Element genderElement = characterElement
                 .getFirstChildElement("genders");
         genders = xmlToIdList(genderElement.getChildElements());
+
+        // races
         Element raceElement = characterElement.getFirstChildElement("races");
         races = xmlToIdList(raceElement.getChildElements());
 
@@ -186,7 +195,7 @@ public class Configuration {
             String itemId = entries.get(current).getAttributeValue("id");
             String itemType = entries.get(current).getAttributeValue("type");
             RequirementItem requirement = new RequirementItem(itemId);
-            if (itemType != null){
+            if (itemType != null) {
                 requirement.setType(itemType);
             }
             ingredients.add(requirement);
@@ -272,12 +281,11 @@ public class Configuration {
         }
         // process
         String process = null;
-        Attribute processAttribute = recipeElement
-                .getAttribute("process");
+        Attribute processAttribute = recipeElement.getAttribute("process");
         if (processAttribute != null) {
             process = processAttribute.getValue();
         }
-        
+
         // PowerWords
         Set<PowerWord> powerWords = new TreeSet<PowerWord>();
         Elements powerWordElements = recipeElement
@@ -294,11 +302,11 @@ public class Configuration {
         Elements ingredientElements = recipeElement
                 .getChildElements("requirements");
         for (int current = 0; current < ingredientElements.size(); current++) {
-            requirements
-                    .addAll(xmlToIngredients(ingredientElements.get(current)));
+            requirements.addAll(xmlToIngredients(ingredientElements
+                    .get(current)));
         }
-        TreeMap<String, Requirement> requirementsSet = new TreeMap<String,Requirement>();
-        for (Requirement requirement : requirements){
+        TreeMap<String, Requirement> requirementsSet = new TreeMap<String, Requirement>();
+        for (Requirement requirement : requirements) {
             requirementsSet.put(requirement.getId(), requirement);
         }
 
@@ -490,6 +498,11 @@ public class Configuration {
     // TODO remove/refactor so caller can't modify races
     public Vector<String> getRaces() {
         return races;
+    }
+
+    // TODO remove/refactor so caller can't modify sizes
+    public Vector<String> getSizes() {
+        return sizes;
     }
 
     // TODO remove/refactor so caller can't modify genders

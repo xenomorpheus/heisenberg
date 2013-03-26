@@ -396,29 +396,21 @@
 				</traitSubGroup>
 			</traitGroup>
 		</traits>
+		<sizes>
+            <size id="Medium" />
+			<size id="Small" />
+            <size id="Large" />
+		</sizes>
 		<genders>
-			<gender id="Male">
-			</gender>
-			<gender id="Female">
-			</gender>
-			<gender id="Androgynous">
-			</gender>
-			<gender id="Eunuch">
-			</gender>
-			<gender id="Hermaphrodite">
-			</gender>
-			<gender id="Butch">
-			</gender>
-			<gender id="Effete">
-			</gender>
+			<gender id="Male" />
+			<gender id="Female" />
+			<gender id="Androgynous" />
+			<gender id="Eunuch" />
 		</genders>
 		<races>
-			<race id="Elf">
-			</race>
-			<race id="Human">
-			</race>
-			<race id="Halfling">
-			</race>
+            <race id="Human" />
+			<race id="Elf" />
+			<race id="Halfling" />
 		</races>
 	</character>
 	<items>
