@@ -593,7 +593,7 @@ public class PcCreator {
         descriptionTextArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                descriptionTextArea.setText(pc.description());
+                descriptionTextArea.setText(pc.getDetailedDescription());
             }
         });
         JScrollPane descriptionScr = new JScrollPane(descriptionPanel);
