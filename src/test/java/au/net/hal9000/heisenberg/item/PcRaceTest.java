@@ -18,13 +18,6 @@ public class PcRaceTest {
      */
 
     @Test
-    public void testPcRace() {
-        PcClass pPcClass = null; // TODO add PcClass
-        Human human = new Human("the human", pPcClass);
-        // TODO add tests
-    }
-
-    @Test
     public void testLiving() {
         Human human = new Human();
         // By default PCs are living.
