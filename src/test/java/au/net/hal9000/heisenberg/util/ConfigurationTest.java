@@ -137,7 +137,7 @@ public class ConfigurationTest {
         assertTrue("skill 0",
                 recipe2.getSkills().contains(new Skill("testFireLighting")));
         assertEquals("product count", 1, recipe2.getProductCount());
-        assertEquals("product 0 type", "smallGroundFire", recipe2.getProduct(0));
+        assertEquals("product 0 type", "SmallGroundFire", recipe2.getProduct(0));
 
         // recipe3
         Recipe recipe3 = recipes.get("testSpell1");

@@ -522,7 +522,7 @@
 				<item id="FlintAndTinder" consumed="no" />
 			</requirements>
 			<products>
-				<item id="smallGroundFire" />
+				<item id="SmallGroundFire" />
 			</products>
 		</recipe>
 		<recipe id="testSpell1" description="spell test 1" mana="2"
