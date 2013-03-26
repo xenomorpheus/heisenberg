@@ -8,6 +8,9 @@ import au.net.hal9000.heisenberg.item.Human;
 public class HumanoidTest {
     private static final float WITHIN_MARGIN = 0.00009F;
 
+    /*
+     * Most tests will use a Human as a representative of Humanoid.
+     */
     @Test
     public void testGetWeight() {
         Human human = new Human(); // Close enough for this abstract class
