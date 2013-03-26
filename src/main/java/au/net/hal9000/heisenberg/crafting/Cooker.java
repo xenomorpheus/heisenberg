@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Set;
 import java.util.TreeMap;
 
