@@ -1,3 +1,10 @@
+2013-03-27
+Clean up XML schema for config.
+  1) Break out the types.
+  2) Replace xs:sequence with xs:all to free up order of elements.
+  3) Switch to xs:boolean to tie down boolean values.
+  4) Normalise types.
+
 2013-03-21
 Refactor Candle, Torch and Orb of Light.
 Light Candle or Torch from FintAndTinder or a lit Candle or Torch.

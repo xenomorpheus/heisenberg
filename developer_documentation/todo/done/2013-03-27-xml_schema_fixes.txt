@@ -1,0 +1,1 @@
+schema change xs:sequence to xs:all

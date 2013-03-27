@@ -1,0 +1,6 @@
+Thoughts:
+Capacity and weight constraints: Disable or implement?
+
+Ideas for implementing capacity and weight constraints: 
+* Defaults read from config.
+* Hand and Head to be based on Percentage of animal.
