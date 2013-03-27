@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="config.xsd">
+
+	<items>
+		<!-- Items that may be instantiated -->
+		<item id="Arrow" />
+		<item id="Backpack" />
+		<item id="Bag" />
+		<item id="BagOfHolding" />
+		<item id="Box" />
+		<item id="Candle" />
+		<item id="Cloak" />
+		<item id="Cookie" />
+		<item id="Crossbow" />
+		<item id="CrossbowBolt" />
+		<item id="Elf" />
+		<item id="FlintAndTinder" />
+		<item id="Halfling" />
+		<item id="Hand" />
+		<item id="Horse" />
+		<item id="Human" />
+		<item id="HumanoidHead" />
+		<item id="Location" />
+		<item id="MagicRing" />
+		<item id="OrbOfLight" />
+		<item id="Purse" />
+		<item id="Quiver" />
+		<item id="Ring" />
+		<item id="Scabbard" />
+		<item id="Shield" />
+		<item id="SmallGroundFire" />
+		<item id="Sword" />
+		<item id="Torch" />
+		<item id="Water" />
+		<item id="Wood" />
+	</items>
+
 	<character>
 		<pcClass id="Soldier" combatDice="20" magicDice="4"
 			stealthDice="8" generalDice="12" encumbrance="100" mana="0"
@@ -397,9 +432,9 @@
 			</traitGroup>
 		</traits>
 		<sizes>
-            <size id="Medium" />
+			<size id="Medium" />
 			<size id="Small" />
-            <size id="Large" />
+			<size id="Large" />
 		</sizes>
 		<genders>
 			<gender id="Male" />
@@ -408,44 +443,11 @@
 			<gender id="Eunuch" />
 		</genders>
 		<races>
-            <race id="Human" />
+			<race id="Human" />
 			<race id="Elf" />
 			<race id="Halfling" />
 		</races>
 	</character>
-	<items>
-		<!-- Items that may be instantiated -->
-		<item id="Arrow" />
-		<item id="Backpack" />
-		<item id="Bag" />
-		<item id="BagOfHolding" />
-		<item id="Box" />
-		<item id="Candle" />
-		<item id="Cloak" />
-		<item id="Cookie" />
-		<item id="Crossbow" />
-		<item id="CrossbowBolt" />
-		<item id="Elf" />
-		<item id="FlintAndTinder" />
-		<item id="Halfling" />
-		<item id="Hand" />
-		<item id="Horse" />
-		<item id="Human" />
-		<item id="HumanoidHead" />
-		<item id="Location" />
-		<item id="MagicRing" />
-		<item id="OrbOfLight" />
-		<item id="Purse" />
-		<item id="Quiver" />
-		<item id="Ring" />
-		<item id="Scabbard" />
-		<item id="Shield" />
-		<item id="SmallGroundFire" />
-		<item id="Sword" />
-		<item id="Torch" />
-		<item id="Water" />
-		<item id="Wood" />
-	</items>
 
 	<powerWords>
 		<!-- Game PowerWords -->
@@ -483,9 +485,9 @@
 			actionPoints="42" process="createItem1">
 			<skill id="FireLighting" />
 			<requirements>
-				<item id="Wood" consumed="yes" weightMin="3" />
-				<item id="FlintAndTinder" consumed="no" />
-				<item id="Location" type="ItemContainer" consumed="no" />
+				<item id="Wood" consumed="true" weightMin="3" />
+				<item id="FlintAndTinder" consumed="false" />
+				<item id="Location" type="ItemContainer" consumed="false" />
 			</requirements>
 			<products>
 				<item id="smallGroundFire" />
@@ -495,7 +497,7 @@
 			actionPoints="10" process="createItem1">
 			<powerWord id="SmallLight1" />
 			<requirements>
-				<item id="Location" type="ItemContainer" consumed="no" />
+				<item id="Location" type="ItemContainer" consumed="false" />
 			</requirements>
 			<products>
 				<item id="OrbOfLight" />
@@ -507,7 +509,7 @@
 			<skill id="testSkill1" />
 			<powerWord id="testPowerWord1" />
 			<requirements>
-				<item id="Location" type="ItemContainer" consumed="no" />
+				<item id="Location" type="ItemContainer" consumed="false" />
 			</requirements>
 			<products>
 				<item id="Cookie" />
@@ -517,9 +519,9 @@
 			actionPoints="42" process="createItem1">
 			<skill id="testFireLighting" />
 			<requirements>
-				<item id="Location" type="ItemContainer" consumed="no" />
-				<item id="Wood" consumed="yes" weightMin="3" />
-				<item id="FlintAndTinder" consumed="no" />
+				<item id="Location" type="ItemContainer" consumed="false" />
+				<item id="Wood" consumed="true" weightMin="3" />
+				<item id="FlintAndTinder" consumed="false" />
 			</requirements>
 			<products>
 				<item id="SmallGroundFire" />
