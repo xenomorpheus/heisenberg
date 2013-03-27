@@ -2,6 +2,8 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Collection;
 
 import javax.swing.JComboBox;
@@ -11,13 +13,15 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
-public class BasicPanel extends JPanel{
+public class BasicPanel extends JPanel {
 
     /**
      * 
@@ -36,9 +40,38 @@ public class BasicPanel extends JPanel{
     private JComboBox sizeComboBox;
     private JComboBox genderComboBox;
     private JSpinner levelSpinner;
+    private int pcLevel;
 
     public BasicPanel(Configuration config) {
         super();
+
+        addComponents(config);
+
+        // Add change hander
+        BasicItemListener basicItemListener = new BasicItemListener();
+        classComboBox.addItemListener(basicItemListener);
+        sizeComboBox.addItemListener(basicItemListener);
+        genderComboBox.addItemListener(basicItemListener);
+        raceComboBox.addItemListener(basicItemListener);
+
+        // Listen for changes to level
+        levelSpinner.addChangeListener(new ChangeListener() {
+
+            public void stateChanged(ChangeEvent e) {
+                SpinnerModel levelModel = levelSpinner.getModel();
+                if (levelModel instanceof SpinnerNumberModel) {
+                    pcLevel = Integer
+                            .parseInt(((SpinnerNumberModel) levelModel)
+                                    .getValue().toString());
+                    // TODO pc.setLevel(pcLevel);
+                    // showDetails();
+                }
+            }
+        });
+
+    }
+
+    private void addComponents(Configuration config) {
         Collection<String> races = config.getRaces();
         Collection<PcClass> pcClassesItr = config.getPcClasses().values();
         Collection<String> sizes = config.getSizes();
@@ -320,6 +353,44 @@ public class BasicPanel extends JPanel{
         this.add(manaTextField);
         pos += cons.gridwidth;
 
-    }    
-    
+    }
+
+    // Listens to multiple form elements
+    private class BasicItemListener implements ItemListener {
+
+        public void itemStateChanged(ItemEvent evt) {
+            if (evt.getStateChange() == ItemEvent.SELECTED) {
+                JComboBox comboBox = (JComboBox) evt.getSource();
+
+                // Class
+                if (comboBox == classComboBox) {
+                    PcClass pcClass = (PcClass) comboBox.getSelectedItem();
+                    // TODO pc.setPcClass(pcClass);
+                }
+
+                // Size
+                if (comboBox == sizeComboBox) {
+                    // TODO pc.setSize((String) comboBox.getSelectedItem());
+                }
+
+                // Gender
+                if (comboBox == genderComboBox) {
+                    // TODO pc.setGender((String) comboBox.getSelectedItem());
+                }
+
+                // Race
+                if (comboBox == raceComboBox) {
+                    PcRace raceNew = (PcRace) raceComboBox.getSelectedItem();
+                    // TODO if (!pc.equals(raceNew)) {
+                    // TODO raceNew.setAllFrom(pc);
+                    // TODO pc = raceNew;
+                    // TODO }
+                }
+
+                // Show results
+                // TODO showDetails();
+            }
+        }
+    }
+
 }
