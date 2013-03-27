@@ -7,115 +7,38 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="pcClass" maxOccurs="unbounded"
-								minOccurs="0">
+								minOccurs="0" type="ctPcClassType">
+							</xs:element>
+							<xs:element name="npcClass" maxOccurs="unbounded"
+								minOccurs="0" type="ctNpcClassType">
+							</xs:element>
+
+							<xs:element name="traits">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="ability" maxOccurs="unbounded"
-											minOccurs="0">
+										<xs:element name="traitGroup" maxOccurs="unbounded"
+											minOccurs="0" type="ctTraitType">
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="sizes">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="size" maxOccurs="unbounded"
+											minOccurs="1">
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
 														<xs:attribute type="xs:string" name="id"
-															use="required" />
-														<xs:attribute type="xs:string" name="value"
 															use="required" />
 													</xs:extension>
 												</xs:simpleContent>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute type="xs:string" name="id" use="required" />
-									<xs:attribute type="xs:byte" name="combatDice"
-										use="required" />
-									<xs:attribute type="xs:byte" name="magicDice" use="required" />
-									<xs:attribute type="xs:byte" name="stealthDice"
-										use="required" />
-									<xs:attribute type="xs:byte" name="generalDice"
-										use="required" />
-									<xs:attribute type="xs:byte" name="encumbrance"
-										use="required" />
-									<xs:attribute type="xs:byte" name="mana" use="required" />
-									<xs:attribute type="xs:byte" name="actionPoint"
-										use="required" />
-									<xs:attribute type="xs:byte" name="health" use="required" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="npcClass" maxOccurs="unbounded"
-								minOccurs="0">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:string">
-											<xs:attribute type="xs:string" name="id" use="required" />
-											<xs:attribute type="xs:byte" name="combatDice"
-												use="required" />
-											<xs:attribute type="xs:byte" name="magicDice"
-												use="required" />
-											<xs:attribute type="xs:byte" name="stealthDice"
-												use="required" />
-											<xs:attribute type="xs:byte" name="generalDice"
-												use="required" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="traits">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="traitGroup" maxOccurs="unbounded"
-											minOccurs="0">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="traitSubGroup" maxOccurs="unbounded"
-														minOccurs="0">
-														<xs:complexType>
-															<xs:sequence>
-																<xs:element name="traitSet" maxOccurs="unbounded"
-																	minOccurs="0">
-																	<xs:complexType>
-																		<xs:sequence>
-																			<xs:element name="trait" maxOccurs="unbounded"
-																				minOccurs="0">
-																				<xs:complexType>
-																					<xs:simpleContent>
-																						<xs:extension base="xs:string">
-																							<xs:attribute type="xs:string" name="id"
-																								use="required" />
-																						</xs:extension>
-																					</xs:simpleContent>
-																				</xs:complexType>
-																			</xs:element>
-																		</xs:sequence>
-																	</xs:complexType>
-																</xs:element>
-															</xs:sequence>
-															<xs:attribute type="xs:string" name="id"
-																use="required" />
-														</xs:complexType>
-													</xs:element>
-												</xs:sequence>
-												<xs:attribute type="xs:string" name="id" use="required" />
-											</xs:complexType>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-                            <xs:element name="sizes">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="size" maxOccurs="unbounded"
-                                            minOccurs="1">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:string">
-                                                        <xs:attribute type="xs:string" name="id"
-                                                            use="required" />
-                                                    </xs:extension>
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
 							<xs:element name="genders">
 								<xs:complexType>
 									<xs:sequence>
@@ -228,11 +151,14 @@
 										only. ingredient entries are mentioned by id only. Rules for
 										Ingredients in Precedence Order (This will aid auto-allocation
 										of Item objects if this process is
-										added) 1. Consumed Ingredient objects before non-consumed so
+										added) 1. Consumed
+										Ingredient objects before non-consumed so
 										non-consumed
-										aren't counted twice. 2. Most specific Ingredient before
+										aren't
+										counted twice. 2. Most specific Ingredient before
 										less-specific to help the matching
-										process Game Recipes Unit Test Recipes
+										process Game Recipes Unit
+										Test Recipes
 									</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
@@ -321,4 +247,77 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
+	<!-- complex types -->
+	<xs:complexType name="ctPcClassType">
+		<xs:sequence>
+			<xs:element name="ability" maxOccurs="unbounded"
+				minOccurs="0" type="ctAbilityType">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:byte" name="combatDice" use="required" />
+		<xs:attribute type="xs:byte" name="magicDice" use="required" />
+		<xs:attribute type="xs:byte" name="stealthDice" use="required" />
+		<xs:attribute type="xs:byte" name="generalDice" use="required" />
+		<xs:attribute type="xs:byte" name="encumbrance" use="required" />
+		<xs:attribute type="xs:byte" name="mana" use="required" />
+		<xs:attribute type="xs:byte" name="actionPoint" use="required" />
+		<xs:attribute type="xs:byte" name="health" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctNpcClassType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="id" use="required" />
+				<xs:attribute type="xs:byte" name="combatDice" use="required" />
+				<xs:attribute type="xs:byte" name="magicDice" use="required" />
+				<xs:attribute type="xs:byte" name="stealthDice" use="required" />
+				<xs:attribute type="xs:byte" name="generalDice" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="ctAbilityType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="id" use="required" />
+				<xs:attribute type="xs:string" name="value" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="ctTraitType">
+		<xs:sequence>
+			<xs:element name="traitSubGroup" maxOccurs="unbounded"
+				minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="traitSet" maxOccurs="unbounded"
+							minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="trait" maxOccurs="unbounded"
+										minOccurs="0">
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:string">
+													<xs:attribute type="xs:string" name="id" use="required" />
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute type="xs:string" name="id" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required" />
+	</xs:complexType>
+
+
 </xs:schema>
