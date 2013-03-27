@@ -22,36 +22,24 @@
 							<xs:element name="sizes">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="size" maxOccurs="unbounded"
-											minOccurs="1">
-											<xs:complexType>
-												<xs:attribute type="xs:string" name="id" use="required" />
-											</xs:complexType>
-										</xs:element>
+										<xs:element name="size" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="genders">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="gender" maxOccurs="unbounded"
-											minOccurs="1">
-											<xs:complexType>
-												<xs:attribute type="xs:string" name="id" use="required" />
-											</xs:complexType>
-										</xs:element>
+										<xs:element name="gender" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="races">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="race" maxOccurs="unbounded"
-											minOccurs="1">
-											<xs:complexType>
-												<xs:attribute type="xs:string" name="id" use="required" />
-											</xs:complexType>
-										</xs:element>
+										<xs:element name="race" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
@@ -77,17 +65,12 @@
 				<xs:element name="powerWords">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="powerWord" maxOccurs="unbounded"
-								minOccurs="0">
+							<xs:element name="powerWord" type="ctKeywordDetailType"
+								maxOccurs="unbounded" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>Game PowerWords Unit Test PowerWords
 									</xs:documentation>
 								</xs:annotation>
-								<xs:complexType>
-									<xs:attribute type="xs:string" name="id" use="required" />
-									<xs:attribute type="xs:string" name="description"
-										use="required" />
-								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 					</xs:complexType>
@@ -206,6 +189,14 @@
 		<xs:attribute type="xs:byte" name="generalDice" use="required" />
 	</xs:complexType>
 
+	<xs:complexType name="ctKeywordType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctKeywordDetailType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:string" name="description" use="required" />
+	</xs:complexType>
 
 	<xs:complexType name="ctAbilityType">
 		<xs:attribute type="xs:string" name="id" use="required" />
