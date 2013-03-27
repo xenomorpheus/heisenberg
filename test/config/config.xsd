@@ -17,7 +17,7 @@
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="traitGroup" maxOccurs="unbounded"
-											minOccurs="0" type="ctTraitType">
+											minOccurs="0" type="ctTraitGroupType">
 										</xs:element>
 									</xs:sequence>
 								</xs:complexType>
@@ -165,22 +165,12 @@
 									<xs:sequence>
 										<xs:element name="skill" minOccurs="0">
 											<xs:complexType>
-												<xs:simpleContent>
-													<xs:extension base="xs:string">
-														<xs:attribute type="xs:string" name="id"
-															use="required" />
-													</xs:extension>
-												</xs:simpleContent>
+												<xs:attribute type="xs:string" name="id" use="required" />
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="powerWord" minOccurs="0">
 											<xs:complexType>
-												<xs:simpleContent>
-													<xs:extension base="xs:string">
-														<xs:attribute type="xs:string" name="id"
-															use="required" />
-													</xs:extension>
-												</xs:simpleContent>
+												<xs:attribute type="xs:string" name="id" use="required" />
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="requirements" minOccurs="0">
@@ -189,18 +179,14 @@
 													<xs:element name="item" maxOccurs="unbounded"
 														minOccurs="0">
 														<xs:complexType>
-															<xs:simpleContent>
-																<xs:extension base="xs:string">
-																	<xs:attribute type="xs:string" name="id"
-																		use="required" />
-																	<xs:attribute type="xs:string" name="consumed"
-																		use="optional" />
-																	<xs:attribute type="xs:byte" name="weightMin"
-																		use="optional" />
-																	<xs:attribute type="xs:string" name="type"
-																		use="optional" />
-																</xs:extension>
-															</xs:simpleContent>
+															<xs:attribute type="xs:string" name="id"
+																use="required" />
+															<xs:attribute type="xs:string" name="consumed"
+																use="optional" />
+															<xs:attribute type="xs:byte" name="weightMin"
+																use="optional" />
+															<xs:attribute type="xs:string" name="type"
+																use="optional" />
 														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
@@ -288,7 +274,7 @@
 		</xs:simpleContent>
 	</xs:complexType>
 
-	<xs:complexType name="ctTraitType">
+	<xs:complexType name="ctTraitGroupType">
 		<xs:sequence>
 			<xs:element name="traitSubGroup" maxOccurs="unbounded"
 				minOccurs="0">
