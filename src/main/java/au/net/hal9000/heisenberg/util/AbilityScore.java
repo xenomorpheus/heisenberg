@@ -107,17 +107,24 @@ public class AbilityScore implements Comparable<AbilityScore> {
 	}
 
 	// misc
+    /**
+     * @return Value with optional mod. e.g. 3/1 or 3
+     */
+    public String valueOptionalMod() {
+        String string = "" + value;
+        if (mod != 0) {
+            if (mod > 0) {
+                string += "/+" + mod;
+            } else {
+                string += "/-" + mod;
+            }
+        }
+        return string;
+    }
+	
 
 	public String toString() {
-		String string = name + ": " + value;
-		if (mod != 0) {
-			if (mod > 0) {
-				string += "/+" + mod;
-			} else {
-				string += "/" + mod;
-			}
-		}
-		return string;
+		return name + ": " + valueOptionalMod();
 	}
 
 	/**
