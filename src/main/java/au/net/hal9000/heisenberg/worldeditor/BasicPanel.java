@@ -440,7 +440,7 @@ public class BasicPanel extends JPanel {
             // Fields
             // Row 0
             nameTextField.setText(pc.getName());
-            // private JComboBox classComboBox;
+            classComboBox.setSelectedItem(pc.getPcClass());
             // Row 1
             descriptionTextField.setText(pc.getDescription());
             // Row 2
