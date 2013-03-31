@@ -328,6 +328,18 @@ public abstract class PcRace extends Entity {
         this.recipes.add(recipeId);
     }
 
+    /**
+     * The PcRace has learnt new Recipe(s).
+     * 
+     * @param newRecipes
+     *            an array of Recipe IDs to add.
+     */
+    public final void recipesAdd(final String[] newRecipes) {
+        for (int i = newRecipes.length - 1; i >= 0; i--) {
+            recipes.add(newRecipes[i]);
+        }
+    }
+    
     // PowerWords
     /**
      * Get the PowerWord objects.
