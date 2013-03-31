@@ -49,6 +49,7 @@ public class BasicPanel extends JPanel {
     private JComboBox genderComboBox;
     // Row 4
     private JSpinner levelSpinner;
+    private SpinnerModel levelModel;
     private JTextField actionPointsTextField;
     private JTextField healthTextField;
     private JTextField manaTextField;
@@ -257,13 +258,8 @@ public class BasicPanel extends JPanel {
 
         raceComboBox = new JComboBox();
         for (String raceString : races) {
-            PcRace item = (PcRace) Factory.createItem(raceString);
-            // TODO remove - these are only for testing.
-            item.skillsAdd(new String[] { "skill1", "skill2", "skill3" });
-            item.powerWordsAdd(new String[] { "powerWord1", "powerWord2",
-                    "powerWord3" });
-            item.recipesAdd("recipe1");
-            raceComboBox.addItem(item);
+            PcRace pcRace = (PcRace) Factory.createItem(raceString);
+            raceComboBox.addItem(pcRace);
         }
 
         cons.gridx = pos;
@@ -330,7 +326,7 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
 
         // Level Spinner
-        SpinnerModel levelModel = new SpinnerNumberModel(1, // initial
+        levelModel = new SpinnerNumberModel(1, // initial
                 // value
                 0, // min
                 999, // max
@@ -457,8 +453,7 @@ public class BasicPanel extends JPanel {
             sizeComboBox.setSelectedItem(pc.getSize());
             genderComboBox.setSelectedItem(pc.getGender());
             // Row 4
-            // private JSpinner levelSpinner;
-
+            levelModel.setValue(pc.getLevel());
             actionPointsTextField
                     .setText(Integer.toString(pc.getActionPoints()));
             healthTextField.setText(Integer.toString(pc.getHealth()));
