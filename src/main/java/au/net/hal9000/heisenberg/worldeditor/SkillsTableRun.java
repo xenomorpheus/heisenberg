@@ -25,7 +25,7 @@ class SkillsTableRun extends JFrame {
     private JScrollPane scrollPane;
 
     // Constructor of main frame
-    public SkillsTableRun(PcRace pc) {
+    public SkillsTableRun(PcRace pc, Configuration config) {
         // Set the frame characteristics
         setTitle("Advanced Table Application");
         setSize(300, 200);
@@ -37,7 +37,7 @@ class SkillsTableRun extends JFrame {
         getContentPane().add(topPanel);
 
         // Create a new table instance
-        table = new SkillsTable(pc);
+        table = new SkillsTable(pc, config);
 
         // Configure some of JTable's paramters
         table.setShowHorizontalLines(false);
@@ -86,7 +86,7 @@ class SkillsTableRun extends JFrame {
 
         // new BasicPanelRun(pc, config);
 
-        SkillsTableRun mainFrame = new SkillsTableRun(pc);
+        SkillsTableRun mainFrame = new SkillsTableRun(pc, config);
         mainFrame.setVisible(true);
     }
 }
