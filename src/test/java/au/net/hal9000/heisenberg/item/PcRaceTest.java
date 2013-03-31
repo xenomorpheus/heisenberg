@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.Set;
+
 import nu.xom.ValidityException;
 import org.junit.Test;
 
@@ -140,6 +142,15 @@ public class PcRaceTest {
         assertEquals(7, pc.getHealth());
         assertEquals(0, pc.getMana());
 
+    }
+    
+    @Test
+    public void testRecipes(){
+        Human human = new Human(); 
+        // TODO
+        Set<String> recipes = human.getRecipes();
+        assertNotNull("recipes not null", recipes);
+        // TODO human.setRecipes();
     }
 
 }
