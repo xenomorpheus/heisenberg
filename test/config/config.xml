@@ -432,8 +432,8 @@
 			</traitGroup>
 		</traits>
 		<sizes>
+            <size id="Small" />
 			<size id="Medium" />
-			<size id="Small" />
 			<size id="Large" />
 		</sizes>
 		<genders>
