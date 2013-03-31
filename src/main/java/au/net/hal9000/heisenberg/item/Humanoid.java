@@ -16,11 +16,19 @@ public abstract class Humanoid extends PcRace {
 
     // Constructors
     public Humanoid(String pName) {
-        super(pName);
+        this(pName, "");
+    }
+
+    public Humanoid(String string, String description) {
+        super(string, description);
+    }
+
+    public Humanoid(String name, String description, PcClass pcClass) {
+        super(name, description, pcClass);
     }
 
     public Humanoid(String name, PcClass pcClass) {
-        super(name, pcClass);
+        this(name, "", pcClass);
     }
 
     // Getters and Setters

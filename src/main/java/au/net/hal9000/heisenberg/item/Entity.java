@@ -15,10 +15,13 @@ public abstract class Entity extends ItemContainer {
     String size;
 
     // Constructor
-    public Entity(String pName) {
-        super(pName);
+    public Entity(String name, String description) {
+        super(name, description);
     }
 
+    public Entity(String name) {
+        this(name, "");
+    }
     // Methods
 
     // Getters and Setters

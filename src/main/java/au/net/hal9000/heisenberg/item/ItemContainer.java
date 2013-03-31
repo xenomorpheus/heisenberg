@@ -16,10 +16,14 @@ public abstract class ItemContainer extends Item implements Serializable {
     private float volumeMax = 0;
     private Vector<Item> contents = new Vector<Item>();
 
-    public ItemContainer(String string) {
-        super(string);
+    // Constructor
+    public ItemContainer(String string, String description) {
+        super(string, description);
     }
 
+    public ItemContainer(String string) {
+        this(string,"");
+    }
     // Getters and Setters
     /**
      * Get the contents

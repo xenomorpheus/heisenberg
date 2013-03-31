@@ -24,7 +24,11 @@ public class Human extends Humanoid {
 		super(string);
 	}
 
-    public Human(String name, PcClass pcClass) {
-        super(name, pcClass);
+    public Human(String string, String description) {
+        super(string, description);
+    }
+
+    public Human(String name, String description, PcClass pcClass) {
+        super(name, description, pcClass);
     }
 }
