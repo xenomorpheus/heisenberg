@@ -35,6 +35,7 @@ public class BasicFrame {
                     e.printStackTrace();
                 }
                 PcRace human = new Human();
+                human.setLevel(0);
                 new BasicFrame(human, config);
             }
         });

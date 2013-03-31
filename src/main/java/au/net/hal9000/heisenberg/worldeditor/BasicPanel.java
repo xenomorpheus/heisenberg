@@ -76,6 +76,8 @@ public class BasicPanel extends JPanel {
                 }
             }
         });
+        
+        showDetails();
 
     }
 
