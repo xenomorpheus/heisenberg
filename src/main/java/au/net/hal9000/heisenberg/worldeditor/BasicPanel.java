@@ -27,32 +27,37 @@ public class BasicPanel extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
-    
+
     // Misc
     private PcRace pc;
     private Configuration config;
 
     // Fields
-    private JComboBox raceComboBox;
+    // Row 0
     private JTextField nameTextField;
+    private JComboBox classComboBox;
+    // Row 1
+    private JTextField descriptionTextField;
+    // Row 2
     private JTextField comTextField;
-    private JTextField steTextField;
     private JTextField magTextField;
+    private JTextField steTextField;
     private JTextField genTextField;
+    // Row 3
+    private JComboBox raceComboBox;
+    private JComboBox sizeComboBox;
+    private JComboBox genderComboBox;
+    // Row 4
+    private JSpinner levelSpinner;
     private JTextField actionPointsTextField;
     private JTextField healthTextField;
     private JTextField manaTextField;
-    private JComboBox classComboBox;
-    private JComboBox sizeComboBox;
-    private JComboBox genderComboBox;
-    private JSpinner levelSpinner;
 
-    
     public BasicPanel(final PcRace pPc, final Configuration pConfig) {
         super();
         pc = pPc;
         config = pConfig;
-        
+
         addComponents();
 
         // Add change hander
@@ -72,12 +77,12 @@ public class BasicPanel extends JPanel {
                             .parseInt(((SpinnerNumberModel) levelModel)
                                     .getValue().toString());
                     pc.setLevel(pcLevel);
-                    showDetails();
+                    updateForm();
                 }
             }
         });
-        
-        showDetails();
+
+        updateForm();
 
     }
 
@@ -152,6 +157,29 @@ public class BasicPanel extends JPanel {
         // Row 1
         row = 1;
         pos = 0;
+
+        // Description
+        JLabel descriptionLbl = new JLabel("description");
+        cons.gridx = pos;
+        cons.gridy = row;
+        gridBag.setConstraints(descriptionLbl, cons);
+        this.add(descriptionLbl);
+        pos += cons.gridwidth;
+
+        descriptionTextField = new JTextField();
+        descriptionTextField.setColumns(10);
+        cons.gridx = pos;
+        cons.gridy = row;
+        cons.gridwidth = 6;
+        gridBag.setConstraints(descriptionTextField, cons);
+        this.add(descriptionTextField);
+        pos += cons.gridwidth;
+        cons.gridwidth = 1;
+
+        // Row 2
+        row = 2;
+        pos = 0;
+        
         // Com
         JLabel comLbl = new JLabel("Com");
         cons.gridx = pos;
@@ -216,8 +244,8 @@ public class BasicPanel extends JPanel {
         this.add(genTextField);
         pos += cons.gridwidth;
 
-        // Row 2
-        row = 2;
+        // Row 3
+        row = 3;
         pos = 0;
         // Race
         JLabel raceLbl = new JLabel("Race");
@@ -290,8 +318,8 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
         cons.gridwidth = 1;
 
-        // Row 3
-        row = 3;
+        // Row 4
+        row = 4;
         pos = 0;
         // Level
         JLabel levelLbl = new JLabel("Level");
@@ -369,6 +397,8 @@ public class BasicPanel extends JPanel {
     private class BasicItemListener implements ItemListener {
 
         public void itemStateChanged(ItemEvent evt) {
+            // TODO Name
+            // TODO Description
             if (evt.getStateChange() == ItemEvent.SELECTED) {
                 JComboBox comboBox = (JComboBox) evt.getSource();
 
@@ -380,7 +410,10 @@ public class BasicPanel extends JPanel {
 
                 // Size
                 if (comboBox == sizeComboBox) {
-                    pc.setSize((String) comboBox.getSelectedItem());
+                    String newSize = (String) comboBox.getSelectedItem();
+                    if (!newSize.equals(pc.getSize())) {
+                        pc.setSize(newSize);
+                    }
                 }
 
                 // Gender
@@ -398,18 +431,33 @@ public class BasicPanel extends JPanel {
                 }
 
                 // Show results
-                showDetails();
+                updateForm();
             }
         }
     }
 
-    private void showDetails() {
+    private void updateForm() {
         if (pc != null) {
 
+            // TODO only change values if required.
+            // e.g. don't trigger needless change events.
+            // Fields
+            // Row 0
+            nameTextField.setText(pc.getName());
+            // private JComboBox classComboBox;
+            // Row 1
+            descriptionTextField.setText(pc.getDescription());
+            // Row 2
             comTextField.setText(Integer.toString(pc.getCombatDice()));
-            steTextField.setText(Integer.toString(pc.getStealthDice()));
             magTextField.setText(Integer.toString(pc.getMagicDice()));
+            steTextField.setText(Integer.toString(pc.getStealthDice()));
             genTextField.setText(Integer.toString(pc.getGeneralDice()));
+            // Row 3
+            raceComboBox.setSelectedItem(pc.getRace());
+            sizeComboBox.setSelectedItem(pc.getSize());
+            genderComboBox.setSelectedItem(pc.getGender());
+            // Row 4
+            // private JSpinner levelSpinner;
 
             actionPointsTextField
                     .setText(Integer.toString(pc.getActionPoints()));

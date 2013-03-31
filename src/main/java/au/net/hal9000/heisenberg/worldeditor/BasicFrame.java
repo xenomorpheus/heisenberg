@@ -3,12 +3,15 @@ package au.net.hal9000.heisenberg.worldeditor;
 //Use the GridBagConstraints to determine how the component
 import java.awt.EventQueue;
 import java.io.IOException;
+import java.util.TreeMap;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import nu.xom.ValidityException;
-import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Elf;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.PcClass;
 
 public class BasicFrame {
     JFrame guiFrame;
@@ -34,9 +37,11 @@ public class BasicFrame {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                PcRace human = new Human();
-                human.setLevel(0);
-                new BasicFrame(human, config);
+                TreeMap<String, PcClass> pcClasses = config.getPcClasses();
+                PcRace pc = new Elf("Jane","The Paladin", pcClasses.get("Paladin"));
+                pc.setGender("Female"); // TODO get from config
+                pc.setSize("Small");
+                new BasicFrame(pc, config);
             }
         });
 
