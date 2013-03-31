@@ -52,14 +52,14 @@ public class PcCreator {
     private void initialise() {
 
         frame = new JFrame();
-        frame.setBounds(100, 100, 624, 634);
+        frame.setBounds(100, 100, 894, 634);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(6, 6, 612, 592);
+        tabbedPane.setBounds(6, 6, 862, 592);
+        tabbedPane.addTab("New tab", null, new BasicPanel(pc, config), null);
 
-        tabbedPane.addTab("Basic", null, new BasicPanel(pc, config), null);
         tabbedPane.addTab("Abilities", null,
                 new AbilityScoresTable(pc, config), null);
         tabbedPane.addTab("Skills", null, new SkillsTable(pc, config), null);
@@ -69,6 +69,7 @@ public class PcCreator {
         tabbedPane.addTab("Description", null, descriptionPane(pc), null);
 
         frame.getContentPane().add(tabbedPane);
+
     }
 
     private JComponent descriptionPane(final PcRace pc) {
