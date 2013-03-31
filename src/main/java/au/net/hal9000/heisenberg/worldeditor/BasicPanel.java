@@ -160,7 +160,7 @@ public class BasicPanel extends JPanel {
         pos = 0;
 
         // Description
-        JLabel descriptionLbl = new JLabel("description");
+        JLabel descriptionLbl = new JLabel("Description");
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(descriptionLbl, cons);

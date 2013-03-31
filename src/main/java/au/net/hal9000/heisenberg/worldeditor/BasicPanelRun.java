@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
-public class BasicFrame {
+public class BasicPanelRun {
     JFrame guiFrame;
 
     public static void main(String[] args) {
@@ -50,19 +50,19 @@ public class BasicFrame {
                         "testPowerWord3" });
                 pc.recipesAdd("testItem1");
 
-                new BasicFrame(pc, config);
+                new BasicPanelRun(pc, config);
             }
         });
 
     }
 
-    public BasicFrame(final PcRace pcClass, final Configuration config) {
+    public BasicPanelRun(final PcRace pcClass, final Configuration config) {
 
         guiFrame = new JFrame();
 
         // make sure the program exits when the frame closes
         guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("GridBagLayout Example");
+        guiFrame.setTitle("PC Editor");
         guiFrame.setSize(800, 300);
 
         // This will center the JFrame in the middle of the screen

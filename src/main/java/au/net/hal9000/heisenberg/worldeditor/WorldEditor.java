@@ -30,20 +30,8 @@ public class WorldEditor {
     JTree m_tree = null;
     JComboBox itemClassesList = null;
 
-    public WorldEditor() {
-        // Load some config
-        try {
-            config = new Configuration("test/config/config.xml");
-        } catch (ValidityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public WorldEditor(final Configuration pConfig) {
+        config = pConfig;
 
         final String PERSISTENCE_UNIT_NAME = "items";
         EntityManagerFactory factory = Persistence
@@ -108,7 +96,7 @@ public class WorldEditor {
                                 selContainer.getChildCount());
                         Item[] nodes = model.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
-                        System.out.println("DEBUG: path is "+path);
+                        System.out.println("DEBUG: path is " + path);
                         m_tree.scrollPathToVisible(path);
                         m_tree.setSelectionPath(path);
                         m_tree.startEditingAtPath(path);
@@ -208,10 +196,6 @@ public class WorldEditor {
         return menubar;
     }
 
-    public static void main(String[] args) {
-        new WorldEditor();
-    }
-
     public static Location getDemoWorld() {
         // Ad-hoc test world
         Location world = new Location("World");
@@ -278,6 +262,25 @@ public class WorldEditor {
         world.add(bag3);
 
         return world;
+    }
+
+    public static void main(String[] args) {
+        // Load some config
+        Configuration config = null;
+        try {
+            config = new Configuration("test/config/config.xml");
+        } catch (ValidityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        new WorldEditor(config);
     }
 
 }
