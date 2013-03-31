@@ -22,6 +22,16 @@ import au.net.hal9000.heisenberg.units.PowerWordDetail;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
+/**
+ * Configuration read the XML config file and return in an object to easily
+ * access the properties.
+ * 
+ * Please consider the values read only.
+ * 
+ * @author bruins
+ * 
+ */
+
 public class Configuration {
 
     private static Configuration lastConfig = null; // Singleton
@@ -112,8 +122,7 @@ public class Configuration {
         // TODO traits = xmlToTraits(traitElements);
 
         // character - sizes
-        Element sizeElement = characterElement
-                .getFirstChildElement("sizes");
+        Element sizeElement = characterElement.getFirstChildElement("sizes");
         sizes = xmlToIdList(sizeElement.getChildElements());
 
         // character - genders
