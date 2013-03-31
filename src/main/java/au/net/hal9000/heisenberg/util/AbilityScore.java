@@ -116,7 +116,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
             if (mod > 0) {
                 string += "/+" + mod;
             } else {
-                string += "/-" + mod;
+                string += "/" + mod;
             }
         }
         return string;
