@@ -27,6 +27,12 @@ public class BasicPanel extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
+    
+    // Misc
+    private PcRace pc;
+    private Configuration config;
+
+    // Fields
     private JComboBox raceComboBox;
     private JTextField nameTextField;
     private JTextField comTextField;
@@ -40,12 +46,14 @@ public class BasicPanel extends JPanel {
     private JComboBox sizeComboBox;
     private JComboBox genderComboBox;
     private JSpinner levelSpinner;
-    private int pcLevel;
 
-    public BasicPanel(Configuration config) {
+    
+    public BasicPanel(final PcRace pPc, final Configuration pConfig) {
         super();
-
-        addComponents(config);
+        pc = pPc;
+        config = pConfig;
+        
+        addComponents();
 
         // Add change hander
         BasicItemListener basicItemListener = new BasicItemListener();
@@ -60,18 +68,18 @@ public class BasicPanel extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 SpinnerModel levelModel = levelSpinner.getModel();
                 if (levelModel instanceof SpinnerNumberModel) {
-                    pcLevel = Integer
+                    int pcLevel = Integer
                             .parseInt(((SpinnerNumberModel) levelModel)
                                     .getValue().toString());
-                    // TODO pc.setLevel(pcLevel);
-                    // showDetails();
+                    pc.setLevel(pcLevel);
+                    showDetails();
                 }
             }
         });
 
     }
 
-    private void addComponents(Configuration config) {
+    private void addComponents() {
         Collection<String> races = config.getRaces();
         Collection<PcClass> pcClassesItr = config.getPcClasses().values();
         Collection<String> sizes = config.getSizes();
@@ -365,31 +373,46 @@ public class BasicPanel extends JPanel {
                 // Class
                 if (comboBox == classComboBox) {
                     PcClass pcClass = (PcClass) comboBox.getSelectedItem();
-                    // TODO pc.setPcClass(pcClass);
+                    pc.setPcClass(pcClass);
                 }
 
                 // Size
                 if (comboBox == sizeComboBox) {
-                    // TODO pc.setSize((String) comboBox.getSelectedItem());
+                    pc.setSize((String) comboBox.getSelectedItem());
                 }
 
                 // Gender
                 if (comboBox == genderComboBox) {
-                    // TODO pc.setGender((String) comboBox.getSelectedItem());
+                    pc.setGender((String) comboBox.getSelectedItem());
                 }
 
                 // Race
                 if (comboBox == raceComboBox) {
                     PcRace raceNew = (PcRace) raceComboBox.getSelectedItem();
-                    // TODO if (!pc.equals(raceNew)) {
-                    // TODO raceNew.setAllFrom(pc);
-                    // TODO pc = raceNew;
-                    // TODO }
+                    if (!pc.equals(raceNew)) {
+                        raceNew.setAllFrom(pc);
+                        pc = raceNew;
+                    }
                 }
 
                 // Show results
-                // TODO showDetails();
+                showDetails();
             }
+        }
+    }
+
+    private void showDetails() {
+        if (pc != null) {
+
+            comTextField.setText(Integer.toString(pc.getCombatDice()));
+            steTextField.setText(Integer.toString(pc.getStealthDice()));
+            magTextField.setText(Integer.toString(pc.getMagicDice()));
+            genTextField.setText(Integer.toString(pc.getGeneralDice()));
+
+            actionPointsTextField
+                    .setText(Integer.toString(pc.getActionPoints()));
+            healthTextField.setText(Integer.toString(pc.getHealth()));
+            manaTextField.setText(Integer.toString(pc.getMana()));
         }
     }
 

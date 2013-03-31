@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import nu.xom.ValidityException;
+import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 public class BasicFrame {
@@ -32,14 +34,14 @@ public class BasicFrame {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
-                new BasicFrame(config);
+                PcRace human = new Human();
+                new BasicFrame(human, config);
             }
         });
 
     }
 
-    public BasicFrame(Configuration config) {
+    public BasicFrame(final PcRace pcClass, final Configuration config) {
 
         guiFrame = new JFrame();
 
@@ -51,7 +53,7 @@ public class BasicFrame {
         // This will center the JFrame in the middle of the screen
         guiFrame.setLocationRelativeTo(null);
 
-        JPanel basicPanel = new BasicPanel(config);
+        JPanel basicPanel = new BasicPanel(pcClass, config);
 
         // add to JFrame
         guiFrame.add(basicPanel);
