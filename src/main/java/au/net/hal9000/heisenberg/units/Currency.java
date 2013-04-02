@@ -57,21 +57,21 @@ public class Currency implements Serializable, Cloneable {
     /**
      * Creates a Currency object that can be modified later.
      * 
-     * @param pPp
+     * @param pp
      *            Number of Platinum Pieces in this object.
-     * @param pGp
+     * @param gp
      *            Number of Gold Pieces in this object.
-     * @param pSp
+     * @param sp
      *            Number of Silver Pieces in this object.
-     * @param pCp
+     * @param cp
      *            Number of Copper Pieces in this object.
      */
-    public Currency(int pPp, int pGp, int pSp, int pCp) {
+    public Currency(int pp, int gp, int sp, int cp) {
         super();
-        this.pp = pPp;
-        this.gp = pGp;
-        this.sp = pSp;
-        this.cp = pCp;
+        setPp(pp);
+        setGp(gp);
+        setSp(sp);
+        setCp(cp);
     }
 
     /**
@@ -82,11 +82,8 @@ public class Currency implements Serializable, Cloneable {
      *            The Currency object being cloned.
      */
     public Currency(final Currency otherCollection) {
-        super();
-        this.pp = otherCollection.pp;
-        this.gp = otherCollection.gp;
-        this.sp = otherCollection.sp;
-        this.cp = otherCollection.cp;
+        this(otherCollection.pp, otherCollection.gp, otherCollection.sp,
+                otherCollection.cp);
     }
 
     // instance methods
@@ -108,6 +105,9 @@ public class Currency implements Serializable, Cloneable {
      *            The number of platinum pieces.
      */
     public void setPp(final int pp) {
+        if (pp < 0) {
+            throw new RuntimeException("Invalid amount");
+        }
         this.pp = pp;
     }
 
@@ -125,6 +125,9 @@ public class Currency implements Serializable, Cloneable {
      *            The number of gold pieces.
      */
     public void setGp(final int gp) {
+        if (gp < 0) {
+            throw new RuntimeException("Invalid amount");
+        }
         this.gp = gp;
     }
 
@@ -142,6 +145,9 @@ public class Currency implements Serializable, Cloneable {
      *            The number of silver pieces.
      */
     public void setSp(final int sp) {
+        if (sp < 0) {
+            throw new RuntimeException("Invalid amount");
+        }
         this.sp = sp;
     }
 
@@ -159,11 +165,16 @@ public class Currency implements Serializable, Cloneable {
      *            The number of coper pieces.
      */
     public void setCp(final int cp) {
+        if (cp < 0) {
+            throw new RuntimeException("Invalid amount");
+        }
         this.cp = cp;
     }
 
-    // increment the current object by the argument currency.
-    // note that the currency arg is not changed.
+    /**
+     * increment the current object by the argument currency. note that the
+     * currency arg is not changed.
+     */
     public void add(final Currency otherCollection) {
         // add the value to the current Currency.
         this.pp += otherCollection.getPp();
@@ -172,11 +183,30 @@ public class Currency implements Serializable, Cloneable {
         this.cp += otherCollection.getCp();
     }
 
-    // transfer all the value of the passed currency object.
+    /** transfer all the value of the passed currency object. **/
     public void transfer(Currency fromCollection) {
         this.add(fromCollection);
         // remove the value from the original otherCollection.
         fromCollection.pp = fromCollection.gp = fromCollection.sp = fromCollection.cp = 0;
+    }
+
+    /**
+     * convert into smallest number of coins. The number of coins will change in
+     * a purse. I consider this a feature not a bug.
+     **/
+    public void normalise() {
+        while (cp > 9) {
+            sp++;
+            cp -= 10;
+        }
+        while (sp > 9) {
+            gp++;
+            sp -= 10;
+        }
+        while (gp > 9) {
+            pp++;
+            gp -= 10;
+        }
     }
 
     @Override
@@ -184,12 +214,19 @@ public class Currency implements Serializable, Cloneable {
         Boolean isEqual = false;
         if (object instanceof Currency) {
             final Currency otherCurrency = (Currency) object;
+            normalise();
+            otherCurrency.normalise();
             isEqual = (pp == otherCurrency.getPp())
                     && (gp == otherCurrency.getGp())
                     && (sp == otherCurrency.getSp())
                     && (cp == otherCurrency.getCp());
         }
         return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return ((((pp * 10) + gp) * 10) + sp) * 10 + cp;
     }
 
     public String toString() {
