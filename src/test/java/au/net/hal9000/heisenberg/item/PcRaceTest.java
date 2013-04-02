@@ -110,21 +110,9 @@ public class PcRaceTest {
     }
 
     @Test
-    public void testValues() {
+    public void testValues() throws ValidityException, IOException, Exception {
 
-        Configuration config = null;
-        try {
-            config = new Configuration("test/config/config.xml");
-        } catch (ValidityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Configuration config = new Configuration("test/config/config.xml");
         PcClass warrior = config.getPcClass("Warrior");
         Human pc = new Human("Mr Warrior");
         pc.setPcClass(warrior);
