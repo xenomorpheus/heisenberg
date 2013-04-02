@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
+import nu.xom.ValidityException;
 
 import org.junit.Test;
 
@@ -19,14 +22,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
 public class PersistenceTest {
 
 	@Test
-	public void oneOfEachItem() {
-		Configuration config = null;
-		try {
-			config = new Configuration("test/config/config.xml");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			fail(e.getStackTrace().toString());
-		}
+	public void oneOfEachItem() throws ValidityException, IOException, Exception {
+		Configuration config = new Configuration("test/config/config.xml");
 		Vector<String> itemClasses = config.getItemClasses();
 
 		final String PERSISTENCE_UNIT_NAME = "items";
