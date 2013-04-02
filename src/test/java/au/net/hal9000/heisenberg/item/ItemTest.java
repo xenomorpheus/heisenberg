@@ -1,8 +1,9 @@
 package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
-
+import java.io.IOException;
 import java.util.Vector;
+import nu.xom.ValidityException;
 import org.junit.Test;
 
 // Custom
@@ -94,15 +95,9 @@ public class ItemTest {
     }
 
     @Test
-    public void testToString() {
+    public void testToString() throws ValidityException, IOException, Exception {
 
-        Configuration config = null;
-        try {
-            config = new Configuration("test/config/config.xml");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            fail(e.getStackTrace().toString());
-        }
+        Configuration config =  new Configuration("test/config/config.xml");
         Vector<String> itemClasses = config.getItemClasses();
 
         for (String itemClass : itemClasses) {
