@@ -49,9 +49,17 @@ public class Configuration {
             IOException, Exception {
         super();
         this.init(filename);
-        lastConfig = this;
+        setLastConfig(this);
     }
 
+    /**
+     * Change a static variable. Required by findbugs.
+     * @param config
+     */
+    private static void setLastConfig(Configuration config){
+    	Configuration.lastConfig = config;
+    }
+    
     public static Configuration lastConfig() {
         if (lastConfig == null) {
             throw new RuntimeException(
