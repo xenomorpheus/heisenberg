@@ -111,6 +111,7 @@ public class PcClassTest {
 	public final void testDescription() {
 	}
 
+	@Test
 	public final void testCompareTo() {
 		PcClass pc1 = new PcClass();
 		pc1.setId("BBB");

@@ -16,14 +16,77 @@ import au.net.hal9000.heisenberg.util.PcClass;
 public class PcRaceTest {
 
     /*
-     * Most tests will use a Human as a representative of the PcRace.
+     * Most tests will use a Human as a representative of the PcRace. Tests
+     * should be in the same order as the fields or methods.
      */
 
+    // Constructor
     @Test
-    public void testLiving() {
+    public void testPcRace() {
         Human human = new Human();
+        assertEquals("Name check", "Human", human.getName());
+        assertEquals("Description check", "", human.getDescription());
         // By default PCs are living.
         assertTrue("living", ItemProperty.isLiving(human));
+    }
+
+    @Test
+    public void testPcRaceString() {
+        Human human = new Human("Fred1");
+        assertEquals("Name check1", "Fred1", human.getName());
+        assertEquals("Description check1", "", human.getDescription());
+        // By default PCs are living.
+        assertTrue("living1", ItemProperty.isLiving(human));
+    }
+
+    @Test
+    public void testPcRaceStringString() {
+        Human human = new Human("Fred2", "Desc2");
+        assertEquals("Name check2", "Fred2", human.getName());
+        assertEquals("Description check2", "Desc2", human.getDescription());
+        // By default PCs are living.
+        assertTrue("living2", ItemProperty.isLiving(human));
+    }
+
+    @Test
+    public void testPcRaceStringPcClass() {
+        final PcClass expected = new PcClass();
+        Human human = new Human("Fred3", expected);
+        assertEquals("Name check3", "Fred3", human.getName());
+        assertEquals("Description check3", "", human.getDescription());
+        // By default PCs are living.
+        assertTrue("living3", ItemProperty.isLiving(human));
+        assertSame(expected, human.getPcClass());
+    }
+
+    @Test
+    public void testPcRaceStringStringPcClass() {
+        final PcClass expected = new PcClass();
+        Human human = new Human("Fred4", "Desc4", expected);
+        assertEquals("Name check3", "Fred4", human.getName());
+        assertEquals("Description check4", "Desc4", human.getDescription());
+        // By default PCs are living.
+        assertTrue("living4", ItemProperty.isLiving(human));
+        assertSame(expected, human.getPcClass());
+    }
+
+    // Getters and Setters in field order.
+    @Test
+    public void testLevel() {
+        final int expected = 18;
+        Human human = new Human();
+        assertEquals(0, human.getLevel());
+        human.setLevel(expected);
+        assertEquals(expected, human.getLevel());
+    }
+
+    @Test
+    public void testPcClass() {
+        final PcClass expected = new PcClass();
+        Human human = new Human();
+        assertEquals(null, human.getPcClass());
+        human.setPcClass(expected);
+        assertEquals(expected, human.getPcClass());
     }
 
     @Test
@@ -101,15 +164,6 @@ public class PcRaceTest {
     }
 
     @Test
-    public void testLevel() {
-        final int expected = 18;
-        Human human = new Human();
-        assertEquals(0, human.getLevel());
-        human.setLevel(expected);
-        assertEquals(expected, human.getLevel());
-    }
-
-    @Test
     public void testValues() throws ValidityException, IOException, Exception {
 
         Configuration config = new Configuration("test/config/config.xml");
@@ -131,14 +185,23 @@ public class PcRaceTest {
         assertEquals(0, pc.getMana());
 
     }
-    
+
     @Test
-    public void testRecipes(){
-        Human human = new Human(); 
+    public void testRecipes() {
+        Human human = new Human();
         // TODO
         Set<String> recipes = human.getRecipes();
         assertNotNull("recipes not null", recipes);
         // TODO human.setRecipes();
     }
 
+    @Test 
+    public void testGetDetailedDescription() {
+        Human human = new Human();
+        // TODO
+        String detailedDescription = human.getDetailedDescription();
+        assertNotNull("detailed description not null", detailedDescription);
+    }
+    
+    
 }

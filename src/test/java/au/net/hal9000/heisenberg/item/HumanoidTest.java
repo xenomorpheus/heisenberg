@@ -40,4 +40,11 @@ public class HumanoidTest {
 
     }
 
+    @Test
+    public void testGetRace() {
+        Human human = new Human();
+        assertEquals("getRace","Human", human.getRace());
+    }
+    
+    
 }

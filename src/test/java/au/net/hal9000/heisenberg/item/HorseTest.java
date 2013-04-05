@@ -10,12 +10,9 @@ public class HorseTest {
     @Test
     public void testInstanceof() {
         Horse horse = new Horse();
-        Item item = (Item) horse;
-        assertTrue("is humanoid mount", item instanceof HumanoidMount);
-        assertTrue("is Entity", item instanceof Entity);
-        assertTrue("is Living", ItemProperty.isLiving(item));
-        assertFalse("is Cookie", item instanceof Cookie);
-        assertFalse("is Humanoid", item instanceof Humanoid);
+        assertTrue("is humanoid mount", horse instanceof HumanoidMount);
+        assertTrue("is Entity", horse instanceof Entity);
+        assertTrue("is Living", ItemProperty.isLiving(horse));
     }
 
 }
