@@ -14,7 +14,7 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
-public class PcCreator {
+public class PcEditor {
 
     private Configuration config;
     private PcRace pc;
@@ -26,7 +26,7 @@ public class PcCreator {
     /**
      * Create the application.
      */
-    public PcCreator(final PcRace pPc, final Configuration pConfig) {
+    public PcEditor(final PcRace pPc, final Configuration pConfig) {
 
         pc = pPc;
         // TODO config = pConfig;
@@ -117,7 +117,7 @@ public class PcCreator {
                     pc.recipesAdd(new String[] { "testItem1",
                             "testFireGround1", "testSpell1" });
 
-                    PcCreator window = new PcCreator(pc, null); // TODO
+                    PcEditor window = new PcEditor(pc, null); // TODO
                                                                 // config pass
                                                                 // in
                     window.frame.setVisible(true);
