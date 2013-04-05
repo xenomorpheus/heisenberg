@@ -58,7 +58,7 @@ class SkillsTableRun extends JFrame {
 
         // Create an instance of the test application
         try {
-            Configuration config = new Configuration("test/config/config.xml");
+            Configuration config = new Configuration("src/test/resources/config.xml");
             TreeMap<String, PcClass> pcClasses = config.getPcClasses();
             // TODO remove - these are only for testing.
             PcRace pc = (PcRace) Factory.createItem("Elf");

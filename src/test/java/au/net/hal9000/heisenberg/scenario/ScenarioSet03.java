@@ -19,7 +19,7 @@ public class ScenarioSet03 {
 
     @Before
     public void initialize() throws ValidityException, IOException, Exception {
-        config = new Configuration("test/config/config.xml");
+        config = new Configuration("src/test/resources/config.xml");
     }
 
     // Human collects various items (move and pick up)

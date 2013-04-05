@@ -25,7 +25,7 @@ public class BasicPanelRun {
             public void run() {
                 try {
                     Configuration config = new Configuration(
-                            "test/config/config.xml");
+                            "src/test/resources/config.xml");
                     TreeMap<String, PcClass> pcClasses = config.getPcClasses();
                     // TODO remove - these are only for testing.
                     PcRace pc = (PcRace) Factory.createItem("Elf");

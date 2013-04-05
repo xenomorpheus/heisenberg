@@ -17,7 +17,7 @@ public class BasicPanelTest {
     @Before
     public void setUp() {
         try {
-            config = new Configuration("test/config/config.xml");
+            config = new Configuration("src/test/resources/config.xml");
         } catch (Exception e) {
             e.printStackTrace();
             fail();

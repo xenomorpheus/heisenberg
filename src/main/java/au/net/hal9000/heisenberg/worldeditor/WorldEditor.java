@@ -267,7 +267,7 @@ public class WorldEditor {
     public static void main(String[] args) {
         try {
             // Load some config
-            Configuration config = new Configuration("test/config/config.xml");
+            Configuration config = new Configuration("src/test/resources/config.xml");
             new WorldEditor(config);
         } catch (ValidityException e) {
             // TODO Auto-generated catch block

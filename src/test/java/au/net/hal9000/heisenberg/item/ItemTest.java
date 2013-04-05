@@ -97,7 +97,7 @@ public class ItemTest {
     @Test
     public void testToString() throws ValidityException, IOException, Exception {
 
-        Configuration config =  new Configuration("test/config/config.xml");
+        Configuration config =  new Configuration("src/test/resources/config.xml");
         Vector<String> itemClasses = config.getItemClasses();
 
         for (String itemClass : itemClasses) {

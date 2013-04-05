@@ -166,7 +166,7 @@ public class PcRaceTest {
     @Test
     public void testValues() throws ValidityException, IOException, Exception {
 
-        Configuration config = new Configuration("test/config/config.xml");
+        Configuration config = new Configuration("src/test/resources/config.xml");
         PcClass warrior = config.getPcClass("Warrior");
         Human pc = new Human("Mr Warrior");
         pc.setPcClass(warrior);

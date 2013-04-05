@@ -29,7 +29,7 @@ public class CookerTest {
 
     @Before
     public void initialize() throws ValidityException, IOException, Exception {
-        config = new Configuration("test/config/config.xml");
+        config = new Configuration("src/test/resources/config.xml");
     }
 
     /**

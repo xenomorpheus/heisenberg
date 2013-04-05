@@ -31,7 +31,7 @@ public class PcCreator {
         pc = pPc;
         // TODO config = pConfig;
         try {
-            config = new Configuration("test/config/config.xml");
+            config = new Configuration("src/test/resources/config.xml");
         } catch (ValidityException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class PcCreator {
             public void run() {
                 try {
                     Configuration config = new Configuration(
-                            "test/config/config.xml");
+                            "src/test/resources/config.xml");
                     TreeMap<String, PcClass> pcClasses = config.getPcClasses();
                     PcRace pc = (PcRace) Factory.createItem("Elf");
                     pc.setName("Jane");

@@ -23,7 +23,7 @@ public class PersistenceTest {
 
 	@Test
 	public void oneOfEachItem() throws ValidityException, IOException, Exception {
-		Configuration config = new Configuration("test/config/config.xml");
+		Configuration config = new Configuration("src/test/resources/config.xml");
 		Vector<String> itemClasses = config.getItemClasses();
 
 		final String PERSISTENCE_UNIT_NAME = "items";
