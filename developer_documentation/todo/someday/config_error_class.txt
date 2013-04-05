@@ -1,0 +1,3 @@
+Create a class for configuration exceptions.
+* Config will only throw one type of exception.
+* Perhaps exception will contain an inner property for the original exception.
