@@ -540,9 +540,4 @@ public class Configuration {
         return recipes.get(recipeId);
     }
 
-    public String[] getItems() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

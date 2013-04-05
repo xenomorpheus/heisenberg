@@ -40,7 +40,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * </ul>
  * Produces:
  * <ul>
- * </li> X meat pies
+ * <li>X meat pies
  * </ul>
  * 
  * 
@@ -149,28 +149,30 @@ public class Recipe {
      *            amount of mana required
      * @param actionPoints
      *            number of actionPoints required.
-     * @param requirements
+     * @param pRequirements
      *            the Requirement list.
-     * @param skills
+     * @param pSkills
      *            the Skill objects required
-     * @param products
+     * @param pPowerWords
+     *            the PowerWord objects required
+     * @param pProducts
      *            the results that will be produced.
      */
-    public Recipe(final String id, final String description, String process,
-            final int mana, final int actionPoints,
-            final TreeMap<String, Requirement> requirements,
-            final Set<PowerWord> powerWords, final Set<Skill> skills,
-            final Vector<String> products) {
+    public Recipe(final String id, final String description,
+            final String process, final int mana, final int actionPoints,
+            final TreeMap<String, Requirement> pRequirements,
+            final Set<PowerWord> pPowerWords, final Set<Skill> pSkills,
+            final Vector<String> pProducts) {
         super();
         this.id = id;
         this.description = description;
         this.process = process;
         this.mana = mana;
         this.actionPoints = actionPoints;
-        this.requirements = requirements;
-        this.powerWords = powerWords;
-        this.skills = skills;
-        this.products = products;
+        this.requirements = pRequirements;
+        this.powerWords = pPowerWords;
+        this.skills = pSkills;
+        this.products = pProducts;
     }
 
     // getters and setters
@@ -188,16 +190,16 @@ public class Recipe {
      * Set the ID
      * 
      * @deprecated only here for JPA.
-     * @param id
+     * @param pId
      *            the ID
      */
-    public final void setId(String id) {
-        this.id = id;
+    public final void setId(String pId) {
+        id = pId;
     }
 
     // description
     /**
-     * Get the Description
+     * Get the Description.
      * 
      * @return the description
      */
@@ -206,14 +208,14 @@ public class Recipe {
     }
 
     /**
-     * Set the Description
+     * Set the Description.
      * 
      * @deprecated only here for JPA and Configuration.
-     * @param description
+     * @param pDescription
      *            human text description
      */
-    public final void setDescription(String description) {
-        this.description = description;
+    public final void setDescription(String pDescription) {
+        description = pDescription;
     }
 
     /**
@@ -224,16 +226,18 @@ public class Recipe {
     }
 
     /**
-     * @param process
+     * Set the process.
+     * 
+     * @param pProcess
      *            the process to set
      */
-    public final void setProcess(String process) {
-        this.process = process;
+    public final void setProcess(String pProcess) {
+        process = pProcess;
     }
 
     // mana
     /**
-     * Get the mana
+     * Get the mana.
      * 
      * @return the amount of mana required.
      */
@@ -242,7 +246,7 @@ public class Recipe {
     }
 
     /**
-     * Set the mana required
+     * Set the mana required.
      * 
      * @deprecated only here for JPA and Configuration.
      * @param points
@@ -307,15 +311,15 @@ public class Recipe {
     }
 
     /**
-     * Set the Requirement objects
+     * Set the Requirement objects.
      * 
      * @deprecated only here for JPA and Configuration.
-     * @param requirements
+     * @param pRequirements
      *            the required Requirement objects.
      */
     public final void setRequirements(
-            final TreeMap<String, Requirement> requirements) {
-        this.requirements = requirements;
+            final TreeMap<String, Requirement> pRequirements) {
+        requirements = pRequirements;
     }
 
     /**
@@ -511,8 +515,8 @@ public class Recipe {
         }
         if (requirements != null) {
             string += "Requirement(s):\n";
-            for (String id : requirements.keySet()){
-                  Requirement requirement = requirements.get(id);
+            for (String id : requirements.keySet()) {
+                Requirement requirement = requirements.get(id);
                 string += "  " + id + ": " + requirement.getDescription()
                         + "\n";
             }

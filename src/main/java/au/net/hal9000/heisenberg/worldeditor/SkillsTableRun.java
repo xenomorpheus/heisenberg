@@ -55,11 +55,27 @@ class SkillsTableRun extends JFrame {
 
     // Main entry point for this example
     public static void main(String args[]) {
-        // Create an instance of the test application
 
-        Configuration config = null;
+        // Create an instance of the test application
         try {
-            config = new Configuration("test/config/config.xml");
+            Configuration config = new Configuration("test/config/config.xml");
+            TreeMap<String, PcClass> pcClasses = config.getPcClasses();
+            // TODO remove - these are only for testing.
+            PcRace pc = (PcRace) Factory.createItem("Elf");
+            pc.setName("Jane");
+            pc.setPcClass(pcClasses.get("Paladin"));
+            pc.setDescription("The Paladin");
+            pc.setGender("Female"); // TODO get from config
+            pc.setSize("Small");
+            pc.setLevel(3);
+            pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
+                    "testSkill3" });
+            pc.powerWordsAdd(new String[] { "testPowerWord1", "testPowerWord2",
+                    "testPowerWord3" });
+            pc.recipesAdd("testItem1");
+
+            SkillsTableRun mainFrame = new SkillsTableRun(pc, config);
+            mainFrame.setVisible(true);
         } catch (ValidityException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -70,23 +86,5 @@ class SkillsTableRun extends JFrame {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        TreeMap<String, PcClass> pcClasses = config.getPcClasses();
-        // TODO remove - these are only for testing.
-        PcRace pc = (PcRace) Factory.createItem("Elf");
-        pc.setName("Jane");
-        pc.setPcClass(pcClasses.get("Paladin"));
-        pc.setDescription("The Paladin");
-        pc.setGender("Female"); // TODO get from config
-        pc.setSize("Small");
-        pc.setLevel(3);
-        pc.skillsAdd(new String[] { "testSkill1", "testSkill2", "testSkill3" });
-        pc.powerWordsAdd(new String[] { "testPowerWord1", "testPowerWord2",
-                "testPowerWord3" });
-        pc.recipesAdd("testItem1");
-
-        // new BasicPanelRun(pc, config);
-
-        SkillsTableRun mainFrame = new SkillsTableRun(pc, config);
-        mainFrame.setVisible(true);
     }
 }

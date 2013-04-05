@@ -265,10 +265,10 @@ public class WorldEditor {
     }
 
     public static void main(String[] args) {
-        // Load some config
-        Configuration config = null;
         try {
-            config = new Configuration("test/config/config.xml");
+            // Load some config
+            Configuration config = new Configuration("test/config/config.xml");
+            new WorldEditor(config);
         } catch (ValidityException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -279,8 +279,5 @@ public class WorldEditor {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        new WorldEditor(config);
     }
-
 }

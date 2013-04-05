@@ -22,6 +22,9 @@ public abstract class PcRace extends Entity {
 	 * 
 	 */
     private static final long serialVersionUID = 1L;
+    /**
+     * How skilled in the chosen profession AKA PcClass.
+     */
     private int level = 0;
     /**
      * profession e.g. Soldier, Wizard etc.
@@ -339,7 +342,7 @@ public abstract class PcRace extends Entity {
             recipes.add(newRecipes[i]);
         }
     }
-    
+
     // PowerWords
     /**
      * Get the PowerWord objects.
@@ -539,15 +542,35 @@ public abstract class PcRace extends Entity {
      * @return Plain text description of the object
      */
     public String getDetailedDescription() {
-        String description = "Name: " + getName() + "\nLevel: " + level
-                + "\nRace: " + getRace() + "\nClass: " + pcClass.getId()
-                + "\nCombat Dice: D" + combatDice + "\nMagic Dice: D"
+        String description = "";
+
+        String name = getName();
+        if (name != null) {
+            description += "Name: " + getName();
+        }
+
+        String race = getRace();
+
+        description += "\nLevel: " + level + "\nRace: " + race;
+
+        if (pcClass != null) {
+          description += "\nClass: " + pcClass.getId();
+        }
+
+        description += "\nCombat Dice: D" + combatDice + "\nMagic Dice: D"
                 + magicDice + "\nStealth Dice: D" + stealthDice
                 + "\nGeneral Dice: D" + generalDice + "\nAction Points: "
                 + actionPoints + "\nHealth: " + health + "\nMana: " + mana
-                + "\nGender: " + getGender() + "\nSize:" + getSize()
                 + "\nEncumbrance: " + encumbrance + "\n";
 
+        String gender = getGender();
+        if (gender != null) {
+            description += "\nGender: " + gender;
+        }
+        String size = getSize();
+        if (size != null) {
+            description += "\nSize:" + size;
+        }
         if (abilityScores != null) {
             description += "Abilities:\n";
             for (AbilityScore abilityScore : abilityScores.values()) {

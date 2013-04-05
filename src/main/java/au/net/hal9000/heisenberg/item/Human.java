@@ -17,7 +17,7 @@ public class Human extends Humanoid {
 	private static final long serialVersionUID = 1L;
 
 	public Human() {
-		this("Human");
+		super("Human");
 	}
 
 	public Human(String string) {
@@ -28,7 +28,12 @@ public class Human extends Humanoid {
         super(string, description);
     }
 
+    public Human(String name, PcClass pcClass) {
+        super(name, pcClass);
+    }
+
     public Human(String name, String description, PcClass pcClass) {
         super(name, description, pcClass);
     }
+
 }

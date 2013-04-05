@@ -3,7 +3,10 @@ package au.net.hal9000.heisenberg.crafting;
 import java.util.Set;
 import java.util.TreeMap;
 
-import au.net.hal9000.heisenberg.item.*;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.Factory;
+import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 
@@ -24,10 +27,9 @@ import au.net.hal9000.heisenberg.units.Skill;
  * <li>Any new Item objects will be at the newItemLocation.
  * </ol>
  * 
- * // Example:
- * // Create a SmallGroundFire. <br>
- * PcRace pc = new Human("Fred the Fighter");
- * Cooker cooker = pc.getCooker("testFireGround1"); <br>
+ * // Example: // Create a SmallGroundFire. <br>
+ * PcRace pc = new Human("Fred the Fighter"); Cooker cooker =
+ * pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>
  * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
  * cooker.setItemsAvailable("Wood", wood); <br>
@@ -52,7 +54,7 @@ public class Cooker extends ItemContainer {
      */
     private PcRace chef = null;
 
-    /*
+    /**
      * Ingredients we will cook with.
      */
     private TreeMap<String, Item> ingredients = new TreeMap<String, Item>();
@@ -65,11 +67,12 @@ public class Cooker extends ItemContainer {
     public static String badKey = "bad key";
 
     /**
-     * Constructor
+     * Constructor.
+     * @param pRecipe the recipe we are cooking.
      */
-    public Cooker(final Recipe recipe) {
+    public Cooker(final Recipe pRecipe) {
         super("Cooker");
-        this.recipe = recipe;
+        this.recipe = pRecipe;
         /**
          * There may be an exploit in ability to hold items of unlimited weight
          * or volume. <br>
@@ -84,16 +87,20 @@ public class Cooker extends ItemContainer {
     }
 
     // Setters and Getters
-    public final void setChef(final PcRace chef) {
-        this.chef = chef;
+    /**
+     * set the chef.
+     * @param pChef the person doing the cooking.
+     */
+    public final void setChef(final PcRace pChef) {
+        chef = pChef;
     }
 
     /**
-     * Add an Item to a particular key in the list of itemsAvailable
+     * Add an Item to a particular key in the list of itemsAvailable.
      * 
      * @param key
      *            where to add Item
-     * @param item
+     * @param item the Item we are making available.
      * @return error message or null if it worked
      */
     public final String setItemsAvailable(final String key, final Item item) {
@@ -232,7 +239,7 @@ public class Cooker extends ItemContainer {
      * 
      * @return null iff all requirements are met.
      */
-    public String requirementsItemMet() {
+    public final String requirementsItemMet() {
 
         int requirementCount = getRequirementCount();
         // No requirements
@@ -307,7 +314,7 @@ public class Cooker extends ItemContainer {
      * We will start with a restriction that all cooking is done at once. e.g.
      * we wan't allow cooking over multiple rounds.
      */
-    public String cook() {
+    public final String cook() {
         String message = requirementsMet();
         if (message != null) {
             // System.out.println(message);
@@ -321,7 +328,7 @@ public class Cooker extends ItemContainer {
     /**
      * A short description.
      */
-    public String toString() {
+    public final String toString() {
         return "Cooker for recipe:" + recipe.getId();
     }
 
@@ -332,7 +339,7 @@ public class Cooker extends ItemContainer {
      *            destination ItemContainer.
      * @return true iff successfully moved. TODO consider return type void
      */
-    public boolean clearItemsAvailable(String key, ItemContainer container) {
+    public final boolean clearItemsAvailable(final String key, final ItemContainer container) {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }

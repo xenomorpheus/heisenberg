@@ -15,8 +15,8 @@ public abstract class Humanoid extends PcRace {
     private Hand rightHand = new Hand("Right Hand");
 
     // Constructors
-    public Humanoid(String pName) {
-        this(pName, "");
+    public Humanoid(String name) {
+        super(name);
     }
 
     public Humanoid(String string, String description) {
@@ -28,7 +28,7 @@ public abstract class Humanoid extends PcRace {
     }
 
     public Humanoid(String name, PcClass pcClass) {
-        this(name, "", pcClass);
+        super(name, pcClass);
     }
 
     // Getters and Setters

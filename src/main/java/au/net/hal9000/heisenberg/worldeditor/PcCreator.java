@@ -100,20 +100,8 @@ public class PcCreator {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    // TODO remove - these are only for testing.
-                    Configuration config = null;
-                    try {
-                        config = new Configuration("test/config/config.xml");
-                    } catch (ValidityException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    Configuration config = new Configuration(
+                            "test/config/config.xml");
                     TreeMap<String, PcClass> pcClasses = config.getPcClasses();
                     PcRace pc = (PcRace) Factory.createItem("Elf");
                     pc.setName("Jane");
@@ -133,7 +121,14 @@ public class PcCreator {
                                                                 // config pass
                                                                 // in
                     window.frame.setVisible(true);
+                } catch (ValidityException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 } catch (Exception e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
