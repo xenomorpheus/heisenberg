@@ -1,3 +1,10 @@
+2013-04-05
+Increased unit test coverage for Item sub classes.
+Relocated non-java resources into better locations.
+
+2013-04-02
+Refactored WorldEditor JPanels into stand alone test programs.
+
 2013-03-27
 Clean up XML schema for config.
   1) Break out the types.
