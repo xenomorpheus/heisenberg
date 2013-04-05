@@ -191,6 +191,7 @@ public class BasicPanel extends JPanel {
 
         comTextField = new JTextField();
         comTextField.setColumns(3);
+        comTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(comTextField, cons);
@@ -207,6 +208,7 @@ public class BasicPanel extends JPanel {
 
         magTextField = new JTextField();
         magTextField.setColumns(3);
+        magTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(magTextField, cons);
@@ -223,6 +225,7 @@ public class BasicPanel extends JPanel {
 
         steTextField = new JTextField();
         steTextField.setColumns(3);
+        steTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(steTextField, cons);
@@ -239,6 +242,7 @@ public class BasicPanel extends JPanel {
 
         genTextField = new JTextField();
         genTextField.setColumns(3);
+        genTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(genTextField, cons);
@@ -349,6 +353,7 @@ public class BasicPanel extends JPanel {
 
         actionPointsTextField = new JTextField();
         actionPointsTextField.setColumns(3);
+        actionPointsTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(actionPointsTextField, cons);
@@ -365,6 +370,7 @@ public class BasicPanel extends JPanel {
 
         healthTextField = new JTextField();
         healthTextField.setColumns(3);
+        healthTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(healthTextField, cons);
@@ -381,6 +387,7 @@ public class BasicPanel extends JPanel {
 
         manaTextField = new JTextField();
         manaTextField.setColumns(3);
+        manaTextField.setEditable(false);
         cons.gridx = pos;
         cons.gridy = row;
         gridBag.setConstraints(manaTextField, cons);
