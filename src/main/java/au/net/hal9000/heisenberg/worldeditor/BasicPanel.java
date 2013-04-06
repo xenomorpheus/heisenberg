@@ -2,10 +2,13 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +18,6 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -62,6 +64,13 @@ public class BasicPanel extends JPanel {
         addComponents();
 
         // Add change hander
+        BasicTextFieldListener basicTextFieldListener = new BasicTextFieldListener();
+        BasicTextFieldFocusEvent basicTextFieldFocusEvent = new BasicTextFieldFocusEvent();
+        nameTextField.addActionListener(basicTextFieldListener);
+        nameTextField.addFocusListener(basicTextFieldFocusEvent);
+        descriptionTextField.addActionListener(basicTextFieldListener);
+        descriptionTextField.addFocusListener(basicTextFieldFocusEvent);
+
         BasicItemListener basicItemListener = new BasicItemListener();
         classComboBox.addItemListener(basicItemListener);
         sizeComboBox.addItemListener(basicItemListener);
@@ -126,6 +135,7 @@ public class BasicPanel extends JPanel {
 
         nameTextField = new JTextField();
         nameTextField.setColumns(10);
+        nameTextField.putClientProperty("id", "name");
         cons.gridx = pos;
         cons.gridy = row;
         cons.gridwidth = 6;
@@ -169,6 +179,7 @@ public class BasicPanel extends JPanel {
 
         descriptionTextField = new JTextField();
         descriptionTextField.setColumns(10);
+        descriptionTextField.putClientProperty("id", "description");
         cons.gridx = pos;
         cons.gridy = row;
         cons.gridwidth = 6;
@@ -180,7 +191,7 @@ public class BasicPanel extends JPanel {
         // Row 2
         row = 2;
         pos = 0;
-        
+
         // Com
         JLabel comLbl = new JLabel("Com");
         cons.gridx = pos;
@@ -396,45 +407,100 @@ public class BasicPanel extends JPanel {
 
     }
 
+    /**
+     * Handle changes in text fields.
+     * 
+     * @author bruins
+     * 
+     */
+    private class BasicTextFieldListener implements ActionListener {
+
+        /**
+         * Handle changes in text fields when user hits return.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == nameTextField) {
+                pc.setName(nameTextField.getText());
+            } else if (e.getSource() == descriptionTextField) {
+                pc.setDescription(descriptionTextField.getText());
+            }
+        }
+
+    }
+
+    /**
+     * Handle changes in text fields.
+     * 
+     * @author bruins
+     * 
+     */
+    private class BasicTextFieldFocusEvent implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent arg0) {
+            // No action
+
+        }
+
+        /**
+         * Handle changes in text fields. Changes are processed when field loses
+         * focus. No need to updateForm as changes are already visible.
+         */
+        @Override
+        public void focusLost(FocusEvent e) {
+            Object component = e.getComponent();
+            if (component instanceof JTextField) {
+                JTextField textField = (JTextField) component;
+                if (textField == nameTextField) {
+                    pc.setName(nameTextField.getText());
+                } else if (textField == descriptionTextField) {
+                    pc.setDescription(descriptionTextField.getText());
+                }
+            }
+        }
+    }
+
     // Listens to multiple form elements
     private class BasicItemListener implements ItemListener {
 
+        @Override
         public void itemStateChanged(ItemEvent evt) {
-            // TODO Name
-            // TODO Description
-            if (evt.getStateChange() == ItemEvent.SELECTED) {
-                JComboBox comboBox = (JComboBox) evt.getSource();
+            Object source = evt.getSource();
+            if (source instanceof JComboBox) {
+                JComboBox comboBox = (JComboBox) source;
 
-                // Class
-                if (comboBox == classComboBox) {
-                    PcClass pcClass = (PcClass) comboBox.getSelectedItem();
-                    pc.setPcClass(pcClass);
-                }
+                if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-                // Size
-                if (comboBox == sizeComboBox) {
-                    String newSize = (String) comboBox.getSelectedItem();
-                    if (!newSize.equals(pc.getSize())) {
-                        pc.setSize(newSize);
+                    // Class
+                    if (comboBox == classComboBox) {
+                        PcClass pcClass = (PcClass) comboBox.getSelectedItem();
+                        pc.setPcClass(pcClass);
+                    }
+
+                    // Size
+                    else if (comboBox == sizeComboBox) {
+                        String newSize = (String) comboBox.getSelectedItem();
+                        if (!newSize.equals(pc.getSize())) {
+                            pc.setSize(newSize);
+                        }
+                    }
+
+                    // Gender
+                    else if (comboBox == genderComboBox) {
+                        pc.setGender((String) comboBox.getSelectedItem());
+                    }
+
+                    // Race
+                    else if (comboBox == raceComboBox) {
+                        PcRace raceNew = (PcRace) raceComboBox
+                                .getSelectedItem();
+                        if (!pc.equals(raceNew)) {
+                            raceNew.setAllFrom(pc);
+                            pc = raceNew;
+                        }
                     }
                 }
-
-                // Gender
-                if (comboBox == genderComboBox) {
-                    pc.setGender((String) comboBox.getSelectedItem());
-                }
-
-                // Race
-                if (comboBox == raceComboBox) {
-                    PcRace raceNew = (PcRace) raceComboBox.getSelectedItem();
-                    if (!pc.equals(raceNew)) {
-                        raceNew.setAllFrom(pc);
-                        pc = raceNew;
-                    }
-                }
-
-                // Show results
-                updateForm();
             }
         }
     }

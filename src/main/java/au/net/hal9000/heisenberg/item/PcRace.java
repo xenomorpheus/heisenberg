@@ -115,8 +115,11 @@ public abstract class PcRace extends Entity {
      *            the level to set
      */
     public final void setLevel(final int level) {
-        this.level = level;
-        abilityScoresRecalculate();
+        int oldLevel = this.level;
+        if (level != oldLevel) {
+            this.level = level;
+            abilityScoresRecalculate();
+        }
     }
 
     /**
@@ -542,69 +545,72 @@ public abstract class PcRace extends Entity {
      * @return Plain text description of the object
      */
     public String getDetailedDescription() {
-        String description = "";
+        String text = "";
 
         String name = getName();
         if (name != null) {
-            description += "Name: " + getName();
+            text += "Name: " + getName() + "\n";
         }
 
         String race = getRace();
 
-        description += "\nLevel: " + level + "\nRace: " + race;
+        text += "Level: " + level + "\nRace: " + race + "\n";
 
         if (pcClass != null) {
-          description += "\nClass: " + pcClass.getId();
+            text += "Class: " + pcClass.getId() + "\n";
+        }
+        String description = getDescription();
+        if (description != null) {
+            text += "Description: " + description + "\n";
         }
 
-        description += "\nCombat Dice: D" + combatDice + "\nMagic Dice: D"
-                + magicDice + "\nStealth Dice: D" + stealthDice
-                + "\nGeneral Dice: D" + generalDice + "\nAction Points: "
-                + actionPoints + "\nHealth: " + health + "\nMana: " + mana
-                + "\nEncumbrance: " + encumbrance + "\n";
+        text += "Combat Dice: D" + combatDice + "\nMagic Dice: D" + magicDice
+                + "\nStealth Dice: D" + stealthDice + "\nGeneral Dice: D"
+                + generalDice + "\nAction Points: " + actionPoints
+                + "\nHealth: " + health + "\nMana: " + mana + "\nEncumbrance: "
+                + encumbrance + "\n";
 
         String gender = getGender();
         if (gender != null) {
-            description += "\nGender: " + gender;
+            text += "Gender: " + gender + "\n";
         }
         String size = getSize();
         if (size != null) {
-            description += "\nSize:" + size;
+            text += "Size: " + size + "\n";
         }
         if (abilityScores != null) {
-            description += "Abilities:\n";
+            text += "Abilities:\n";
             for (AbilityScore abilityScore : abilityScores.values()) {
-                description += "  " + abilityScore + "\n";
+                text += "  " + abilityScore + "\n";
             }
         }
         if (skills != null && !skills.isEmpty()) {
-            description += "Skills:\n";
+            text += "Skills:\n";
             for (Skill skill : skills) {
-                description += "  " + skill + "\n";
+                text += "  " + skill + "\n";
             }
         }
         if (powerWords != null && !powerWords.isEmpty()) {
-            description += "Power Words:\n";
+            text += "Power Words:\n";
             for (PowerWord powerWord : powerWords) {
-                description += "  " + powerWord + "\n";
+                text += "  " + powerWord + "\n";
             }
         }
         if (recipes != null && !recipes.isEmpty()) {
-            description += "Recipes:\n";
+            text += "Recipes:\n";
             for (String recipeId : recipes) {
-                description += "  " + recipeId + "\n";
+                text += "  " + recipeId + "\n";
             }
         }
         Properties properties = this.getProperties();
         if (properties != null && !properties.isEmpty()) {
-            description += "Properties:\n";
+            text += "Properties:\n";
             for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-                description += " " + entry.getKey() + ": " + entry.getValue()
-                        + "\n";
+                text += " " + entry.getKey() + ": " + entry.getValue() + "\n";
             }
         }
-        description += "Done.\n";
-        return description;
+        text += "Done.\n";
+        return text;
     }
 
     public abstract String getRace();
