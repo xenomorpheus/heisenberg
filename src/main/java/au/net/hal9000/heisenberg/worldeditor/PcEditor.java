@@ -1,14 +1,11 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.EventQueue;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.TreeMap;
-
 import nu.xom.ValidityException;
-
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -27,22 +24,8 @@ public class PcEditor {
      * Create the application.
      */
     public PcEditor(final PcRace pPc, final Configuration pConfig) {
-
         pc = pPc;
-        // TODO config = pConfig;
-        try {
-            config = new Configuration("src/test/resources/config.xml");
-        } catch (ValidityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        config = pConfig;
         initialise();
     }
 
@@ -54,10 +37,8 @@ public class PcEditor {
         frame = new JFrame();
         frame.setBounds(100, 100, 894, 634);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(6, 6, 862, 592);
         tabbedPane.addTab("Basics", null, new BasicPanel(pc, config), null);
         tabbedPane.addTab("Abilities", null,
                 new AbilityScoresTable(pc, config), null);
@@ -117,7 +98,7 @@ public class PcEditor {
                     pc.recipesAdd(new String[] { "testItem1",
                             "testFireGround1", "testSpell1" });
 
-                    PcEditor window = new PcEditor(pc, null); // TODO
+                    PcEditor window = new PcEditor(pc, config); // TODO
                                                                 // config pass
                                                                 // in
                     window.frame.setVisible(true);
