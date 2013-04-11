@@ -80,7 +80,7 @@ public class ScenarioSet03 {
         assertEquals("cook works", null, cooker.cook());
 
         // Check the item produced
-        final int todo = 0; // TODO
+        final int todo = 0; // TODO item number
         Item item = location.getChild(todo);
         assertEquals("item type", "SmallGroundFire", item.getClass().getSimpleName());
 

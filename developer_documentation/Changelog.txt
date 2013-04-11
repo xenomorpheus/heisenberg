@@ -1,3 +1,7 @@
+2013-04-11
+Changed some unit tests to work from test data rather than prod data.
+Minor doco.
+
 2013-04-06
 Worked on PcEditor.
 1) Resizing window now works.

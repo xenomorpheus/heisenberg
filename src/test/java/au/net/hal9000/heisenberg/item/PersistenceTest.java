@@ -50,10 +50,6 @@ public class PersistenceTest {
 					+ " c where c.jpaId = " + jpaId);
 
 			Object resultList = q.getResultList();
-
-			if (!(resultList instanceof List<?>)) {
-				fail("result expected to be a list");
-			}
 			// http://stackoverflow.com/questions/262367/type-safety-unchecked-cast
 			@SuppressWarnings("unchecked")
 			List<Item> itemList = (List<Item>) resultList;

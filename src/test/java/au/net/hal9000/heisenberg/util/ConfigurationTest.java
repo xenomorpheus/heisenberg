@@ -158,10 +158,9 @@ public class ConfigurationTest {
 
     @Test
     public void testValues() {
-        PcClass warrior = config.getPcClass("Warrior");
-        // System.out.print(warrior);
+        PcClass warrior = config.getPcClass("testWarrior");
 
-        assertEquals("Warrior", warrior.getId());
+        assertEquals("testWarrior", warrior.getId());
         // dice
         assertEquals(20, warrior.getCombatDice());
         assertEquals(4, warrior.getMagicDice());

@@ -198,7 +198,6 @@ public class PcRaceTest {
     @Test 
     public void testGetDetailedDescription() {
         Human human = new Human();
-        // TODO
         String detailedDescription = human.getDetailedDescription();
         assertNotNull("detailed description not null", detailedDescription);
     }

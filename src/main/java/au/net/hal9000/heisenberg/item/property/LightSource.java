@@ -11,8 +11,8 @@ public interface LightSource {
 
     /**
      * Start the light.
-     * @param ignighter TODO
-     * @return TODO
+     * @param ignighter possible source of ignition.
+     * @return true if ignition occurred.
      */
     public boolean lightWith(Object ignighter);
 
