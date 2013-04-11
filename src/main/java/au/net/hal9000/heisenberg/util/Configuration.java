@@ -13,7 +13,6 @@ import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
-import nu.xom.ValidityException;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
@@ -45,8 +44,7 @@ public class Configuration {
     private Vector<String> sizes;
     private Vector<String> genders;
 
-    public Configuration(String filename) throws ValidityException,
-            IOException, Exception {
+    public Configuration(String filename) throws ConfigurationError {
         super();
         this.init(filename);
         setLastConfig(this);
@@ -90,12 +88,17 @@ public class Configuration {
     }
 
     // init
-    private void init(String filename) throws ValidityException, Exception,
-            IOException {
+    private void init(String filename) throws ConfigurationError {
         File file = new File(filename);
 
         Builder builder = new Builder();
-        Document doc = builder.build(file);
+        Document doc;
+        try {
+            doc = builder.build(file);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            throw new ConfigurationError(e);
+        }
         Element root = doc.getRootElement();
 
         // powerWord entries
@@ -350,7 +353,7 @@ public class Configuration {
      * @throws IOException
      */
     public static TreeMap<String, Recipe> xmlToRecipes(Element element)
-            throws ParsingException, IOException {
+            {
 
         Elements recipeElementSet = element.getChildElements("recipe");
         TreeMap<String, Recipe> Recipes = new TreeMap<String, Recipe>();

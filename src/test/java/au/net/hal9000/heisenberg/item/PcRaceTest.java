@@ -2,15 +2,13 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.util.Set;
-
-import nu.xom.ValidityException;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class PcRaceTest {
@@ -164,7 +162,7 @@ public class PcRaceTest {
     }
 
     @Test
-    public void testValues() throws ValidityException, IOException, Exception {
+    public void testValues() throws ConfigurationError {
 
         Configuration config = new Configuration("src/test/resources/config.xml");
         PcClass warrior = config.getPcClass("Warrior");

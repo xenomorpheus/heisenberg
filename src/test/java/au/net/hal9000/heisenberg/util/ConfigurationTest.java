@@ -1,6 +1,9 @@
 package au.net.hal9000.heisenberg.util;
 
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.TreeMap;
 import java.util.Vector;
@@ -21,14 +24,10 @@ public class ConfigurationTest {
     Configuration config = null;
 
     @Before
-    public void setUp() {
-        try {
+    public void setUp() throws ConfigurationError {
+            // TODO consider http://stackoverflow.com/questions/1939629/get-a-file-inside-a-specific-package
+            // TODO ClassA.class.getResourceAsStream("/packageB/yourfile.ext");
             config = new Configuration("src/test/resources/config.xml");
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail();
-        }
-
     }
 
     @Test

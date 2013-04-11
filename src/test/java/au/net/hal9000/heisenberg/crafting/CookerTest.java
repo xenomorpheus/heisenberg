@@ -2,13 +2,10 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
-
-import nu.xom.ValidityException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +13,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.*;
 import au.net.hal9000.heisenberg.units.*;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 public class CookerTest {
     static int REQUIRED_ACTION_POINTS = 42;
@@ -28,7 +26,7 @@ public class CookerTest {
     Configuration config = null;
 
     @Before
-    public void initialize() throws ValidityException, IOException, Exception {
+    public void initialize() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
     }
 

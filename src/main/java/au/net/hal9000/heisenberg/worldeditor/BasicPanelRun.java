@@ -2,15 +2,14 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 //Use the GridBagConstraints to determine how the component
 import java.awt.EventQueue;
-import java.io.IOException;
 import java.util.TreeMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import nu.xom.ValidityException;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class BasicPanelRun {
@@ -42,14 +41,7 @@ public class BasicPanelRun {
                     pc.recipesAdd("testItem1");
 
                     new BasicPanelRun(pc, config);
-                } catch (ValidityException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }
             }

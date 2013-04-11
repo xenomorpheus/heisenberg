@@ -2,16 +2,12 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 //Imports
 import java.awt.*;
-import java.io.IOException;
 import java.util.TreeMap;
-
 import javax.swing.*;
-
-import nu.xom.ValidityException;
-
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 class SkillsTableRun extends JFrame {
@@ -76,13 +72,7 @@ class SkillsTableRun extends JFrame {
 
             SkillsTableRun mainFrame = new SkillsTableRun(pc, config);
             mainFrame.setVisible(true);
-        } catch (ValidityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (ConfigurationError e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

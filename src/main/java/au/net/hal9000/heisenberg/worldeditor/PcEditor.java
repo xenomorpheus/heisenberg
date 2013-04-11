@@ -3,12 +3,11 @@ package au.net.hal9000.heisenberg.worldeditor;
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.TreeMap;
-import nu.xom.ValidityException;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class PcEditor {
@@ -102,14 +101,7 @@ public class PcEditor {
                                                                 // config pass
                                                                 // in
                     window.frame.setVisible(true);
-                } catch (ValidityException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }
             }

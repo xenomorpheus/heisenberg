@@ -1,9 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
-import java.io.IOException;
 import java.util.Vector;
-import nu.xom.ValidityException;
 import org.junit.Test;
 
 // Custom
@@ -11,6 +9,7 @@ import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.units.*;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 public class ItemTest {
     private static final float WITHIN_MARGIN = 0.00009F;
@@ -95,7 +94,7 @@ public class ItemTest {
     }
 
     @Test
-    public void testToString() throws ValidityException, IOException, Exception {
+    public void testToString() throws ConfigurationError {
 
         Configuration config =  new Configuration("src/test/resources/config.xml");
         Vector<String> itemClasses = config.getItemClasses();
