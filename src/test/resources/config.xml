@@ -263,6 +263,27 @@
 			<ability id="Combat Defence" value="3/+1" />
 			<ability id="Sneak" value="0" />
 		</pcClass>
+		<!-- start of test pcClass -->
+		<pcClass id="testWarrior" combatDice="20" magicDice="4"
+			stealthDice="12" generalDice="8" actionPoint="8" health="7"
+			encumbrance="100" mana="0">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="2" />
+			<ability id="Perception" value="4" />
+			<ability id="Trickery" value="1/+1" />
+			<ability id="Ranged Attack" value="3/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="2" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="2" />
+			<ability id="Melee Attack" value="4/+1" />
+			<ability id="Combat Defence" value="3/+1" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<!-- end of test pcClass -->
 		<npcClass id="Engineer" combatDice="4" magicDice="4"
 			stealthDice="8" generalDice="12"></npcClass>
 		<npcClass id="Scholar" combatDice="4" magicDice="8"
