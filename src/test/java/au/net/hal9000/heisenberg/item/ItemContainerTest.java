@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Vector;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.exception.*;
-
 public class ItemContainerTest {
 
     // TODO Add unit test for respecting max weight and volume of outer bag,
