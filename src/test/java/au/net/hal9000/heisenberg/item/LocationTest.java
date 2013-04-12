@@ -1,12 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import java.util.Vector;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.exception.*;
 
 public class LocationTest {
 
@@ -23,64 +22,16 @@ public class LocationTest {
     public void testAdd() {
         float volumeMax = 10F;
         float weightMax = 20F;
-        {
-            // Location
-            Location location = new Location("World");
-            location.setWeightMax(weightMax);
-            location.setVolumeMax(volumeMax);
-            // Item
-            Cookie i = new Cookie();
-            // This should just fit
-            i.setVolumeBase(volumeMax);
-            i.setWeightBase(weightMax);
-            try {
-                location.add(i);
-            } catch (ExceptionTooHeavy e) {
-                fail("too heavy :" + e.getMessage());
-            } catch (ExceptionTooBig e) {
-                fail("too big: " + e.getMessage());
-            } catch (ExceptionInvalidType e) {
-                fail("invlaid type: " + e.getMessage());
-            }
-        }
-        {
-            // This should just break the volume
-            Location location = new Location("World");
-            location.setWeightMax(weightMax);
-            location.setVolumeMax(volumeMax);
-            Cookie i2 = new Cookie();
-            i2.setVolumeBase(volumeMax + 0.01F);
-            i2.setWeightBase(weightMax);
-            try {
-                location.add(i2);
-                fail("should fail due to volume");
-            } catch (ExceptionTooHeavy e) {
-                fail("too heavy: " + e.getMessage());
-            } catch (ExceptionTooBig e) {
-                // nothing to do
-            } catch (ExceptionInvalidType e) {
-                fail("invlaid type: " + e.getMessage());
-            }
-        }
-        {
-            // This should just break the weight
-            Location location = new Location("World");
-            location.setWeightMax(weightMax);
-            location.setVolumeMax(volumeMax);
-            Cookie i3 = new Cookie();
-            i3.setVolumeBase(volumeMax);
-            i3.setWeightBase(weightMax + 0.01F);
-            try {
-                location.add(i3);
-                fail("should fail due to size");
-            } catch (ExceptionTooHeavy e) {
-                // nothing to do
-            } catch (ExceptionTooBig e) {
-                fail("too big: " + e.getMessage());
-            } catch (ExceptionInvalidType e) {
-                fail("invlaid type: " + e.getMessage());
-            }
-        }
+        // Location
+        Location location = new Location("World");
+        location.setWeightMax(weightMax);
+        location.setVolumeMax(volumeMax);
+        // Item
+        Cookie i = new Cookie();
+        // This should just fit
+        i.setVolumeBase(volumeMax);
+        i.setWeightBase(weightMax);
+        location.add(i);
     }
 
     @Test

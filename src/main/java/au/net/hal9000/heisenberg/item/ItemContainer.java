@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.Vector;
 
-import au.net.hal9000.heisenberg.item.exception.*;
+//Import log4j classes.
+import org.apache.log4j.Logger;
+// import org.apache.log4j.BasicConfigurator;
+
 import au.net.hal9000.heisenberg.units.*;
 
 public abstract class ItemContainer extends Item implements Serializable {
@@ -12,6 +15,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static final Logger  logger = Logger.getLogger(ItemContainer.class.getName());
     private float weightMax = 0;
     private float volumeMax = 0;
     private Vector<Item> contents = new Vector<Item>();
@@ -204,6 +208,8 @@ public abstract class ItemContainer extends Item implements Serializable {
                 return;
             }
         }
+        // TODO consider refactor into a visitor pattern that tallies 
+        // up the weight and volume in one pass.
 
         // check Weight
         final float weightMax = this.getWeightMax();
@@ -211,7 +217,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
-                throw new ExceptionTooHeavy("Adding " + item.getName()
+                logger.info(" ExceptionTooHeavy - Adding " + item.getName()
                         + " weighing " + item.getWeight() + " will total "
                         + total + ", which is too heavy for " + this.getName()
                         + ", weightMax=" + weightMax);
@@ -224,7 +230,8 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsVolume();
             total += item.getVolume();
             if (total > volumeMax) {
-                throw new ExceptionTooBig("Adding " + item.getName()
+                // ExceptionTooBig
+                logger.info("ExceptionTooBig - Adding " + item.getName()
                         + " of volume " + item.getVolume() + " will total "
                         + total + ", which is too big for " + this.getName()
                         + ", volumeMax=" + volumeMax);

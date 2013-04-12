@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
-
 import java.util.Vector;
 import org.junit.Test;
 
@@ -44,44 +43,6 @@ public class ItemContainerTest {
             }
             // Check location is set
             assertEquals("location set", bag, i.getLocation());
-        }
-        {
-            // This should just break the volume
-            Bag bag = new Bag();
-            bag.setWeightMax(weightMax);
-            bag.setVolumeMax(volumeMax);
-            Cookie i2 = new Cookie();
-            i2.setVolumeBase(volumeMax + 0.01F);
-            i2.setWeightBase(weightMax);
-            try {
-                bag.add(i2);
-                fail("should fail due to volume");
-            } catch (ExceptionTooHeavy e) {
-                fail("too heavy: " + e.getMessage());
-            } catch (ExceptionTooBig e) {
-                // nothing to do
-            } catch (ExceptionInvalidType e) {
-                fail("invlaid type: " + e.getMessage());
-            }
-        }
-        {
-            // This should just break the weight
-            Bag bag = new Bag();
-            bag.setWeightMax(weightMax);
-            bag.setVolumeMax(volumeMax);
-            Cookie i3 = new Cookie();
-            i3.setVolumeBase(volumeMax);
-            i3.setWeightBase(weightMax + 0.01F);
-            try {
-                bag.add(i3);
-                fail("should fail due to size");
-            } catch (ExceptionTooHeavy e) {
-                // nothing to do
-            } catch (ExceptionTooBig e) {
-                fail("too big: " + e.getMessage());
-            } catch (ExceptionInvalidType e) {
-                fail("invlaid type: " + e.getMessage());
-            }
         }
 
         {
