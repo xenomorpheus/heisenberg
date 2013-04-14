@@ -1,0 +1,222 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="config">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="character">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pcClass" maxOccurs="unbounded"
+								minOccurs="0" type="ctPcClassType" />
+							<xs:element name="npcClass" maxOccurs="unbounded"
+								minOccurs="0" type="ctNpcClassType" />
+
+							<xs:element name="traits">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="traitGroup" maxOccurs="unbounded"
+											minOccurs="0" type="ctTraitGroupType" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="sizes">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="size" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="genders">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="gender" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="races">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="race" type="ctKeywordType"
+											maxOccurs="unbounded" minOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="item" type="ctKeywordType" maxOccurs="unbounded"
+								minOccurs="1">
+								<xs:annotation>
+									<xs:documentation>Items that may be instantiated
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="powerWords">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="powerWord" type="ctKeywordDetailType"
+								maxOccurs="unbounded" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Game PowerWords Unit Test PowerWords
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="skills">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="skill" type="ctKeywordDetailType"
+								maxOccurs="unbounded" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Game Skills Unit Test PowerWords
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="recipes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="recipe" type="ctRecipeType"
+								maxOccurs="unbounded" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Crafting of Item objects skill entries are
+										mentioned by id only. powerWord entries are mentioned by id
+										only. ingredient entries are mentioned by id only. Rules for
+										Ingredients in Precedence Order (This will aid auto-allocation
+										of Item objects if this process is
+										added) 1. Consumed
+										Ingredient objects before non-consumed so
+										non-consumed
+										aren't
+										counted twice. 2. Most specific Ingredient before
+										less-specific to help the matching
+										process Game Recipes Unit
+										Test Recipes
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- complex types -->
+	<xs:complexType name="ctPcClassType">
+		<xs:sequence>
+			<xs:element name="ability" maxOccurs="unbounded"
+				minOccurs="0" type="ctAbilityType">
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:byte" name="combatDice" use="required" />
+		<xs:attribute type="xs:byte" name="magicDice" use="required" />
+		<xs:attribute type="xs:byte" name="stealthDice" use="required" />
+		<xs:attribute type="xs:byte" name="generalDice" use="required" />
+		<xs:attribute type="xs:byte" name="encumbrance" use="required" />
+		<xs:attribute type="xs:byte" name="mana" use="required" />
+		<xs:attribute type="xs:byte" name="actionPoint" use="required" />
+		<xs:attribute type="xs:byte" name="health" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctNpcClassType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:byte" name="combatDice" use="required" />
+		<xs:attribute type="xs:byte" name="magicDice" use="required" />
+		<xs:attribute type="xs:byte" name="stealthDice" use="required" />
+		<xs:attribute type="xs:byte" name="generalDice" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctKeywordType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctKeywordDetailType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:string" name="description" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctAbilityType">
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:string" name="value" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctTraitGroupType">
+		<xs:sequence>
+			<xs:element name="traitSubGroup" maxOccurs="unbounded"
+				minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="traitSet" maxOccurs="unbounded"
+							minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="trait" type="ctKeywordType" maxOccurs="unbounded"
+										minOccurs="0">
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute type="xs:string" name="id" use="required" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ctRecipeType">
+		<xs:sequence>
+			<xs:element name="skill" type="ctKeywordType" minOccurs="0" />
+			<xs:element name="powerWord" type="ctKeywordType"
+				minOccurs="0" />
+			<xs:element name="requirements" type="ctRequirementType"
+				minOccurs="0" />
+			<xs:element name="products" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute type="xs:string" name="id" use="required" />
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="spell" type="ctKeywordType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required" />
+		<xs:attribute type="xs:string" name="description" use="required" />
+		<xs:attribute type="xs:string" name="process" use="optional" />
+		<xs:attribute type="xs:byte" name="actionPoints" use="optional" />
+		<xs:attribute type="xs:byte" name="mana" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="ctRequirementType">
+		<xs:sequence>
+			<xs:element name="item" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute type="xs:string" name="id" use="required" />
+					<xs:attribute type="xs:boolean" name="consumed" use="optional" />
+					<xs:attribute type="xs:byte" name="weightMin" use="optional" />
+					<xs:attribute type="xs:string" name="type" use="optional" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

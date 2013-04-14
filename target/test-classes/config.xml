@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="config.xsd">
+
+	<items>
+		<!-- Items that may be instantiated -->
+		<item id="Arrow" />
+		<item id="Backpack" />
+		<item id="Bag" />
+		<item id="BagOfHolding" />
+		<item id="Box" />
+		<item id="Candle" />
+		<item id="Cloak" />
+		<item id="Cookie" />
+		<item id="Crossbow" />
+		<item id="CrossbowBolt" />
+		<item id="Elf" />
+		<item id="FlintAndTinder" />
+		<item id="Halfling" />
+		<item id="Hand" />
+		<item id="Horse" />
+		<item id="Human" />
+		<item id="HumanoidHead" />
+		<item id="Location" />
+		<item id="MagicRing" />
+		<item id="OrbOfLight" />
+		<item id="Purse" />
+		<item id="Quiver" />
+		<item id="Ring" />
+		<item id="Scabbard" />
+		<item id="Shield" />
+		<item id="SmallGroundFire" />
+		<item id="Sword" />
+		<item id="Torch" />
+		<item id="Water" />
+		<item id="Wood" />
+	</items>
+
+	<character>
+		<pcClass id="Soldier" combatDice="20" magicDice="4"
+			stealthDice="8" generalDice="12" encumbrance="100" mana="0"
+			actionPoint="8" health="7">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="3/+1" />
+			<ability id="Perception" value="4" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="3/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="2" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="3/+1" />
+			<ability id="Magic Defence" value="2" />
+			<ability id="Melee Attack" value="3/+1" />
+			<ability id="Combat Defence" value="4/+1" />
+			<ability id="Sneak" value="2" />
+		</pcClass>
+		<pcClass id="Warrior" combatDice="20" magicDice="4"
+			stealthDice="12" generalDice="8" actionPoint="8" health="7"
+			encumbrance="100" mana="0">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="2" />
+			<ability id="Perception" value="4" />
+			<ability id="Trickery" value="1/+1" />
+			<ability id="Ranged Attack" value="3/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="2" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="2" />
+			<ability id="Melee Attack" value="4/+1" />
+			<ability id="Combat Defence" value="3/+1" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<pcClass id="Paladin" combatDice="20" magicDice="12"
+			stealthDice="4" generalDice="8" actionPoint="8" health="6"
+			encumbrance="100" mana="3">
+			<ability id="Dweomer Lore" value="2" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="3/+1" />
+			<ability id="Crafting" value="1" />
+			<ability id="Perception" value="3" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="2/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="1" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="1" />
+			<ability id="Magic Defence" value="4/+1" />
+			<ability id="Melee Attack" value="3/+1" />
+			<ability id="Combat Defence" value="4/+1" />
+			<ability id="Sneak" value="0" />
+		</pcClass>
+		<pcClass id="Trickster" combatDice="4" magicDice="12"
+			stealthDice="20" generalDice="8" actionPoint="8" health="4"
+			encumbrance="100" mana="3">
+			<ability id="Dweomer Lore" value="2/+1" />
+			<ability id="Mechanisms" value="2" />
+			<ability id="Magical Attack" value="3/+1" />
+			<ability id="Crafting" value="0" />
+			<ability id="Perception" value="2" />
+			<ability id="Trickery" value="4/+1" />
+			<ability id="Ranged Attack" value="2" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="0" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="2/+1" />
+			<ability id="Melee Attack" value="2" />
+			<ability id="Combat Defence" value="2" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<pcClass id="Burglar" combatDice="8" magicDice="4"
+			stealthDice="20" generalDice="12" encumbrance="100" mana="0"
+			actionPoint="8" health="5">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="4/+1" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="0" />
+			<ability id="Perception" value="4/+1" />
+			<ability id="Trickery" value="2" />
+			<ability id="Ranged Attack" value="3" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="1" />
+			<ability id="Resistance" value="3/+1" />
+			<ability id="Appraisal" value="3/+1" />
+			<ability id="Magic Defence" value="2" />
+			<ability id="Melee Attack" value="3" />
+			<ability id="Combat Defence" value="3" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<pcClass id="Assassin" combatDice="12" magicDice="4"
+			stealthDice="20" generalDice="8" actionPoint="8" health="5"
+			encumbrance="100" mana="0">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="3" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="0" />
+			<ability id="Perception" value="3" />
+			<ability id="Trickery" value="2/+1" />
+			<ability id="Ranged Attack" value="3/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="4/+1" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="1" />
+			<ability id="Magic Defence" value="3" />
+			<ability id="Melee Attack" value="2/+1" />
+			<ability id="Combat Defence" value="3" />
+			<ability id="Sneak" value="4/+1" />
+		</pcClass>
+		<pcClass id="Wizard" combatDice="4" magicDice="20"
+			stealthDice="8" generalDice="12" actionPoint="8" health="4"
+			encumbrance="100" mana="4">
+			<ability id="Dweomer Lore" value="4/+1" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="4/+1" />
+			<ability id="Crafting" value="3/+1" />
+			<ability id="Perception" value="3" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="1" />
+			<ability id="Enchantment" value="3/+1" />
+			<ability id="Advantage Attack" value="0" />
+			<ability id="Resistance" value="1" />
+			<ability id="Appraisal" value="3" />
+			<ability id="Magic Defence" value="4/+1" />
+			<ability id="Melee Attack" value="1" />
+			<ability id="Combat Defence" value="1" />
+			<ability id="Sneak" value="0" />
+		</pcClass>
+		<pcClass id="Priest" combatDice="12" magicDice="20"
+			stealthDice="4" generalDice="8" actionPoint="8" health="4"
+			encumbrance="100" mana="4">
+			<ability id="Dweomer Lore" value="3" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="3/+1" />
+			<ability id="Crafting" value="1" />
+			<ability id="Perception" value="3" />
+			<ability id="Trickery" value="1" />
+			<ability id="Ranged Attack" value="1" />
+			<ability id="Enchantment" value="2/+1" />
+			<ability id="Advantage Attack" value="1" />
+			<ability id="Resistance" value="2" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="4/+1" />
+			<ability id="Melee Attack" value="2/+1" />
+			<ability id="Combat Defence" value="1/+1" />
+			<ability id="Sneak" value="0" />
+		</pcClass>
+		<pcClass id="Druid" combatDice="8" magicDice="20" stealthDice="4"
+			generalDice="12" actionPoint="8" health="4" encumbrance="100" mana="4">
+			<ability id="Dweomer Lore" value="2" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="3/+1" />
+			<ability id="Crafting" value="2/+1" />
+			<ability id="Perception" value="4" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="2" />
+			<ability id="Enchantment" value="1/+1" />
+			<ability id="Advantage Attack" value="1" />
+			<ability id="Resistance" value="2" />
+			<ability id="Appraisal" value="0" />
+			<ability id="Magic Defence" value="4/+1" />
+			<ability id="Melee Attack" value="2" />
+			<ability id="Combat Defence" value="2" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<pcClass id="Witch" combatDice="8" magicDice="12" stealthDice="12"
+			generalDice="12" actionPoint="8" health="4" encumbrance="100" mana="4">
+			<ability id="Dweomer Lore" value="2" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="3/+1" />
+			<ability id="Crafting" value="4" />
+			<ability id="Perception" value="3" />
+			<ability id="Trickery" value="2/+1" />
+			<ability id="Ranged Attack" value="2" />
+			<ability id="Enchantment" value="1/+1" />
+			<ability id="Advantage Attack" value="0" />
+			<ability id="Resistance" value="1/+1" />
+			<ability id="Appraisal" value="0" />
+			<ability id="Magic Defence" value="3/+1" />
+			<ability id="Melee Attack" value="2" />
+			<ability id="Combat Defence" value="2" />
+			<ability id="Sneak" value="3" />
+		</pcClass>
+		<pcClass id="Hunter" combatDice="12" magicDice="8"
+			stealthDice="12" generalDice="12" actionPoint="8" health="6"
+			encumbrance="100" mana="1">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="1" />
+			<ability id="Crafting" value="3" />
+			<ability id="Perception" value="3/+1" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="4/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="2/+1" />
+			<ability id="Resistance" value="3/+1" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="1" />
+			<ability id="Melee Attack" value="3" />
+			<ability id="Combat Defence" value="3" />
+			<ability id="Sneak" value="4/+1" />
+		</pcClass>
+		<pcClass id="Tomb Breaker" combatDice="12" magicDice="12"
+			stealthDice="12" generalDice="8" actionPoint="8" health="6"
+			encumbrance="100" mana="2">
+			<ability id="Dweomer Lore" value="2" />
+			<ability id="Mechanisms" value="3/+1" />
+			<ability id="Magical Attack" value="2" />
+			<ability id="Crafting" value="0" />
+			<ability id="Perception" value="2/+1" />
+			<ability id="Trickery" value="0" />
+			<ability id="Ranged Attack" value="2" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="1" />
+			<ability id="Resistance" value="3/+1" />
+			<ability id="Appraisal" value="4" />
+			<ability id="Magic Defence" value="3/+1" />
+			<ability id="Melee Attack" value="3" />
+			<ability id="Combat Defence" value="3/+1" />
+			<ability id="Sneak" value="0" />
+		</pcClass>
+		<!-- start of test pcClass -->
+		<pcClass id="testWarrior" combatDice="20" magicDice="4"
+			stealthDice="12" generalDice="8" actionPoint="8" health="7"
+			encumbrance="100" mana="0">
+			<ability id="Dweomer Lore" value="0" />
+			<ability id="Mechanisms" value="0" />
+			<ability id="Magical Attack" value="0" />
+			<ability id="Crafting" value="2" />
+			<ability id="Perception" value="4" />
+			<ability id="Trickery" value="1/+1" />
+			<ability id="Ranged Attack" value="3/+1" />
+			<ability id="Enchantment" value="0" />
+			<ability id="Advantage Attack" value="2" />
+			<ability id="Resistance" value="3" />
+			<ability id="Appraisal" value="2" />
+			<ability id="Magic Defence" value="2" />
+			<ability id="Melee Attack" value="4/+1" />
+			<ability id="Combat Defence" value="3/+1" />
+			<ability id="Sneak" value="3/+1" />
+		</pcClass>
+		<!-- end of test pcClass -->
+		<npcClass id="Engineer" combatDice="4" magicDice="4"
+			stealthDice="8" generalDice="12"></npcClass>
+		<npcClass id="Scholar" combatDice="4" magicDice="8"
+			stealthDice="4" generalDice="12"></npcClass>
+		<npcClass id="Bard" combatDice="4" magicDice="4" stealthDice="8"
+			generalDice="12"></npcClass>
+		<npcClass id="Craftsman" combatDice="4" magicDice="4"
+			stealthDice="8" generalDice="12"></npcClass>
+		<npcClass id="Militia" combatDice="12" magicDice="4"
+			stealthDice="8" generalDice="8"></npcClass>
+		<npcClass id="Laborer" combatDice="8" magicDice="4"
+			stealthDice="4" generalDice="12"></npcClass>
+		<npcClass id="Clerk" combatDice="4" magicDice="4"
+			stealthDice="4" generalDice="12"></npcClass>
+		<npcClass id="Serf" combatDice="8" magicDice="4" stealthDice="4"
+			generalDice="8"></npcClass>
+		<npcClass id="Merchant" combatDice="4" magicDice="4"
+			stealthDice="8" generalDice="12"></npcClass>
+		<npcClass id="Noble" combatDice="8" magicDice="4"
+			stealthDice="8" generalDice="12"></npcClass>
+		<traits>
+			<traitGroup id="Manner">
+				<traitSubGroup id="Views themselves">
+					<traitSet>
+						<trait id="Arrogantly" />
+						<trait id="Humbly" />
+					</traitSet>
+					<traitSet>
+						<trait id="Negatively" />
+						<trait id="Positively" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Relates to friends">
+					<traitSet>
+						<trait id="Affectionately" />
+						<trait id="Reservedly" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Relates to enemies">
+					<traitSet>
+						<trait id="Diplomatically" />
+						<trait id="Provocatively" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Relates to strangers">
+					<traitSet>
+						<trait id="Carefully" />
+						<trait id="Recklessly" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Normal mood">
+					<traitSet>
+						<trait id="Grim" />
+						<trait id="Light Hearted" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Expresses themselves">
+					<traitSet>
+						<trait id="Loudly" />
+						<trait id="Quietly" />
+					</traitSet>
+					<traitSet>
+						<trait id="Boastfully" />
+						<trait id="Modestly" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Presents themselves">
+					<traitSet>
+						<trait id="Confidently" />
+						<trait id="Insecurely" />
+					</traitSet>
+					<traitSet>
+						<trait id="Reticently" />
+						<trait id="Talkative" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="First impression presented">
+					<traitSet>
+						<trait id="Scruffy" />
+						<trait id="Tidy" />
+					</traitSet>
+					<traitSet>
+						<trait id="Friendly" />
+						<trait id="Hostile" />
+					</traitSet>
+					<traitSet>
+						<trait id="Bright" />
+						<trait id="Dull" />
+					</traitSet>
+				</traitSubGroup>
+			</traitGroup>
+			<traitGroup id="Attitude">
+				<traitSubGroup id="Approaches danger">
+					<traitSet>
+						<trait id="Carefree" />
+						<trait id="Cautiously" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Deals with others">
+					<traitSet>
+						<trait id="Honorably" />
+						<trait id="Treacherously" />
+					</traitSet>
+					<traitSet>
+						<trait id="Brutally" />
+						<trait id="Gently" />
+					</traitSet>
+					<traitSet>
+						<trait id="With suspicion" />
+						<trait id="Trustingly" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Deals with unknown">
+					<traitSet>
+						<trait id="Curious" />
+						<trait id="Apathetic" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="In pursuit of a goal">
+					<traitSet>
+						<trait id="Forceful" />
+						<trait id="Timid" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Deals with authority">
+					<traitSet>
+						<trait id="Dutifully" />
+						<trait id="Rebelliously" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Deals with inferiors">
+					<traitSet>
+						<trait id="Considerately" />
+						<trait id="Rudely" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Attitude towards another's wealth">
+					<traitSet>
+						<trait id="Covetously" />
+						<trait id="Virtuously" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Attitude towards own wealth">
+					<traitSet>
+						<trait id="Generous" />
+						<trait id="Greedy" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Expects from the future">
+					<traitSet>
+						<trait id="Optimistic" />
+						<trait id="Pessimistic" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Views promises or duties">
+					<traitSet>
+						<trait id="Fickle" />
+						<trait id="Resolute" />
+					</traitSet>
+				</traitSubGroup>
+				<traitSubGroup id="Approaches hard work">
+					<traitSet>
+						<trait id="Industriously" />
+						<trait id="Lazily" />
+					</traitSet>
+				</traitSubGroup>
+			</traitGroup>
+		</traits>
+		<sizes>
+            <size id="Small" />
+			<size id="Medium" />
+			<size id="Large" />
+		</sizes>
+		<genders>
+			<gender id="Male" />
+			<gender id="Female" />
+			<gender id="Androgynous" />
+			<gender id="Eunuch" />
+		</genders>
+		<races>
+			<race id="Human" />
+			<race id="Elf" />
+			<race id="Halfling" />
+		</races>
+	</character>
+
+	<powerWords>
+		<!-- Game PowerWords -->
+		<powerWord id="SmallLight1" description="small orb of light without substance or heat" />
+		<powerWord id="CHRSTNAHNDRX" description="The biggest ball of flame" />
+		<powerWord id="SUDO" description="Doppleganger god" />
+		<!-- Unit Test PowerWords -->
+		<powerWord id="testPowerWord1" description="power word description 1" />
+		<powerWord id="testPowerWord2" description="power word description 2" />
+		<powerWord id="testPowerWord3" description="power word description 3" />
+	</powerWords>
+	<skills>
+		<!-- Game Skills -->
+		<skill id="FireLighting" description="lighting a fire, typically with flint and tinder" />
+		<!-- Unit Test Skills -->
+		<skill id="testFireLighting" description="lighting a fire, typically with flint and tinder" />
+		<skill id="testSkill1" description="skill description 1" />
+		<skill id="testSkill2" description="skill description 2" />
+		<skill id="testSkill3" description="skill description 3" />
+	</skills>
+	<recipes>
+		<!-- Crafting of Item objects -->
+		<!-- skill entries are mentioned by id only. -->
+		<!-- powerWord entries are mentioned by id only. -->
+		<!-- requirements entries are mentioned by id only. -->
+		<!-- Rules for requirements in Precedence Order -->
+		<!-- (This will aid auto-allocation of Item objects if this process is 
+			added) -->
+		<!-- 1. Consumed Ingredient objects before non-consumed so non-consumed 
+			aren't counted twice. -->
+		<!-- 2. Most specific Ingredient before less-specific to help the matching 
+			process -->
+		<!-- Game Recipes -->
+		<recipe id="FireGround1" description="small open ground fire"
+			actionPoints="42" process="createItem1">
+			<skill id="FireLighting" />
+			<requirements>
+				<item id="Wood" consumed="true" weightMin="3" />
+				<item id="FlintAndTinder" consumed="false" />
+				<item id="Location" type="ItemContainer" consumed="false" />
+			</requirements>
+			<products>
+				<item id="smallGroundFire" />
+			</products>
+		</recipe>
+		<recipe id="LightOrb1" description="small light orb" mana="2"
+			actionPoints="10" process="createItem1">
+			<powerWord id="SmallLight1" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="false" />
+			</requirements>
+			<products>
+				<item id="OrbOfLight" />
+			</products>
+		</recipe>
+		<!-- Unit Test Recipes -->
+		<recipe id="testItem1" description="item test 1" mana="2"
+			actionPoints="10" process="createItem1">
+			<skill id="testSkill1" />
+			<powerWord id="testPowerWord1" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="false" />
+			</requirements>
+			<products>
+				<item id="Cookie" />
+			</products>
+		</recipe>
+		<recipe id="testFireGround1" description="small open ground fire"
+			actionPoints="42" process="createItem1">
+			<skill id="testFireLighting" />
+			<requirements>
+				<item id="Location" type="ItemContainer" consumed="false" />
+				<item id="Wood" consumed="true" weightMin="3" />
+				<item id="FlintAndTinder" consumed="false" />
+			</requirements>
+			<products>
+				<item id="SmallGroundFire" />
+			</products>
+		</recipe>
+		<recipe id="testSpell1" description="spell test 1" mana="2"
+			actionPoints="10" process="spellTest1">
+			<powerWord id="testPowerWord1" />
+			<requirements>
+				<!-- TODO <item id="Target" class="PC" consumed="no" /> -->
+			</requirements>
+		</recipe>
+	</recipes>
+</config>
