@@ -18,7 +18,6 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
@@ -46,15 +45,14 @@ public class BasicPanel extends JPanel {
     private JTextField steTextField;
     private JTextField genTextField;
     // Row 3
-    private JComboBox raceComboBox;
-    private JComboBox sizeComboBox;
-    private JComboBox genderComboBox;
-    // Row 4
     private JSpinner levelSpinner;
     private SpinnerModel levelModel;
     private JTextField actionPointsTextField;
     private JTextField healthTextField;
     private JTextField manaTextField;
+    // Row 4
+    private JComboBox sizeComboBox;
+    private JComboBox genderComboBox;
 
     public BasicPanel(final PcRace pPc, final Configuration pConfig) {
         super();
@@ -75,7 +73,6 @@ public class BasicPanel extends JPanel {
         classComboBox.addItemListener(basicItemListener);
         sizeComboBox.addItemListener(basicItemListener);
         genderComboBox.addItemListener(basicItemListener);
-        raceComboBox.addItemListener(basicItemListener);
 
         // Listen for changes to level
         levelSpinner.addChangeListener(new ChangeListener() {
@@ -97,7 +94,6 @@ public class BasicPanel extends JPanel {
     }
 
     private void addComponents() {
-        Collection<String> races = config.getRaces();
         Collection<PcClass> pcClassesItr = config.getPcClasses().values();
         Collection<String> sizes = config.getSizes();
         Collection<String> genders = config.getGenders();
@@ -263,75 +259,6 @@ public class BasicPanel extends JPanel {
         // Row 3
         row = 3;
         pos = 0;
-        // Race
-        JLabel raceLbl = new JLabel("Race");
-        cons.gridx = pos;
-        cons.gridy = row;
-        gridBag.setConstraints(raceLbl, cons);
-        this.add(raceLbl);
-        pos += cons.gridwidth;
-
-        raceComboBox = new JComboBox();
-        for (String raceString : races) {
-            PcRace pcRace = (PcRace) Factory.createItem(raceString);
-            raceComboBox.addItem(pcRace);
-        }
-
-        cons.gridx = pos;
-        cons.gridy = row;
-        cons.gridwidth = 3;
-        gridBag.setConstraints(raceComboBox, cons);
-        this.add(raceComboBox);
-        pos += cons.gridwidth;
-        cons.gridwidth = 1;
-
-        // Size
-        JLabel sizeLbl = new JLabel("Size");
-        cons.gridx = pos;
-        cons.gridy = row;
-        gridBag.setConstraints(sizeLbl, cons);
-        this.add(sizeLbl);
-        pos += cons.gridwidth;
-
-        // Size List
-        sizeComboBox = new JComboBox();
-        for (String aSize : sizes) {
-            sizeComboBox.addItem(aSize);
-        }
-        sizeComboBox.setSelectedIndex(0);
-        cons.gridx = pos;
-        cons.gridy = row;
-        cons.gridwidth = 3;
-        gridBag.setConstraints(sizeComboBox, cons);
-        this.add(sizeComboBox);
-        pos += cons.gridwidth;
-        cons.gridwidth = 1;
-
-        // Gender
-        JLabel genderLbl = new JLabel("Gender");
-        cons.gridx = pos;
-        cons.gridy = row;
-        gridBag.setConstraints(genderLbl, cons);
-        this.add(genderLbl);
-        pos += cons.gridwidth;
-
-        // Gender List
-        genderComboBox = new JComboBox();
-        for (String aGender : genders) {
-            genderComboBox.addItem(aGender);
-        }
-        genderComboBox.setSelectedIndex(0);
-        cons.gridx = pos;
-        cons.gridy = row;
-        cons.gridwidth = 3;
-        gridBag.setConstraints(genderComboBox, cons);
-        this.add(genderComboBox);
-        pos += cons.gridwidth;
-        cons.gridwidth = 1;
-
-        // Row 4
-        row = 4;
-        pos = 0;
         // Level
         JLabel levelLbl = new JLabel("Level");
         cons.gridx = pos;
@@ -404,6 +331,54 @@ public class BasicPanel extends JPanel {
         gridBag.setConstraints(manaTextField, cons);
         this.add(manaTextField);
         pos += cons.gridwidth;
+
+        // Row 4
+        row = 4;
+        pos = 0;
+
+        // Size
+        JLabel sizeLbl = new JLabel("Size");
+        cons.gridx = pos;
+        cons.gridy = row;
+        gridBag.setConstraints(sizeLbl, cons);
+        this.add(sizeLbl);
+        pos += cons.gridwidth;
+
+        // Size List
+        sizeComboBox = new JComboBox();
+        for (String aSize : sizes) {
+            sizeComboBox.addItem(aSize);
+        }
+        sizeComboBox.setSelectedIndex(0);
+        cons.gridx = pos;
+        cons.gridy = row;
+        cons.gridwidth = 3;
+        gridBag.setConstraints(sizeComboBox, cons);
+        this.add(sizeComboBox);
+        pos += cons.gridwidth;
+        cons.gridwidth = 1;
+
+        // Gender
+        JLabel genderLbl = new JLabel("Gender");
+        cons.gridx = pos;
+        cons.gridy = row;
+        gridBag.setConstraints(genderLbl, cons);
+        this.add(genderLbl);
+        pos += cons.gridwidth;
+
+        // Gender List
+        genderComboBox = new JComboBox();
+        for (String aGender : genders) {
+            genderComboBox.addItem(aGender);
+        }
+        genderComboBox.setSelectedIndex(0);
+        cons.gridx = pos;
+        cons.gridy = row;
+        cons.gridwidth = 3;
+        gridBag.setConstraints(genderComboBox, cons);
+        this.add(genderComboBox);
+        pos += cons.gridwidth;
+        cons.gridwidth = 1;
 
     }
 
@@ -491,15 +466,6 @@ public class BasicPanel extends JPanel {
                         pc.setGender((String) comboBox.getSelectedItem());
                     }
 
-                    // Race
-                    else if (comboBox == raceComboBox) {
-                        PcRace raceNew = (PcRace) raceComboBox
-                                .getSelectedItem();
-                        if (!pc.equals(raceNew)) {
-                            raceNew.setAllFrom(pc);
-                            pc = raceNew;
-                        }
-                    }
                 }
             }
         }
@@ -522,15 +488,14 @@ public class BasicPanel extends JPanel {
             steTextField.setText(Integer.toString(pc.getStealthDice()));
             genTextField.setText(Integer.toString(pc.getGeneralDice()));
             // Row 3
-            raceComboBox.setSelectedItem(pc.getRace());
-            sizeComboBox.setSelectedItem(pc.getSize());
-            genderComboBox.setSelectedItem(pc.getGender());
-            // Row 4
             levelModel.setValue(pc.getLevel());
             actionPointsTextField
                     .setText(Integer.toString(pc.getActionPoints()));
             healthTextField.setText(Integer.toString(pc.getHealth()));
             manaTextField.setText(Integer.toString(pc.getMana()));
+            // Row 4
+            sizeComboBox.setSelectedItem(pc.getSize());
+            genderComboBox.setSelectedItem(pc.getGender());
         }
     }
 
