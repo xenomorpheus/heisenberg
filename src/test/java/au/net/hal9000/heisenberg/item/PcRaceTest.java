@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.*;
 
 import java.util.Set;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Human;
@@ -12,16 +14,23 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class PcRaceTest {
+    Configuration config = null;
 
     /*
      * Most tests will use a Human as a representative of the PcRace. Tests
      * should be in the same order as the fields or methods.
      */
 
+    @Before
+    public void setUp() throws ConfigurationError {
+        config = new Configuration("src/test/resources/config.xml");
+    }
+
     // Constructor
     @Test
     public void testPcRace() {
         Human human = new Human();
+        checkBasicsAreZero(human);
         assertEquals("Name check", "Human", human.getName());
         assertEquals("Description check", "", human.getDescription());
         // By default PCs are living.
@@ -82,9 +91,35 @@ public class PcRaceTest {
     public void testPcClass() {
         final PcClass expected = new PcClass();
         Human human = new Human();
-        assertEquals(null, human.getPcClass());
+        checkBasicsAreZero(human);
+        // default
+        assertNull("pcClass default of null", human.getPcClass());
+        // set
         human.setPcClass(expected);
-        assertEquals(expected, human.getPcClass());
+        assertEquals("pcClass changed", expected, human.getPcClass());
+        // cleared
+        human.setCombatDice(1);
+        human.setMagicDice(1);
+        human.setStealthDice(1);
+        human.setGeneralDice(1);
+        human.setActionPoints(1);
+        human.setMana(1);
+        human.setEncumbrance(1);
+        human.setHealth(1);
+        human.setPcClass(null);
+        assertNull("pcClass nulled", human.getPcClass());
+        checkBasicsAreZero(human);
+    }
+
+    public void checkBasicsAreZero(PcRace pc) {
+        assertEquals("combatDice", 0, pc.getCombatDice());
+        assertEquals("magicDice", 0, pc.getMagicDice());
+        assertEquals("stealthDice", 0, pc.getStealthDice());
+        assertEquals("generalDice", 0, pc.getGeneralDice());
+        assertEquals("actionPoints", 0, pc.getActionPoints());
+        assertEquals("mana", 0, pc.getMana());
+        assertEquals("encumbrance", 0, pc.getEncumbrance());
+        assertEquals("health", 0, pc.getHealth());
     }
 
     @Test
@@ -93,7 +128,7 @@ public class PcRaceTest {
         Human human = new Human();
         // assertEquals(0, human.getCombatDice());
         human.setCombatDice(expected);
-        assertEquals(expected, human.getCombatDice());
+        assertEquals("combatDice", expected, human.getCombatDice());
     }
 
     @Test
@@ -162,10 +197,8 @@ public class PcRaceTest {
     }
 
     @Test
-    public void testValues() throws ConfigurationError {
-
-        Configuration config = new Configuration("src/test/resources/config.xml");
-        PcClass warrior = config.getPcClass("Warrior");
+    public void testValues() {
+        PcClass warrior = config.getPcClass("testWarrior");
         Human pc = new Human("Mr Warrior");
         pc.setPcClass(warrior);
 
@@ -193,12 +226,35 @@ public class PcRaceTest {
         // TODO human.setRecipes();
     }
 
-    @Test 
+    @Test
     public void testGetDetailedDescription() {
+        // vanilla - no mods.
         Human human = new Human();
-        String detailedDescription = human.getDetailedDescription();
-        assertNotNull("detailed description not null", detailedDescription);
+        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
+        
+        // null
+        human.setName(null);
+        human.setDescription(null);
+        // TODO human.setAbilityScores(null);
+        // TODO human.setSkills(null);
+        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
+
+        // fully populated
+        human.setName("The Name");
+        human.setGender("Male");
+        human.setSize("Large");
+        human.setDescription("The Description");
+        PcClass warrior = config.getPcClass("testWarrior");
+        human.setPcClass(warrior);
+        human.setLevel(3);
+        human.skillsAdd(new String[] { "testSkill1", "testSkill2",
+                "testSkill3" });
+        human.powerWordsAdd(new String[] { "testPowerWord1",
+                "testPowerWord2", "testPowerWord3" });
+        human.recipesAdd(new String[] { "testItem1",
+                "testFireGround1", "testSpell1" });
+
+        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
     }
-    
-    
+
 }

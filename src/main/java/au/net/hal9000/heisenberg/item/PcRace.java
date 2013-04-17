@@ -545,72 +545,73 @@ public abstract class PcRace extends Entity {
      * @return Plain text description of the object
      */
     public String getDetailedDescription() {
-        String text = "";
+        StringBuilder text = new StringBuilder(1024);
 
         String name = getName();
         if (name != null) {
-            text += "Name: " + getName() + "\n";
+            text.append("Name: " + name + "\n");
         }
 
         String race = getRace();
 
-        text += "Level: " + level + "\nRace: " + race + "\n";
+        text.append("Level: " + level + "\nRace: " + race + "\n");
 
         if (pcClass != null) {
-            text += "Class: " + pcClass.getId() + "\n";
+            text.append("Class: " + pcClass.getId() + "\n");
         }
         String description = getDescription();
         if (description != null) {
-            text += "Description: " + description + "\n";
+            text.append("Description: " + description + "\n");
         }
 
-        text += "Combat Dice: D" + combatDice + "\nMagic Dice: D" + magicDice
-                + "\nStealth Dice: D" + stealthDice + "\nGeneral Dice: D"
-                + generalDice + "\nAction Points: " + actionPoints
-                + "\nHealth: " + health + "\nMana: " + mana + "\nEncumbrance: "
-                + encumbrance + "\n";
+        text.append("Combat Dice: D" + combatDice + "\nMagic Dice: D"
+                + magicDice + "\nStealth Dice: D" + stealthDice
+                + "\nGeneral Dice: D" + generalDice + "\nAction Points: "
+                + actionPoints + "\nHealth: " + health + "\nMana: " + mana
+                + "\nEncumbrance: " + encumbrance + "\n");
 
         String gender = getGender();
         if (gender != null) {
-            text += "Gender: " + gender + "\n";
+            text.append("Gender: " + gender + "\n");
         }
         String size = getSize();
         if (size != null) {
-            text += "Size: " + size + "\n";
+            text.append("Size: " + size + "\n");
         }
         if (abilityScores != null) {
-            text += "Abilities:\n";
+            text.append("Abilities:\n");
             for (AbilityScore abilityScore : abilityScores.values()) {
-                text += "  " + abilityScore + "\n";
+                text.append("  " + abilityScore + "\n");
             }
         }
         if (skills != null && !skills.isEmpty()) {
-            text += "Skills:\n";
+            text.append("Skills:\n");
             for (Skill skill : skills) {
-                text += "  " + skill + "\n";
+                text.append("  " + skill + "\n");
             }
         }
         if (powerWords != null && !powerWords.isEmpty()) {
-            text += "Power Words:\n";
+            text.append("Power Words:\n");
             for (PowerWord powerWord : powerWords) {
-                text += "  " + powerWord + "\n";
+                text.append("  " + powerWord + "\n");
             }
         }
         if (recipes != null && !recipes.isEmpty()) {
-            text += "Recipes:\n";
+            text.append("Recipes:\n");
             for (String recipeId : recipes) {
-                text += "  " + recipeId + "\n";
+                text.append("  " + recipeId + "\n");
             }
         }
         Properties properties = this.getProperties();
         if (properties != null && !properties.isEmpty()) {
-            text += "Properties:\n";
+            text.append("Properties:\n");
             for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-                text += " " + entry.getKey() + ": " + entry.getValue() + "\n";
+                text.append(" " + entry.getKey() + ": " + entry.getValue()
+                        + "\n");
             }
         }
-        text += "Done.\n";
-        return text;
+        text.append("Done.\n");
+        return text.toString();
     }
 
     public abstract String getRace();

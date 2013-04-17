@@ -1,3 +1,8 @@
+2013-04-17
+Use StringBuilder for building detailed descriptions.
+Increased test coverage of PcRace class,
+Updated test config reference from Warrior to testWarrior.
+
 2013-04-13
 Created a class for configuration exceptions.
 Disabled volume and weight checks.

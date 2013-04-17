@@ -351,9 +351,6 @@ public abstract class Item implements Serializable {
      *            the name to set
      */
     public void setName(final String pName) {
-        if (pName == null) {
-            throw new IllegalArgumentException("Not null");
-        }
         this.name = pName;
     }
 
