@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JTable;
@@ -30,12 +31,15 @@ public class RecipesTable extends JTable {
 
         String[] columnNames = { "Id", "Description" };
 
-        ArrayList<String> recipeIds;
+        private ArrayList<String> recipeIds;
         private TreeMap<String, Recipe> recipes;
 
         public MyTableModel(PcRace pc, Configuration config) {
-            recipeIds = new ArrayList<String>(pc.getRecipes());
             recipes = config.getRecipes();
+            Set<String> pcRecipeIds = pc.getRecipes();
+            if (pcRecipeIds != null) {
+                recipeIds = new ArrayList<String>();
+            }
         }
 
         public String getColumnName(int col) {

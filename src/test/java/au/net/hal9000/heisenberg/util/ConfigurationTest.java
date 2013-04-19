@@ -13,10 +13,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
-import au.net.hal9000.heisenberg.units.PowerWordDetail;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
@@ -63,27 +61,12 @@ public class ConfigurationTest {
         Vector<String> genders = config.getGenders();
         assertEquals("count", 4, genders.size());
     }
-    
-    
-    @Test
-    public void testPowerWords() {
-        TreeMap<String, PowerWordDetail> skillDetails = config
-                .getPowerWordDetails();
-        PowerWordDetail chrstnahndrx = skillDetails.get("CHRSTNAHNDRX");
-        assertEquals("CHRSTNAHNDRX-id", "CHRSTNAHNDRX", chrstnahndrx.getId());
-        assertEquals("CHRSTNAHNDRX-Description", "The biggest ball of flame",
-                chrstnahndrx.getDescription());
-        PowerWordDetail sudo = skillDetails.get("SUDO");
-        assertEquals("SUDO-id", "SUDO", sudo.getId());
-        assertEquals("SUDO-Description", "Doppleganger god",
-                sudo.getDescription());
-    }
 
     @Test
     public void testSkills() {
         TreeMap<String, SkillDetail> skillDetails = config.getSkillDetails();
-        SkillDetail fireLighting = skillDetails.get("FireLighting");
-        assertEquals("FireLighting-id", "FireLighting", fireLighting.getId());
+        SkillDetail fireLighting = skillDetails.get("testFireLighting");
+        assertEquals("FireLighting-id", "testFireLighting", fireLighting.getId());
         assertEquals("FireLighting-Description",
                 "lighting a fire, typically with flint and tinder",
                 fireLighting.getDescription());
@@ -93,7 +76,7 @@ public class ConfigurationTest {
     public void testRecipes() {
 
         TreeMap<String, Recipe> recipes = config.getRecipes();
-        assertTrue("ingredients !=null", recipes != null);
+        assertNotNull("ingredients !=null", recipes);
         assertTrue("requirement count", 2 <= recipes.size());
         for (Recipe recipe : recipes.values()) {
             assertTrue("id", recipe.getId().length() > 0);
@@ -110,12 +93,6 @@ public class ConfigurationTest {
         assertNotNull("requirement not null",requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
         assertEquals("requirement itemType", "ItemContainer", requirementItem.getItemType());
-        assertEquals("powerWord count", 1, recipe1.getPowerWordCount());
-        assertTrue(
-                "powerWord 0",
-                recipe1.getPowerWords().contains(
-                        new PowerWord("testPowerWord1")));
-
         assertEquals("skill count", 1, recipe1.getSkillCount());
         assertTrue("skill 0",
                 recipe1.getSkills().contains(new Skill("testSkill1")));
@@ -131,7 +108,6 @@ public class ConfigurationTest {
         assertEquals("actionPoints", 42, recipe2.getActionPoints());
         assertEquals("requirement count", 3, recipe2.getRequirementCount());
         // TODO requirement
-        assertEquals("powerWord count", 0, recipe2.getPowerWordCount());
         assertEquals("skill count", 1, recipe2.getSkillCount());
         assertTrue("skill 0",
                 recipe2.getSkills().contains(new Skill("testFireLighting")));
@@ -145,11 +121,6 @@ public class ConfigurationTest {
         assertEquals("mana", 2, recipe3.getMana());
         assertEquals("actionPoints", 10, recipe3.getActionPoints());
         assertEquals("requirement count", 0, recipe3.getRequirementCount());
-        assertEquals("powerWord count", 1, recipe3.getPowerWordCount());
-        assertTrue(
-                "powerWord 0",
-                recipe3.getPowerWords().contains(
-                        new PowerWord("testPowerWord1")));
         assertEquals("skill count", 0, recipe3.getSkillCount());
         assertEquals("product count", 0, recipe3.getProductCount());
 

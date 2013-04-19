@@ -49,6 +49,8 @@ public class EntityTest {
             fail("equip failed " + e);
         }
     }
+    
+    // TODO testSetAllFrom - just test the fields at this level.
 
     // TODO clone - On an abstract class ?
     // TODO equals

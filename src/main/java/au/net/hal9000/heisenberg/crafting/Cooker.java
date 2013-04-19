@@ -7,7 +7,6 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -87,6 +86,7 @@ public class Cooker extends ItemContainer {
     }
 
     // Setters and Getters
+    
     /**
      * set the chef.
      * @param pChef the person doing the cooking.
@@ -188,19 +188,6 @@ public class Cooker extends ItemContainer {
             }
             if (actionPointsRequired > chef.getActionPoints()) {
                 return "Not enough action points";
-            }
-        }
-
-        // powerWords
-        Set<PowerWord> powerWordsRequired = recipe.getPowerWords();
-        if ((powerWordsRequired != null) && (powerWordsRequired.size() > 0)) {
-            if (chef == null) {
-                return "Too few Power Words";
-            }
-            Set<PowerWord> got = chef.getPowerWords();
-            if ((powerWordsRequired != null)
-                    && (!got.containsAll(powerWordsRequired))) {
-                return "Missing Power Words";
             }
         }
 

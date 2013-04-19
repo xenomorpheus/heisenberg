@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -125,10 +124,6 @@ public class Recipe {
      */
     private TreeMap<String, Requirement> requirements;
     /**
-     * The {@link PowerWord} objects required.
-     */
-    private Set<PowerWord> powerWords = new TreeSet<PowerWord>();
-    /**
      * The {@link Skill} objects required.
      */
     private Set<Skill> skills = new TreeSet<Skill>();
@@ -153,16 +148,13 @@ public class Recipe {
      *            the Requirement list.
      * @param pSkills
      *            the Skill objects required
-     * @param pPowerWords
-     *            the PowerWord objects required
      * @param pProducts
      *            the results that will be produced.
      */
     public Recipe(final String id, final String description,
             final String process, final int mana, final int actionPoints,
             final TreeMap<String, Requirement> pRequirements,
-            final Set<PowerWord> pPowerWords, final Set<Skill> pSkills,
-            final Vector<String> pProducts) {
+            final Set<Skill> pSkills, final Vector<String> pProducts) {
         super();
         this.id = id;
         this.description = description;
@@ -170,7 +162,6 @@ public class Recipe {
         this.mana = mana;
         this.actionPoints = actionPoints;
         this.requirements = pRequirements;
-        this.powerWords = pPowerWords;
         this.skills = pSkills;
         this.products = pProducts;
     }
@@ -377,59 +368,6 @@ public class Recipe {
             return 0;
         }
         return products.size();
-    }
-
-    // powerWords
-
-    /**
-     * Get the count of PowerWord objects.
-     * 
-     * @return the count of PowerWord objects
-     */
-    public final int getPowerWordCount() {
-        if (powerWords == null) {
-            return 0;
-        }
-        return powerWords.size();
-    }
-
-    /**
-     * Get the PowerWord objects.
-     * 
-     * @return a set of PowerWord objects
-     */
-    public final Set<PowerWord> getPowerWords() {
-        return powerWords;
-    }
-
-    /**
-     * Set the PowerWord objects.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     */
-    public final void setPowerWords(final Set<PowerWord> powerWords) {
-        this.powerWords = powerWords;
-    }
-
-    /**
-     * Add extra PowerWords to the list of required requirements.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param powerWords
-     */
-    public final void powerWordsAdd(final Set<PowerWord> powerWords) {
-        powerWords.addAll(powerWords);
-    }
-
-    /**
-     * Add extra PowerWords to the list of required requirements.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param powerWords
-     *            a Set of PowerWord objects to add.
-     */
-    public final void powerWordsAddAll(final Set<PowerWord> powerWords) {
-        powerWords.addAll(powerWords);
     }
 
     // skills

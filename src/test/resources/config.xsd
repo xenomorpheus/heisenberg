@@ -49,23 +49,10 @@
 				<xs:element name="items">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="item" type="ctKeywordType" maxOccurs="unbounded"
-								minOccurs="1">
+							<xs:element name="item" type="ctKeywordType"
+								maxOccurs="unbounded" minOccurs="1">
 								<xs:annotation>
 									<xs:documentation>Items that may be instantiated
-									</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="powerWords">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="powerWord" type="ctKeywordDetailType"
-								maxOccurs="unbounded" minOccurs="0">
-								<xs:annotation>
-									<xs:documentation>Game PowerWords Unit Test PowerWords
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -78,7 +65,7 @@
 							<xs:element name="skill" type="ctKeywordDetailType"
 								maxOccurs="unbounded" minOccurs="0">
 								<xs:annotation>
-									<xs:documentation>Game Skills Unit Test PowerWords
+									<xs:documentation>Game Skills Unit Test
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -92,17 +79,18 @@
 								maxOccurs="unbounded" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>Crafting of Item objects skill entries are
-										mentioned by id only. powerWord entries are mentioned by id
-										only. ingredient entries are mentioned by id only. Rules for
-										Ingredients in Precedence Order (This will aid auto-allocation
-										of Item objects if this process is
-										added) 1. Consumed
-										Ingredient objects before non-consumed so
+										mentioned by id only. ingredient entries are mentioned by id
+										only. Rules for Ingredients in Precedence Order (This will aid
+										auto-allocation of Item objects if this process is
+										added) 1.
+										Consumed Ingredient objects before non-consumed so
 										non-consumed
 										aren't
-										counted twice. 2. Most specific Ingredient before
+										counted twice. 2. Most specific Ingredient
+										before
 										less-specific to help the matching
-										process Game Recipes Unit
+										process Game Recipes
+										Unit
 										Test Recipes
 									</xs:documentation>
 								</xs:annotation>
@@ -164,8 +152,8 @@
 							minOccurs="0">
 							<xs:complexType>
 								<xs:sequence>
-									<xs:element name="trait" type="ctKeywordType" maxOccurs="unbounded"
-										minOccurs="0">
+									<xs:element name="trait" type="ctKeywordType"
+										maxOccurs="unbounded" minOccurs="0">
 									</xs:element>
 								</xs:sequence>
 							</xs:complexType>
@@ -181,8 +169,6 @@
 	<xs:complexType name="ctRecipeType">
 		<xs:sequence>
 			<xs:element name="skill" type="ctKeywordType" minOccurs="0" />
-			<xs:element name="powerWord" type="ctKeywordType"
-				minOccurs="0" />
 			<xs:element name="requirements" type="ctRequirementType"
 				minOccurs="0" />
 			<xs:element name="products" minOccurs="0">
@@ -193,7 +179,8 @@
 								<xs:attribute type="xs:string" name="id" use="required" />
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="spell" type="ctKeywordType" minOccurs="0"/>
+						<xs:element name="spell" type="ctKeywordType"
+							minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>

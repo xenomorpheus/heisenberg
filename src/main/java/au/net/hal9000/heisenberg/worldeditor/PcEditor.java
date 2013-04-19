@@ -42,8 +42,6 @@ public class PcEditor {
         tabbedPane.addTab("Abilities", null,
                 new AbilityScoresTable(pc, config), null);
         tabbedPane.addTab("Skills", null, new SkillsTable(pc, config), null);
-        tabbedPane.addTab("PowerWords", null, new PowerWordsTable(pc, config),
-                null);
         tabbedPane.addTab("Recipes", null, new RecipesTable(pc, config), null);
         tabbedPane.addTab("Description", null, descriptionPane(pc), null);
         frame.getContentPane().add(tabbedPane);
@@ -92,8 +90,6 @@ public class PcEditor {
                     pc.setLevel(3);
                     pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
                             "testSkill3" });
-                    pc.powerWordsAdd(new String[] { "testPowerWord1",
-                            "testPowerWord2", "testPowerWord3" });
                     pc.recipesAdd(new String[] { "testItem1",
                             "testFireGround1", "testSpell1" });
 

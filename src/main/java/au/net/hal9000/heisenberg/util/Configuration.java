@@ -16,8 +16,6 @@ import nu.xom.ParsingException;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.units.PowerWord;
-import au.net.hal9000.heisenberg.units.PowerWordDetail;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
@@ -36,7 +34,6 @@ public class Configuration {
     private static Configuration lastConfig = null; // Singleton
     private Vector<String> itemClasses;
     private TreeMap<String, SkillDetail> skillDetails;
-    private TreeMap<String, PowerWordDetail> powerWordDetails;
     private TreeMap<String, Recipe> recipes;
     private TreeMap<String, PcClass> pcClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
@@ -79,10 +76,6 @@ public class Configuration {
         return skillDetails;
     }
 
-    public TreeMap<String, PowerWordDetail> getPowerWordDetails() {
-        return powerWordDetails;
-    }
-
     public final TreeMap<String, Recipe> getRecipes() {
         return recipes;
     }
@@ -100,10 +93,6 @@ public class Configuration {
             throw new ConfigurationError(e);
         }
         Element root = doc.getRootElement();
-
-        // powerWord entries
-        Element powerWordsElement = root.getFirstChildElement("powerWords");
-        powerWordDetails = xmlToPowerWordDetails(powerWordsElement);
 
         // skill entries
         Element skillsElement = root.getFirstChildElement("skills");
@@ -162,24 +151,6 @@ public class Configuration {
             classes.put(pcClass.getId(), pcClass);
         }
         return classes;
-    }
-
-    /**
-     * Read in an XML list of PowerWord IDs and produce an ingredient object.<br>
-     * <&lt;> powerWord id="fire lighting" /<&gt;>
-     * 
-     * @param entries
-     *            XML list of PowerWord IDs
-     * @return Set of PowerWord Objects.
-     */
-    public static Set<PowerWord> xmlToPowerWords(Elements entries) {
-        Set<PowerWord> powerWords = new TreeSet<PowerWord>();
-
-        for (int current = 0; current < entries.size(); current++) {
-            powerWords.add(new PowerWord(entries.get(current)
-                    .getAttributeValue("id")));
-        }
-        return powerWords;
     }
 
     /**
@@ -306,12 +277,6 @@ public class Configuration {
             process = processAttribute.getValue();
         }
 
-        // PowerWords
-        Set<PowerWord> powerWords = new TreeSet<PowerWord>();
-        Elements powerWordElements = recipeElement
-                .getChildElements("powerWord");
-        powerWords.addAll(xmlToPowerWords(powerWordElements));
-
         // Skills
         Set<Skill> skills = new TreeSet<Skill>();
         Elements skillElements = recipeElement.getChildElements("skill");
@@ -339,7 +304,7 @@ public class Configuration {
 
         // Return the completed recipe
         return new Recipe(id, description, process, mana, actionPoints,
-                requirementsSet, powerWords, skills, products);
+                requirementsSet, skills, products);
 
     }
 
@@ -380,27 +345,6 @@ public class Configuration {
             // get current Skill
             Element entry = entries.get(current);
             SkillDetail pw = new SkillDetail(entry.getAttributeValue("id"),
-                    entry.getAttributeValue("description"));
-            skillDetails.put(entry.getAttributeValue("id"), pw);
-        }
-        return skillDetails;
-    }
-
-    /**
-     * Read multiple PowerWordDetail objects from an XML element.
-     * 
-     * @param element
-     * @return TreeMap of PowerWordDetail objects.
-     */
-    private static TreeMap<String, PowerWordDetail> xmlToPowerWordDetails(
-            Element element) {
-        Elements entries = element.getChildElements("powerWord");
-        TreeMap<String, PowerWordDetail> skillDetails = new TreeMap<String, PowerWordDetail>();
-        for (int current = 0; current < entries.size(); current++) {
-            // get current PowerWord
-            Element entry = entries.get(current);
-            PowerWordDetail pw = new PowerWordDetail(
-                    entry.getAttributeValue("id"),
                     entry.getAttributeValue("description"));
             skillDetails.put(entry.getAttributeValue("id"), pw);
         }

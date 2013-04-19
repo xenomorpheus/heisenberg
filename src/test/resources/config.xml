@@ -470,18 +470,10 @@
 		</races>
 	</character>
 
-	<powerWords>
-		<!-- Game PowerWords -->
-		<powerWord id="SmallLight1" description="small orb of light without substance or heat" />
-		<powerWord id="CHRSTNAHNDRX" description="The biggest ball of flame" />
-		<powerWord id="SUDO" description="Doppleganger god" />
-		<!-- Unit Test PowerWords -->
-		<powerWord id="testPowerWord1" description="power word description 1" />
-		<powerWord id="testPowerWord2" description="power word description 2" />
-		<powerWord id="testPowerWord3" description="power word description 3" />
-	</powerWords>
 	<skills>
 		<!-- Game Skills -->
+        <skill id="CHRSTNAHNDRX" description="The biggest ball of flame" />
+        <skill id="SUDO" description="Doppleganger god" />
 		<skill id="FireLighting" description="lighting a fire, typically with flint and tinder" />
 		<!-- Unit Test Skills -->
 		<skill id="testFireLighting" description="lighting a fire, typically with flint and tinder" />
@@ -516,7 +508,6 @@
 		</recipe>
 		<recipe id="LightOrb1" description="small light orb" mana="2"
 			actionPoints="10" process="createItem1">
-			<powerWord id="SmallLight1" />
 			<requirements>
 				<item id="Location" type="ItemContainer" consumed="false" />
 			</requirements>
@@ -528,7 +519,6 @@
 		<recipe id="testItem1" description="item test 1" mana="2"
 			actionPoints="10" process="createItem1">
 			<skill id="testSkill1" />
-			<powerWord id="testPowerWord1" />
 			<requirements>
 				<item id="Location" type="ItemContainer" consumed="false" />
 			</requirements>

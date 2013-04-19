@@ -18,8 +18,6 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 public class CookerTest {
     static int REQUIRED_ACTION_POINTS = 42;
     static int REQUIRED_MANA = 3;
-    static String[] REQUIRED_POWERWORDS = new String[] { "PowerWord0",
-            "PowerWord", "PowerWord2" };
     static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
             "Skill2" };
 
@@ -45,9 +43,8 @@ public class CookerTest {
         chef.setLocation(world);
         chef.setMana(recipe.getMana() + 1);
         chef.setActionPoints(recipe.getActionPoints() + 2);
-        chef.powerWordsAdd(new PowerWord("testPowerWord1"));
         chef.skillsAdd(new Skill("testSkill1"));
-        chef.recipesAdd("testItem1");
+        chef.recipeAdd("testItem1");
 
         // Prepare to cast a spell
         Cooker cooker = chef.getCooker("testItem1");
@@ -84,8 +81,7 @@ public class CookerTest {
         chef.setLocation(world);
         chef.setMana(recipe.getMana() + manaRemaining);
         chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
-        chef.powerWordsAdd(new PowerWord("testPowerWord1"));
-        chef.recipesAdd("testSpell1");
+        chef.recipeAdd("testSpell1");
 
         // Prepare to cast a spell
         Cooker cooker = chef.getCooker("testSpell1");
@@ -123,12 +119,6 @@ public class CookerTest {
         Vector<String> products = new Vector<String>();
         products.add("Cookie");
 
-        // PowerWord(s)
-        Set<PowerWord> powerWords = new TreeSet<PowerWord>();
-        for (int i = REQUIRED_POWERWORDS.length - 1; i >= 0; i--) {
-            powerWords.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-        }
-
         // Skill(s)
         Set<Skill> skills = new TreeSet<Skill>();
         for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
@@ -138,14 +128,13 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("magicCookie1", "a magic cookie", null,
                 REQUIRED_MANA, REQUIRED_ACTION_POINTS, requirements,
-                powerWords, skills, products);
+                skills, products);
 
         // Set the chef
         PcRace chef = new Human();
 
         chef.setMana(REQUIRED_MANA + 1);
         chef.setActionPoints(REQUIRED_ACTION_POINTS + 2);
-        chef.powerWordsAdd(REQUIRED_POWERWORDS);
         chef.skillsAdd(REQUIRED_SKILLS);
 
         // Get a cooker
@@ -201,7 +190,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
-                requirements, null, null, null);
+                requirements, null, null);
         Cooker cooker = recipe.getNewCooker();
 
         assertEquals("requirement count", requirements.size(),
@@ -247,7 +236,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
-                requirements, null, null, null);
+                requirements, null, null);
         Cooker cooker = recipe.getNewCooker();
 
         // Item - FlintAndTinder
@@ -304,8 +293,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-general-null",
-                "Null case. No requirements", null, 0, 0, null, null, null,
-                null);
+                "Null case. No requirements", null, 0, 0, null, null, null);
         // Get a cooker
         Cooker cooker = recipe.getNewCooker();
         assertEquals("cook works", null, cooker.cook());
@@ -319,8 +307,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-general-null",
-                "Null case. No requirements", null, 0, 0, null, null, null,
-                null);
+                "Null case. No requirements", null, 0, 0, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -345,7 +332,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-1", "Mana test, just enough.",
-                null, 1, 0, null, null, null, null);
+                null, 1, 0, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -379,7 +366,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-2", "Mana test, not enough.",
-                null, 3, 0, null, null, null, null);
+                null, 3, 0, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -411,8 +398,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-3",
-                "Mana test, more than enough.", null, 3, 0, null, null, null,
-                null);
+                "Mana test, more than enough.", null, 3, 0, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -445,7 +431,7 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-1",
                 "ActionPoints test, just enough.", null, 0, 1, null, null,
-                null, null);
+                null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -481,8 +467,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-2",
-                "ActionPoints test, not enough.", null, 0, 3, null, null, null,
-                null);
+                "ActionPoints test, not enough.", null, 0, 3, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -515,7 +500,7 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-3",
                 "ActionPoints test, more than enough.", null, 0, 3, null, null,
-                null, null);
+                null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -530,126 +515,6 @@ public class CookerTest {
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());
         assertEquals("actionPoints", 1, chef.getActionPoints());
-
-    }
-
-    /**
-     * ID: test-powerWords-1 <BR>
-     * Desc: PowerWord test, just enough <BR>
-     * Equal powerWords to requirements <BR>
-     * overall: true <BR>
-     * output: no other change <BR>
-     */
-
-    @Test
-    public void testCookPowerWords1() {
-
-        // PowerWords
-        Set<PowerWord> powerWordsRequired = new TreeSet<PowerWord>();
-        Set<PowerWord> powerWordsGot = new TreeSet<PowerWord>();
-        for (int i = REQUIRED_POWERWORDS.length - 1; i >= 0; i--) {
-            powerWordsRequired.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-            powerWordsGot.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-        }
-
-        // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("test-powerWords-1",
-                "PowerWord test, just enough.", null, 0, 0, null,
-                powerWordsRequired, null, null);
-
-        // Set the chef
-        PcRace chef = new Human();
-        chef.setPowerWords(powerWordsGot);
-
-        // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
-
-        assertEquals("cook works", null, cooker.cook());
-
-        // Check the chef has paid in ActionPoints and ActionPoints
-        assertEquals("mana", 0, chef.getMana());
-        assertEquals("actionPoints", 0, chef.getActionPoints());
-
-    }
-
-    /**
-     * ID: test-powerWords-2 <BR>
-     * Desc: Less powerWords than required <BR>
-     * overall: fail <BR>
-     * output: no other change <BR>
-     */
-
-    @Test
-    public void testCookPowerWords2() {
-
-        // PowerWords
-        Set<PowerWord> powerWordsRequired = new TreeSet<PowerWord>();
-        Set<PowerWord> powerWordsGot = new TreeSet<PowerWord>();
-        for (int i = REQUIRED_POWERWORDS.length - 1; i >= 0; i--) {
-            powerWordsRequired.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-            powerWordsGot.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-        }
-        powerWordsRequired.add(new PowerWord("MissingPowerWord"));
-
-        // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("test-powerWords-2",
-                "Less powerWords than required", null, 0, 0, null,
-                powerWordsRequired, null, null);
-
-        // Set the chef
-        PcRace chef = new Human();
-        chef.setPowerWords(powerWordsGot);
-
-        // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
-
-        assertEquals("cook works", "Missing Power Words", cooker.cook());
-
-        // Check the chef has paid in ActionPoints and ActionPoints
-        assertEquals("mana", 0, chef.getMana());
-        assertEquals("actionPoints", 0, chef.getActionPoints());
-
-    }
-
-    /**
-     * ID: test-powerWords-3 <BR>
-     * Desc: More powerWords than required <BR>
-     * overall: true <BR>
-     * output: no other change <BR>
-     */
-
-    @Test
-    public void testCookPowerWords3() {
-
-        // PowerWords
-        Set<PowerWord> powerWordsRequired = new TreeSet<PowerWord>();
-        Set<PowerWord> powerWordsGot = new TreeSet<PowerWord>();
-        for (int i = REQUIRED_POWERWORDS.length - 1; i >= 0; i--) {
-            powerWordsRequired.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-            powerWordsGot.add(new PowerWord(REQUIRED_POWERWORDS[i]));
-        }
-        powerWordsGot.add(new PowerWord("MissingPowerWord"));
-
-        // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("test-powerWords-3",
-                "More powerWords than required", null, 0, 0, null,
-                powerWordsRequired, null, null);
-
-        // Set the chef
-        PcRace chef = new Human();
-        chef.setPowerWords(powerWordsGot);
-
-        // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
-
-        assertEquals("cook works", null, cooker.cook());
-
-        // Check the chef has paid in ActionPoints and ActionPoints
-        assertEquals("mana", 0, chef.getMana());
-        assertEquals("actionPoints", 0, chef.getActionPoints());
 
     }
 
@@ -674,7 +539,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-skills-1", "Skill test, just enough.",
-                null, 0, 0, null, null, skillsRequired, null);
+                null, 0, 0, null, skillsRequired, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -713,8 +578,8 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-skills-2",
-                "Less skills than required", null, 0, 0, null, null,
-                skillsRequired, null);
+                "Less skills than required", null, 0, 0, null, skillsRequired,
+                null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -753,8 +618,8 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-skills-3",
-                "More skills than required", null, 0, 0, null, null,
-                skillsRequired, null);
+                "More skills than required", null, 0, 0, null, skillsRequired,
+                null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -795,7 +660,7 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-1",
                 "simplest test of one required item", null, 0, 0, requirements,
-                null, null, null);
+                null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -846,7 +711,7 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-11-catalyst",
                 "simplest test of one required item NOT consumed", null, 0, 0,
-                requirements, null, null, null);
+                requirements, null, null);
 
         // Set the chef
         PcRace chef = new Human();

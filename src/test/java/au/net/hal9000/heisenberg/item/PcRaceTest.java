@@ -7,6 +7,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -222,7 +223,7 @@ public class PcRaceTest {
         Human human = new Human();
         // TODO
         Set<String> recipes = human.getRecipes();
-        assertNotNull("recipes not null", recipes);
+        // assertNotNull("recipes not null", recipes);
         // TODO human.setRecipes();
     }
 
@@ -230,14 +231,17 @@ public class PcRaceTest {
     public void testGetDetailedDescription() {
         // vanilla - no mods.
         Human human = new Human();
-        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
-        
+        assertNotNull("vanilla - detailed description not null",
+                human.getDetailedDescription());
+
         // null
         human.setName(null);
         human.setDescription(null);
-        // TODO human.setAbilityScores(null);
         // TODO human.setSkills(null);
-        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
+        // TODO human.setPowerWords(null);
+        // TODO human.setAbilityScores(null);
+        assertNotNull("vanilla - detailed description not null",
+                human.getDetailedDescription());
 
         // fully populated
         human.setName("The Name");
@@ -247,14 +251,72 @@ public class PcRaceTest {
         PcClass warrior = config.getPcClass("testWarrior");
         human.setPcClass(warrior);
         human.setLevel(3);
-        human.skillsAdd(new String[] { "testSkill1", "testSkill2",
-                "testSkill3" });
-        human.powerWordsAdd(new String[] { "testPowerWord1",
-                "testPowerWord2", "testPowerWord3" });
-        human.recipesAdd(new String[] { "testItem1",
-                "testFireGround1", "testSpell1" });
+        human.skillsAdd(new String[] { "testSkill1", "testSkill2", "testSkill3" });
+        human.recipesAdd(new String[] { "testItem1", "testFireGround1",
+                "testSpell1" });
 
-        assertNotNull("vanilla - detailed description not null", human.getDetailedDescription());
+        assertNotNull("vanilla - detailed description not null",
+                human.getDetailedDescription());
+    }
+
+    @Test
+    public void testSetAllFrom() {
+        // Only test the fields that are implemented at this level.
+        Human human = new Human();
+        Elf elf = new Elf();
+
+        // Check that everything is in a known state before we start;
+        checkBasicsAreZero(human);
+        checkBasicsAreZero(elf);
+
+        // Make some changes
+        // TODO - add more fields.
+        // pcClass - ensure results are not linked
+        // abilityScores - ensure results are not linked
+        // recipes - ensure results are not linked
+        // skills - ensure results are not linked
+
+        final int level = 11;
+        final int combatDice = 12;
+        final int magicDice = 13;
+        final int stealthDice = 14;
+        final int generalDice = 15;
+        final int actionPoints = 16;
+        final int mana = 17;
+        final int encumberance = 18;
+        final int health = 19;
+
+        human.setLevel(level);
+        human.setCombatDice(combatDice);
+        human.setMagicDice(magicDice);
+        human.setStealthDice(stealthDice);
+        human.setGeneralDice(generalDice);
+        human.setActionPoints(actionPoints);
+        human.setMana(mana);
+        human.setEncumbrance(encumberance);
+        human.setHealth(health);
+
+        // do the copy
+        elf.setAllFrom(human);
+
+        // check the results
+        assertEquals("level", level, elf.getLevel());
+        assertEquals("combatDice", combatDice, elf.getCombatDice());
+        assertEquals("magicDice", magicDice, elf.getMagicDice());
+        assertEquals("stealthDice", stealthDice, elf.getStealthDice());
+        assertEquals("generalDice", generalDice, elf.getGeneralDice());
+        assertEquals("actionPoints", actionPoints, elf.getActionPoints());
+        assertEquals("mana", mana, elf.getMana());
+        assertEquals("encumbrance", encumberance, elf.getEncumbrance());
+        assertEquals("health", health, elf.getHealth());
+    }
+
+    @Test
+    public void testGetCooker() {
+        Human human = new Human();
+        String recipeId = "testItem1";
+        Cooker cooker = human.getCooker(recipeId);
+        assertNotNull("cooker not null", cooker);
     }
 
 }

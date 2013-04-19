@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -10,7 +9,6 @@ import java.util.Properties;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.units.PowerWord;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -58,19 +56,15 @@ public abstract class PcRace extends Entity {
      * Set the value = pcClassAbility.getValue() + (level *
      * pcClassAbility.getModifier()) + modifier;
      */
-    TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
+    TreeMap<String, AbilityScore> abilityScores;
     /**
      * The {@link Recipe} list that is known by this object.
      */
-    private Set<String> recipes = new TreeSet<String>();
-    /**
-     * The {@link PowerWord} objects required.
-     */
-    private Set<PowerWord> powerWords = new TreeSet<PowerWord>();
+    private Set<String> recipes;
     /**
      * The {@link Skill} objects required.
      */
-    private Set<Skill> skills = new TreeSet<Skill>();
+    private Set<Skill> skills;
 
     // Constructors
 
@@ -136,7 +130,7 @@ public abstract class PcRace extends Entity {
     public final void setPcClass(final PcClass pcClass) {
         this.pcClass = pcClass;
         if (pcClass == null) {
-            clearClassBasedFields();
+            clearClassBaseFields();
         } else {
             setBasicsFromPcClass();
         }
@@ -300,7 +294,10 @@ public abstract class PcRace extends Entity {
      *            the AbilityScore to put.<br>
      *            Any existing AbilityScore with this name will be removed.
      */
-    public void setAbilityScore(AbilityScore abilityScore) {
+    public void setAnAbilityScore(AbilityScore abilityScore) {
+        if (abilityScores == null) {
+            abilityScores = new TreeMap<String, AbilityScore>();
+        }
         abilityScores.put(abilityScore.getName(), abilityScore);
     }
 
@@ -317,11 +314,11 @@ public abstract class PcRace extends Entity {
     /**
      * Set the Recipe objects this PcRace object knows.
      * 
-     * @param set
+     * @param recipes
      *            the set of Recipe objects
      */
-    public void setRecipes(Set<String> set) {
-        this.recipes = set;
+    public void setRecipes(Set<String> recipes) {
+        this.recipes = recipes;
     }
 
     /**
@@ -330,7 +327,10 @@ public abstract class PcRace extends Entity {
      * @param recipeId
      *            a Recipe id
      */
-    public void recipesAdd(String recipeId) {
+    public void recipeAdd(String recipeId) {
+        if (recipes == null) {
+            recipes = new TreeSet<String>();
+        }
         this.recipes.add(recipeId);
     }
 
@@ -341,65 +341,9 @@ public abstract class PcRace extends Entity {
      *            an array of Recipe IDs to add.
      */
     public final void recipesAdd(final String[] newRecipes) {
-        for (int i = newRecipes.length - 1; i >= 0; i--) {
-            recipes.add(newRecipes[i]);
+        for (String recipeId : newRecipes) {
+            recipeAdd(recipeId);
         }
-    }
-
-    // PowerWords
-    /**
-     * Get the PowerWord objects.
-     * 
-     * @return a set of PowerWord objects
-     */
-    public final Set<PowerWord> getPowerWords() {
-        return powerWords;
-    }
-
-    public final void setPowerWords(final Set<PowerWord> powerWords) {
-        this.powerWords = powerWords;
-    }
-
-    /**
-     * Set the PowerWord objects
-     * 
-     * @param newPowerWords
-     *            list of powerWord IDs as Strings.
-     */
-    public void setPowerWords(final String[] newPowerWords) {
-        powerWords.clear();
-        powerWordsAdd(newPowerWords);
-    }
-
-    /**
-     * Add extra PowerWords to the list of required ingredients.
-     * 
-     * @param powerWords
-     */
-    public final void powerWordsAdd(final Set<PowerWord> powerWords) {
-        powerWords.addAll(powerWords);
-    }
-
-    /**
-     * The PcRace has learnt new PowerWord(s).
-     * 
-     * @param newPowerWords
-     *            an array of PowerWord IDs to add.
-     */
-    public final void powerWordsAdd(final String[] newPowerWords) {
-        for (int i = newPowerWords.length - 1; i >= 0; i--) {
-            powerWords.add(new PowerWord(newPowerWords[i]));
-        }
-    }
-
-    /**
-     * The PcRace object has learnt a new PowerWord.
-     * 
-     * @param powerWord
-     *            the freshly learnt PowerWord
-     */
-    public final void powerWordsAdd(final PowerWord powerWord) {
-        powerWords.add(powerWord);
     }
 
     // Skills
@@ -417,14 +361,16 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-     * Set the Skill objects
+     * The PcRace object has learnt a new Skill.
      * 
-     * @param newSkills
-     *            list of powerWord IDs as Strings.
+     * @param skill
+     *            The freshly learnt Skill.
      */
-    public void setSkills(final String[] newSkills) {
-        skills.clear();
-        skillsAdd(newSkills);
+    public final void skillsAdd(final Skill skill) {
+        if (skills == null) {
+            skills = new TreeSet<Skill>();
+        }
+        skills.add(skill);
     }
 
     /**
@@ -433,7 +379,9 @@ public abstract class PcRace extends Entity {
      * @param skills
      */
     public final void skillsAdd(final Set<Skill> skills) {
-        skills.addAll(skills);
+        for (Skill skill : skills) {
+            skillsAdd(skill);
+        }
     }
 
     /**
@@ -442,43 +390,21 @@ public abstract class PcRace extends Entity {
      * @param newSkills
      */
     public final void skillsAdd(final String[] newSkills) {
-        for (int i = newSkills.length - 1; i >= 0; i--) {
-            skills.add(new Skill(newSkills[i]));
+        for (String skillId : newSkills) {
+            skillsAdd(new Skill(skillId));
         }
-    }
-
-    /**
-     * The PcRace object has learnt a new Skill.
-     * 
-     * @param skill
-     *            The freshly learnt Skill.
-     */
-    public final void skillsAdd(final Skill skill) {
-        skills.add(skill);
     }
 
     // Misc
 
     protected void init() {
         if (pcClass == null) {
-            clearClassBasedFields();
+            clearClassBaseFields();
         } else {
             setBasicsFromPcClass();
             abilityScoresRecalculate();
         }
     }
-
-    /**
-     * @return short plan text string for this object.
-     */
-
-    // public String toString() {
-    // String string = getName();
-    // if (pcClass != null) {
-    // string += " the " + pcClass.getId();
-    // }
-    // return string;
-    // }
 
     /**
      * Warning: will reset all abilityScore objects
@@ -495,16 +421,31 @@ public abstract class PcRace extends Entity {
         health = pcClass.getHealth();
         mana = pcClass.getMana();
 
-        // reset abilityScore objects
-        abilityScores.clear();
+        abilityScoresEnsureExists();
+
         // TODO don't reach inside object's data structures - keySet()
-        Iterator<String> itr = pcClass.getAbilityScores().keySet().iterator();
-        while (itr.hasNext()) {
-            String key = itr.next();
-            AbilityScore abilityScore = new AbilityScore(key, 0, 0);
-            abilityScores.put(key, abilityScore);
+        TreeMap<String, AbilityScore> pcClassAbilityScores = pcClass
+                .getAbilityScores();
+        if (pcClassAbilityScores == null) {
+            // TODO do we need to clear existing abilities
+            // What about ability scores not from pcClass ? Add a unit test to
+            // ensure they are preserved.
+        } else {
+            for (String key : pcClassAbilityScores.keySet()) {
+                AbilityScore abilityScore = new AbilityScore(key, 0, 0);
+                abilityScores.put(key, abilityScore);
+            }
+            abilityScoresRecalculate();
         }
-        abilityScoresRecalculate();
+    }
+
+    /**
+     * Ensure that the abilityScores
+     */
+    private void abilityScoresEnsureExists() {
+        if (abilityScores == null) {
+            abilityScores = new TreeMap<String, AbilityScore>();
+        }
     }
 
     /**
@@ -513,20 +454,24 @@ public abstract class PcRace extends Entity {
      * Should be safe to call any time.
      */
     private void abilityScoresRecalculate() {
-        // TODO should we be iterating over keys or values?
-        Iterator<String> itr = abilityScores.keySet().iterator();
-        while (itr.hasNext()) {
-            String key = itr.next();
-            AbilityScore abilityScore = abilityScores.get(key);
-            AbilityScore pcClassAbility = pcClass.getAbilityScore(key);
-            abilityScore
-                    .setValue(pcClassAbility.getValue()
-                            + (level * pcClassAbility.getMod())
-                            + abilityScore.getMod());
+        // TODO we should be iterating over pcClass's ability key set.
+        // We need to make sure that we preserve any ability scores that aren't
+        // on the pcClass.
+        if (pcClass != null) {
+            if (abilityScores == null) {
+                abilityScoresEnsureExists();
+            }
+            for (String key : abilityScores.keySet()) {
+                AbilityScore abilityScore = abilityScores.get(key);
+                AbilityScore pcClassAbility = pcClass.getAbilityScore(key);
+                abilityScore.setValue(pcClassAbility.getValue()
+                        + (level * pcClassAbility.getMod())
+                        + abilityScore.getMod());
+            }
         }
     }
 
-    private void clearClassBasedFields() {
+    private void clearClassBaseFields() {
 
         // dice
         combatDice = 0;
@@ -538,7 +483,6 @@ public abstract class PcRace extends Entity {
         mana = 0;
         encumbrance = 0;
         health = 0;
-
     }
 
     /**
@@ -590,12 +534,6 @@ public abstract class PcRace extends Entity {
                 text.append("  " + skill + "\n");
             }
         }
-        if (powerWords != null && !powerWords.isEmpty()) {
-            text.append("Power Words:\n");
-            for (PowerWord powerWord : powerWords) {
-                text.append("  " + powerWord + "\n");
-            }
-        }
         if (recipes != null && !recipes.isEmpty()) {
             text.append("Recipes:\n");
             for (String recipeId : recipes) {
@@ -625,7 +563,7 @@ public abstract class PcRace extends Entity {
     public void setAllFrom(PcRace pc) {
         setAllFrom((Entity) pc);
         setLevel(pc.getLevel());
-        setPcClass(pc.getPcClass());
+        setPcClass(pc.getPcClass()); // TODO ensure results are not linked
         setCombatDice(pc.getCombatDice());
         setMagicDice(pc.getMagicDice());
         setStealthDice(pc.getStealthDice());
@@ -634,9 +572,10 @@ public abstract class PcRace extends Entity {
         setHealth(pc.getHealth());
         setActionPoints(pc.getActionPoints());
         setMana(pc.getMana());
-        setAbilityScores(pc.getAbilityScores());
-        setRecipes(pc.getRecipes());
-        setSkills(pc.getSkills());
+        setAbilityScores(pc.getAbilityScores()); // TODO ensure results are not
+                                                 // linked
+        setRecipes(pc.getRecipes()); // TODO ensure results are not linked
+        setSkills(pc.getSkills()); // TODO ensure results are not linked
     }
 
     /**

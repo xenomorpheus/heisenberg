@@ -53,7 +53,7 @@ public class ScenarioSet03 {
         pc.setActionPoints(recipe.getActionPoints() + expectedActionPoints);
         // pc.powerWordsAdd(new PowerWord("testPowerWord1"));
         pc.skillsAdd(new Skill("testFireLighting"));
-        pc.recipesAdd("testFireGround1");
+        pc.recipeAdd("testFireGround1");
 
         // TODO set XYZ location
         location.add(pc);

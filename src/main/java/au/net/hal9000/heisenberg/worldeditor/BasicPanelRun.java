@@ -36,9 +36,7 @@ public class BasicPanelRun {
                     pc.setLevel(3);
                     pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
                             "testSkill3" });
-                    pc.powerWordsAdd(new String[] { "testPowerWord1",
-                            "testPowerWord2", "testPowerWord3" });
-                    pc.recipesAdd("testItem1");
+                    pc.recipeAdd("testItem1");
 
                     new BasicPanelRun(pc, config);
                 } catch (ConfigurationError e) {

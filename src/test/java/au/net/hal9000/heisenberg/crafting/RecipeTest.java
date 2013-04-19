@@ -36,7 +36,7 @@ public class RecipeTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
-                requirements, null, null, null);
+                requirements, null, null);
 
         assertEquals("ingredient count", requirements.size(),
                 recipe.getRequirementCount());
@@ -70,7 +70,7 @@ public class RecipeTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2, 42,
-                requirements, null, skills, products);
+                requirements, skills, products);
 
         assertEquals("id", "recipe1", recipe.getId());
         assertEquals("description", "the first recipe", recipe.getDescription());

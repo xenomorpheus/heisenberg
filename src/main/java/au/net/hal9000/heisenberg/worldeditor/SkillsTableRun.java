@@ -66,9 +66,7 @@ class SkillsTableRun extends JFrame {
             pc.setLevel(3);
             pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
                     "testSkill3" });
-            pc.powerWordsAdd(new String[] { "testPowerWord1", "testPowerWord2",
-                    "testPowerWord3" });
-            pc.recipesAdd("testItem1");
+            pc.recipeAdd("testItem1");
 
             SkillsTableRun mainFrame = new SkillsTableRun(pc, config);
             mainFrame.setVisible(true);
