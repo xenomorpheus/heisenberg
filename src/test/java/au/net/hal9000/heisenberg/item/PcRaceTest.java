@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
@@ -218,11 +219,19 @@ public class PcRaceTest {
 
     }
 
+    
+    @Test
+    public void testAbilityScores(){
+        // change level with ability scores : default, null and not null.
+        // fail("todo");
+    }
+    
     @Test
     public void testRecipes() {
         Human human = new Human();
-        // TODO
-        Set<String> recipes = human.getRecipes();
+        Set<String> recipes = new HashSet<String>();
+        human.setRecipes(recipes);
+        human.getRecipes();
         // assertNotNull("recipes not null", recipes);
         // TODO human.setRecipes();
     }
@@ -319,4 +328,11 @@ public class PcRaceTest {
         assertNotNull("cooker not null", cooker);
     }
 
+    @Test
+    public void testSetBasicsFromClass(){
+       // TODO fail("todo");
+    }
+
+    
+    
 }
