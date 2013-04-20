@@ -376,17 +376,6 @@ public abstract class PcRace extends Entity {
     /**
      * Add extra Skills to the list of required ingredients.
      * 
-     * @param skills
-     */
-    public final void skillsAdd(final Set<Skill> skills) {
-        for (Skill skill : skills) {
-            skillsAdd(skill);
-        }
-    }
-
-    /**
-     * Add extra Skills to the list of required ingredients.
-     * 
      * @param newSkills
      */
     public final void skillsAdd(final String[] newSkills) {
