@@ -159,7 +159,7 @@ public class PersistenceTest {
 		return world;
 	}
 
-	// TODO @Test world persistence
+    @Test // world persistence
 	public void testLocation() {
 
 		Location loc = testGetWorld();

@@ -202,8 +202,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         ItemContainer itemCurrentContainer = item.getLocation();
         if (itemCurrentContainer != null) {
             if (this.equals(itemCurrentContainer)) {
-                // TODO Move to assert or log
-                System.out.println("Moving to existing location");
+                logger.error("Already in container");
                 // Nothing to do.
                 return;
             }
@@ -217,7 +216,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
-                logger.info(" ExceptionTooHeavy - Adding " + item.getName()
+                logger.error("TooHeavy - Adding " + item.getName()
                         + " weighing " + item.getWeight() + " will total "
                         + total + ", which is too heavy for " + this.getName()
                         + ", weightMax=" + weightMax);
@@ -231,7 +230,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             total += item.getVolume();
             if (total > volumeMax) {
                 // ExceptionTooBig
-                logger.info("ExceptionTooBig - Adding " + item.getName()
+                logger.error("TooBig - Adding " + item.getName()
                         + " of volume " + item.getVolume() + " will total "
                         + total + ", which is too big for " + this.getName()
                         + ", volumeMax=" + volumeMax);
@@ -375,20 +374,6 @@ public abstract class ItemContainer extends Item implements Serializable {
         }
         // Get super to do the rest.
         super.beNot();
-    }
-
-    /**
-     * Shallow copy properties from one object to another.
-     * 
-     * @param container
-     *            source of the properties we copy.
-     */
-    // TODO remove
-    public void setAllFrom2(ItemContainer container) {
-        setAllFrom((Item) container);
-        setWeightMax(container.getWeightMax());
-        setVolumeMax(container.getVolumeMax());
-        setContents(container.getContents());
     }
 
     /**

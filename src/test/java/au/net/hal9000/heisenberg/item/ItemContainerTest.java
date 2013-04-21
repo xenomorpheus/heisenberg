@@ -5,7 +5,11 @@ import static org.junit.Assert.*;
 import java.util.Vector;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.units.Currency;
+
 public class ItemContainerTest {
+
+    static float TOLLERANCE = 0.0001F;
 
     // TODO Add unit test for respecting max weight and volume of outer bag,
     // when adding Item to an inner bag.
@@ -17,7 +21,7 @@ public class ItemContainerTest {
         Bag bag = new Bag();
         bag.setVolumeMax(volumeMax);
         float v = bag.getVolumeMax();
-        assertEquals("bag.getVolumeMax=", volumeMax, v, 0.0001F);
+        assertEquals("bag.getVolumeMax=", volumeMax, v, TOLLERANCE);
     }
 
     @Test
@@ -34,11 +38,7 @@ public class ItemContainerTest {
             // This should just fit
             i.setVolumeBase(volumeMax);
             i.setWeightBase(weightMax);
-            try {
-                bag.add(i);
-            } catch (Exception e) {
-                fail(e.getMessage());
-            }
+            bag.add(i);
             // Check location is set
             assertEquals("location set", bag, i.getLocation());
         }
@@ -78,6 +78,66 @@ public class ItemContainerTest {
         bag.empty(newBag);
         assertEquals("bag empty size", 0, bag.getContentsCount());
         assertEquals("New Bag size", 3, newBag.getContentsCount());
+    }
+
+    @Test
+    public void testGetContentsCount() {
+        Bag bag = new Bag();
+        Cookie c1 = new Cookie();
+        Cookie c2 = new Cookie();
+        Cookie c3 = new Cookie();
+        bag.add(c1);
+        bag.add(c2);
+        bag.add(c3);
+        assertEquals("count", 3, bag.getContentsCount());
+    }
+
+    @Test
+    public void testGetWeight() {
+        Bag bag = new Bag();
+        bag.setWeightBase(10);
+        Cookie c1 = new Cookie();
+        c1.setWeightBase(1);
+        Cookie c2 = new Cookie();
+        c2.setWeightBase(2);
+        Cookie c3 = new Cookie();
+        c3.setWeightBase(4);
+        bag.add(c1);
+        bag.add(c2);
+        bag.add(c3);
+        assertEquals("weight", 17, bag.getWeight(), TOLLERANCE);
+    }
+
+    @Test
+    public void testGetVolume() {
+        Bag bag = new Bag();
+        bag.setVolumeBase(10);
+        Cookie c1 = new Cookie();
+        c1.setVolumeBase(1);
+        Cookie c2 = new Cookie();
+        c2.setVolumeBase(2);
+        Cookie c3 = new Cookie();
+        c3.setVolumeBase(4);
+        bag.add(c1);
+        bag.add(c2);
+        bag.add(c3);
+        assertEquals("volume", 17, bag.getVolume(), TOLLERANCE);
+    }
+
+    @Test
+    public void testGetValue() {
+        Bag bag = new Bag();
+        bag.setValueBase(new Currency(1, 0, 0, 0));
+        Cookie c1 = new Cookie();
+        c1.setValueBase(new Currency(0, 1, 0, 0));
+        Cookie c2 = new Cookie();
+        c2.setValueBase(new Currency(0, 0, 1, 0));
+        Cookie c3 = new Cookie();
+        c3.setValueBase(new Currency(0, 0, 0, 1));
+        bag.add(c1);
+        bag.add(c2);
+        bag.add(c3);
+        assertEquals("value", new Currency(1, 1, 1, 1), bag.getValue());
     }
 
     @Test
@@ -123,8 +183,8 @@ public class ItemContainerTest {
     @Test
     public void testGetIndexOfChild() {
         Bag bag = new Bag();
-        Cookie cookie1 = new Cookie();
         Scabbard scabbard = new Scabbard();
+        Cookie cookie1 = new Cookie("Cookie1");
         Cookie cookie2 = new Cookie("Cookie2");
         Cookie cookie3 = new Cookie();
         assertEquals("getIndexOfChild - empty", -1,
@@ -142,6 +202,19 @@ public class ItemContainerTest {
         assertEquals(
                 "getIndexOfChild - not present but cookie3 equal to cookie1",
                 -1, bag.getIndexOfChild(cookie3));
+    }
+
+    @Test
+    public void testAddLogging() {
+        Bag bag = new Bag();
+        bag.setWeightMax(2);
+        bag.setVolumeMax(2);
+        Cookie cookie = new Cookie();
+        cookie.setWeightBase(3);
+        cookie.setVolumeBase(3);
+        bag.add(cookie);
+        // Re-add
+        bag.add(cookie);
     }
 
 }
