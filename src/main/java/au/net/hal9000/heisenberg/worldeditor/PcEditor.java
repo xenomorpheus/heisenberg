@@ -1,14 +1,17 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.awt.EventQueue;
-import javax.swing.*;
-import java.awt.event.*;
-import java.util.TreeMap;
-import au.net.hal9000.heisenberg.item.Factory;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.PcClass;
 
 public class PcEditor {
 
@@ -16,15 +19,16 @@ public class PcEditor {
     private PcRace pc;
     private JFrame frame;
 
+
     // tab - description
     JTextArea descriptionTextArea;
 
     /**
      * Create the application.
      */
-    public PcEditor(final PcRace pPc, final Configuration pConfig) {
+    public PcEditor(final PcRace pPc) {
         pc = pPc;
-        config = pConfig;
+        config = Configuration.lastConfig();
         initialise();
     }
 
@@ -45,6 +49,10 @@ public class PcEditor {
         tabbedPane.addTab("Recipes", null, new RecipesTable(pc, config), null);
         tabbedPane.addTab("Description", null, descriptionPane(pc), null);
         frame.getContentPane().add(tabbedPane);
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
     private JComponent descriptionPane(final PcRace pc) {
@@ -68,40 +76,6 @@ public class PcEditor {
         descriptionScr
                 .setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         return descriptionScr;
-    }
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Configuration config = new Configuration(
-                            "src/test/resources/config.xml");
-                    TreeMap<String, PcClass> pcClasses = config.getPcClasses();
-                    PcRace pc = (PcRace) Factory.createItem("Elf");
-                    pc.setName("Jane");
-                    pc.setPcClass(pcClasses.get("Paladin"));
-                    pc.setDescription("The Paladin");
-                    pc.setGender("Female"); // TODO get from config
-                    pc.setSize("Small");
-                    pc.setLevel(3);
-                    pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
-                            "testSkill3" });
-                    pc.recipesAdd(new String[] { "testItem1",
-                            "testFireGround1", "testSpell1" });
-
-                    PcEditor window = new PcEditor(pc, config); // TODO
-                                                                // config pass
-                                                                // in
-                    window.frame.setVisible(true);
-                } catch (ConfigurationError e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
 }
