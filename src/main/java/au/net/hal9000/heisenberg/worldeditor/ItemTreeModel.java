@@ -2,14 +2,19 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+
 import java.util.ArrayList;
 import org.jdesktop.swingx.tree.TreeModelSupport;
-import au.net.hal9000.heisenberg.item.*;
+
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemContainer;
 
 /**
- * The methods in this class allow the JTree component to traverse the file
- * system m_tree, and display the files and directories.
+ * This class provides a model that allows JTree to traverse the contents of an
+ * Item. Note to have contents the Item needs to be a subclass of ItemContainer.
  **/
 class ItemTreeModel implements TreeModel {
     // We specify the root directory when we create the model.
@@ -24,16 +29,19 @@ class ItemTreeModel implements TreeModel {
     }
 
     // The model knows how to return the root object of the m_tree
+    @Override
     public Object getRoot() {
         return root;
     }
 
     // Tell JTree whether an object in the m_tree is a leaf or not
+    @Override
     public boolean isLeaf(Object node) {
         return ((Item) node).isLeaf();
     }
 
     // fix issue 1: accept listener
+    @Override
     public void addTreeModelListener(TreeModelListener l) {
         support.addTreeModelListener(l);
     }
@@ -77,6 +85,7 @@ class ItemTreeModel implements TreeModel {
     }
 
     // Tell JTree how many children a node has
+    @Override
     public int getChildCount(Object node) {
         return ((ItemContainer) node).getChildCount();
     }
@@ -84,23 +93,26 @@ class ItemTreeModel implements TreeModel {
     // Fetch any numbered child of a node for the JTree.
     // Our model returns Item objects for all nodes in the m_tree. The
     // JTree displays these by calling the Item.toString() method.
+    @Override
     public Object getChild(Object parent, int index) {
         return ((ItemContainer) parent).getChild(index);
     }
 
     // Figure out a child's position in its parent node.
+    @Override
     public int getIndexOfChild(Object parent, Object child) {
         return ((ItemContainer) parent).getIndexOfChild((Item) child);
     }
 
     // This method is only invoked by the JTree for editable trees.
+    @Override
     public void valueForPathChanged(TreePath path, Object newvalue) {
         Item item = (Item) path.getLastPathComponent();
         item.setName((String) newvalue);
         // fireTreeNodesChanged(new TreeModelEvent(this, path));
     }
 
-
+    @Override
     public void removeTreeModelListener(TreeModelListener l) {
         System.out.println("removeTreeModelListener");
     }
@@ -125,6 +137,7 @@ class ItemTreeModel implements TreeModel {
             System.out.println("New value: " + node.getUserObject());
         }
 
+        @Override
         public void treeNodesInserted(TreeModelEvent e) {
             System.out.println("Node Inserted.");
         }
@@ -145,10 +158,12 @@ class ItemTreeModel implements TreeModel {
             }
         }
 
+        @Override
         public void treeNodesRemoved(TreeModelEvent e) {
             System.out.println("treeNodesRemoved - Node Removed.");
         }
 
+        @Override
         public void treeStructureChanged(TreeModelEvent e) {
             System.out.println("treeStructureChanged - Node Changed.");
         }
