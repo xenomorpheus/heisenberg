@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.util;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class ItemThawFromFileTest {
         // Get the object back
         Cookie newObj = ItemThawFromFile.cookieThawFromFile(filename);
 
-        assertTrue("newObj not null", newObj != null);
+        assertNotNull("newObj not null", newObj);
         assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
     }
 
@@ -53,7 +53,8 @@ public class ItemThawFromFileTest {
     }
 
     @Test
-    public void locationPersistenceShallowTest() throws IOException, ClassNotFoundException {
+    public void locationPersistenceShallowTest() throws IOException,
+            ClassNotFoundException {
 
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "empty_location_persit_test.ser");
@@ -72,83 +73,55 @@ public class ItemThawFromFileTest {
     }
 
     @Test
-    public void locationPersistenceDeepTest() {
+    public void locationPersistenceDeepTest() throws IOException,
+            ClassNotFoundException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "location_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
         Location old = new Location("World");
         old.add(new Cookie());
         // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
+        old.freezeToFile(filename);
+
         // Get the object back
-        Location newObj = null;
-        try {
-            newObj = ItemThawFromFile.locationThawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
+        Location newObj = ItemThawFromFile.locationThawFromFile(filename);
+
+        assertNotNull("newObj not null", newObj);
         assertTrue("deserialized Location equals old cookie",
                 old.equals(newObj));
 
     }
 
     @Test
-    public void cookiePersistenceShallowTest() {
+    public void cookiePersistenceShallowTest() throws IOException,
+            ClassNotFoundException {
 
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "empty_bag_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
         Bag old = new Bag();
         // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
+        old.freezeToFile(filename);
         // Get the object back
-        Bag newObj = null;
-        try {
-            newObj = ItemThawFromFile.bagThawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
+        Bag newObj = ItemThawFromFile.bagThawFromFile(filename);
+        assertNotNull("newObj not null", newObj);
         assertTrue("deserialized Bag equals old cookie", old.equals(newObj));
 
     }
 
     @Test
-    public void cookiePersistenceDeepTest() {
+    public void cookiePersistenceDeepTest() throws IOException,
+            ClassNotFoundException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "bag_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
         Bag old = new Bag("World");
         old.add(new Cookie());
         // Store the object
-        try {
-            old.freezeToFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        }
+        old.freezeToFile(filename);
         // Get the object back
-        Bag newObj = null;
-        try {
-            newObj = ItemThawFromFile.bagThawFromFile(filename);
-        } catch (IOException ex) {
-            fail(ex.toString());
-        } catch (ClassNotFoundException ex) {
-            fail(ex.toString());
-        }
-        assertTrue("newObj not null", newObj != null);
+        Bag newObj = ItemThawFromFile.bagThawFromFile(filename);
+        assertNotNull("newObj not null", newObj);
         assertTrue("deserialized equals old", old.equals(newObj));
 
     }

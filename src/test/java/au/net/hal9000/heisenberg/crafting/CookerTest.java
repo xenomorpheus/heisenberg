@@ -40,7 +40,7 @@ public class CookerTest {
         // Setup the chef
         Location world = new Location("World");
         PcRace chef = new Human();
-        chef.setLocation(world);
+        chef.setContainer(world);
         chef.setMana(recipe.getMana() + 1);
         chef.setActionPoints(recipe.getActionPoints() + 2);
         chef.skillsAdd(new Skill("testSkill1"));
@@ -78,7 +78,7 @@ public class CookerTest {
         // Setup the chef
         Location world = new Location("World");
         PcRace chef = new Human();
-        chef.setLocation(world);
+        chef.setContainer(world);
         chef.setMana(recipe.getMana() + manaRemaining);
         chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
         chef.recipeAdd("testSpell1");
@@ -157,7 +157,7 @@ public class CookerTest {
         Item newItem = newItemLocation.getChild(0);
         assertEquals("item type", "Cookie", newItem.getClass().getSimpleName());
         assertEquals("new item location", newItemLocation,
-                newItem.getLocation());
+                newItem.getContainer());
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", 1, chef.getMana());
@@ -256,7 +256,7 @@ public class CookerTest {
         assertEquals("item 0 - good", null,
                 cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2));
         assertEquals("item 0 - item removed from Container", cooker,
-                flintAndTinder2.getLocation());
+                flintAndTinder2.getContainer());
         // Item - Wood
         assertEquals("item 1 - good", null,
                 cooker.setItemsAvailable("Wood", wood));

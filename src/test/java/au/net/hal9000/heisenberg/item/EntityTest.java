@@ -43,13 +43,9 @@ public class EntityTest {
         // Human
         Human human = new Human("Human"); // Close enough
         Item shield = new Shield();
-        try {
-            human.add(shield);
-        } catch (Exception e) {
-            fail("equip failed " + e);
-        }
+        human.add(shield);
     }
-    
+
     // TODO testSetAllFrom - just test the fields at this level.
 
     // TODO clone - On an abstract class ?

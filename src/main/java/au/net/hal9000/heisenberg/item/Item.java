@@ -76,10 +76,11 @@ public abstract class Item implements Serializable {
     private Currency valueBase = new Currency();
     private String name = null;
     private String description = null;
-    private ItemContainer location = null;
+    private ItemContainer container = null;
     private float hitPoints = 0F;
     /** Who owns this item. null means no-one. */
     private Item owner = null;
+    private Point3d position = null;
 
     // Constructors
     public Item() {
@@ -280,33 +281,30 @@ public abstract class Item implements Serializable {
      *            The value before any contained items.
      */
     public void setValueBase(final Currency pValueBase) {
-        if (pValueBase == null) {
-            throw new IllegalArgumentException("Not null");
-        }
         this.valueBase = pValueBase;
     }
 
     /**
-     * Get the current location.
+     * Get the current container.
      * 
-     * @return the current location {@link ItemContainer}.
+     * @return the current container {@link ItemContainer}.
      */
-    public ItemContainer getLocation() {
-        return this.location;
+    public ItemContainer getContainer() {
+        return this.container;
     }
 
     /**
-     * Set the current location.
+     * Set the current container.
      * 
-     * @param location
-     *            the new location {@link ItemContainer}.
+     * @param container
+     *            the new container {@link ItemContainer}.
      */
-    public void setLocation(ItemContainer location) {
-        this.location = location;
+    public void setContainer(ItemContainer container) {
+        this.container = container;
     }
 
     /**
-     * @return the structural indegrity / health.
+     * @return the structural integrity / health.
      */
     public float getHitPoints() {
         return hitPoints;
@@ -333,6 +331,18 @@ public abstract class Item implements Serializable {
         this.owner = (Item) owner;
     }
 
+    /**
+     * 
+     * @return return the position.
+     */
+    public Point3d getPosition(){
+        return position;
+    }
+    
+    public void setPosition(Point3d position){
+        this.position = position;
+    }
+    
     // misc methods
 
     /**
@@ -402,9 +412,9 @@ public abstract class Item implements Serializable {
         // TODO - Help Required - How do I delete an object that
         // may be referenced by other objects?
         // Perhaps listeners on the containers?
-        ItemContainer location = (ItemContainer) this.getLocation();
-        if (location != null) {
-            location.remove(this);
+        ItemContainer container = (ItemContainer) this.getContainer();
+        if (container != null) {
+            container.remove(this);
         }
     }
 
@@ -425,29 +435,33 @@ public abstract class Item implements Serializable {
      * @return A description. e.g. 'A lit candle'
      */
     public String detailedDescription() {
-        String str = new String();
+        StringBuilder str = new StringBuilder(128);
         String temp;
 
         temp = this.getName();
         if (temp != null) {
-            str += "Name: " + temp + "\n";
+            str.append( "Name: " + temp + "\n");
         }
         temp = this.getDescription();
         if (temp != null) {
-            str += "Description: " + temp + "\n";
+            str.append( "Description: " + temp + "\n");
         }
-        str += "Weight Base: " + this.getWeightBase() + "\n" + "Volume Base: "
-                + this.getVolumeBase() + "\n";
+        str.append( "Weight Base: " + this.getWeightBase() + "\n" + "Volume Base: "
+                + this.getVolumeBase() + "\n");
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
-            str += "Value Base: " + valueBase + "\n";
+            str.append( "Value Base: " + valueBase + "\n");
         }
-        ItemContainer location = this.getLocation();
-        if (location != null) {
-            str += "Location: " + location.getName() + "\n";
+        ItemContainer container = this.getContainer();
+        if (container != null) {
+            str.append( "Container: " + container.getName() + "\n");
         }
-        return str;
+        Point3d position = this.getPosition();
+        if (position != null){
+            str.append( "Position: " + position + "\n");
+        }
+        return str.toString();
     }
 
     /** Find items that match the criteria */
@@ -498,9 +512,10 @@ public abstract class Item implements Serializable {
         setWeightBase(item.getWeightBase());
         setVolumeBase(item.getVolumeBase());
         setValueBase(item.getValueBase());
-        setLocation(item.getLocation());
+        setContainer(item.getContainer());
         setHitPoints(item.getHitPoints());
         setOwner(item.getOwner());
+        setPosition(item.getPosition());
     }
 
 }

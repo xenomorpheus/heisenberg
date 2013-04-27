@@ -10,12 +10,12 @@ public class CrossbowTest {
         Crossbow crossbow = new Crossbow();
         CrossbowBolt bolt = new CrossbowBolt();
         Location newLocation = new Location("Ground");
-        bolt.setLocation(newLocation);
+        bolt.setContainer(newLocation);
         crossbow.setLoadedBolt(bolt);
         CrossbowBolt got = crossbow.getLoadedBolt();
         assertEquals("getLoadedBolt - bolt", bolt, got);
         assertEquals("getLoadedBolt - bolt location", newLocation,
-                got.getLocation());
+                got.getContainer());
     }
 
 }

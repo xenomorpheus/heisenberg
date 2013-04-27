@@ -199,7 +199,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @deprecated use transfer instead
      */
     public void add(int index, Item item) {
-        ItemContainer itemCurrentContainer = item.getLocation();
+        ItemContainer itemCurrentContainer = item.getContainer();
         if (itemCurrentContainer != null) {
             if (this.equals(itemCurrentContainer)) {
                 logger.error("Already in container");
@@ -237,7 +237,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             }
         }
         // remove item from existing location
-        ItemContainer currentLocation = item.getLocation();
+        ItemContainer currentLocation = item.getContainer();
         if (currentLocation != null) {
             currentLocation.remove(item);
         }
@@ -253,7 +253,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         if (pos != index){
             throw new RuntimeException("Requested possition "+index+" != reported possition "+pos);
         }
-        item.setLocation(this);
+        item.setContainer(this);
     }
 
     /**
@@ -384,7 +384,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     public void remove(Item item) {
         contents.remove(item);
-        item.setLocation(null);
+        item.setContainer(null);
     }
 
     /**
@@ -396,7 +396,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      *            new container.
      */
     public void relocateItem(Item item, ItemContainer container) {
-        ItemContainer losingContainer = item.getLocation();
+        ItemContainer losingContainer = item.getContainer();
         if (losingContainer != null) {
             losingContainer.remove(item);
         }

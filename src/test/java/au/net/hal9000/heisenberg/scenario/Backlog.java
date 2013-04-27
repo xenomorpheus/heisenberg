@@ -19,14 +19,7 @@ public class Backlog {
 		println("\n** A character mounts a horse.");
 		// Halfling hobbit = new Halfling();
 		// Horse horse = new Horse();
-		try {
-			// TODO hobbit.setMount(horse);
-			println("Halfling mounted the Horse");
-		} catch (ExceptionInvalidType e) {
-			fail("invalid type");
-		} catch (ExceptionCantWear e) {
-			fail("cant wear");
-		}
+		// TODO hobbit.setMount(horse);
 	}
 
     // Scenario 01
@@ -49,7 +42,7 @@ public class Backlog {
 		} catch (ExceptionTooBig e) {
 			fail("too big");
 		}
-		println("Cloak location: " + cloak.getLocation());
+		println("Cloak location: " + cloak.getContainer());
 	}
 	
 	

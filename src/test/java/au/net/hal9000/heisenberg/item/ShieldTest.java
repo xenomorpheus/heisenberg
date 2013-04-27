@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Human;
@@ -13,11 +11,7 @@ public class ShieldTest {
     public void shieldAdd() {
         Shield shield = new Shield();
         Human human = new Human();
-        try {
-            human.add(shield);
-        } catch (Exception e) {
-            fail("Humanoid could not wear shield");
-        }
+        human.add(shield);
     }
 
 }

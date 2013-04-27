@@ -19,17 +19,14 @@ public class BoxTest {
         Cookie cookie = new Cookie();
         Sword sword = new Sword();
         // set the location so we can see that it changes
-        cookie.setLocation(world);
-        sword.setLocation(world);
+        cookie.setContainer(world);
+        sword.setContainer(world);
         Box box = new Box();
-        try {
-            box.add(cookie);
-            box.add(sword);
-        } catch (Exception e) {
-            fail(e.toString());
-        }
-        assertEquals("cookie location", box, cookie.getLocation());
-        assertEquals("sword location", box, sword.getLocation());
+        box.add(cookie);
+        box.add(sword);
+
+        assertEquals("cookie location", box, cookie.getContainer());
+        assertEquals("sword location", box, sword.getContainer());
     }
 
 }

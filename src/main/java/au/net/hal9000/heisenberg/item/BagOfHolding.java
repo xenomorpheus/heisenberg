@@ -99,7 +99,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         if (!items.removeElement(Item)) {
             throw new ExceptionCantRemove("remove failed");
         }
-        Item.setLocation(newLocation);
+        Item.setContainer(newLocation);
         return Item;
     }
 

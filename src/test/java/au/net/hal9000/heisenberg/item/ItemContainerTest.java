@@ -40,7 +40,7 @@ public class ItemContainerTest {
             i.setWeightBase(weightMax);
             bag.add(i);
             // Check location is set
-            assertEquals("location set", bag, i.getLocation());
+            assertEquals("location set", bag, i.getContainer());
         }
 
         {

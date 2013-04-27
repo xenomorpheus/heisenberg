@@ -62,7 +62,7 @@ class ItemTreeModel implements TreeModel {
     public void insertNodeInto(final Item newNode, final ItemContainer selNode,
             final int childCount) {
         selNode.add(childCount, (Item) newNode);
-        newNode.setLocation(selNode);
+        newNode.setContainer(selNode);
         support.fireChildAdded(new TreePath(getPathToRoot((Item) selNode)),
                 childCount, newNode);
     }
@@ -79,7 +79,7 @@ class ItemTreeModel implements TreeModel {
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         while ((node != null)) {
             itemArrayList.add(0, node);
-            node = node.getLocation();
+            node = node.getContainer();
         }
         return itemArrayList.toArray(new Item[itemArrayList.size()]);
     }

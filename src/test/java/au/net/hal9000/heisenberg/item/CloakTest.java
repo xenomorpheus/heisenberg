@@ -19,11 +19,7 @@ public class CloakTest {
     public void testIsWearable() {
         Human human = new Human();
         Cloak cloak = new Cloak();
-        try {
-            human.add(cloak);
-        } catch (Exception e) {
-            fail(e.toString());
-        }
+        human.add(cloak);
     }
 
 }

@@ -22,7 +22,7 @@ public class ItemTest {
         // assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
         // assertTrue("Item() weightMax", i.getWeightMax().equals(0F));
         // assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
-        assertEquals("Item() location", null, i.getLocation());
+        assertEquals("Item() location", null, i.getContainer());
     }
 
     @Test
@@ -89,8 +89,8 @@ public class ItemTest {
     public void testLocation() {
         Cookie cookie = new Cookie();
         Human human = new Human("human");
-        cookie.setLocation(human);
-        assertEquals("location", human, cookie.getLocation());
+        cookie.setContainer(human);
+        assertEquals("location", human, cookie.getContainer());
     }
 
     @Test
