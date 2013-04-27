@@ -91,28 +91,17 @@ public class Candle extends Item implements LightSource {
 
     }
 
+    /** {@inheritDoc} */
+    @Override
     public String getDetailedDescription() {
-        String full_desc;
-
-        // Try to get the base description first.
-        final String desc = super.getDescription();
-        final String name = super.getName();
-
-        // Otherwise try to get the name.
-        if ((desc != null) && (desc.length() > 0)) {
-            full_desc = desc;
-        } else if ((name != null) && (name.length() > 0)) {
-            full_desc = name;
-        } else {
-            full_desc = this.getClass().getSimpleName();
-        }
+        String full_desc = super.getDetailedDescription() + "\n";
+        full_desc += "The " + this.getClass().getSimpleName();
 
         if (lit) {
-            full_desc += ". Is lit";
+            full_desc += " is lit.";
         } else {
-            full_desc += ". Not lit";
+            full_desc += " is extinguished.";
         }
-
         return full_desc;
     }
 

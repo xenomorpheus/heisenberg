@@ -1,0 +1,2 @@
+actor: Human
+actions: pick up, drop, eat, move.

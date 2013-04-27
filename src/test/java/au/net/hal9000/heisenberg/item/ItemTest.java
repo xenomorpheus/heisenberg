@@ -96,7 +96,8 @@ public class ItemTest {
     @Test
     public void testToString() throws ConfigurationError {
 
-        Configuration config =  new Configuration("src/test/resources/config.xml");
+        Configuration config = new Configuration(
+                "src/test/resources/config.xml");
         Vector<String> itemClasses = config.getItemClasses();
 
         for (String itemClass : itemClasses) {
@@ -129,6 +130,36 @@ public class ItemTest {
         cookie.setProperty("myKey", "myVal");
         assertEquals("get property", "myVal", cookie.getProperty("myKey"));
         cookie.removeProperty("myKey");
+    }
+
+    @Test
+    public void testMove() {
+        Cookie cookie = new Cookie();
+        
+        // No container - No Movement
+        Point3d expectedPosition = new Point3d(10,20,30);
+        // Before test we place in a known position.
+        cookie.setPosition(expectedPosition);
+        // Try to move, but will fail as not in an ItemContainer.
+        cookie.move(new Point3d(1, 2, 3));
+        Point3d actualPosition = cookie.getPosition();
+        assertTrue("No ItemContainer - final pos", expectedPosition.equals(actualPosition));
+        
+        // Within a container
+        Location container = new Location();
+        cookie.setContainer(container);
+        expectedPosition = new Point3d(2, 4, 8);
+        cookie.move(expectedPosition);
+        actualPosition = cookie.getPosition();
+        assertTrue("Has ItemContainer - final pos", expectedPosition.equals(actualPosition));
+    }
+
+    @Test
+    public void testInstanceOf() {
+        Item cookie = new Cookie();
+        assertTrue("cookie", cookie.instanceOf("Cookie"));
+        assertFalse("Sword", cookie.instanceOf("Sword"));
+        assertFalse("Unknown", cookie.instanceOf("Unknown"));
     }
 
 }

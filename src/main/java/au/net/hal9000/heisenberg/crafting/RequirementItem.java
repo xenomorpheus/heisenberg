@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
@@ -105,8 +104,9 @@ public class RequirementItem extends Requirement {
      * @return true if the Item meets the requirements.
      */
     public final String meetsRequirements(final Item item) {
+        
         // Correct Class
-        if (!Factory.instanceOf(itemType, item)) {
+        if (!item.instanceOf(itemType)) {
             return "item must be a " + itemType;
         }
         // Correct Weight

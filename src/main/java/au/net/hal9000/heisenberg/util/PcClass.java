@@ -267,7 +267,7 @@ public class PcClass implements Comparable<PcClass> {
     /**
      * @return Plain text description of the object
      */
-    public String description() {
+    public String getDetailedDescription() {
         String string = "Id: " + id + "\nCombat Dice: D" + combatDice
                 + "\nMagic Dice: D" + magicDice + "\nStealth Dice: D"
                 + stealthDice + "\nGeneral Dice: D" + generalDice
@@ -286,6 +286,7 @@ public class PcClass implements Comparable<PcClass> {
         return string;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int compareTo(PcClass other) {
         return this.id.compareTo(other.getId());

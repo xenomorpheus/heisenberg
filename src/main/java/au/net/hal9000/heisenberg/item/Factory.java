@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Factory {
 
-    static String packageName = Factory.class.getPackage().getName();
+    private static String packageName = Factory.class.getPackage().getName();
 
     /**
      * Create a new Item of the specified type.
@@ -84,24 +84,6 @@ public class Factory {
             throw new IllegalArgumentException(
                     "(NoSuchMethodException) bad type=" + type);
         }
-    }
-
-    /**
-     * Create a new Item of the specified type.
-     * 
-     * @param type
-     *            the type of Item to create.
-     * @return the new Item.
-     */
-    static public boolean instanceOf(String type, Item item) {
-        try {
-            Class<?> itemClass = Class.forName(packageName + "." + type);
-            return itemClass.isInstance(item);
-        } catch (ClassNotFoundException e) {
-            // NOP
-            ;
-        }
-        return false;
     }
 
 }

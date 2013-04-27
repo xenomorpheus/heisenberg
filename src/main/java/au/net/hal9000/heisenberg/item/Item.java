@@ -16,6 +16,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Column;
 
+import org.apache.log4j.Logger;
+
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.*;
@@ -53,6 +55,9 @@ import au.net.hal9000.heisenberg.units.*;
 public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger  logger = Logger.getLogger(ItemContainer.class.getName());
+    private static String packageName = Factory.class.getPackage().getName();
+
 
     // Initialise as many values as possible.
     /**
@@ -335,14 +340,14 @@ public abstract class Item implements Serializable {
      * 
      * @return return the position.
      */
-    public Point3d getPosition(){
+    public Point3d getPosition() {
         return position;
     }
-    
-    public void setPosition(Point3d position){
+
+    public void setPosition(Point3d position) {
         this.position = position;
     }
-    
+
     // misc methods
 
     /**
@@ -419,13 +424,30 @@ public abstract class Item implements Serializable {
     }
 
     /**
+     * Chage the position of the item within the ItemContainer.
+     * @param expectedPosition the hoped for position.
+     * 
+     * Note: The request can fail or partially compete.
+     * E.g Can't pass through walls.
+     */
+    public void move(Point3d expectedPosition) {
+        // TODO It is the container's job to move the item
+        if (container == null){
+            logger.error("No ItemConainer - Can't move");
+        }
+        else{
+            container.moveItem(this,expectedPosition);
+        }
+    }
+
+    /**
      * @return A short identifying string. e.g. 'Cookie', 'John Smith'
      * 
      */
 
     public String toString() {
         String string = getName();
-        if ((string == null ) || (string.length() == 0)){
+        if ((string == null) || (string.length() == 0)) {
             string = this.getClass().getSimpleName().toLowerCase();
         }
         return string;
@@ -440,26 +462,26 @@ public abstract class Item implements Serializable {
 
         temp = this.getName();
         if (temp != null) {
-            str.append( "Name: " + temp + "\n");
+            str.append("Name: " + temp + "\n");
         }
         temp = this.getDescription();
         if (temp != null) {
-            str.append( "Description: " + temp + "\n");
+            str.append("Description: " + temp + "\n");
         }
-        str.append( "Weight Base: " + this.getWeightBase() + "\n" + "Volume Base: "
-                + this.getVolumeBase() + "\n");
+        str.append("Weight Base: " + this.getWeightBase() + "\n"
+                + "Volume Base: " + this.getVolumeBase() + "\n");
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
-            str.append( "Value Base: " + valueBase + "\n");
+            str.append("Value Base: " + valueBase + "\n");
         }
         ItemContainer container = this.getContainer();
         if (container != null) {
-            str.append( "Container: " + container.getName() + "\n");
+            str.append("Container: " + container.getName() + "\n");
         }
         Point3d position = this.getPosition();
-        if (position != null){
-            str.append( "Position: " + position + "\n");
+        if (position != null) {
+            str.append("Position: " + position + "\n");
         }
         return str.toString();
     }
@@ -501,6 +523,46 @@ public abstract class Item implements Serializable {
         return true;
     }
 
+    /**
+     * Create a new Item of the specified type.
+     * 
+     * @param type
+     *            the type of Item to create.
+     * @return the new Item.
+     */
+    public final boolean instanceOf(String type) {
+        try {
+            Class<?> itemClass = Class.forName(packageName + "." + type);
+            return itemClass.isInstance(this);
+        } catch (ClassNotFoundException e) {
+            // NOP
+            ;
+        }
+        return false;
+    }
+    
+    /**
+     * Some text that describes the properties of this object.
+     * @return the detailed description.
+     */
+    // TODO complete.  StringBuilder.
+    public String getDetailedDescription() {
+        String full_desc;
+        final String desc = getDescription();
+        final String name = getName();
+
+        // Otherwise try to get the name.
+        if ((desc != null) && (desc.length() > 0)) {
+            full_desc = desc;
+        } else if ((name != null) && (name.length() > 0)) {
+            full_desc = name;
+        } else {
+            full_desc = this.getClass().getSimpleName();
+        }
+        return full_desc;
+    }
+    
+    
     /**
      * Shallow copy properties from one object to another.
      * 

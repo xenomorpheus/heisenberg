@@ -103,23 +103,19 @@ public class CandleTest {
 
     @Test
     public void testGetDetailedDescription() {
-        // Name and description
-        Candle candle = new Candle("My Name", "My Description");
-        assertEquals("My Description. Not lit", candle.getDetailedDescription());
+        Candle candle = new Candle();
+        // lit
         candle.setLit(true);
-        assertEquals("My Description. Is lit", candle.getDetailedDescription());
-        // Name only
-        candle.setDescription("");
+        String description = candle.getDetailedDescription();
+        assertNotEquals(-1, description.indexOf("The Candle is lit.") );
+        // unlit
         candle.extinguish();
-        assertEquals("My Name. Not lit", candle.getDetailedDescription());
-        candle.setLit(true);
-        assertEquals("My Name. Is lit", candle.getDetailedDescription());
-        // Neither name nor description
-        candle.setName("");
-        candle.extinguish();
-        assertEquals("Candle. Not lit", candle.getDetailedDescription());
-        candle.setLit(true);
-        assertEquals("Candle. Is lit", candle.getDetailedDescription());
+        description = candle.getDetailedDescription();
+        assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
+        // unlit
+        candle.setLit(false);
+        description = candle.getDetailedDescription();
+        assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
     }
 
 }

@@ -19,6 +19,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeCellEditor;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeCellEditor;
 import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.Arrow;
@@ -78,6 +81,22 @@ public class WorldEditor {
         m_tree.setModel(model);
         m_tree.setEditable(true);
         m_tree.setSelectionRow(0);
+        
+        
+        // Cell Editor
+        //String elements[] = { "A", "B", "C", "D" };
+        //JComboBox comboBox = new JComboBox(elements);
+        //comboBox.setEditable(true);
+        //TreeCellEditor comboEditor = new DefaultCellEditor(comboBox);
+        
+        TreeCellEditor itemEditor = new ItemEditor();
+        
+        
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree.getCellRenderer();
+        TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree, renderer, itemEditor);
+        m_tree.setCellEditor(cell_editor);
+
+        
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane(m_tree);

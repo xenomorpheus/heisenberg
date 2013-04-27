@@ -1,5 +1,10 @@
 package au.net.hal9000.heisenberg.item;
 
+/**
+* The container has control of the movement of Item objects
+* within it.
+*/
+
 import java.io.Serializable;
 import java.util.EmptyStackException;
 import java.util.Vector;
@@ -155,6 +160,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @return Total weight, including contents.
      */
+    @Override
     public float getWeight() {
         float total = this.getWeightBase();
         total += this.getContentsWeight();
@@ -165,6 +171,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @return Total volume, including contents.
      */
+    @Override
     public float getVolume() {
         float total = this.getVolumeBase();
         total += this.getContentsVolume();
@@ -175,6 +182,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @return Total value, including contents.
      */
+    @Override
     public Currency getValue() {
         Currency total = new Currency(this.getValueBase());
         total.add(this.getContentsValue());
@@ -388,7 +396,20 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
-     * Relocate the Item to the new
+     * Move the Item object's position within the ItemContainer.
+     * 
+     * @param item the item to be moved.
+     * @param expectedPosition the new position.
+     * 
+     * The container has control of the movement of Item objects
+     * within it.
+     */
+    public void moveItem(Item item, Point3d expectedPosition) {
+        item.setPosition(expectedPosition);        
+    }
+
+    /**
+     * Relocate the Item to a new ItemContainer.
      * 
      * @param item
      *            item to relocate.
@@ -401,6 +422,14 @@ public abstract class ItemContainer extends Item implements Serializable {
             losingContainer.remove(item);
         }
         container.add(item);
+    }    
+    
+    /** {@inheritDoc} */
+    @Override
+    public void setAllFrom(Item item) {
+        super.setAllFrom(item);
+        // TODO set local properties
+        // TODO Add unit tests
+        // TODO Do we copy contents?  Thinking no.
     }
-
 }
