@@ -537,7 +537,6 @@ public abstract class PcRace extends Entity {
                         + "\n");
             }
         }
-        text.append("Done.\n");
         return text.toString();
     }
 
