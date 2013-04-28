@@ -61,9 +61,8 @@ public class PcEditor {
         
         // Buttons
         JPanel butPanel = new JPanel();
-        butPanel.add(new JButton("But1"));
-        butPanel.add(new JButton("But2"));
-        butPanel.add(new JButton("But3"));
+        butPanel.add(new JButton("Ok"));
+        butPanel.add(new JButton("Cancel"));
         cons.gridx = 0;
         cons.gridy = 1;
         gridBag.setConstraints(butPanel, cons);

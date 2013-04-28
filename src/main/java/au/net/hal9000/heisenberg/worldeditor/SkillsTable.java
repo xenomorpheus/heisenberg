@@ -71,11 +71,16 @@ public class SkillsTable extends JTable {
         public Object getValueAt(int row, int col) {
             Skill skillCell = skills.get(row);
             String skillId = skillCell.toString();
+            String result = null;
             if (col == 0) {
-                return skillId;
+                result = skillId;
             } else {
-                return skillDetails.get(skillId).getDescription();
+                SkillDetail skillDetail = skillDetails.get(skillId);
+                if (skillDetail != null) {
+                    result = skillDetail.getDescription();
+                }
             }
+            return result;
         }
 
         public boolean isCellEditable(int row, int col) {

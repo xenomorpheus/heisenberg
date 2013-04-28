@@ -31,6 +31,7 @@ public class DescriptionPane extends JScrollPane {
         descriptionTextArea.setEditable(false);
         descriptionTextArea.setLineWrap(true);
         descriptionPanel.add(descriptionTextArea);
+        descriptionTextArea.setText("TEST");
         // Add to JScrollPane (ourselves)
         add(descriptionPanel);
         setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -43,7 +44,7 @@ public class DescriptionPane extends JScrollPane {
                     descriptionTextArea.setText("pc is NULL");
                     logger.error("pc is NULL");
                 } else {
-                    descriptionTextArea.setText(pc.getDetailedDescription());
+                    descriptionTextArea.setText("BAR"+pc.getDetailedDescription());
                 }
             }
         });
@@ -59,5 +60,11 @@ public class DescriptionPane extends JScrollPane {
      */
     public void setItem(final PcRace pc) {
         this.pc = pc;
+        if (pc == null){
+            descriptionTextArea.setText("NULL");
+        }
+        else{
+            descriptionTextArea.setText("FOO"+pc.getDetailedDescription());
+        }
     }
 }

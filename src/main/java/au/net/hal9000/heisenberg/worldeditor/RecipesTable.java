@@ -62,7 +62,7 @@ public class RecipesTable extends JTable {
                 pcRecipeIds = pc.getRecipes();
             }
             if (pcRecipeIds != null) {
-                recipeIds = new ArrayList<String>();
+                recipeIds = new ArrayList<String>(pcRecipeIds);
             }
         }
 
@@ -80,11 +80,16 @@ public class RecipesTable extends JTable {
 
         public Object getValueAt(int row, int col) {
             String recipeId = recipeIds.get(row);
+            String result = null;
             if (col == 0) {
-                return recipeId;
+                result = recipeId;
             } else {
-                return recipes.get(recipeId).getDescription();
+                Recipe recipe = recipes.get(recipeId);
+                if (recipe != null) {
+                    result = recipe.getDescription();
+                }
             }
+            return result;
         }
 
         public boolean isCellEditable(int row, int col) {

@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -81,22 +82,20 @@ public class WorldEditor {
         m_tree.setModel(model);
         m_tree.setEditable(true);
         m_tree.setSelectionRow(0);
-        
-        
-        // Cell Editor
-        //String elements[] = { "A", "B", "C", "D" };
-        //JComboBox comboBox = new JComboBox(elements);
-        //comboBox.setEditable(true);
-        //TreeCellEditor comboEditor = new DefaultCellEditor(comboBox);
-        
-        TreeCellEditor itemEditor = new ItemEditor();
-        
-        
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree.getCellRenderer();
-        TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree, renderer, itemEditor);
-        m_tree.setCellEditor(cell_editor);
 
-        
+        // Cell Editor
+        // String elements[] = { "A", "B", "C", "D" };
+        // JComboBox comboBox = new JComboBox(elements);
+        // comboBox.setEditable(true);
+        // TreeCellEditor comboEditor = new DefaultCellEditor(comboBox);
+
+        TreeCellEditor itemEditor = new ItemEditor();
+
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree
+                .getCellRenderer();
+        TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree,
+                renderer, itemEditor);
+        m_tree.setCellEditor(cell_editor);
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane(m_tree);
@@ -312,13 +311,17 @@ public class WorldEditor {
     }
 
     public static void main(String[] args) {
-        try {
-            // Load some config
-            Configuration config = new Configuration(
-                    "src/test/resources/config.xml");
-            new WorldEditor(config);
-        } catch (ConfigurationError e) {
-            e.printStackTrace();
-        }
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    // Load some config
+                    Configuration config = new Configuration(
+                            "src/test/resources/config.xml");
+                    new WorldEditor(config);
+                } catch (ConfigurationError e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
