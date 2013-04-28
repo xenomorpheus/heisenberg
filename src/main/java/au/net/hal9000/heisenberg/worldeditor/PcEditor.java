@@ -1,8 +1,12 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import au.net.hal9000.heisenberg.item.PcRace;
@@ -34,13 +38,37 @@ public class PcEditor {
         frame.setBounds(100, 100, 894, 634);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Main container
+        GridBagLayout gridBag = new GridBagLayout();
+        GridBagConstraints cons = new GridBagConstraints();
+        cons.fill = GridBagConstraints.BOTH;
+        cons.ipady = 0;
+        cons.ipadx = 0;
+        frame.setLayout(gridBag);
+
+        // Tabbed Pane        
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("Basics", null, basicPanel, null);
         tabbedPane.addTab("Abilities", null, abilityScoresTable, null);
         tabbedPane.addTab("Skills", null, skillsTable, null);
         tabbedPane.addTab("Recipes", null, recipesTable, null);
         tabbedPane.addTab("Description", null, descriptionPane, null);
-        frame.getContentPane().add(tabbedPane);
+        cons.gridx = 0;
+        cons.gridy = 0;
+        gridBag.setConstraints(tabbedPane, cons);
+        frame.add(tabbedPane);
+       
+        
+        // Buttons
+        JPanel butPanel = new JPanel();
+        butPanel.add(new JButton("But1"));
+        butPanel.add(new JButton("But2"));
+        butPanel.add(new JButton("But3"));
+        cons.gridx = 0;
+        cons.gridy = 1;
+        gridBag.setConstraints(butPanel, cons);
+        frame.add(butPanel);
+
     }
 
     /**

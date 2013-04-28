@@ -87,7 +87,6 @@ public class BasicPanel extends JPanel {
             }
         });
 
-        updateForm();
     }
     
     /**
@@ -103,6 +102,7 @@ public class BasicPanel extends JPanel {
      */
     public void setItem(final PcRace pc) {
         this.pc = pc;
+        updateForm();
     }
 
     private void addComponents() {
