@@ -149,7 +149,8 @@ public class WorldEditor {
                     }
                 }
                 if ("Demo".equals(eventName)) {
-                    location = null; // TODO free old world
+                    location.beNot();
+                    location = null;
                     location = getDemoWorld();
                     model = new ItemTreeModel(location);
                     // Create a JTree and tell it to display our model
@@ -158,7 +159,8 @@ public class WorldEditor {
                     m_tree.setSelectionRow(0);
                 }
                 if ("Open".equals(eventName)) {
-                    location = null; // TODO free old world
+                    location.beNot();
+                    location = null;
                     // TODO load.
                     // TODO Create a project object to contain details and a
                     // pointer to top location.
@@ -290,7 +292,6 @@ public class WorldEditor {
         human.setWeightMax(100000);
         human.setVolumeMax(100000);
 
-        // TODO backpack, quiver, shield not showing.
         human.add(new Shield());
         human.add(scabbard2);
         human.add(quiver);

@@ -31,7 +31,7 @@ public class BasicPanel extends JPanel {
 
     // Misc
     private PcRace pc;
-    private Configuration config;
+    private Configuration config = Configuration.lastConfig();
 
     // Fields
     // Row 0
@@ -54,10 +54,8 @@ public class BasicPanel extends JPanel {
     private JComboBox sizeComboBox;
     private JComboBox genderComboBox;
 
-    public BasicPanel(final PcRace pPc, final Configuration pConfig) {
+    public BasicPanel() {
         super();
-        pc = pPc;
-        config = pConfig;
 
         addComponents();
 
@@ -90,7 +88,21 @@ public class BasicPanel extends JPanel {
         });
 
         updateForm();
-
+    }
+    
+    /**
+     * Set the PcClass object to show values for.
+     * 
+     * @param pc
+     *            the PcClass object to show values for.
+     * 
+     *            Note we pass the PcClass rather than the values needed to do
+     *            the display. We do this because the values to display may be
+     *            changed by other tabs, and passing by pc allows a refresh of
+     *            values.
+     */
+    public void setItem(final PcRace pc) {
+        this.pc = pc;
     }
 
     private void addComponents() {

@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.assertNotNull;
 
-import javax.swing.JPanel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +22,8 @@ public class BasicPanelTest {
     @Test
     public void testBasicPanel() {
         Human human = new Human();
-        JPanel basicPanel = new BasicPanel(human, config);
+        BasicPanel basicPanel = new BasicPanel();
+        basicPanel.setItem(human);
         assertNotNull("BasicPanel not null", basicPanel);
     }
 

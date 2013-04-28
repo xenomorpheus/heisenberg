@@ -7,6 +7,8 @@ import java.util.TreeMap;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import org.apache.log4j.Logger;
+
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -18,9 +20,23 @@ public class RecipesTable extends JTable {
      */
     private static final long serialVersionUID = 1L;
 
-    RecipesTable(final PcRace pc, Configuration config) {
+    RecipesTable() {
         super();
-        this.setModel(new MyTableModel(pc, config));
+    }
+
+    /**
+     * Set the PcClass object to show values for.
+     * 
+     * @param pc
+     *            the PcClass object to show values for.
+     * 
+     *            Note we pass the PcClass rather than the values needed to do
+     *            the display. We do this because the values to display may be
+     *            changed by other tabs, and passing by pc allows a refresh of
+     *            values.
+     */
+    public void setItem(final PcRace pc) {
+        this.setModel(new MyTableModel(pc));
     }
 
     private class MyTableModel extends AbstractTableModel {
@@ -28,15 +44,23 @@ public class RecipesTable extends JTable {
          * 
          */
         private static final long serialVersionUID = 1L;
+        private Configuration config = Configuration.lastConfig();
+        private final Logger logger = Logger.getLogger(RecipesTable.class
+                .getName());
 
         String[] columnNames = { "Id", "Description" };
 
         private ArrayList<String> recipeIds;
         private TreeMap<String, Recipe> recipes;
 
-        public MyTableModel(PcRace pc, Configuration config) {
+        public MyTableModel(PcRace pc) {
             recipes = config.getRecipes();
-            Set<String> pcRecipeIds = pc.getRecipes();
+            Set<String> pcRecipeIds = null;
+            if (pc == null) {
+                logger.error("PC is NULL");
+            } else {
+                pcRecipeIds = pc.getRecipes();
+            }
             if (pcRecipeIds != null) {
                 recipeIds = new ArrayList<String>();
             }
@@ -72,4 +96,5 @@ public class RecipesTable extends JTable {
             fireTableCellUpdated(row, col);
         }
     }
+
 }

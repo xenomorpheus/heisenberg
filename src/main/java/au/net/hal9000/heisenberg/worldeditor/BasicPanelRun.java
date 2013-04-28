@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.util.TreeMap;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -59,7 +58,8 @@ public class BasicPanelRun {
         // This will center the JFrame in the middle of the screen
         guiFrame.setLocationRelativeTo(null);
 
-        JPanel basicPanel = new BasicPanel(pcClass, config);
+        BasicPanel basicPanel = new BasicPanel();
+        basicPanel.setItem(pcClass);
 
         // add to JFrame
         guiFrame.add(basicPanel);

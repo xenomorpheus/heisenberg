@@ -17,7 +17,7 @@ class SkillsTableRun extends JFrame {
     private static final long serialVersionUID = 1L;
     // Instance attributes used in this example
     private JPanel topPanel;
-    private JTable table;
+    private SkillsTable table;
     private JScrollPane scrollPane;
 
     // Constructor of main frame
@@ -33,7 +33,8 @@ class SkillsTableRun extends JFrame {
         getContentPane().add(topPanel);
 
         // Create a new table instance
-        table = new SkillsTable(pc, config);
+        table = new SkillsTable();
+        table.setItem(pc);
 
         // Configure some of JTable's paramters
         table.setShowHorizontalLines(false);

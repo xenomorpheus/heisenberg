@@ -1,34 +1,27 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-
-import javax.swing.JComponent;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.util.Configuration;
 
 public class PcEditor {
 
-    private Configuration config;
-    private PcRace pc;
     private JFrame frame;
+    private PcRace pc;
 
-
-    // tab - description
-    JTextArea descriptionTextArea;
+    private BasicPanel basicPanel = new BasicPanel();
+    private AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+    private SkillsTable skillsTable = new SkillsTable();
+    private RecipesTable recipesTable = new RecipesTable();
+    private DescriptionPane descriptionPane = new DescriptionPane();
 
     /**
      * Create the application.
      */
-    public PcEditor(final PcRace pPc) {
-        pc = pPc;
-        config = Configuration.lastConfig();
+    public PcEditor() {
         initialise();
     }
 
@@ -42,40 +35,64 @@ public class PcEditor {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.addTab("Basics", null, new BasicPanel(pc, config), null);
-        tabbedPane.addTab("Abilities", null,
-                new AbilityScoresTable(pc, config), null);
-        tabbedPane.addTab("Skills", null, new SkillsTable(pc, config), null);
-        tabbedPane.addTab("Recipes", null, new RecipesTable(pc, config), null);
-        tabbedPane.addTab("Description", null, descriptionPane(pc), null);
+        tabbedPane.addTab("Basics", null, basicPanel, null);
+        tabbedPane.addTab("Abilities", null, abilityScoresTable, null);
+        tabbedPane.addTab("Skills", null, skillsTable, null);
+        tabbedPane.addTab("Recipes", null, recipesTable, null);
+        tabbedPane.addTab("Description", null, descriptionPane, null);
         frame.getContentPane().add(tabbedPane);
     }
 
+    /**
+     * get the frame.
+     * 
+     * @return the frame.
+     */
     public JFrame getFrame() {
         return frame;
     }
 
-    private JComponent descriptionPane(final PcRace pc) {
+    /**
+     * Get the PcClass object we are editing.
+     * 
+     * @return the PcClass object we are editing.
+     */
 
-        // Description Panel
-        JPanel descriptionPanel = new JPanel();
+    public PcRace getPc() {
+        return pc;
+    }
 
-        descriptionTextArea = new JTextArea(30, 25);
-        descriptionTextArea.setEditable(false);
-        descriptionPanel.add(descriptionTextArea);
-        descriptionTextArea.setLineWrap(true);
+    /**
+     * Set the PcClass object we are editing.
+     * 
+     * @param pc
+     *            the PcClass object we are editing.
+     */
+    public void setPc(PcRace pc) {
+        this.pc = pc;
+        basicPanel.setItem(pc);
+        abilityScoresTable.setItem(pc);
+        skillsTable.setItem(pc);
+        recipesTable.setItem(pc);
+        descriptionPane.setItem(pc);
+    }
 
-        // Update the text when the description gets focus
-        descriptionTextArea.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                descriptionTextArea.setText(pc.getDetailedDescription());
-            }
-        });
-        JScrollPane descriptionScr = new JScrollPane(descriptionPanel);
-        descriptionScr
-                .setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        return descriptionScr;
+    /**
+     * 
+     * @param button
+     * @param windowTitle
+     * @param modal
+     * @param pcEditor
+     * @param okButtonHandler
+     * @param cancellButtonHandler
+     * @return
+     */
+
+    public static JDialog createDialog(JButton button, String windowTitle,
+            boolean modal, PcEditor pcEditor, ItemEditor okButtonHandler,
+            ItemEditor cancellButtonHandler) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

@@ -6,19 +6,24 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTree;
 
-import au.net.hal9000.heisenberg.item.Item;
+import org.apache.log4j.Logger;
 
-import java.awt.Color;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.PcRace;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ItemEditor extends AbstractCellEditor implements
-        TreeCellEditor, ActionListener {
+public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
+        ActionListener {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
+    private static final Logger logger = Logger.getLogger(ItemEditor.class
+            .getName());
+
     Item currentItem;
     JButton button;
     PcEditor pcEditor;
@@ -37,7 +42,7 @@ public class ItemEditor extends AbstractCellEditor implements
 
         // Set up the dialog that the button brings up.
         pcEditor = new PcEditor();
-        dialog = PcEditor.createDialog(button, "Pick a Color", true, // modal
+        dialog = PcEditor.createDialog(button, "Edit the Pc", true, // modal
                 pcEditor, this, // OK button handler
                 null); // no CANCEL button handler
     }
@@ -51,14 +56,19 @@ public class ItemEditor extends AbstractCellEditor implements
             // The user has clicked the cell, so
             // bring up the dialog.
             // button.setBackground(currentItem);
-            pcEditor.setItem(currentItem);
-            dialog.setVisible(true);
+            if (currentItem instanceof PcRace) {
+                pcEditor.setPc((PcRace) currentItem);
+                dialog.setVisible(true);
 
-            // Make the renderer reappear.
-            fireEditingStopped();
+                // Make the renderer reappear.
+                fireEditingStopped();
+            } else {
+                logger.error("unsupported Item type "
+                        + Item.class.getSimpleName());
+            }
 
         } else { // User pressed dialog's "OK" button.
-            currentItem = pcEditor.getItem();
+            currentItem = pcEditor.getPc();
         }
     }
 
@@ -71,7 +81,7 @@ public class ItemEditor extends AbstractCellEditor implements
     }
 
     /**
-     *  Implement the one method defined by TableCellEditor.
+     * Implement the one method defined by TableCellEditor.
      */
     @Override
     public Component getTreeCellEditorComponent(JTree tree, Object value,

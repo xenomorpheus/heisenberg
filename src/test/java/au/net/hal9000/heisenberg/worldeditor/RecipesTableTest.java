@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.assertNotNull;
-import javax.swing.JTable;
 import org.junit.Before;
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Human;
@@ -21,7 +20,8 @@ public class RecipesTableTest {
     @Test
     public void testRecipesTable() {
         Human human = new Human();
-        JTable basicPanel = new RecipesTable(human, config);
+        RecipesTable basicPanel = new RecipesTable();
+        basicPanel.setItem(human);
         assertNotNull("BasicPanel not null", basicPanel);
     }
 

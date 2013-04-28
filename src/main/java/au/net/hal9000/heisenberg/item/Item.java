@@ -55,7 +55,7 @@ import au.net.hal9000.heisenberg.units.*;
 public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger  logger = Logger.getLogger(ItemContainer.class.getName());
+    private static final Logger  logger = Logger.getLogger(Item.class.getName());
     private static String packageName = Factory.class.getPackage().getName();
 
 

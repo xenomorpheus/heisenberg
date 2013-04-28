@@ -107,6 +107,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @return false
      */
+    @Override
     public boolean isLeaf() {
         return false;
     }

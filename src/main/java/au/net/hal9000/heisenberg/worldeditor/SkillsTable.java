@@ -17,10 +17,26 @@ public class SkillsTable extends JTable {
      * 
      */
     private static final long serialVersionUID = 1L;
+    PcRace pc;
 
-    SkillsTable(final PcRace pc, Configuration config) {
+    SkillsTable() {
         super();
-        this.setModel(new MyTableModel(pc, config));
+    }
+
+    /**
+     * Set the PcClass object to show values for.
+     * 
+     * @param pc
+     *            the PcClass object to show values for.
+     * 
+     *            Note we pass the PcClass rather than the values needed to do
+     *            the display. We do this because the values to display may be
+     *            changed by other tabs, and passing by pc allows a refresh of
+     *            values.
+     */
+    public void setItem(final PcRace pc) {
+        this.pc = pc;
+        this.setModel(new MyTableModel(pc));
     }
 
     private class MyTableModel extends AbstractTableModel {
@@ -28,13 +44,14 @@ public class SkillsTable extends JTable {
          * 
          */
         private static final long serialVersionUID = 1L;
+        private Configuration config = Configuration.lastConfig();
 
         String[] columnNames = { "Id", "Description" };
 
         ArrayList<Skill> skills;
         TreeMap<String, SkillDetail> skillDetails;
 
-        public MyTableModel(PcRace pc, Configuration config) {
+        public MyTableModel(final PcRace pc) {
             skills = new ArrayList<Skill>(pc.getSkills());
             skillDetails = config.getSkillDetails();
         }

@@ -34,7 +34,8 @@ public class PcEditorRun {
                     pc.recipesAdd(new String[] { "testItem1",
                             "testFireGround1", "testSpell1" });
 
-                    PcEditor window = new PcEditor(pc);
+                    PcEditor window = new PcEditor();
+                    window.setPc(pc);
                     window.getFrame().setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

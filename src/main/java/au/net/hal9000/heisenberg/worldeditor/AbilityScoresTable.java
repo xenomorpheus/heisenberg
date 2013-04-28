@@ -8,7 +8,6 @@ import javax.swing.table.AbstractTableModel;
 
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.AbilityScore;
-import au.net.hal9000.heisenberg.util.Configuration;
 
 public class AbilityScoresTable extends JTable {
 
@@ -17,11 +16,23 @@ public class AbilityScoresTable extends JTable {
      */
     private static final long serialVersionUID = 1L;
 
-    AbilityScoresTable(final PcRace pc, Configuration config) {
+    AbilityScoresTable() {
         super();
-        this.setModel(new MyTableModel(pc, config));
     }
 
+    /**
+     * Set the PcClass object to show values for.
+     * @param pc the PcClass object to show values for.
+     * 
+     * Note we pass the PcClass rather than the values needed to do the display.
+     * We do this because the values to display may be changed by other tabs, and
+     * passing by pc allows a refresh of values.
+     */
+    public void setItem(final PcRace pc) {
+        this.setModel(new MyTableModel(pc));
+    }
+
+    
     private class MyTableModel extends AbstractTableModel {
         /**
          * 
@@ -32,7 +43,7 @@ public class AbilityScoresTable extends JTable {
 
         private ArrayList<AbilityScore> pcAbilityScores;
 
-        public MyTableModel(PcRace pc, Configuration config) {
+        public MyTableModel(PcRace pc) {
             TreeMap<String, AbilityScore> abilityScores = pc.getAbilityScores();
             if (abilityScores != null) {
                 pcAbilityScores = new ArrayList<AbilityScore>(
@@ -70,4 +81,6 @@ public class AbilityScoresTable extends JTable {
             fireTableCellUpdated(row, col);
         }
     }
+    
+    
 }
