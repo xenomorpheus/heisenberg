@@ -10,7 +10,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
-public class BasicPanelRun {
+public class BasicPanelTest {
 
     @Test
     public void doTest() throws ConfigurationError {
@@ -43,7 +43,7 @@ public class BasicPanelRun {
             @Override
             public void run() {
                 try {
-                    BasicPanelRun basicPanelRun = new BasicPanelRun();
+                    BasicPanelTest basicPanelRun = new BasicPanelTest();
                     basicPanelRun.doTest();
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

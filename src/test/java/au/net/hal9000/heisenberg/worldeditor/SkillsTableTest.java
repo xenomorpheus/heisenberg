@@ -10,7 +10,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
-class SkillsTableTest {
+public class SkillsTableTest {
     
     @Test
     public void doTest() throws ConfigurationError {
