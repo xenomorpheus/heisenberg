@@ -1,19 +1,26 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class AbilityScoresTableTest {
+public class DummyDataTest {
 
     @Test
-    public void testAbilityScoresTable() throws ConfigurationError {
+    public void testElf() throws ConfigurationError {
         PcRace pc = DummyData.elf();
-        AbilityScoresTable basicPanel = new AbilityScoresTable();
-        basicPanel.setItem(pc);
-        assertNotNull("BasicPanel not null", basicPanel);
+        assertNotNull(pc);
     }
 
+    @Test
+    public void testGetDemoWorld() {
+        Location loc = DummyData.getDemoWorld();
+        assertNotNull(loc);
+    }
+    
 }
