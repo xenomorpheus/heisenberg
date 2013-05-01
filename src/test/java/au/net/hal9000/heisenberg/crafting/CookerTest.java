@@ -251,8 +251,7 @@ public class CookerTest {
         world.add(flintAndTinder2);
         assertEquals("item 0 - already occupied", Cooker.alreadyOccupied,
                 cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2));
-        assertTrue("item 0 - put item back",
-                cooker.clearItemsAvailable("FlintAndTinder", world));
+        cooker.clearItemsAvailable("FlintAndTinder", world);
         assertEquals("item 0 - good", null,
                 cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2));
         assertEquals("item 0 - item removed from Container", cooker,

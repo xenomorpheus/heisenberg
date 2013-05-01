@@ -324,16 +324,14 @@ public class Cooker extends ItemContainer {
      * 
      * @param container
      *            destination ItemContainer.
-     * @return true iff successfully moved. TODO consider return type void
      */
-    public final boolean clearItemsAvailable(final String key, final ItemContainer container) {
+    public final void clearItemsAvailable(final String key, final ItemContainer container) {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }
         Item item = ingredients.get(key);
         this.relocateItem(item, container);
         ingredients.remove(key);
-        return true;
     }
 
 }
