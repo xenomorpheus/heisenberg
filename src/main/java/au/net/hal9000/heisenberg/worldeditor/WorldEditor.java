@@ -187,6 +187,9 @@ public class WorldEditor {
         frame.setJMenuBar(jmb);
 
         frame.setSize(400, 600);
+        // This will center the JFrame in the middle of the screen
+        frame.setLocationRelativeTo(null);
+
         frame.setVisible(true);
     }
 
