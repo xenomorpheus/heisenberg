@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -49,7 +48,6 @@ import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 public class WorldEditor {
     Configuration config = null;
@@ -313,18 +311,4 @@ public class WorldEditor {
         return world;
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    // Load some config
-                    Configuration config = new Configuration(
-                            "src/test/resources/config.xml");
-                    new WorldEditor(config);
-                } catch (ConfigurationError e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 }
