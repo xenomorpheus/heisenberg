@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-//Use the GridBagConstraints to determine how the component
+//Imports
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,8 +10,8 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
-public class BasicPanelRun {
-
+class SkillsTableTest {
+    
     @Test
     public void doTest() throws ConfigurationError {
 
@@ -20,17 +20,17 @@ public class BasicPanelRun {
 
         // make sure the program exits when the frame closes
         guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("Basic Panel");
+        guiFrame.setTitle("Skills Table");
         guiFrame.setSize(800, 300);
 
         // This will center the JFrame in the middle of the screen
         guiFrame.setLocationRelativeTo(null);
 
-        BasicPanel basicPanel = new BasicPanel();
-        basicPanel.setItem(pc);
+        SkillsTable skillsTable = new SkillsTable();
+        skillsTable.setItem(pc);
 
         // add to JFrame
-        guiFrame.add(basicPanel);
+        guiFrame.add(skillsTable);
         guiFrame.setVisible(true);
 
     }
@@ -43,8 +43,8 @@ public class BasicPanelRun {
             @Override
             public void run() {
                 try {
-                    BasicPanelRun basicPanelRun = new BasicPanelRun();
-                    basicPanelRun.doTest();
+                    SkillsTableTest skillsTableTest = new SkillsTableTest();
+                    skillsTableTest.doTest();
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }
@@ -52,4 +52,5 @@ public class BasicPanelRun {
         });
 
     }
+
 }

@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

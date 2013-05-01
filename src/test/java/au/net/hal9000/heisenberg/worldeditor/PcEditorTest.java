@@ -5,7 +5,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
-public class PcEditorRun {
+public class PcEditorTest {
 
     @Test
     public void doTest() throws ConfigurationError {
@@ -23,7 +23,7 @@ public class PcEditorRun {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    PcEditorRun pcEditorRun = new PcEditorRun();
+                    PcEditorTest pcEditorRun = new PcEditorTest();
                     pcEditorRun.doTest();
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
