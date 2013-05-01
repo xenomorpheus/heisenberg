@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.assertNotNull;
 
