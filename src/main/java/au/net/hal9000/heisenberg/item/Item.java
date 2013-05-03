@@ -25,6 +25,12 @@ import au.net.hal9000.heisenberg.units.*;
 /*
  * Item:
  *
+ * The Item package is the base class for the game objects 
+ * e.g. People, equipment, locations, etc.
+ *
+ * See the ItemContainer class for items that may contain
+ * other items, e.g. bags, scabards, even people.
+ *
  * An item has a globally pseudo-unique identifier.
  * An item has a name which is text.
  * An item has a description which is text.
