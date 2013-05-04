@@ -13,7 +13,6 @@ import au.net.hal9000.heisenberg.util.DummyData;
 
 public class DescriptionPaneTest {
 
-    
     @Test
     public void doTest() throws ConfigurationError {
 
@@ -22,7 +21,6 @@ public class DescriptionPaneTest {
         assertNotNull("not Null", window);
         window.setItem(pc);
     }
-    
 
     /**
      * Launch the application.
@@ -32,24 +30,25 @@ public class DescriptionPaneTest {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+
                     PcRace pc = DummyData.elf();
                     JFrame guiFrame = new JFrame();
 
                     // make sure the program exits when the frame closes
                     guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    guiFrame.setTitle("Description Pane");
-                    guiFrame.setSize(800, 300);
+                    guiFrame.setTitle("Description");
+                    guiFrame.setSize(800, 600);
 
                     // This will center the JFrame in the middle of the screen
                     guiFrame.setLocationRelativeTo(null);
 
                     DescriptionPane window = new DescriptionPane();
                     window.setItem(pc);
-                    window.setVisible(true);
-
+                    
                     // add to JFrame
                     guiFrame.add(window);
                     guiFrame.setVisible(true);
+
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

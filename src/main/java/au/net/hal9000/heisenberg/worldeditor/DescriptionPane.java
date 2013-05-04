@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -26,25 +25,24 @@ public class DescriptionPane extends JScrollPane {
         super();
 
         // Description Panel
-        JPanel descriptionPanel = new JPanel();
 
         descriptionTextArea.setEditable(false);
         descriptionTextArea.setLineWrap(true);
-        descriptionPanel.add(descriptionTextArea);
-        descriptionTextArea.setText("TEST");
+        
         // Add to JScrollPane (ourselves)
-        add(descriptionPanel);
+        getViewport().add(descriptionTextArea);
         setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        setVisible(true);
 
         // Update the text when the description gets focus
         descriptionTextArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (pc == null) {
-                    descriptionTextArea.setText("pc is NULL");
+                    descriptionTextArea.setText("");
                     logger.error("pc is NULL");
                 } else {
-                    descriptionTextArea.setText("BAR"+pc.getDetailedDescription());
+                    descriptionTextArea.setText(pc.getDetailedDescription());
                 }
             }
         });
@@ -61,10 +59,10 @@ public class DescriptionPane extends JScrollPane {
     public void setItem(final PcRace pc) {
         this.pc = pc;
         if (pc == null){
-            descriptionTextArea.setText("NULL");
+            descriptionTextArea.setText("");
         }
         else{
-            descriptionTextArea.setText("FOO"+pc.getDetailedDescription());
+            descriptionTextArea.setText(pc.getDetailedDescription());
         }
     }
 }
