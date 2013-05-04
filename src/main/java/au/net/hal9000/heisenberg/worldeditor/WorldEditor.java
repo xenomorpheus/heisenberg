@@ -9,12 +9,10 @@ import java.awt.event.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -47,20 +45,11 @@ public class WorldEditor extends JFrame {
         setBounds(100, 100, 894, 634);
 
         // Main container
-        setLayout( new BorderLayout() );
-        itemTreePanel = new ItemTreePanel( config, location);
+        setLayout(new BorderLayout());
+        itemTreePanel = new ItemTreePanel(config, location);
         itemTreePanel.setVisible(true);
         add(itemTreePanel, BorderLayout.NORTH);
-       
-        
-        // Buttons
-        JPanel butPanel = new JPanel();
-        butPanel.add(new JButton("Ok"));
-        butPanel.add(new JButton("Cancel"));
-        butPanel.setVisible(true);
-        add(butPanel, BorderLayout.SOUTH);
-        
-        
+
         // Menus
         ActionListener menuActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -101,7 +90,6 @@ public class WorldEditor extends JFrame {
                 exitProgram();
             }
         });
-
 
     }
 

@@ -102,8 +102,15 @@ public class ItemTreePanel extends JPanel {
         
    
         // setLayoutManager(new BorderLayout());
-        add(scrollpane, BorderLayout.CENTER);
-        add(addButtonPanel, BorderLayout.SOUTH);
+        add(scrollpane, BorderLayout.NORTH);
+        add(addButtonPanel, BorderLayout.CENTER);
+
+        // Buttons
+        JPanel butPanel = new JPanel();
+        butPanel.add(new JButton("Ok"));
+        butPanel.add(new JButton("Cancel"));
+        butPanel.setVisible(true);
+        add(butPanel, BorderLayout.SOUTH);    
     }
 
     public void setConfig(Configuration config) {
