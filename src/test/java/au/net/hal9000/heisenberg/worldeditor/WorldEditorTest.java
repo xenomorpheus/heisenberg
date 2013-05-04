@@ -27,29 +27,17 @@ public class WorldEditorTest {
 
         };
         JMenuBar jMenuBar = WorldEditor.getMenus(actionListener);
-        assertNotNull("getMenus not null", jMenuBar);
+        assertNotNull("Not null", jMenuBar);
     }
 
-    public void doTest() throws ConfigurationError {
-
-        JFrame guiFrame = new JFrame();
-
-        // make sure the program exits when the frame closes
-        guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("WorldEditor");
-        guiFrame.setSize(800, 300);
-
-        // This will center the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-
+    @Test
+    public void testWorldEditor() throws ConfigurationError{
         WorldEditor worldEditor = new WorldEditor();
-
-        // add to JFrame
-        guiFrame.add(worldEditor);
-        guiFrame.setVisible(true);
-
+        assertNotNull("Not null", worldEditor);
+        
     }
-
+    
+    
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components
@@ -58,8 +46,12 @@ public class WorldEditorTest {
             @Override
             public void run() {
                 try {
-                    WorldEditorTest worldEditorTest = new WorldEditorTest();
-                    worldEditorTest.doTest();
+                    WorldEditor worldEditor = new WorldEditor();
+                    // Center
+                    worldEditor.setLocationRelativeTo(null);
+                    // Kill app
+                    worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    worldEditor.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

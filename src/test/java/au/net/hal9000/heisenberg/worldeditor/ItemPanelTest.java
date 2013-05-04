@@ -21,6 +21,7 @@ public class ItemPanelTest {
                     JFrame jFrame = new JFrame("ItemTeePanel Test");
                     jFrame.setContentPane(itemTreePanel);
                     jFrame.setSize(400, 600);
+                    jFrame.setLocationRelativeTo(null);
                     jFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     // TODO Auto-generated catch block

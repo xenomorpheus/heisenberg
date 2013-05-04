@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -37,7 +36,6 @@ public class WorldEditor extends JFrame {
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = factory.createEntityManager();
         Configuration config = DummyData.config();
-        itemTreePanel = new ItemTreePanel( config, location);
 
         // Main Frame
 
@@ -47,31 +45,20 @@ public class WorldEditor extends JFrame {
         setLocationRelativeTo(null);
 
         setBounds(100, 100, 894, 634);
-        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Main container
-        GridBagLayout gridBag = new GridBagLayout();
-        GridBagConstraints cons = new GridBagConstraints();
-        cons.fill = GridBagConstraints.BOTH;
-        cons.ipady = 0;
-        cons.ipadx = 0;
-        setLayout(gridBag);
-
-        cons.gridx = 0;
-        cons.gridy = 0;
-        gridBag.setConstraints(itemTreePanel, cons);
-        add(itemTreePanel);
+        setLayout( new BorderLayout() );
+        itemTreePanel = new ItemTreePanel( config, location);
+        itemTreePanel.setVisible(true);
+        add(itemTreePanel, BorderLayout.NORTH);
        
         
         // Buttons
         JPanel butPanel = new JPanel();
         butPanel.add(new JButton("Ok"));
         butPanel.add(new JButton("Cancel"));
-        cons.gridx = 0;
-        cons.gridy = 1;
-
-        gridBag.setConstraints(butPanel, cons);
-        add(butPanel);       
+        butPanel.setVisible(true);
+        add(butPanel, BorderLayout.SOUTH);
         
         
         // Menus
@@ -81,19 +68,13 @@ public class WorldEditor extends JFrame {
                 // TODO get from event. How?
                 String eventName = event.getActionCommand();
 
+                if ("New".equals(eventName)) {
+                    setLocation(new Location());
+                }
                 if ("Demo".equals(eventName)) {
-                    if (location != null) {
-                        location.beNot();
-                        location = null;
-                    }
-                    location = DummyData.getDemoWorld();
-                    itemTreePanel.setLocation(location);
+                    setLocation(DummyData.getDemoWorld());
                 }
                 if ("Open".equals(eventName)) {
-                    if (location != null) {
-                        location.beNot();
-                        location = null;
-                    }
                     // TODO load.
                     // TODO Create a project object to contain details and a
                     // pointer to top location.
@@ -121,7 +102,6 @@ public class WorldEditor extends JFrame {
             }
         });
 
-        setVisible(true);
 
     }
 
@@ -133,8 +113,13 @@ public class WorldEditor extends JFrame {
         this.entityManager = entityManager;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(Location pLocation) {
+        if (location != null) {
+            location.beNot();
+            location = null;
+        }
+        location = pLocation;
+        itemTreePanel.setLocation(location);
     }
 
     public void exitProgram() {

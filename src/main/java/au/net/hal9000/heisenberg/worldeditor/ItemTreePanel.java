@@ -36,6 +36,7 @@ public class ItemTreePanel extends JPanel {
 
         setLocation(location);
         setConfig(config);
+        setLayout( new BorderLayout() );
 
         // Cell Editor
         // String elements[] = { "A", "B", "C", "D" };
@@ -52,8 +53,9 @@ public class ItemTreePanel extends JPanel {
         // m_tree.setCellEditor(cell_editor);
 
         // The JTree can get big, so allow it to scroll.
-        JScrollPane scrollpane = new JScrollPane(m_tree);
-        scrollpane.setSize(400, 700);
+        JScrollPane scrollpane = new JScrollPane();
+        scrollpane.setViewportView(m_tree);
+        //scrollpane.setSize(400, 700);
 
         // The "Add" Button Panel
         JPanel addButtonPanel = new JPanel();
