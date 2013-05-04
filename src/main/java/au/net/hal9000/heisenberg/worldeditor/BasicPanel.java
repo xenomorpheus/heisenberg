@@ -39,6 +39,7 @@ public class BasicPanel extends JPanel {
     private JComboBox classComboBox;
     // Row 1
     private JTextField descriptionTextField;
+    private JTextField raceTextField;
     // Row 2
     private JTextField comTextField;
     private JTextField magTextField;
@@ -196,6 +197,29 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
         cons.gridwidth = 1;
 
+        // Race
+        JLabel raceLbl = new JLabel("Race");
+        cons.gridx = pos;
+        cons.gridy = row;
+        gridBag.setConstraints(raceLbl, cons);
+        this.add(raceLbl);
+        pos += cons.gridwidth;
+
+        raceTextField = new JTextField();
+        raceTextField.setColumns(10);
+        raceTextField.putClientProperty("id", "race");
+        raceTextField.setEditable(false);
+        cons.gridx = pos;
+        cons.gridy = row;
+        cons.gridwidth = 6;
+        gridBag.setConstraints(raceTextField, cons);
+        this.add(raceTextField);
+        pos += cons.gridwidth;
+        cons.gridwidth = 1;
+
+        
+        
+        
         // Row 2
         row = 2;
         pos = 0;
@@ -494,6 +518,7 @@ public class BasicPanel extends JPanel {
             classComboBox.setSelectedItem(pc.getPcClass());
             // Row 1
             descriptionTextField.setText(pc.getDescription());
+            raceTextField.setText(pc.getRace());
             // Row 2
             comTextField.setText(Integer.toString(pc.getCombatDice()));
             magTextField.setText(Integer.toString(pc.getMagicDice()));
