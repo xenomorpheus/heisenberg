@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 //Use the GridBagConstraints to determine how the component
+import static org.junit.Assert.assertNotNull;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,23 +19,9 @@ public class BasicPanelTest {
     public void doTest() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
-        JFrame guiFrame = new JFrame();
-
-        // make sure the program exits when the frame closes
-        guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("Basic Panel");
-        guiFrame.setSize(800, 300);
-
-        // This will center the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-
         BasicPanel basicPanel = new BasicPanel();
+        assertNotNull("not Null", basicPanel);
         basicPanel.setItem(pc);
-
-        // add to JFrame
-        guiFrame.add(basicPanel);
-        guiFrame.setVisible(true);
-
     }
 
     public static void main(String[] args) {
@@ -44,8 +32,23 @@ public class BasicPanelTest {
             @Override
             public void run() {
                 try {
-                    BasicPanelTest basicPanelRun = new BasicPanelTest();
-                    basicPanelRun.doTest();
+                    PcRace pc = DummyData.elf();
+                    JFrame guiFrame = new JFrame();
+
+                    // make sure the program exits when the frame closes
+                    guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    guiFrame.setTitle("Basic Panel");
+                    guiFrame.setSize(800, 300);
+
+                    // This will center the JFrame in the middle of the screen
+                    guiFrame.setLocationRelativeTo(null);
+
+                    BasicPanel basicPanel = new BasicPanel();
+                    basicPanel.setItem(pc);
+
+                    // add to JFrame
+                    guiFrame.add(basicPanel);
+                    guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

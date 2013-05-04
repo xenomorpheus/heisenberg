@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,24 +18,9 @@ public class DescriptionPaneTest {
     public void doTest() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
-        JFrame guiFrame = new JFrame();
-
-        // make sure the program exits when the frame closes
-        guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("Description Pane");
-        guiFrame.setSize(800, 300);
-
-        // This will center the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-
         DescriptionPane window = new DescriptionPane();
+        assertNotNull("not Null", window);
         window.setItem(pc);
-        window.setVisible(true);
-
-        // add to JFrame
-        guiFrame.add(window);
-        guiFrame.setVisible(true);
-
     }
     
 
@@ -45,8 +32,24 @@ public class DescriptionPaneTest {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    DescriptionPaneTest descriptionPaneTest = new DescriptionPaneTest();
-                    descriptionPaneTest.doTest();
+                    PcRace pc = DummyData.elf();
+                    JFrame guiFrame = new JFrame();
+
+                    // make sure the program exits when the frame closes
+                    guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    guiFrame.setTitle("Description Pane");
+                    guiFrame.setSize(800, 300);
+
+                    // This will center the JFrame in the middle of the screen
+                    guiFrame.setLocationRelativeTo(null);
+
+                    DescriptionPane window = new DescriptionPane();
+                    window.setItem(pc);
+                    window.setVisible(true);
+
+                    // add to JFrame
+                    guiFrame.add(window);
+                    guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

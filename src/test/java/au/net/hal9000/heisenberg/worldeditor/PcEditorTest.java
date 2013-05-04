@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.awt.EventQueue;
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
@@ -12,8 +14,8 @@ public class PcEditorTest {
     public void doTest() throws ConfigurationError {
         PcRace pc = DummyData.elf();
         PcEditor window = new PcEditor();
+        assertNotNull("not Null", window);
         window.setPc(pc);
-        window.getFrame().setVisible(true);
     }
 
     /**
@@ -24,8 +26,10 @@ public class PcEditorTest {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    PcEditorTest pcEditorRun = new PcEditorTest();
-                    pcEditorRun.doTest();
+                    PcRace pc = DummyData.elf();
+                    PcEditor window = new PcEditor();
+                    window.setPc(pc);
+                    window.getFrame().setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

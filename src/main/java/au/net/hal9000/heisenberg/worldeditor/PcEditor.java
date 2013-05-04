@@ -112,7 +112,7 @@ public class PcEditor {
      * @param pcEditor
      * @param okButtonHandler
      * @param cancellButtonHandler
-     * @return
+     * @return The created JDialog
      */
 
     public static JDialog createDialog(JButton button, String windowTitle,
