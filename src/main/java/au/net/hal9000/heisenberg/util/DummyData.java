@@ -30,10 +30,15 @@ import au.net.hal9000.heisenberg.util.PcClass;
 
 public class DummyData {
     
-    
-    public static PcRace elf() throws ConfigurationError{
+    public static Configuration config() throws ConfigurationError{
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
+        return config;
+        
+    }
+    
+    public static PcRace elf() throws ConfigurationError{
+        Configuration config = config();
         TreeMap<String, PcClass> pcClasses = config.getPcClasses();
         PcRace pc = (PcRace) Factory.createItem("Elf");
         pc.setName("Jane");
