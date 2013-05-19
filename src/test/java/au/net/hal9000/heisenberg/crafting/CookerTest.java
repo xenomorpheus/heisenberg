@@ -56,7 +56,7 @@ public class CookerTest {
         assertEquals("location has new item", 1,
                 newItemLocation.getChildCount());
         // Check the item produced
-        Item item = newItemLocation.getChild(0);
+        Item item = newItemLocation.getChildAt(0);
         assertEquals("item type", "Cookie", item.getClass().getSimpleName());
 
         // Check the chef has paid in Mana and ActionPoints
@@ -154,7 +154,7 @@ public class CookerTest {
 
         // Does the location now contain a Cookie?
         assertEquals("1 item", 1, newItemLocation.getChildCount());
-        Item newItem = newItemLocation.getChild(0);
+        Item newItem = newItemLocation.getChildAt(0);
         assertEquals("item type", "Cookie", newItem.getClass().getSimpleName());
         assertEquals("new item location", newItemLocation,
                 newItem.getContainer());

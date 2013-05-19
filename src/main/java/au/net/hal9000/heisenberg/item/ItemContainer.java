@@ -134,7 +134,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      *            get child with with this index in list of items.
      * @return the item requested.
      */
-    public Item getChild(final int index) {
+    public Item getChildAt(final int index) {
         return contents.get(index);
     }
 

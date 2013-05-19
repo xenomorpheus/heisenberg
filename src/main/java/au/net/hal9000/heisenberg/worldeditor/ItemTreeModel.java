@@ -95,7 +95,7 @@ class ItemTreeModel implements TreeModel {
     // JTree displays these by calling the Item.toString() method.
     @Override
     public Object getChild(Object parent, int index) {
-        return ((ItemContainer) parent).getChild(index);
+        return ((ItemContainer) parent).getChildAt(index);
     }
 
     // Figure out a child's position in its parent node.

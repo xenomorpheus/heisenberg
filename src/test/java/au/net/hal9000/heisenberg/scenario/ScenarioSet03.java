@@ -78,7 +78,7 @@ public class ScenarioSet03 {
 
         // Check the item produced
         final int todo = 0; // TODO item number
-        Item item = location.getChild(todo);
+        Item item = location.getChildAt(todo);
         assertEquals("item type", "SmallGroundFire", item.getClass().getSimpleName());
 
         // Check the chef has paid in Mana and ActionPoints

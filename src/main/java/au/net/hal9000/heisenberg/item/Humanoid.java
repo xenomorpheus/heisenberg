@@ -154,7 +154,7 @@ public abstract class Humanoid extends PcRace {
 
     /** {@inheritDoc} */
     @Override
-    public Item getChild(int index) {
+    public Item getChildAt(int index) {
         // index is zero offset.
         // head
         if (index == 0) {
@@ -179,7 +179,7 @@ public abstract class Humanoid extends PcRace {
         }
 
         // Child is on super.
-        return super.getChild(index);
+        return super.getChildAt(index);
     }
 
     /** {@inheritDoc} */

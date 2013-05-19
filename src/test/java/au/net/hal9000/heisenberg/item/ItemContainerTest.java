@@ -169,15 +169,15 @@ public class ItemContainerTest {
     }
 
     @Test
-    public void testGetChild() {
+    public void testGetChildAt() {
         Bag bag = new Bag();
         Cookie cookie = new Cookie();
         Scabbard scabbard = new Scabbard();
         bag.add(cookie);
-        assertEquals("getChildCount", cookie, bag.getChild(0));
+        assertEquals("getChildCount", cookie, bag.getChildAt(0));
         bag.add(scabbard);
-        assertEquals("getChildCount", cookie, bag.getChild(0));
-        assertEquals("getChildCount", scabbard, bag.getChild(1));
+        assertEquals("getChildCount", cookie, bag.getChildAt(0));
+        assertEquals("getChildCount", scabbard, bag.getChildAt(1));
     }
 
     @Test
