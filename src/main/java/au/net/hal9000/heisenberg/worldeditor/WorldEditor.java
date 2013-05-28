@@ -21,7 +21,7 @@ import au.net.hal9000.heisenberg.util.DummyData;
 
 public class WorldEditor extends JFrame {
     /**
-     * 
+     * The main application window.  Shows a tree of the items in this world.
      */
     private static final long serialVersionUID = 1L;
     EntityManager entityManager = null;
