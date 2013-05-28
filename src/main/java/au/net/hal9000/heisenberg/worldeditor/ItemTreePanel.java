@@ -105,13 +105,13 @@ public class ItemTreePanel extends JPanel {
         add(scrollpane, BorderLayout.NORTH);
         add(addButtonPanel, BorderLayout.CENTER);
 
-        // TODO I can't remember what I was going to use these buttons for.
+/*        // TODO I can't remember what I was going to use these buttons for.
         // Buttons
         JPanel controlPanel = new JPanel();
         controlPanel.add(new JButton("Future"));
         controlPanel.add(new JButton("Expansion"));
         controlPanel.setVisible(true);
-        add(controlPanel, BorderLayout.SOUTH);    
+        add(controlPanel, BorderLayout.SOUTH);    */
     }
 
     public void setConfig(Configuration config) {
