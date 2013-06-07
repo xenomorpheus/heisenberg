@@ -8,14 +8,14 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class PcEditorTest {
+public class PcRaceEditorTest {
 
     @Test
     public void doTest() throws ConfigurationError {
         PcRace pc = DummyData.elf();
-        PcEditor window = new PcEditor();
+        PcRaceEditor window = new PcRaceEditor();
         assertNotNull("not Null", window);
-        window.setPc(pc);
+        window.setPcRace(pc);
     }
 
     /**
@@ -27,9 +27,9 @@ public class PcEditorTest {
             public void run() {
                 try {
                     PcRace pc = DummyData.elf();
-                    PcEditor window = new PcEditor();
-                    window.setPc(pc);
-                    window.getFrame().setVisible(true);
+                    PcRaceEditor window = new PcRaceEditor();
+                    window.setPcRace(pc);
+                    window.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }

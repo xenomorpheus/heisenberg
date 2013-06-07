@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.tree.TreeCellEditor;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTree;
 
@@ -25,26 +24,12 @@ public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
             .getName());
 
     Item currentItem;
-    JButton button;
-    PcEditor pcEditor;
+    PcRaceEditor pcRaceEditor;
     JDialog dialog;
     protected static final String EDIT = "edit";
 
     public ItemEditor() {
-        // Set up the editor (from the table's point of view),
-        // which is a button.
-        // This button brings up the color chooser dialog,
-        // which is the editor from the user's point of view.
-        button = new JButton();
-        button.setActionCommand(EDIT);
-        button.addActionListener(this);
-        button.setBorderPainted(false);
-
-        // Set up the dialog that the button brings up.
-        pcEditor = new PcEditor();
-        dialog = PcEditor.createDialog(button, "Edit the Pc", true, // modal
-                pcEditor, this, // OK button handler
-                null); // no CANCEL button handler
+        pcRaceEditor = new PcRaceEditor();
     }
 
     /**
@@ -57,7 +42,7 @@ public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
             // bring up the dialog.
             // button.setBackground(currentItem);
             if (currentItem instanceof PcRace) {
-                pcEditor.setPc((PcRace) currentItem);
+                pcRaceEditor.setPcRace((PcRace) currentItem);
                 dialog.setVisible(true);
 
                 // Make the renderer reappear.
@@ -68,7 +53,7 @@ public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
             }
 
         } else { // User pressed dialog's "OK" button.
-            currentItem = pcEditor.getPc();
+            currentItem = pcRaceEditor.getPcRace();
         }
     }
 
@@ -87,6 +72,14 @@ public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
     public Component getTreeCellEditorComponent(JTree tree, Object value,
             boolean isSelected, boolean expanded, boolean leaf, int row) {
         currentItem = (Item) value;
-        return button;
+        Component component = null;
+
+        if (currentItem instanceof PcRace) {
+            pcRaceEditor.setPcRace((PcRace) currentItem);
+            component = pcRaceEditor;
+        }
+
+        return component;
     }
+
 }

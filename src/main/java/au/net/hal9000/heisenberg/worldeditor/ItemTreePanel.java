@@ -10,6 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeCellEditor;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeCellEditor;
 import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.Factory;
@@ -20,7 +23,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 
 public class ItemTreePanel extends JPanel {
     /**
-     * 
+     * A window with hierarchical representation of the game objects.
      */
     private static final long serialVersionUID = 1L;
     Configuration config = null;
@@ -36,26 +39,21 @@ public class ItemTreePanel extends JPanel {
 
         setLocation(location);
         setConfig(config);
-        setLayout( new BorderLayout() );
+        setLayout(new BorderLayout());
 
         // Cell Editor
-        // String elements[] = { "A", "B", "C", "D" };
-        // JComboBox comboBox = new JComboBox(elements);
-        // comboBox.setEditable(true);
-        // TreeCellEditor comboEditor = new DefaultCellEditor(comboBox);
 
-        // TreeCellEditor itemEditor = new ItemEditor();
-
-        // DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree
-        // .getCellRenderer();
-        // TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree,
-        // renderer, itemEditor);
-        // m_tree.setCellEditor(cell_editor);
+        TreeCellEditor itemEditor = new ItemEditor();
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree
+                .getCellRenderer();
+        TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree,
+                renderer, itemEditor);
+        m_tree.setCellEditor(cell_editor);
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane();
         scrollpane.setViewportView(m_tree);
-        //scrollpane.setSize(400, 700);
+        // scrollpane.setSize(400, 700);
 
         // The "Add" Button Panel
         JPanel addButtonPanel = new JPanel();
@@ -99,19 +97,9 @@ public class ItemTreePanel extends JPanel {
         };
         addButton.addActionListener(buttonActionListener);
         addButtonPanel.add(addButton);
-        
-   
-        // setLayoutManager(new BorderLayout());
+
         add(scrollpane, BorderLayout.NORTH);
         add(addButtonPanel, BorderLayout.CENTER);
-
-/*        // TODO I can't remember what I was going to use these buttons for.
-        // Buttons
-        JPanel controlPanel = new JPanel();
-        controlPanel.add(new JButton("Future"));
-        controlPanel.add(new JButton("Expansion"));
-        controlPanel.setVisible(true);
-        add(controlPanel, BorderLayout.SOUTH);    */
     }
 
     public void setConfig(Configuration config) {
@@ -126,8 +114,5 @@ public class ItemTreePanel extends JPanel {
         m_tree.setModel(model);
         m_tree.setEditable(true);
         m_tree.setSelectionRow(0);
-
     }
-
-
 }

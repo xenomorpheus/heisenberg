@@ -4,17 +4,19 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import au.net.hal9000.heisenberg.item.PcRace;
 
-public class PcEditor {
+public class PcRaceEditor extends JFrame {
 
-    private JFrame frame;
-    private PcRace pc;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private PcRace pcRace;
 
     private BasicPanel basicPanel = new BasicPanel();
     private AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
@@ -25,18 +27,9 @@ public class PcEditor {
     /**
      * Create the application.
      */
-    public PcEditor() {
-        initialise();
-    }
-
-    /**
-     * Initialise the contents of the frame.
-     */
-    private void initialise() {
-
-        frame = new JFrame();
-        frame.setBounds(100, 100, 894, 634);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public PcRaceEditor() {
+        setBounds(100, 100, 894, 634);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Main container
         GridBagLayout gridBag = new GridBagLayout();
@@ -44,9 +37,9 @@ public class PcEditor {
         cons.fill = GridBagConstraints.BOTH;
         cons.ipady = 0;
         cons.ipadx = 0;
-        frame.setLayout(gridBag);
+        setLayout(gridBag);
 
-        // Tabbed Pane        
+        // Tabbed Pane
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.addTab("Basics", null, basicPanel, null);
         tabbedPane.addTab("Abilities", null, abilityScoresTable, null);
@@ -56,27 +49,16 @@ public class PcEditor {
         cons.gridx = 0;
         cons.gridy = 0;
         gridBag.setConstraints(tabbedPane, cons);
-        frame.add(tabbedPane);
-       
-        
-        // Buttons
+        add(tabbedPane);
+
+        // Button(s)
         JPanel butPanel = new JPanel();
-        butPanel.add(new JButton("Ok"));
-        butPanel.add(new JButton("Cancel"));
+        // TODO button perform action
+        butPanel.add(new JButton("Done"));
         cons.gridx = 0;
         cons.gridy = 1;
         gridBag.setConstraints(butPanel, cons);
-        frame.add(butPanel);
-
-    }
-
-    /**
-     * get the frame.
-     * 
-     * @return the frame.
-     */
-    public JFrame getFrame() {
-        return frame;
+        add(butPanel);
     }
 
     /**
@@ -85,8 +67,8 @@ public class PcEditor {
      * @return the PcClass object we are editing.
      */
 
-    public PcRace getPc() {
-        return pc;
+    public PcRace getPcRace() {
+        return pcRace;
     }
 
     /**
@@ -95,31 +77,13 @@ public class PcEditor {
      * @param pc
      *            the PcClass object we are editing.
      */
-    public void setPc(PcRace pc) {
-        this.pc = pc;
+    public void setPcRace(PcRace pc) {
+        this.pcRace = pc;
         basicPanel.setItem(pc);
         abilityScoresTable.setItem(pc);
         skillsTable.setItem(pc);
         recipesTable.setItem(pc);
         descriptionPane.setItem(pc);
-    }
-
-    /**
-     * 
-     * @param button
-     * @param windowTitle
-     * @param modal
-     * @param pcEditor
-     * @param okButtonHandler
-     * @param cancellButtonHandler
-     * @return The created JDialog
-     */
-
-    public static JDialog createDialog(JButton button, String windowTitle,
-            boolean modal, PcEditor pcEditor, ItemEditor okButtonHandler,
-            ItemEditor cancellButtonHandler) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

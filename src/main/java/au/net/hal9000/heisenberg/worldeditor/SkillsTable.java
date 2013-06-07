@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JTable;
@@ -48,11 +49,16 @@ public class SkillsTable extends JTable {
 
         String[] columnNames = { "Id", "Description" };
 
-        ArrayList<Skill> skills;
+        ArrayList<Skill> orderedSkills;
         TreeMap<String, SkillDetail> skillDetails;
 
         public MyTableModel(final PcRace pc) {
-            skills = new ArrayList<Skill>(pc.getSkills());
+            Set<Skill> pcSkills = pc.getSkills();
+            if (pcSkills == null) {
+                orderedSkills = new ArrayList<Skill>();
+            } else {
+                orderedSkills = new ArrayList<Skill>(pcSkills);
+            }
             skillDetails = config.getSkillDetails();
         }
 
@@ -61,7 +67,7 @@ public class SkillsTable extends JTable {
         }
 
         public int getRowCount() {
-            return skills.size();
+            return orderedSkills.size();
         }
 
         public int getColumnCount() {
@@ -69,7 +75,7 @@ public class SkillsTable extends JTable {
         }
 
         public Object getValueAt(int row, int col) {
-            Skill skillCell = skills.get(row);
+            Skill skillCell = orderedSkills.get(row);
             String skillId = skillCell.toString();
             String result = null;
             if (col == 0) {
