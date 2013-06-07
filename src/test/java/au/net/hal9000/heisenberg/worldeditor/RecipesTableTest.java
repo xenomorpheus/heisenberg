@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.EventQueue;
@@ -19,6 +20,13 @@ public class RecipesTableTest {
         RecipesTable basicPanel = new RecipesTable();
         basicPanel.setItem(pc);
         assertNotNull("BasicPanel not null", basicPanel);
+    }
+
+    @Test
+    public void testGetRowCount() {
+
+        RecipesTable recipesTable = new RecipesTable();
+        assertEquals(0, recipesTable.getRowCount());
     }
 
     public void doTest() throws ConfigurationError {

@@ -3,6 +3,9 @@ package au.net.hal9000.heisenberg.worldeditor;
 import static org.junit.Assert.assertNotNull;
 
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -27,8 +30,12 @@ public class PcRaceEditorTest {
             public void run() {
                 try {
                     PcRace pc = DummyData.elf();
-                    PcRaceEditor window = new PcRaceEditor();
-                    window.setPcRace(pc);
+                    PcRaceEditor editor = new PcRaceEditor();
+                    editor.setPcRace(pc);
+                    JFrame window = new JFrame();
+                    window.add(editor);
+                    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    window.pack();
                     window.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

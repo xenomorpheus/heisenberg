@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
@@ -14,6 +15,13 @@ public class AbilityScoresTableTest {
         AbilityScoresTable basicPanel = new AbilityScoresTable();
         basicPanel.setItem(pc);
         assertNotNull("BasicPanel not null", basicPanel);
+    }
+
+    @Test
+    public void testGetRowCount() {
+
+        AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+        assertEquals(0, abilityScoresTable.getRowCount());
     }
 
 }

@@ -71,7 +71,11 @@ public class RecipesTable extends JTable {
         }
 
         public int getRowCount() {
-            return recipeIds.size();
+            int count = 0;
+            if (recipeIds != null) {
+                count = recipeIds.size();
+            }
+            return count;
         }
 
         public int getColumnCount() {

@@ -22,17 +22,19 @@ public class AbilityScoresTable extends JTable {
 
     /**
      * Set the PcClass object to show values for.
-     * @param pc the PcClass object to show values for.
      * 
-     * Note we pass the PcClass rather than the values needed to do the display.
-     * We do this because the values to display may be changed by other tabs, and
-     * passing by pc allows a refresh of values.
+     * @param pc
+     *            the PcClass object to show values for.
+     * 
+     *            Note we pass the PcClass rather than the values needed to do
+     *            the display. We do this because the values to display may be
+     *            changed by other tabs, and passing by pc allows a refresh of
+     *            values.
      */
     public void setItem(final PcRace pc) {
         this.setModel(new MyTableModel(pc));
     }
 
-    
     private class MyTableModel extends AbstractTableModel {
         /**
          * 
@@ -56,7 +58,11 @@ public class AbilityScoresTable extends JTable {
         }
 
         public int getRowCount() {
-            return pcAbilityScores.size();
+            int count = 0;
+            if (pcAbilityScores != null) {
+                count = pcAbilityScores.size();
+            }
+            return count;
         }
 
         public int getColumnCount() {
@@ -81,6 +87,5 @@ public class AbilityScoresTable extends JTable {
             fireTableCellUpdated(row, col);
         }
     }
-    
-    
+
 }

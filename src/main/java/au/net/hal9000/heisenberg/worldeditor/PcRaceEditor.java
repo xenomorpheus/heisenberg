@@ -4,13 +4,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import au.net.hal9000.heisenberg.item.PcRace;
 
-public class PcRaceEditor extends JFrame {
+public class PcRaceEditor extends JPanel {
 
     /**
      * 
@@ -29,7 +28,6 @@ public class PcRaceEditor extends JFrame {
      */
     public PcRaceEditor() {
         setBounds(100, 100, 894, 634);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Main container
         GridBagLayout gridBag = new GridBagLayout();
