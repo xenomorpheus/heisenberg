@@ -3,16 +3,13 @@ package au.net.hal9000.heisenberg.worldeditor;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellEditor;
 import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.Factory;
@@ -29,9 +26,10 @@ public class ItemTreePanel extends JPanel {
     Configuration config = null;
     Location location = null;
 
-    // Create a TreeModel object to represent our m_tree of files
-    ItemTreeModel model = null;
-    JTree m_tree = new JTree();
+    // Create a TreeModel object to represent our tree of Item objects
+    // at the specified location.
+    ItemTreeModel treeModel = null;
+    JTree tree = new JTree();
     JComboBox itemClassesList = null;
 
     // TODO - constructor without setting config.
@@ -41,26 +39,19 @@ public class ItemTreePanel extends JPanel {
         setConfig(config);
         setLayout(new BorderLayout());
 
-        // Cell Editor
-
-        TreeCellEditor itemEditor = new ItemEditor();
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) m_tree
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree
                 .getCellRenderer();
-        TreeCellEditor cell_editor = new DefaultTreeCellEditor(m_tree,
-                renderer, itemEditor);
-        m_tree.setCellEditor(cell_editor);
+        tree.setCellRenderer(renderer);
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane();
-        scrollpane.setViewportView(m_tree);
-        // scrollpane.setSize(400, 700);
+        scrollpane.setViewportView(tree);
 
         // The "Add" Button Panel
         JPanel addButtonPanel = new JPanel();
 
-        // A JComboBox of Items we can add
-        Vector<String> itemClasses = config.getItemClasses();
-        itemClassesList = new JComboBox(itemClasses.toArray());
+        // A JComboBox of Item types we can add
+        itemClassesList = new JComboBox(config.getItemClasses().toArray());
         addButtonPanel.add(itemClassesList);
 
         // The "Add" Button
@@ -73,7 +64,7 @@ public class ItemTreePanel extends JPanel {
                 // TODO get from event. How?
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
-                    Item selNode = (Item) m_tree.getLastSelectedPathComponent();
+                    Item selNode = (Item) tree.getLastSelectedPathComponent();
                     if ((selNode != null) && !selNode.isLeaf()) {
                         ItemContainer selContainer = (ItemContainer) selNode;
                         // Add the desired item.
@@ -83,14 +74,14 @@ public class ItemTreePanel extends JPanel {
                         String itemClass = itemClassesList.getSelectedItem()
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
-                        model.insertNodeInto(newNode, selContainer,
+                        treeModel.insertNodeInto(newNode, selContainer,
                                 selContainer.getChildCount());
-                        Item[] nodes = model.getPathToRoot(newNode);
+                        Item[] nodes = treeModel.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
                         System.out.println("DEBUG: path is " + path);
-                        m_tree.scrollPathToVisible(path);
-                        m_tree.setSelectionPath(path);
-                        m_tree.startEditingAtPath(path);
+                        tree.scrollPathToVisible(path);
+                        tree.setSelectionPath(path);
+                        tree.startEditingAtPath(path);
                     }
                 }
             }
@@ -109,10 +100,11 @@ public class ItemTreePanel extends JPanel {
     public void setLocation(Location location) {
         this.location = location;
         // Create a TreeModel object to represent our m_tree of files
-        model = new ItemTreeModel(location);
+        treeModel = new ItemTreeModel(location);
         // Create a JTree and tell it to display our model
-        m_tree.setModel(model);
-        m_tree.setEditable(true);
-        m_tree.setSelectionRow(0);
+        tree.setModel(treeModel);
+        tree.setEditable(true);
+        tree.setSelectionRow(0);
     }
+
 }
