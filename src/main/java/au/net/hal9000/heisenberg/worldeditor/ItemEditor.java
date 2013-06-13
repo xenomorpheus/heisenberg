@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 public class ItemEditor extends AbstractCellEditor implements TreeCellEditor,
         ActionListener {
     /**
-     * 
+     * Choose the correct editor for the Item.
      */
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(ItemEditor.class
