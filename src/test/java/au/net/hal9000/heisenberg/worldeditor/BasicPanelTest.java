@@ -3,9 +3,8 @@ package au.net.hal9000.heisenberg.worldeditor;
 //Use the GridBagConstraints to determine how the component
 import static org.junit.Assert.assertNotNull;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import org.junit.Test;
 
@@ -27,7 +26,7 @@ public class BasicPanelTest {
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components
-        EventQueue.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {

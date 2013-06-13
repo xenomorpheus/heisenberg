@@ -3,9 +3,8 @@ package au.net.hal9000.heisenberg.worldeditor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
@@ -54,7 +53,7 @@ public class RecipesTableTest {
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components
-        EventQueue.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
