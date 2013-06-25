@@ -7,7 +7,6 @@ import java.util.TreeSet;
 import java.util.Properties;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
@@ -15,6 +14,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class PcRace extends Entity {
@@ -69,11 +69,10 @@ public abstract class PcRace extends Entity {
      */
     private Set<Skill> skills;
 
-    private static ClassLoader cl = PcRace.class.getClassLoader();
-    private static Icon openIcon = new ImageIcon(cl.getResource("images/icon/S_Buff05.png"));        
-    private static Icon closedIcon = openIcon; 
-    private static Icon leafIcon = openIcon;     
-    
+    private static Icon openIcon = ItemIcon.get("images/icon/S_Buff05.png");
+    private static Icon closedIcon = openIcon;
+    private static Icon leafIcon = openIcon;
+
     // Constructors
 
     public PcRace(String pName) {
