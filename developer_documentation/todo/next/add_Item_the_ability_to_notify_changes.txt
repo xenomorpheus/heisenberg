@@ -1,0 +1,7 @@
+Aim:
+Classes can register themselves as listeners and be notified when an item changes.
+
+Notes:
+Gang of Four - Observer Pattern.
+Watcher classes.
+Listener classes.
