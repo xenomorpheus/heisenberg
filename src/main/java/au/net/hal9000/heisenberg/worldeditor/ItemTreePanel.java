@@ -9,7 +9,6 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.Factory;
@@ -39,9 +38,7 @@ public class ItemTreePanel extends JPanel {
         setConfig(config);
         setLayout(new BorderLayout());
 
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree
-                .getCellRenderer();
-        tree.setCellRenderer(renderer);
+        tree.setCellRenderer(new ItemTreeCellRenderer());
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane();

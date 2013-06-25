@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Column;
+import javax.swing.Icon;
 
 import org.apache.log4j.Logger;
 
@@ -61,9 +62,11 @@ import au.net.hal9000.heisenberg.units.*;
 public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger  logger = Logger.getLogger(Item.class.getName());
+    private static final Logger logger = Logger.getLogger(Item.class.getName());
     private static String packageName = Factory.class.getPackage().getName();
-
+    private static Icon openIcon = null;
+    private static Icon closedIcon = null;
+    private static Icon leafIcon = null;
 
     // Initialise as many values as possible.
     /**
@@ -431,18 +434,19 @@ public abstract class Item implements Serializable {
 
     /**
      * Chage the position of the item within the ItemContainer.
-     * @param expectedPosition the hoped for position.
      * 
-     * Note: The request can fail or partially compete.
-     * E.g Can't pass through walls.
+     * @param expectedPosition
+     *            the hoped for position.
+     * 
+     *            Note: The request can fail or partially compete. E.g Can't
+     *            pass through walls.
      */
     public void move(Point3d expectedPosition) {
         // TODO It is the container's job to move the item
-        if (container == null){
+        if (container == null) {
             logger.error("No ItemConainer - Can't move");
-        }
-        else{
-            container.moveItem(this,expectedPosition);
+        } else {
+            container.moveItem(this, expectedPosition);
         }
     }
 
@@ -546,12 +550,13 @@ public abstract class Item implements Serializable {
         }
         return false;
     }
-    
+
     /**
      * Some text that describes the properties of this object.
+     * 
      * @return the detailed description.
      */
-    // TODO complete.  StringBuilder.
+    // TODO complete. StringBuilder.
     public String getDetailedDescription() {
         String full_desc;
         final String desc = getDescription();
@@ -567,8 +572,7 @@ public abstract class Item implements Serializable {
         }
         return full_desc;
     }
-    
-    
+
     /**
      * Shallow copy properties from one object to another.
      * 
@@ -586,4 +590,30 @@ public abstract class Item implements Serializable {
         setPosition(item.getPosition());
     }
 
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getOpenIcon() {
+        return openIcon;
+    }
+
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getClosedIcon() {
+        return closedIcon;
+    }
+
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getLeafIcon() {
+        return leafIcon;
+    }
 }

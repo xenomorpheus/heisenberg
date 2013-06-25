@@ -6,6 +6,9 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Properties;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -66,6 +69,11 @@ public abstract class PcRace extends Entity {
      */
     private Set<Skill> skills;
 
+    private static ClassLoader cl = PcRace.class.getClassLoader();
+    private static Icon openIcon = new ImageIcon(cl.getResource("images/icon/S_Buff05.png"));        
+    private static Icon closedIcon = openIcon; 
+    private static Icon leafIcon = openIcon;     
+    
     // Constructors
 
     public PcRace(String pName) {
@@ -579,4 +587,21 @@ public abstract class PcRace extends Entity {
         return cooker;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public Icon getOpenIcon() {
+        return openIcon;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Icon getClosedIcon() {
+        return closedIcon;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Icon getLeafIcon() {
+        return leafIcon;
+    }
 }
