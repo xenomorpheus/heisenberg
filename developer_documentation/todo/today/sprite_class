@@ -1,0 +1,22 @@
+BufferedImage bigImg = ImageIO.read(new File("sheet.png"));
+// The above line throws an checked IOException which must be caught.
+
+final int width = 10;
+final int height = 10;
+final int rows = 5;
+final int cols = 5;
+BufferedImage[] sprites = new BufferedImage[rows * cols];
+
+for (int i = 0; i < rows; i++)
+{
+    for (int j = 0; j < cols; j++)
+    {
+        sprites[(i * cols) + j] = bigImg.getSubimage(
+            j * width,
+            i * height,
+            width,
+            height
+        );
+    }
+}
+
