@@ -9,15 +9,19 @@ import java.awt.event.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.SpritePack;
 
 public class WorldEditor extends JFrame {
     /**
@@ -28,15 +32,29 @@ public class WorldEditor extends JFrame {
     Location location = null;
     ItemTreePanel itemTreePanel = null;
 
+    /**
+     * Constructor
+     * @throws ConfigurationError
+     */
     public WorldEditor() throws ConfigurationError {
+        
+        // Persistence
         final String PERSISTENCE_UNIT_NAME = "items";
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = factory.createEntityManager();
+        
+        // Config
         Configuration config = DummyData.config();
 
+        // Icons
+        SpritePack sp = new SpritePack();
+        sp.init("images/icon/IconSet-01.png", 24, 24, 33, 16); // TODO config
+        Arrow.setIconOpenDefault(new ImageIcon(sp.getSprite(23))); // TODO config
+        PcRace.setIconOpenDefault(new ImageIcon(sp.getSprite(126))); // TODO config
+        
+        
         // Main Frame
-
         setSize(400, 600);
 
         // This will center the JFrame in the middle of the screen

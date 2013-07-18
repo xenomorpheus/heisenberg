@@ -14,10 +14,11 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class PcRace extends Entity {
+
+    private static Icon iconOpen = null;
 
     /**
 	 * 
@@ -69,14 +70,13 @@ public abstract class PcRace extends Entity {
      */
     private Set<Skill> skills;
 
-    private static Icon openIcon = ItemIcon.get("images/icon/S_Buff05.png");
-    private static Icon closedIcon = openIcon;
-    private static Icon leafIcon = openIcon;
-
     // Constructors
 
     public PcRace(String pName) {
         this(pName, "");
+        setIconOpen(iconOpen);
+        setIconClosed(iconOpen);
+        setIconLeaf(iconOpen);
     }
 
     public PcRace(String string, String description) {
@@ -586,21 +586,4 @@ public abstract class PcRace extends Entity {
         return cooker;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Icon getOpenIcon() {
-        return openIcon;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Icon getClosedIcon() {
-        return closedIcon;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Icon getLeafIcon() {
-        return leafIcon;
-    }
 }

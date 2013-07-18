@@ -53,10 +53,7 @@ import au.net.hal9000.heisenberg.units.*;
  * @author bruins
  *
  */
-/**
- * @author bruins
- * 
- */
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item implements Serializable {
@@ -64,9 +61,8 @@ public abstract class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(Item.class.getName());
     private static String packageName = Factory.class.getPackage().getName();
-    private static Icon openIcon = null;
-    private static Icon closedIcon = null;
-    private static Icon leafIcon = null;
+    /** the icon to show when open **/
+    private static Icon iconOpenDefault = null;
 
     // Initialise as many values as possible.
     /**
@@ -84,17 +80,20 @@ public abstract class Item implements Serializable {
     @Column(name = "jpaid", nullable = false)
     @GeneratedValue
     private long jpaId;
-    private Properties properties = new Properties();
-    private float weightBase = 0;
-    private float volumeBase = 0;
-    private Currency valueBase = new Currency();
-    private String name = null;
-    private String description = null;
     private ItemContainer container = null;
+    private String description = null;
     private float hitPoints = 0F;
-    /** Who owns this item. null means no-one. */
+    private Icon iconClosed = null;
+    private Icon iconOpen = null;
+    private Icon iconLeaf = null;
+    private String name = null;
     private Item owner = null;
+    /** Who owns this item. null means no-one. */
     private Point3d position = null;
+    private Properties properties = new Properties();
+    private Currency valueBase = new Currency();
+    private float volumeBase = 0;
+    private float weightBase = 0;
 
     // Constructors
     public Item() {
@@ -115,8 +114,26 @@ public abstract class Item implements Serializable {
         this.description = pDescription;
     }
 
-    // Getters and Setters
+    // Getters and Setters - Statics
+    /**
+     * get the default Icon for this class when show in the UI.
+     * 
+     * @return
+     */
+    public static Icon getIconOpenDefault() {
+        return iconOpenDefault;
+    }
 
+    /**
+     * Set the default Icon for this class when shown in UI.
+     * 
+     * @param iconOpenDefault
+     */
+    public static void setIconOpenDefault(Icon iconOpenDefault) {
+        Item.iconOpenDefault = iconOpenDefault;
+    }
+
+    // Getters and Setters - Instance
     /**
      * get the Table ID of the item.<br>
      * JPA requires a primary key.
@@ -157,6 +174,151 @@ public abstract class Item implements Serializable {
      */
     public void setId(final UUID pId) {
         this.id = pId;
+    }
+
+    /**
+     * Get the current container.
+     * 
+     * @return the current container {@link ItemContainer}.
+     */
+    public ItemContainer getContainer() {
+        return this.container;
+    }
+
+    /**
+     * Set the current container.
+     * 
+     * @param container
+     *            the new container {@link ItemContainer}.
+     */
+    public void setContainer(ItemContainer container) {
+        this.container = container;
+    }
+
+    /**
+     * Get the description
+     * 
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set the description
+     * 
+     * @param pDescription
+     *            the description
+     */
+    public void setDescription(final String pDescription) {
+        this.description = pDescription;
+    }
+
+    /**
+     * @return the structural integrity / health.
+     */
+    public float getHitPoints() {
+        return hitPoints;
+    }
+
+    /**
+     * @param hitPoints
+     *            the structural indegrity / health.
+     */
+    public void setHitPoints(float hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getIconClosed() {
+        return iconClosed;
+    }
+
+    /**
+     * Set the Icon to draw when displaying this Item in the tree view.
+     */
+    public void setIconClosed(Icon iconClosed) {
+        this.iconClosed = iconClosed;
+    }
+
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getIconOpen() {
+        return iconOpen;
+    }
+
+    /**
+     * Set the Icon to draw when displaying this Item in the tree view.
+     */
+    public void setIconOpen(Icon iconOpen) {
+        this.iconOpen = iconOpen;
+    }
+
+    /**
+     * Return the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @return the Icon.
+     */
+    public Icon getIconLeaf() {
+        return iconLeaf;
+    }
+
+    /**
+     * Set the Icon to draw when displaying this Item in the tree view.
+     */
+    public void setIconLeaf(Icon iconLeaf) {
+        this.iconLeaf = iconLeaf;
+    }
+
+    /**
+     * get the name of the item.
+     * 
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set the name
+     * 
+     * @param pName
+     *            the name to set
+     */
+    public void setName(final String pName) {
+        this.name = pName;
+    }
+
+    /** @return The owner of this item */
+    public Item getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner
+     *            set the owner of this item
+     */
+    public void setOwner(Item owner) {
+        this.owner = (Item) owner;
+    }
+
+    /**
+     * 
+     * @return return the position.
+     */
+    public Point3d getPosition() {
+        return position;
+    }
+
+    public void setPosition(Point3d position) {
+        this.position = position;
     }
 
     // property related
@@ -211,31 +373,34 @@ public abstract class Item implements Serializable {
         properties.remove(key);
     }
 
-    // weight related
-
+    // value related
     /**
-     * The total weight. For simple items the weight is the weightBase. Will be
-     * overridden by collections.
+     * value before addition of other items such as those carried.
      * 
-     * @return the total weight
+     * @return The value before any contained items.
      */
-    public float getWeight() {
-        return weightBase;
+    public Currency getValueBase() {
+        return valueBase;
     }
 
     /**
-     * @return weight before addition of other items such as those carried
+     * For simple items the value is the valueBase. Will be overridden by
+     * collections
+     * 
+     * @return the total value including contained items.
      */
-    public float getWeightBase() {
-        return weightBase;
+    public Currency getValue() {
+        return valueBase;
     }
 
     /**
-     * @param baseWeight
-     *            weight before addition of other items such as those carried.
+     * value before addition of other items such as those carried.
+     * 
+     * @param pValueBase
+     *            The value before any contained items.
      */
-    public void setWeightBase(final float baseWeight) {
-        this.weightBase = baseWeight;
+    public void setValueBase(final Currency pValueBase) {
+        this.valueBase = pValueBase;
     }
 
     // volume related
@@ -269,132 +434,55 @@ public abstract class Item implements Serializable {
         this.volumeBase = volumeBase;
     }
 
+    // weight related
+
     /**
-     * value before addition of other items such as those carried.
+     * The total weight. For simple items the weight is the weightBase. Will be
+     * overridden by collections.
      * 
-     * @return The value before any contained items.
+     * @return the total weight
      */
-    public Currency getValueBase() {
-        return valueBase;
+    public float getWeight() {
+        return weightBase;
     }
 
     /**
-     * For simple items the value is the valueBase. Will be overridden by
-     * collections
-     * 
-     * @return the total value including contained items.
+     * @return weight before addition of other items such as those carried
      */
-    public Currency getValue() {
-        return valueBase;
+    public float getWeightBase() {
+        return weightBase;
     }
 
     /**
-     * value before addition of other items such as those carried.
-     * 
-     * @param pValueBase
-     *            The value before any contained items.
+     * @param baseWeight
+     *            weight before addition of other items such as those carried.
      */
-    public void setValueBase(final Currency pValueBase) {
-        this.valueBase = pValueBase;
+    public void setWeightBase(final float baseWeight) {
+        this.weightBase = baseWeight;
     }
 
-    /**
-     * Get the current container.
-     * 
-     * @return the current container {@link ItemContainer}.
-     */
-    public ItemContainer getContainer() {
-        return this.container;
-    }
-
-    /**
-     * Set the current container.
-     * 
-     * @param container
-     *            the new container {@link ItemContainer}.
-     */
-    public void setContainer(ItemContainer container) {
-        this.container = container;
-    }
-
-    /**
-     * @return the structural integrity / health.
-     */
-    public float getHitPoints() {
-        return hitPoints;
-    }
-
-    /**
-     * @param hitPoints
-     *            the structural indegrity / health.
-     */
-    public void setHitPoints(float hitPoints) {
-        this.hitPoints = hitPoints;
-    }
-
-    /** @return The owner of this item */
-    public Item getOwner() {
-        return owner;
-    }
-
-    /**
-     * @param owner
-     *            set the owner of this item
-     */
-    public void setOwner(Item owner) {
-        this.owner = (Item) owner;
-    }
-
-    /**
-     * 
-     * @return return the position.
-     */
-    public Point3d getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point3d position) {
-        this.position = position;
-    }
-
+    /* End of Setters and Getters */
     // misc methods
 
     /**
-     * get the name of the item.
+     * Shallow copy properties from one object to another.
      * 
-     * @return the name
+     * @param item
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Set the name
-     * 
-     * @param pName
-     *            the name to set
-     */
-    public void setName(final String pName) {
-        this.name = pName;
-    }
-
-    /**
-     * Get the description
-     * 
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Set the description
-     * 
-     * @param pDescription
-     *            the description
-     */
-    public void setDescription(final String pDescription) {
-        this.description = pDescription;
+    public void setAllFrom(Item item) {
+        setContainer(item.getContainer());
+        setDescription(item.getDescription());
+        setHitPoints(item.getHitPoints());
+        setIconOpen(item.getIconOpen());
+        setIconClosed(item.getIconClosed());
+        setIconLeaf(item.getIconLeaf());
+        setName(item.getName());
+        setOwner(item.getOwner());
+        setPosition(item.getPosition());
+        setProperties(item.getProperties());
+        setValueBase(item.getValueBase());
+        setVolumeBase(item.getVolumeBase());
+        setWeightBase(item.getWeightBase());
     }
 
     /**
@@ -571,49 +659,5 @@ public abstract class Item implements Serializable {
             full_desc = this.getClass().getSimpleName();
         }
         return full_desc;
-    }
-
-    /**
-     * Shallow copy properties from one object to another.
-     * 
-     * @param item
-     */
-    public void setAllFrom(Item item) {
-        setName(item.getName());
-        setDescription(item.getDescription());
-        setWeightBase(item.getWeightBase());
-        setVolumeBase(item.getVolumeBase());
-        setValueBase(item.getValueBase());
-        setContainer(item.getContainer());
-        setHitPoints(item.getHitPoints());
-        setOwner(item.getOwner());
-        setPosition(item.getPosition());
-    }
-
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @return the Icon.
-     */
-    public Icon getOpenIcon() {
-        return openIcon;
-    }
-
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @return the Icon.
-     */
-    public Icon getClosedIcon() {
-        return closedIcon;
-    }
-
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @return the Icon.
-     */
-    public Icon getLeafIcon() {
-        return leafIcon;
     }
 }

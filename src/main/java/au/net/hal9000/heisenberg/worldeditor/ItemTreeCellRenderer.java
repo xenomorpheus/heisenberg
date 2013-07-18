@@ -23,9 +23,9 @@ public class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
         if (value instanceof Item) {
             Item item = (Item) value;
-            setOpenIcon(item.getOpenIcon());
-            setClosedIcon(item.getClosedIcon());
-            setLeafIcon(item.getLeafIcon());
+            setOpenIcon(item.getIconOpen());
+            setClosedIcon(item.getIconClosed());
+            setLeafIcon(item.getIconLeaf());
         }
         else {
             setOpenIcon(getDefaultOpenIcon());
