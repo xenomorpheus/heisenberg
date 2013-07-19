@@ -61,8 +61,9 @@ public abstract class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(Item.class.getName());
     private static String packageName = Factory.class.getPackage().getName();
-    /** the icon to show when open **/
-    private static Icon iconOpenDefault = null;
+    /** For each class of Item, the icon to show when open **/
+    // TODO Consider moving out into own class.
+    private static TreeMap <String,Icon> iconOpenDefault = new TreeMap <String,Icon>();
 
     // Initialise as many values as possible.
     /**
@@ -81,18 +82,29 @@ public abstract class Item implements Serializable {
     @GeneratedValue
     private long jpaId;
     private ItemContainer container = null;
+    /** A short description of the item **/
     private String description = null;
+    /** The remaining structural integrity of this item **/
     private float hitPoints = 0F;
+    /** If this item is a container and shown in the UI in tree view, then this is the icon to show when open **/
     private Icon iconClosed = null;
+    /** If this item is a container and shown in the UI in tree view, then this is the icon to show when closed **/
     private Icon iconOpen = null;
+    /** If this item is NOT a container and shown in the UI in tree view, then this is the icon to show **/
     private Icon iconLeaf = null;
+    /** The name of this item **/
     private String name = null;
-    private Item owner = null;
     /** Who owns this item. null means no-one. */
+    private Item owner = null;
+    /** The position within the container **/
     private Point3d position = null;
+    /** Misc properties about this item that don't deserve their own setters and getters **/
     private Properties properties = new Properties();
+    /** The value (in Currency), excludes contents if this is a container **/
     private Currency valueBase = new Currency();
+    /** The volume, excludes contents if this is a container **/
     private float volumeBase = 0;
+    /** The weight, excludes contencts if this is a container **/
     private float weightBase = 0;
 
     // Constructors
@@ -112,25 +124,6 @@ public abstract class Item implements Serializable {
     public Item(final String pName, final String pDescription) {
         this(pName);
         this.description = pDescription;
-    }
-
-    // Getters and Setters - Statics
-    /**
-     * get the default Icon for this class when show in the UI.
-     * 
-     * @return
-     */
-    public static Icon getIconOpenDefault() {
-        return iconOpenDefault;
-    }
-
-    /**
-     * Set the default Icon for this class when shown in UI.
-     * 
-     * @param iconOpenDefault
-     */
-    public static void setIconOpenDefault(Icon iconOpenDefault) {
-        Item.iconOpenDefault = iconOpenDefault;
     }
 
     // Getters and Setters - Instance
