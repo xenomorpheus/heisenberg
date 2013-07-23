@@ -1,3 +1,7 @@
+2013-07-15
+Added the Sprite class to hold Sheets of sprites, e.g. 
+An image for each Item class.
+
 2013-06-26
 Added Icons to the Tree View in the World Editor UI.
 
