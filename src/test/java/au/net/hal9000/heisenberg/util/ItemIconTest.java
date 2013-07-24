@@ -7,7 +7,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Sword;
 
 /**
  * @author bruins
@@ -21,6 +23,10 @@ public class ItemIconTest {
         ItemIcon.setIcon(config);
         Human human = new Human();
         assertNotNull(human.getIconOpen());
+        Arrow arrow = new Arrow();
+        assertNotNull(arrow.getIconOpen());
+        Sword sword = new Sword();
+        assertNull(sword.getIconOpen());
     }
 
 }
