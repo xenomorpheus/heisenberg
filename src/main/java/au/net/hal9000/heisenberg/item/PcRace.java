@@ -6,8 +6,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Properties;
 
-import javax.swing.Icon;
-
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -17,8 +15,6 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class PcRace extends Entity {
-
-    private static Icon iconOpen = null;
 
     /**
 	 * 
@@ -74,9 +70,6 @@ public abstract class PcRace extends Entity {
 
     public PcRace(String pName) {
         this(pName, "");
-        setIconOpen(iconOpen);
-        setIconClosed(iconOpen);
-        setIconLeaf(iconOpen);
     }
 
     public PcRace(String string, String description) {

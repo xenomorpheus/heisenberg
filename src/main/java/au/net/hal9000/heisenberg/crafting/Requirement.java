@@ -2,7 +2,8 @@ package au.net.hal9000.heisenberg.crafting;
 
 /**
  * 
- * An Requirement object hold details about a requirement for a Recipe objects.
+ * This is an abstract class.<br>
+ * Requirement objects hold details about a requirement for a Recipe objects.<br>
  * A Recipe may have any number of Requirement objects.
  * 
  * e.g.

@@ -29,4 +29,11 @@ public class CookieTest {
         assertTrue("is humanoid food", ItemProperty.isHumanoidFood(cookie));
     }
 
+    @Test
+    public void testGetSimpleClassName() {
+        Cookie cookie = new Cookie();
+        assertEquals("getSimpleClassName", "Cookie",
+                cookie.getSimpleClassName());
+    }
+
 }

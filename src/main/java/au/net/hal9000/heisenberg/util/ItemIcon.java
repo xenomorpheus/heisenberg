@@ -1,7 +1,9 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.util.Vector;
+
 import javax.swing.ImageIcon;
+
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
@@ -28,6 +30,7 @@ public class ItemIcon {
         for (ItemClassConfiguration itemClassConfiguration : itemClassConfigurations) {
             int iconOpenId = itemClassConfiguration.getIconOpenId();
             if (iconOpenId != 0) {
+                System.out.println("Name="+itemClassConfiguration.getId()+", icon id="+iconOpenId );
                 Item.setIconOpenDefaultForClass(itemClassConfiguration.getId(),
                         new ImageIcon(spritePack.getSprite(iconOpenId)));
             }

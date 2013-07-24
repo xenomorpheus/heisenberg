@@ -26,7 +26,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
-
 /*
  * Item:
  *
@@ -55,7 +54,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  */
 /**
  * @author bruins
- *
+ * 
  */
 
 @Entity
@@ -67,7 +66,7 @@ public abstract class Item implements Serializable {
     private static String packageName = Factory.class.getPackage().getName();
     /** For each class of Item, the icon to show when open **/
     // TODO Consider moving out into own class.
-    private static TreeMap <String,Icon> iconOpenDefault = new TreeMap <String,Icon>();
+    private static TreeMap<String, Icon> iconOpenDefaultForClass = new TreeMap<String, Icon>();
 
     // Initialise as many values as possible.
     /**
@@ -90,11 +89,20 @@ public abstract class Item implements Serializable {
     private String description = null;
     /** The remaining structural integrity of this item **/
     private float hitPoints = 0F;
-    /** If this item is a container and shown in the UI in tree view, then this is the icon to show when open **/
+    /**
+     * If this item is a container and shown in the UI in tree view, then this
+     * is the icon to show when open
+     **/
     private Icon iconClosed = null;
-    /** If this item is a container and shown in the UI in tree view, then this is the icon to show when closed **/
+    /**
+     * If this item is a container and shown in the UI in tree view, then this
+     * is the icon to show when closed
+     **/
     private Icon iconOpen = null;
-    /** If this item is NOT a container and shown in the UI in tree view, then this is the icon to show **/
+    /**
+     * If this item is NOT a container and shown in the UI in tree view, then
+     * this is the icon to show
+     **/
     private Icon iconLeaf = null;
     /** The name of this item **/
     private String name = null;
@@ -102,7 +110,10 @@ public abstract class Item implements Serializable {
     private Item owner = null;
     /** The position within the container **/
     private Point3d position = null;
-    /** Misc properties about this item that don't deserve their own setters and getters **/
+    /**
+     * Misc properties about this item that don't deserve their own setters and
+     * getters
+     **/
     private Properties properties = new Properties();
     /** The value (in Currency), excludes contents if this is a container **/
     private Currency valueBase = new Currency();
@@ -118,6 +129,7 @@ public abstract class Item implements Serializable {
         ItemProperty.setClothing(this, false);
         ItemProperty.setLiving(this, false);
         ItemProperty.setHumanoidFood(this, false);
+        setIconOpen(getIconOpenDefault());
     }
 
     public Item(final String pName) {
@@ -653,13 +665,43 @@ public abstract class Item implements Serializable {
         } else if ((name != null) && (name.length() > 0)) {
             full_desc = name;
         } else {
-            full_desc = this.getClass().getSimpleName();
+            full_desc = getSimpleClassName();
         }
         return full_desc;
     }
 
-    public static void setIconOpenDefaultForClass(
-            String itemType, ImageIcon imageIcon) {
-        iconOpenDefault.put(itemType, imageIcon);        
+    /**
+     * Returns the simple type of this item e.g. Cookie, Arrow, etc.
+     * 
+     * @return the simple type of this item e.g. Cookie, Arrow, etc.
+     */
+    public String getSimpleClassName() {
+        return getClass().getSimpleName();
     }
+
+    /**
+     * For this Item type, get the default Icon to show when this item is open.
+     * 
+     * @return The Icon.
+     */
+    public Icon getIconOpenDefault() {
+        return getIconOpenDefaultForClass(getSimpleClassName());
+    }
+
+    // TODO consider refeactoring out into a different class
+    public static void setIconOpenDefaultForClass(String simpleClassName,
+            ImageIcon imageIcon) {
+        iconOpenDefaultForClass.put(simpleClassName, imageIcon);
+    }
+
+    // TODO consider refeactoring out into a different class
+    public static Icon getIconOpenDefaultForClass(String simpleClassName) {
+        return iconOpenDefaultForClass.get(simpleClassName);
+    }
+
+    // TODO consider refeactoring out into a different class
+    public static void clearIconOpenDefaultForClass() {
+        iconOpenDefaultForClass.clear();
+    }
+
 }

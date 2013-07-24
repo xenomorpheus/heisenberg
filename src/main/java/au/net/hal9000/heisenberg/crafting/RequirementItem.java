@@ -3,8 +3,8 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
- * As much as possible consider this object immutable. The Setters are here only
- * for JPA.
+ * As much as possible consider this object immutable. 
+ * The Setters are here only for JPA.
  * 
  * A Recipe may required any number of Item objects. There will be exactly one
  * RequirementItem object for each required Item. In addition for the noting the
