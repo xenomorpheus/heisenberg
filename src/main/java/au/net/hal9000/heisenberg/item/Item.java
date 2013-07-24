@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
 
@@ -16,12 +17,15 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Column;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import org.apache.log4j.Logger;
 
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.units.*;
+import au.net.hal9000.heisenberg.units.Currency;
+import au.net.hal9000.heisenberg.units.Point3d;
+
 
 /*
  * Item:
@@ -30,7 +34,7 @@ import au.net.hal9000.heisenberg.units.*;
  * e.g. People, equipment, locations, etc.
  *
  * See the ItemContainer class for items that may contain
- * other items, e.g. bags, scabards, even people.
+ * other items, e.g. bags, scabbards, even people.
  *
  * An item has a globally pseudo-unique identifier.
  * An item has a name which is text.
@@ -104,7 +108,7 @@ public abstract class Item implements Serializable {
     private Currency valueBase = new Currency();
     /** The volume, excludes contents if this is a container **/
     private float volumeBase = 0;
-    /** The weight, excludes contencts if this is a container **/
+    /** The weight, excludes contents if this is a container **/
     private float weightBase = 0;
 
     // Constructors
@@ -652,5 +656,10 @@ public abstract class Item implements Serializable {
             full_desc = this.getClass().getSimpleName();
         }
         return full_desc;
+    }
+
+    public static void setIconOpenDefaultForClass(
+            String itemType, ImageIcon imageIcon) {
+        iconOpenDefault.put(itemType, imageIcon);        
     }
 }

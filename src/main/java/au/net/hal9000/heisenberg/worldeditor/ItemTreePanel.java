@@ -48,7 +48,7 @@ public class ItemTreePanel extends JPanel {
         JPanel addButtonPanel = new JPanel();
 
         // A JComboBox of Item types we can add
-        itemClassesList = new JComboBox(config.getItemClasses().toArray());
+        itemClassesList = new JComboBox(config.getItemClassIds());
         addButtonPanel.add(itemClassesList);
 
         // The "Add" Button

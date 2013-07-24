@@ -10,6 +10,7 @@ import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.units.*;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 
 public class ItemTest {
     private static final float WITHIN_MARGIN = 0.00009F;
@@ -98,9 +99,10 @@ public class ItemTest {
 
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
-        Vector<String> itemClasses = config.getItemClasses();
+        Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
 
-        for (String itemClass : itemClasses) {
+        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
+            String itemClass = itemClassConfiguration.getId();
             String string = Factory.createItem(itemClass).toString();
             assertTrue(itemClass + ".toString not null", string != null);
             assertTrue(itemClass + ".toString length", string.length() > 0);

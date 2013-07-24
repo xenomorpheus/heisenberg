@@ -4,7 +4,7 @@
 
 	<items>
 		<!-- Items that may be instantiated -->
-		<item id="Arrow" />
+		<item id="Arrow" iconOpenId="23" />
 		<item id="Backpack" />
 		<item id="Bag" />
 		<item id="BagOfHolding" />
@@ -19,7 +19,7 @@
 		<item id="Halfling" />
 		<item id="Hand" />
 		<item id="Horse" />
-		<item id="Human" />
+		<item id="Human" iconOpenId="126" />
 		<item id="HumanoidHead" />
 		<item id="Location" />
 		<item id="MagicRing" />
@@ -453,7 +453,7 @@
 			</traitGroup>
 		</traits>
 		<sizes>
-            <size id="Small" />
+			<size id="Small" />
 			<size id="Medium" />
 			<size id="Large" />
 		</sizes>
@@ -472,8 +472,8 @@
 
 	<skills>
 		<!-- Game Skills -->
-        <skill id="CHRSTNAHNDRX" description="The biggest ball of flame" />
-        <skill id="SUDO" description="Doppleganger god" />
+		<skill id="CHRSTNAHNDRX" description="The biggest ball of flame" />
+		<skill id="SUDO" description="Doppleganger god" />
 		<skill id="FireLighting" description="lighting a fire, typically with flint and tinder" />
 		<!-- Unit Test Skills -->
 		<skill id="testFireLighting" description="lighting a fire, typically with flint and tinder" />
@@ -540,10 +540,15 @@
 		</recipe>
 		<recipe id="testSpell1" description="spell test 1" mana="2"
 			actionPoints="10" process="spellTest1">
-			<powerWord id="testPowerWord1" />
 			<requirements>
 				<!-- TODO <item id="Target" class="PC" consumed="no" /> -->
 			</requirements>
 		</recipe>
 	</recipes>
+
+	<spriteSheets>
+		<spriteSheet id="item" filename="images/icon/IconSet-01.png"
+			width="24" height="24" rows="33" columns="16" />
+	</spriteSheets>
+
 </config>

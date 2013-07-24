@@ -49,13 +49,21 @@
 				<xs:element name="items">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="item" type="ctKeywordType"
-								maxOccurs="unbounded" minOccurs="1">
+							<xs:element name="item" type="ctItemType" maxOccurs="unbounded"
+								minOccurs="1">
 								<xs:annotation>
 									<xs:documentation>Items that may be instantiated
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="spriteSheets">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="spriteSheet" type="ctSpriteSheetType"
+								maxOccurs="unbounded" minOccurs="0" />
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -78,20 +86,15 @@
 							<xs:element name="recipe" type="ctRecipeType"
 								maxOccurs="unbounded" minOccurs="0">
 								<xs:annotation>
-									<xs:documentation>Crafting of Item objects skill entries are
-										mentioned by id only. ingredient entries are mentioned by id
-										only. Rules for Ingredients in Precedence Order (This will aid
-										auto-allocation of Item objects if this process is
-										added) 1.
-										Consumed Ingredient objects before non-consumed so
-										non-consumed
-										aren't
-										counted twice. 2. Most specific Ingredient
-										before
-										less-specific to help the matching
-										process Game Recipes
-										Unit
-										Test Recipes
+									<xs:documentation>
+	Crafting of Item objects skill entries are
+	mentioned by id only. ingredient entries are mentioned by id
+	only. Rules for Ingredients in Precedence Order (This will aid
+	auto-allocation of Item objects if this process is added) 1.
+	Consumed Ingredient objects before non-consumed so non-consumed
+	aren't counted twice. 2. Most specific Ingredient before
+	less-specific to help the matching process Game Recipes
+	Unit Test Recipes
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -103,6 +106,21 @@
 	</xs:element>
 
 	<!-- complex types -->
+
+	<xs:complexType name="ctItemType">
+		<xs:attribute type="xs:string" name="id" />
+		<xs:attribute type="xs:byte" name="iconOpenId" />
+	</xs:complexType>
+
+	<xs:complexType name="ctSpriteSheetType">
+		<xs:attribute type="xs:string" name="id" />
+		<xs:attribute type="xs:string" name="filename" />
+		<xs:attribute type="xs:byte" name="width" />
+		<xs:attribute type="xs:byte" name="height" />
+		<xs:attribute type="xs:byte" name="rows" />
+		<xs:attribute type="xs:byte" name="columns" />
+	</xs:complexType>
+
 	<xs:complexType name="ctPcClassType">
 		<xs:sequence>
 			<xs:element name="ability" maxOccurs="unbounded"

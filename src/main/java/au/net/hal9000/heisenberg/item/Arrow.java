@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.swing.Icon;
+
 // import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.Sharp;
@@ -20,16 +20,12 @@ public class Arrow extends Item implements Sharp {
 
     // Constructor
     public Arrow() {
-        this("Arrow");
-        Icon iconOpenDefault = getIconOpenDefault();
-        setIconOpen(iconOpenDefault);
-        setIconClosed(iconOpenDefault);
-        setIconLeaf(iconOpenDefault);
+        super("Arrow");
+        this.setVolumeBase(VOLUME_BASE);
     }
 
     public Arrow(final String pString) {
-        super(pString);
-        this.setVolumeBase(VOLUME_BASE);
+        this.setName(pString);
     }
 
 }

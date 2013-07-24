@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.util;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -23,9 +22,10 @@ public class ConfigurationTest {
 
     @Before
     public void setUp() throws ConfigurationError {
-            // TODO consider http://stackoverflow.com/questions/1939629/get-a-file-inside-a-specific-package
-            // TODO ClassA.class.getResourceAsStream("/packageB/yourfile.ext");
-            config = new Configuration("src/test/resources/config.xml");
+        // TODO consider
+        // http://stackoverflow.com/questions/1939629/get-a-file-inside-a-specific-package
+        // TODO ClassA.class.getResourceAsStream("/packageB/yourfile.ext");
+        config = new Configuration("src/test/resources/config.xml");
     }
 
     @Test
@@ -33,15 +33,35 @@ public class ConfigurationTest {
         // TODO testCharacter
     }
 
+    
     @Test
-    public void testTraits() {
-        // TODO testTraits
+    public void testItemClasses() {
+        Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
+        assertTrue("count", itemClasses.size() > 7);
     }
 
     @Test
-    public void testItemClasses() {
-        Vector<String> itemClasses = config.getItemClasses();
-        assertTrue("count", itemClasses.size() > 7);
+    public void testGetItemClassIds(){
+        Vector<String> ids = config.getItemClassIds();
+        assertTrue("count", ids.size() > 7);
+    }
+
+    @Test
+    public void testSpriteSheets() {
+        TreeMap<String, SpriteSheetConfiguration> spriteSheets = config
+                .getSpriteSheets();
+        assertTrue("count", spriteSheets.size() > 0);
+    }
+
+    @Test
+    public void testSpriteSheetGet() {
+        SpriteSheetConfiguration details = config.getSpriteSheet("item");
+        assertEquals("item", details.getId());
+        assertEquals("images/icon/IconSet-01.png", details.getFilename());
+        assertEquals(24, details.getWidth());
+        assertEquals(24, details.getHeight());
+        assertEquals(33, details.getRows());
+        assertEquals(16, details.getColumns());
     }
 
     @Test
@@ -66,7 +86,8 @@ public class ConfigurationTest {
     public void testSkills() {
         TreeMap<String, SkillDetail> skillDetails = config.getSkillDetails();
         SkillDetail fireLighting = skillDetails.get("testFireLighting");
-        assertEquals("FireLighting-id", "testFireLighting", fireLighting.getId());
+        assertEquals("FireLighting-id", "testFireLighting",
+                fireLighting.getId());
         assertEquals("FireLighting-Description",
                 "lighting a fire, typically with flint and tinder",
                 fireLighting.getDescription());
@@ -89,10 +110,12 @@ public class ConfigurationTest {
         assertEquals("process", "createItem1", recipe1.getProcess());
         assertEquals("actionPoints", 10, recipe1.getActionPoints());
         assertEquals("requirement count", 1, recipe1.getRequirementCount());
-        RequirementItem requirementItem = (RequirementItem)recipe1.getRequirement("Location");
-        assertNotNull("requirement not null",requirementItem);
+        RequirementItem requirementItem = (RequirementItem) recipe1
+                .getRequirement("Location");
+        assertNotNull("requirement not null", requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
-        assertEquals("requirement itemType", "ItemContainer", requirementItem.getItemType());
+        assertEquals("requirement itemType", "ItemContainer",
+                requirementItem.getItemType());
         assertEquals("skill count", 1, recipe1.getSkillCount());
         assertTrue("skill 0",
                 recipe1.getSkills().contains(new Skill("testSkill1")));
@@ -178,13 +201,14 @@ public class ConfigurationTest {
         // assertEquals("~", warrior.getRaceAllow());
     }
 
-    
     @Test
-    public void testRequirementItem(){
+    public void testRequirementItem() {
         Recipe recipe1 = config.getRecipe("testItem1");
-        RequirementItem requirementItem = (RequirementItem)recipe1.getRequirement("Location");
-        assertNotNull("requirement not null",requirementItem);
+        RequirementItem requirementItem = (RequirementItem) recipe1
+                .getRequirement("Location");
+        assertNotNull("requirement not null", requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
-        assertEquals("requirement itemType", "ItemContainer", requirementItem.getItemType());
+        assertEquals("requirement itemType", "ItemContainer",
+                requirementItem.getItemType());
     }
 }

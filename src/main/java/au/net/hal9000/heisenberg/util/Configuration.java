@@ -31,30 +31,36 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
 
 public class Configuration {
 
+    // Static
     private static Configuration lastConfig = null; // Singleton
-    private Vector<String> itemClasses;
-    private TreeMap<String, SkillDetail> skillDetails;
-    private TreeMap<String, Recipe> recipes;
-    private TreeMap<String, PcClass> pcClasses;
-    // TODO private TreeMap<String,PcClass> npcClasses;
-    private Vector<String> races;
-    private Vector<String> sizes;
+    // Object
     private Vector<String> genders;
+    private Vector<ItemClassConfiguration> itemClasses;
+    // TODO private TreeMap<String,PcClass> npcClasses;
+    private TreeMap<String, PcClass> pcClasses;
+    private Vector<String> races;
+    private TreeMap<String, Recipe> recipes;
+    private TreeMap<String, SkillDetail> skillDetails;
+    private Vector<String> sizes;
+    private TreeMap<String, SpriteSheetConfiguration> spriteSheets;
 
+    // Constructor
     public Configuration(String filename) throws ConfigurationError {
         super();
         this.init(filename);
         setLastConfig(this);
     }
 
+    // Static - Getters and Setters
     /**
      * Change a static variable. Required by findbugs.
+     * 
      * @param config
      */
-    private static void setLastConfig(Configuration config){
-    	Configuration.lastConfig = config;
+    private static void setLastConfig(Configuration config) {
+        Configuration.lastConfig = config;
     }
-    
+
     public static Configuration lastConfig() {
         if (lastConfig == null) {
             throw new RuntimeException(
@@ -64,11 +70,10 @@ public class Configuration {
     }
 
     // Getters and Setters
-
     /**
      * @return the itemClasses
      */
-    public final Vector<String> getItemClasses() {
+    public final Vector<ItemClassConfiguration> getItemClasses() {
         return itemClasses;
     }
 
@@ -80,7 +85,36 @@ public class Configuration {
         return recipes;
     }
 
-    // init
+    // TODO remove/refactor so caller can't modify pcClasses
+    public TreeMap<String, PcClass> getPcClasses() {
+        return pcClasses;
+    }
+
+    // TODO remove/refactor so caller can't modify races
+    public Vector<String> getRaces() {
+        return races;
+    }
+
+    // TODO remove/refactor so caller can't modify sizes
+    public Vector<String> getSizes() {
+        return sizes;
+    }
+
+    // TODO remove/refactor so caller can't modify genders
+    public Vector<String> getGenders() {
+        return genders;
+    }
+
+    /**
+     * Return the sprite sheet details.
+     * 
+     * @return the sprite sheet details
+     */
+    public TreeMap<String, SpriteSheetConfiguration> getSpriteSheets() {
+        return spriteSheets;
+    }
+
+    // Misc
     private void init(String filename) throws ConfigurationError {
         File file = new File(filename);
 
@@ -95,16 +129,13 @@ public class Configuration {
         Element root = doc.getRootElement();
 
         // skill entries
-        Element skillsElement = root.getFirstChildElement("skills");
-        skillDetails = xmlToSkillDetails(skillsElement);
+        skillDetails = xmlToSkillDetails(root.getFirstChildElement("skills"));
 
         // Item Classes
-        Element itemClassesElement = root.getFirstChildElement("items");
-        itemClasses = xmlToIdList(itemClassesElement.getChildElements());
+        itemClasses = xmlToItemClasses(root.getFirstChildElement("items"));
 
         // recipes
-        Element recipesElement = root.getFirstChildElement("recipes");
-        recipes = xmlToRecipes(recipesElement);
+        recipes = xmlToRecipes(root.getFirstChildElement("recipes"));
 
         // character
         Element characterElement = root.getFirstChildElement("character");
@@ -134,8 +165,45 @@ public class Configuration {
         Element raceElement = characterElement.getFirstChildElement("races");
         races = xmlToIdList(raceElement.getChildElements());
 
+        // sprite sheet details
+        spriteSheets = xmlToSpriteSheets(root
+                .getFirstChildElement("spriteSheets"));
+
     }
 
+    /**
+     * Load details about each Item class.
+     * 
+     * @param itemClassesElement
+     * @return a collection of information about each Item type.
+     */
+    private Vector<ItemClassConfiguration> xmlToItemClasses(
+            Element itemClassesElement) {
+        Elements itemClassElements = itemClassesElement
+                .getChildElements("item");
+        Vector<ItemClassConfiguration> myItemClasses = new Vector<ItemClassConfiguration>();
+        for (int i = 0; i < itemClassElements.size(); i++) {
+            Element element = itemClassElements.get(i);
+            ItemClassConfiguration itemClassConfiguration = new ItemClassConfiguration();
+            String id = element.getAttributeValue("id");
+            itemClassConfiguration.setId(id);
+            String iconOpenId = element.getAttributeValue("iconOpenId");
+            if (iconOpenId != null) {
+                itemClassConfiguration.setIconOpenId(Integer
+                        .parseInt(iconOpenId));
+            }
+            myItemClasses.add(itemClassConfiguration);
+        }
+        return myItemClasses;
+    }
+
+    /**
+     * A generic helper that converts a list of IDs to a string vector.
+     * 
+     * @param elements
+     *            Parsed XML structure.
+     * @return a Vector strings.
+     */
     private Vector<String> xmlToIdList(Elements elements) {
         Vector<String> list = new Vector<String>();
         for (int i = 0; i < elements.size(); i++) {
@@ -317,8 +385,7 @@ public class Configuration {
      * @throws ParsingException
      * @throws IOException
      */
-    public static TreeMap<String, Recipe> xmlToRecipes(Element element)
-            {
+    public static TreeMap<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
         TreeMap<String, Recipe> Recipes = new TreeMap<String, Recipe>();
@@ -446,32 +513,36 @@ public class Configuration {
     }
 
     /**
+     * 
+     * @param childElements
+     * @return
+     */
+    private TreeMap<String, SpriteSheetConfiguration> xmlToSpriteSheets(
+            Element spriteSheets) {
+        Elements entries = spriteSheets.getChildElements();
+        TreeMap<String, SpriteSheetConfiguration> mySpriteSheets = new TreeMap<String, SpriteSheetConfiguration>();
+        for (int current = 0; current < entries.size(); current++) {
+            Element entry = entries.get(current);
+            SpriteSheetConfiguration ssd = new SpriteSheetConfiguration();
+            String id = entry.getAttributeValue("id");
+            ssd.setId(id);
+            ssd.setFilename(entry.getAttributeValue("filename"));
+            ssd.setWidth(Integer.parseInt(entry.getAttributeValue("width")));
+            ssd.setHeight(Integer.parseInt(entry.getAttributeValue("height")));
+            ssd.setRows(Integer.parseInt(entry.getAttributeValue("rows")));
+            ssd.setColumns(Integer.parseInt(entry.getAttributeValue("columns")));
+            mySpriteSheets.put(id, ssd);
+        }
+        return mySpriteSheets;
+    }
+
+    /**
      * @param id
      *            the class name e.g. Soldier
      * @return the PC Character Class.
      */
     public PcClass getPcClass(String id) {
         return pcClasses.get(id);
-    }
-
-    // TODO remove/refactor so caller can't modify pcClasses
-    public TreeMap<String, PcClass> getPcClasses() {
-        return pcClasses;
-    }
-
-    // TODO remove/refactor so caller can't modify races
-    public Vector<String> getRaces() {
-        return races;
-    }
-
-    // TODO remove/refactor so caller can't modify sizes
-    public Vector<String> getSizes() {
-        return sizes;
-    }
-
-    // TODO remove/refactor so caller can't modify genders
-    public Vector<String> getGenders() {
-        return genders;
     }
 
     // misc
@@ -485,6 +556,25 @@ public class Configuration {
      */
     public Recipe getRecipe(String recipeId) {
         return recipes.get(recipeId);
+    }
+
+    /**
+     * Return the sprite sheet details object with the supplied name.
+     * 
+     * @param name
+     *            name of sprite sheet.
+     * @return the sprite sheet details
+     */
+    public SpriteSheetConfiguration getSpriteSheet(String name) {
+        return spriteSheets.get(name);
+    }
+
+    public Vector<String> getItemClassIds() {
+        Vector<String> itemClassIds = new Vector<String>();
+        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
+            itemClassIds.add(itemClassConfiguration.getId());
+        }
+        return itemClassIds;
     }
 
 }

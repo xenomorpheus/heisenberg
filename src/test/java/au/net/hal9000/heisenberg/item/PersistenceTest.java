@@ -16,20 +16,23 @@ import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 
 public class PersistenceTest {
 
 	@Test
 	public void oneOfEachItem() throws ConfigurationError {
 		Configuration config = new Configuration("src/test/resources/config.xml");
-		Vector<String> itemClasses = config.getItemClasses();
+        Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
 
+            
 		final String PERSISTENCE_UNIT_NAME = "items";
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = factory.createEntityManager();
 
-		for (String itemClass : itemClasses) {
+        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
+            String itemClass = itemClassConfiguration.getId();
 
 			// Create a new Item
 			em.getTransaction().begin();

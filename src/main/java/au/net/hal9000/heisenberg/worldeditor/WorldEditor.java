@@ -9,19 +9,16 @@ import java.awt.event.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
-import au.net.hal9000.heisenberg.util.SpritePack;
+import au.net.hal9000.heisenberg.util.ItemIcon;
 
 public class WorldEditor extends JFrame {
     /**
@@ -48,11 +45,7 @@ public class WorldEditor extends JFrame {
         Configuration config = DummyData.config();
 
         // Icons
-        SpritePack sp = new SpritePack();
-        sp.init("images/icon/IconSet-01.png", 24, 24, 33, 16); // TODO config
-        Arrow.setIconOpenDefault(new ImageIcon(sp.getSprite(23))); // TODO config
-        PcRace.setIconOpenDefault(new ImageIcon(sp.getSprite(126))); // TODO config
-        
+        ItemIcon.setIcon(config);
         
         // Main Frame
         setSize(400, 600);
@@ -140,7 +133,7 @@ public class WorldEditor extends JFrame {
     // TODO WorldEditor
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
-        // File Menu
+        // Application Menu
         JMenu appemenu = new JMenu("WorldEditor");
         JMenuItem appItem1 = new JMenuItem("Quit");
         appItem1.addActionListener(actionListener);
