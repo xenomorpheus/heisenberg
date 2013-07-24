@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.Component;
 
-import javax.swing.Icon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
@@ -24,9 +23,7 @@ public class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
         if (value instanceof Item) {
             Item item = (Item) value;
-            Icon foo = item.getIconOpen();
-            System.out.println(item.getSimpleClassName()+"'s icon is " + ((foo == null) ? "null" : "not null"));
-            setOpenIcon(foo);
+            setOpenIcon(item.getIconOpen());
             setClosedIcon(item.getIconClosed());
             setLeafIcon(item.getIconLeaf());
         } else {
