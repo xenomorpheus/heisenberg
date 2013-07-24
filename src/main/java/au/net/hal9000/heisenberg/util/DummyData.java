@@ -13,6 +13,7 @@ import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
 import au.net.hal9000.heisenberg.item.Factory;
+import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.Horse;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.Location;
@@ -75,7 +76,6 @@ public class DummyData {
         boh.add(new Cookie("Cookie1"));
         boh.add(new Crossbow());
         boh.add(new CrossbowBolt());
-        boh.add(new MagicRing());
         boh.add(new Ring());
         boh.add(scabbard);
         boh.add(new Torch());
@@ -108,6 +108,9 @@ public class DummyData {
         human.add(backpack);
         world.add(human);
 
+        Hand leftHand = human.getLeftHand();        
+        leftHand.add(new MagicRing());
+        
         world.add(new Sword());
         world.add(new Horse());
 

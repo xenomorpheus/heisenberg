@@ -4,31 +4,35 @@
 
 	<items>
 		<!-- Items that may be instantiated -->
-		<item id="Arrow" iconOpenId="23" />
+		<item id="Arrow" iconOpenId="23" iconClosedId="23" iconLeafId="23" />
 		<item id="Backpack" />
 		<item id="Bag" />
 		<item id="BagOfHolding" />
 		<item id="Box" />
 		<item id="Candle" />
-		<item id="Cloak" />
+		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
 		<item id="Cookie" />
-		<item id="Crossbow" />
-		<item id="CrossbowBolt" />
+		<item id="Crossbow" iconOpenId="280" iconClosedId="280"
+			iconLeafId="280" />
+		<item id="CrossbowBolt" iconOpenId="23" iconClosedId="23"
+			iconLeafId="23" />
 		<item id="Elf" />
 		<item id="FlintAndTinder" />
 		<item id="Halfling" />
 		<item id="Hand" />
 		<item id="Horse" />
-		<item id="Human" iconOpenId="126" />
+		<item id="Human" iconOpenId="126" iconClosedId="126" iconLeafId="126" />
 		<item id="HumanoidHead" />
 		<item id="Location" />
-		<item id="MagicRing" />
+		<item id="MagicRing" iconOpenId="312" iconClosedId="312"
+            iconLeafId="312" />
 		<item id="OrbOfLight" />
 		<item id="Purse" />
 		<item id="Quiver" />
-		<item id="Ring" />
+		<item id="Ring" iconOpenId="312" iconClosedId="312"
+            iconLeafId="312"/>
 		<item id="Scabbard" />
-		<item id="Shield" />
+		<item id="Shield" iconOpenId="31" iconClosedId="31" iconLeafId="31" />
 		<item id="SmallGroundFire" />
 		<item id="Sword" />
 		<item id="Torch" />

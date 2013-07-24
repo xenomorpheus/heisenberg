@@ -87,14 +87,15 @@
 								maxOccurs="unbounded" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
-	Crafting of Item objects skill entries are
-	mentioned by id only. ingredient entries are mentioned by id
-	only. Rules for Ingredients in Precedence Order (This will aid
-	auto-allocation of Item objects if this process is added) 1.
-	Consumed Ingredient objects before non-consumed so non-consumed
-	aren't counted twice. 2. Most specific Ingredient before
-	less-specific to help the matching process Game Recipes
-	Unit Test Recipes
+										Crafting of Item objects skill entries are
+										mentioned by id only. ingredient entries are mentioned by id
+										only. Rules for Ingredients in Precedence Order (This will aid
+										auto-allocation of Item objects if this process is added) 1.
+										Consumed Ingredient objects before non-consumed so
+										non-consumed
+										aren't counted twice. 2. Most specific Ingredient before
+										less-specific to help the matching process Game Recipes
+										Unit Test Recipes
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -109,7 +110,9 @@
 
 	<xs:complexType name="ctItemType">
 		<xs:attribute type="xs:string" name="id" />
-		<xs:attribute type="xs:byte" name="iconOpenId" />
+		<xs:attribute type="xs:int" name="iconOpenId" />
+		<xs:attribute type="xs:int" name="iconClosedId" />
+		<xs:attribute type="xs:int" name="iconLeafId" />
 	</xs:complexType>
 
 	<xs:complexType name="ctSpriteSheetType">
