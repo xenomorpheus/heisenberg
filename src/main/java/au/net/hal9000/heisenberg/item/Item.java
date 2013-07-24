@@ -129,7 +129,12 @@ public abstract class Item implements Serializable {
         ItemProperty.setClothing(this, false);
         ItemProperty.setLiving(this, false);
         ItemProperty.setHumanoidFood(this, false);
-        setIconOpen(getIconOpenDefault());
+        
+        // TODO add separate Icons for Closed and Leaf
+        Icon icon = getIconOpenDefault();
+        setIconOpen(icon);
+        setIconClosed(icon);
+        setIconLeaf(icon);
     }
 
     public Item(final String pName) {
