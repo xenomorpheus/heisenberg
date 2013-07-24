@@ -25,6 +25,7 @@ public class Arrow extends Item implements Sharp {
     }
 
     public Arrow(final String pString) {
+        this();
         this.setName(pString);
     }
 
