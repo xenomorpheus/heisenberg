@@ -177,17 +177,6 @@ public class Recipe {
         return id;
     }
 
-    /**
-     * Set the ID
-     * 
-     * @deprecated only here for JPA.
-     * @param pId
-     *            the ID
-     */
-    public final void setId(String pId) {
-        id = pId;
-    }
-
     // description
     /**
      * Get the Description.
@@ -196,17 +185,6 @@ public class Recipe {
      */
     public final String getDescription() {
         return description;
-    }
-
-    /**
-     * Set the Description.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param pDescription
-     *            human text description
-     */
-    public final void setDescription(String pDescription) {
-        description = pDescription;
     }
 
     /**
@@ -236,17 +214,6 @@ public class Recipe {
         return mana;
     }
 
-    /**
-     * Set the mana required.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param points
-     *            the amount of mana.
-     */
-    public final void setMana(final int points) {
-        mana = points;
-    }
-
     // actionPoints
     /**
      * Get the action points required.
@@ -255,17 +222,6 @@ public class Recipe {
      */
     public final int getActionPoints() {
         return actionPoints;
-    }
-
-    /**
-     * Set the action points required.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param points
-     *            the points required.
-     */
-    public final void setActionPoints(final int points) {
-        actionPoints = points;
     }
 
     // requirements
@@ -299,54 +255,6 @@ public class Recipe {
      */
     public final Requirement getRequirement(final String key) {
         return requirements.get(key);
-    }
-
-    /**
-     * Set the Requirement objects.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param pRequirements
-     *            the required Requirement objects.
-     */
-    public final void setRequirements(
-            final TreeMap<String, Requirement> pRequirements) {
-        requirements = pRequirements;
-    }
-
-    /**
-     * Add a list of Requirement objects.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param requirements
-     *            a list of Requirement objects.
-     */
-    public final void requirementsAddAll(
-            final TreeMap<String, Requirement> requirements) {
-        this.requirements.putAll(requirements);
-    }
-
-    /**
-     * Add a list of Requirement objects.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param requirements
-     *            a list of Requirement objects.
-     */
-    public final void requirementsAddAll(final Vector<Requirement> requirements) {
-        for (Requirement requirement : requirements) {
-            this.requirementsAdd(requirement);
-        }
-    }
-
-    /**
-     * Add a an Requirement object.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param requirement
-     *            an Requirement object.
-     */
-    public final void requirementsAdd(final Requirement requirement) {
-        requirements.put(requirement.getId(), requirement);
     }
 
     // products
@@ -390,15 +298,6 @@ public class Recipe {
     }
 
     /**
-     * Set the Skill objects.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     */
-    public final void setSkills(final Set<Skill> skills) {
-        this.skills = skills;
-    }
-
-    /**
      * Add extra Skills to the list of required requirements.
      * 
      * @deprecated only here for JPA and Configuration.
@@ -406,17 +305,6 @@ public class Recipe {
      */
     public final void skillsAdd(final Set<Skill> skills) {
         skills.addAll(skills);
-    }
-
-    /**
-     * Add extra PowerWords to the list of required requirements.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param powerWords
-     *            a Set of PowerWord objects to add.
-     */
-    public final void skillsAddAll(final Set<Skill> powerWords) {
-        powerWords.addAll(powerWords);
     }
 
     // Misc Methods
