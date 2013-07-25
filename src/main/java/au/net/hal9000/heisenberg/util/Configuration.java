@@ -187,6 +187,19 @@ public class Configuration {
             ItemClassConfiguration itemClassConfiguration = new ItemClassConfiguration();
             String id = element.getAttributeValue("id");
             itemClassConfiguration.setId(id);
+            // iconClosedId
+            String iconClosedId = element.getAttributeValue("iconClosedId");
+            if (iconClosedId != null) {
+                itemClassConfiguration.setIconOpenId(Integer
+                        .parseInt(iconClosedId));
+            }
+            // iconLeafId
+            String iconLeafId = element.getAttributeValue("iconLeafId");
+            if (iconLeafId != null) {
+                itemClassConfiguration.setIconOpenId(Integer
+                        .parseInt(iconLeafId));
+            }
+            // iconOpenId
             String iconOpenId = element.getAttributeValue("iconOpenId");
             if (iconOpenId != null) {
                 itemClassConfiguration.setIconOpenId(Integer

@@ -18,6 +18,12 @@ package au.net.hal9000.heisenberg.crafting;
 public abstract class Requirement {
 
     String id;
+    
+    public Requirement(String id){
+    	super();
+    	this.id = id;
+    }
+    
     /**
      * @return Return a description of the object.
      */

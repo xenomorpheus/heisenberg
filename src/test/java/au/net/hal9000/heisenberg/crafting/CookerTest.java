@@ -169,7 +169,6 @@ public class CookerTest {
      * Testing RequirementItem objects.<br>
      * No actual cooking done (yet)
      */
-    @SuppressWarnings("deprecation")
     @Test
     public void testRecipeIngredients() {
 
@@ -179,13 +178,11 @@ public class CookerTest {
         // FlintAndTinder (not consumed)
         // Wood, min weight 3.
         RequirementItem ingredientFlintAndTinder = new RequirementItem(
-                "FlintAndTinder");
-        ingredientFlintAndTinder.setConsumed(false);
+                "FlintAndTinder","FlintAndTinder", false, 0);
         requirements.put(ingredientFlintAndTinder.getId(),
                 ingredientFlintAndTinder);
 
-        RequirementItem ingredientWood = new RequirementItem("Wood");
-        ingredientWood.setWeightMin(3);
+        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood", true, 3);
         requirements.put(ingredientWood.getId(), ingredientWood);
 
         // Build a recipe with the list of required ingredients
@@ -201,7 +198,6 @@ public class CookerTest {
                 cooker.getRequirement(ingredientWood.getId()));
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testRecipeItemsAvailable() {
 
@@ -215,8 +211,7 @@ public class CookerTest {
         FlintAndTinder flintAndTinder = new FlintAndTinder();
         world.add(flintAndTinder);
         RequirementItem ingredientFlintAndTinder = new RequirementItem(
-                "FlintAndTinder");
-        ingredientFlintAndTinder.setConsumed(false);
+                "FlintAndTinder","FlintAndTinder", false, 0);
         requirements.put(ingredientFlintAndTinder.getId(),
                 ingredientFlintAndTinder);
 
@@ -224,8 +219,7 @@ public class CookerTest {
         Wood wood = new Wood();
         wood.setWeightBase(3);
         world.add(wood);
-        RequirementItem ingredientWood = new RequirementItem("Wood");
-        ingredientWood.setWeightMin(3);
+        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood", true, 3);
         requirements.put(ingredientWood.getId(), ingredientWood);
 
         // Wood2
@@ -694,7 +688,6 @@ public class CookerTest {
      * output: The Cookie is NOT consumed. <BR>
      */
 
-    @SuppressWarnings("deprecation")
     @Test
     public void TestCookItem1Catalyst() {
         Location world = new Location("World");
@@ -703,8 +696,7 @@ public class CookerTest {
 
         // RequirementItem
         TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
-        RequirementItem requirementItem = new RequirementItem("Cookie");
-        requirementItem.setConsumed(false);
+        RequirementItem requirementItem = new RequirementItem("Cookie", "Cookie", false, 0);
         requirements.put(requirementItem.getId(), requirementItem);
 
         // Build a recipe with the list of required ingredients

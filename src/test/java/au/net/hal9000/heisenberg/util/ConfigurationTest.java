@@ -22,9 +22,6 @@ public class ConfigurationTest {
 
     @Before
     public void setUp() throws ConfigurationError {
-        // TODO consider
-        // http://stackoverflow.com/questions/1939629/get-a-file-inside-a-specific-package
-        // TODO ClassA.class.getResourceAsStream("/packageB/yourfile.ext");
         config = new Configuration("src/test/resources/config.xml");
     }
 

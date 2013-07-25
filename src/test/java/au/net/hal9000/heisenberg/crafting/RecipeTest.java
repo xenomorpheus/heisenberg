@@ -19,19 +19,16 @@ public class RecipeTest {
     static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
             "Skill2" };
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testRecipeIngredients() {
 
         TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
 
         // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
-        flintAndTinder.setConsumed(false);
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder","FlintAndTinder",false,0);
         requirements.put(flintAndTinder.getId(), flintAndTinder);
 
-        RequirementItem wood = new RequirementItem("Wood");
-        wood.setWeightMin(3);
+        RequirementItem wood = new RequirementItem("Wood","Wood",true,3);
         requirements.put(wood.getId(), wood);
 
         // Build a recipe with the list of required ingredients
@@ -44,18 +41,15 @@ public class RecipeTest {
         assertEquals("ingredient 1", wood, recipe.getRequirement(wood.getId()));
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testRecipe() {
         TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
 
         // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
-        flintAndTinder.setConsumed(false);
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder","FlintAndTinder",false,0);
         requirements.put(flintAndTinder.getId(), flintAndTinder);
 
-        RequirementItem wood = new RequirementItem("Wood");
-        wood.setWeightMin(3);
+        RequirementItem wood = new RequirementItem("Wood","Wood",true,3);
         requirements.put(wood.getId(),wood);
 
         // Product(s)

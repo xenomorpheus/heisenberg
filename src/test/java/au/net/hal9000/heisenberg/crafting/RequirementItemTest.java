@@ -13,28 +13,25 @@ import au.net.hal9000.heisenberg.item.Cookie;
 
 public class RequirementItemTest {
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testGetDescription() {
-        RequirementItem requirementItem = new RequirementItem("Bag");
+        RequirementItem requirementItem = new RequirementItem("Bag","Bag",true, 0);
         String description = "of type Bag";
         assertEquals("just type", description, requirementItem.getDescription());
-        requirementItem.setWeightMin(3);
+        requirementItem = new RequirementItem("Bag","Bag",true, 3);
         description += ", weighing at least 3.0";
         assertEquals("weight", description, requirementItem.getDescription());
-        requirementItem.setConsumed(false);
+        requirementItem = new RequirementItem("Bag","Bag",false, 3);
         description += ", not consumed";
         assertEquals("not consumed", description,
                 requirementItem.getDescription());
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testIsConsumed() {
-        RequirementItem requirementItem = new RequirementItem("Bag");
-        requirementItem.setConsumed(false);
+        RequirementItem requirementItem = new RequirementItem("Bag","Bag", false, 0);
         assertFalse("not consumed", requirementItem.isConsumed());
-        requirementItem.setConsumed(true);
+        requirementItem = new RequirementItem("Bag","Bag", true, 0);
         assertTrue("not consumed", requirementItem.isConsumed());
     }
 
@@ -55,12 +52,10 @@ public class RequirementItemTest {
                 requirementItem.meetsRequirements(new Box()));
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testMeetsRequirementsMinWeight() {
         // The requirement
-        RequirementItem requirementItem = new RequirementItem("Cookie");
-        requirementItem.setWeightMin(3);
+        RequirementItem requirementItem = new RequirementItem("Cookie","Cookie", true, 3);
 
         // Correct type and weight
         Cookie cookie = new Cookie();

@@ -44,12 +44,23 @@ public class RequirementItem extends Requirement {
      * 
      * @param id the short name of the required item class.
      */
+    public RequirementItem(final String id, String itemType, boolean isConsumed, float weightMin) {
+        super(id);
+        this.itemType   = itemType;
+        this.isConsumed = isConsumed;
+        this.weightMin  = weightMin;
+    }
+    
+    /**
+     * Constructor
+     * 
+     * @param id the short name of the required item class.
+     */
     public RequirementItem(final String id) {
-        super();
-        this.id = id;
+        super(id);
         this.itemType = id;
     }
-
+    
     // Getters and Setters
     /**
      * Set the itemType
