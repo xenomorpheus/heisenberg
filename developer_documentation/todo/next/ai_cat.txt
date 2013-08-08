@@ -1,0 +1,52 @@
+AI Cat
+Agent - cat s/w
+
+
+
+
+
+
+
+
+Sensors:
+See
+Hear
+Smell
+
+Actions:
+Move/run
+Pounce
+Eat (recipe)
+Drink (recipe)
+(maybe) Breath - zero action points
+
+
+Environment:
+Room
+Water
+Mice
+Fish?
+
+Agent goals: (rl features)
+0 bad eg. Penalties for low. 
+100 ideal
+150 max, minor penalties over 100
+rest ideal 100
+nourishment ideal 100
+hydration ideal 100
+interlectual stimulation ideal 100
+
+ tntertained (interlectual stimulated )- lo priority - ideal 100
+
+
+breath - hi priority, time concept
+Temp - concept of ideal body temp
+- concept of current temp
+- expressed as a function of ideal and current
+Health - penalties for low
+- some waiting of breath, fed, rested, etc
+
+Identify: (goals)
+Threats
+Opertunities (based on needs)
+Needs 

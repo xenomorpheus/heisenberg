@@ -1,0 +1,7 @@
+There looks to be problems in some cases when adding items to containers in tree view.
+An attempt was made to add an item to location 3, when there were 0 items already in the container.
+Ideas:
+* Lots more testing.
+* Perhaps add debug output:
+a) describe the initial structure.
+b) when an item is added or removed.
