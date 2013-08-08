@@ -1,2 +1,0 @@
-In tree view, right click on PcRace then edit using PcCreator.
-
