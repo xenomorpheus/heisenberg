@@ -3,10 +3,10 @@ package au.net.hal9000.heisenberg.crafting;
 import java.util.Set;
 import java.util.TreeMap;
 
+import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -51,7 +51,7 @@ public class Cooker extends ItemContainer {
     /**
      * The PcRace doing the cooking. Supplies any actionPoints and mana.
      */
-    private PcRace chef = null;
+    private Entity chef = null;
 
     /**
      * Ingredients we will cook with.
@@ -89,10 +89,10 @@ public class Cooker extends ItemContainer {
     
     /**
      * set the chef.
-     * @param pChef the person doing the cooking.
+     * @param entity the person doing the cooking.
      */
-    public final void setChef(final PcRace pChef) {
-        chef = pChef;
+    public final void setChef(final Entity entity) {
+        chef = entity;
     }
 
     /**

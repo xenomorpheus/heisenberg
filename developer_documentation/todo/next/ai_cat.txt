@@ -2,16 +2,25 @@ AI Cat
 Agent - cat s/w
 
 
+Action Item
+=================================
+Add Items:
+Dungeon (location)
+Fungus (Item)
+Rat (animal)
+Cat (animal)
 
 
 
 
 
+Detailed Plans
+=====================================
 
-Sensors:
-See
-Hear
-Smell
+Born with racial memory:
+Tendancy to hunt / drink / eat /sleep
+Expressed as pre-loaded coefficients for actions.
+
 
 Actions:
 Move/run
@@ -20,6 +29,10 @@ Eat (recipe)
 Drink (recipe)
 (maybe) Breath - zero action points
 
+Sensors:
+See
+Hear
+Smell
 
 Environment:
 Room
@@ -27,17 +40,18 @@ Water
 Mice
 Fish?
 
+Properties:
+respirated               ideal 100
+hydrated                 ideal 100
+nourished                ideal 100
+rested                   ideal 100
+interlectual_stimulated  ideal 100
+
+
 Agent goals: (rl features)
 0 bad eg. Penalties for low. 
 100 ideal
 150 max, minor penalties over 100
-rest ideal 100
-nourishment ideal 100
-hydration ideal 100
-interlectual stimulation ideal 100
-
- tntertained (interlectual stimulated )- lo priority - ideal 100
-
 
 breath - hi priority, time concept
 Temp - concept of ideal body temp

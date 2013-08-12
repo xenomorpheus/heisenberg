@@ -3,15 +3,10 @@ package au.net.hal9000.heisenberg.item;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.Properties;
 
-import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
-import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class PcRace extends Entity {
@@ -34,37 +29,7 @@ public abstract class PcRace extends Entity {
     private int generalDice;
     int encumbrance;
     int health;
-    /**
-     * A measure of the amount of things the entity can do in the current round.
-     * This is the remaining, not the maximum.
-     */
-    private int actionPoints;
-    /**
-     * The size of the magic user's fuel tank. This is the remaining, not the
-     * maximum.
-     */
-    private int mana;
-    /**
-     * This object has a list of {@link AbilityScore} objects.<br>
-     * 
-     * To set up, just work through the list on the {@link PcClass}.
-     * 
-     * Create a new AbilityScore object for each one on PC. Set the modifier to
-     * 0. Set the name = pcClassAbility.getName()
-     * 
-     * Call the reCalculateAllAbilityScores() function<br>
-     * Set the value = pcClassAbility.getValue() + (level *
-     * pcClassAbility.getModifier()) + modifier;
-     */
     TreeMap<String, AbilityScore> abilityScores;
-    /**
-     * The {@link Recipe} list that is known by this object.
-     */
-    private Set<String> recipes;
-    /**
-     * The {@link Skill} objects required.
-     */
-    private Set<Skill> skills;
 
     // Constructors
 
@@ -74,8 +39,6 @@ public abstract class PcRace extends Entity {
 
     public PcRace(String string, String description) {
         super(string, description);
-        // By default PCs are living, but this may be changed at any time.
-        ItemProperty.setLiving(this, true);
     }
 
     /**
@@ -227,44 +190,6 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-     * @return the actionPoints
-     */
-    public final int getActionPoints() {
-        return actionPoints;
-    }
-
-    /**
-     * @param actionPoints
-     *            the actionPoints to set
-     */
-    public final void setActionPoints(final int actionPoints) {
-        this.actionPoints = actionPoints;
-    }
-
-    public void actionPointsAdjust(final int adjust) {
-        actionPoints += adjust;
-    }
-
-    /**
-     * @return the mana
-     */
-    public final int getMana() {
-        return mana;
-    }
-
-    /**
-     * @param mana
-     *            the mana to set
-     */
-    public final void setMana(int mana) {
-        this.mana = mana;
-    }
-
-    public void manaAdjust(int adjust) {
-        mana += adjust;
-    }
-
-    /**
      * @return the abilityScores
      */
     public final TreeMap<String, AbilityScore> getAbilityScores() {
@@ -301,89 +226,6 @@ public abstract class PcRace extends Entity {
         abilityScores.put(abilityScore.getName(), abilityScore);
     }
 
-    // Recipe objects
-    /**
-     * Get the Recipe objects this PcRace object knows.
-     * 
-     * @return the set of Recipe objects
-     */
-    public Set<String> getRecipes() {
-        return recipes;
-    }
-
-    /**
-     * Set the Recipe objects this PcRace object knows.
-     * 
-     * @param recipes
-     *            the set of Recipe objects
-     */
-    public void setRecipes(Set<String> recipes) {
-        this.recipes = recipes;
-    }
-
-    /**
-     * Add to the of Recipe objects this PcRace object knows.
-     * 
-     * @param recipeId
-     *            a Recipe id
-     */
-    public void recipeAdd(String recipeId) {
-        if (recipes == null) {
-            recipes = new TreeSet<String>();
-        }
-        this.recipes.add(recipeId);
-    }
-
-    /**
-     * The PcRace has learnt new Recipe(s).
-     * 
-     * @param newRecipes
-     *            an array of Recipe IDs to add.
-     */
-    public final void recipesAdd(final String[] newRecipes) {
-        for (String recipeId : newRecipes) {
-            recipeAdd(recipeId);
-        }
-    }
-
-    // Skills
-    /**
-     * Get the Skill objects.
-     * 
-     * @return a set of Skill objects
-     */
-    public final Set<Skill> getSkills() {
-        return skills;
-    }
-
-    public final void setSkills(final Set<Skill> skills) {
-        this.skills = skills;
-    }
-
-    /**
-     * The PcRace object has learnt a new Skill.
-     * 
-     * @param skill
-     *            The freshly learnt Skill.
-     */
-    public final void skillsAdd(final Skill skill) {
-        if (skills == null) {
-            skills = new TreeSet<Skill>();
-        }
-        skills.add(skill);
-    }
-
-    /**
-     * Add extra Skills to the list of required ingredients.
-     * 
-     * @param newSkills
-     */
-    public final void skillsAdd(final String[] newSkills) {
-        for (String skillId : newSkills) {
-            skillsAdd(new Skill(skillId));
-        }
-    }
-
     // Misc
 
     protected void init() {
@@ -406,9 +248,9 @@ public abstract class PcRace extends Entity {
         generalDice = pcClass.getGeneralDice();
         // misc
         encumbrance = pcClass.getEncumbrance();
-        actionPoints = pcClass.getActionPoints();
+        setActionPoints(pcClass.getActionPoints());
         health = pcClass.getHealth();
-        mana = pcClass.getMana();
+        setMana(pcClass.getMana());
 
         abilityScoresEnsureExists();
 
@@ -468,8 +310,8 @@ public abstract class PcRace extends Entity {
         stealthDice = 0;
         generalDice = 0;
         // misc
-        actionPoints = 0;
-        mana = 0;
+        setActionPoints(0);
+        setMana(0);
         encumbrance = 0;
         health = 0;
     }
@@ -496,7 +338,8 @@ public abstract class PcRace extends Entity {
         if (description != null) {
             text.append("Description: " + description + "\n");
         }
-
+        int actionPoints = getActionPoints();
+        int mana = getMana();
         text.append("Combat Dice: D" + combatDice + "\nMagic Dice: D"
                 + magicDice + "\nStealth Dice: D" + stealthDice
                 + "\nGeneral Dice: D" + generalDice + "\nAction Points: "
@@ -517,12 +360,15 @@ public abstract class PcRace extends Entity {
                 text.append("  " + abilityScore + "\n");
             }
         }
+        Set <Skill> skills = getSkills();
         if (skills != null && !skills.isEmpty()) {
             text.append("Skills:\n");
             for (Skill skill : skills) {
                 text.append("  " + skill + "\n");
             }
         }
+        Set<String> recipes = getRecipes();
+
         if (recipes != null && !recipes.isEmpty()) {
             text.append("Recipes:\n");
             for (String recipeId : recipes) {
@@ -566,17 +412,6 @@ public abstract class PcRace extends Entity {
         setSkills(pc.getSkills()); // TODO ensure results are not linked
     }
 
-    /**
-     * Create a new cooker
-     * 
-     * @param recipeId
-     * @return a new cooker object
-     */
-    public Cooker getCooker(String recipeId) {
-        Configuration configuration = Configuration.lastConfig();
-        Cooker cooker = configuration.getRecipe(recipeId).getNewCooker();
-        cooker.setChef(this);
-        return cooker;
-    }
+
 
 }

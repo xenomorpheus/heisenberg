@@ -297,16 +297,6 @@ public class Recipe {
         return skills;
     }
 
-    /**
-     * Add extra Skills to the list of required requirements.
-     * 
-     * @deprecated only here for JPA and Configuration.
-     * @param skills
-     */
-    public final void skillsAdd(final Set<Skill> skills) {
-        skills.addAll(skills);
-    }
-
     // Misc Methods
     /**
      * 

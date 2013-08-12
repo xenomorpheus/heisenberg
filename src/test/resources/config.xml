@@ -10,6 +10,7 @@
 		<item id="BagOfHolding" />
 		<item id="Box" />
 		<item id="Candle" />
+        <item id="Cat" />
 		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
 		<item id="Cookie" />
 		<item id="Crossbow" iconOpenId="280" iconClosedId="280"

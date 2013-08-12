@@ -2,13 +2,9 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -161,15 +157,6 @@ public class PcRaceTest {
     }
 
     @Test
-    public void testMana() {
-        final int expected = 16;
-        Human human = new Human();
-        assertEquals(0, human.getMana());
-        human.setMana(expected);
-        assertEquals(expected, human.getMana());
-    }
-
-    @Test
     public void testEncumbrance() {
         final int expected = 16;
         Human human = new Human();
@@ -185,17 +172,6 @@ public class PcRaceTest {
         assertEquals(0, human.getHealth());
         human.setHealth(expected);
         assertEquals(expected, human.getHealth());
-    }
-
-    @Test
-    public void testActionPoints() {
-        final int expected = 17;
-        Human human = new Human();
-        assertEquals(0, human.getActionPoints());
-        human.setActionPoints(expected);
-        assertEquals(expected, human.getActionPoints());
-        human.actionPointsAdjust(2);
-        assertEquals(expected + 2, human.getActionPoints());
     }
 
     @Test
@@ -226,15 +202,6 @@ public class PcRaceTest {
         // fail("todo");
     }
     
-    @Test
-    public void testRecipes() {
-        Human human = new Human();
-        Set<String> recipes = new HashSet<String>();
-        human.setRecipes(recipes);
-        human.getRecipes();
-        // assertNotNull("recipes not null", recipes);
-        // TODO human.setRecipes();
-    }
 
     @Test
     public void testGetDetailedDescription() {
@@ -318,14 +285,6 @@ public class PcRaceTest {
         assertEquals("mana", mana, elf.getMana());
         assertEquals("encumbrance", encumberance, elf.getEncumbrance());
         assertEquals("health", health, elf.getHealth());
-    }
-
-    @Test
-    public void testGetCooker() {
-        Human human = new Human();
-        String recipeId = "testItem1";
-        Cooker cooker = human.getCooker(recipeId);
-        assertNotNull("cooker not null", cooker);
     }
 
     @Test
