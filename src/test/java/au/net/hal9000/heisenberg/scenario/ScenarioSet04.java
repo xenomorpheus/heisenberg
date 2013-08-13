@@ -15,8 +15,10 @@ public class ScenarioSet04 {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy","Black cat");
         cat.move( dungeon, new Point3d(0,0,0));
-        System.out.println(cat.detailedDescription());
+        Point3d pos = new Point3d(0,0,0);
+        assertTrue(pos.equals( cat.getPosition()));
         cat.move( new Point3d(10,10,0));
-        System.out.println(cat.detailedDescription());
+        pos = new Point3d(10,10,0);
+        assertTrue(pos.equals( cat.getPosition()));
     }
 }

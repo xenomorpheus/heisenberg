@@ -505,7 +505,7 @@
 			<requirements>
 				<item id="Wood" consumed="true" weightMin="3" />
 				<item id="FlintAndTinder" consumed="false" />
-				<item id="Location" type="ItemContainer" consumed="false" />
+				<item id="Location" type="Location" consumed="false" />
 			</requirements>
 			<products>
 				<item id="smallGroundFire" />
@@ -535,7 +535,7 @@
 			actionPoints="42" process="createItem1">
 			<skill id="testFireLighting" />
 			<requirements>
-				<item id="Location" type="ItemContainer" consumed="false" />
+				<item id="Location" type="Location" consumed="false" />
 				<item id="Wood" consumed="true" weightMin="3" />
 				<item id="FlintAndTinder" consumed="false" />
 			</requirements>

@@ -38,7 +38,7 @@ public class PersistenceTest {
 			em.getTransaction().begin();
 			Item item = Factory.createItem(itemClass);
 			assertEquals(0L, item.getJpaId());
-			item.setName("This is a " + itemClass + " Name");
+            item.setName("This is a " + itemClass + " Name");
 			item.setDescription("This is a " + itemClass + " Description");
 
 			// Persist it
