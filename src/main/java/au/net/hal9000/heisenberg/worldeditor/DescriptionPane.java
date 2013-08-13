@@ -42,7 +42,7 @@ public class DescriptionPane extends JScrollPane {
                     descriptionTextArea.setText("");
                     logger.error("pc is NULL");
                 } else {
-                    descriptionTextArea.setText(pc.getDetailedDescription());
+                    descriptionTextArea.setText(pc.detailedDescription());
                 }
             }
         });
@@ -62,7 +62,7 @@ public class DescriptionPane extends JScrollPane {
             descriptionTextArea.setText("");
         }
         else{
-            descriptionTextArea.setText(pc.getDetailedDescription());
+            descriptionTextArea.setText(pc.detailedDescription());
         }
     }
 }

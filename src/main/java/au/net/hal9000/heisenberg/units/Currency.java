@@ -230,8 +230,29 @@ public class Currency implements Serializable, Cloneable {
     }
 
     public String toString() {
-        return new String(this.pp + "pp, " + this.gp + "gp, " + this.sp
-                + "sp, " + this.cp + "cp ");
+        String str = "0 gp";
+        if (pp != 0 || gp != 0 || sp != 0 || cp != 0) {
+            StringBuilder sb = new StringBuilder();
+            String joiner = "";
+            if (pp != 0) {
+                sb.append(this.pp + "pp" + joiner);
+                joiner = ",";
+            }
+            if (gp != 0) {
+                sb.append(this.gp + "gp" + joiner);
+                joiner = ",";
+            }
+            if (sp != 0) {
+                sb.append(this.sp + "sp" + joiner);
+                joiner = ",";
+            }
+            if (cp != 0) {
+                sb.append(this.cp + "cp" + joiner);
+                joiner = ",";
+            }
+            str = sb.toString();
+        }
+        return str;
     }
 
     private void writeObject(ObjectOutputStream out) throws IOException {

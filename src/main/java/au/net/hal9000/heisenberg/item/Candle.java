@@ -93,8 +93,8 @@ public class Candle extends Item implements LightSource {
 
     /** {@inheritDoc} */
     @Override
-    public String getDetailedDescription() {
-        String full_desc = super.getDetailedDescription() + "\n";
+    public String detailedDescription() {
+        String full_desc = super.detailedDescription() + "\n";
         full_desc += "The " + this.getClass().getSimpleName();
 
         if (lit) {

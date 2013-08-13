@@ -106,15 +106,15 @@ public class CandleTest {
         Candle candle = new Candle();
         // lit
         candle.setLit(true);
-        String description = candle.getDetailedDescription();
+        String description = candle.detailedDescription();
         assertNotEquals(-1, description.indexOf("The Candle is lit.") );
         // unlit
         candle.extinguish();
-        description = candle.getDetailedDescription();
+        description = candle.detailedDescription();
         assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
         // unlit
         candle.setLit(false);
-        description = candle.getDetailedDescription();
+        description = candle.detailedDescription();
         assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
     }
 

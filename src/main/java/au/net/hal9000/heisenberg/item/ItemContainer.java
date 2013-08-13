@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.item;
 
 /**
-* The container has control of the movement of Item objects
-* within it.
-*/
+ * The container has control of the movement of Item objects
+ * within it.
+ */
 
 import java.io.Serializable;
 import java.util.EmptyStackException;
@@ -20,7 +20,8 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private static final Logger  logger = Logger.getLogger(ItemContainer.class.getName());
+    private static final Logger logger = Logger.getLogger(ItemContainer.class
+            .getName());
     private float weightMax = 0;
     private float volumeMax = 0;
     private Vector<Item> contents = new Vector<Item>();
@@ -31,8 +32,9 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     public ItemContainer(String string) {
-        this(string,"");
+        this(string, "");
     }
+
     // Getters and Setters
     /**
      * Get the contents
@@ -216,7 +218,7 @@ public abstract class ItemContainer extends Item implements Serializable {
                 return;
             }
         }
-        // TODO consider refactor into a visitor pattern that tallies 
+        // TODO consider re-factor into a visitor pattern that totals
         // up the weight and volume in one pass.
 
         // check Weight
@@ -253,14 +255,17 @@ public abstract class ItemContainer extends Item implements Serializable {
 
         // Add the item and update the item's location.
         int currentSize = contents.size();
-        if (index > (currentSize+1) ){
-            throw new RuntimeException("Requested possition "+index+" much greater "+currentSize+". container is a "+this.getName()+", added item is "+item.getName());
+        if (index > (currentSize + 1)) {
+            throw new RuntimeException("Requested possition " + index
+                    + " much greater " + currentSize + ". container is a "
+                    + this.getName() + ", added item is " + item.getName());
         }
         contents.add(index, item);
         // check
         int pos = contents.indexOf(item);
-        if (pos != index){
-            throw new RuntimeException("Requested possition "+index+" != reported possition "+pos);
+        if (pos != index) {
+            throw new RuntimeException("Requested possition " + index
+                    + " != reported possition " + pos);
         }
         item.setContainer(this);
     }
@@ -399,38 +404,31 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Move the Item object's position within the ItemContainer.
      * 
-     * @param item the item to be moved.
-     * @param expectedPosition the new position.
+     * @param item
+     *            the item to be moved.
+     * @param expectedPosition
+     *            the new position.
      * 
-     * The container has control of the movement of Item objects
-     * within it.
+     *            The container has control of the movement of Item objects
+     *            within it.
      */
     public void moveItem(Item item, Point3d expectedPosition) {
-        item.setPosition(expectedPosition);        
+        ItemContainer container = item.getContainer();
+        if (container != this) {
+            throw new RuntimeException(
+                    "attempting to move item not in container. item=" + item
+                            + ", container=" + container);
+        }
+        item.setPosition(expectedPosition);
     }
 
-    /**
-     * Relocate the Item to a new ItemContainer.
-     * 
-     * @param item
-     *            item to relocate.
-     * @param container
-     *            new container.
-     */
-    public void relocateItem(Item item, ItemContainer container) {
-        ItemContainer losingContainer = item.getContainer();
-        if (losingContainer != null) {
-            losingContainer.remove(item);
-        }
-        container.add(item);
-    }    
-    
     /** {@inheritDoc} */
     @Override
     public void setAllFrom(Item item) {
         super.setAllFrom(item);
         // TODO set local properties
         // TODO Add unit tests
-        // TODO Do we copy contents?  Thinking no.
+        // TODO Do we copy contents? Thinking no.
     }
+
 }

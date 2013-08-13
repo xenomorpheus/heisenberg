@@ -208,7 +208,7 @@ public class PcRaceTest {
         // vanilla - no mods.
         Human human = new Human();
         assertNotNull("vanilla - detailed description not null",
-                human.getDetailedDescription());
+                human.detailedDescription());
 
         // null
         human.setName(null);
@@ -217,7 +217,7 @@ public class PcRaceTest {
         // TODO human.setPowerWords(null);
         // TODO human.setAbilityScores(null);
         assertNotNull("vanilla - detailed description not null",
-                human.getDetailedDescription());
+                human.detailedDescription());
 
         // fully populated
         human.setName("The Name");
@@ -232,7 +232,7 @@ public class PcRaceTest {
                 "testSpell1" });
 
         assertNotNull("vanilla - detailed description not null",
-                human.getDetailedDescription());
+                human.detailedDescription());
     }
 
     @Test

@@ -1,11 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.Properties;
 
-import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.PcClass;
 
@@ -317,15 +313,15 @@ public abstract class PcRace extends Entity {
     }
 
     /**
+     * 
      * @return Plain text description of the object
      */
-    public String getDetailedDescription() {
+    public String detailedDescription() {
         StringBuilder text = new StringBuilder(1024);
 
-        String name = getName();
-        if (name != null) {
-            text.append("Name: " + name + "\n");
-        }
+        // Inherit description from super first.
+        text.append(super.detailedDescription());
+        // Only add properties in this class.
 
         String race = getRace();
 
@@ -334,53 +330,16 @@ public abstract class PcRace extends Entity {
         if (pcClass != null) {
             text.append("Class: " + pcClass.getId() + "\n");
         }
-        String description = getDescription();
-        if (description != null) {
-            text.append("Description: " + description + "\n");
-        }
-        int actionPoints = getActionPoints();
-        int mana = getMana();
+
         text.append("Combat Dice: D" + combatDice + "\nMagic Dice: D"
                 + magicDice + "\nStealth Dice: D" + stealthDice
-                + "\nGeneral Dice: D" + generalDice + "\nAction Points: "
-                + actionPoints + "\nHealth: " + health + "\nMana: " + mana
+                + "\nGeneral Dice: D" + generalDice + "\nHealth: " + health
                 + "\nEncumbrance: " + encumbrance + "\n");
 
-        String gender = getGender();
-        if (gender != null) {
-            text.append("Gender: " + gender + "\n");
-        }
-        String size = getSize();
-        if (size != null) {
-            text.append("Size: " + size + "\n");
-        }
         if (abilityScores != null) {
             text.append("Abilities:\n");
             for (AbilityScore abilityScore : abilityScores.values()) {
                 text.append("  " + abilityScore + "\n");
-            }
-        }
-        Set <Skill> skills = getSkills();
-        if (skills != null && !skills.isEmpty()) {
-            text.append("Skills:\n");
-            for (Skill skill : skills) {
-                text.append("  " + skill + "\n");
-            }
-        }
-        Set<String> recipes = getRecipes();
-
-        if (recipes != null && !recipes.isEmpty()) {
-            text.append("Recipes:\n");
-            for (String recipeId : recipes) {
-                text.append("  " + recipeId + "\n");
-            }
-        }
-        Properties properties = this.getProperties();
-        if (properties != null && !properties.isEmpty()) {
-            text.append("Properties:\n");
-            for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-                text.append(" " + entry.getKey() + ": " + entry.getValue()
-                        + "\n");
             }
         }
         return text.toString();
@@ -411,7 +370,5 @@ public abstract class PcRace extends Entity {
         setRecipes(pc.getRecipes()); // TODO ensure results are not linked
         setSkills(pc.getSkills()); // TODO ensure results are not linked
     }
-
-
 
 }

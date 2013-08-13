@@ -330,7 +330,7 @@ public class Cooker extends ItemContainer {
             throw new IllegalArgumentException("container may not be null");
         }
         Item item = ingredients.get(key);
-        this.relocateItem(item, container);
+        item.move( container);
         ingredients.remove(key);
     }
 

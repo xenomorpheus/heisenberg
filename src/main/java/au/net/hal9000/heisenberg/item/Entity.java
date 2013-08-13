@@ -221,8 +221,50 @@ public abstract class Entity extends ItemContainer {
         }
     }
 
-    
-    
+    // Misc
+
+    /**
+     * 
+     * @return Plain text description of the object
+     */
+    public String detailedDescription() {
+        StringBuilder text = new StringBuilder(1024);
+
+        // Inherit description from super first.
+        text.append(super.detailedDescription());
+        // Only add properties in this class.
+
+        if (actionPoints != 0) {
+            text.append("Action Points: " + actionPoints + "\n");
+        }
+        if (gender != null) {
+            text.append("Gender: " + gender + "\n");
+        }
+        if (mana != 0) {
+            text.append("Mana: " + mana + "\n");
+        }
+
+        if (size != null) {
+            text.append("Size: " + size + "\n");
+        }
+
+        Set<Skill> skills = getSkills();
+        if (skills != null && !skills.isEmpty()) {
+            text.append("Skills:\n");
+            for (Skill skill : skills) {
+                text.append("  " + skill + "\n");
+            }
+        }
+        Set<String> recipes = getRecipes();
+        if (recipes != null && !recipes.isEmpty()) {
+            text.append("Recipes:\n");
+            for (String recipeId : recipes) {
+                text.append("  " + recipeId + "\n");
+            }
+        }
+        return text.toString();
+    }
+
     /**
      * Create a new cooker
      * 

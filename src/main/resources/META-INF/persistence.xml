@@ -9,7 +9,8 @@
 		<class>au.net.hal9000.heisenberg.item.Bag</class>
 		<class>au.net.hal9000.heisenberg.item.BagOfHolding</class>
 		<class>au.net.hal9000.heisenberg.item.Box</class>
-		<class>au.net.hal9000.heisenberg.item.Candle</class>
+        <class>au.net.hal9000.heisenberg.item.Candle</class>
+		<class>au.net.hal9000.heisenberg.item.Cat</class>
 		<class>au.net.hal9000.heisenberg.item.Cloak</class>
 		<class>au.net.hal9000.heisenberg.item.Cookie</class>
 		<class>au.net.hal9000.heisenberg.item.Crossbow</class>

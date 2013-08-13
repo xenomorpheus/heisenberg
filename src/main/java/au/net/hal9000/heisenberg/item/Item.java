@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
+
 
 // Persistence
 import javax.persistence.Entity;
@@ -20,6 +22,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import org.apache.log4j.Logger;
+
 
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -129,7 +132,7 @@ public abstract class Item implements Serializable {
         ItemProperty.setClothing(this, false);
         ItemProperty.setLiving(this, false);
         ItemProperty.setHumanoidFood(this, false);
-        
+
         // TODO add separate Icons for Closed and Leaf
         Icon icon = getIconOpenDefault();
         setIconOpen(icon);
@@ -535,20 +538,45 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Chage the position of the item within the ItemContainer.
+     * Move the item into the ItemContainer. Note: The request can fail or
+     * partially complete.<br>
+     * E.g Can't pass through walls.
      * 
-     * @param expectedPosition
-     *            the hoped for position.
-     * 
-     *            Note: The request can fail or partially compete. E.g Can't
-     *            pass through walls.
+     * @param container
+     *            the container that will hold this item.
+     * @param requestedPosition
+     *            the requested position within the container.
      */
-    public void move(Point3d expectedPosition) {
-        // TODO It is the container's job to move the item
+    public void move(ItemContainer container, Point3d requestedPosition) {
+        container.add(this);
+        move(requestedPosition);
+    }
+
+    /**
+     * Move the item into the ItemContainer.
+     * 
+     * @param container
+     *            the container that will hold this item.
+     */
+    public void move(ItemContainer container) {
+        container.add(this);
+    }
+
+    /**
+     * Change the position of the item within the ItemContainer.
+     * 
+     * Note: The request can fail or partially complete.<br>
+     * E.g Can't pass through walls.
+     * 
+     * @param requestedPosition
+     *            the requested position within the container.
+     * 
+     */
+    public void move(Point3d requestedPosition) {
         if (container == null) {
             logger.error("No ItemConainer - Can't move");
         } else {
-            container.moveItem(this, expectedPosition);
+            container.moveItem(this, requestedPosition);
         }
     }
 
@@ -569,33 +597,41 @@ public abstract class Item implements Serializable {
      * @return A description. e.g. 'A lit candle'
      */
     public String detailedDescription() {
-        StringBuilder str = new StringBuilder(128);
+        StringBuilder text = new StringBuilder(128);
         String temp;
 
         temp = this.getName();
         if (temp != null) {
-            str.append("Name: " + temp + "\n");
+            text.append("Name: " + temp + "\n");
         }
+        text.append("Class: " + getSimpleClassName() + "\n");
         temp = this.getDescription();
-        if (temp != null) {
-            str.append("Description: " + temp + "\n");
+        if ((temp != null) && (temp.length() > 0)) {
+            text.append("Description: " + temp + "\n");
         }
-        str.append("Weight Base: " + this.getWeightBase() + "\n"
+        text.append("Weight Base: " + this.getWeightBase() + "\n"
                 + "Volume Base: " + this.getVolumeBase() + "\n");
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
-            str.append("Value Base: " + valueBase + "\n");
+            text.append("Value Base: " + valueBase + "\n");
         }
         ItemContainer container = this.getContainer();
         if (container != null) {
-            str.append("Container: " + container.getName() + "\n");
+            text.append("Container: " + container.getName() + "\n");
         }
         Point3d position = this.getPosition();
         if (position != null) {
-            str.append("Position: " + position + "\n");
+            text.append("Position: " + position + "\n");
         }
-        return str.toString();
+        if (properties != null && !properties.isEmpty()) {
+            text.append("Properties:\n");
+            for (Entry<Object, Object> entry : properties.entrySet()) {
+                text.append(" " + entry.getKey() + ": " + entry.getValue()
+                        + "\n");
+            }
+        }
+        return text.toString();
     }
 
     /** Find items that match the criteria */
@@ -651,28 +687,6 @@ public abstract class Item implements Serializable {
             ;
         }
         return false;
-    }
-
-    /**
-     * Some text that describes the properties of this object.
-     * 
-     * @return the detailed description.
-     */
-    // TODO complete. StringBuilder.
-    public String getDetailedDescription() {
-        String full_desc;
-        final String desc = getDescription();
-        final String name = getName();
-
-        // Otherwise try to get the name.
-        if ((desc != null) && (desc.length() > 0)) {
-            full_desc = desc;
-        } else if ((name != null) && (name.length() > 0)) {
-            full_desc = name;
-        } else {
-            full_desc = getSimpleClassName();
-        }
-        return full_desc;
     }
 
     /**

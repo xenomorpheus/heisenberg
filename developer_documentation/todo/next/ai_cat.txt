@@ -41,11 +41,11 @@ Mice
 Fish?
 
 Properties:
-respirated               ideal 100
-hydrated                 ideal 100
-nourished                ideal 100
-rested                   ideal 100
-interlectual_stimulated  ideal 100
+aeration                   ideal 100
+hydration                  ideal 100
+nourishment                ideal 100
+rest                       ideal 100
+interlectual_stimulation  ideal 100
 
 
 Agent goals: (rl features)

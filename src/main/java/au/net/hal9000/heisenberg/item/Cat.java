@@ -15,4 +15,10 @@ public class Cat extends Entity {
         this();
         setName(name);
     }
+
+    public Cat(String name, String description) {
+        this();
+        setName(name);
+        setDescription(description);
+    }
 }
