@@ -17,6 +17,7 @@
 		<class>au.net.hal9000.heisenberg.item.CrossbowBolt</class>
 		<class>au.net.hal9000.heisenberg.item.Elf</class>
 		<class>au.net.hal9000.heisenberg.item.FlintAndTinder</class>
+        <class>au.net.hal9000.heisenberg.item.Fungus</class>
 		<class>au.net.hal9000.heisenberg.item.Halfling</class>
 		<class>au.net.hal9000.heisenberg.item.Hand</class>
 		<class>au.net.hal9000.heisenberg.item.Horse</class>
@@ -27,7 +28,8 @@
 		<class>au.net.hal9000.heisenberg.item.OrbOfLight</class>
 		<class>au.net.hal9000.heisenberg.item.Purse</class>
 		<class>au.net.hal9000.heisenberg.item.Quiver</class>
-		<class>au.net.hal9000.heisenberg.item.Ring</class>
+        <class>au.net.hal9000.heisenberg.item.Rat</class>
+        <class>au.net.hal9000.heisenberg.item.Ring</class>
 		<class>au.net.hal9000.heisenberg.item.Scabbard</class>
 		<class>au.net.hal9000.heisenberg.item.Shield</class>
 		<class>au.net.hal9000.heisenberg.item.SmallGroundFire</class>

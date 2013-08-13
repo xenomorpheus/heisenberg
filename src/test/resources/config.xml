@@ -19,6 +19,7 @@
 			iconLeafId="23" />
 		<item id="Elf" />
 		<item id="FlintAndTinder" />
+        <item id="Fungus" />
 		<item id="Halfling" />
 		<item id="Hand" />
 		<item id="Horse" />
@@ -30,6 +31,7 @@
 		<item id="OrbOfLight" />
 		<item id="Purse" />
 		<item id="Quiver" />
+        <item id="Rat" />
 		<item id="Ring" iconOpenId="312" iconClosedId="312"
             iconLeafId="312"/>
 		<item id="Scabbard" />

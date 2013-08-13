@@ -1,5 +1,6 @@
 2013-08-13
 Added Cat. First Entity that isn't a PcRace.
+Added Rat and Fungus.
 To allow Entity to be more useful, moved some attributes from 
 PcRace down to Entity.
 detailedDescription() method now inherits from super.
