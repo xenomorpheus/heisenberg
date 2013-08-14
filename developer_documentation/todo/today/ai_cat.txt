@@ -5,11 +5,17 @@ Agent - cat s/w
 Action Item
 =================================
 Add Items:
-Dungeon (location)
-Fungus (Item)
-Rat (animal)
-Cat (animal)
+Fungus (Item sub-class) - DONE
+Rat (Entity sub-class) - DONE
+Cat (Entity sub-class) - DONE
 
+
+Entity Properties:
+aeration                   ideal 100 - DONE
+hydration                  ideal 100 - DONE
+nourishment                ideal 100 - DONE
+rest                       ideal 100 - DONE
+entertainment              ideal 100 - DONE
 
 
 
@@ -18,7 +24,7 @@ Detailed Plans
 =====================================
 
 Born with racial memory:
-Tendancy to hunt / drink / eat /sleep
+Tendency to hunt / drink / eat /sleep
 Expressed as pre-loaded coefficients for actions.
 
 
@@ -39,13 +45,6 @@ Room
 Water
 Mice
 Fish?
-
-Properties:
-aeration                   ideal 100
-hydration                  ideal 100
-nourishment                ideal 100
-rest                       ideal 100
-interlectual_stimulation  ideal 100
 
 
 Agent goals: (rl features)

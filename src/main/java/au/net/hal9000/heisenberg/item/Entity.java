@@ -60,7 +60,11 @@ public abstract class Entity extends ItemContainer {
         super(name, description);
         // By default PCs are living, but this may be changed at any time.
         ItemProperty.setLiving(this, true);
-
+        ItemProperty.setAeration(this, 100);
+        ItemProperty.setEntertainment(this, 80);        
+        ItemProperty.setHydration(this, 80);
+        ItemProperty.setNourishment(this, 80);
+        ItemProperty.setRest(this, 80);
     }
 
     public Entity(String name) {

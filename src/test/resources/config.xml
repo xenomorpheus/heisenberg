@@ -551,6 +551,24 @@
 				<!-- TODO <item id="Target" class="PC" consumed="no" /> -->
 			</requirements>
 		</recipe>
+        <recipe id="testEatRat" description="eat a rat"
+            actionPoints="2" process="eat">
+            <requirements>
+                <item id="Rat"/>
+            </requirements>
+            <products>
+                <item id="Nourishment" />
+            </products>
+        </recipe>
+        <recipe id="testDrinkWater" description="drink water"
+            actionPoints="2" process="eat">
+            <requirements>
+                <item id="Water"/>
+            </requirements>
+            <products>
+                <item id="Hydration" />
+            </products>
+        </recipe>
 	</recipes>
 
 	<spriteSheets>
