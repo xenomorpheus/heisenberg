@@ -104,21 +104,25 @@ public class Recipe {
      */
     private String id;
     /**
+     * The amount of actionPoints required for this recipe.
+     */
+    private int actionPoints = 0;
+    /**
      * Describe the recipe in terms a game player understands.
      */
     private String description;
-    /**
-     * The name given to the subroutine.
-     */
-    private String process;
     /**
      * The amount of Mana required for this recipe.
      */
     private int mana = 0;
     /**
-     * The amount of ActionPoints required for this recipe.
+     * The name given to the subroutine.
      */
-    private int actionPoints = 0;
+    private String process;
+    /**
+     * What the recipe produces.
+     */
+    private Vector<String> products = new Vector<String>();
     /**
      * The total items required for this recipe.
      */
@@ -127,11 +131,6 @@ public class Recipe {
      * The {@link Skill} objects required.
      */
     private Set<Skill> skills = new TreeSet<Skill>();
-    /**
-     * What the recipe produces.
-     */
-    private Vector<String> products = new Vector<String>();
-
     /**
      * 
      * @param id
