@@ -104,7 +104,7 @@ public class ConfigurationTest {
         // recipe1
         Recipe recipe1 = recipes.get("testItem1");
         assertEquals("description", "item test 1", recipe1.getDescription());
-        assertEquals("process", "createItem1", recipe1.getProcess());
+        assertEquals("process", "testCreateItem1", recipe1.getProcess());
         assertEquals("actionPoints", 10, recipe1.getActionPoints());
         assertEquals("requirement count", 1, recipe1.getRequirementCount());
         RequirementItem requirementItem = (RequirementItem) recipe1
@@ -123,7 +123,7 @@ public class ConfigurationTest {
         Recipe recipe2 = recipes.get("testFireGround1");
         assertEquals("description", "small open ground fire",
                 recipe2.getDescription());
-        assertEquals("process", "createItem1", recipe2.getProcess());
+        assertEquals("process", "testCreateItem1", recipe2.getProcess());
         assertEquals("mana", 0, recipe2.getMana());
         assertEquals("actionPoints", 42, recipe2.getActionPoints());
         assertEquals("requirement count", 3, recipe2.getRequirementCount());
@@ -137,7 +137,7 @@ public class ConfigurationTest {
         // recipe3
         Recipe recipe3 = recipes.get("testSpell1");
         assertEquals("description", "spell test 1", recipe3.getDescription());
-        assertEquals("process", "spellTest1", recipe3.getProcess());
+        assertEquals("process", "testSpell1", recipe3.getProcess());
         assertEquals("mana", 2, recipe3.getMana());
         assertEquals("actionPoints", 10, recipe3.getActionPoints());
         assertEquals("requirement count", 0, recipe3.getRequirementCount());
