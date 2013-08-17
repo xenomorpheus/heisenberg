@@ -93,7 +93,8 @@
 										auto-allocation of Item objects if this process is added) 1.
 										Consumed Ingredient objects before non-consumed so
 										non-consumed
-										aren't counted twice. 2. Most specific Ingredient before
+										aren't counted twice. 2. Most specific Ingredient
+										before
 										less-specific to help the matching process Game Recipes
 										Unit Test Recipes
 									</xs:documentation>
@@ -200,15 +201,17 @@
 								<xs:attribute type="xs:string" name="id" use="required" />
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="spell" type="ctKeywordType"
-							minOccurs="0" />
+						<xs:element name="spell" type="ctKeywordType" minOccurs="0" />
+						<xs:element name="property" minOccurs="0">
+						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 		<xs:attribute type="xs:string" name="id" use="required" />
 		<xs:attribute type="xs:string" name="description" use="required" />
-		<xs:attribute type="xs:string" name="process" use="optional" />
+		<xs:attribute type="ctRecipeProcessType" name="process"
+			use="optional" />
 		<xs:attribute type="xs:byte" name="actionPoints" use="optional" />
 		<xs:attribute type="xs:byte" name="mana" use="optional" />
 	</xs:complexType>
@@ -226,5 +229,14 @@
 		</xs:sequence>
 	</xs:complexType>
 
-
+	<xs:simpleType name="ctRecipeProcessType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="createItem1"></xs:enumeration>
+			<xs:enumeration value="eat1"></xs:enumeration>
+			<!-- Test -->
+            <xs:enumeration value="testSpell1"></xs:enumeration>
+			<xs:enumeration value="testCreateItem1"></xs:enumeration>
+			<xs:enumeration value="testEat1"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>
