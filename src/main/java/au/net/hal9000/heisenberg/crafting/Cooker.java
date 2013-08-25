@@ -27,8 +27,8 @@ import au.net.hal9000.heisenberg.units.Skill;
  * </ol>
  * 
  * // Example: // Create a SmallGroundFire. <br>
- * PcRace pc = new Human("Fred the Fighter"); Cooker cooker =
- * pc.getCooker("testFireGround1"); <br>
+ * PcRace pc = new Human("Fred the Fighter"); <br>
+ * Cooker cooker = pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>
  * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
  * cooker.setItemsAvailable("Wood", wood); <br>
@@ -227,7 +227,7 @@ public class Cooker extends ItemContainer {
      * @return null iff all requirements are met.
      */
     public final String requirementsItemMet() {
-
+        StringBuilder text = new StringBuilder();
         int requirementCount = getRequirementCount();
         // No requirements
         if (requirementCount == 0) {
@@ -235,19 +235,22 @@ public class Cooker extends ItemContainer {
         }
         // Not enough Requirement Items.
         if (requirementCount > ingredients.size()) {
-            return "Too few ingredients " + requirementCount + " vs "
-                    + ingredients.size();
+            text.append( "Too few ingredients " + requirementCount + " vs "
+                    + ingredients.size());
         }
         for (String key : recipe.getRequirements().keySet()) {
             Item item = ingredients.get(key);
             RequirementItem requirementItem = (RequirementItem) getRequirement(key);
             String reason = requirementItem.meetsRequirements(item);
             if (reason != null) {
-                return "Missing/bad ingredient named " + key + " because "
-                        + reason;
+                text.append( "Missing/bad ingredient named " + key + " because "
+                        + reason);
             }
         }
-        return null;
+        if (text.length() == 0){
+            return null;
+        }
+        return text.toString();
     }
 
     /**
@@ -304,7 +307,6 @@ public class Cooker extends ItemContainer {
     public final String cook() {
         String message = requirementsMet();
         if (message != null) {
-            // System.out.println(message);
             return message;
         }
         requirementsConsume();
