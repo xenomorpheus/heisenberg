@@ -10,6 +10,8 @@ import java.util.Vector;
 import org.junit.Before;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.crafting.Product;
+import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -92,7 +94,6 @@ public class ConfigurationTest {
 
     @Test
     public void testRecipes() {
-
         TreeMap<String, Recipe> recipes = config.getRecipes();
         assertNotNull("ingredients !=null", recipes);
         assertTrue("requirement count", 2 <= recipes.size());
@@ -100,49 +101,68 @@ public class ConfigurationTest {
             assertTrue("id", recipe.getId().length() > 0);
             assertTrue("toDescription", recipe.getDescription().length() > 0);
         }
+    }
 
-        // recipe1
-        Recipe recipe1 = recipes.get("testItem1");
-        assertEquals("description", "item test 1", recipe1.getDescription());
-        assertEquals("process", "testCreateItem1", recipe1.getProcess());
-        assertEquals("actionPoints", 10, recipe1.getActionPoints());
-        assertEquals("requirement count", 1, recipe1.getRequirementCount());
-        RequirementItem requirementItem = (RequirementItem) recipe1
-                .getRequirement("Location");
+    @Test
+    public void testItem1() {
+        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Recipe recipe = recipes.get("testItem1");
+        assertEquals("description", "item test 1", recipe.getDescription());
+        assertEquals("process", "createItem1", recipe.getProcess());
+        assertEquals("actionPoints", 10, recipe.getActionPoints());
+        assertEquals("requirement count", 1, recipe.getRequirementCount());
+        RequirementItem requirementItem = (RequirementItem) recipe
+                .getRequirement(0);
         assertNotNull("requirement not null", requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
         assertEquals("requirement itemType", "ItemContainer",
                 requirementItem.getItemType());
-        assertEquals("skill count", 1, recipe1.getSkillCount());
+        assertEquals("skill count", 1, recipe.getSkillCount());
         assertTrue("skill 0",
-                recipe1.getSkills().contains(new Skill("testSkill1")));
-        assertEquals("product count", 1, recipe1.getProductCount());
-        assertEquals("product 0 type", "Cookie", recipe1.getProduct(0));
+                recipe.getSkills().contains(new Skill("testSkill1")));
+        assertEquals("product count", 1, recipe.getProductCount());
+        Product product = recipe.getProduct(0);
+        assertNotNull("product 0 not null",  product );
+        assertTrue("product 0 ProductItem", product instanceof ProductItem);
+        ProductItem productItem = (ProductItem) product;
+        assertEquals("product 0 id", "Cookie", productItem.getId() );
+        assertEquals("product 0 itemType", "Cookie", productItem.getItemType() );
+    }
 
-        // recipe2
-        Recipe recipe2 = recipes.get("testFireGround1");
+    @Test
+    public void testFireGround1() {
+        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Recipe recipe = recipes.get("testFireGround1");
         assertEquals("description", "small open ground fire",
-                recipe2.getDescription());
-        assertEquals("process", "testCreateItem1", recipe2.getProcess());
-        assertEquals("mana", 0, recipe2.getMana());
-        assertEquals("actionPoints", 42, recipe2.getActionPoints());
-        assertEquals("requirement count", 3, recipe2.getRequirementCount());
+                recipe.getDescription());
+        assertEquals("process", "createItem1", recipe.getProcess());
+        assertEquals("mana", 0, recipe.getMana());
+        assertEquals("actionPoints", 42, recipe.getActionPoints());
+        assertEquals("requirement count", 3, recipe.getRequirementCount());
         // TODO requirement
-        assertEquals("skill count", 1, recipe2.getSkillCount());
+        assertEquals("skill count", 1, recipe.getSkillCount());
         assertTrue("skill 0",
-                recipe2.getSkills().contains(new Skill("testFireLighting")));
-        assertEquals("product count", 1, recipe2.getProductCount());
-        assertEquals("product 0 type", "SmallGroundFire", recipe2.getProduct(0));
+                recipe.getSkills().contains(new Skill("testFireLighting")));
+        assertEquals("product count", 1, recipe.getProductCount());
+        Product product = recipe.getProduct(0);
+        assertNotNull("product 0 not null",  product );
+        assertTrue("product 0 ProductItem", product instanceof ProductItem);
+        ProductItem productItem = (ProductItem) product;
+        assertEquals("product 0 id", "SmallGroundFire", productItem.getId() );
+        assertEquals("product 0 itemType", "SmallGroundFire", productItem.getItemType() );
+    }
 
-        // recipe3
-        Recipe recipe3 = recipes.get("testSpell1");
-        assertEquals("description", "spell test 1", recipe3.getDescription());
-        assertEquals("process", "testSpell1", recipe3.getProcess());
-        assertEquals("mana", 2, recipe3.getMana());
-        assertEquals("actionPoints", 10, recipe3.getActionPoints());
-        assertEquals("requirement count", 0, recipe3.getRequirementCount());
-        assertEquals("skill count", 0, recipe3.getSkillCount());
-        assertEquals("product count", 0, recipe3.getProductCount());
+    @Test
+    public void testSpell1() {
+        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Recipe recipe = recipes.get("testSpell1");
+        assertEquals("description", "spell test 1", recipe.getDescription());
+        assertEquals("process", "testSpell1", recipe.getProcess());
+        assertEquals("mana", 2, recipe.getMana());
+        assertEquals("actionPoints", 10, recipe.getActionPoints());
+        assertEquals("requirement count", 0, recipe.getRequirementCount());
+        assertEquals("skill count", 0, recipe.getSkillCount());
+        assertEquals("product count", 0, recipe.getProductCount());
 
     }
 
@@ -202,7 +222,7 @@ public class ConfigurationTest {
     public void testRequirementItem() {
         Recipe recipe1 = config.getRecipe("testItem1");
         RequirementItem requirementItem = (RequirementItem) recipe1
-                .getRequirement("Location");
+                .getRequirement(0);
         assertNotNull("requirement not null", requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
         assertEquals("requirement itemType", "ItemContainer",

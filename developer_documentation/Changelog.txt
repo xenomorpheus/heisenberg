@@ -1,3 +1,10 @@
+2013-08-26
+Recipe products have their own class, rather than just being strings.
+Recipes that produce items have ProductItem objects.
+Recipes that produce property changes have ProductProperty objects.
+Requirements, Products and Ingredients are nows stored in vectors in a Recipe.
+
+
 2013-08-13
 Added Cat. First Entity that isn't a PcRace.
 Added Rat and Fungus.

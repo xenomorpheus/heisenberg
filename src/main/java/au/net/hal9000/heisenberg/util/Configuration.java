@@ -15,6 +15,8 @@ import nu.xom.Elements;
 import nu.xom.ParsingException;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
+import au.net.hal9000.heisenberg.crafting.Product;
+import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
@@ -263,9 +265,9 @@ public class Configuration {
     public static Vector<RequirementItem> xmlToIngredientItem(Elements entries) {
         Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
-            // get current ingredient
-            String itemId = entries.get(current).getAttributeValue("id");
-            String itemType = entries.get(current).getAttributeValue("type");
+            Element entry = entries.get(current);
+            String itemId = entry.getAttributeValue("id");
+            String itemType = entry.getAttributeValue("type");
             RequirementItem requirement = new RequirementItem(itemId);
             if (itemType != null) {
                 requirement.setType(itemType);
@@ -282,16 +284,19 @@ public class Configuration {
      *            XML list of Item details.
      * @return A list of Recipe Product objects.
      */
-    // TODO Recipe Products are Strings for now, but should have more
-    // attributes.
-    public static Vector<String> xmlToRecipeProduct(Elements entries) {
-        Vector<String> ingredients = new Vector<String>();
+    public static Vector<Product> xmlToRecipeProductItems(Elements entries) {
+        Vector<Product> products = new Vector<Product>();
         for (int current = 0; current < entries.size(); current++) {
-            // get current ingredient
-            ingredients.add(entries.get(current).getAttributeValue("id")
-                    .toString());
+            Element entry = entries.get(current);
+            String itemId = entry.getAttributeValue("id");
+            String itemType = entry.getAttributeValue("itemType");
+            ProductItem product = new ProductItem(itemId);
+            if (itemType != null) {
+                product.setType(itemType);
+            }
+            products.add(product);
         }
-        return ingredients;
+        return products;
     }
 
     /**
@@ -300,11 +305,18 @@ public class Configuration {
      * @param entry
      *            an XML Recipe Product element.
      */
-    public static Vector<String> xmlToRecipeProducts(Element entry) {
-        Vector<String> products = new Vector<String>();
+    public static Vector<Product> xmlToRecipeProducts(Element entry) {
 
-        Elements items = entry.getChildElements("item");
-        products.addAll(xmlToRecipeProduct(items));
+        Vector<Product> products = new Vector<Product>();
+        if (entry != null) {
+            Elements items = entry.getChildElements("item");
+            if (items != null) {
+                products.addAll(xmlToRecipeProductItems(items));
+            }
+        }
+
+        // TODO other types
+
         return products;
     }
 
@@ -364,29 +376,17 @@ public class Configuration {
         skills.addAll(xmlToSkills(skillElements));
 
         // Requirement objects
-        Vector<Requirement> requirements = new Vector<Requirement>();
-        Elements ingredientElements = recipeElement
-                .getChildElements("requirements");
-        for (int current = 0; current < ingredientElements.size(); current++) {
-            requirements.addAll(xmlToIngredients(ingredientElements
-                    .get(current)));
-        }
-        TreeMap<String, Requirement> requirementsSet = new TreeMap<String, Requirement>();
-        for (Requirement requirement : requirements) {
-            requirementsSet.put(requirement.getId(), requirement);
-        }
+        Element ingredientElement = recipeElement
+                .getFirstChildElement("requirements");
+        Vector<Requirement> requirements = xmlToIngredients(ingredientElement);
 
-        // Add Product items.
-        Vector<String> products = new Vector<String>();
-        Elements productElements = recipeElement.getChildElements("products");
-        for (int current = 0; current < productElements.size(); current++) {
-            products.addAll(xmlToRecipeProducts(productElements.get(current)));
-        }
+        // Product objects.
+        Element productElement = recipeElement.getFirstChildElement("products");
+        Vector<Product> products = xmlToRecipeProducts(productElement);
 
         // Return the completed recipe
         return new Recipe(id, description, process, mana, actionPoints,
-                requirementsSet, skills, products);
-
+                requirements, skills, products);
     }
 
     /**

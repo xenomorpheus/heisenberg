@@ -523,7 +523,7 @@
 		</recipe>
 		<!-- Unit Test Recipes -->
 		<recipe id="testItem1" description="item test 1" mana="2"
-			actionPoints="10" process="testCreateItem1">
+			actionPoints="10" process="createItem1">
 			<skill id="testSkill1" />
 			<requirements>
 				<item id="Location" type="ItemContainer" consumed="false" />
@@ -533,7 +533,7 @@
 			</products>
 		</recipe>
 		<recipe id="testFireGround1" description="small open ground fire"
-			actionPoints="42" process="testCreateItem1">
+			actionPoints="42" process="createItem1">
 			<skill id="testFireLighting" />
 			<requirements>
 				<item id="Location" type="Location" consumed="false" />

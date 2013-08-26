@@ -34,15 +34,13 @@ public class ScenarioSet03 {
         
         // Set up the location
         Location location = new Location();
-        location.setWeightMax(20); // TODO from config ?
+        location.setWeightMax(20);
 
         Wood wood = new Wood();
-        wood.setWeightBase(5); // TODO from recipe config
-        // TODO set XYZ location
+        wood.setWeightBase(5);
         location.add(wood);
 
         FlintAndTinder flintAndTinder = new FlintAndTinder();
-        // TODO set XYZ location
         location.add(flintAndTinder);
 
         // Setup the PC
@@ -63,15 +61,16 @@ public class ScenarioSet03 {
 
         // <item id="Location" type="ItemContainer" consumed="no" />
         assertEquals("set Location", null,
-                cooker.setItemsAvailable("Location", location));
-
-        // TODO move pc to flintAndTinder
-        assertEquals("make FlintAndTinder available", null,
-                cooker.setItemsAvailable("FlintAndTinder", flintAndTinder));
+                cooker.setItemsAvailable(0, location));
 
         // <item id="Wood" consumed="yes" weightMin="3" />
         assertEquals("make Wood available", null,
-                cooker.setItemsAvailable("Wood", wood));
+                cooker.setItemsAvailable(1, wood));
+
+        // TODO move pc to flintAndTinder
+        assertEquals("make FlintAndTinder available", null,
+                cooker.setItemsAvailable(2, flintAndTinder));
+
 
         // Cook!
         assertEquals("cook works", null, cooker.cook());

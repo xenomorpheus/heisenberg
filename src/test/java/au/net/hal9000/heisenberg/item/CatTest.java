@@ -39,7 +39,7 @@ public class CatTest {
         dungeon.add(water);
         cat.setActionPoints(2);
         Cooker cooker = cat.getCooker("testDrinkWater");
-        cooker.setItemsAvailable("Water", water);
+        cooker.setItemsAvailable(0, water);
         String cookingProblems = cooker.cook();
         assertEquals("Cooking problems", null, cookingProblems);
         

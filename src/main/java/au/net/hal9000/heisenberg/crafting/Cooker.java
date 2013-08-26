@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
 import java.util.Set;
-import java.util.TreeMap;
+import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
@@ -56,7 +56,7 @@ public class Cooker extends ItemContainer {
     /**
      * Ingredients we will cook with.
      */
-    private TreeMap<String, Item> ingredients = new TreeMap<String, Item>();
+    private Vector<Item> ingredients = new Vector<Item>();
 
     /* error messages */
     public static String itemMayNotBeNull = "item must exist";
@@ -67,7 +67,9 @@ public class Cooker extends ItemContainer {
 
     /**
      * Constructor.
-     * @param pRecipe the recipe we are cooking.
+     * 
+     * @param pRecipe
+     *            the recipe we are cooking.
      */
     public Cooker(final Recipe pRecipe) {
         super("Cooker");
@@ -86,10 +88,12 @@ public class Cooker extends ItemContainer {
     }
 
     // Setters and Getters
-    
+
     /**
      * set the chef.
-     * @param entity the person doing the cooking.
+     * 
+     * @param entity
+     *            the person doing the cooking.
      */
     public final void setChef(final Entity entity) {
         chef = entity;
@@ -98,36 +102,34 @@ public class Cooker extends ItemContainer {
     /**
      * Add an Item to a particular key in the list of itemsAvailable.
      * 
-     * @param key
+     * @param index
      *            where to add Item
-     * @param item the Item we are making available.
+     * @param item
+     *            the Item we are making available.
      * @return error message or null if it worked
      */
-    public final String setItemsAvailable(final String key, final Item item) {
+    public final String setItemsAvailable(final int index, final Item item) {
         // item exists
         if (item == null) {
             return itemMayNotBeNull;
         }
-        // bad key
-        if (key == null) {
-            return badKey;
-        }
+
         // spot is free?
-        if (ingredients.get(key) != null) {
+        if ((ingredients.size() > index) && (ingredients.get(index) != null)) {
             return alreadyOccupied;
         }
         // already in this container?
         if (this.contains(item)) {
             return alreadyContainsThatItem;
         }
-        // is there a requirement to fulfil ?
+        // is there a requirement to fulfill ?
         RequirementItem requirementItem = (RequirementItem) recipe
-                .getRequirement(key);
+                .getRequirement(index);
         if (requirementItem == null) {
             return noSuchRequirement;
         }
 
-        // Does the Item fulfil the Requirement?
+        // Does the Item fulfill the Requirement?
         String rejectionReason = requirementItem.meetsRequirements(item);
         if (rejectionReason != null) {
             return rejectionReason;
@@ -135,7 +137,7 @@ public class Cooker extends ItemContainer {
 
         // success
         this.add(item);
-        ingredients.put(key, item);
+        ingredients.add(index, item);
         return null;
     }
 
@@ -145,12 +147,12 @@ public class Cooker extends ItemContainer {
     /**
      * Return the Requirement at the specified index.
      * 
-     * @param key
+     * @param index
      *            the index of the Requirement requested
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final String key) {
-        return recipe.getRequirement(key);
+    public final Requirement getRequirement(final int index) {
+        return recipe.getRequirement(index);
     }
 
     /**
@@ -209,10 +211,10 @@ public class Cooker extends ItemContainer {
             return requiredItems;
         }
 
+        // TODO - replace this with a method for each product type.
         // there needs to be a valid location for any created Items.
         if (recipe.getProductCount() > 0) {
-            ItemContainer newItemLocation = (ItemContainer) ingredients
-                    .get("Location");
+            ItemContainer newItemLocation = (ItemContainer) ingredients.get(0);
             if (newItemLocation == null) {
                 return "missing location for new products";
             }
@@ -227,7 +229,7 @@ public class Cooker extends ItemContainer {
      * @return null iff all requirements are met.
      */
     public final String requirementsItemMet() {
-        StringBuilder text = new StringBuilder();
+        StringBuilder errors = new StringBuilder();
         int requirementCount = getRequirementCount();
         // No requirements
         if (requirementCount == 0) {
@@ -235,22 +237,26 @@ public class Cooker extends ItemContainer {
         }
         // Not enough Requirement Items.
         if (requirementCount > ingredients.size()) {
-            text.append( "Too few ingredients " + requirementCount + " vs "
-                    + ingredients.size());
+            errors.append("Too few ingredients " + requirementCount + " vs "
+                    + ingredients.size() + "\n");
         }
-        for (String key : recipe.getRequirements().keySet()) {
-            Item item = ingredients.get(key);
-            RequirementItem requirementItem = (RequirementItem) getRequirement(key);
-            String reason = requirementItem.meetsRequirements(item);
-            if (reason != null) {
-                text.append( "Missing/bad ingredient named " + key + " because "
-                        + reason);
+        Vector<Requirement> requirements = recipe.getRequirements();
+        for (int i = 0; i < requirements.size(); i++) {
+            Requirement requirement = requirements.get(i);
+            if (requirement instanceof RequirementItem) {
+                RequirementItem requirementItem = (RequirementItem) requirement;
+                Item item = ingredients.get(i);
+                String reason = requirementItem.meetsRequirements(item);
+                if (reason != null) {
+                    errors.append("Missing/bad ingredient index " + i
+                            + " because " + reason + "\n");
+                }
             }
         }
-        if (text.length() == 0){
+        if (errors.length() == 0) {
             return null;
         }
-        return text.toString();
+        return errors.toString();
     }
 
     /**
@@ -273,12 +279,16 @@ public class Cooker extends ItemContainer {
         int requirementCount = recipe.getRequirementCount();
 
         if (requirementCount > 0) {
-            for (String key : recipe.getRequirements().keySet()) {
-                Item item = ingredients.get(key);
-                RequirementItem requirementItem = (RequirementItem) getRequirement(key);
-                if (requirementItem.isConsumed()) {
-                    // unlink from other objects
-                    item.beNot();
+            Vector<Requirement> requirements = recipe.getRequirements();
+            for (int i = 0; i < requirements.size(); i++) {
+                Requirement requirement = requirements.get(i);
+                if (requirement instanceof RequirementItem) {
+                    RequirementItem requirementItem = (RequirementItem) requirement;
+                    if (requirementItem.isConsumed()) {
+                        // unlink from other objects
+                        Item item = ingredients.get(i);
+                        item.beNot();
+                    }
                 }
             }
         }
@@ -291,11 +301,20 @@ public class Cooker extends ItemContainer {
         // TODO Not final version. Only a demonstration.
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
-            ItemContainer newItemLocation = (ItemContainer) ingredients
-                    .get("Location");
-            for (int index = 0; index < productCount; index++) {
-                Item item = Factory.createItem(recipe.getProduct(index));
-                newItemLocation.add(item);
+            // TODO work out if location is really required.
+            // Possibly based on the recipe type
+            ItemContainer newItemLocation = (ItemContainer) ingredients.get(0);
+            for (Product product : recipe.getProducts()) {
+                if (product instanceof ProductItem) {
+                    ProductItem productItem = (ProductItem) product;
+                    Item item = Factory.createItem(productItem.getId());
+                    newItemLocation.add(item);
+                } else if (product instanceof ProductProperty) {
+                    ProductProperty productProperty = (ProductProperty) product;
+                    Entity entity = chef;
+                    // TODO alter chef
+
+                }
             }
         }
     }
@@ -327,13 +346,14 @@ public class Cooker extends ItemContainer {
      * @param container
      *            destination ItemContainer.
      */
-    public final void clearItemsAvailable(final String key, final ItemContainer container) {
+    public final void clearItemsAvailable(final int index,
+            final ItemContainer container) {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }
-        Item item = ingredients.get(key);
-        item.move( container);
-        ingredients.remove(key);
+        Item item = ingredients.get(index);
+        item.move(container);
+        ingredients.remove(index);
     }
 
 }

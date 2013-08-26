@@ -1,10 +1,9 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import java.util.TreeMap;
-import java.util.Vector;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Vector;
 
 import au.net.hal9000.heisenberg.units.Skill;
 
@@ -122,15 +121,16 @@ public class Recipe {
     /**
      * What the recipe produces.
      */
-    private Vector<String> products = new Vector<String>();
+    private Vector<Product> products;
     /**
      * The total items required for this recipe.
      */
-    private TreeMap<String, Requirement> requirements;
+    private Vector<Requirement> requirements;
     /**
      * The {@link Skill} objects required.
      */
     private Set<Skill> skills = new TreeSet<Skill>();
+
     /**
      * 
      * @param id
@@ -152,8 +152,8 @@ public class Recipe {
      */
     public Recipe(final String id, final String description,
             final String process, final int mana, final int actionPoints,
-            final TreeMap<String, Requirement> pRequirements,
-            final Set<Skill> pSkills, final Vector<String> pProducts) {
+            final Vector<Requirement> pRequirements, final Set<Skill> pSkills,
+            final Vector<Product> pProducts) {
         super();
         this.id = id;
         this.description = description;
@@ -241,7 +241,7 @@ public class Recipe {
      * 
      * @return the list of Requirement objects.
      */
-    public final TreeMap<String, Requirement> getRequirements() {
+    public final Vector<Requirement> getRequirements() {
         return requirements;
     }
 
@@ -252,18 +252,22 @@ public class Recipe {
      *            the index of the Requirement requested
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final String key) {
-        return requirements.get(key);
+    public final Requirement getRequirement(final int index) {
+        return requirements.get(index);
     }
 
     // products
+
+    public Vector<Product> getProducts() {
+        return products;
+    }
 
     /**
      * @param index
      *            the index of the product we want details of.
      * @return the info for product at the given index.
      */
-    public final String getProduct(final int index) {
+    public final Product getProduct(final int index) {
         return products.get(index);
     }
 
@@ -316,35 +320,35 @@ public class Recipe {
      * @return a description
      */
     public String details() {
-        String string = new String("Id: " + id + "\nDescription: "
-                + description + "\nProcess: " + process + "\nMana:" + mana
+        StringBuilder string = new StringBuilder();
+        string.append("Id: " + id + "\nDescription: " + description
+                + "\nProcess: " + process + "\nMana:" + mana
                 + "\nAction Point(s):" + actionPoints + "\n");
 
         if (skills != null) {
             int index = 0;
-            string += "Skill(s):\n";
+            string.append("Skill(s):\n");
             for (Iterator<Skill> itr = skills.iterator(); itr.hasNext();) {
-                string += "  " + index + ": " + itr.next().toString() + "\n";
+                string.append("  " + index + ": " + itr.next().toString()
+                        + "\n");
                 index++;
             }
         }
         if (requirements != null) {
-            string += "Requirement(s):\n";
-            for (String id : requirements.keySet()) {
-                Requirement requirement = requirements.get(id);
-                string += "  " + id + ": " + requirement.getDescription()
-                        + "\n";
+            string.append("Requirement(s):\n");
+            for (Requirement requirement : requirements) {
+                string.append("  " + requirement.getId() + ": " + requirement.getDescription()
+                        + "\n");
             }
         }
         if (products != null) {
-            int index = 0;
-            string += "Product(s):\n";
-            for (Iterator<String> itr = products.iterator(); itr.hasNext();) {
-                string += "  " + index + ": " + itr.next() + "\n";
-                index++;
+            string.append("Product(s):\n");
+            for (Product product : products) {
+                string.append("  " + product.getId() + ": " + product.getDescription()
+                        + "\n");
             }
         }
-        return string;
+        return string.toString();
     }
 
 }

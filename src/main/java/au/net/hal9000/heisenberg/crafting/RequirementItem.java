@@ -3,8 +3,8 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
- * As much as possible consider this object immutable. 
- * The Setters are here only for JPA.
+ * As much as possible consider this object immutable. The Setters are here only
+ * for JPA.
  * 
  * A Recipe may required any number of Item objects. There will be exactly one
  * RequirementItem object for each required Item. In addition for the noting the
@@ -42,29 +42,47 @@ public class RequirementItem extends Requirement {
     /**
      * Constructor
      * 
-     * @param id the short name of the required item class.
-     */
-    public RequirementItem(final String id, String itemType, boolean isConsumed, float weightMin) {
-        super(id);
-        this.itemType   = itemType;
-        this.isConsumed = isConsumed;
-        this.weightMin  = weightMin;
-    }
-    
-    /**
-     * Constructor
-     * 
-     * @param id the short name of the required item class.
+     * @param id
+     *            the short name of the required item class.
      */
     public RequirementItem(final String id) {
         super(id);
         this.itemType = id;
     }
+
     
+    /**
+     * Constructor
+     * 
+     * @param id
+     *            the short name of the required item class.
+     */
+    public RequirementItem(final String id, String itemType) {
+        this(id);
+        this.itemType = itemType;
+    }
+    
+    /**
+     * Constructor
+     * 
+     * @param id
+     *            the short name of the required item class.
+     */
+    public RequirementItem(final String id, String itemType,
+            boolean isConsumed, float weightMin) {
+        this(id);
+        this.itemType = itemType;
+        this.isConsumed = isConsumed;
+        this.weightMin = weightMin;
+    }
+
+
     // Getters and Setters
     /**
      * Set the itemType
-     * @param itemType the new itemType
+     * 
+     * @param itemType
+     *            the new itemType
      */
     public void setType(final String itemType) {
         this.itemType = itemType;
@@ -115,7 +133,7 @@ public class RequirementItem extends Requirement {
      * @return true if the Item meets the requirements.
      */
     public final String meetsRequirements(final Item item) {
-        
+
         // Correct Class
         if (!item.instanceOf(itemType)) {
             return "item must be a " + itemType;

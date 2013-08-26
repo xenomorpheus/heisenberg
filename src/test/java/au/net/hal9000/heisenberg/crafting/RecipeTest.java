@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.*;
 
-import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
@@ -22,14 +21,15 @@ public class RecipeTest {
     @Test
     public void testRecipeIngredients() {
 
-        TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
         // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder","FlintAndTinder",false,0);
-        requirements.put(flintAndTinder.getId(), flintAndTinder);
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder",
+                "FlintAndTinder", false, 0);
+        requirements.add(flintAndTinder);
 
-        RequirementItem wood = new RequirementItem("Wood","Wood",true,3);
-        requirements.put(wood.getId(), wood);
+        RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
+        requirements.add(wood);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
@@ -37,24 +37,24 @@ public class RecipeTest {
 
         assertEquals("ingredient count", requirements.size(),
                 recipe.getRequirementCount());
-        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement(flintAndTinder.getId()));
-        assertEquals("ingredient 1", wood, recipe.getRequirement(wood.getId()));
+        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement(0));
+        assertEquals("ingredient 1", wood, recipe.getRequirement(1));
     }
 
     @Test
     public void testRecipe() {
-        TreeMap<String,Requirement> requirements = new TreeMap<String,Requirement>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
         // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder","FlintAndTinder",false,0);
-        requirements.put(flintAndTinder.getId(), flintAndTinder);
+        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
+        requirements.add(flintAndTinder);
 
-        RequirementItem wood = new RequirementItem("Wood","Wood",true,3);
-        requirements.put(wood.getId(),wood);
+        RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
+        requirements.add(wood);
 
         // Product(s)
-        Vector<String> products = new Vector<String>();
-        products.add("SmallGroundFire");
+        Vector<Product> products = new Vector<Product>();
+        products.add(new ProductItem("SmallGroundFire"));
 
         // Skills
         Set<Skill> skills = new TreeSet<Skill>();

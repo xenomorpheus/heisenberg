@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.*;
 
-import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
@@ -29,8 +28,8 @@ public class CookerTest {
     }
 
     /**
-     * Magically create a Cookie. e.g. using only magic and time.
-     * An example of common use - create an Item.
+     * Magically create a Cookie. e.g. using only magic and time. An example of
+     * common use - create an Item.
      */
 
     @Test
@@ -50,7 +49,7 @@ public class CookerTest {
         Cooker cooker = chef.getCooker("testItem1");
         Location newItemLocation = new Location("New Item Location");
         assertEquals("set Location", null,
-                cooker.setItemsAvailable("Location", newItemLocation));
+                cooker.setItemsAvailable(0, newItemLocation));
         assertEquals("cook works", null, cooker.cook());
 
         assertEquals("location has new item", 1,
@@ -71,8 +70,8 @@ public class CookerTest {
     @Test
     public void testSpell() {
 
-    	final int manaRemaining = 1;
-    	final int actionPointsRemaining = 2;
+        final int manaRemaining = 1;
+        final int actionPointsRemaining = 2;
         Recipe recipe = config.getRecipe("testSpell1");
 
         // Setup the chef
@@ -91,7 +90,8 @@ public class CookerTest {
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", manaRemaining, chef.getMana());
-        assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+        assertEquals("actionPoints", actionPointsRemaining,
+                chef.getActionPoints());
     }
 
     /**
@@ -106,18 +106,13 @@ public class CookerTest {
         Cookie cookie = new Cookie();
         world.add(cookie);
 
-        TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        requirements.add(new RequirementItem("ItemContainer", "Location",
+                false, 0));
+        requirements.add(new RequirementItem("Cookie"));
 
-        // RequirementItem(s)
-        RequirementItem requirementItem = new RequirementItem("Cookie");
-        requirements.put(requirementItem.getId(), requirementItem);
-        RequirementItem requirementLocation = new RequirementItem(
-                "ItemContainer");
-        requirements.put("Location", requirementLocation);
-
-        // Product(s)
-        Vector<String> products = new Vector<String>();
-        products.add("Cookie");
+        Vector<Product> products = new Vector<Product>();
+        products.add(new ProductItem("Cookie"));
 
         // Skill(s)
         Set<Skill> skills = new TreeSet<Skill>();
@@ -127,8 +122,8 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("magicCookie1", "a magic cookie", null,
-                REQUIRED_MANA, REQUIRED_ACTION_POINTS, requirements,
-                skills, products);
+                REQUIRED_MANA, REQUIRED_ACTION_POINTS, requirements, skills,
+                products);
 
         // Set the chef
         PcRace chef = new Human();
@@ -144,10 +139,10 @@ public class CookerTest {
         // Set the
         Location newItemLocation = new Location("newItemLocation");
         assertEquals("set Location", null,
-                cooker.setItemsAvailable("Location", newItemLocation));
+                cooker.setItemsAvailable(0, newItemLocation));
 
         assertEquals("make item available", null,
-                cooker.setItemsAvailable("Cookie", cookie));
+                cooker.setItemsAvailable(1, cookie));
 
         // Do the cooking
         assertEquals("cook works", null, cooker.cook());
@@ -172,18 +167,18 @@ public class CookerTest {
     @Test
     public void testRecipeIngredients() {
 
-        TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
         // RequirementItem
         // FlintAndTinder (not consumed)
         // Wood, min weight 3.
         RequirementItem ingredientFlintAndTinder = new RequirementItem(
-                "FlintAndTinder","FlintAndTinder", false, 0);
-        requirements.put(ingredientFlintAndTinder.getId(),
-                ingredientFlintAndTinder);
+                "FlintAndTinder", "FlintAndTinder", false, 0);
+        requirements.add(ingredientFlintAndTinder);
 
-        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood", true, 3);
-        requirements.put(ingredientWood.getId(), ingredientWood);
+        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood",
+                true, 3);
+        requirements.add(ingredientWood);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
@@ -193,9 +188,9 @@ public class CookerTest {
         assertEquals("requirement count", requirements.size(),
                 cooker.getRequirementCount());
         assertEquals("requirement flintAndTinder", ingredientFlintAndTinder,
-                cooker.getRequirement(ingredientFlintAndTinder.getId()));
+                cooker.getRequirement(0));
         assertEquals("requirement wood", ingredientWood,
-                cooker.getRequirement(ingredientWood.getId()));
+                cooker.getRequirement(1));
     }
 
     @Test
@@ -204,29 +199,29 @@ public class CookerTest {
         Location world = new Location("world");
         world.setVolumeMax(-1);
         world.setWeightMax(-1);
-        TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
+        Vector<Requirement> requirements = new Vector<Requirement>();
 
         // RequirementItem
         // FlintAndTinder, not consumed
         FlintAndTinder flintAndTinder = new FlintAndTinder();
         world.add(flintAndTinder);
         RequirementItem ingredientFlintAndTinder = new RequirementItem(
-                "FlintAndTinder","FlintAndTinder", false, 0);
-        requirements.put(ingredientFlintAndTinder.getId(),
-                ingredientFlintAndTinder);
+                "FlintAndTinder", "FlintAndTinder", false, 0);
+        requirements.add(ingredientFlintAndTinder);
 
         // Wood, min weight 3
         Wood wood = new Wood();
         wood.setWeightBase(3);
         world.add(wood);
-        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood", true, 3);
-        requirements.put(ingredientWood.getId(), ingredientWood);
+        RequirementItem ingredientWood = new RequirementItem("Wood", "Wood",
+                true, 3);
+        requirements.add(ingredientWood);
 
         // Wood2
         Wood wood2 = new Wood();
         world.add(wood2);
-        RequirementItem ingredientWood2 = new RequirementItem("Wood");
-        requirements.put("Wood2", ingredientWood2);
+        RequirementItem ingredientWood2 = new RequirementItem("Wood2", "Wood");
+        requirements.add(ingredientWood2);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
@@ -236,31 +231,31 @@ public class CookerTest {
         // Item - FlintAndTinder
         assertEquals("item 0 - missing item and location",
                 Cooker.itemMayNotBeNull,
-                cooker.setItemsAvailable("FlintAndTinder", null));
+                cooker.setItemsAvailable(0, null));
         assertEquals("item 0 - wrong type", "item must be a FlintAndTinder",
-                cooker.setItemsAvailable("FlintAndTinder", wood));
+                cooker.setItemsAvailable(0, wood));
         assertEquals("item 0 - good", null,
-                cooker.setItemsAvailable("FlintAndTinder", flintAndTinder));
+                cooker.setItemsAvailable(0, flintAndTinder));
         FlintAndTinder flintAndTinder2 = new FlintAndTinder();
         world.add(flintAndTinder2);
         assertEquals("item 0 - already occupied", Cooker.alreadyOccupied,
-                cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2));
-        cooker.clearItemsAvailable("FlintAndTinder", world);
+                cooker.setItemsAvailable(0, flintAndTinder2));
+        cooker.clearItemsAvailable(0, world);
         assertEquals("item 0 - good", null,
-                cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2));
+                cooker.setItemsAvailable(0, flintAndTinder2));
         assertEquals("item 0 - item removed from Container", cooker,
                 flintAndTinder2.getContainer());
         // Item - Wood
         assertEquals("item 1 - good", null,
-                cooker.setItemsAvailable("Wood", wood));
+                cooker.setItemsAvailable(1, wood));
 
         // Item - Wood2
         // test that an item can't be added to cooker more than once.
         assertEquals("item 2 - already in Cooker",
                 Cooker.alreadyContainsThatItem,
-                cooker.setItemsAvailable("Wood2", wood));
+                cooker.setItemsAvailable(2, wood));
         assertEquals("item 2 - good", null,
-                cooker.setItemsAvailable("Wood2", wood2));
+                cooker.setItemsAvailable(2, wood2));
 
         // misc
         assertEquals("item count", 3, cooker.getContentsCount());
@@ -423,8 +418,7 @@ public class CookerTest {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-1",
-                "ActionPoints test, just enough.", null, 0, 1, null, null,
-                null);
+                "ActionPoints test, just enough.", null, 0, 1, null, null, null);
 
         // Set the chef
         PcRace chef = new Human();
@@ -646,9 +640,8 @@ public class CookerTest {
         world.add(cookie);
 
         // RequirementItem
-        TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
-        RequirementItem requirementItem = new RequirementItem("Cookie");
-        requirements.put(requirementItem.getId(), requirementItem);
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        requirements.add(new RequirementItem("Cookie"));
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-1",
@@ -664,7 +657,7 @@ public class CookerTest {
 
         // Add an item.
         assertEquals("make item available", null,
-                cooker.setItemsAvailable("Cookie", cookie));
+                cooker.setItemsAvailable(0, cookie));
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -695,9 +688,8 @@ public class CookerTest {
         world.add(cookie);
 
         // RequirementItem
-        TreeMap<String, Requirement> requirements = new TreeMap<String, Requirement>();
-        RequirementItem requirementItem = new RequirementItem("Cookie", "Cookie", false, 0);
-        requirements.put(requirementItem.getId(), requirementItem);
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        requirements.add(new RequirementItem("Cookie", "Cookie", false, 0));
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-item-11-catalyst",
@@ -711,7 +703,7 @@ public class CookerTest {
         Cooker cooker = recipe.getNewCooker();
         cooker.setChef(chef);
         assertEquals("make item available", null,
-                cooker.setItemsAvailable("Cookie", cookie));
+                cooker.setItemsAvailable(0, cookie));
 
         assertEquals("cook works", null, cooker.cook());
 
