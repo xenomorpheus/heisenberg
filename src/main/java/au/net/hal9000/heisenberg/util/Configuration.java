@@ -290,9 +290,11 @@ public class Configuration {
             Element entry = entries.get(current);
             String itemId = entry.getAttributeValue("id");
             String itemType = entry.getAttributeValue("itemType");
-            ProductItem product = new ProductItem(itemId);
-            if (itemType != null) {
-                product.setType(itemType);
+            ProductItem product;
+            if (itemType == null) {
+                product = new ProductItem(itemId);
+            } else {
+                product = new ProductItem(itemId, itemType);
             }
             products.add(product);
         }

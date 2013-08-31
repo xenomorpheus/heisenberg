@@ -17,20 +17,50 @@ package au.net.hal9000.heisenberg.crafting;
  */
 public abstract class Requirement {
 
-    String id;
-    
-    public Requirement(String id){
-    	super();
-    	this.id = id;
-    }
-    
     /**
-     * @return Return a description of the object.
+     * Each requirement should have a unique ID, per recipe.
      */
-    abstract String getDescription();
+    String id;
 
+    /**
+     * Will the item be consumed as part of the cooking process.<br>
+     * default is true.
+     */
+    private boolean isConsumed = true;
+
+    public Requirement(String id) {
+        super();
+        this.id = id;
+    }
+
+    public Requirement(String id, boolean isConsumed) {
+        this(id);
+        this.isConsumed = isConsumed;
+    }
+
+    // setters and getters
+    // id
     public String getId() {
         return id;
     }
+
+    // isConsumed
+    public boolean isConsumed() {
+        return isConsumed;
+    }
+
+    /**
+     * @return Return a description of the object.
+     */
+    String getDescription() {
+        String string = "Id: "+id;
+        if (isConsumed) {
+            string += ", consumed";
+        }
+        else{
+            string += ", not consumed";
+        }
+        return string;
+    };
 
 }

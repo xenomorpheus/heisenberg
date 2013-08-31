@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -143,26 +144,26 @@ public class Recipe {
      *            amount of mana required
      * @param actionPoints
      *            number of actionPoints required.
-     * @param pRequirements
+     * @param requirements
      *            the Requirement list.
-     * @param pSkills
+     * @param skills
      *            the Skill objects required
-     * @param pProducts
+     * @param products
      *            the results that will be produced.
      */
     public Recipe(final String id, final String description,
             final String process, final int mana, final int actionPoints,
-            final Vector<Requirement> pRequirements, final Set<Skill> pSkills,
-            final Vector<Product> pProducts) {
+            final Vector<Requirement> requirements, final Set<Skill> skills,
+            final Vector<Product> products) {
         super();
         this.id = id;
         this.description = description;
         this.process = process;
         this.mana = mana;
         this.actionPoints = actionPoints;
-        this.requirements = pRequirements;
-        this.skills = pSkills;
-        this.products = pProducts;
+        this.requirements = requirements;
+        this.skills = skills;
+        this.products = products;
     }
 
     // getters and setters
@@ -248,7 +249,7 @@ public class Recipe {
     /**
      * Return the Requirement at the specified index.
      * 
-     * @param key
+     * @param index
      *            the index of the Requirement requested
      * @return the Requirement at this index.
      */
@@ -303,10 +304,13 @@ public class Recipe {
     // Misc Methods
     /**
      * 
+     * @param chef The Entity doing the cooking
      * @return A Cooker object for this recipe.
      */
-    public final Cooker getNewCooker() {
-        return new Cooker(this);
+    public final Cooker getNewCooker(Entity chef) {
+        Cooker cooker =  new Cooker(this);
+        cooker.setChef(chef);
+        return cooker;
     }
 
     /**

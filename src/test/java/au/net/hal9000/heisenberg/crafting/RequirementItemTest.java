@@ -16,13 +16,13 @@ public class RequirementItemTest {
     @Test
     public void testGetDescription() {
         RequirementItem requirementItem = new RequirementItem("Bag","Bag",true, 0);
-        String description = "of type Bag";
+        String description = "Id: Bag, consumed, item type Bag";
         assertEquals("just type", description, requirementItem.getDescription());
         requirementItem = new RequirementItem("Bag","Bag",true, 3);
         description += ", weighing at least 3.0";
         assertEquals("weight", description, requirementItem.getDescription());
         requirementItem = new RequirementItem("Bag","Bag",false, 3);
-        description += ", not consumed";
+        description = "Id: Bag, not consumed, item type Bag, weighing at least 3.0";
         assertEquals("not consumed", description,
                 requirementItem.getDescription());
     }
@@ -81,7 +81,7 @@ public class RequirementItemTest {
     @Test
     public void testToString() {
         RequirementItem requirementItem = new RequirementItem("Cookie");
-        assertEquals("toString", "of type Cookie", requirementItem.toString());
+        assertEquals("toString", "Id: Cookie, consumed, item type Cookie", requirementItem.toString());
     }
 
 }

@@ -64,6 +64,25 @@ public class CookerTest {
     }
 
     /**
+     * test findIngredientByName
+     */
+    @Test
+    public void testFindIngredientByName() {
+        RequirementItem requirementItem = new RequirementItem("Location",
+                "Location", false);
+        Vector<Requirement> requirements = new Vector<Requirement>();
+        requirements.add(requirementItem);
+        Recipe recipe = new Recipe("someId", null, "someProcess", 0, 0,
+                requirements, null, null);
+        Cooker cooker = new Cooker(recipe);
+        Location world = new Location("World");
+        cooker.setItemsAvailable(0, world);
+
+        assertTrue("correct location",
+                world.equals(cooker.findIngredientByName("Location")));
+    }
+
+    /**
      * An example of common use - A spell.
      */
 
@@ -107,8 +126,7 @@ public class CookerTest {
         world.add(cookie);
 
         Vector<Requirement> requirements = new Vector<Requirement>();
-        requirements.add(new RequirementItem("ItemContainer", "Location",
-                false, 0));
+        requirements.add(new RequirementItem("Location", "Location", false, 0));
         requirements.add(new RequirementItem("Cookie"));
 
         Vector<Product> products = new Vector<Product>();
@@ -133,8 +151,7 @@ public class CookerTest {
         chef.skillsAdd(REQUIRED_SKILLS);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         // Set the
         Location newItemLocation = new Location("newItemLocation");
@@ -183,7 +200,7 @@ public class CookerTest {
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
                 requirements, null, null);
-        Cooker cooker = recipe.getNewCooker();
+        Cooker cooker = recipe.getNewCooker(null);
 
         assertEquals("requirement count", requirements.size(),
                 cooker.getRequirementCount());
@@ -220,18 +237,18 @@ public class CookerTest {
         // Wood2
         Wood wood2 = new Wood();
         world.add(wood2);
-        RequirementItem ingredientWood2 = new RequirementItem("Wood2", "Wood");
+        RequirementItem ingredientWood2 = new RequirementItem("Wood2", "Wood",
+                true);
         requirements.add(ingredientWood2);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
                 requirements, null, null);
-        Cooker cooker = recipe.getNewCooker();
+        Cooker cooker = recipe.getNewCooker(null);
 
         // Item - FlintAndTinder
         assertEquals("item 0 - missing item and location",
-                Cooker.itemMayNotBeNull,
-                cooker.setItemsAvailable(0, null));
+                Cooker.itemMayNotBeNull, cooker.setItemsAvailable(0, null));
         assertEquals("item 0 - wrong type", "item must be a FlintAndTinder",
                 cooker.setItemsAvailable(0, wood));
         assertEquals("item 0 - good", null,
@@ -246,16 +263,14 @@ public class CookerTest {
         assertEquals("item 0 - item removed from Container", cooker,
                 flintAndTinder2.getContainer());
         // Item - Wood
-        assertEquals("item 1 - good", null,
-                cooker.setItemsAvailable(1, wood));
+        assertEquals("item 1 - good", null, cooker.setItemsAvailable(1, wood));
 
         // Item - Wood2
         // test that an item can't be added to cooker more than once.
         assertEquals("item 2 - already in Cooker",
                 Cooker.alreadyContainsThatItem,
                 cooker.setItemsAvailable(2, wood));
-        assertEquals("item 2 - good", null,
-                cooker.setItemsAvailable(2, wood2));
+        assertEquals("item 2 - good", null, cooker.setItemsAvailable(2, wood2));
 
         // misc
         assertEquals("item count", 3, cooker.getContentsCount());
@@ -283,7 +298,7 @@ public class CookerTest {
         Recipe recipe = new Recipe("test-general-null",
                 "Null case. No requirements", null, 0, 0, null, null, null);
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
+        Cooker cooker = recipe.getNewCooker(null);
         assertEquals("cook works", null, cooker.cook());
     }
 
@@ -301,9 +316,8 @@ public class CookerTest {
         PcRace chef = new Human();
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
-        // Living is passing test.
+        recipe.getNewCooker(chef);
+        // non-exception is passing test.
     }
 
     /**
@@ -327,8 +341,7 @@ public class CookerTest {
         chef.setMana(1);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -361,10 +374,9 @@ public class CookerTest {
         chef.setMana(2);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough mana", cooker.cook());
+        assertEquals("cook works", "Not enough mana\n", cooker.cook());
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", 2, chef.getMana());
@@ -393,8 +405,7 @@ public class CookerTest {
         chef.setMana(4);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -425,8 +436,7 @@ public class CookerTest {
         chef.setActionPoints(1);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         // Set the
 
@@ -461,10 +471,9 @@ public class CookerTest {
         chef.setActionPoints(2);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough action points", cooker.cook());
+        assertEquals("cook works", "Not enough action points\n", cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());
@@ -494,8 +503,7 @@ public class CookerTest {
         chef.setActionPoints(4);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -533,8 +541,7 @@ public class CookerTest {
         chef.setSkills(skillsGot);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -573,10 +580,9 @@ public class CookerTest {
         chef.setSkills(skillsGot);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Missing Skills", cooker.cook());
+        assertEquals("cook works", "Missing Skills\n", cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());
@@ -613,8 +619,7 @@ public class CookerTest {
         chef.setSkills(skillsGot);
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         assertEquals("cook works", null, cooker.cook());
 
@@ -652,8 +657,7 @@ public class CookerTest {
         PcRace chef = new Human();
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
 
         // Add an item.
         assertEquals("make item available", null,
@@ -700,8 +704,7 @@ public class CookerTest {
         PcRace chef = new Human();
 
         // Get a cooker
-        Cooker cooker = recipe.getNewCooker();
-        cooker.setChef(chef);
+        Cooker cooker = recipe.getNewCooker(chef);
         assertEquals("make item available", null,
                 cooker.setItemsAvailable(0, cookie));
 

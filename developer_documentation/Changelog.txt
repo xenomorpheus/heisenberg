@@ -1,3 +1,7 @@
+2013-08-31
+Fleshing out the ProductItem class. 
+Trying to work towards having a Recipe for eating.
+
 2013-08-26
 Recipe products have their own class, rather than just being strings.
 Recipes that produce items have ProductItem objects.

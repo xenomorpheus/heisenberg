@@ -23,14 +23,9 @@ import au.net.hal9000.heisenberg.item.Item;
  */
 public class RequirementItem extends Requirement {
     /**
-     * The item type.
+     * The simple class name of the Item object.
      */
     private String itemType;
-    /**
-     * Will the item be consumed as part of the cooking process.<br>
-     * default is true.
-     */
-    private boolean isConsumed = true;
     /**
      * Minimum weight of this item.<br>
      * e.g. 3 weight units of wood.<br>
@@ -50,18 +45,17 @@ public class RequirementItem extends Requirement {
         this.itemType = id;
     }
 
-    
     /**
      * Constructor
      * 
      * @param id
      *            the short name of the required item class.
      */
-    public RequirementItem(final String id, String itemType) {
-        this(id);
+    public RequirementItem(final String id, String itemType, boolean isConsumed) {
+        super(id, isConsumed);
         this.itemType = itemType;
     }
-    
+
     /**
      * Constructor
      * 
@@ -70,12 +64,9 @@ public class RequirementItem extends Requirement {
      */
     public RequirementItem(final String id, String itemType,
             boolean isConsumed, float weightMin) {
-        this(id);
-        this.itemType = itemType;
-        this.isConsumed = isConsumed;
+        this(id, itemType, isConsumed);
         this.weightMin = weightMin;
     }
-
 
     // Getters and Setters
     /**
@@ -95,30 +86,8 @@ public class RequirementItem extends Requirement {
         return itemType;
     }
 
-    public boolean isConsumed() {
-        return isConsumed;
-    }
-
-    /**
-     * @deprecated only here for JPA.
-     * @param isConsumed
-     *            true if the Item will be consumed.
-     */
-    public void setConsumed(boolean isConsumed) {
-        this.isConsumed = isConsumed;
-    }
-
     public float getWeightMin() {
         return weightMin;
-    }
-
-    /**
-     * @deprecated only here for JPA.
-     * @param weightMin
-     *            minimum weight required of item.
-     */
-    public void setWeightMin(float weightMin) {
-        this.weightMin = weightMin;
     }
 
     public final String toString() {
@@ -130,7 +99,7 @@ public class RequirementItem extends Requirement {
      * 
      * @param item
      *            the Item being evaluated.
-     * @return true if the Item meets the requirements.
+     * @return null if the Item meets the requirements.
      */
     public final String meetsRequirements(final Item item) {
 
@@ -148,14 +117,13 @@ public class RequirementItem extends Requirement {
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        String string = "of type " + itemType;
+        StringBuilder string = new StringBuilder();
+        string.append(super.getDescription());
+        string.append(", item type " + itemType);
         if (weightMin > 0) {
-            string += ", weighing at least " + weightMin;
+            string.append(", weighing at least " + weightMin);
         }
-        if (!isConsumed) {
-            string += ", not consumed";
-        }
-        return string;
+        return string.toString();
     }
 
 }

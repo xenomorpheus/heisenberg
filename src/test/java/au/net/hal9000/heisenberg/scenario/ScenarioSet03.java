@@ -31,7 +31,7 @@ public class ScenarioSet03 {
     public void testFireGround1() {
         // The recipe we are going to test
         Recipe recipe = config.getRecipe("testFireGround1");
-        
+
         // Set up the location
         Location location = new Location();
         location.setWeightMax(20);
@@ -71,14 +71,14 @@ public class ScenarioSet03 {
         assertEquals("make FlintAndTinder available", null,
                 cooker.setItemsAvailable(2, flintAndTinder));
 
-
         // Cook!
         assertEquals("cook works", null, cooker.cook());
 
         // Check the item produced
         final int todo = 0; // TODO item number
         Item item = location.getChildAt(todo);
-        assertEquals("item type", "SmallGroundFire", item.getClass().getSimpleName());
+        assertEquals("item type", "SmallGroundFire", item.getClass()
+                .getSimpleName());
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", expectedMana, pc.getMana());

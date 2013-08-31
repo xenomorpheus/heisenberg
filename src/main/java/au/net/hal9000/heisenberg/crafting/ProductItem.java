@@ -1,11 +1,15 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import au.net.hal9000.heisenberg.item.Factory;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemContainer;
+
 public class ProductItem extends Product {
 
     /**
      * The item type.
      */
-    private String itemType;
+    private String type;
 
     /**
      * Constructor
@@ -15,7 +19,7 @@ public class ProductItem extends Product {
      */
     public ProductItem(final String id) {
         super(id);
-        this.itemType = id;
+        this.type = id;
     }
 
     /**
@@ -24,39 +28,48 @@ public class ProductItem extends Product {
      * @param id
      *            Any meaningful name for this requirement. Typically the short
      *            name of the product item class.
-     * @param itemType
+     * @param type
      *            the short name of the product item class.
      */
-    public ProductItem(final String id, final String itemType) {
+    public ProductItem(final String id, final String type) {
         this(id);
-        this.itemType = itemType;
+        this.type = type;
     }
 
     // Getters and Setters
     /**
-     * Set the itemType
-     * 
-     * @param itemType
-     *            the new itemType
+     * @return the type of the item
      */
-    public void setType(final String itemType) {
-        this.itemType = itemType;
+    public final String getType() {
+        return type;
     }
 
-    /**
-     * @return the itemType
-     */
-    public final String getItemType() {
-        return itemType;
-    }
-    
-    
-    
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        String string = "of type " + itemType;
-        return string;
+        return "Id: "+id+", item type of " + type;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final String meetsRequirements(final Cooker cooker) {
+        // TODO Complain unless there is a Location to place item.
+
+        Item location = cooker.findIngredientByName("Location");
+        if (location == null) {
+            return "Missing Location";
+        }
+        return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final String createProduct(final Cooker cooker) {
+        ItemContainer newItemLocation = (ItemContainer) cooker
+                .findIngredientByName("Location");
+        Item item = Factory.createItem(getType());
+        newItemLocation.add(item);
+        return null;
     }
 
 }

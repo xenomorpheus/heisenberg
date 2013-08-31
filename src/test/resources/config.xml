@@ -560,7 +560,7 @@
 			</products>
 		</recipe>
 		<recipe id="testDrinkWater" description="drink water"
-			actionPoints="2" process="testEat1">
+			actionPoints="2" process="testDrink1">
 			<requirements>
 				<item id="Water" />
 			</requirements>

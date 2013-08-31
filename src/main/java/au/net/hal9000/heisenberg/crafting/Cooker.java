@@ -6,7 +6,6 @@ import java.util.Vector;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
-import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -68,12 +67,12 @@ public class Cooker extends ItemContainer {
     /**
      * Constructor.
      * 
-     * @param pRecipe
+     * @param recipe
      *            the recipe we are cooking.
      */
-    public Cooker(final Recipe pRecipe) {
+    public Cooker(final Recipe recipe) {
         super("Cooker");
-        this.recipe = pRecipe;
+        this.recipe = recipe;
         /**
          * There may be an exploit in ability to hold items of unlimited weight
          * or volume. <br>
@@ -89,16 +88,31 @@ public class Cooker extends ItemContainer {
 
     // Setters and Getters
 
+    
     /**
      * set the chef.
      * 
-     * @param entity
+     * @param chef
      *            the person doing the cooking.
      */
-    public final void setChef(final Entity entity) {
-        chef = entity;
+    public void setChef(final Entity chef) {
+        this.chef = chef;
+    }    
+    
+    /**
+     * get the chef.
+     * 
+     * @return
+     *            the person doing the cooking.
+     */
+    public final Entity getChef() {
+        return chef;
     }
 
+    // misc
+
+    
+    
     /**
      * Add an Item to a particular key in the list of itemsAvailable.
      * 
@@ -141,8 +155,6 @@ public class Cooker extends ItemContainer {
         return null;
     }
 
-    // misc
-
     // requirements
     /**
      * Return the Requirement at the specified index.
@@ -170,15 +182,15 @@ public class Cooker extends ItemContainer {
      * @return undef if requirements met, otherwise the reason.
      */
     private final String requirementsMet() {
+        StringBuilder string = new StringBuilder();
 
         // mana
         int manaRequired = recipe.getMana();
         if (manaRequired > 0) {
             if (chef == null) {
-                return "No chef set to supply mana";
-            }
-            if (manaRequired > chef.getMana()) {
-                return "Not enough mana";
+                string.append("No chef set to supply mana\n");
+            } else if (manaRequired > chef.getMana()) {
+                string.append("Not enough mana\n");
             }
         }
 
@@ -186,10 +198,9 @@ public class Cooker extends ItemContainer {
         int actionPointsRequired = recipe.getActionPoints();
         if (actionPointsRequired > 0) {
             if (chef == null) {
-                return "No chef set to supply action points";
-            }
-            if (actionPointsRequired > chef.getActionPoints()) {
-                return "Not enough action points";
+                string.append("No chef set to supply action points\n");
+            } else if (actionPointsRequired > chef.getActionPoints()) {
+                string.append("Not enough action points\n");
             }
         }
 
@@ -197,30 +208,35 @@ public class Cooker extends ItemContainer {
         Set<Skill> required = recipe.getSkills();
         if ((required != null) && (required.size() > 0)) {
             if (chef == null) {
-                return "Too few skills";
-            }
-            Set<Skill> got = chef.getSkills();
-            if ((required != null) && (!got.containsAll(required))) {
-                return "Missing Skills";
+                string.append("No chef to supply skills\n");
+            } else {
+                Set<Skill> chefSkills = chef.getSkills();
+                if ((chefSkills == null) || (!chefSkills.containsAll(required))) {
+                    string.append("Missing Skills\n");
+                }
             }
         }
 
-        // Requirement - Item objects
+        // Requirement
         String requiredItems = requirementsItemMet();
         if (requiredItems != null) {
-            return requiredItems;
+            string.append(requiredItems);
         }
 
-        // TODO - replace this with a method for each product type.
-        // there needs to be a valid location for any created Items.
+        // Product objects can also have requirements.
         if (recipe.getProductCount() > 0) {
-            ItemContainer newItemLocation = (ItemContainer) ingredients.get(0);
-            if (newItemLocation == null) {
-                return "missing location for new products";
+            for (Product product : recipe.getProducts()) {
+                String missingRequirement = product.meetsRequirements(this);
+                if (missingRequirement != null) {
+                    string.append(missingRequirement);
+                }
             }
-        }
 
-        return null;
+        }
+        if (string.length() == 0) {
+            return null;
+        }
+        return string.toString();
     }
 
     /**
@@ -296,27 +312,24 @@ public class Cooker extends ItemContainer {
 
     /**
      * Create all the products of the recipe.
+     * 
+     * @return TODO
      */
-    private void createProducts() {
-        // TODO Not final version. Only a demonstration.
+    private String createProducts() {
+        StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
-            // TODO work out if location is really required.
-            // Possibly based on the recipe type
-            ItemContainer newItemLocation = (ItemContainer) ingredients.get(0);
             for (Product product : recipe.getProducts()) {
-                if (product instanceof ProductItem) {
-                    ProductItem productItem = (ProductItem) product;
-                    Item item = Factory.createItem(productItem.getId());
-                    newItemLocation.add(item);
-                } else if (product instanceof ProductProperty) {
-                    ProductProperty productProperty = (ProductProperty) product;
-                    Entity entity = chef;
-                    // TODO alter chef
-
+                String error = product.createProduct(this);
+                if (error != null){
+                    errors.append(error);
                 }
             }
         }
+        if (errors.length() == 0){
+            return null;
+        }
+        return errors.toString();
     }
 
     /**
@@ -324,12 +337,15 @@ public class Cooker extends ItemContainer {
      * we wan't allow cooking over multiple rounds.
      */
     public final String cook() {
-        String message = requirementsMet();
-        if (message != null) {
-            return message;
+        String requirementsMetError = requirementsMet();
+        if (requirementsMetError != null) {
+            return requirementsMetError;
         }
         requirementsConsume();
-        createProducts();
+        String createProductsError = createProducts();
+        if (createProductsError != null) {
+            return createProductsError;
+        }
         return null;
     }
 
@@ -356,4 +372,16 @@ public class Cooker extends ItemContainer {
         ingredients.remove(index);
     }
 
+
+    public Item findIngredientByName(final String name){
+        for (int index = getRequirementCount() - 1; index >= 0; index--) {
+            Requirement requirement = getRequirement(index);
+            if (name.equals(requirement.getId())) {
+                return ingredients.get(index);
+            }
+        }
+        return null;
+    }    
+    
+    
 }

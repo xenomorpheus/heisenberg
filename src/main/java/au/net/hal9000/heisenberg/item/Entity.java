@@ -61,7 +61,7 @@ public abstract class Entity extends ItemContainer {
         // By default PCs are living, but this may be changed at any time.
         ItemProperty.setLiving(this, true);
         ItemProperty.setAeration(this, 100);
-        ItemProperty.setEntertainment(this, 80);        
+        ItemProperty.setEntertainment(this, 80);
         ItemProperty.setHydration(this, 80);
         ItemProperty.setNourishment(this, 80);
         ItemProperty.setRest(this, 80);
@@ -273,13 +273,12 @@ public abstract class Entity extends ItemContainer {
      * Create a new cooker
      * 
      * @param recipeId
+     *            The ID of the recipe we wish to use for cooking.
      * @return a new cooker object
      */
     public Cooker getCooker(String recipeId) {
         Configuration configuration = Configuration.lastConfig();
-        Cooker cooker = configuration.getRecipe(recipeId).getNewCooker();
-        cooker.setChef(this);
-        return cooker;
+        return configuration.getRecipe(recipeId).getNewCooker(this);
     }
 
     /**

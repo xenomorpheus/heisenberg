@@ -237,6 +237,7 @@
             <xs:enumeration value="testSpell1"></xs:enumeration>
 			<xs:enumeration value="testCreateItem1"></xs:enumeration>
 			<xs:enumeration value="testEat1"></xs:enumeration>
+            <xs:enumeration value="testDrink1"></xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

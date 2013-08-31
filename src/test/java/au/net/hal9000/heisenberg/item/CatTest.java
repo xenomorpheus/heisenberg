@@ -18,6 +18,7 @@ public class CatTest {
     public void initialize() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
     }
+
     @Test
     public void CatMove() {
         Location dungeon = new Location("Dungeon");
@@ -39,10 +40,9 @@ public class CatTest {
         dungeon.add(water);
         cat.setActionPoints(2);
         Cooker cooker = cat.getCooker("testDrinkWater");
+        cooker.setChef(cat);
         cooker.setItemsAvailable(0, water);
         String cookingProblems = cooker.cook();
         assertEquals("Cooking problems", null, cookingProblems);
-        
     }
-
 }

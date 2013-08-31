@@ -1,47 +1,19 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
- * As much as possible consider this object immutable. The Setters are here only
- * for JPA.
- * 
- * A Recipe may required any number of Item objects. There will be exactly one
- * ProductProperty object for each required Item. In addition for the noting the
- * type of Item, this object will also note if it is consumed, minimum weight
- * etc.
- * <ul>
- * <li>Item - Wood with a minimum of 3 weight units.
- * <li>Item - FlintAndTinder, not consumed.
- * <ul>
- * 
- * 
- * 
+ * As much as possible consider this object immutable.
  * 
  * @author bruins
  * 
  */
 public class ProductProperty extends Product {
     /**
-     * The item type.
+     * The name of the property we will change in the Entity.
      */
-    private String itemType;
-    /**
-     * Will the item be consumed as part of the cooking process.<br>
-     * default is true.
-     */
-
-   
-    /**
-     * Constructor
-     * 
-     * @param id
-     *            the short name of the required item class.
-     */
-    public ProductProperty(final String id, String itemType,
-            boolean isConsumed, float weightMin) {
-        super(id);
-        this.itemType = itemType;
-    }
+    private String propertyName;
 
     /**
      * Constructor
@@ -49,30 +21,19 @@ public class ProductProperty extends Product {
      * @param id
      *            the short name of the required item class.
      */
-    public ProductProperty(final String id) {
+    public ProductProperty(final String id, final String propertyName) {
         super(id);
-        this.itemType = id;
+        this.propertyName = propertyName;
     }
 
     // Getters and Setters
-    /**
-     * Set the itemType
-     * 
-     * @param itemType
-     *            the new itemType
-     */
-    public void setType(final String itemType) {
-        this.itemType = itemType;
-    }
 
     /**
-     * @return the itemType
+     * @return the property name.
      */
-    public final String getItemType() {
-        return itemType;
+    public final String getPropertyName() {
+        return propertyName;
     }
-
-
 
     public final String toString() {
         return getDescription();
@@ -81,7 +42,24 @@ public class ProductProperty extends Product {
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        String string = "of type " + itemType;
+        String string = "of type " + propertyName;
         return string;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    String meetsRequirements(Cooker cooker) {
+        // TODO Auto-generated method stub
+        return "TODO check for target/chef";
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final String createProduct(final Cooker cooker) {
+        Entity entity = cooker.getChef();
+        int nourishment = ItemProperty.getNourishment(entity);
+        ItemProperty.setNourishment(entity, nourishment + 10);
+        return null;
+    }
+
 }

@@ -126,7 +126,7 @@ public class ConfigurationTest {
         assertTrue("product 0 ProductItem", product instanceof ProductItem);
         ProductItem productItem = (ProductItem) product;
         assertEquals("product 0 id", "Cookie", productItem.getId() );
-        assertEquals("product 0 itemType", "Cookie", productItem.getItemType() );
+        assertEquals("product 0 itemType", "Cookie", productItem.getType() );
     }
 
     @Test
@@ -149,7 +149,7 @@ public class ConfigurationTest {
         assertTrue("product 0 ProductItem", product instanceof ProductItem);
         ProductItem productItem = (ProductItem) product;
         assertEquals("product 0 id", "SmallGroundFire", productItem.getId() );
-        assertEquals("product 0 itemType", "SmallGroundFire", productItem.getItemType() );
+        assertEquals("product 0 itemType", "SmallGroundFire", productItem.getType() );
     }
 
     @Test
