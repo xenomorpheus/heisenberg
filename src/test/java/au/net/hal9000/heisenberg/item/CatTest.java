@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Point3d;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -35,14 +36,17 @@ public class CatTest {
     public void CatDrink() {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy", "Black cat");
+        int hydrationBefore = ItemProperty.getHydration(cat);
         dungeon.add(cat);
         Water water = new Water();
+        water.setWeightBase(1);
         dungeon.add(water);
         cat.setActionPoints(2);
         Cooker cooker = cat.getCooker("testDrinkWater");
         cooker.setChef(cat);
-        cooker.setItemsAvailable(0, water);
-        String cookingProblems = cooker.cook();
-        assertEquals("Cooking problems", null, cookingProblems);
+        assertEquals("setItemsAvaliable 0 water", null,cooker.setItemsAvailable(0, water));
+        assertEquals("Cook", null, cooker.cook());
+        int hydrationAfter = ItemProperty.getHydration(cat);
+        assertTrue("Hytration increase", hydrationBefore < hydrationAfter);
     }
 }

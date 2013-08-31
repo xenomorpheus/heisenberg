@@ -196,14 +196,12 @@
 			<xs:element name="products" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="item" minOccurs="0">
-							<xs:complexType>
-								<xs:attribute type="xs:string" name="id" use="required" />
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="spell" type="ctKeywordType" minOccurs="0" />
-						<xs:element name="property" minOccurs="0">
-						</xs:element>
+						<xs:element name="item" type="ctProductItemType"
+							minOccurs="0" />
+						<xs:element name="spell" type="ctKeywordType"
+							minOccurs="0" />
+						<xs:element name="property" type="ctProductPropertyType"
+							minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -220,10 +218,10 @@
 		<xs:sequence>
 			<xs:element name="item" maxOccurs="unbounded" minOccurs="0">
 				<xs:complexType>
-					<xs:attribute type="xs:string" name="id" use="required" />
-					<xs:attribute type="xs:boolean" name="consumed" use="optional" />
-					<xs:attribute type="xs:byte" name="weightMin" use="optional" />
-					<xs:attribute type="xs:string" name="type" use="optional" />
+					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attribute name="consumed" type="xs:boolean" use="optional" />
+					<xs:attribute name="weightMin" type="xs:byte" use="optional" />
+					<xs:attribute name="type" type="xs:string" use="optional" />
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -234,10 +232,29 @@
 			<xs:enumeration value="createItem1"></xs:enumeration>
 			<xs:enumeration value="eat1"></xs:enumeration>
 			<!-- Test -->
-            <xs:enumeration value="testSpell1"></xs:enumeration>
+			<xs:enumeration value="testSpell1"></xs:enumeration>
 			<xs:enumeration value="testCreateItem1"></xs:enumeration>
 			<xs:enumeration value="testEat1"></xs:enumeration>
-            <xs:enumeration value="testDrink1"></xs:enumeration>
+			<xs:enumeration value="testDrink1"></xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
+
+	<xs:simpleType name="ctEntityPropertyType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Nourishment"></xs:enumeration>
+			<xs:enumeration value="Hydration"></xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ctProductItemType">
+		<xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attribute name="weightBase" type="xs:float" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="ctProductPropertyType">
+		<xs:attribute name="id" type="xs:string" use="required" />
+		<xs:attribute name="propertyName" type="ctEntityPropertyType" use="required" />
+		<xs:attribute name="propertyDelta" type="xs:float" use="required" />
+	</xs:complexType>
+
 </xs:schema>

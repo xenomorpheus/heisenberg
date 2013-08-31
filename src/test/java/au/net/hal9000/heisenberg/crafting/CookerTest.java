@@ -45,11 +45,17 @@ public class CookerTest {
         chef.skillsAdd(new Skill("testSkill1"));
         chef.recipeAdd("testItem1");
 
-        // Prepare to cast a spell
+        // Prepare to cook
         Cooker cooker = chef.getCooker("testItem1");
         Location newItemLocation = new Location("New Item Location");
         assertEquals("set Location", null,
                 cooker.setItemsAvailable(0, newItemLocation));
+        Water water = new Water();
+        water.setWeightBase(3);
+        assertEquals("set Water", null,
+                cooker.setItemsAvailable(1, water));
+        
+        
         assertEquals("cook works", null, cooker.cook());
 
         assertEquals("location has new item", 1,

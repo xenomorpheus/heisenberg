@@ -88,7 +88,6 @@ public class Cooker extends ItemContainer {
 
     // Setters and Getters
 
-    
     /**
      * set the chef.
      * 
@@ -97,13 +96,12 @@ public class Cooker extends ItemContainer {
      */
     public void setChef(final Entity chef) {
         this.chef = chef;
-    }    
-    
+    }
+
     /**
      * get the chef.
      * 
-     * @return
-     *            the person doing the cooking.
+     * @return the person doing the cooking.
      */
     public final Entity getChef() {
         return chef;
@@ -111,8 +109,6 @@ public class Cooker extends ItemContainer {
 
     // misc
 
-    
-    
     /**
      * Add an Item to a particular key in the list of itemsAvailable.
      * 
@@ -257,15 +253,19 @@ public class Cooker extends ItemContainer {
                     + ingredients.size() + "\n");
         }
         Vector<Requirement> requirements = recipe.getRequirements();
-        for (int i = 0; i < requirements.size(); i++) {
-            Requirement requirement = requirements.get(i);
+        for (int index = 0; index < requirements.size(); index++) {
+            Requirement requirement = requirements.get(index);
             if (requirement instanceof RequirementItem) {
                 RequirementItem requirementItem = (RequirementItem) requirement;
-                Item item = ingredients.get(i);
-                String reason = requirementItem.meetsRequirements(item);
-                if (reason != null) {
-                    errors.append("Missing/bad ingredient index " + i
-                            + " because " + reason + "\n");
+                if (ingredients.size() - 1 < index) {
+                    errors.append("Missing ingredient index " + index);
+                } else {
+                    Item item = ingredients.get(index);
+                    String reason = requirementItem.meetsRequirements(item);
+                    if (reason != null) {
+                        errors.append("Missing/bad ingredient index " + index
+                                + " because " + reason + "\n");
+                    }
                 }
             }
         }
@@ -321,12 +321,12 @@ public class Cooker extends ItemContainer {
         if (productCount > 0) {
             for (Product product : recipe.getProducts()) {
                 String error = product.createProduct(this);
-                if (error != null){
+                if (error != null) {
                     errors.append(error);
                 }
             }
         }
-        if (errors.length() == 0){
+        if (errors.length() == 0) {
             return null;
         }
         return errors.toString();
@@ -372,8 +372,7 @@ public class Cooker extends ItemContainer {
         ingredients.remove(index);
     }
 
-
-    public Item findIngredientByName(final String name){
+    public Item findIngredientByName(final String name) {
         for (int index = getRequirementCount() - 1; index >= 0; index--) {
             Requirement requirement = getRequirement(index);
             if (name.equals(requirement.getId())) {
@@ -381,7 +380,6 @@ public class Cooker extends ItemContainer {
             }
         }
         return null;
-    }    
-    
-    
+    }
+
 }

@@ -34,16 +34,6 @@ public class RequirementItem extends Requirement {
      */
     private float weightMin = 0;
 
-    /**
-     * Constructor
-     * 
-     * @param id
-     *            the short name of the required item class.
-     */
-    public RequirementItem(final String id) {
-        super(id);
-        this.itemType = id;
-    }
 
     /**
      * Constructor
@@ -54,6 +44,15 @@ public class RequirementItem extends Requirement {
     public RequirementItem(final String id, String itemType, boolean isConsumed) {
         super(id, isConsumed);
         this.itemType = itemType;
+    }
+    /**
+     * Constructor
+     * 
+     * @param id
+     *            the short name of the required item class.
+     */
+    public RequirementItem(final String id) {
+        this(id,id, true, 0);        
     }
 
     /**
@@ -68,16 +67,7 @@ public class RequirementItem extends Requirement {
         this.weightMin = weightMin;
     }
 
-    // Getters and Setters
-    /**
-     * Set the itemType
-     * 
-     * @param itemType
-     *            the new itemType
-     */
-    public void setType(final String itemType) {
-        this.itemType = itemType;
-    }
+    // Setters
 
     /**
      * @return the itemType

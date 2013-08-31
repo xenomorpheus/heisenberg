@@ -12,15 +12,9 @@ public class ProductItem extends Product {
     private String type;
 
     /**
-     * Constructor
-     * 
-     * @param id
-     *            the short name of the product item class.
+     * the weightBase of the new Item
      */
-    public ProductItem(final String id) {
-        super(id);
-        this.type = id;
-    }
+    private float weightBase;
 
     /**
      * Constructor
@@ -30,13 +24,27 @@ public class ProductItem extends Product {
      *            name of the product item class.
      * @param type
      *            the short name of the product item class.
+     * @param weightBase
+     *            the weightBase of the created Item.
      */
-    public ProductItem(final String id, final String type) {
-        this(id);
+    public ProductItem(final String id, final String type,
+            final float weightBase) {
+        super(id);
         this.type = type;
+        this.weightBase = weightBase;
     }
 
-    // Getters and Setters
+    /**
+     * Constructor
+     * 
+     * @param id
+     *            the short name of the product item class.
+     */
+    public ProductItem(final String id) {
+        this(id, id, 0);
+    }
+
+    // Getters
     /**
      * @return the type of the item
      */
@@ -44,10 +52,18 @@ public class ProductItem extends Product {
         return type;
     }
 
+    /**
+     * 
+     * @return the required weightBase for the new item.
+     */
+    public float getWeightBase() {
+        return weightBase;
+    }
+
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        return "Id: "+id+", item type of " + type;
+        return "Id: " + id + ", item type of " + type+", weightBase "+weightBase;
     }
 
     /** {@inheritDoc} */

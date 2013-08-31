@@ -14,27 +14,44 @@ public class ProductProperty extends Product {
      * The name of the property we will change in the Entity.
      */
     private String propertyName;
+    /**
+     * The amount the property we will change in the Entity.
+     */
+    private float propertyDelta;
 
     /**
      * Constructor
      * 
      * @param id
      *            the short name of the required item class.
+     * @param propertyDelta
+     *            the amount to change the property.
      */
-    public ProductProperty(final String id, final String propertyName) {
+    public ProductProperty(final String id, final String propertyName,
+            float propertyDelta) {
         super(id);
         this.propertyName = propertyName;
+        this.propertyDelta = propertyDelta;
     }
 
-    // Getters and Setters
+    // Getters
 
     /**
-     * @return the property name.
+     * @return the Entity property name.
      */
     public final String getPropertyName() {
         return propertyName;
     }
 
+    /**
+     * 
+     * @return the amount the Entity property will change.
+     */
+    public float getPropertyDelta() {
+        return propertyDelta;
+    }
+
+    // misc
     public final String toString() {
         return getDescription();
     }
@@ -42,8 +59,8 @@ public class ProductProperty extends Product {
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        String string = "of type " + propertyName;
-        return string;
+        return super.getDescription() + " type " + propertyName + ", delta is "
+                + propertyDelta;
     }
 
     /** {@inheritDoc} */

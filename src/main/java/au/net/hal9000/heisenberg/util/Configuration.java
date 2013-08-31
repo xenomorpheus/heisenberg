@@ -262,16 +262,32 @@ public class Configuration {
      *            XML list of Item details.
      * @return A list of RequirementItem objects.
      */
-    public static Vector<RequirementItem> xmlToIngredientItem(Elements entries) {
+    public static Vector<RequirementItem> xmlToRecipeRequirementItems(
+            Elements entries) {
         Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String itemId = entry.getAttributeValue("id");
+            // type
             String itemType = entry.getAttributeValue("type");
-            RequirementItem requirement = new RequirementItem(itemId);
-            if (itemType != null) {
-                requirement.setType(itemType);
+            if (itemType == null) {
+                itemType = itemId;
             }
+            // consumed
+            String consumedString = entry.getAttributeValue("consumed");
+            boolean consumed = true;
+            if (consumedString != null) {
+                consumed = Boolean.parseBoolean(consumedString);
+            }
+            // weightMin
+            float weightMin = 0;
+            String weightMinString = entry.getAttributeValue("weightMin");
+            if (weightMinString != null){
+                weightMin = Float.parseFloat(weightMinString);
+            }
+                        
+            RequirementItem requirement = new RequirementItem(itemId, itemType,
+                    consumed, weightMin);
             ingredients.add(requirement);
         }
         return ingredients;
@@ -288,14 +304,17 @@ public class Configuration {
         Vector<Product> products = new Vector<Product>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
-            String itemId = entry.getAttributeValue("id");
-            String itemType = entry.getAttributeValue("itemType");
-            ProductItem product;
-            if (itemType == null) {
-                product = new ProductItem(itemId);
-            } else {
-                product = new ProductItem(itemId, itemType);
+            String id = entry.getAttributeValue("id");
+            String type = entry.getAttributeValue("itemType");
+            if (type == null) {
+                type = id;
             }
+            String weightBaseString = entry.getAttributeValue("weightBase");
+            float weightBase = 0;
+            if (weightBaseString != null){
+                weightBase = Float.parseFloat(weightBaseString);
+            }
+            ProductItem product = new ProductItem(id, type, weightBase);
             products.add(product);
         }
         return products;
@@ -328,11 +347,11 @@ public class Configuration {
      * @param entry
      *            an XML Requirement element.
      */
-    public static Vector<Requirement> xmlToIngredients(Element entry) {
+    public static Vector<Requirement> xmlToRecipeRequirements(Element entry) {
         Vector<Requirement> requirements = new Vector<Requirement>();
 
         Elements items = entry.getChildElements("item");
-        requirements.addAll(xmlToIngredientItem(items));
+        requirements.addAll(xmlToRecipeRequirementItems(items));
 
         // TODO Config Recipe locations e.g. <location id="ground" />
         // Elements locations = entry.getChildElements("location");
@@ -378,9 +397,9 @@ public class Configuration {
         skills.addAll(xmlToSkills(skillElements));
 
         // Requirement objects
-        Element ingredientElement = recipeElement
+        Element requirementsElement = recipeElement
                 .getFirstChildElement("requirements");
-        Vector<Requirement> requirements = xmlToIngredients(ingredientElement);
+        Vector<Requirement> requirements = xmlToRecipeRequirements(requirementsElement);
 
         // Product objects.
         Element productElement = recipeElement.getFirstChildElement("products");
