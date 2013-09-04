@@ -5,7 +5,7 @@ Trying to work towards having a Recipe for eating.
 2013-08-26
 Recipe products have their own class, rather than just being strings.
 Recipes that produce items have ProductItem objects.
-Recipes that produce property changes have ProductProperty objects.
+Recipes that produce property changes have ProductEntityProperty objects.
 Requirements, Products and Ingredients are nows stored in vectors in a Recipe.
 
 

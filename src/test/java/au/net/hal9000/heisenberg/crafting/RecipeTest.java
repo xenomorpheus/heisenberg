@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Requirement;
@@ -77,6 +78,83 @@ public class RecipeTest {
         assertEquals("ingredient count", requirements.size(),
                 recipe.getRequirementCount());
 
+    }
+
+    @Test
+    public void testGetId() {
+    }
+
+    @Test
+    public void testGetDescription() {
+    }
+
+    @Test
+    public void testGetProcess() {
+    }
+
+    @Test
+    public void testSetProcess() {
+    }
+
+    @Test
+    public void testGetMana() {
+    }
+
+    @Test
+    public void testGetActionPoints() {
+    }
+
+    @Test
+    public void testGetRequirementCount() {
+    }
+
+    @Test
+    public void testGetRequirements() {
+    }
+
+    @Test
+    public void testGetRequirement() {
+    }
+
+    @Test
+    public void testGetProducts() {
+    }
+
+    @Test
+    public void testGetProduct() {
+    }
+
+    @Test
+    public void testGetProductCount() {
+        // Product(s)
+        Vector<Product> products = new Vector<Product>();
+        products.add(new ProductItem("SmallGroundFire"));
+
+        // Build a recipe with the list of required ingredients
+        Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2, 42,
+                null, null, products);
+        
+        assertEquals("count", 1, recipe.getProductCount());
+    }
+
+    @Test
+    public void testGetSkillCount() {
+    }
+
+    @Test
+    public void testGetSkills() {
+    }
+
+    @Test
+    public void testGetNewCooker() {
+    }
+
+    @Test
+    public void testToString() {
+    }
+
+    @Test
+    public void testDetails() {
     }
 
 }

@@ -1,5 +1,8 @@
 package au.net.hal9000.heisenberg.item.property;
 
+import java.util.Vector;
+
+import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 
 public class ItemProperty {
@@ -22,7 +25,7 @@ public class ItemProperty {
      * @param amount
      *            the level.
      */
-    public static void setAeration(Item item, int amount) {
+    public static void setAeration(Item item, float amount) {
         item.setProperty(AERATION, amount);
     }
 
@@ -31,8 +34,24 @@ public class ItemProperty {
      *            the item we are changing the property of.
      */
 
-    public static int getAeration(Item item) {
-        return (Integer) item.getProperty(AERATION);
+    public static float getAeration(Item item) {
+        return (Float) item.getProperty(AERATION);
+    }
+
+    /**
+     * Alter the property by the delta amount.
+     * 
+     * @param item
+     *            the item we are changing the property of.
+     * @param delta
+     *            the amount we wish to change this property.
+     */
+
+    public static float alterAeration(Item item, float delta) {
+        float total = getAeration(item);
+        total += delta;
+        setAeration(item, total);
+        return total;
     }
 
     // Clothing
@@ -74,7 +93,7 @@ public class ItemProperty {
      * @param amount
      *            the level.
      */
-    public static void setEntertainment(Item item, int amount) {
+    public static void setEntertainment(Item item, float amount) {
         item.setProperty(ENTERTAINMENT, amount);
     }
 
@@ -83,8 +102,24 @@ public class ItemProperty {
      *            the item we are changing the property of.
      */
 
-    public static int getEntertainment(Item item) {
-        return (Integer) item.getProperty(ENTERTAINMENT);
+    public static float getEntertainment(Item item) {
+        return (Float) item.getProperty(ENTERTAINMENT);
+    }
+
+    /**
+     * Alter the property by the delta amount.
+     * 
+     * @param item
+     *            the item we are changing the property of.
+     * @param delta
+     *            the amount we wish to change this property.
+     */
+
+    public static float alterEntertainment(Item item, float delta) {
+        float total = getEntertainment(item);
+        total += delta;
+        setEntertainment(item, total);
+        return total;
     }
 
     // HumanoidFood
@@ -126,7 +161,7 @@ public class ItemProperty {
      * @param amount
      *            the level.
      */
-    public static void setHydration(Item item, int amount) {
+    public static void setHydration(Item item, float amount) {
         item.setProperty(HYDRATION, amount);
     }
 
@@ -135,8 +170,24 @@ public class ItemProperty {
      *            the item we are changing the property of.
      */
 
-    public static int getHydration(Item item) {
-        return (Integer) item.getProperty(HYDRATION);
+    public static float getHydration(Item item) {
+        return (Float) item.getProperty(HYDRATION);
+    }
+
+    /**
+     * Alter the property by the delta amount.
+     * 
+     * @param item
+     *            the item we are changing the property of.
+     * @param delta
+     *            the amount we wish to change this property.
+     */
+
+    public static float alterHydration(Item item, float delta) {
+        float total = getHydration(item);
+        total += delta;
+        setHydration(item, total);
+        return total;
     }
 
     // Living
@@ -208,7 +259,7 @@ public class ItemProperty {
      * @param amount
      *            the level.
      */
-    public static void setNourishment(Item item, int amount) {
+    public static void setNourishment(Item item, float amount) {
         item.setProperty(NOURISHMENT, amount);
     }
 
@@ -217,8 +268,24 @@ public class ItemProperty {
      *            the item we are changing the property of.
      */
 
-    public static int getNourishment(Item item) {
-        return (Integer) item.getProperty(NOURISHMENT);
+    public static float getNourishment(Item item) {
+        return (Float) item.getProperty(NOURISHMENT);
+    }
+
+    /**
+     * Alter the property by the delta amount.
+     * 
+     * @param item
+     *            the item we are changing the property of.
+     * @param delta
+     *            the amount we wish to change this property.
+     */
+
+    public static float alterNourishment(Item item, float delta) {
+        float total = getNourishment(item);
+        total += delta;
+        setNourishment(item, total);
+        return total;
     }
 
     // Rest
@@ -230,7 +297,7 @@ public class ItemProperty {
      * @param amount
      *            the level.
      */
-    public static void setRest(Item item, int amount) {
+    public static void setRest(Item item, float amount) {
         item.setProperty(REST, amount);
     }
 
@@ -239,8 +306,45 @@ public class ItemProperty {
      *            the item we are changing the property of.
      */
 
-    public static int getRest(Item item) {
-        return (Integer) item.getProperty(REST);
-    }    
-    
+    public static float getRest(Item item) {
+        return (Float) item.getProperty(REST);
+    }
+
+    /**
+     * Alter the property by the delta amount.
+     * 
+     * @param item
+     *            the item we are changing the property of.
+     * @param delta
+     *            the amount we wish to change this property.
+     */
+
+    public static float alterRest(Item item, float delta) {
+        float total = getRest(item);
+        total += delta;
+        setRest(item, total);
+        return total;
+    }
+
+    // misc
+    public static void alterPropertyByName(Entity entity, String propertyName,
+            float propertyDelta) {
+
+        if (propertyName == null) {
+            throw new RuntimeException("Missing property name");
+        } else if (AERATION.equals(propertyName)) {
+            ItemProperty.alterAeration(entity, propertyDelta);
+        } else if (ENTERTAINMENT.equals(propertyName)) {
+            ItemProperty.alterEntertainment(entity, propertyDelta);
+        } else if (HYDRATION.equals(propertyName)) {
+            ItemProperty.alterHydration(entity, propertyDelta);
+        } else if (NOURISHMENT.equals(propertyName)) {
+            ItemProperty.alterNourishment(entity, propertyDelta);
+        } else if (REST.equals(propertyName)) {
+            ItemProperty.alterRest(entity, propertyDelta);
+        } else {
+            throw new RuntimeException("Invalid property " + propertyName);
+        }
+
+    }
 }

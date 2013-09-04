@@ -521,6 +521,16 @@
 				<item id="OrbOfLight" />
 			</products>
 		</recipe>
+        <recipe id="drinkWater" description="drink water"
+            actionPoints="2" process="testDrink1">
+            <requirements>
+                <item id="Water" weightMin="1" />
+            </requirements>
+            <products>
+                <property id="HydrationId" propertyName="Hydration"
+                    propertyDelta="15.0" />
+            </products>
+        </recipe>
 		<!-- Unit Test Recipes -->
 		<recipe id="testItem1" description="item test 1" mana="2"
 			actionPoints="10" process="createItem1">

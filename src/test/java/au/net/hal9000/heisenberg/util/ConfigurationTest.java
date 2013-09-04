@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Product;
+import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
 import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.Requirement;
@@ -23,6 +24,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class ConfigurationTest {
+    static float TOLERANCE = 0.00001f;
     Configuration config = null;
 
     @Before
@@ -94,6 +96,46 @@ public class ConfigurationTest {
                 fireLighting.getDescription());
     }
 
+    @Test
+    public void testRecipeRequirementItem() {
+        Recipe recipe1 = config.getRecipe("testItem1");
+        assertEquals("requirement count", 2, recipe1.getRequirementCount() );
+        RequirementItem requirementItem = (RequirementItem) recipe1
+                .getRequirement(0);
+        assertNotNull("requirement not null", requirementItem);
+        assertEquals("requirement id", "Location", requirementItem.getId());
+        assertEquals("requirement itemType", "Location",
+                requirementItem.getItemType());
+    }
+
+    
+    @Test
+    public void testXmlToRecipeProductItems() {
+        Recipe recipe1 = config.getRecipe("testItem1");
+        assertEquals("product count", 1, recipe1.getProductCount() );
+        ProductItem product0 = (ProductItem) recipe1
+                .getProduct(0);
+        assertNotNull("product0 not null", product0);
+        assertEquals("product0 id", "Cookie", product0.getId());
+        assertEquals("product0 itemType", "Cookie",
+                product0.getType());
+        assertEquals("product0 getWeightBase", 1, product0.getWeightBase(), TOLERANCE);
+    
+    }
+
+    
+    @Test
+    public void testXmlToRecipeProductProperty() {
+        Recipe recipe1 = config.getRecipe("testDrinkWater");
+        assertEquals("product count", 1, recipe1.getProductCount() );
+        ProductEntityProperty product0 = (ProductEntityProperty) recipe1
+                .getProduct(0);
+        assertNotNull("product0 not null", product0);
+        assertEquals("product0 id", "HydrationId", product0.getId());
+        assertEquals("product0 propertyName", "Hydration", product0.getPropertyName());
+        assertEquals("product0 propertyDelta", 15.0f, product0.getPropertyDelta(), TOLERANCE);    
+    }
+    
     @Test
     public void testRecipes() {
         TreeMap<String, Recipe> recipes = config.getRecipes();
@@ -251,14 +293,4 @@ public class ConfigurationTest {
     }
 
 
-    @Test
-    public void testRequirementItem() {
-        Recipe recipe1 = config.getRecipe("testItem1");
-        RequirementItem requirementItem = (RequirementItem) recipe1
-                .getRequirement(0);
-        assertNotNull("requirement not null", requirementItem);
-        assertEquals("requirement id", "Location", requirementItem.getId());
-        assertEquals("requirement itemType", "Location",
-                requirementItem.getItemType());
-    }
 }

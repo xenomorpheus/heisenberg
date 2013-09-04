@@ -4,12 +4,12 @@ import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
- * As much as possible consider this object immutable.
+ * As much as possible consider these objects immutable.
  * 
  * @author bruins
  * 
  */
-public class ProductProperty extends Product {
+public class ProductEntityProperty extends Product {
     /**
      * The name of the property we will change in the Entity.
      */
@@ -27,7 +27,7 @@ public class ProductProperty extends Product {
      * @param propertyDelta
      *            the amount to change the property.
      */
-    public ProductProperty(final String id, final String propertyName,
+    public ProductEntityProperty(final String id, final String propertyName,
             float propertyDelta) {
         super(id);
         this.propertyName = propertyName;
@@ -74,8 +74,9 @@ public class ProductProperty extends Product {
     @Override
     public final String createProduct(final Cooker cooker) {
         Entity entity = cooker.getChef();
-        int nourishment = ItemProperty.getNourishment(entity);
-        ItemProperty.setNourishment(entity, nourishment + 10);
+        
+        ItemProperty.alterPropertyByName(entity, propertyName, propertyDelta);
+        
         return null;
     }
 

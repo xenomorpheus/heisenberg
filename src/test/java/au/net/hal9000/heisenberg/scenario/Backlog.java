@@ -1,11 +1,8 @@
 package au.net.hal9000.heisenberg.scenario;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.*;
-import au.net.hal9000.heisenberg.item.exception.*;
 
 public class Backlog {
 
@@ -30,18 +27,7 @@ public class Backlog {
 		println("Human created with name: " + human);
 		Cloak cloak = new Cloak();
 		println("Cloak created with name: " + cloak);
-		try {
-			// TODO human.wear(cloak);
-			println("Human wearing cloak.");
-		} catch (ExceptionCantWear e) {
-			fail("Cant wear");
-		} catch (ExceptionInvalidType e) {
-			fail("invalid type");
-		} catch (ExceptionTooHeavy e) {
-			fail("too heavy");
-		} catch (ExceptionTooBig e) {
-			fail("too big");
-		}
+        // TODO human.wear(cloak);
 		println("Cloak location: " + cloak.getContainer());
 	}
 	

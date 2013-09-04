@@ -280,6 +280,20 @@ public abstract class Entity extends ItemContainer {
         Configuration configuration = Configuration.lastConfig();
         return configuration.getRecipe(recipeId).getNewCooker(this);
     }
+    
+    /**
+     * Try to drink some water.
+     * @param item Water (or sub-class)
+     * @return Any error message, or null on success.
+     */
+    public String drink(Item item){
+        Cooker cooker = getCooker("drinkWater");
+        String error = cooker.setItemsAvailable(0, item);
+        if (error != null){
+            return error;
+        }
+        return cooker.cook();
+    }
 
     /**
      * Shallow copy properties from one object to another.

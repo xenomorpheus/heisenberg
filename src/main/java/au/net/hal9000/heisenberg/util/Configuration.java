@@ -13,6 +13,7 @@ import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
+import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.crafting.Product;
@@ -282,10 +283,10 @@ public class Configuration {
             // weightMin
             float weightMin = 0;
             String weightMinString = entry.getAttributeValue("weightMin");
-            if (weightMinString != null){
+            if (weightMinString != null) {
                 weightMin = Float.parseFloat(weightMinString);
             }
-                        
+
             RequirementItem requirement = new RequirementItem(itemId, itemType,
                     consumed, weightMin);
             ingredients.add(requirement);
@@ -294,7 +295,7 @@ public class Configuration {
     }
 
     /**
-     * Read in an XML list of Recipe Products<br>
+     * Read in an XML list of Recipe Product Items<br>
      * 
      * @param entries
      *            XML list of Item details.
@@ -311,10 +312,40 @@ public class Configuration {
             }
             String weightBaseString = entry.getAttributeValue("weightBase");
             float weightBase = 0;
-            if (weightBaseString != null){
+            if (weightBaseString != null) {
                 weightBase = Float.parseFloat(weightBaseString);
             }
             ProductItem product = new ProductItem(id, type, weightBase);
+            products.add(product);
+        }
+        return products;
+    }
+
+    /**
+     * Read in an XML list of Recipe Product Entity Properties<br>
+     * 
+     * @param entries
+     *            XML list of Property details.
+     * @return A list of Recipe Product objects.
+     */
+    public static Vector<Product> xmlToRecipeProductEntityProperties(
+            Elements entries) {
+        Vector<Product> products = new Vector<Product>();
+        for (int current = 0; current < entries.size(); current++) {
+            Element entry = entries.get(current);
+            String id = entry.getAttributeValue("id");
+            String propertyName = entry.getAttributeValue("propertyName");
+            if (propertyName == null) {
+                propertyName = id;
+            }
+            String propertyDeltaString = entry
+                    .getAttributeValue("propertyDelta");
+            float propertyDelta = 0;
+            if (propertyDeltaString != null) {
+                propertyDelta = Float.parseFloat(propertyDeltaString);
+            }
+            ProductEntityProperty product = new ProductEntityProperty(id,
+                    propertyName, propertyDelta);
             products.add(product);
         }
         return products;
@@ -334,10 +365,12 @@ public class Configuration {
             if (items != null) {
                 products.addAll(xmlToRecipeProductItems(items));
             }
+
+            Elements properties = entry.getChildElements("property");
+            if (properties != null) {
+                products.addAll(xmlToRecipeProductEntityProperties(properties));
+            }
         }
-
-        // TODO other types
-
         return products;
     }
 
