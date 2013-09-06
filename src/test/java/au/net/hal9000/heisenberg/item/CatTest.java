@@ -35,7 +35,8 @@ public class CatTest {
     @Test
     public void testDrinkRecipe() {
         Location dungeon = new Location("Dungeon");
-        Cat cat = new Cat("Fluffy", "Black cat");
+        Cat cat = new Cat("Fluffy");
+        // Hydration before
         float hydrationBefore = ItemProperty.getHydration(cat);
         dungeon.add(cat);
         Water water = new Water();
@@ -46,6 +47,7 @@ public class CatTest {
         assertEquals("setItemsAvaliable 0 water", null,
                 cooker.setItemsAvailable(0, water));
         assertEquals("Cook", null, cooker.cook());
+        // Hydration increases after drinking water
         float hydrationAfter = ItemProperty.getHydration(cat);
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);
     }
@@ -53,15 +55,17 @@ public class CatTest {
     @Test
     public void testDrink() {
         Location dungeon = new Location("Dungeon");
-        Cat cat = new Cat("Fluffy", "Black cat");
+        Cat cat = new Cat("Fluffy");
+        // Hydration before
         float hydrationBefore = ItemProperty.getHydration(cat);
         dungeon.add(cat);
         Water water = new Water();
         water.setWeightBase(1);
         dungeon.add(water);
         cat.setActionPoints(2);
-        assertEquals("Eat should return null", null,cat.drink( water));
+        assertEquals("Drink should return null", null,cat.drink( water));
         float hydrationAfter = ItemProperty.getHydration(cat);
+        // Hydration increases after drinking water
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);
     }
 
