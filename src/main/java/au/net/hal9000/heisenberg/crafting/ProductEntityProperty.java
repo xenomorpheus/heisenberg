@@ -66,8 +66,16 @@ public class ProductEntityProperty extends Product {
     /** {@inheritDoc} */
     @Override
     String meetsRequirements(Cooker cooker) {
-        // TODO Auto-generated method stub
-        return "TODO check for target/chef";
+        // Need to find a target to apply property change to.
+        // A chef is a valid target.
+        if (cooker.getChef() != null){
+            return null;
+        }
+        // A Target has been specified.
+        if (cooker.findIngredientByName("Target") != null){
+            return null;
+        }
+        return "A Target or chef is required";
     }
 
     /** {@inheritDoc} */

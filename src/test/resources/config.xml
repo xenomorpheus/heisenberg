@@ -527,7 +527,7 @@
                 <item id="Water" weightMin="1" />
             </requirements>
             <products>
-                <property id="HydrationId" propertyName="Hydration"
+                <property id="HydrationId" propertyName="hydration"
                     propertyDelta="15.0" />
             </products>
         </recipe>
@@ -567,7 +567,7 @@
 				<item id="Rat" />
 			</requirements>
 			<products>
-				<property id="NourishmentId" propertyName="Nourishment"
+				<property id="NourishmentId" propertyName="nourishment"
 					propertyDelta="15.0" />
 			</products>
 		</recipe>
@@ -577,7 +577,7 @@
 				<item id="Water" weightMin="1" />
 			</requirements>
 			<products>
-				<property id="HydrationId" propertyName="Hydration"
+				<property id="HydrationId" propertyName="hydration"
 					propertyDelta="15.0" />
 			</products>
 		</recipe>

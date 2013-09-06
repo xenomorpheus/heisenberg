@@ -132,7 +132,7 @@ public class ConfigurationTest {
                 .getProduct(0);
         assertNotNull("product0 not null", product0);
         assertEquals("product0 id", "HydrationId", product0.getId());
-        assertEquals("product0 propertyName", "Hydration", product0.getPropertyName());
+        assertEquals("product0 propertyName", "hydration", product0.getPropertyName());
         assertEquals("product0 propertyDelta", 15.0f, product0.getPropertyDelta(), TOLERANCE);    
     }
     

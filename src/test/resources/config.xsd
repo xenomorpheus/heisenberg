@@ -241,8 +241,11 @@
 
 	<xs:simpleType name="ctEntityPropertyType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="Nourishment"></xs:enumeration>
-			<xs:enumeration value="Hydration"></xs:enumeration>
+			<xs:enumeration value="aeration"></xs:enumeration>
+			<xs:enumeration value="entertainment"></xs:enumeration>
+			<xs:enumeration value="hydration"></xs:enumeration>
+			<xs:enumeration value="nourishment"></xs:enumeration>
+			<xs:enumeration value="rest"></xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 
