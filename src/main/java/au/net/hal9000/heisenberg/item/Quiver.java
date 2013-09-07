@@ -28,11 +28,21 @@ public class Quiver extends ItemContainer  {
         ItemProperty.setClothing(this, true);
     }
 
+    /**
+     * Add arrows to the quiver
+     * @param arrow
+     */
 	public void add(final Arrow arrow) {
         super.add(arrow);
     }
 
-    public void add(final Object object) {
+	/**
+	 * This method is required to override the parent class method.
+	 * @deprecated
+	 * @param Item
+	 */
+	@Override
+    public void add(final Item item) {
         throw new IllegalArgumentException("Only Arrows accepted");
     }
 }

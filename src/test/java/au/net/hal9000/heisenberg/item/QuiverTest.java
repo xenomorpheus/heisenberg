@@ -23,4 +23,13 @@ public class QuiverTest {
         assertEquals("Arrow location ", quiver, arrow.getContainer());
     }
 
+    @SuppressWarnings("deprecation")
+    @Test(expected=RuntimeException.class)
+    public void quiverAddNonArrow() {
+        Quiver quiver = new Quiver();
+        quiver.add(new Cookie());
+    }
+    
+    
+    
 }
