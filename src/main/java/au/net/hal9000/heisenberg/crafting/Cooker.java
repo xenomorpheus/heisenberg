@@ -313,7 +313,7 @@ public class Cooker extends ItemContainer {
     /**
      * Create all the products of the recipe.
      * 
-     * @return TODO
+     * @return null if good, or error string.
      */
     private String createProducts() {
         StringBuilder errors = new StringBuilder();
