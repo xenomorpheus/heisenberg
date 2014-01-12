@@ -1,9 +1,8 @@
 package au.net.hal9000.heisenberg.crafting;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
-import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -122,15 +121,15 @@ public class Recipe {
     /**
      * What the recipe produces.
      */
-    private Vector<Product> products;
+    private List<Product> products;
     /**
      * The total items required for this recipe.
      */
-    private Vector<Requirement> requirements;
+    private List<Requirement> requirements;
     /**
      * The {@link Skill} objects required.
      */
-    private Set<Skill> skills = new TreeSet<Skill>();
+    private Set<Skill> skills;
 
     /**
      * 
@@ -153,8 +152,8 @@ public class Recipe {
      */
     public Recipe(final String id, final String description,
             final String process, final int mana, final int actionPoints,
-            final Vector<Requirement> requirements, final Set<Skill> skills,
-            final Vector<Product> products) {
+            final List<Requirement> requirements, final Set<Skill> skills,
+            final List<Product> products) {
         super();
         this.id = id;
         this.description = description;
@@ -192,16 +191,6 @@ public class Recipe {
      */
     public final String getProcess() {
         return process;
-    }
-
-    /**
-     * Set the process.
-     * 
-     * @param pProcess
-     *            the process to set
-     */
-    public final void setProcess(String pProcess) {
-        process = pProcess;
     }
 
     // mana
@@ -242,7 +231,7 @@ public class Recipe {
      * 
      * @return the list of Requirement objects.
      */
-    public final Vector<Requirement> getRequirements() {
+    public final List<Requirement> getRequirements() {
         return requirements;
     }
 
@@ -259,7 +248,7 @@ public class Recipe {
 
     // products
 
-    public Vector<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
@@ -317,7 +306,7 @@ public class Recipe {
      * @return a description
      */
     public String toString() {
-        return details();
+        return id;
     }
 
     /**

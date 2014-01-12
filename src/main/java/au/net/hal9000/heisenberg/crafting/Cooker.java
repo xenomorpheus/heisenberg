@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
@@ -55,7 +56,7 @@ public class Cooker extends ItemContainer {
     /**
      * Ingredients we will cook with.
      */
-    private Vector<Item> ingredients = new Vector<Item>();
+    private List<Item> ingredients = new Vector<Item>();
 
     /* error messages */
     public static String itemMayNotBeNull = "item must exist";
@@ -252,7 +253,7 @@ public class Cooker extends ItemContainer {
             errors.append("Too few ingredients " + requirementCount + " vs "
                     + ingredients.size() + "\n");
         }
-        Vector<Requirement> requirements = recipe.getRequirements();
+        List<Requirement> requirements = recipe.getRequirements();
         for (int index = 0; index < requirements.size(); index++) {
             Requirement requirement = requirements.get(index);
             if (requirement instanceof RequirementItem) {
@@ -295,7 +296,7 @@ public class Cooker extends ItemContainer {
         int requirementCount = recipe.getRequirementCount();
 
         if (requirementCount > 0) {
-            Vector<Requirement> requirements = recipe.getRequirements();
+            List<Requirement> requirements = recipe.getRequirements();
             for (int i = 0; i < requirements.size(); i++) {
                 Requirement requirement = requirements.get(i);
                 if (requirement instanceof RequirementItem) {
