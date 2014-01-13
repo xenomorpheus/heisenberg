@@ -105,7 +105,7 @@ public class Recipe {
     /**
      * The amount of actionPoints required for this recipe.
      */
-    private int actionPoints = 0;
+    private int actionPoints;
     /**
      * Describe the recipe in terms a game player understands.
      */
@@ -113,7 +113,7 @@ public class Recipe {
     /**
      * The amount of Mana required for this recipe.
      */
-    private int mana = 0;
+    private int mana;
     /**
      * The name given to the subroutine.
      */
@@ -293,11 +293,12 @@ public class Recipe {
     // Misc Methods
     /**
      * 
-     * @param chef The Entity doing the cooking
+     * @param chef
+     *            The Entity doing the cooking
      * @return A Cooker object for this recipe.
      */
     public final Cooker getNewCooker(Entity chef) {
-        Cooker cooker =  new Cooker(this);
+        Cooker cooker = new Cooker(this);
         cooker.setChef(chef);
         return cooker;
     }
@@ -330,15 +331,15 @@ public class Recipe {
         if (requirements != null) {
             string.append("Requirement(s):\n");
             for (Requirement requirement : requirements) {
-                string.append("  " + requirement.getId() + ": " + requirement.getDescription()
-                        + "\n");
+                string.append("  " + requirement.getId() + ": "
+                        + requirement.getDescription() + "\n");
             }
         }
         if (products != null) {
             string.append("Product(s):\n");
             for (Product product : products) {
-                string.append("  " + product.getId() + ": " + product.getDescription()
-                        + "\n");
+                string.append("  " + product.getId() + ": "
+                        + product.getDescription() + "\n");
             }
         }
         return string.toString();
