@@ -574,7 +574,7 @@ public abstract class Item implements Serializable {
      */
     public void move(Point3d requestedPosition) {
         if (container == null) {
-            logger.error("No ItemConainer - Can't move");
+            logger.error("No ItemContainer - Can't move");
         } else {
             container.moveItem(this, requestedPosition);
         }
