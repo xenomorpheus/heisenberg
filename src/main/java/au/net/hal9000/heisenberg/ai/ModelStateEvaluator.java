@@ -9,5 +9,5 @@ public interface ModelStateEvaluator {
      * e.g. The higher the value the better.
      *
      */
-    double evaluate(ModelState state);
+    double evaluate(Model state);
 }

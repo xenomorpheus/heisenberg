@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.item.Item;
 
-public class ModelStateV1 implements ModelState {
+public class ModelV1 implements Model {
     /*
      * A very simple model that only holds two Item objects, the agent and the
      * goal.

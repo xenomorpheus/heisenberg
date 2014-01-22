@@ -4,27 +4,29 @@ import au.net.hal9000.heisenberg.item.Item;
 
 public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
 
+    static public final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
+    static public final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
+    static public final String MODEL_NOT_SUPPORTED = "model not supported";
+    
     ModelStateEvaluatorV1() {
     }
 
     @Override
-    public double evaluate(ModelState state) {
+    public double evaluate(Model model) {
         double result;
-        if (state instanceof ModelStateV1) {
-            ModelStateV1 modelStateV1 = (ModelStateV1) state;
-            Item agent = modelStateV1.getAgent();
+        if (model instanceof ModelV1) {
+            ModelV1 modelV1 = (ModelV1) model;
+            Item agent = modelV1.getAgent();
             if (agent == null) {
-                throw new RuntimeException("agent may not be null");
+                throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
             }
-            Item goal = modelStateV1.getGoal();
+            Item goal = modelV1.getGoal();
             if (goal == null) {
-                throw new RuntimeException("goal may not be null");
+                throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
             }
-            result = -1.0 * agent.distanceEuclidean(goal);
-            // TODO consider also implement distanceManhattan
+            result = agent.distanceEuclidean(goal);
         } else {
-            throw new RuntimeException("Invalid state object of class "
-                    + state.getClass().getSimpleName());
+            throw new IllegalArgumentException(MODEL_NOT_SUPPORTED);
         }
         return result;
     }
