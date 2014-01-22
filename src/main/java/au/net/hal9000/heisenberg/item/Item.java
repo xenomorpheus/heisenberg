@@ -240,7 +240,7 @@ public abstract class Item implements Serializable {
 
     /**
      * @param hitPoints
-     *            the structural indegrity / health.
+     *            the structural integrity / health.
      */
     public void setHitPoints(float hitPoints) {
         this.hitPoints = hitPoints;
@@ -707,20 +707,28 @@ public abstract class Item implements Serializable {
         return getIconOpenDefaultForClass(getSimpleClassName());
     }
 
-    // TODO consider refeactoring out into a different class
+    // TODO consider refactoring out into a different class
     public static void setIconOpenDefaultForClass(String simpleClassName,
             ImageIcon imageIcon) {
         iconOpenDefaultForClass.put(simpleClassName, imageIcon);
     }
 
-    // TODO consider refeactoring out into a different class
+    // TODO consider refactoring out into a different class
     public static Icon getIconOpenDefaultForClass(String simpleClassName) {
         return iconOpenDefaultForClass.get(simpleClassName);
     }
 
-    // TODO consider refeactoring out into a different class
+    // TODO consider refactoring out into a different class
     public static void clearIconOpenDefaultForClass() {
         iconOpenDefaultForClass.clear();
+    }
+    /**
+     * Return the distance to the other item.
+     * @param other other item.
+     * @return
+     */
+    public double distanceEuclidean(Item other) {
+        return position.distance(other.getPosition());
     }
 
 }
