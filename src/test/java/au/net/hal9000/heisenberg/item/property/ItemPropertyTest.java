@@ -3,21 +3,18 @@ package au.net.hal9000.heisenberg.item.property;
 import static org.junit.Assert.*;
 
 import java.util.Vector;
-
 import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-
 import org.junit.Test;
 
 public class ItemPropertyTest {
-    static float TOLERANCE = 0.00001f;
+    final static float TOLERANCE = 0.00001f;
 
     @Test
     public void testAeration() {
-
-        float startValue = 12.3f;
-        float propertyDelta = 1.6f;
+        final float startValue = 12.3f;
+        final float propertyDelta = 1.6f;
         Entity entity = new Cat();
         ItemProperty.setAeration(entity, startValue);
         ItemProperty.alterAeration(entity, propertyDelta);
@@ -26,7 +23,6 @@ public class ItemPropertyTest {
         ItemProperty.setAeration(entity, startValue);
         assertEquals("Aeration after", startValue,
                 ItemProperty.getAeration(entity), TOLERANCE);
-
     }
 
     @Test
@@ -40,9 +36,8 @@ public class ItemPropertyTest {
 
     @Test
     public void testEntertainment() {
-
-        float startValue = 12.3f;
-        float propertyDelta = 1.6f;
+        final float startValue = 12.3f;
+        final float propertyDelta = 1.6f;
         Entity entity = new Cat();
         ItemProperty.setEntertainment(entity, startValue);
         ItemProperty.alterEntertainment(entity, propertyDelta);
@@ -51,7 +46,6 @@ public class ItemPropertyTest {
         ItemProperty.setEntertainment(entity, startValue);
         assertEquals("Entertainment after", startValue,
                 ItemProperty.getEntertainment(entity), TOLERANCE);
-
     }
 
     @Test
@@ -65,9 +59,8 @@ public class ItemPropertyTest {
 
     @Test
     public void testNourishment() {
-
-        float startValue = 12.3f;
-        float propertyDelta = 1.6f;
+        final float startValue = 12.3f;
+        final float propertyDelta = 1.6f;
         Entity entity = new Cat();
         ItemProperty.setNourishment(entity, startValue);
         ItemProperty.alterNourishment(entity, propertyDelta);
@@ -76,7 +69,6 @@ public class ItemPropertyTest {
         ItemProperty.setNourishment(entity, startValue);
         assertEquals("Nourishment after", startValue,
                 ItemProperty.getNourishment(entity), TOLERANCE);
-
     }
 
     @Test
@@ -99,9 +91,8 @@ public class ItemPropertyTest {
 
     @Test
     public void testHydration() {
-
-        float startValue = 12.3f;
-        float propertyDelta = 1.6f;
+        final float startValue = 12.3f;
+        final float propertyDelta = 1.6f;
         Entity entity = new Cat();
         ItemProperty.setHydration(entity, startValue);
         ItemProperty.alterHydration(entity, propertyDelta);
@@ -110,14 +101,12 @@ public class ItemPropertyTest {
         ItemProperty.setHydration(entity, startValue);
         assertEquals("Hydration after", startValue,
                 ItemProperty.getHydration(entity), TOLERANCE);
-
     }
 
     @Test
     public void testRest() {
-
-        float startValue = 12.3f;
-        float propertyDelta = 1.6f;
+        final float startValue = 12.3f;
+        final float propertyDelta = 1.6f;
         Entity entity = new Cat();
         ItemProperty.setRest(entity, startValue);
         ItemProperty.alterRest(entity, propertyDelta);
@@ -126,7 +115,6 @@ public class ItemPropertyTest {
         ItemProperty.setRest(entity, startValue);
         assertEquals("Rest after", startValue, ItemProperty.getRest(entity),
                 TOLERANCE);
-
     }
 
     /**
@@ -134,17 +122,15 @@ public class ItemPropertyTest {
      */
     @Test
     public void testAlterPropertyByName() {
-
         Vector<String> properties = new Vector<String>();
         properties.add(ItemProperty.AERATION);
         properties.add(ItemProperty.ENTERTAINMENT);
         properties.add(ItemProperty.NOURISHMENT);
         properties.add(ItemProperty.HYDRATION);
         properties.add(ItemProperty.REST);
-
-        float startValue = 12.3f;
+        final float startValue = 12.3f;
         for (String propertyName : properties) {
-            float propertyDelta = 1.6f;
+            final float propertyDelta = 1.6f;
             Entity entity = new Cat();
             ItemProperty.setAeration(entity, startValue);
             ItemProperty.setEntertainment(entity, startValue);
@@ -189,7 +175,6 @@ public class ItemPropertyTest {
                     ItemProperty.getNourishment(entity), TOLERANCE);
             assertEquals("Rest after", startValue,
                     ItemProperty.getRest(entity), TOLERANCE);
-
         }
     }
 
