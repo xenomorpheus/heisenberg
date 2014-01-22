@@ -23,8 +23,8 @@ import au.net.hal9000.heisenberg.units.Currency;
 
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class BagOfHolding extends Bag implements ExtraDimensional {
 
     /**
@@ -124,7 +124,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
     // A BOH rupturing is kind of special :-)
     /** {@inheritDoc} */
-    @Override    
+    @Override
     public void rupture() {
         this.beNot();
     }

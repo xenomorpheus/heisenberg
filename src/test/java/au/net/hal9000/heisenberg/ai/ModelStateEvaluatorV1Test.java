@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -58,10 +58,10 @@ public class ModelStateEvaluatorV1Test {
     }
 
     @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
+    private ExpectedException expectedEx = ExpectedException.none();
 
     @Test
-    public void testEvaluateBadGoal() throws IllegalArgumentException{
+    public void testEvaluateBadGoal() {
         // agent
         Item agent = new Cat();
         Point3d agentPosition = new Point3d();
@@ -73,14 +73,15 @@ public class ModelStateEvaluatorV1Test {
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage(ModelStateEvaluatorV1.GOAL_MAY_MAY_NOT_BE_NULL);
+        expectedEx
+                .expectMessage(ModelStateEvaluatorV1.GOAL_MAY_MAY_NOT_BE_NULL);
         // Missing goal, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
-        
+
     }
- 
+
     @Test
-    public void testEvaluateBadAgent() throws IllegalArgumentException{
+    public void testEvaluateBadAgent() {
         // goal
         Item goal = new Rat();
         Point3d goalPosition = new Point3d();
@@ -92,10 +93,11 @@ public class ModelStateEvaluatorV1Test {
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage(ModelStateEvaluatorV1.AGENT_MAY_MAY_NOT_BE_NULL);
+        expectedEx
+                .expectMessage(ModelStateEvaluatorV1.AGENT_MAY_MAY_NOT_BE_NULL);
         // Missing goal, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
-        
+
     }
-    
+
 }

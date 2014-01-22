@@ -17,18 +17,34 @@ package au.net.hal9000.heisenberg.crafting;
  */
 public abstract class Product {
 
-    String id;
+    /** Identifier. */
+    private String id;
 
+    /**
+     * Constructor.
+     * 
+     * @param id
+     *            identifier.
+     */
     public Product(String id) {
         super();
         this.id = id;
     }
 
     /**
+     * Get the ID.
+     * 
+     * @return the ID.
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
      * @return Return a description of the object.
      */
-    public String getDescription(){
-        return "Id: "+id;
+    public String getDescription() {
+        return "Id: " + id;
     }
 
     /**
@@ -47,9 +63,5 @@ public abstract class Product {
      *         cooker can build this product.
      */
     abstract String createProduct(Cooker cooker);
-
-    public String getId() {
-        return id;
-    }
 
 }

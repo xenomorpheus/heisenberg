@@ -20,7 +20,7 @@ public abstract class Requirement {
     /**
      * Each requirement should have a unique ID, per recipe.
      */
-    String id;
+    private String id;
 
     /**
      * Will the item be consumed as part of the cooking process.<br>
@@ -39,7 +39,10 @@ public abstract class Requirement {
     }
 
     // setters and getters
-    // id
+    /**
+     * Get the id.
+     * @return the id.
+     */
     public String getId() {
         return id;
     }
@@ -53,11 +56,10 @@ public abstract class Requirement {
      * @return Return a description of the object.
      */
     String getDescription() {
-        String string = "Id: "+id;
+        String string = "Id: " + id;
         if (isConsumed) {
             string += ", consumed";
-        }
-        else{
+        } else {
             string += ", not consumed";
         }
         return string;

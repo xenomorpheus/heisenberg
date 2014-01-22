@@ -8,22 +8,19 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
-public class Backpack extends Bag  {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
+public class Backpack extends Bag {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public Backpack() {
-		this("Backpack");
-	}
+    public Backpack() {
+        this("Backpack");
+    }
 
-	public Backpack(final String pString) {
-		super(pString);
-		ItemProperty.setClothing(this, true);
-	}
+    public Backpack(final String pString) {
+        super(pString);
+        ItemProperty.setClothing(this, true);
+    }
 
 }

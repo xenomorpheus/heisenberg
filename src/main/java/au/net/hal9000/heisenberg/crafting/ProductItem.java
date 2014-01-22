@@ -63,7 +63,8 @@ public class ProductItem extends Product {
     /** {@inheritDoc} */
     @Override
     public final String getDescription() {
-        return "Id: " + id + ", item type of " + type+", weightBase "+weightBase;
+        return "Id: " + getId() + ", item type of " + type + ", weightBase "
+                + weightBase;
     }
 
     /** {@inheritDoc} */

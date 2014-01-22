@@ -12,9 +12,7 @@ import au.net.hal9000.heisenberg.item.property.Sharp;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 // @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
 public class Arrow extends Item implements Sharp {
-    /**
-	 * 
-	 */
+
     private static final long serialVersionUID = 1L;
     private static final float VOLUME_BASE = 1; // TODO arrow volume default
 

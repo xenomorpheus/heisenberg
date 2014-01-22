@@ -68,11 +68,11 @@ public class ProductEntityProperty extends Product {
     String meetsRequirements(Cooker cooker) {
         // Need to find a target to apply property change to.
         // A chef is a valid target.
-        if (cooker.getChef() != null){
+        if (cooker.getChef() != null) {
             return null;
         }
         // A Target has been specified.
-        if (cooker.findIngredientByName("Target") != null){
+        if (cooker.findIngredientByName("Target") != null) {
             return null;
         }
         return "A Target or chef is required";
@@ -82,9 +82,9 @@ public class ProductEntityProperty extends Product {
     @Override
     public final String createProduct(final Cooker cooker) {
         Entity entity = cooker.getChef();
-        
+
         ItemProperty.alterPropertyByName(entity, propertyName, propertyDelta);
-        
+
         return null;
     }
 

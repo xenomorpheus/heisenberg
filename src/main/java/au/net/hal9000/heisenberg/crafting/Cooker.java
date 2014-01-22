@@ -182,7 +182,7 @@ public class Cooker extends ItemContainer {
      * 
      * @return undef if requirements met, otherwise the reason.
      */
-    private final String requirementsMet() {
+    private String requirementsMet() {
         StringBuilder string = new StringBuilder();
 
         // mana
@@ -284,7 +284,7 @@ public class Cooker extends ItemContainer {
      * Remove the Ingredient objects, mana, action points etc. that are
      * consumed.
      */
-    private final void requirementsConsume() {
+    private void requirementsConsume() {
 
         // mana
         int manaRequired = recipe.getMana();
