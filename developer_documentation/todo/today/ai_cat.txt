@@ -61,5 +61,5 @@ Health - penalties for low
 
 Identify: (goals)
 Threats
-Opertunities (based on needs)
+Opportunities (based on needs)
 Needs 
