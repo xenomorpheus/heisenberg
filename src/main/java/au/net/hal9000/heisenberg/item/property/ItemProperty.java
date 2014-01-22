@@ -4,15 +4,15 @@ import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 
 public class ItemProperty {
-    public static String AERATION = "aeration";
-    public static String ENTERTAINMENT = "entertainment";
-    public static String HYDRATION = "hydration";
-    public static String IS_CLOTHING = "is clothing";
-    public static String IS_HUMANOID_FOOD = "is humanoid food";
-    public static String IS_LIVING = "is living";
-    public static String IS_MAGICAL = "is magical";
-    public static String NOURISHMENT = "nourishment";
-    public static String REST = "rest";
+    public static final String AERATION = "aeration";
+    public static final String ENTERTAINMENT = "entertainment";
+    public static final String HYDRATION = "hydration";
+    public static final String IS_CLOTHING = "is clothing";
+    public static final String IS_HUMANOID_FOOD = "is humanoid food";
+    public static final String IS_LIVING = "is living";
+    public static final String IS_MAGICAL = "is magical";
+    public static final String NOURISHMENT = "nourishment";
+    public static final String REST = "rest";
 
     // Aeration
     /**
