@@ -41,8 +41,8 @@ import au.net.hal9000.heisenberg.units.Skill;
 public class Cooker extends ItemContainer {
 
     /**
-	 * 
-	 */
+     * serial version.
+     */
     private static final long serialVersionUID = 1L;
     /**
      * recipe describes the process to make the products.
@@ -58,12 +58,16 @@ public class Cooker extends ItemContainer {
      */
     private List<Item> ingredients = new Vector<Item>();
 
-    /* error messages */
-    public static String itemMayNotBeNull = "item must exist";
-    public static String alreadyContainsThatItem = "already contains that item";
-    public static String noSuchRequirement = "no such requirement";
-    public static String alreadyOccupied = "already occupied";
-    public static String badKey = "bad key";
+    /** error message. **/
+    public static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
+    /** error message. **/
+    public static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
+    /** error message. **/
+    public static final String NO_SUCH_REQUIREMENT = "no such requirement";
+    /** error message. **/
+    public static final String ALREADY_OCCUPIED = "already occupied";
+    /** error message. **/
+    public static final String BAD_KEY = "bad key";
 
     /**
      * Constructor.
@@ -122,22 +126,22 @@ public class Cooker extends ItemContainer {
     public final String setItemsAvailable(final int index, final Item item) {
         // item exists
         if (item == null) {
-            return itemMayNotBeNull;
+            return ITEM_MAY_NOT_BE_NULL;
         }
 
         // spot is free?
         if ((ingredients.size() > index) && (ingredients.get(index) != null)) {
-            return alreadyOccupied;
+            return ALREADY_OCCUPIED;
         }
         // already in this container?
         if (this.contains(item)) {
-            return alreadyContainsThatItem;
+            return ALREADY_CONTAINS_THAT_ITEM;
         }
         // is there a requirement to fulfill ?
         RequirementItem requirementItem = (RequirementItem) recipe
                 .getRequirement(index);
         if (requirementItem == null) {
-            return noSuchRequirement;
+            return NO_SUCH_REQUIREMENT;
         }
 
         // Does the Item fulfill the Requirement?

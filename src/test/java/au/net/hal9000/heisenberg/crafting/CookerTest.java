@@ -254,14 +254,14 @@ public class CookerTest {
 
         // Item - FlintAndTinder
         assertEquals("item 0 - missing item and location",
-                Cooker.itemMayNotBeNull, cooker.setItemsAvailable(0, null));
+                Cooker.ITEM_MAY_NOT_BE_NULL, cooker.setItemsAvailable(0, null));
         assertEquals("item 0 - wrong type", "item must be a FlintAndTinder",
                 cooker.setItemsAvailable(0, wood));
         assertEquals("item 0 - good", null,
                 cooker.setItemsAvailable(0, flintAndTinder));
         FlintAndTinder flintAndTinder2 = new FlintAndTinder();
         world.add(flintAndTinder2);
-        assertEquals("item 0 - already occupied", Cooker.alreadyOccupied,
+        assertEquals("item 0 - already occupied", Cooker.ALREADY_OCCUPIED,
                 cooker.setItemsAvailable(0, flintAndTinder2));
         cooker.clearItemsAvailable(0, world);
         assertEquals("item 0 - good", null,
@@ -274,7 +274,7 @@ public class CookerTest {
         // Item - Wood2
         // test that an item can't be added to cooker more than once.
         assertEquals("item 2 - already in Cooker",
-                Cooker.alreadyContainsThatItem,
+                Cooker.ALREADY_CONTAINS_THAT_ITEM,
                 cooker.setItemsAvailable(2, wood));
         assertEquals("item 2 - good", null, cooker.setItemsAvailable(2, wood2));
 
