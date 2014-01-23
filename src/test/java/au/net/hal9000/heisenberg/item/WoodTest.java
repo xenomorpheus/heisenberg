@@ -20,7 +20,7 @@ public class WoodTest {
         Wood woodBig = new Wood();
         woodBig.setWeightBase(big + small);
         woodBig.setVolumeBase(2.0f * (big + small));
-        Wood woodSmall = woodBig.splitByWeight(small);
+        Wood woodSmall = (Wood)woodBig.splitByWeight(small);
         assertEquals("big's weight", big, woodBig.getWeight(), tollerance);
         assertEquals("big's volume", big * 2.0f, woodBig.getVolume(),
                 tollerance);

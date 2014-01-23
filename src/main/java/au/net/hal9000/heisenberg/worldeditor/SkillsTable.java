@@ -17,6 +17,7 @@ public class SkillsTable extends JTable {
     /**
      * 
      */
+    private static final String[] COLUMN_NAMES = {"Id", "Description" };
     private static final long serialVersionUID = 1L;
 
     SkillsTable() {
@@ -45,7 +46,6 @@ public class SkillsTable extends JTable {
         private static final long serialVersionUID = 1L;
         private Configuration config = Configuration.lastConfig();
 
-        private static final String[] COLUMN_NAMES = {"Id", "Description" };
 
         private ArrayList<Skill> orderedSkills;
         private TreeMap<String, SkillDetail> skillDetails;

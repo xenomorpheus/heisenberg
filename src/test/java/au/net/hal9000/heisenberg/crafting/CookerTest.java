@@ -12,11 +12,14 @@ import java.util.TreeSet;
 import org.junit.Before;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.FlintAndTinder;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.item.Water;
+import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;

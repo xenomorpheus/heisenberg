@@ -34,7 +34,7 @@ public class ItemSplitByWeightTest {
         water.setWeightBase(6f);
         water.setVolumeBase(3f);
         Water water2 = null;
-        water2 = water.splitByWeight(2.0f);
+        water2 = (Water)water.splitByWeight(2.0f);
         assertNotNull("new object not null", water2);
         assertEquals("old object weight", 4.0f, water.getWeightBase(),
                 TOLLERANCE);
