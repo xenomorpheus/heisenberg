@@ -51,7 +51,7 @@ public class PurseTest {
 
         // coins
         Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
-        float expect2 = purse2.getVolumeBase() + (15 * Purse.coinsToVolume);
+        float expect2 = purse2.getVolumeBase() + (15 * Purse.COINS_TO_VOLUME);
         assertEquals("getVolume - coins", expect2, purse2.getVolume(),
                 MARGIN_OF_ERROR);
     }
@@ -79,7 +79,7 @@ public class PurseTest {
 
         // coins
         Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
-        float expect2 = purse2.getWeightBase() + (15 * Purse.coinsToWeight);
+        float expect2 = purse2.getWeightBase() + (15 * Purse.COINS_TO_WEIGHT);
         assertEquals("getWeight - coins", expect2, purse2.getWeight(),
                 MARGIN_OF_ERROR);
     }

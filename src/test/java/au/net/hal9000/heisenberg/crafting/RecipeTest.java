@@ -162,14 +162,15 @@ public class RecipeTest {
     @Test
     public void testDetails() {
 
-
         assertEquals(
                 "simple",
                 "Id: recipe1\nDescription: the first recipe\nProcess: null\nMana:2\nAction Point(s):"
                         + REQUIRED_ACTION_POINTS + "\n", simple.details());
         assertEquals(
                 "recipeAll",
-                "Id: recipe1\nDescription: the first recipe\nProcess: "+PROCESS_NAME+"\nMana:2\nAction Point(s):"
+                "Id: recipe1\nDescription: the first recipe\nProcess: "
+                        + PROCESS_NAME
+                        + "\nMana:2\nAction Point(s):"
                         + REQUIRED_ACTION_POINTS
                         + "\n"
                         + "Skill(s):\n  0: Skill0\n  1: Skill1\n  2: Skill2\n"

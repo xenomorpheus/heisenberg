@@ -58,7 +58,7 @@ public class ModelStateEvaluatorV1Test {
     }
 
     @Rule
-    private ExpectedException expectedEx = ExpectedException.none();
+    public ExpectedException expectedEx = ExpectedException.none();
 
     @Test
     public void testEvaluateBadGoal() {

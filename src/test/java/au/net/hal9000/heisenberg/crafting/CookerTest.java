@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.crafting;
 
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -25,10 +23,14 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 public class CookerTest {
+
+    /** test amount of action points. */
     private static final int REQUIRED_ACTION_POINTS = 42;
+
+    /** test amount of mana. */
     private static final int REQUIRED_MANA = 3;
-    private static final String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
-            "Skill2" };
+    private static final String[] REQUIRED_SKILLS = new String[] { "Skill0",
+            "Skill1", "Skill2" };
 
     Configuration config = null;
 

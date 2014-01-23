@@ -8,15 +8,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.units.Currency;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Purse extends Item {
 
     private static final long serialVersionUID = 1L;
     // TODO put in config
-    public static final float coinsToWeight = 0.1f;
+    /** conversion of coin count to weight units */
+    public static final float COINS_TO_WEIGHT = 0.1f;
     // TODO give value and put in config
-    public static final float coinsToVolume = 0.01f;
+    /** conversion of coin count to volume units */
+    public static final float COINS_TO_VOLUME = 0.01f;
+    /** holder for currency */
     private Currency coins;
 
     public Purse(final String pString, Currency coins) {
@@ -24,20 +27,31 @@ public class Purse extends Item {
         this.coins = coins;
     }
 
+    /**
+     * constructor.
+     */
     public Purse() {
         this("Purse", new Currency());
     }
 
+    /**
+     * Constructor.
+     * @param coins
+     */
     public Purse(Currency coins) {
         this("Purse", coins);
     }
 
+    /**
+     * Constructor.
+     * @param pString
+     */
     public Purse(final String pString) {
         this(pString, new Currency());
     }
 
     /**
-     * Number of coins
+     * Number of coins in purse.
      * 
      * @return number of coins
      */
@@ -48,19 +62,20 @@ public class Purse extends Item {
     /** {@inheritDoc} */
     @Override
     public float getWeight() {
-        return this.getWeightBase() + this.getCoinCount() * coinsToWeight;
+        return this.getWeightBase() + this.getCoinCount() * COINS_TO_WEIGHT;
     }
 
     /** {@inheritDoc} */
     @Override
     public float getVolume() {
-        return this.getVolumeBase() + this.getCoinCount() * coinsToVolume;
+        return this.getVolumeBase() + this.getCoinCount() * COINS_TO_VOLUME;
     }
 
     /** {@inheritDoc} */
     @Override
     public Currency getValue() {
-        // We take a fresh currency so we don't alter the Purse's inner currency object.
+        // We take a fresh currency so we don't alter the Purse's inner currency
+        // object.
         Currency total = new Currency(this.getValueBase());
         total.add(coins);
         return total;

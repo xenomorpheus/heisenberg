@@ -15,21 +15,21 @@ import au.net.hal9000.heisenberg.util.DummyData;
 public class ItemPanelTest {
 
     @Test
-    public void iteTreePanel() throws ConfigurationError{
+    public void iteTreePanel() throws ConfigurationError {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();
-        ItemTreePanel itemTreePanel = new ItemTreePanel(config,location);
-        assertNotNull("Not Null",itemTreePanel);       
+        ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
+        assertNotNull("Not Null", itemTreePanel);
     }
-    
-    
-    public static void main(String arg[]) {
+
+    public static void main(String[] arg) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
                     Configuration config = DummyData.config();
                     Location location = DummyData.getDemoWorld();
-                    ItemTreePanel itemTreePanel = new ItemTreePanel(config,location);
+                    ItemTreePanel itemTreePanel = new ItemTreePanel(config,
+                            location);
                     itemTreePanel.setVisible(true);
                     JFrame jFrame = new JFrame("ItemTeePanel Test");
                     jFrame.setContentPane(itemTreePanel);
@@ -40,8 +40,8 @@ public class ItemPanelTest {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                //location.setWeightMax(100000);
-                //location.setVolumeMax(100000);
+                // location.setWeightMax(100000);
+                // location.setVolumeMax(100000);
             }
         });
     }

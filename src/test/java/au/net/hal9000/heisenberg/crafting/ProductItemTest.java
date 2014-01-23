@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
