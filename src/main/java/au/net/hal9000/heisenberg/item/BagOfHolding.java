@@ -63,20 +63,35 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         ItemProperty.setMagical(this, true);
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param type
+     *            bag type is I - IV.
+     */
     public BagOfHolding(int type) {
         this(type, "Bag of Holding");
     }
 
+    /**
+     * Constuctor. Defaults to type I.
+     */
     public BagOfHolding() {
         this(TYPE_I); // default type
     }
 
     // Other methods
-    private void setType(int pType) {
-        if ((pType < TYPE_I) || (pType > TYPE_IV)) {
-            throw new IllegalArgumentException("invalid type=" + pType);
+    /**
+     * Set the type of the bag.
+     * 
+     * @param type
+     *            bag type
+     */
+    private void setType(int type) {
+        if ((type < TYPE_I) || (type > TYPE_IV)) {
+            throw new IllegalArgumentException("invalid type=" + type);
         }
-        type = pType;
+        this.type = type;
         if (type == TYPE_I) {
             this.setWeightBase(15F);
             this.setWeightMax(250F);
@@ -123,15 +138,21 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         return item;
     }
 
-    // Magic
-    /** Contents don't add to weight for a BoH. */
+    /**
+     * Contents don't add to weight for a BoH. Magic.
+     * 
+     * @return the total weight.
+     */
     @Override
     public float getWeight() {
         return this.getWeightBase();
     }
 
-    // Magic
-    /** Contents don't add to volume for a BoH. */
+    /**
+     * Contents don't add to volume for a BoH. Magic.
+     * 
+     * @return the total volume.
+     */
     @Override
     public float getVolume() {
         return this.getVolumeBase();

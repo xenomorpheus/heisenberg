@@ -57,6 +57,7 @@ public class ModelStateEvaluatorV1Test {
                 agentPosition.distance(goalPosition), valuation5, DIFF);
     }
 
+    /** describe the exception we are expecting. */
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 

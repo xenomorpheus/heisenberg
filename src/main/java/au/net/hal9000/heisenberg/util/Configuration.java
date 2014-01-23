@@ -24,6 +24,8 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
  * Configuration read the XML config file and return in an object to easily
  * access the properties.
  * 
+ * Singleton Design Pattern.
+ * 
  * Please consider the values read only.
  * 
  * @author bruins
@@ -32,8 +34,8 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
 
 public class Configuration {
 
-    // Static
-    private static Configuration lastConfig = null; // Singleton
+    /** Singleton. Holder of the config */
+    private static Configuration lastConfig = null;
     // Object
     private Vector<String> genders;
     private Vector<ItemClassConfiguration> itemClasses;

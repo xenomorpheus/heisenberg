@@ -20,33 +20,44 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 import au.net.hal9000.heisenberg.util.ItemIcon;
 
+/**
+ * The main application window. Shows a tree of the items in this world.
+ */
 public class WorldEditor extends JFrame {
-    /**
-     * The main application window.  Shows a tree of the items in this world.
-     */
+
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
-    EntityManager entityManager = null;
-    Location location = null;
-    ItemTreePanel itemTreePanel = null;
+
+    /** Persistence Entity Manager. */
+    private EntityManager entityManager = null;
+
+    /** the Location object at the root of this world. */
+    private Location location = null;
+
+    /** The panel showing the tree of Item objects. */
+    private ItemTreePanel itemTreePanel = null;
+
+    /** Persistence unit name for Entity Manager. */
+    private static final String PERSISTENCE_UNIT_NAME = "items";
 
     /**
-     * Constructor
+     * Constructor.
+     * 
      * @throws ConfigurationError
      */
     public WorldEditor() throws ConfigurationError {
-        
+
         // Persistence
-        final String PERSISTENCE_UNIT_NAME = "items";
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = factory.createEntityManager();
-        
+
         // Config
         Configuration config = DummyData.config();
 
         // Icons
         ItemIcon.setIcon(config);
-        
+
         // Main Frame
         setSize(400, 600);
 
@@ -104,23 +115,32 @@ public class WorldEditor extends JFrame {
 
     }
 
+    /** getter for Entity Manager. @return Entity Manager. */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
+    /** setter for Entity Manager. @param entityManager Entity Manager. */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public void setLocation(Location pLocation) {
+    /**
+     * set the location.
+     * 
+     * @param location
+     *            new location.
+     */
+    public void setLocation(Location location) {
         if (location != null) {
             location.beNot();
             location = null;
         }
-        location = pLocation;
+        this.location = location;
         itemTreePanel.setLocation(location);
     }
 
+    /** quit the program. */
     public void exitProgram() {
         if (entityManager != null) {
             entityManager.close();
@@ -130,7 +150,11 @@ public class WorldEditor extends JFrame {
         System.exit(0);
     }
 
-    // TODO WorldEditor
+    /**
+     * Construct UI menu bar.
+     * @param actionListener the listener for the menu events.
+     * @return a menu bar.
+     */
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
         // Application Menu

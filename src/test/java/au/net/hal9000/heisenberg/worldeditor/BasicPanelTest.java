@@ -23,6 +23,12 @@ public class BasicPanelTest {
         basicPanel.setItem(pc);
     }
 
+    /**
+     * for testing the config editor.
+     * 
+     * @param args
+     *            command line args.
+     */
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components
