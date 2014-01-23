@@ -89,7 +89,7 @@ public class BasicPanel extends JPanel {
         });
 
     }
-    
+
     /**
      * Set the PcClass object to show values for.
      * 
@@ -217,9 +217,6 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
         cons.gridwidth = 1;
 
-        
-        
-        
         // Row 2
         row = 2;
         pos = 0;
@@ -472,7 +469,7 @@ public class BasicPanel extends JPanel {
         }
     }
 
-    // Listens to multiple form elements
+    /** Listens to multiple form elements. */
     private class BasicItemListener implements ItemListener {
 
         @Override
@@ -507,6 +504,9 @@ public class BasicPanel extends JPanel {
         }
     }
 
+    /**
+     * update the form.
+     */
     private void updateForm() {
         if (pc != null) {
 

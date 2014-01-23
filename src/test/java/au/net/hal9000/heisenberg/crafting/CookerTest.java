@@ -1,6 +1,9 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import static org.junit.Assert.*;
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Vector;
 import java.util.Set;
@@ -9,15 +12,19 @@ import java.util.TreeSet;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.*;
-import au.net.hal9000.heisenberg.units.*;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.Water;
+import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 public class CookerTest {
-    static int REQUIRED_ACTION_POINTS = 42;
-    static int REQUIRED_MANA = 3;
-    static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
+    private static final int REQUIRED_ACTION_POINTS = 42;
+    private static final int REQUIRED_MANA = 3;
+    private static final String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
             "Skill2" };
 
     Configuration config = null;
@@ -52,10 +59,8 @@ public class CookerTest {
                 cooker.setItemsAvailable(0, newItemLocation));
         Water water = new Water();
         water.setWeightBase(3);
-        assertEquals("set Water", null,
-                cooker.setItemsAvailable(1, water));
-        
-        
+        assertEquals("set Water", null, cooker.setItemsAvailable(1, water));
+
         assertEquals("cook works", null, cooker.cook());
 
         assertEquals("location has new item", 1,
@@ -70,7 +75,7 @@ public class CookerTest {
     }
 
     /**
-     * test findIngredientByName
+     * test findIngredientByName.
      */
     @Test
     public void testFindIngredientByName() {

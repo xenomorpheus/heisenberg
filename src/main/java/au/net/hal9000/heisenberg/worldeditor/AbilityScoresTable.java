@@ -41,7 +41,8 @@ public class AbilityScoresTable extends JTable {
          */
         private static final long serialVersionUID = 1L;
 
-        String[] columnNames = { "Id", "Description" };
+        /** column names */
+        private String[] columnNames = {"Id", "Description" };
 
         private ArrayList<AbilityScore> pcAbilityScores;
 

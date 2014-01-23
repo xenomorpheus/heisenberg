@@ -18,7 +18,6 @@ public class SkillsTable extends JTable {
      * 
      */
     private static final long serialVersionUID = 1L;
-    PcRace pc;
 
     SkillsTable() {
         super();
@@ -36,7 +35,6 @@ public class SkillsTable extends JTable {
      *            values.
      */
     public void setItem(final PcRace pc) {
-        this.pc = pc;
         this.setModel(new MyTableModel(pc));
     }
 
@@ -47,10 +45,10 @@ public class SkillsTable extends JTable {
         private static final long serialVersionUID = 1L;
         private Configuration config = Configuration.lastConfig();
 
-        String[] columnNames = { "Id", "Description" };
+        private static final String[] COLUMN_NAMES = {"Id", "Description" };
 
-        ArrayList<Skill> orderedSkills;
-        TreeMap<String, SkillDetail> skillDetails;
+        private ArrayList<Skill> orderedSkills;
+        private TreeMap<String, SkillDetail> skillDetails;
 
         public MyTableModel(final PcRace pc) {
             Set<Skill> pcSkills = pc.getSkills();
@@ -62,8 +60,9 @@ public class SkillsTable extends JTable {
             skillDetails = config.getSkillDetails();
         }
 
+        @Override
         public String getColumnName(int col) {
-            return columnNames[col].toString();
+            return COLUMN_NAMES[col].toString();
         }
 
         public int getRowCount() {
@@ -89,10 +88,12 @@ public class SkillsTable extends JTable {
             return result;
         }
 
+        @Override
         public boolean isCellEditable(int row, int col) {
             return false;
         }
 
+        @Override
         public void setValueAt(Object value, int row, int col) {
             // rowData[row][col] = value;
             fireTableCellUpdated(row, col);

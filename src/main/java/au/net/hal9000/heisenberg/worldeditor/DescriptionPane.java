@@ -16,7 +16,7 @@ public class DescriptionPane extends JScrollPane {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(DescriptionPane.class
+    private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class
             .getName());
     private PcRace pc;
     private JTextArea descriptionTextArea = new JTextArea(30, 25);
@@ -28,7 +28,7 @@ public class DescriptionPane extends JScrollPane {
 
         descriptionTextArea.setEditable(false);
         descriptionTextArea.setLineWrap(true);
-        
+
         // Add to JScrollPane (ourselves)
         getViewport().add(descriptionTextArea);
         setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -40,7 +40,7 @@ public class DescriptionPane extends JScrollPane {
             public void focusGained(FocusEvent e) {
                 if (pc == null) {
                     descriptionTextArea.setText("");
-                    logger.error("pc is NULL");
+                    LOGGER.error("pc is NULL");
                 } else {
                     descriptionTextArea.setText(pc.detailedDescription());
                 }
@@ -50,18 +50,20 @@ public class DescriptionPane extends JScrollPane {
 
     /**
      * Set the PcClass object to show values for.
-     * @param pc the PcClass object to show values for.
      * 
-     * Note we pass the PcClass rather than the values needed to do the display.
-     * We do this because the values to display may be changed by other tabs, and
-     * passing by pc allows a refresh of values.
+     * @param pc
+     *            the PcClass object to show values for.
+     * 
+     *            Note we pass the PcClass rather than the values needed to do
+     *            the display. We do this because the values to display may be
+     *            changed by other tabs, and passing by pc allows a refresh of
+     *            values.
      */
     public void setItem(final PcRace pc) {
         this.pc = pc;
-        if (pc == null){
+        if (pc == null) {
             descriptionTextArea.setText("");
-        }
-        else{
+        } else {
             descriptionTextArea.setText(pc.detailedDescription());
         }
     }
