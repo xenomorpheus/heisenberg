@@ -11,7 +11,14 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Rat;
 import au.net.hal9000.heisenberg.units.Point3d;
 
+/**
+ * Test the ModelStateEvaluatorV1 class.
+ * 
+ * @author bruins
+ * 
+ */
 public class ModelStateEvaluatorV1Test {
+    /** tolerance for comparing floats. */
     static final double DIFF = 0.00001f;
 
     /**
