@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
 
-
 // Persistence
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,6 @@ import javax.swing.ImageIcon;
 
 import org.apache.log4j.Logger;
 
-
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
@@ -32,7 +30,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
 /*
  * Item:
  *
- * The Item package is the base class for the game objects 
+ * The Item package is the base class for the game objects.
  * e.g. People, equipment, locations, etc.
  *
  * See the ItemContainer class for items that may contain
@@ -65,7 +63,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
 public abstract class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(Item.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Item.class.getName());
     private static String packageName = Factory.class.getPackage().getName();
     /** For each class of Item, the icon to show when open **/
     // TODO Consider moving out into own class.
@@ -126,6 +124,7 @@ public abstract class Item implements Serializable {
     private float weightBase = 0;
 
     // Constructors
+    /** Constructor. */
     public Item() {
         super();
         ItemProperty.setMagical(this, false);
@@ -140,6 +139,7 @@ public abstract class Item implements Serializable {
         setIconLeaf(icon);
     }
 
+    /** Constructor. */
     public Item(final String pName) {
         this();
         this.name = pName;
@@ -213,7 +213,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Get the description
+     * Get the description.
      * 
      * @return the description
      */
@@ -222,7 +222,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Set the description
+     * Set the description.
      * 
      * @param pDescription
      *            the description
@@ -257,6 +257,9 @@ public abstract class Item implements Serializable {
 
     /**
      * Set the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @param iconClosed
+     *            the Icon to show when the container is closed.
      */
     public void setIconClosed(Icon iconClosed) {
         this.iconClosed = iconClosed;
@@ -273,6 +276,9 @@ public abstract class Item implements Serializable {
 
     /**
      * Set the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @param iconOpen
+     *            the Icon to show when the container is open.
      */
     public void setIconOpen(Icon iconOpen) {
         this.iconOpen = iconOpen;
@@ -289,6 +295,9 @@ public abstract class Item implements Serializable {
 
     /**
      * Set the Icon to draw when displaying this Item in the tree view.
+     * 
+     * @param iconLeaf
+     *            the Icon to show when the non-container item is displayed.
      */
     public void setIconLeaf(Icon iconLeaf) {
         this.iconLeaf = iconLeaf;
@@ -304,7 +313,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Set the name
+     * Set the name.
      * 
      * @param pName
      *            the name to set
@@ -334,6 +343,12 @@ public abstract class Item implements Serializable {
         return position;
     }
 
+    /**
+     * set the position of the item.
+     * 
+     * @param position
+     *            the position object.
+     */
     public void setPosition(Point3d position) {
         this.position = position;
     }
@@ -358,7 +373,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Get a property
+     * Get a property.
      * 
      * @param key
      *            key name
@@ -369,7 +384,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Set a property
+     * Set a property.
      * 
      * @param key
      *            key name
@@ -381,7 +396,7 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Remove a property
+     * Remove a property.
      * 
      * @param key
      *            key name
@@ -509,6 +524,7 @@ public abstract class Item implements Serializable {
      *            other item
      * @return true iff items are equal.
      */
+    @Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -574,7 +590,7 @@ public abstract class Item implements Serializable {
      */
     public void move(Point3d requestedPosition) {
         if (container == null) {
-            logger.error("No ItemContainer - Can't move");
+            LOGGER.error("No ItemContainer - Can't move");
         } else {
             container.moveItem(this, requestedPosition);
         }
@@ -634,7 +650,7 @@ public abstract class Item implements Serializable {
         return text.toString();
     }
 
-    /** Find items that match the criteria */
+    /** Find items that match the criteria. */
     public void accept(ItemVisitor visitor) {
         visitor.visit(this);
     }
@@ -722,9 +738,12 @@ public abstract class Item implements Serializable {
     public static void clearIconOpenDefaultForClass() {
         iconOpenDefaultForClass.clear();
     }
+
     /**
      * Return the distance to the other item.
-     * @param other other item.
+     * 
+     * @param other
+     *            other item.
      * @return
      */
     public double distanceEuclidean(Item other) {

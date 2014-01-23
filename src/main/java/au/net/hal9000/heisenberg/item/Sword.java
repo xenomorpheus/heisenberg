@@ -8,20 +8,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
-public class Sword extends Item implements Sharp{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
+public class Sword extends Item implements Sharp {
 
-	public Sword() {
-		this("Sword");
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Sword(final String pString) {
-		super(pString);
-	}
+    public Sword() {
+        this("Sword");
+    }
+
+    public Sword(final String pString) {
+        super(pString);
+    }
 
 }

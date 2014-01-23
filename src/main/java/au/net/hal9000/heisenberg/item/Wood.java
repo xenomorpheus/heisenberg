@@ -13,9 +13,7 @@ import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Wood extends Item implements SplitByWeight {
-    /**
-	 * 
-	 */
+
     private static final long serialVersionUID = 1L;
 
     public Wood() {
@@ -32,11 +30,10 @@ public class Wood extends Item implements SplitByWeight {
 
     // Methods
 
-
     /** {@inheritDoc} */
     @Override
-    public Wood splitByWeight(float newItemWeight) {
-        return (Wood) ItemSplitByWeight.splitByWeight(this, newItemWeight);
+    public Item splitByWeight(float newItemWeight) {
+        return ItemSplitByWeight.splitByWeight(this, newItemWeight);
     }
 
 }

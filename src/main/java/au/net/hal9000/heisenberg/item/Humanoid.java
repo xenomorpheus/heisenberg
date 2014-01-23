@@ -6,9 +6,6 @@ import au.net.hal9000.heisenberg.util.PcClass;
 
 public abstract class Humanoid extends PcRace {
 
-    /**
-	 * 
-	 */
     private static final long serialVersionUID = 1L;
     private HumanoidHead head = new HumanoidHead();
     private Hand leftHand = new Hand("Left Hand");

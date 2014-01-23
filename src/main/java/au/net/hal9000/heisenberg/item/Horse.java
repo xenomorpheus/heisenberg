@@ -9,12 +9,11 @@ import au.net.hal9000.heisenberg.item.property.HumanoidMount;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
-public class Horse extends au.net.hal9000.heisenberg.item.Entity implements HumanoidMount {
-    /**
-	 * 
-	 */
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
+public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
+        HumanoidMount {
+
     private static final long serialVersionUID = 1L;
 
     public Horse() {

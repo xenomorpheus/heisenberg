@@ -9,9 +9,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class SmallGroundFire extends Item {
-    /**
-	 * 
-	 */
+
     private static final long serialVersionUID = 1L;
 
     public SmallGroundFire() {

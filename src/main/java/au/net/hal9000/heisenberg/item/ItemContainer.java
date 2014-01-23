@@ -6,21 +6,22 @@ package au.net.hal9000.heisenberg.item;
  */
 
 import java.io.Serializable;
-import java.util.EmptyStackException;
 import java.util.Vector;
 
 //Import log4j classes.
 import org.apache.log4j.Logger;
-// import org.apache.log4j.BasicConfigurator;
 
-import au.net.hal9000.heisenberg.units.*;
+import au.net.hal9000.heisenberg.units.Currency;
+import au.net.hal9000.heisenberg.units.Point3d;
+
+// import org.apache.log4j.BasicConfigurator;
 
 public abstract class ItemContainer extends Item implements Serializable {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(ItemContainer.class
+    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
             .getName());
     private float weightMax = 0;
     private float volumeMax = 0;
@@ -213,7 +214,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (itemCurrentContainer != null) {
             if (this.equals(itemCurrentContainer)) {
-                logger.error("Already in container");
+                LOGGER.error("Already in container");
                 // Nothing to do.
                 return;
             }
@@ -227,7 +228,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
-                logger.error("TooHeavy - Adding " + item.getName()
+                LOGGER.error("TooHeavy - Adding " + item.getName()
                         + " weighing " + item.getWeight() + " will total "
                         + total + ", which is too heavy for " + this.getName()
                         + ", weightMax=" + weightMax);
@@ -241,7 +242,7 @@ public abstract class ItemContainer extends Item implements Serializable {
             total += item.getVolume();
             if (total > volumeMax) {
                 // ExceptionTooBig
-                logger.error("TooBig - Adding " + item.getName()
+                LOGGER.error("TooBig - Adding " + item.getName()
                         + " of volume " + item.getVolume() + " will total "
                         + total + ", which is too big for " + this.getName()
                         + ", volumeMax=" + volumeMax);
@@ -287,7 +288,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @return the top item in the contents
      * @throws EmptyStackException
      */
-    public Item pop() throws EmptyStackException {
+    public Item pop() {
         return contents.remove(contents.size() - 1);
     }
 
@@ -297,7 +298,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @return The top item.
      * @throws EmptyStackException
      */
-    public Item peek() throws EmptyStackException {
+    public Item peek() {
         return contents.lastElement();
     }
 
@@ -332,8 +333,8 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     private float getContentsWeight() {
         float total = 0;
-        for (Item Item : getContents()) {
-            total += Item.getWeight();
+        for (Item item : getContents()) {
+            total += item.getWeight();
         }
         return total;
     }
@@ -346,8 +347,8 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     private float getContentsVolume() {
         float total = 0;
-        for (Item Item : getContents()) {
-            total += Item.getVolume();
+        for (Item item : getContents()) {
+            total += item.getVolume();
         }
         return total;
     }
@@ -360,8 +361,8 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     private Currency getContentsValue() {
         Currency total = new Currency();
-        for (Item Item : getContents()) {
-            total.add(Item.getValue());
+        for (Item item : getContents()) {
+            total.add(item.getValue());
         }
         return total;
     }
@@ -370,8 +371,8 @@ public abstract class ItemContainer extends Item implements Serializable {
     // Find contents that match the criteria
     public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
-        for (Item Item : getContents()) {
-            visitor.visit(Item);
+        for (Item item : getContents()) {
+            visitor.visit(item);
         }
         // Get super to do the rest.
         super.accept(visitor);
@@ -383,8 +384,8 @@ public abstract class ItemContainer extends Item implements Serializable {
     public void beNot() {
         // Call beNot on the Items directly declared in this class.
         while (!contents.isEmpty()) {
-            Item Item = contents.remove(0);
-            Item.beNot();
+            Item item = contents.remove(0);
+            item.beNot();
         }
         // Get super to do the rest.
         super.beNot();

@@ -4,12 +4,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
-import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
  * Entity is the bases of conscious entities. <br>
@@ -44,7 +41,7 @@ public abstract class Entity extends ItemContainer {
      * Set the value = pcClassAbility.getValue() + (level *
      * pcClassAbility.getModifier()) + modifier;
      */
-    String gender;
+    private String gender;
     /**
      * The {@link Recipe} list that is known by this object.
      */
@@ -53,7 +50,7 @@ public abstract class Entity extends ItemContainer {
      * The {@link Skill} objects required.
      */
     private Set<Skill> skills;
-    String size;
+    private String size;
 
     // Constructor
     public Entity(String name, String description) {
@@ -280,16 +277,18 @@ public abstract class Entity extends ItemContainer {
         Configuration configuration = Configuration.lastConfig();
         return configuration.getRecipe(recipeId).getNewCooker(this);
     }
-    
+
     /**
      * Try to drink some water.
-     * @param item Water (or sub-class)
+     * 
+     * @param item
+     *            Water (or sub-class)
      * @return Any error message, or null on success.
      */
-    public String drink(Item item){
+    public String drink(Item item) {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, item);
-        if (error != null){
+        if (error != null) {
             return error;
         }
         return cooker.cook();

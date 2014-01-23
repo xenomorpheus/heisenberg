@@ -19,14 +19,29 @@ public class Water extends Item implements SplitByWeight {
      */
     private static final long serialVersionUID = 1L;
 
+    /** constructor. */
     public Water() {
         this("Water", "water");
     }
 
+    /**
+     * constructor.
+     * 
+     * @param pName
+     *            name to use.
+     */
     public Water(String pName) {
         this(pName, "water");
     }
 
+    /**
+     * constructor.
+     * 
+     * @param pName
+     *            name to use.
+     * @param pDescription
+     *            description to use.
+     */
     public Water(String pName, String pDescription) {
         super(pName, pDescription);
         ItemProperty.setHumanoidFood(this, true);
@@ -38,8 +53,8 @@ public class Water extends Item implements SplitByWeight {
 
     /** {@inheritDoc} */
     @Override
-    public Water splitByWeight(float newItemWeight) {
-        return (Water) ItemSplitByWeight.splitByWeight(this, newItemWeight);
+    public Item splitByWeight(float newItemWeight) {
+        return ItemSplitByWeight.splitByWeight(this, newItemWeight);
     }
 
 }

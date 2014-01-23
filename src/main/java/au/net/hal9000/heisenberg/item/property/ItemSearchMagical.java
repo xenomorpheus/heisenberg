@@ -11,18 +11,18 @@ public class ItemSearchMagical extends ItemSearch {
         super();
     }
 
-    public void visit(Item Item) {
-        if (ItemProperty.isMagical(Item)) {
-            this.addMatchingItems(Item);
+    public void visit(Item item) {
+        if (ItemProperty.isMagical(item)) {
+            this.addMatchingItems(item);
         }
     }
 
     public void visit(Vector<Item> itemVector) {
         Iterator<Item> itr = itemVector.iterator();
         while (itr.hasNext()) {
-            Item Item = itr.next();
-            if (ItemProperty.isMagical(Item)) {
-                this.addMatchingItems(Item);
+            Item item = itr.next();
+            if (ItemProperty.isMagical(item)) {
+                this.addMatchingItems(item);
             }
         }
     }

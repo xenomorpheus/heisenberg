@@ -8,21 +8,19 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Human extends Humanoid {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	public Human() {
-		super("Human");
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Human(String string) {
-		super(string);
-	}
+    public Human() {
+        super("Human");
+    }
+
+    public Human(String string) {
+        super(string);
+    }
 
     public Human(String string, String description) {
         super(string, description);

@@ -26,13 +26,13 @@ public class Factory {
      * @param arguments
      * @return the new Item.
      */
-    static public Item createItem(String type, Object[] arguments) {
+    public static Item createItem(String type, Object[] arguments) {
         try {
             Class<?> itemClass = Class.forName(packageName + "." + type);
             if (arguments == null) {
                 return ((Item) itemClass.newInstance());
             } else {
-                final Class<?> partypes[] = new Class[arguments.length];
+                final Class<?>[] partypes = new Class[arguments.length];
 
                 for (int count = 0; count < arguments.length; count++) {
                     partypes[count] = arguments[count].getClass();
