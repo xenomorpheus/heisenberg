@@ -10,17 +10,14 @@ import java.util.TreeSet;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.crafting.Requirement;
-import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.units.Skill;
 
 public class RecipeTest {
-    static String PROCESS_NAME = "process name";
-    static int REQUIRED_ACTION_POINTS = 42;
-    static int REQUIRED_MANA = 3;
-    static String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1",
-            "Skill2" };
+    private static String PROCESS_NAME = "process name";
+    private static int REQUIRED_ACTION_POINTS = 42;
+    private static int REQUIRED_MANA = 3;
+    private static String[] REQUIRED_SKILLS = new String[] { "Skill0",
+            "Skill1", "Skill2" };
 
     private Recipe simple;
     private List<Requirement> requirementsAll;

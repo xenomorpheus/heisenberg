@@ -17,6 +17,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
  */
 
 public abstract class Entity extends ItemContainer {
+    
+    /** serial version. */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -86,6 +88,10 @@ public abstract class Entity extends ItemContainer {
         this.actionPoints = actionPoints;
     }
 
+    /**
+     * Adjust the amount of action points of this item.
+     * @param adjust amount to adjust by.
+     */
     public void actionPointsAdjust(final int adjust) {
         actionPoints += adjust;
     }
@@ -120,6 +126,10 @@ public abstract class Entity extends ItemContainer {
         this.mana = mana;
     }
 
+    /**
+     * Adjust the amount of mana.
+     * @param adjust amount to adjust by.
+     */
     public void manaAdjust(int adjust) {
         mana += adjust;
     }
@@ -194,6 +204,10 @@ public abstract class Entity extends ItemContainer {
         return skills;
     }
 
+    /**
+     * Set the skills of this entity.
+     * @param skills skills to set.
+     */
     public final void setSkills(final Set<Skill> skills) {
         this.skills = skills;
     }
@@ -214,7 +228,7 @@ public abstract class Entity extends ItemContainer {
     /**
      * Add extra Skills to the list of required ingredients.
      * 
-     * @param newSkills
+     * @param newSkills additinal skills to set on Entity.
      */
     public final void skillsAdd(final String[] newSkills) {
         for (String skillId : newSkills) {
@@ -225,7 +239,7 @@ public abstract class Entity extends ItemContainer {
     // Misc
 
     /**
-     * 
+     * Return a detailed description of the object.
      * @return Plain text description of the object
      */
     public String detailedDescription() {
@@ -267,7 +281,7 @@ public abstract class Entity extends ItemContainer {
     }
 
     /**
-     * Create a new cooker
+     * Create a new cooker.
      * 
      * @param recipeId
      *            The ID of the recipe we wish to use for cooking.

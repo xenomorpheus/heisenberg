@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
 public class SkillsTableTest {
-    
+
     @Test
     public void doTest() throws ConfigurationError {
 
@@ -25,6 +25,12 @@ public class SkillsTableTest {
 
     }
 
+    /**
+     * app to test the skills table.
+     * 
+     * @param args
+     *            not used
+     */
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components

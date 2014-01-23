@@ -31,13 +31,18 @@ public class WorldEditorTest {
     }
 
     @Test
-    public void testWorldEditor() throws ConfigurationError{
+    public void testWorldEditor() throws ConfigurationError {
         WorldEditor worldEditor = new WorldEditor();
         assertNotNull("Not null", worldEditor);
-        
+
     }
-    
-    
+
+    /**
+     * app to test the world editor.
+     * 
+     * @param args
+     *            not used
+     */
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components

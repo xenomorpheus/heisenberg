@@ -13,17 +13,33 @@ import au.net.hal9000.heisenberg.item.property.Sharp;
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Bag extends Box {
 
+    /** serial version */
     private static final long serialVersionUID = 1L;
 
+    /** maximum default weight this bag can hold. */
+    private static final float WEIGHT_MAX_DEFAULT = 100; // TODO config
+
+    /** maximum default volume this bag can hold. */
+    private static final float VOLUME_MAX_DEFAULT = 100; // TODO config
+
+    /**
+     * Constructor.
+     */
     public Bag() {
         this("Bag");
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param pName
+     *            the name of the bag.
+     */
     public Bag(final String pName) {
         super(pName);
         setDescription("A common cloth sack about 2 feet by 4 feet in size.");
-        this.setWeightMax(100); // TODO config
-        this.setVolumeMax(100); // TODO config
+        this.setWeightMax(WEIGHT_MAX_DEFAULT);
+        this.setVolumeMax(VOLUME_MAX_DEFAULT);
     }
 
     // Methods

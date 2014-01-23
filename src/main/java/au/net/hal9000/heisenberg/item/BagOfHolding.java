@@ -31,41 +31,44 @@ import au.net.hal9000.heisenberg.units.Currency;
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class BagOfHolding extends Bag implements ExtraDimensional {
 
-    /** bag type */
+    /** bag type. */
     public static final int TYPE_I = 1;
-    /** bag type */
+
+    /** bag type. */
     public static final int TYPE_II = 2;
-    /** bag type */
+
+    /** bag type. */
     public static final int TYPE_III = 3;
-    /** bag type */
+
+    /** bag type. */
     public static final int TYPE_IV = 4;
+
     /** serial version */
     private static final long serialVersionUID = 1L;
-    /**
-     * Bag type I-IV
-     */
+
+    /** Bag type I-IV */
     private int type;
 
+    /**
+     * Constructor.
+     * 
+     * @param type
+     *            type of bag I-IV
+     * @param pName
+     *            name to use.
+     */
     public BagOfHolding(int type, String pName) {
         super(pName);
         this.setType(type);
         ItemProperty.setMagical(this, true);
     }
 
-    public BagOfHolding(Integer type, String pName) {
-        this((int) type, pName);
-    }
-
     public BagOfHolding(int type) {
         this(type, "Bag of Holding");
     }
 
-    public BagOfHolding(Integer type) {
-        this((int) type);
-    }
-
     public BagOfHolding() {
-        this(1);
+        this(TYPE_I); // default type
     }
 
     // Other methods
@@ -134,7 +137,11 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         return this.getVolumeBase();
     }
 
-    /** BOH Type I,II,III or IV */
+    /**
+     * BOH Type I,II,III or IV.
+     * 
+     * @return the type I-IV
+     */
     public int getType() {
         return type;
     }
@@ -146,6 +153,12 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         this.beNot();
     }
 
+    /**
+     * Add item to the bag.
+     * 
+     * @param item
+     *            item to add.
+     */
     public void add(Item item) {
 
         // Recursively check for ExtraDimensional items.

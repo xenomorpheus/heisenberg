@@ -7,35 +7,56 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.LightSource;
 
+/**
+ * A simple tallow candle.
+ */
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Candle extends Item implements LightSource {
 
-    /**
-     * A simple tallow candle
-     */
+    /** serialisation version. */
     private static final long serialVersionUID = 1L;
+
+    /** true if candle is lit. */
     private boolean lit = false;
 
     // TODO time the burn by use of fuel or rounds.
 
+    /**
+     * Constructor.
+     */
     public Candle() {
         this("Candle");
     }
 
-    public Candle(final String pName, final String pDescription) {
-        super(pName, pDescription);
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            name to call the item.
+     * @param description
+     *            description of item.
+     */
+    public Candle(final String name, final String description) {
+        super(name, description);
         this.setType(1);
     }
 
-    public Candle(final String pString) {
-        this(pString, "a simple tallow candle");
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            name to call the item.
+     */
+    public Candle(final String name) {
+        this(name, "a simple tallow candle");
     }
 
     // Getters and Setters
     /**
-     * Set the lit/unlit status of this torch
+     * Set the lit/unlit status of this torch.
      * 
      * @param lit
      *            the lit/unlit status of this torch
@@ -51,6 +72,10 @@ public class Candle extends Item implements LightSource {
     }
 
     // Methods
+    /**
+     * Set the type of the Candle.
+     * @param type
+     */
     public void setType(final int type) {
         if (type == 1) {
             this.setVolumeBase(0.5f); // TODO what about litres vs. gallons
@@ -94,15 +119,15 @@ public class Candle extends Item implements LightSource {
     /** {@inheritDoc} */
     @Override
     public String detailedDescription() {
-        String full_desc = super.detailedDescription() + "\n";
-        full_desc += "The " + this.getClass().getSimpleName();
+        String fullDescription = super.detailedDescription() + "\n";
+        fullDescription += "The " + this.getClass().getSimpleName();
 
         if (lit) {
-            full_desc += " is lit.";
+            fullDescription += " is lit.";
         } else {
-            full_desc += " is extinguished.";
+            fullDescription += " is extinguished.";
         }
-        return full_desc;
+        return fullDescription;
     }
 
 }

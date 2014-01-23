@@ -3,9 +3,16 @@ package au.net.hal9000.heisenberg.item;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class Factory {
+public final class Factory {
 
+    /** The name of this package. */
     private static String packageName = Factory.class.getPackage().getName();
+
+    /**
+     * Constructor.
+     */
+    private Factory() {
+    }
 
     /**
      * Create a new Item of the specified type.
@@ -14,7 +21,7 @@ public class Factory {
      *            the type of Item to create.
      * @return the new Item.
      */
-    static public Item createItem(String type) {
+    public static Item createItem(String type) {
         return createItem(type, null);
     }
 
