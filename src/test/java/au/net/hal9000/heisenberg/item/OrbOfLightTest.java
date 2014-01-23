@@ -11,14 +11,14 @@ public class OrbOfLightTest {
     // Name and Description
     @Test
     public void testName() {
-        final String defaultName = "Orb Of Light";
-        final String defaultDescription = "orb of light";
+        private static final String defaultName = "Orb Of Light";
+        private static final String defaultDescription = "orb of light";
         OrbOfLight ool = new OrbOfLight();
         assertEquals(defaultName, ool.getName());
         assertEquals(defaultDescription, ool.getDescription());
         // custom
-        final String expectedName = "my ool";
-        final String expectedDescription = "the description";
+        private static final String expectedName = "my ool";
+        private static final String expectedDescription = "the description";
         OrbOfLight custom = new OrbOfLight(expectedName, expectedDescription);
         assertEquals(expectedName, custom.getName());
         assertEquals(expectedDescription, custom.getDescription());

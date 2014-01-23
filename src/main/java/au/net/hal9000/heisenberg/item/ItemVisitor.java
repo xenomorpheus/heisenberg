@@ -2,9 +2,23 @@ package au.net.hal9000.heisenberg.item;
 
 import java.util.Vector;
 
+/**
+ * Visitor Design Pattern for Item class.
+ * @author bruins
+ *
+ */
 public interface ItemVisitor {
-	void visit(Item item);
+    
+    /**
+     * Visit this item.
+     * @param item item to visit.
+     */
+    void visit(Item item);
 
-	void visit(Vector<Item> Items);
+    /**
+     * Visit these items.
+     * @param items set of items.
+     */
+    void visit(Vector<Item> items);
 
 }

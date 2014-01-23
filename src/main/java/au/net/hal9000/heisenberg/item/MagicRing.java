@@ -13,21 +13,28 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName="ID")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class MagicRing extends Ring {
-    /**
-	 * 
-	 */
+    /** serial id version */
     private static final long serialVersionUID = 1L;
 
-    // Constructor
+    /**
+     * Constructor.
+     * 
+     */
     public MagicRing() {
         this("MagicRing");
     }
 
-    public MagicRing(String pName) {
-        super(pName);
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            name of ring.
+     */
+    public MagicRing(String name) {
+        super(name);
         ItemProperty.setMagical(this, true);
     }
 

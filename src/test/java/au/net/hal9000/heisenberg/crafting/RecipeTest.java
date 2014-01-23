@@ -13,10 +13,10 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.units.Skill;
 
 public class RecipeTest {
-    private static String PROCESS_NAME = "process name";
-    private static int REQUIRED_ACTION_POINTS = 42;
-    private static int REQUIRED_MANA = 3;
-    private static String[] REQUIRED_SKILLS = new String[] { "Skill0",
+    private static final String PROCESS_NAME = "process name";
+    private static final int REQUIRED_ACTION_POINTS = 42;
+    private static final int REQUIRED_MANA = 3;
+    private static final String[] REQUIRED_SKILLS = new String[] { "Skill0",
             "Skill1", "Skill2" };
 
     private Recipe simple;

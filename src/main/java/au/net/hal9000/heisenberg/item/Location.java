@@ -6,24 +6,36 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+/**
+ * A Location is the base type for an area that Items can interact. e.g. a
+ * clearing.
+ * 
+ * @author bruins
+ * 
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Location extends ItemContainer implements Serializable {
 
-    /**
-	 * 
-	 */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor.
+     */
     public Location() {
         this("Location");
     }
 
-    public Location(final String pName) {
-        super(pName);
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            name of location.
+     */
+    public Location(final String name) {
+        super(name);
     }
-
-
 
 }

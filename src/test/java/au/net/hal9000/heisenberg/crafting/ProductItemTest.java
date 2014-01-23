@@ -28,24 +28,19 @@ public class ProductItemTest {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertTrue("type", "SomeType".equals(productItem.getType()));
     }
-    
+
     @Test
     public void getWeightBaseTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertEquals("weightBase", 1.2f, productItem.getWeightBase(), 0.0001f);
     }
-    
-    
-    
-    
-    
-    
+
     @Test
     public void getDescriptionTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertEquals("type",
-                "Id: SomeId, item type of SomeType, weightBase 1.2",productItem
-                        .getDescription());
+                "Id: SomeId, item type of SomeType, weightBase 1.2",
+                productItem.getDescription());
     }
 
     @Test

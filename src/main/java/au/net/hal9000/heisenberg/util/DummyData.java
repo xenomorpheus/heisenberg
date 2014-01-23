@@ -30,15 +30,15 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 public class DummyData {
-    
-    public static Configuration config() throws ConfigurationError{
+
+    public static Configuration config() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
         return config;
-        
+
     }
-    
-    public static PcRace elf() throws ConfigurationError{
+
+    public static PcRace elf() throws ConfigurationError {
         Configuration config = config();
         TreeMap<String, PcClass> pcClasses = config.getPcClasses();
         PcRace pc = (PcRace) Factory.createItem("Elf");
@@ -48,10 +48,9 @@ public class DummyData {
         pc.setGender("Female"); // TODO get from config
         pc.setSize("Small");
         pc.setLevel(3);
-        pc.skillsAdd(new String[] { "testSkill1", "testSkill2",
-                "testSkill3" });
-        pc.recipesAdd(new String[] { "testItem1",
-                "testFireGround1", "testSpell1" });
+        pc.skillsAdd(new String[] { "testSkill1", "testSkill2", "testSkill3" });
+        pc.recipesAdd(new String[] { "testItem1", "testFireGround1",
+                "testSpell1" });
         return pc;
     }
 
@@ -108,9 +107,9 @@ public class DummyData {
         human.add(backpack);
         world.add(human);
 
-        Hand leftHand = human.getLeftHand();        
+        Hand leftHand = human.getLeftHand();
         leftHand.add(new MagicRing());
-        
+
         world.add(new Sword());
         world.add(new Horse());
 

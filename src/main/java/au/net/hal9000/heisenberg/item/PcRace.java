@@ -5,11 +5,16 @@ import java.util.TreeMap;
 import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.PcClass;
 
+/**
+ * A Player Character AKA PC. An Entity that may be controlled by a person
+ * playing the game.
+ * 
+ * @author bruins
+ * 
+ */
 public abstract class PcRace extends Entity {
 
-    /**
-	 * 
-	 */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
     /**
      * How skilled in the chosen profession AKA PcClass.
@@ -18,14 +23,22 @@ public abstract class PcRace extends Entity {
     /**
      * profession e.g. Soldier, Wizard etc.
      */
-    protected PcClass pcClass;
+    private PcClass pcClass;
+
+    /** dice to use in combat. */
     private int combatDice;
+
+    /** dice to use in magic. */
     private int magicDice;
+
+    /** dice to use in stealth. */
     private int stealthDice;
+
+    /** dice to use in general. */
     private int generalDice;
-    int encumbrance;
-    int health;
-    TreeMap<String, AbilityScore> abilityScores;
+    private int encumbrance;
+    private int health;
+    private TreeMap<String, AbilityScore> abilityScores;
 
     // Constructors
 
@@ -267,7 +280,7 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-     * Ensure that the abilityScores
+     * Ensure that the abilityScores.
      */
     private void abilityScoresEnsureExists() {
         if (abilityScores == null) {
@@ -345,6 +358,11 @@ public abstract class PcRace extends Entity {
         return text.toString();
     }
 
+    /**
+     * Get the name of the race.
+     * 
+     * @return the name of the race.
+     */
     public abstract String getRace();
 
     /**

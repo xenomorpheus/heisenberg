@@ -1,15 +1,14 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Bag;
-import au.net.hal9000.heisenberg.item.BagOfHolding;
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Human;
-import au.net.hal9000.heisenberg.item.Scabbard;
-import au.net.hal9000.heisenberg.item.Sword;
-import au.net.hal9000.heisenberg.item.exception.*;
+import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.ExceptionTooBig;
+import au.net.hal9000.heisenberg.item.exception.ExceptionTooHeavy;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
@@ -20,31 +19,31 @@ public class BagOfHoldingTest {
     @Test
     public void typeTest() {
         Bag ordinaryBag = new Bag();
-        for (int type = 1; type <= 4; type++) {
+        for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
             float weightBase = 0F;
             float weightMax = 0F;
             float volumeMax = 0F;
             Currency cost = new Currency(0, 0, 0, 0);
 
-            if (type == 1) {
+            if (type == BagOfHolding.TYPE_I) {
                 weightBase = 15F;
                 weightMax = 250F;
                 volumeMax = 30F;
                 cost = new Currency(0, 2500, 0, 0);
             }
-            if (type == 2) {
+            if (type == BagOfHolding.TYPE_II) {
                 weightBase = 25F;
                 weightMax = 500F;
                 volumeMax = 70F;
                 cost = new Currency(0, 5000, 0, 0);
             }
-            if (type == 3) {
+            if (type == BagOfHolding.TYPE_III) {
                 weightBase = 35F;
                 weightMax = 1000F;
                 volumeMax = 150F;
                 cost = new Currency(0, 7400, 0, 0);
             }
-            if (type == 4) {
+            if (type == BagOfHolding.TYPE_IV) {
                 weightBase = 60F;
                 weightMax = 1500F;
                 volumeMax = 150F;
@@ -149,7 +148,7 @@ public class BagOfHoldingTest {
             bag.add(bag_inner);
             fail("expecting exception");
         } catch (ExceptionInvalidType e) {
-            //  nothing to do.
+            // nothing to do.
         }
         assertEquals("cookie location", human, bag_inner.getContainer());
     }

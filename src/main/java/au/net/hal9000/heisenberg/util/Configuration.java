@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
@@ -12,7 +11,6 @@ import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
-import nu.xom.ParsingException;
 import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
@@ -80,6 +78,10 @@ public class Configuration {
         return itemClasses;
     }
 
+    /**
+     * get skill details.
+     * @return skill details.
+     */
     public final TreeMap<String, SkillDetail> getSkillDetails() {
         return skillDetails;
     }
