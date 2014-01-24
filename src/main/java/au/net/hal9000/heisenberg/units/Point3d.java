@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 3D point in space.
  */
-public class Point3d implements Serializable{
+public class Point3d implements Serializable {
     /**
      * 
      */
@@ -66,28 +66,35 @@ public class Point3d implements Serializable{
     public Point3d clone() {
         return new Point3d(x, y, z);
     }
-    
-    public String toString(){
-        return "[" + x + ", "+ y + ", "+ z + "]";
+
+    public String toString() {
+        return "[" + x + ", " + y + ", " + z + "]";
     }
 
     /**
-     * Is this 3d point close enough to the other 3d point to be considered equal?
-     * @param other other point
-     * @param distance how close to be in order to be considered equal
+     * Is this 3d point close enough to the other 3d point to be considered
+     * equal?
+     * 
+     * @param other
+     *            other point
+     * @param distance
+     *            how close to be in order to be considered equal
      * @return true if equal
      */
-    public boolean equals(Point3d other, double distance){
-        return distance(other) <= distance;        
+    public boolean equals(Point3d other, double distance) {
+        return distance(other) <= distance;
     }
 
     /**
-     * Is this 3d point close enough to the other 3d point to be considered equal?
-     * @param other other point
+     * Is this 3d point close enough to the other 3d point to be considered
+     * equal?
+     * 
+     * @param other
+     *            other point
      * @return true if equal
      */
-    public boolean equals(Point3d other){
-        return equals(other,TOLERANCE);        
+    public boolean equals(Point3d other) {
+        return equals(other, TOLERANCE);
     }
-    
+
 }

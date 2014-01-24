@@ -19,30 +19,32 @@ import java.io.Serializable;
  * 
  */
 public class Currency implements Serializable, Cloneable {
-    /**
-	 * 
-	 */
+    /** searial version id. */
     private static final long serialVersionUID = 1L;
 
     /**
      * Coin conversion: 1PP = 10 GP.
      */
-    public static final Float ppAsGp = 10F;
+    public static final Float PP_AS_GP = 10F;
 
     /**
      * Coin conversion: 1GP = 10 SP.
      */
-    public static final Float spAsGp = 0.1F;
+    public static final Float SP_AS_GP = 0.1F;
 
     /**
      * Coin conversion: 1 SP = 10 GP.
      */
-    public static final Float cpAsGp = 0.01F;
+    public static final Float CP_AS_GP = 0.01F;
 
     // coin count in this collection
+    /** platinum pieces. */
     private int pp = 0;
+    /** gold pieces. */
     private int gp = 0;
+    /** silver pieces. */
     private int sp = 0;
+    /** coper pieces. */
     private int cp = 0;
 
     // Constructors
@@ -88,7 +90,7 @@ public class Currency implements Serializable, Cloneable {
 
     // instance methods
     public Float getGpEquiv() {
-        return (pp * ppAsGp) + gp + (sp * spAsGp) + (cp * cpAsGp);
+        return (pp * PP_AS_GP) + gp + (sp * SP_AS_GP) + (cp * CP_AS_GP);
     }
 
     /**
@@ -183,11 +185,17 @@ public class Currency implements Serializable, Cloneable {
         this.cp += otherCollection.getCp();
     }
 
-    /** transfer all the value of the passed currency object. **/
+    /** transfer all the value of the passed currency object. 
+     * 
+     * @param fromCollection losing collection.
+     */
     public void transfer(Currency fromCollection) {
         this.add(fromCollection);
         // remove the value from the original otherCollection.
-        fromCollection.pp = fromCollection.gp = fromCollection.sp = fromCollection.cp = 0;
+        fromCollection.pp = 0;
+        fromCollection.gp = 0;
+        fromCollection.sp = 0;
+        fromCollection.cp = 0;
     }
 
     /**
@@ -226,9 +234,11 @@ public class Currency implements Serializable, Cloneable {
 
     @Override
     public int hashCode() {
+        // TODO will this work for a non-nomalised Currency object?
         return ((((pp * 10) + gp) * 10) + sp) * 10 + cp;
     }
 
+    @Override
     public String toString() {
         String str = "0 gp";
         if (pp != 0 || gp != 0 || sp != 0 || cp != 0) {

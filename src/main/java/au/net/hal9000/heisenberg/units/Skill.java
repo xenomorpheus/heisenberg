@@ -17,7 +17,7 @@ package au.net.hal9000.heisenberg.units;
  */
 public class Skill extends Keyword {
 
-	public Skill(String string) {
-		super(string);
-	}
+    public Skill(String string) {
+        super(string);
+    }
 }

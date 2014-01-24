@@ -19,6 +19,11 @@ public class Candle extends Item implements LightSource {
     /** serialisation version. */
     private static final long serialVersionUID = 1L;
 
+    /** default weight. */
+    private static final float WEIGHT_DEFAULT = 0.02f;
+    /** default volume. */
+    private static final float VOLUME_DEFAULT = 0.02f;
+
     /** true if candle is lit. */
     private boolean lit = false;
 
@@ -74,12 +79,16 @@ public class Candle extends Item implements LightSource {
     // Methods
     /**
      * Set the type of the Candle.
+     * 
      * @param type
+     *            candle type.
      */
     public void setType(final int type) {
         if (type == 1) {
-            this.setVolumeBase(0.5f); // TODO what about litres vs. gallons
-            this.setWeightBase(0.5f); // TODO what about kilos vs. pounds ?
+            this.setVolumeBase(VOLUME_DEFAULT);
+            this.setWeightBase(WEIGHT_DEFAULT);
+        } else {
+            throw new RuntimeException("Invalid Candle type=" + type);
         }
     }
 
@@ -93,13 +102,10 @@ public class Candle extends Item implements LightSource {
         if (ignighter instanceof FlintAndTinder) {
             this.setLit(true);
         }
-        // Order important, before Candle.
-        // OrbOfLight (or sub-class) won't light it.
-        else if (ignighter instanceof OrbOfLight) {
-            ; // NOP
-        }
+        // OrbOfLight (or sub-class) won't lite it.
         // Candle (or sub-class) and MUST BE LIT.
-        else if (ignighter instanceof Candle) {
+        else if ((ignighter instanceof Candle)
+                && !(ignighter instanceof OrbOfLight)) {
             Candle candle = (Candle) ignighter;
             if (candle.isLit()) {
                 this.setLit(true);

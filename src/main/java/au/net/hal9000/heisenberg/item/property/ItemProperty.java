@@ -3,7 +3,13 @@ package au.net.hal9000.heisenberg.item.property;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 
-public class ItemProperty {
+/**
+ * Miscellaneous properties of an Item that don't deserve their own field.
+ * 
+ * @author bruins
+ * 
+ */
+public final class ItemProperty {
     public static final String AERATION = "aeration";
     public static final String ENTERTAINMENT = "entertainment";
     public static final String HYDRATION = "hydration";
@@ -13,6 +19,12 @@ public class ItemProperty {
     public static final String IS_MAGICAL = "is magical";
     public static final String NOURISHMENT = "nourishment";
     public static final String REST = "rest";
+
+    /**
+     * Utility Class constructor.
+     */
+    private ItemProperty() {
+    }
 
     // Aeration
     /**

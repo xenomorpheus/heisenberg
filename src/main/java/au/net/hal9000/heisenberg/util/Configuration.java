@@ -82,6 +82,7 @@ public class Configuration {
 
     /**
      * get skill details.
+     * 
      * @return skill details.
      */
     public final TreeMap<String, SkillDetail> getSkillDetails() {

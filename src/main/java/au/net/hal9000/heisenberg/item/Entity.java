@@ -17,9 +17,12 @@ import au.net.hal9000.heisenberg.util.Configuration;
  */
 
 public abstract class Entity extends ItemContainer {
-    
+
     /** serial version. */
     private static final long serialVersionUID = 1L;
+
+    /** ideal value for health metric. */
+    private static final float HEALTH_METRIC_IDEAL = 100L;
 
     /**
      * A measure of the amount of things the entity can do in the current round.
@@ -59,11 +62,11 @@ public abstract class Entity extends ItemContainer {
         super(name, description);
         // By default PCs are living, but this may be changed at any time.
         ItemProperty.setLiving(this, true);
-        ItemProperty.setAeration(this, 100);
-        ItemProperty.setEntertainment(this, 80);
-        ItemProperty.setHydration(this, 80);
-        ItemProperty.setNourishment(this, 80);
-        ItemProperty.setRest(this, 80);
+        ItemProperty.setAeration(this, HEALTH_METRIC_IDEAL);
+        ItemProperty.setEntertainment(this, HEALTH_METRIC_IDEAL);
+        ItemProperty.setHydration(this, HEALTH_METRIC_IDEAL);
+        ItemProperty.setNourishment(this, HEALTH_METRIC_IDEAL);
+        ItemProperty.setRest(this, HEALTH_METRIC_IDEAL);
     }
 
     public Entity(String name) {
@@ -90,7 +93,9 @@ public abstract class Entity extends ItemContainer {
 
     /**
      * Adjust the amount of action points of this item.
-     * @param adjust amount to adjust by.
+     * 
+     * @param adjust
+     *            amount to adjust by.
      */
     public void actionPointsAdjust(final int adjust) {
         actionPoints += adjust;
@@ -128,7 +133,9 @@ public abstract class Entity extends ItemContainer {
 
     /**
      * Adjust the amount of mana.
-     * @param adjust amount to adjust by.
+     * 
+     * @param adjust
+     *            amount to adjust by.
      */
     public void manaAdjust(int adjust) {
         mana += adjust;
@@ -206,7 +213,9 @@ public abstract class Entity extends ItemContainer {
 
     /**
      * Set the skills of this entity.
-     * @param skills skills to set.
+     * 
+     * @param skills
+     *            skills to set.
      */
     public final void setSkills(final Set<Skill> skills) {
         this.skills = skills;
@@ -228,7 +237,8 @@ public abstract class Entity extends ItemContainer {
     /**
      * Add extra Skills to the list of required ingredients.
      * 
-     * @param newSkills additinal skills to set on Entity.
+     * @param newSkills
+     *            additinal skills to set on Entity.
      */
     public final void skillsAdd(final String[] newSkills) {
         for (String skillId : newSkills) {
@@ -240,10 +250,11 @@ public abstract class Entity extends ItemContainer {
 
     /**
      * Return a detailed description of the object.
+     * 
      * @return Plain text description of the object
      */
     public String detailedDescription() {
-        StringBuilder text = new StringBuilder(1024);
+        StringBuilder text = new StringBuilder();
 
         // Inherit description from super first.
         text.append(super.detailedDescription());

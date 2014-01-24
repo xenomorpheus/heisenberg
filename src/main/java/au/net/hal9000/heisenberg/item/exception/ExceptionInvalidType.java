@@ -1,10 +1,11 @@
 package au.net.hal9000.heisenberg.item.exception;
 
 public class ExceptionInvalidType extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+    /** serial version id. */
+    private static final long serialVersionUID = 1L;
 
-	public ExceptionInvalidType(String string) {
-		super(string);
-	}
+    public ExceptionInvalidType(String string) {
+        super(string);
+    }
 
 }
