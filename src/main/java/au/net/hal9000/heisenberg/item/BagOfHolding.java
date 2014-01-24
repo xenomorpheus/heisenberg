@@ -31,17 +31,55 @@ import au.net.hal9000.heisenberg.units.Currency;
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class BagOfHolding extends Bag implements ExtraDimensional {
 
-    /** bag type. */
+    /** bag type I. */
     public static final int TYPE_I = 1;
+    /** type I weight base. */
+    static final float TYPE_I_WEIGHT_BASE = 15F;
+    /** type I weight max. */
+    static final float TYPE_I_WEIGHT_MAX = 250F;
+    /** type I volume max. */
+    static final float TYPE_I_VOLUME_MAX = 30F;
+    /** type I value. */
+    static final int TYPE_I_VALUE_GP = 2500;
 
-    /** bag type. */
+    /** bag type II. */
     public static final int TYPE_II = 2;
+    /** type I weight base. */
+    static final float TYPE_II_WEIGHT_BASE = 25F;
+    /** type I weight max. */
+    static final float TYPE_II_WEIGHT_MAX = 500F;
+    /** type I volume max. */
+    static final float TYPE_II_VOLUME_MAX = 70F;
+    /** type I value. */
+    static final int TYPE_II_VALUE_GP = 5000;
 
-    /** bag type. */
+    /** bag type III. */
     public static final int TYPE_III = 3;
+    /** type I weight base. */
+    static final float TYPE_III_WEIGHT_BASE = 35F;
+    /** type I weight max. */
+    static final float TYPE_III_WEIGHT_MAX = 1000F;
+    /** type I volume max. */
+    static final float TYPE_III_VOLUME_MAX = 150F;
+    /** type I value. */
+    static final int TYPE_III_VALUE_GP = 7400;
 
-    /** bag type. */
+    /** bag type IV. */
     public static final int TYPE_IV = 4;
+    /** type I weight base. */
+    static final float TYPE_IV_WEIGHT_BASE = 60F;
+    /** type I weight max. */
+    static final float TYPE_IV_WEIGHT_MAX = 1500F;
+    /** type I volume max. */
+    static final float TYPE_IV_VOLUME_MAX = 250F;
+    /** type I value. */
+    static final int TYPE_IV_VALUE_GP = 10000;
+
+    
+    
+
+
+
 
     /** serial version */
     private static final long serialVersionUID = 1L;
@@ -91,30 +129,32 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         if ((type < TYPE_I) || (type > TYPE_IV)) {
             throw new IllegalArgumentException("invalid type=" + type);
         }
+
+
         this.type = type;
         if (type == TYPE_I) {
-            this.setWeightBase(15F);
-            this.setWeightMax(250F);
-            this.setVolumeMax(30F);
-            this.setValueBase(new Currency(0, 2500, 0, 0));
+            this.setWeightBase(TYPE_I_WEIGHT_BASE);
+            this.setWeightMax(TYPE_I_WEIGHT_MAX);
+            this.setVolumeMax(TYPE_I_VOLUME_MAX);
+            this.setValueBase(new Currency(0, TYPE_I_VALUE_GP, 0, 0));
         }
         if (type == TYPE_II) {
-            this.setWeightBase(25F);
-            this.setWeightMax(500F);
-            this.setVolumeMax(70F);
-            this.setValueBase(new Currency(0, 5000, 0, 0));
+            this.setWeightBase(TYPE_II_WEIGHT_BASE);
+            this.setWeightMax(TYPE_II_WEIGHT_MAX);
+            this.setVolumeMax(TYPE_II_VOLUME_MAX);
+            this.setValueBase(new Currency(0, TYPE_II_VALUE_GP, 0, 0));
         }
         if (type == TYPE_III) {
-            this.setWeightBase(35F);
-            this.setWeightMax(1000F);
-            this.setVolumeMax(150F);
-            this.setValueBase(new Currency(0, 7400, 0, 0));
+            this.setWeightBase(TYPE_III_WEIGHT_BASE);
+            this.setWeightMax(TYPE_III_WEIGHT_MAX);
+            this.setVolumeMax(TYPE_III_VOLUME_MAX);
+            this.setValueBase(new Currency(0, TYPE_III_VALUE_GP, 0, 0));
         }
         if (type == TYPE_IV) {
-            this.setWeightBase(60F);
-            this.setWeightMax(1500F);
-            this.setVolumeMax(150F);
-            this.setValueBase(new Currency(0, 10000, 0, 0));
+            this.setWeightBase(TYPE_IV_WEIGHT_BASE);
+            this.setWeightMax(TYPE_IV_WEIGHT_MAX);
+            this.setVolumeMax(TYPE_IV_VOLUME_MAX);
+            this.setValueBase(new Currency(0, TYPE_IV_VALUE_GP, 0, 0));
         }
         this.setVolumeBase(2F); // TODO set default volume
 

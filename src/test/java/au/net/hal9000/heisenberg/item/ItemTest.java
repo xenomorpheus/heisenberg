@@ -70,20 +70,25 @@ public class ItemTest {
         assertEquals("weight", i.getWeight(), 0.123F, WITHIN_MARGIN);
     }
 
+    /** test value base. */
     @Test
     public void testValueBase() {
         Cookie i = new Cookie();
-        i.setValueBase(new Currency(1, 2, 4, 8));
+        final int pp = 1;
+        final int gp = 2;
+        final int sp = 4;
+        final int cp = 8;
+        i.setValueBase(new Currency(pp, gp, sp, cp));
         assertTrue("ValueBase",
-                i.getValueBase().equals(new Currency(1, 2, 4, 8)));
+                i.getValueBase().equals(new Currency(pp, gp, sp, cp)));
         assertFalse("ValueBase",
-                i.getValueBase().equals(new Currency(2, 2, 4, 8)));
+                i.getValueBase().equals(new Currency(pp + 1, gp, sp, cp)));
         assertFalse("ValueBase",
-                i.getValueBase().equals(new Currency(1, 3, 4, 8)));
+                i.getValueBase().equals(new Currency(pp, gp + 1, sp, cp)));
         assertFalse("ValueBase",
-                i.getValueBase().equals(new Currency(1, 2, 5, 8)));
+                i.getValueBase().equals(new Currency(pp, gp, sp + 1, cp)));
         assertFalse("ValueBase",
-                i.getValueBase().equals(new Currency(1, 2, 4, 9)));
+                i.getValueBase().equals(new Currency(pp, gp, sp, cp + 1)));
     }
 
     @Test
@@ -137,23 +142,25 @@ public class ItemTest {
     @Test
     public void testMove() {
         Cookie cookie = new Cookie();
-        
+
         // No container - No Movement
-        Point3d expectedPosition = new Point3d(10,20,30);
+        Point3d expectedPosition = new Point3d(10, 20, 30);
         // Before test we place in a known position.
         cookie.setPosition(expectedPosition);
         // Try to move, but will fail as not in an ItemContainer.
         cookie.move(new Point3d(1, 2, 3));
         Point3d actualPosition = cookie.getPosition();
-        assertTrue("No ItemContainer - final pos", expectedPosition.equals(actualPosition));
-        
+        assertTrue("No ItemContainer - final pos",
+                expectedPosition.equals(actualPosition));
+
         // Within a container
         Location container = new Location();
         cookie.setContainer(container);
         expectedPosition = new Point3d(2, 4, 8);
         cookie.move(expectedPosition);
         actualPosition = cookie.getPosition();
-        assertTrue("Has ItemContainer - final pos", expectedPosition.equals(actualPosition));
+        assertTrue("Has ItemContainer - final pos",
+                expectedPosition.equals(actualPosition));
     }
 
     @Test

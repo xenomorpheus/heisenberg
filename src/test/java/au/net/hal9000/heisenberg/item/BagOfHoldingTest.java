@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
 import au.net.hal9000.heisenberg.item.exception.ExceptionTooBig;
@@ -13,54 +15,67 @@ import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
+/**
+ * Test the BagOfHolding class.
+ * 
+ * @author bruins
+ * 
+ */
 public class BagOfHoldingTest {
-    private static final float WITHIN_MARGIN = 0.00009F;
+    /** how close do the floats need to be to match. */
+    private static final float FLOAT_TOLERANCE = 0.00009F;
 
+    /** test the properties for each type of bag. */
     @Test
     public void typeTest() {
         Bag ordinaryBag = new Bag();
         for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
-            float weightBase = 0F;
-            float weightMax = 0F;
-            float volumeMax = 0F;
-            Currency cost = new Currency(0, 0, 0, 0);
+            float expectedWeightBase = 0F;
+            float expectedWeightMax = 0F;
+            float expectedVolumeMax = 0F;
+            Currency expectedCost = new Currency(0, 0, 0, 0);
 
             if (type == BagOfHolding.TYPE_I) {
-                weightBase = 15F;
-                weightMax = 250F;
-                volumeMax = 30F;
-                cost = new Currency(0, 2500, 0, 0);
+                expectedWeightBase = BagOfHolding.TYPE_I_WEIGHT_BASE;
+                expectedWeightMax = BagOfHolding.TYPE_I_WEIGHT_MAX;
+                expectedVolumeMax = BagOfHolding.TYPE_I_VOLUME_MAX;
+                expectedCost = new Currency(0, BagOfHolding.TYPE_I_VALUE_GP, 0,
+                        0);
             }
             if (type == BagOfHolding.TYPE_II) {
-                weightBase = 25F;
-                weightMax = 500F;
-                volumeMax = 70F;
-                cost = new Currency(0, 5000, 0, 0);
+                expectedWeightBase = BagOfHolding.TYPE_II_WEIGHT_BASE;
+                expectedWeightMax = BagOfHolding.TYPE_II_WEIGHT_MAX;
+                expectedVolumeMax = BagOfHolding.TYPE_II_VOLUME_MAX;
+                expectedCost = new Currency(0, BagOfHolding.TYPE_II_VALUE_GP,
+                        0, 0);
             }
             if (type == BagOfHolding.TYPE_III) {
-                weightBase = 35F;
-                weightMax = 1000F;
-                volumeMax = 150F;
-                cost = new Currency(0, 7400, 0, 0);
+                expectedWeightBase = BagOfHolding.TYPE_III_WEIGHT_BASE;
+                expectedWeightMax = BagOfHolding.TYPE_III_WEIGHT_MAX;
+                expectedVolumeMax = BagOfHolding.TYPE_III_VOLUME_MAX;
+                expectedCost = new Currency(0, BagOfHolding.TYPE_III_VALUE_GP,
+                        0, 0);
             }
             if (type == BagOfHolding.TYPE_IV) {
-                weightBase = 60F;
-                weightMax = 1500F;
-                volumeMax = 150F;
-                cost = new Currency(0, 10000, 0, 0);
+                expectedWeightBase = BagOfHolding.TYPE_IV_WEIGHT_BASE;
+                expectedWeightMax = BagOfHolding.TYPE_IV_WEIGHT_MAX;
+                expectedVolumeMax = BagOfHolding.TYPE_IV_VOLUME_MAX;
+                expectedCost = new Currency(0, BagOfHolding.TYPE_IV_VALUE_GP,
+                        0, 0);
             }
+
             BagOfHolding boh = new BagOfHolding(type);
             assertEquals("type", boh.getType(), type);
             assertEquals("type=" + type + ", weight", boh.getWeight(),
-                    weightBase, WITHIN_MARGIN);
+                    expectedWeightBase, FLOAT_TOLERANCE);
             assertEquals("type=" + type + ", weightBase", boh.getWeightBase(),
-                    weightBase, WITHIN_MARGIN);
+                    expectedWeightBase, FLOAT_TOLERANCE);
             assertEquals("type=" + type + ", volume", boh.getVolume(), 2F,
-                    WITHIN_MARGIN);
+                    FLOAT_TOLERANCE);
             assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
-                    2F, WITHIN_MARGIN);
+                    2F, FLOAT_TOLERANCE);
             assertTrue("type=" + type + ", cost",
-                    boh.getValueBase().equals(cost));
+                    boh.getValueBase().equals(expectedCost));
             // Should look like an ordinary bag :-)
             assertEquals("type=" + type + ", description",
                     boh.getDescription(), ordinaryBag.getDescription());
@@ -68,8 +83,8 @@ public class BagOfHoldingTest {
             // Check weight and volume limits.
             // This cookie should only just fit.
             Cookie i = new Cookie();
-            i.setVolumeBase(volumeMax);
-            i.setWeightBase(weightMax);
+            i.setVolumeBase(expectedVolumeMax);
+            i.setWeightBase(expectedWeightMax);
             boh.add(i);
         }
 
@@ -105,14 +120,12 @@ public class BagOfHoldingTest {
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(sword);
-            fail("Expecting invalid type");
         } catch (ExceptionInvalidType e) {
-            // nothing to do
-        } catch (ExceptionTooHeavy e) {
-            fail("too heavy");
-        } catch (ExceptionTooBig e) {
-            fail("too big");
+            ;
+        } catch (Exception e) {
+            fail("wasn't epecting this exception.");
         }
+
         assertEquals("cookie location", human, sword.getContainer());
     }
 
@@ -141,16 +154,16 @@ public class BagOfHoldingTest {
     @Test
     public void testAddMultidimensional() {
         Human human = new Human();
-        BagOfHolding bag_inner = new BagOfHolding(1);
-        bag_inner.setContainer(human);
+        BagOfHolding bagInner = new BagOfHolding(1);
+        bagInner.setContainer(human);
         BagOfHolding bag = new BagOfHolding(1);
         try {
-            bag.add(bag_inner);
+            bag.add(bagInner);
             fail("expecting exception");
         } catch (ExceptionInvalidType e) {
-            // nothing to do.
+            ;// nothing to do.
         }
-        assertEquals("cookie location", human, bag_inner.getContainer());
+        assertEquals("cookie location", human, bagInner.getContainer());
     }
 
 }

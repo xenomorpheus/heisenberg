@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.units.Currency;
 
 public class CurrencyTest {
@@ -90,23 +91,34 @@ public class CurrencyTest {
     // Adding two piles of coins
     @Test
     public void testAddCoinCollection() {
-        Currency cc = new Currency(1, 2, 4, 8);
+        /* test each coin type. */
+        final int pp = 1;
+        final int gp = 2;
+        final int sp = 4;
+        final int cp = 8;
+        Currency cc = new Currency(pp, gp, sp, cp);
         Currency cc2 = new Currency(2, 4, 6, 3);
         cc.add(cc2);
         assertEquals("add cc", 37.11F, cc.getGpEquiv(), 0.00001F);
         assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), 0.00001F);
     }
 
+     /* test equals. */
     @Test
     public void testEquals() {
-        Currency cc = new Currency(1, 2, 4, 8);
-        assertTrue("equals", cc.equals(new Currency(1, 2, 4, 8)));
-        assertFalse("not equals", cc.equals(new Currency(2, 2, 4, 8)));
-        assertFalse("not equals", cc.equals(new Currency(1, 3, 4, 8)));
-        assertFalse("not equals", cc.equals(new Currency(1, 2, 5, 8)));
-        assertFalse("not equals", cc.equals(new Currency(1, 2, 4, 9)));
+        /* test each coin type. */
+        final int pp = 1;
+        final int gp = 2;
+        final int sp = 4;
+        final int cp = 8;
+        Currency cc = new Currency(pp, gp, sp, cp);
+        assertTrue("equals", cc.equals(new Currency(pp, gp, sp, cp)));
+        assertFalse("not equals", cc.equals(new Currency(pp + 1, gp, sp, cp)));
+        assertFalse("not equals", cc.equals(new Currency(pp, gp + 1, sp, cp)));
+        assertFalse("not equals", cc.equals(new Currency(pp, gp, sp + 1, cp)));
+        assertFalse("not equals", cc.equals(new Currency(pp, gp, sp, cp + 1)));
     }
-
+    
     @Test
     public void testPersistence() {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
