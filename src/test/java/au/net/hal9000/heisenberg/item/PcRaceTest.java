@@ -1,6 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
+
 
 import org.junit.Before;
 import org.junit.Test;
