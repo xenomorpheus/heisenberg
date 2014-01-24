@@ -1,11 +1,29 @@
 package au.net.hal9000.heisenberg.scenario;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.*;
-import au.net.hal9000.heisenberg.item.exception.*;
+import au.net.hal9000.heisenberg.item.Arrow;
+import au.net.hal9000.heisenberg.item.Backpack;
+import au.net.hal9000.heisenberg.item.Box;
+import au.net.hal9000.heisenberg.item.Candle;
+import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Crossbow;
+import au.net.hal9000.heisenberg.item.CrossbowBolt;
+import au.net.hal9000.heisenberg.item.FlintAndTinder;
+import au.net.hal9000.heisenberg.item.Halfling;
+import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.Quiver;
+import au.net.hal9000.heisenberg.item.Scabbard;
+import au.net.hal9000.heisenberg.item.Shield;
+import au.net.hal9000.heisenberg.item.Sword;
+import au.net.hal9000.heisenberg.item.Torch;
+import au.net.hal9000.heisenberg.item.exception.ExceptionCantWear;
 
 public class ScenarioSet01 {
 

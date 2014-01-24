@@ -1,28 +1,26 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Entity;
-import au.net.hal9000.heisenberg.item.Halfling;
-import au.net.hal9000.heisenberg.item.Item;
 
 public class HalflingTest {
 
-	@Test
-	public void testInstanceof() {
+    @Test
+    public void testInstanceof() {
 
-		Halfling halfling = new Halfling();
-		assertTrue("is Halfling", halfling instanceof Halfling);
-		assertTrue("is Halflingoid", halfling instanceof Halfling);
-		assertTrue("is Entity", halfling instanceof Entity);
-		assertTrue("is item", halfling instanceof Item);
-	}
+        Halfling halfling = new Halfling();
+        assertTrue("is Halfling", halfling instanceof Halfling);
+        assertTrue("is Halflingoid", halfling instanceof Halfling);
+        assertTrue("is Entity", halfling instanceof Entity);
+        assertTrue("is item", halfling instanceof Item);
+    }
 
-	@Test
-	public void testGetRace() {
-		Halfling halfling = new Halfling();
-		assertEquals("Halfling", halfling.getName());
-	}
+    @Test
+    public void testGetRace() {
+        Halfling halfling = new Halfling();
+        assertEquals("Halfling", halfling.getName());
+    }
 }

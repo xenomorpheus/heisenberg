@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import au.net.hal9000.heisenberg.item.Candle;
 
 public class CandleTest {
     private static final float MARGIN = 0.00001f;
@@ -32,8 +32,10 @@ public class CandleTest {
         Candle candle = new Candle();
         candle.setType(type);
         if (type == 1) {
-            assertEquals("volumeBase", 0.5f, candle.getVolumeBase(), MARGIN);
-            assertEquals("weightBase", 0.5f, candle.getWeightBase(), MARGIN);
+            assertEquals("volumeBase", Candle.VOLUME_DEFAULT,
+                    candle.getVolumeBase(), MARGIN);
+            assertEquals("weightBase", Candle.WEIGHT_DEFAULT,
+                    candle.getWeightBase(), MARGIN);
         }
     }
 
@@ -46,11 +48,11 @@ public class CandleTest {
         candle.extinguish();
         assertFalse(candle.isLit());
     }
-    
+
     @Test
     public void testLightWith() {
         Candle candle = new Candle();
-        
+
         // lit with nothing
         candle.lightWith(null);
         assertFalse("lit with nothing", candle.isLit());
@@ -77,7 +79,7 @@ public class CandleTest {
         candle2.lightWith(unlitTorch);
         assertFalse("candle2 not lit from unlit Torch", candle2.isLit());
         candle2.lightWith(torch);
-        assertTrue("candle2 lit from lit Torch", candle2.isLit());        
+        assertTrue("candle2 lit from lit Torch", candle2.isLit());
 
         // TODO test *NOT* lit from OrbOfLight
         candle2.extinguish();
@@ -107,15 +109,20 @@ public class CandleTest {
         // lit
         candle.setLit(true);
         String description = candle.detailedDescription();
-        assertNotEquals(-1, description.indexOf("The Candle is lit.") );
+        assertNotEquals(-1, description.indexOf("The Candle is lit."));
         // unlit
         candle.extinguish();
         description = candle.detailedDescription();
-        assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
+        assertNotEquals(-1, description.indexOf("Candle is extinguished."));
         // unlit
         candle.setLit(false);
         description = candle.detailedDescription();
-        assertNotEquals(-1, description.indexOf("Candle is extinguished.") );
+        assertNotEquals(-1, description.indexOf("Candle is extinguished."));
+    }
+
+    private void assertNotEquals(int i, int indexOf) {
+        // TODO Auto-generated method stub
+
     }
 
 }

@@ -20,9 +20,9 @@ public class Candle extends Item implements LightSource {
     private static final long serialVersionUID = 1L;
 
     /** default weight. */
-    private static final float WEIGHT_DEFAULT = 0.02f;
+    public static final float WEIGHT_DEFAULT = 0.02f;
     /** default volume. */
-    private static final float VOLUME_DEFAULT = 0.02f;
+    public static final float VOLUME_DEFAULT = 0.02f;
 
     /** true if candle is lit. */
     private boolean lit = false;

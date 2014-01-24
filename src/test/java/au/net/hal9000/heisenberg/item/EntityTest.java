@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,10 +10,6 @@ import java.util.Set;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.item.Entity;
-import au.net.hal9000.heisenberg.item.Cat;
-import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class EntityTest {
