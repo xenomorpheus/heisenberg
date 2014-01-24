@@ -20,40 +20,38 @@ import javax.persistence.Column;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
-
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
-/*
- * Item:
- *
- * The Item package is the base class for the game objects.
- * e.g. People, equipment, locations, etc.
- *
- * See the ItemContainer class for items that may contain
- * other items, e.g. bags, scabbards, even people.
- *
- * An item has a globally pseudo-unique identifier.
- * An item has a name which is text.
- * An item has a description which is text.
- * An item has a weight which is measured in pounds which defaults to zero.
- * An item has a valueBase measured in coins which defaults to zero.
- * An item has a location (e.g. ground, a bag, an arm)
- * (discuss) An item has a condition (0-100) 100=new, 0=worn away.  Or hit points?
- * An item may have any number of defences.
- * An item by default does not offer protection (e.g armour, magic resistance)
- * An item may offer any number of protections.
- Actions
- * An item may be dropped, which will cause the location to be changed to
- the ground below the object.
- * An item may be damaged by fire which will...
- * An item may be damaged by acid which will...
- * An item may be repaired which will ...
- */
 /**
+ * Base abstract class for all items in this world.
+ * 
+ * The Item package is the base class for the game objects.<br>
+ * e.g. People, equipment, locations, etc.
+ * 
+ * See the ItemContainer class for items that may contain other items, e.g.
+ * bags, scabbards, even people.
+ * 
+ * An item has a globally pseudo-unique identifier.<br>
+ * An item has a name which is text.<br>
+ * An item has a description which is text.<br>
+ * An item has a weight which is measured in pounds which defaults to zero.<br>
+ * An item has a valueBase measured in coins which defaults to zero.<br>
+ * An item has a location (e.g. ground, a bag, an arm)<br>
+ * (discuss) An item has a condition (0-100) 100=new, 0=worn away. Or hit
+ * points? An item may have any number of defences.<br>
+ * An item by default does not offer protection (e.g armour, magic resistance)<br>
+ * An item may offer any number of protections.<br>
+ * 
+ * Actions<br>
+ * An item may be dropped, which will cause the location to be changed to the
+ * ground below the object.<br>
+ * An item may be damaged by fire which will...<br>
+ * An item may be damaged by acid which will...<br>
+ * An item may be repaired which will ...<br>
+ * 
  * @author bruins
  * 
  */
@@ -62,10 +60,17 @@ import au.net.hal9000.heisenberg.units.Point3d;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item implements Serializable {
 
+    
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
-    private static final Logger LOGGER = Logger.getLogger(Item.class.getName());
+    
+    //** object for logging *./
+    // private static final Logger LOGGER = Logger.getLogger(Item.class.getName());
+    
+    /** name of this package. */
     private static String packageName = Factory.class.getPackage().getName();
-    /** For each class of Item, the icon to show when open **/
+
+    /** For each class of Item, the icon to show when open. */
     // TODO Consider moving out into own class.
     private static TreeMap<String, Icon> iconOpenDefaultForClass = new TreeMap<String, Icon>();
 
@@ -86,41 +91,41 @@ public abstract class Item implements Serializable {
     @GeneratedValue
     private long jpaId;
     private ItemContainer container = null;
-    /** A short description of the item **/
+    /** A short description of the item. */
     private String description = null;
-    /** The remaining structural integrity of this item **/
+    /** The remaining structural integrity of this item. */
     private float hitPoints = 0F;
     /**
      * If this item is a container and shown in the UI in tree view, then this
-     * is the icon to show when open
+     * is the icon to show when open.
      **/
     private Icon iconClosed = null;
     /**
      * If this item is a container and shown in the UI in tree view, then this
-     * is the icon to show when closed
+     * is the icon to show when closed.
      **/
     private Icon iconOpen = null;
     /**
      * If this item is NOT a container and shown in the UI in tree view, then
-     * this is the icon to show
+     * this is the icon to show.
      **/
     private Icon iconLeaf = null;
-    /** The name of this item **/
+    /** The name of this item. */
     private String name = null;
     /** Who owns this item. null means no-one. */
     private Item owner = null;
-    /** The position within the container **/
+    /** The position within the container. */
     private Point3d position = null;
     /**
      * Misc properties about this item that don't deserve their own setters and
-     * getters
+     * getters.
      **/
     private Properties properties = new Properties();
-    /** The value (in Currency), excludes contents if this is a container **/
+    /** The value (in Currency), excludes contents if this is a container. */
     private Currency valueBase = new Currency();
-    /** The volume, excludes contents if this is a container **/
+    /** The volume, excludes contents if this is a container. */
     private float volumeBase = 0;
-    /** The weight, excludes contents if this is a container **/
+    /** The weight, excludes contents if this is a container. */
     private float weightBase = 0;
 
     // Constructors
@@ -139,15 +144,23 @@ public abstract class Item implements Serializable {
         setIconLeaf(icon);
     }
 
-    /** Constructor. */
-    public Item(final String pName) {
+    /** Constructor.
+     * 
+     * @param name the name of this Item.
+     */
+    public Item(final String name) {
         this();
-        this.name = pName;
+        this.name = name;
     }
 
-    public Item(final String pName, final String pDescription) {
-        this(pName);
-        this.description = pDescription;
+    /**
+     * Constructor.
+     * @param name the name of this Item.
+     * @param description the description of this Item.
+     */
+    public Item(final String name, final String description) {
+        this(name);
+        this.description = description;
     }
 
     // Getters and Setters - Instance
@@ -590,7 +603,7 @@ public abstract class Item implements Serializable {
      */
     public void move(Point3d requestedPosition) {
         if (container == null) {
-            LOGGER.error("No ItemContainer - Can't move");
+            throw new RuntimeException("No ItemContainer - Can't move");
         } else {
             container.moveItem(this, requestedPosition);
         }

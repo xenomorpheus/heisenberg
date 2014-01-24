@@ -1,11 +1,10 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -55,46 +54,46 @@ public class PcRaceTest {
 
     @Test
     public void testPcRaceStringPcClass() {
-        final PcClass EXPECTED = new PcClass();
-        Human human = new Human("Fred3", EXPECTED);
+        final PcClass expectedValue = new PcClass();
+        Human human = new Human("Fred3", expectedValue);
         assertEquals("Name check3", "Fred3", human.getName());
         assertEquals("Description check3", "", human.getDescription());
         // By default PCs are living.
         assertTrue("living3", ItemProperty.isLiving(human));
-        assertSame(EXPECTED, human.getPcClass());
+        assertSame(expectedValue, human.getPcClass());
     }
 
     @Test
     public void testPcRaceStringStringPcClass() {
-        final PcClass EXPECTED = new PcClass();
-        Human human = new Human("Fred4", "Desc4", EXPECTED);
+        final PcClass expectedValue = new PcClass();
+        Human human = new Human("Fred4", "Desc4", expectedValue);
         assertEquals("Name check3", "Fred4", human.getName());
         assertEquals("Description check4", "Desc4", human.getDescription());
         // By default PCs are living.
         assertTrue("living4", ItemProperty.isLiving(human));
-        assertSame(EXPECTED, human.getPcClass());
+        assertSame(expectedValue, human.getPcClass());
     }
 
     // Getters and Setters in field order.
     @Test
     public void testLevel() {
-        private static final int EXPECTED = 18;
+        final int expectedValue = 18;
         Human human = new Human();
         assertEquals(0, human.getLevel());
-        human.setLevel(EXPECTED);
-        assertEquals(EXPECTED, human.getLevel());
+        human.setLevel(expectedValue);
+        assertEquals(expectedValue, human.getLevel());
     }
 
     @Test
     public void testPcClass() {
-        private static final PcClass EXPECTED = new PcClass();
+        final PcClass expectedValue = new PcClass();
         Human human = new Human();
         checkBasicsAreZero(human);
         // default
         assertNull("pcClass default of null", human.getPcClass());
         // set
-        human.setPcClass(EXPECTED);
-        assertEquals("pcClass changed", EXPECTED, human.getPcClass());
+        human.setPcClass(expectedValue);
+        assertEquals("pcClass changed", expectedValue, human.getPcClass());
         // cleared
         human.setCombatDice(1);
         human.setMagicDice(1);
@@ -122,56 +121,56 @@ public class PcRaceTest {
 
     @Test
     public void testCombatDice() {
-        private static final int EXPECTED = 12;
+        final int expectedValue = 12;
         Human human = new Human();
         // assertEquals(0, human.getCombatDice());
-        human.setCombatDice(EXPECTED);
-        assertEquals("combatDice", EXPECTED, human.getCombatDice());
+        human.setCombatDice(expectedValue);
+        assertEquals("combatDice", expectedValue, human.getCombatDice());
     }
 
     @Test
     public void testMagicDice() {
-        private static final int EXPECTED = 13;
+        final int expectedValue = 13;
         Human human = new Human();
         // assertEquals(0, human.getMagicDice());
-        human.setMagicDice(EXPECTED);
-        assertEquals(EXPECTED, human.getMagicDice());
+        human.setMagicDice(expectedValue);
+        assertEquals(expectedValue, human.getMagicDice());
     }
 
     @Test
     public void testStealthDice() {
-        private static final int EXPECTED = 14;
+        final int expectedValue = 14;
         Human human = new Human();
         // assertEquals(0, human.getStealthDice());
-        human.setStealthDice(EXPECTED);
-        assertEquals(EXPECTED, human.getStealthDice());
+        human.setStealthDice(expectedValue);
+        assertEquals(expectedValue, human.getStealthDice());
     }
 
     @Test
     public void testGeneralDice() {
-        private static final int EXPECTED = 15;
+        final int expectedValue = 15;
         Human human = new Human();
         // assertEquals(0, human.getGeneralDice());
-        human.setGeneralDice(EXPECTED);
-        assertEquals(EXPECTED, human.getGeneralDice());
+        human.setGeneralDice(expectedValue);
+        assertEquals(expectedValue, human.getGeneralDice());
     }
 
     @Test
     public void testEncumbrance() {
-        final static final int EXPECTED = 16;
+        final int expectedValue = 16;
         Human human = new Human();
         assertEquals(0, human.getEncumbrance());
-        human.setEncumbrance(EXPECTED);
-        assertEquals(EXPECTED, human.getEncumbrance());
+        human.setEncumbrance(expectedValue);
+        assertEquals(expectedValue, human.getEncumbrance());
     }
 
     @Test
     public void testHealth() {
-        private static final int EXPECTED = 16;
+        final int expectedValue = 16;
         Human human = new Human();
         assertEquals(0, human.getHealth());
-        human.setHealth(EXPECTED);
-        assertEquals(EXPECTED, human.getHealth());
+        human.setHealth(expectedValue);
+        assertEquals(expectedValue, human.getHealth());
     }
 
     @Test

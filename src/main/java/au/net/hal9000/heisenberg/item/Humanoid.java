@@ -58,12 +58,12 @@ public abstract class Humanoid extends PcRace {
 
     // Misc
     /**
-     * Eat an item
+     * Eat an item.
      * 
-     * @param pFood
+     * @param pFood food Item to eat.
      * @throws ExceptionInvalidType
      */
-    public void eat(Item pFood) throws ExceptionInvalidType {
+    public void eat(Item pFood) {
         if (!ItemProperty.isHumanoidFood(pFood)) {
             throw new ExceptionInvalidType(this.getName() + " can't eat "
                     + pFood.getName());
@@ -72,12 +72,13 @@ public abstract class Humanoid extends PcRace {
     }
 
     /**
-     * add - Wear an item
+     * add - Wear an item.
      * 
      * @param item
+     *            clothing Item to wear.
      * @throws ExceptionInvalidType
      */
-    public void add(Item item) throws ExceptionInvalidType {
+    public void add(Item item) {
         if (!ItemProperty.isClothing(item)) {
             throw new ExceptionInvalidType(this.getName() + " can't wear "
                     + item.getName());
@@ -214,7 +215,7 @@ public abstract class Humanoid extends PcRace {
         return -1;
     }
 
-    // Find items that match the criteria
+    // Visitor Design Pattern. Find items that match the criteria
     /** {@inheritDoc} */
     @Override
     public void accept(ItemVisitor visitor) {
