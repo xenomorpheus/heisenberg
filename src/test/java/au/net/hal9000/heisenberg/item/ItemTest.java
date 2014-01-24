@@ -139,8 +139,9 @@ public class ItemTest {
         cookie.removeProperty("myKey");
     }
 
+    /** Move without a container. */
     @Test
-    public void testMove() {
+    public void testMoveNoContainer() {
         Cookie cookie = new Cookie();
 
         // No container - No Movement
@@ -148,21 +149,34 @@ public class ItemTest {
         // Before test we place in a known position.
         cookie.setPosition(expectedPosition);
         // Try to move, but will fail as not in an ItemContainer.
-        cookie.move(new Point3d(1, 2, 3));
+        boolean threwException = false;
+        try {
+            cookie.move(new Point3d(1, 2, 3));
+        } catch (RuntimeException e) {
+            threwException = true;
+        }
+        assertTrue("Exeption thrown", threwException);
         Point3d actualPosition = cookie.getPosition();
         assertTrue("No ItemContainer - final pos",
                 expectedPosition.equals(actualPosition));
-
-        // Within a container
-        Location container = new Location();
-        cookie.setContainer(container);
-        expectedPosition = new Point3d(2, 4, 8);
-        cookie.move(expectedPosition);
-        actualPosition = cookie.getPosition();
-        assertTrue("Has ItemContainer - final pos",
-                expectedPosition.equals(actualPosition));
     }
 
+    /** Move within a container. */
+    @Test
+    public void testMoveContainer() {
+        Cookie cookie = new Cookie();
+
+        Location container = new Location();
+        cookie.setContainer(container);
+        Point3d expectedPosition = new Point3d(2, 4, 8);
+        cookie.move(expectedPosition);
+        Point3d actualPosition = cookie.getPosition();
+        assertTrue("Has ItemContainer - final pos",
+                expectedPosition.equals(actualPosition));
+
+    }
+
+    /** check the instanceof results. */
     @Test
     public void testInstanceOf() {
         Item cookie = new Cookie();
