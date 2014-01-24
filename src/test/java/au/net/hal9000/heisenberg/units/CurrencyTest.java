@@ -1,6 +1,9 @@
 package au.net.hal9000.heisenberg.units;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,10 +14,17 @@ import java.io.ObjectOutputStream;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.units.Currency;
-
 public class CurrencyTest {
+    /** float comparison tolerance. */
+    private static final float TOLERANCE = 0.00001F;
+    /** pp test value. */
+    private static final int PP = 1;
+    /** gp test value. */
+    private static final int GP = 2;
+    /** sp test value. */
+    private static final int SP = 4;
+    /** cp test value. */
+    private static final int CP = 8;
 
     @Test
     public void testCoinCollectionConstructorNoParams() {
@@ -27,104 +37,96 @@ public class CurrencyTest {
 
     @Test
     public void testCoinCollectionConstructorWithCoinParams() {
-        Currency cc = new Currency(1, 2, 4, 8);
-        assertEquals("pp", 1, cc.getPp());
-        assertEquals("gp", 2, cc.getGp());
-        assertEquals("sp", 4, cc.getSp());
-        assertEquals("cp", 8, cc.getCp());
+        Currency cc = new Currency(PP, GP, SP, CP);
+        assertEquals("pp", PP, cc.getPp());
+        assertEquals("gp", GP, cc.getGp());
+        assertEquals("sp", SP, cc.getSp());
+        assertEquals("cp", CP, cc.getCp());
     }
 
     @Test
     public void testCoinCollectionConstructorWithCoinCollection() {
-        Currency cc = new Currency(1, 2, 4, 8);
+        Currency cc = new Currency(PP, GP, SP, CP);
         Currency cc2 = new Currency(cc);
-        assertEquals("pp", 1, cc2.getPp());
-        assertEquals("gp", 2, cc2.getGp());
-        assertEquals("sp", 4, cc2.getSp());
-        assertEquals("cp", 8, cc2.getCp());
+        assertEquals("pp", PP, cc2.getPp());
+        assertEquals("gp", GP, cc2.getGp());
+        assertEquals("sp", SP, cc2.getSp());
+        assertEquals("cp", CP, cc2.getCp());
     }
 
     @Test
     public void testPp() {
         Currency cc = new Currency();
         cc.setPp(10);
-        assertEquals("10pp", 10.0F, cc.getPp(), 0.00001F);
+        assertEquals("10pp", 10.0F, cc.getPp(), TOLERANCE);
     }
 
     @Test
     public void testGp() {
         Currency cc = new Currency();
         cc.setGp(10);
-        assertEquals("10gp", 10.0F, cc.getGp(), 0.00001F);
+        assertEquals("10gp", 10.0F, cc.getGp(), TOLERANCE);
     }
 
     @Test
     public void testSp() {
         Currency cc = new Currency();
         cc.setSp(10);
-        assertEquals("10sp", 10.0F, cc.getSp(), 0.00001F);
+        assertEquals("10sp", 10.0F, cc.getSp(), TOLERANCE);
     }
 
     @Test
     public void testCp() {
         Currency cc = new Currency();
         cc.setCp(10);
-        assertEquals("10cp", 10.0F, cc.getCp(), 0.00001F);
+        assertEquals("10cp", 10.0F, cc.getCp(), TOLERANCE);
     }
 
     @Test
     public void testGetGpEquiv() {
-        Currency cc = new Currency(1, 2, 4, 8);
-        assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.getGpEquiv(), 0.00001F);
+        Currency cc = new Currency(PP, GP, SP, CP);
+        assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.getGpEquiv(), TOLERANCE);
     }
 
     // Merging two piles of coins
     @Test
     public void testTransferCoinCollection() {
-        Currency cc = new Currency(1, 2, 4, 8);
+        Currency cc = new Currency(PP, GP, SP, CP);
         Currency cc2 = new Currency(2, 4, 6, 3);
         cc.transfer(cc2);
-        assertEquals("transfer cc", 37.11F, cc.getGpEquiv(), 0.00001F);
-        assertEquals("transfer cc2", 0F, cc2.getGpEquiv(), 0.00001F);
+        assertEquals("transfer cc", 37.11F, cc.getGpEquiv(), TOLERANCE);
+        assertEquals("transfer cc2", 0F, cc2.getGpEquiv(), TOLERANCE);
     }
 
     // Adding two piles of coins
     @Test
     public void testAddCoinCollection() {
         /* test each coin type. */
-        final int pp = 1;
-        final int gp = 2;
-        final int sp = 4;
-        final int cp = 8;
-        Currency cc = new Currency(pp, gp, sp, cp);
+        Currency cc = new Currency(PP, GP, SP, CP);
         Currency cc2 = new Currency(2, 4, 6, 3);
         cc.add(cc2);
-        assertEquals("add cc", 37.11F, cc.getGpEquiv(), 0.00001F);
-        assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), 0.00001F);
+        assertEquals("add cc", 37.11F, cc.getGpEquiv(), TOLERANCE);
+        assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), TOLERANCE);
     }
 
-     /* test equals. */
+    /* test equals. */
     @Test
     public void testEquals() {
         /* test each coin type. */
-        final int pp = 1;
-        final int gp = 2;
-        final int sp = 4;
-        final int cp = 8;
-        Currency cc = new Currency(pp, gp, sp, cp);
-        assertTrue("equals", cc.equals(new Currency(pp, gp, sp, cp)));
-        assertFalse("not equals", cc.equals(new Currency(pp + 1, gp, sp, cp)));
-        assertFalse("not equals", cc.equals(new Currency(pp, gp + 1, sp, cp)));
-        assertFalse("not equals", cc.equals(new Currency(pp, gp, sp + 1, cp)));
-        assertFalse("not equals", cc.equals(new Currency(pp, gp, sp, cp + 1)));
+        Currency cc = new Currency(PP, GP, SP, CP);
+        assertTrue("equals", cc.equals(new Currency(PP, GP, SP, CP)));
+        assertFalse("not equals", cc.equals(new Currency(PP + 1, GP, SP, CP)));
+        assertFalse("not equals", cc.equals(new Currency(PP, GP + 1, SP, CP)));
+        assertFalse("not equals", cc.equals(new Currency(PP, GP, SP + 1, CP)));
+        assertFalse("not equals", cc.equals(new Currency(PP, GP, SP, CP + 1)));
     }
-    
+
     @Test
     public void testPersistence() {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "currency_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
-        Currency old = new Currency(1, 2, 4, 8);
+        Currency old = new Currency(PP, GP, SP, CP);
         // Store the object
         try {
             FileOutputStream fos = new FileOutputStream(filename);
@@ -187,17 +189,17 @@ public class CurrencyTest {
     }
 
     @Test
-    public void testHashCode(){
-        Currency zero = new Currency(0,0,0,0);
-        assertEquals("zero",zero.hashCode(),0);
-        Currency cp = new Currency(0,0,0,1);
-        assertEquals("cp",cp.hashCode(),1);
-        Currency sp = new Currency(0,0,1,0);
-        assertEquals("sp",sp.hashCode(),10);
-        Currency gp = new Currency(0,1,0,0);
-        assertEquals("gp",gp.hashCode(),100);
-        Currency pp = new Currency(1,0,0,0);
-        assertEquals("pp",pp.hashCode(),1000);
-        
+    public void testHashCode() {
+        Currency zero = new Currency(0, 0, 0, 0);
+        assertEquals("zero", zero.hashCode(), 0);
+        Currency cp = new Currency(0, 0, 0, 1);
+        assertEquals("cp", cp.hashCode(), 1);
+        Currency sp = new Currency(0, 0, 1, 0);
+        assertEquals("sp", sp.hashCode(), 10);
+        Currency gp = new Currency(0, 1, 0, 0);
+        assertEquals("gp", gp.hashCode(), 100);
+        Currency pp = new Currency(1, 0, 0, 0);
+        assertEquals("pp", pp.hashCode(), 1000);
+
     }
 }

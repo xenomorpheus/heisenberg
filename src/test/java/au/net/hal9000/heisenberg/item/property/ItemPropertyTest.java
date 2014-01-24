@@ -1,15 +1,19 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Vector;
+
 import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Entity;
-import au.net.hal9000.heisenberg.item.property.ItemProperty;
+
 import org.junit.Test;
 
 public class ItemPropertyTest {
-    final static float TOLERANCE = 0.00001f;
+    /** comparison tolerance. */
+    static final float TOLERANCE = 0.00001f;
 
     @Test
     public void testAeration() {

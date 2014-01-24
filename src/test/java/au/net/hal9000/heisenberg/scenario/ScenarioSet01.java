@@ -32,7 +32,7 @@ public class ScenarioSet01 {
     }
 
     @Test
-    public void sword_into_scabbard() {
+    public void swordIntoScabbard() {
         println("\n** A sword is placed in a scabbard.");
         Sword sword = new Sword();
         println("Sword created with name: " + sword);
@@ -48,7 +48,7 @@ public class ScenarioSet01 {
     }
 
     @Test
-    public void full_backpack_into_box() {
+    public void fullBackpackIntoBox() {
         println("\n** A full backpack is placed in a box.");
         Backpack backpack = new Backpack();
         println("Backpack created with name: " + backpack);
@@ -61,7 +61,7 @@ public class ScenarioSet01 {
     }
 
     @Test
-    public void crossbow_is_loaded() {
+    public void crossbowIsLoaded() {
         println("\n** A crossbow is loaded.");
         Crossbow crossbow = new Crossbow();
         println("Crossbow created with name: " + crossbow);
@@ -77,7 +77,7 @@ public class ScenarioSet01 {
     }
 
     @Test
-    public void torch_is_lit() {
+    public void torchIsLit() {
         println("\n** A torch is lit.");
         Torch torch = new Torch();
         println("Torch description:\n" + torch.getDescription());
@@ -104,7 +104,7 @@ public class ScenarioSet01 {
     }
 
     @Test
-    public void quiver_is_filled() {
+    public void quiverIsFilled() {
         println("\n** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");

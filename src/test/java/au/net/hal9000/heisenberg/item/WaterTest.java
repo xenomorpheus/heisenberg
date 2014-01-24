@@ -1,7 +1,10 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 public class WaterTest {
@@ -20,7 +23,7 @@ public class WaterTest {
         Water waterBig = new Water();
         waterBig.setWeightBase(big + small);
         waterBig.setVolumeBase(2.0f * (big + small));
-        Water waterSmall = (Water)waterBig.splitByWeight(small);
+        Water waterSmall = (Water) waterBig.splitByWeight(small);
         assertEquals("big's weight", big, waterBig.getWeight(), tollerance);
         assertEquals("big's volume", big * 2.0f, waterBig.getVolume(),
                 tollerance);

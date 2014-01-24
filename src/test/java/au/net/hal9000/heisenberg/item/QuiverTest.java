@@ -1,11 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import au.net.hal9000.heisenberg.item.Arrow;
-import au.net.hal9000.heisenberg.item.Quiver;
 
 public class QuiverTest {
 
@@ -24,12 +21,10 @@ public class QuiverTest {
     }
 
     @SuppressWarnings("deprecation")
-    @Test(expected=RuntimeException.class)
+    @Test(expected = RuntimeException.class)
     public void quiverAddNonArrow() {
         Quiver quiver = new Quiver();
         quiver.add(new Cookie());
     }
-    
-    
-    
+
 }

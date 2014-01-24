@@ -5,14 +5,20 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.*;
+import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.item.FlintAndTinder;
+import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.crafting.*;
 
 public class ScenarioSet03 {
-    Configuration config = null;
+    private Configuration config = null;
 
     @Before
     public void initialize() throws ConfigurationError {
