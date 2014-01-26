@@ -12,8 +12,17 @@ import au.net.hal9000.heisenberg.item.Item;
  * @author bruins
  * 
  */
-public class ItemIcon {
+public final class ItemIcon {
 
+    /** Constructor. */
+    private ItemIcon() {
+    }
+
+    /**
+     * Set the UI icons on the Item classes.
+     * 
+     * @param config the config to use.
+     */
     public static void setIcon(Configuration config) {
         // Find the sprite sheet for the Item types.
         SpriteSheetConfiguration spritePackDetail = config

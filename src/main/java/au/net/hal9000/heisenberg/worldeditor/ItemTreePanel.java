@@ -17,25 +17,24 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.util.Configuration;
 
+/**
+ * A window with hierarchical representation of the game objects.
+ */
 public class ItemTreePanel extends JPanel {
-    /**
-     * A window with hierarchical representation of the game objects.
-     */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
-    Configuration config = null;
-    Location location = null;
 
     // Create a TreeModel object to represent our tree of Item objects
     // at the specified location.
-    ItemTreeModel treeModel = null;
-    JTree tree = new JTree();
-    JComboBox itemClassesList = null;
+    private ItemTreeModel treeModel = null;
+    private JTree tree = new JTree();
+    /** Choose the character class. */
+    private JComboBox itemClassesList = null;
 
-    // TODO - constructor without setting config.
+    /** Constructor. */
     public ItemTreePanel(Configuration config, Location location) {
 
-        setLocation(location);
-        setConfig(config);
+        setRoot(location);
         setLayout(new BorderLayout());
 
         tree.setCellRenderer(new ItemTreeCellRenderer());
@@ -90,14 +89,13 @@ public class ItemTreePanel extends JPanel {
         add(addButtonPanel, BorderLayout.CENTER);
     }
 
-    public void setConfig(Configuration config) {
-        this.config = config;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
+    /**
+     * Set the root object in this tree.
+     * @param root the root object of the tree.
+     */
+    public void setRoot(Location root) {
         // Create a TreeModel object to represent our m_tree of files
-        treeModel = new ItemTreeModel(location);
+        treeModel = new ItemTreeModel(root);
         // Create a JTree and tell it to display our model
         tree.setModel(treeModel);
         tree.setEditable(true);

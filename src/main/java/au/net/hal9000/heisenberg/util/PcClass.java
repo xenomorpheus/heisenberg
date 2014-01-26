@@ -23,10 +23,13 @@ public class PcClass implements Comparable<PcClass> {
 
     // e.g. "Soldier"
     private String id;
-    // dice
+    /** combat dice. */
     private int combatDice = 0;
+    /** magic dice. */
     private int magicDice = 0;
+    /** stealth dice. */
     private int stealthDice = 0;
+    /** general dice. */
     private int generalDice = 0;
     // misc
     private int actionPoints = 0;
@@ -36,7 +39,7 @@ public class PcClass implements Comparable<PcClass> {
     private String genderAllow;
     private String sizeAllow;
     private int encumbrance = 0;
-    TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
+    private TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 
     public PcClass() {
     }

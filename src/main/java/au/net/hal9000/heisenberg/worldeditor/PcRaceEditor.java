@@ -10,10 +10,16 @@ import javax.swing.JTabbedPane;
 import au.net.hal9000.heisenberg.item.PcRace;
 
 public class PcRaceEditor extends JPanel {
+    /** window default x pos. */
+    private static final int X_POS = 100;
+    /** window default y pos. */
+    private static final int Y_POS = 100;
+    /** window width. */
+    private static final int WIDTH = 894;
+    /** window height. */
+    private static final int HEIGHT = 634;
 
-    /**
-     * 
-     */
+    /** serial version id.  */
     private static final long serialVersionUID = 1L;
     private PcRace pcRace;
 
@@ -27,7 +33,7 @@ public class PcRaceEditor extends JPanel {
      * Create the application.
      */
     public PcRaceEditor() {
-        setBounds(100, 100, 894, 634);
+        setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
         // Main container
         GridBagLayout gridBag = new GridBagLayout();

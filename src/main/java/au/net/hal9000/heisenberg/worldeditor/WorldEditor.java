@@ -137,7 +137,7 @@ public class WorldEditor extends JFrame {
             location = null;
         }
         this.location = location;
-        itemTreePanel.setLocation(location);
+        itemTreePanel.setRoot(location);
     }
 
     /** quit the program. */

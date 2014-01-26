@@ -106,6 +106,9 @@ public class BasicPanel extends JPanel {
         updateForm();
     }
 
+    /**
+     * Add components to Basic panel.
+     */
     private void addComponents() {
         Collection<PcClass> pcClassesItr = config.getPcClasses().values();
         Collection<String> sizes = config.getSizes();

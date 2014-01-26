@@ -10,12 +10,16 @@ import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.PcRace;
 
+/**
+ * Description Pane.
+ * @author bruins
+ *
+ */
 public class DescriptionPane extends JScrollPane {
 
-    /**
-     * 
-     */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
+    /** Logger. */
     private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class
             .getName());
     private PcRace pc;

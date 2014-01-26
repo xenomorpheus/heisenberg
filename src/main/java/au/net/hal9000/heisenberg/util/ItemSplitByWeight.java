@@ -3,6 +3,12 @@ package au.net.hal9000.heisenberg.util;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 
+/**
+ * Split off a new Item. New Item takes off some of the weight.
+ * 
+ * @author bruins
+ * 
+ */
 public abstract class ItemSplitByWeight {
 
     public static Item splitByWeight(Item item, float newItemWeight) {

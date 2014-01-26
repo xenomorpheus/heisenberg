@@ -36,18 +36,29 @@ public class Configuration {
 
     /** Singleton. Holder of the config */
     private static Configuration lastConfig = null;
-    // Object
+    /** A list of genders. */
     private Vector<String> genders;
+    /** A list of ItemClassConfiguration objects. */
     private Vector<ItemClassConfiguration> itemClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
+    /** A map of possible pcClass details. */
     private TreeMap<String, PcClass> pcClasses;
+    /** list of valid races. */
     private Vector<String> races;
+    /** A map of Recipe objects. */
     private TreeMap<String, Recipe> recipes;
+    /** A map of SkillDetail objects. */
     private TreeMap<String, SkillDetail> skillDetails;
+    /** A list of sizes. */
     private Vector<String> sizes;
+    /** Images to show in UI. */
     private TreeMap<String, SpriteSheetConfiguration> spriteSheets;
 
-    // Constructor
+    /** Constructor.
+     * 
+     * @param filename config file to read.
+     * @throws ConfigurationError
+     */
     public Configuration(String filename) throws ConfigurationError {
         super();
         this.init(filename);
@@ -64,6 +75,9 @@ public class Configuration {
         Configuration.lastConfig = config;
     }
 
+    /**
+     * @return Return the last config that was read.
+     */
     public static Configuration lastConfig() {
         if (lastConfig == null) {
             throw new RuntimeException(
@@ -460,14 +474,14 @@ public class Configuration {
     public static TreeMap<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
-        TreeMap<String, Recipe> Recipes = new TreeMap<String, Recipe>();
+        TreeMap<String, Recipe> recipes = new TreeMap<String, Recipe>();
         for (int recipeCurrent = 0; recipeCurrent < recipeElementSet.size(); recipeCurrent++) {
             // get current Recipe
             Element recipeElement = recipeElementSet.get(recipeCurrent);
             Recipe recipe = xmlToRecipe(recipeElement);
-            Recipes.put(recipe.getId(), recipe);
+            recipes.put(recipe.getId(), recipe);
         }
-        return Recipes;
+        return recipes;
     }
 
     /**

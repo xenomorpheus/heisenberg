@@ -25,11 +25,18 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
-import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.PcClass;
 
-public class DummyData {
+/**
+ * Utility class for building test Item objects.
+ * 
+ * @author bruins
+ * 
+ */
+public final class DummyData {
+
+    /** Constructor. */
+    private DummyData() {
+    }
 
     public static Configuration config() throws ConfigurationError {
         Configuration config = new Configuration(

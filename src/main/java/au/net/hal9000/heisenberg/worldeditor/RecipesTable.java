@@ -15,11 +15,12 @@ import au.net.hal9000.heisenberg.util.Configuration;
 
 public class RecipesTable extends JTable {
 
-    /**
-     * 
-     */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
+    /** column names. */
+    private static final String[] COLUMN_NAMES = {"Id", "Description" };
 
+    /** Constructor */
     RecipesTable() {
         super();
     }
@@ -48,8 +49,6 @@ public class RecipesTable extends JTable {
         private final Logger logger = Logger.getLogger(RecipesTable.class
                 .getName());
 
-        String[] columnNames = { "Id", "Description" };
-
         private ArrayList<String> recipeIds;
         private TreeMap<String, Recipe> recipes;
 
@@ -67,7 +66,7 @@ public class RecipesTable extends JTable {
         }
 
         public String getColumnName(int col) {
-            return columnNames[col].toString();
+            return COLUMN_NAMES[col].toString();
         }
 
         public int getRowCount() {

@@ -17,7 +17,15 @@ import au.net.hal9000.heisenberg.item.Wood;
 
 public class ItemThawFromFile {
 
-    // Store the object in a file
+    /**
+     * Store the object in a file.
+     * 
+     * @param filename
+     *            store the object in the file.
+     * @param item
+     *            item to store.
+     * @throws IOException
+     */
     public static void freezeToFile(final String filename, Item item)
             throws IOException {
         FileOutputStream fos = new FileOutputStream(filename);
@@ -26,7 +34,15 @@ public class ItemThawFromFile {
         out.close();
     }
 
-    // Static
+    /**
+     * Retrieve the object from a file.
+     * 
+     * @param filename
+     *            file to read from.
+     * @return A Cookie object.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Cookie cookieThawFromFile(String filename)
             throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
