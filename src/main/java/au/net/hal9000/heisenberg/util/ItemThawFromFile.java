@@ -15,7 +15,16 @@ import au.net.hal9000.heisenberg.item.SmallGroundFire;
 import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.Wood;
 
-public class ItemThawFromFile {
+/**
+ * Store and retrieve Item objects from file.
+ * 
+ * @author bruins
+ * 
+ */
+public final class ItemThawFromFile {
+    /** Constructor. */
+    private ItemThawFromFile() {
+    }
 
     /**
      * Store the object in a file.

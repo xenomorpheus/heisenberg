@@ -12,7 +12,13 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/** Test the ItemPanel. */
 public class ItemPanelTest {
+    /** panel width. */
+    private static final int PANEL_WIDTH = 400;
+
+    /** panel height. */
+    private static final int PANEL_HEIGHT = 400;
 
     @Test
     public void iteTreePanel() throws ConfigurationError {
@@ -33,7 +39,7 @@ public class ItemPanelTest {
                     itemTreePanel.setVisible(true);
                     JFrame jFrame = new JFrame("ItemTeePanel Test");
                     jFrame.setContentPane(itemTreePanel);
-                    jFrame.setSize(400, 600);
+                    jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
                     jFrame.setLocationRelativeTo(null);
                     jFrame.setVisible(true);
                 } catch (ConfigurationError e) {

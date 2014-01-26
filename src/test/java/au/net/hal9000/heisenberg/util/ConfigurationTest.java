@@ -20,8 +20,7 @@ import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
-import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.PcClass;
+
 
 public class ConfigurationTest {
     static float TOLERANCE = 0.00001f;

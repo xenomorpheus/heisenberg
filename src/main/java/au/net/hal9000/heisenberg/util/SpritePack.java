@@ -5,9 +5,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Read sprites from a packed sprites file.
+ * 
+ * @author bruins
+ * 
+ */
 public class SpritePack {
     /** so we can find the resource files. **/
     private static ClassLoader classLoader = SpritePack.class.getClassLoader();
+
     /** a collection of sprites unpacked from the image. **/
     private BufferedImage[] sprites;
 
