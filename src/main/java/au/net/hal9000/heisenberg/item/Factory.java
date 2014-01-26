@@ -3,6 +3,12 @@ package au.net.hal9000.heisenberg.item;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Factory Design Pattern. Create different type of Item objects.
+ * 
+ * @author bruins
+ * 
+ */
 public final class Factory {
 
     /** The name of this package. */

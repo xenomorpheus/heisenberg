@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.item;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map.Entry;
@@ -60,13 +59,13 @@ import au.net.hal9000.heisenberg.units.Point3d;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item implements Serializable {
 
-    
     /** serial version id. */
     private static final long serialVersionUID = 1L;
-    
-    //** object for logging *./
-    // private static final Logger LOGGER = Logger.getLogger(Item.class.getName());
-    
+
+    // ** object for logging *./
+    // private static final Logger LOGGER =
+    // Logger.getLogger(Item.class.getName());
+
     /** name of this package. */
     private static String packageName = Factory.class.getPackage().getName();
 
@@ -90,6 +89,7 @@ public abstract class Item implements Serializable {
     @Column(name = "jpaid", nullable = false)
     @GeneratedValue
     private long jpaId;
+    /** where this item is located. */
     private ItemContainer container = null;
     /** A short description of the item. */
     private String description = null;
@@ -144,9 +144,11 @@ public abstract class Item implements Serializable {
         setIconLeaf(icon);
     }
 
-    /** Constructor.
+    /**
+     * Constructor.
      * 
-     * @param name the name of this Item.
+     * @param name
+     *            the name of this Item.
      */
     public Item(final String name) {
         this();
@@ -155,8 +157,11 @@ public abstract class Item implements Serializable {
 
     /**
      * Constructor.
-     * @param name the name of this Item.
-     * @param description the description of this Item.
+     * 
+     * @param name
+     *            the name of this Item.
+     * @param description
+     *            the description of this Item.
      */
     public Item(final String name, final String description) {
         this(name);
@@ -474,6 +479,7 @@ public abstract class Item implements Serializable {
      * Set the volume before addition of other items such as those carried.
      * 
      * @param volumeBase
+     *            the new volume.
      */
     public void setVolumeBase(float volumeBase) {
         this.volumeBase = volumeBase;
@@ -482,8 +488,8 @@ public abstract class Item implements Serializable {
     // weight related
 
     /**
-     * The total weight. For simple items the weight is the weightBase. Will be
-     * overridden by collections.
+     * Set the total weight. For simple items the weight is the weightBase. May
+     * be overridden by collections.
      * 
      * @return the total weight
      */
@@ -513,6 +519,7 @@ public abstract class Item implements Serializable {
      * Shallow copy properties from one object to another.
      * 
      * @param item
+     *            Item to copy attributes from.
      */
     public void setAllFrom(Item item) {
         setContainer(item.getContainer());
@@ -537,7 +544,6 @@ public abstract class Item implements Serializable {
      *            other item
      * @return true iff items are equal.
      */
-    @Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -626,7 +632,7 @@ public abstract class Item implements Serializable {
      * @return A description. e.g. 'A lit candle'
      */
     public String detailedDescription() {
-        StringBuilder text = new StringBuilder(128);
+        StringBuilder text = new StringBuilder();
         String temp;
 
         temp = this.getName();
@@ -663,25 +669,23 @@ public abstract class Item implements Serializable {
         return text.toString();
     }
 
-    /** Find items that match the criteria. */
+    /**
+     * Visitor Design Pattern.
+     * 
+     * @param visitor
+     *            Item visitor.
+     */
     public void accept(ItemVisitor visitor) {
         visitor.visit(this);
     }
 
-    // TODO what about Weight/Volume/Currency etc
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    // TODO what about Weight/Volume/Currency etc
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
-        // our "pseudo-constructor"
-        in.defaultReadObject();
-        // now we are a "live" object again, so let's run rebuild and start
-    }
-
-    // Store the object in a file
+    /**
+     * Store the object in a file.
+     * 
+     * @param filename
+     *            output file.
+     * @throws IOException
+     */
     public void freezeToFile(String filename) throws IOException {
         FileOutputStream fos = new FileOutputStream(filename);
         ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -708,14 +712,14 @@ public abstract class Item implements Serializable {
      * @return the new Item.
      */
     public final boolean instanceOf(String type) {
+        boolean isInstance;
         try {
             Class<?> itemClass = Class.forName(packageName + "." + type);
-            return itemClass.isInstance(this);
+            isInstance = itemClass.isInstance(this);
         } catch (ClassNotFoundException e) {
-            // NOP
-            ;
+            isInstance = false; // NOP
         }
-        return false;
+        return isInstance;
     }
 
     /**
@@ -737,17 +741,35 @@ public abstract class Item implements Serializable {
     }
 
     // TODO consider refactoring out into a different class
+    /**
+     * Set the Icon to show in the UI when collection is opened.
+     * 
+     * @param simpleClassName
+     *            Simple Item name e.g. Cookie.
+     * @param imageIcon
+     *            Icon to show.
+     */
     public static void setIconOpenDefaultForClass(String simpleClassName,
             ImageIcon imageIcon) {
         iconOpenDefaultForClass.put(simpleClassName, imageIcon);
     }
 
     // TODO consider refactoring out into a different class
+    /**
+     * Get the Icon to show in the UI when collection is opened.
+     * 
+     * @param simpleClassName
+     *            Simple Item name e.g. Cookie.
+     * @return Icon to show.
+     */
     public static Icon getIconOpenDefaultForClass(String simpleClassName) {
         return iconOpenDefaultForClass.get(simpleClassName);
     }
 
     // TODO consider refactoring out into a different class
+    /**
+     * Clear the Icon to show in the UI when collection is opened.
+     */
     public static void clearIconOpenDefaultForClass() {
         iconOpenDefaultForClass.clear();
     }
@@ -757,7 +779,7 @@ public abstract class Item implements Serializable {
      * 
      * @param other
      *            other item.
-     * @return
+     * @return the distance to the other object.
      */
     public double distanceEuclidean(Item other) {
         return position.distance(other.getPosition());

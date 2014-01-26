@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
 import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.Item;
@@ -40,12 +41,14 @@ public class ScenarioSet03 {
 
         // Set up the location
         Location location = new Location();
-        location.setWeightMax(20);
-
+        
+        // Wood
         Wood wood = new Wood();
-        wood.setWeightBase(5);
-        location.add(wood);
+        RequirementItem woodRequirement = (RequirementItem) recipe
+                .getRequirement(1);
+        wood.setWeightBase(woodRequirement.getWeightMin() + 2);
 
+        // Flint and Tinder
         FlintAndTinder flintAndTinder = new FlintAndTinder();
         location.add(flintAndTinder);
 
@@ -55,7 +58,6 @@ public class ScenarioSet03 {
         final int expectedActionPoints = 2;
         pc.setMana(recipe.getMana() + expectedMana);
         pc.setActionPoints(recipe.getActionPoints() + expectedActionPoints);
-        // pc.powerWordsAdd(new PowerWord("testPowerWord1"));
         pc.skillsAdd(new Skill("testFireLighting"));
         pc.recipeAdd("testFireGround1");
 

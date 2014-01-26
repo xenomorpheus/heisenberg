@@ -8,10 +8,24 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.*;
+import au.net.hal9000.heisenberg.item.Bag;
+import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Location;
 
+/**
+ * Testing Persistence of Item objects.
+ * 
+ * @author bruins
+ * 
+ */
 public class ItemThawFromFileTest {
 
+    /**
+     * Testing freezing and thawing a simple Item to a file.
+     * 
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Test
     public void cookieFilePersistenceTest() throws IOException,
             ClassNotFoundException {
@@ -29,6 +43,12 @@ public class ItemThawFromFileTest {
         assertTrue("deserialized Cookie equals old cookie", old.equals(newObj));
     }
 
+    /**
+     * Persist two Item objects to disk.
+     * 
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Test
     public void persistTwoCookies() throws IOException, ClassNotFoundException {
         // System.out.println("\n** persist two cookies.");
@@ -52,6 +72,11 @@ public class ItemThawFromFileTest {
         // TODO - check for the cookies in the newObj
     }
 
+    /**
+     * Freeze and thaw a Container Item to file.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Test
     public void locationPersistenceShallowTest() throws IOException,
             ClassNotFoundException {

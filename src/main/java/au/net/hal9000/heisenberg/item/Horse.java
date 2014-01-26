@@ -35,8 +35,6 @@ public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
     public Horse(String name) {
         super(name);
         ItemProperty.setLiving(this, true);
-        this.setWeightMax(100); // TODO config
-        this.setVolumeMax(100); // TODO config
     }
 
     protected String getRace() {

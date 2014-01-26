@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.units;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * 3D point in space.
@@ -95,6 +96,14 @@ public class Point3d implements Serializable {
      */
     public boolean equals(Point3d other) {
         return equals(other, TOLERANCE);
+    }
+
+    /**
+     * @return the hashcode of this object.
+     */
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{new Double(x), new Double(y), new Double(z) });
     }
 
 }

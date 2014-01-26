@@ -266,17 +266,17 @@ public abstract class PcRace extends Entity {
         // TODO don't reach inside object's data structures - keySet()
         TreeMap<String, AbilityScore> pcClassAbilityScores = pcClass
                 .getAbilityScores();
-        if (pcClassAbilityScores == null) {
+        if (pcClassAbilityScores != null) {
             // TODO do we need to clear existing abilities
             // What about ability scores not from pcClass ? Add a unit test to
             // ensure they are preserved.
-        } else {
             for (String key : pcClassAbilityScores.keySet()) {
                 AbilityScore abilityScore = new AbilityScore(key, 0, 0);
                 abilityScores.put(key, abilityScore);
             }
             abilityScoresRecalculate();
-        }
+        } 
+        
     }
 
     /**
@@ -330,7 +330,7 @@ public abstract class PcRace extends Entity {
      * @return Plain text description of the object
      */
     public String detailedDescription() {
-        StringBuilder text = new StringBuilder(1024);
+        StringBuilder text = new StringBuilder();
 
         // Inherit description from super first.
         text.append(super.detailedDescription());

@@ -19,8 +19,11 @@ import java.io.Serializable;
  * 
  */
 public class Currency implements Serializable, Cloneable {
-    /** searial version id. */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
+
+    /** standard coin conversion ratio. */
+    private static final int COIN_CONVERSION = 10;
 
     /**
      * Coin conversion: 1PP = 10 GP.
@@ -203,17 +206,17 @@ public class Currency implements Serializable, Cloneable {
      * a purse. I consider this a feature not a bug.
      **/
     public void normalise() {
-        while (cp > 9) {
+        while (cp >= COIN_CONVERSION) {
             sp++;
-            cp -= 10;
+            cp -= COIN_CONVERSION;
         }
-        while (sp > 9) {
+        while (sp >= COIN_CONVERSION) {
             gp++;
-            sp -= 10;
+            sp -= COIN_CONVERSION;
         }
-        while (gp > 9) {
+        while (gp >= COIN_CONVERSION) {
             pp++;
-            gp -= 10;
+            gp -= COIN_CONVERSION;
         }
     }
 
@@ -235,7 +238,7 @@ public class Currency implements Serializable, Cloneable {
     @Override
     public int hashCode() {
         // TODO will this work for a non-nomalised Currency object?
-        return ((((pp * 10) + gp) * 10) + sp) * 10 + cp;
+        return ((((pp * COIN_CONVERSION) + gp) * COIN_CONVERSION) + sp) * COIN_CONVERSION + cp;
     }
 
     @Override
