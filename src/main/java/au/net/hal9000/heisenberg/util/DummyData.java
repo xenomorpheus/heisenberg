@@ -33,12 +33,20 @@ import au.net.hal9000.heisenberg.item.Torch;
  * 
  */
 public final class DummyData {
-
+    /** test skills. */
+    private static final String[] TEST_SKILLS = new String[] {"testSkill1", "testSkill2", "testSkill3"};
+    /** test recipes. */
+    private static final String[] TEST_RECIPES = new String[] {"testItem1", "testFireGround1", "testSpell1" };
+    /** test level. */
+    private static final int TEST_LEVEL = 3;
+    /** test weight or volume. */
+    private static final int TEST_WEIGHT_VOLUME = 100000;
     /** Constructor. */
     private DummyData() {
     }
 
-    public static Configuration config() throws ConfigurationError {
+    /** return the config. */
+    private static Configuration config() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
         return config;
@@ -54,18 +62,21 @@ public final class DummyData {
         pc.setDescription("The Paladin");
         pc.setGender("Female"); // TODO get from config
         pc.setSize("Small");
-        pc.setLevel(3);
-        pc.skillsAdd(new String[] { "testSkill1", "testSkill2", "testSkill3" });
-        pc.recipesAdd(new String[] { "testItem1", "testFireGround1",
-                "testSpell1" });
+        pc.setLevel(TEST_LEVEL);
+        pc.skillsAdd(TEST_SKILLS);
+        pc.recipesAdd(TEST_RECIPES);
         return pc;
     }
 
+    /** Create a demo world with some Item objects. 
+     * 
+     * @return a demo world of Item objects.
+     */
     public static Location getDemoWorld() {
         // Ad-hoc test world
         Location world = new Location("World");
-        world.setWeightMax(100000);
-        world.setVolumeMax(100000);
+        world.setWeightMax(TEST_WEIGHT_VOLUME);
+        world.setVolumeMax(TEST_WEIGHT_VOLUME);
 
         // Scabbard
         Scabbard scabbard = new Scabbard();
@@ -88,8 +99,8 @@ public final class DummyData {
 
         // a backpack of stuff
         Bag backpack = new Backpack("Backpack1");
-        backpack.setWeightMax(100000);
-        backpack.setVolumeMax(100000);
+        backpack.setWeightMax(TEST_WEIGHT_VOLUME);
+        backpack.setVolumeMax(TEST_WEIGHT_VOLUME);
         backpack.add(boh);
 
         Quiver quiver = new Quiver();
@@ -105,8 +116,8 @@ public final class DummyData {
 
         // a human with a bag of cookies
         Human human = new Human("Human1");
-        human.setWeightMax(100000);
-        human.setVolumeMax(100000);
+        human.setWeightMax(TEST_WEIGHT_VOLUME);
+        human.setVolumeMax(TEST_WEIGHT_VOLUME);
 
         human.add(new Shield());
         human.add(scabbard2);

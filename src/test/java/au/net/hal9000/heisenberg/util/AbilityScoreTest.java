@@ -1,10 +1,9 @@
 package au.net.hal9000.heisenberg.util;
 
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import au.net.hal9000.heisenberg.util.AbilityScore;
 
 public class AbilityScoreTest {
 

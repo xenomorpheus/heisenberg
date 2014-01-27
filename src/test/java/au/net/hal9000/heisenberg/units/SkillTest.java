@@ -1,9 +1,8 @@
 package au.net.hal9000.heisenberg.units;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import au.net.hal9000.heisenberg.units.Skill;
+import org.junit.Test;
 
 public class SkillTest {
 

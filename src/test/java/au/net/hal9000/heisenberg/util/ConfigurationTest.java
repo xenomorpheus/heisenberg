@@ -23,7 +23,8 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
 
 
 public class ConfigurationTest {
-    static float TOLERANCE = 0.00001f;
+    /** float comparison tolerance. */
+    private static final float TOLERANCE = 0.00001f;
     Configuration config = null;
 
     @Before

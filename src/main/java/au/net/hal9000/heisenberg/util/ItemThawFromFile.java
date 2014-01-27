@@ -35,8 +35,7 @@ public final class ItemThawFromFile {
      *            item to store.
      * @throws IOException
      */
-    public static void freezeToFile(final String filename, Item item)
-            throws IOException {
+    public static void freezeToFile(final String filename, Item item) throws IOException {
         FileOutputStream fos = new FileOutputStream(filename);
         ObjectOutputStream out = new ObjectOutputStream(fos);
         out.writeObject(item);
@@ -52,8 +51,7 @@ public final class ItemThawFromFile {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Cookie cookieThawFromFile(String filename)
-            throws IOException, ClassNotFoundException {
+    public static Cookie cookieThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
         Cookie newObj = (Cookie) in.readObject();
@@ -82,8 +80,7 @@ public final class ItemThawFromFile {
     }
 
     // Not used (yet)
-    public static FlintAndTinder FlintAndTinderThawFromFile(String filename)
-            throws IOException, ClassNotFoundException {
+    public static FlintAndTinder flintAndTinderThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
         FlintAndTinder newObj = (FlintAndTinder) in.readObject();
@@ -92,8 +89,7 @@ public final class ItemThawFromFile {
     }
 
     // Static
-    public static SmallGroundFire SmallGroundFileThawFromFile(String filename)
-            throws IOException, ClassNotFoundException {
+    public static SmallGroundFire smallGroundFileThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
         SmallGroundFire newObj = (SmallGroundFire) in.readObject();
@@ -106,8 +102,7 @@ public final class ItemThawFromFile {
     // throw new NotSerializableException("Not today!");
     // }
 
-    public static Location locationThawFromFile(final String filename)
-            throws IOException, ClassNotFoundException {
+    public static Location locationThawFromFile(final String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
         Location newObj = (Location) in.readObject();
@@ -116,8 +111,7 @@ public final class ItemThawFromFile {
     }
 
     // Static
-    public static Bag bagThawFromFile(final String filename)
-            throws IOException, ClassNotFoundException {
+    public static Bag bagThawFromFile(final String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
         Bag newObj = (Bag) in.readObject();

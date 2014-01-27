@@ -538,27 +538,6 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Return true iff items are equal.
-     * 
-     * @param other
-     *            other item
-     * @return true iff items are equal.
-     */
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Item)) {
-            return false;
-        }
-        Item otherItem = (Item) other;
-        return id.equals(otherItem.getId());
-    }
-
-    /**
      * Attempt to unlink the item from everything so that it can be garbage
      * collected. Won't work if anything is referencing this item.
      */
