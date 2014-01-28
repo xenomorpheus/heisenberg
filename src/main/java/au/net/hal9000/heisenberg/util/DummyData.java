@@ -46,7 +46,7 @@ public final class DummyData {
     }
 
     /** return the config. */
-    private static Configuration config() throws ConfigurationError {
+    public static Configuration config() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
         return config;
