@@ -403,17 +403,19 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
-     * Move the Item object's position within the ItemContainer.
+     * Attempt to move Item's position within the ItemContainer to this new
+     * position.
+     * 
+     * The container has control of the movement of Item objects within it.
+     * Partial or no movement may occur.
      * 
      * @param item
      *            the item to be moved.
      * @param expectedPosition
      *            the new position.
      * 
-     *            The container has control of the movement of Item objects
-     *            within it.
      */
-    public void moveItem(Item item, Point3d expectedPosition) {
+    public void moveItemAbsolute(Item item, Point3d expectedPosition) {
         ItemContainer container = item.getContainer();
         if (container != this) {
             throw new RuntimeException(
@@ -421,6 +423,28 @@ public abstract class ItemContainer extends Item implements Serializable {
                             + ", container=" + container);
         }
         item.setPosition(expectedPosition);
+    }
+
+    /**
+     * Attempt to move Item's position within the ItemContainer by this amount.
+     * 
+     * The container has control of the movement of Item objects within it.
+     * Partial or no movement may occur.
+     * 
+     * @param item
+     *            the item to be moved.
+     * @param delta
+     *            the amount to move.
+     * 
+     */
+    public void moveItemDelta(Item item, Point3d delta) {
+        ItemContainer container = item.getContainer();
+        if (container != this) {
+            throw new RuntimeException(
+                    "attempting to move item not in container. item=" + item
+                            + ", container=" + container);
+        }
+        item.getPosition().applyDelta(delta);
     }
 
     /** {@inheritDoc} */

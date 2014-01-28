@@ -13,6 +13,7 @@ public class Point3d implements Serializable {
     private static final long serialVersionUID = 1L;
 
     static final float TOLERANCE = 0.01f;
+    static final Point3d ZERO = new Point3d(0, 0, 0);
 
     private double x = 0;
     private double y = 0;
@@ -103,7 +104,38 @@ public class Point3d implements Serializable {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(new Object[]{new Double(x), new Double(y), new Double(z) });
+        return Arrays.hashCode(new Object[] { x, y, z });
     }
 
+    /**
+     * Apply movement delta to this 3D point.
+     * 
+     * @param delta
+     *            amount of movement
+     */
+    public void applyDelta(Point3d delta) {
+        this.x += delta.getX();
+        this.y += delta.getY();
+        this.z += delta.getZ();
+    }
+
+    /**
+     * Create a new object with a sum of this object and the delta.
+     * 
+     * @param delta
+     *            amount of movement
+     */
+    public Point3d newWithDelta(Point3d delta) {
+        double x = this.x + delta.getX();
+        double y = this.y + delta.getY();
+        double z = this.z + delta.getZ();
+        return new Point3d(x, y, z);
+    }
+
+    /**
+     * @return the size AKA modulus, absolute value.
+     */
+    public double size() {
+        return this.distance(ZERO);
+    }
 }

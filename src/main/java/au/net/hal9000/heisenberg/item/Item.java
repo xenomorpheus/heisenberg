@@ -590,7 +590,7 @@ public abstract class Item implements Serializable {
         if (container == null) {
             throw new RuntimeException("No ItemContainer - Can't move");
         } else {
-            container.moveItem(this, requestedPosition);
+            container.moveItemAbsolute(this, requestedPosition);
         }
     }
 
@@ -763,5 +763,5 @@ public abstract class Item implements Serializable {
     public double distanceEuclidean(Item other) {
         return position.distance(other.getPosition());
     }
-
+   
 }
