@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.units.Point3d;
 
 public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
 
@@ -11,23 +11,24 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     /** error. */
     public static final String MODEL_NOT_SUPPORTED = "model not supported";
 
+    /** Constructor.*/
     ModelStateEvaluatorV1() {
     }
 
     @Override
-    public double evaluate(Model model) {
+    public double evaluate(ModelState model) {
         double result;
-        if (model instanceof ModelV1) {
-            ModelV1 modelV1 = (ModelV1) model;
-            Item agent = modelV1.getAgent();
-            if (agent == null) {
+        if (model instanceof ModelStateV1) {
+            ModelStateV1 modelV1 = (ModelStateV1) model;
+            Point3d agentPosition = modelV1.getAgentPosition();
+            if (agentPosition == null) {
                 throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
             }
-            Item goal = modelV1.getGoal();
-            if (goal == null) {
+            Point3d goalPosition = modelV1.getGoalPosition();
+            if (goalPosition == null) {
                 throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
             }
-            result = agent.distanceEuclidean(goal);
+            result = agentPosition.distance(goalPosition);
         } else {
             throw new IllegalArgumentException(MODEL_NOT_SUPPORTED);
         }

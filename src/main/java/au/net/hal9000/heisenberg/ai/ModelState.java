@@ -7,6 +7,6 @@ package au.net.hal9000.heisenberg.ai;
  * @author bruins
  * 
  */
-public interface Model {
+public interface ModelState {
 
 }

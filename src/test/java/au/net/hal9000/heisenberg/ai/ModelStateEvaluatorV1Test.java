@@ -27,19 +27,15 @@ public class ModelStateEvaluatorV1Test {
     @Test
     public void testEvaluate() {
         // goal
-        Item goal = new Rat();
         Point3d goalPosition = new Point3d();
-        goal.setPosition(goalPosition);
 
         // agent
-        Item agent = new Cat();
         Point3d agentPosition = new Point3d();
-        agent.setPosition(agentPosition);
 
         // state
-        ModelV1 modelStateV1 = new ModelV1();
-        modelStateV1.setAgent(agent);
-        modelStateV1.setGoal(goal);
+        ModelStateV1 modelStateV1 = new ModelStateV1();
+        modelStateV1.setAgentPosition(goalPosition);
+        modelStateV1.setGoalPosition(goalPosition);
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         // Agent at goal - Return ZERO
@@ -70,40 +66,28 @@ public class ModelStateEvaluatorV1Test {
 
     @Test
     public void testEvaluateBadGoal() {
-        // agent
-        Item agent = new Cat();
-        Point3d agentPosition = new Point3d();
-        agent.setPosition(agentPosition);
-
-        // state
-        ModelV1 modelStateV1 = new ModelV1();
-        modelStateV1.setAgent(agent);
+        ModelStateV1 modelStateV1 = new ModelStateV1();
+        modelStateV1.setAgentPosition(new Point3d());
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx
                 .expectMessage(ModelStateEvaluatorV1.GOAL_MAY_MAY_NOT_BE_NULL);
-        // Missing goal, throws RuntimeException
+        // Missing goalPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
 
     }
 
     @Test
     public void testEvaluateBadAgent() {
-        // goal
-        Item goal = new Rat();
-        Point3d goalPosition = new Point3d();
-        goal.setPosition(goalPosition);
-
-        // state
-        ModelV1 modelStateV1 = new ModelV1();
-        modelStateV1.setGoal(goal);
+        ModelStateV1 modelStateV1 = new ModelStateV1();
+        modelStateV1.setGoalPosition(new Point3d());
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx
                 .expectMessage(ModelStateEvaluatorV1.AGENT_MAY_MAY_NOT_BE_NULL);
-        // Missing goal, throws RuntimeException
+        // Missing agentPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
 
     }

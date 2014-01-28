@@ -7,5 +7,5 @@ public interface ModelStateEvaluator {
      * to return when we evaluate a goal state ? e.g. The higher the value the
      * better.
      */
-    double evaluate(Model state);
+    double evaluate(ModelState state);
 }
