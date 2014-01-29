@@ -12,7 +12,7 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     public static final String MODEL_NOT_SUPPORTED = "model not supported";
 
     /** Constructor.*/
-    ModelStateEvaluatorV1() {
+    public ModelStateEvaluatorV1() {
     }
 
     @Override

@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,9 +34,8 @@ public class ModelStateEvaluatorV1Test {
         Point3d agentPosition = new Point3d();
 
         // state
-        ModelStateV1 modelStateV1 = new ModelStateV1();
-        modelStateV1.setAgentPosition(goalPosition);
-        modelStateV1.setGoalPosition(goalPosition);
+        ModelStateV1 modelStateV1 = new ModelStateV1(agentPosition,
+                goalPosition);
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
         // Agent at goal - Return ZERO
@@ -66,7 +66,7 @@ public class ModelStateEvaluatorV1Test {
 
     @Test
     public void testEvaluateBadGoal() {
-        ModelStateV1 modelStateV1 = new ModelStateV1();
+        ModelStateV1 modelStateV1 = new ModelStateV1(null, null);
         modelStateV1.setAgentPosition(new Point3d());
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
@@ -75,12 +75,12 @@ public class ModelStateEvaluatorV1Test {
                 .expectMessage(ModelStateEvaluatorV1.GOAL_MAY_MAY_NOT_BE_NULL);
         // Missing goalPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
-
+        fail("should not get here");
     }
 
     @Test
     public void testEvaluateBadAgent() {
-        ModelStateV1 modelStateV1 = new ModelStateV1();
+        ModelStateV1 modelStateV1 = new ModelStateV1(null, null);
         modelStateV1.setGoalPosition(new Point3d());
         ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
 
@@ -89,7 +89,7 @@ public class ModelStateEvaluatorV1Test {
                 .expectMessage(ModelStateEvaluatorV1.AGENT_MAY_MAY_NOT_BE_NULL);
         // Missing agentPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
-
+        fail("should not get here");
     }
 
 }

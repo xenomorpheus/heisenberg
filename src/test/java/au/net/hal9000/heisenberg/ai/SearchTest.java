@@ -10,18 +10,19 @@ public class SearchTest {
 
     @Test
     public void test() {
-        ModelStateV1 modelState = new ModelStateV1();
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d(3, 4, 0);
-        modelState.setAgentPosition(agentPosition);
-        modelState.setGoalPosition(goalPosition);
+        ModelState modelState = new ModelStateV1(agentPosition, goalPosition);
 
+        ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorV1();
         TransitionFunction transitionFunction = new TransitionFunctionV1();
-        SuccessorFunction successorFunction = new SuccessorFunctionV1(transitionFunction);
-        Search search = new Search();
-        Queue<Point3d> path = search.findPath(modelState, successorFunction,
+        SuccessorFunction successorFunction = new SuccessorFunctionV1(
                 transitionFunction);
-        for (Point3d direction : path) {
+
+        Search search = new Search(successorFunction, modelStateEvaluator);
+
+        Queue<Action> path = search.findPath(modelState);
+        for (Action direction : path) {
             System.out.println(direction + "\n");
         }
 

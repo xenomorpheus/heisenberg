@@ -11,21 +11,16 @@ import java.util.Queue;
  */
 public class Search {
 
-    private TransitionFunction transitionFunction;
     private SuccessorFunction successorFunction;
     private ModelStateEvaluator modelStateEvaluator;
-    private CostFunction costFunction;
 
     /**
      * Constructor.
      */
-    public Search(TransitionFunction transitionFunction,
-            SuccessorFunctionV1 successorFunction,
-            ModelStateEvaluator modelStateEvaluator, CostFunction costFunction) {
-        this.transitionFunction = transitionFunction;
+    public Search(SuccessorFunction successorFunction,
+            ModelStateEvaluator modelStateEvaluator) {
         this.successorFunction = successorFunction;
         this.modelStateEvaluator = modelStateEvaluator;
-        this.costFunction = costFunction;
     }
 
     /**
@@ -39,9 +34,12 @@ public class Search {
     public Successor findBestSuccessor(ModelState modelState) {
         Queue<Successor> successors = successorFunction
                 .generateSuccessors(modelState);
+        // TODO handle when no successors from current possition.
+        // Get first successor off the list.
         Successor bestSuccessor = successors.remove();
         double bestValuationSoFar = modelStateEvaluator.evaluate(bestSuccessor
                 .getModelState());
+        // Work through the remainder successors looking for a better one.
         for (Successor successor : successors) {
             double valuation = modelStateEvaluator.evaluate(successor
                     .getModelState());
