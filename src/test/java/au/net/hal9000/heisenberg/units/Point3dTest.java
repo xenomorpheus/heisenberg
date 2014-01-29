@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.units;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -56,6 +57,7 @@ public class Point3dTest {
 
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
         Point3d point2 = point.clone();
+        assertNotEquals("differnt object", point, point2);
         assertEquals("X", X_TEST, point2.getX(), TEST_TOLERANCE);
         assertEquals("Y", Y_TEST, point2.getY(), TEST_TOLERANCE);
         assertEquals("Z", Z_TEST, point2.getZ(), TEST_TOLERANCE);

@@ -6,21 +6,42 @@ import java.util.Arrays;
 /**
  * 3D point in space.
  */
-public class Point3d implements Serializable {
-    /**
-     * 
-     */
+public class Point3d implements Serializable, Cloneable {
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
 
+    /** comparison tolerance. */
     static final float TOLERANCE = 0.01f;
-    static final Point3d ZERO = new Point3d(0, 0, 0);
 
+    /** zero. */
+    private static final Point3d ZERO = new Point3d(0, 0, 0);
+
+    /** x coord. */
     private double x = 0;
+    /** y coord. */
     private double y = 0;
+    /** z coord. */
     private double z = 0;
 
     /**
-     * Constructor - no offset
+     * Constructor.
+     * 
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param z
+     *            z coord
+     */
+    public Point3d(double x, double y, double z) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    /**
+     * Constructor - no offset.
      */
     public Point3d() {
         this(0, 0, 0);
@@ -54,21 +75,22 @@ public class Point3d implements Serializable {
         return TOLERANCE;
     }
 
-    public Point3d(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
+    /**
+     * @param other
+     *            other Point3d object.
+     * @return distance (modulus) to other point.
+     */
     public double distance(Point3d other) {
         return Math.sqrt(Math.pow(x - other.x, 2.0)
                 + Math.pow(y - other.y, 2.0) + Math.pow(z - other.z, 2.0));
     }
 
+    @Override
     public Point3d clone() {
         return new Point3d(x, y, z);
     }
 
+    @Override
     public String toString() {
         return "[" + x + ", " + y + ", " + z + "]";
     }
@@ -124,6 +146,7 @@ public class Point3d implements Serializable {
      * 
      * @param delta
      *            amount of movement
+     * @return new object with delta applied.
      */
     public Point3d newWithDelta(Point3d delta) {
         double x = this.x + delta.getX();
