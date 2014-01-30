@@ -16,17 +16,17 @@ import au.net.hal9000.heisenberg.units.Point3d;
 public final class SuccessorFunctionV1 implements SuccessorFunction {
 
     /** move agent North. */
-    private static final ActionAgentMove NORTH = new ActionAgentMove(
+    static final ActionAgentMove NORTH = new ActionAgentMove("North",
             new Point3d(0, 1, 0));
     /** move agent South. */
-    private static final ActionAgentMove SOUTH = new ActionAgentMove(
+    static final ActionAgentMove SOUTH = new ActionAgentMove("South",
             new Point3d(0, -1, 0));
     /** move agent East. */
-    private static final ActionAgentMove EAST = new ActionAgentMove(
-            new Point3d(-1, 0, 0));
-    /** move agent West. */
-    private static final ActionAgentMove WEST = new ActionAgentMove(
+    static final ActionAgentMove EAST = new ActionAgentMove("East",
             new Point3d(1, 0, 0));
+    /** move agent West. */
+    static final ActionAgentMove WEST = new ActionAgentMove("West",
+            new Point3d(-1, 0, 0));
     /** A list of directions that might be possible. */
     private static final ActionAgentMove[] DIRECTIONS = { NORTH, SOUTH, EAST,
             WEST };

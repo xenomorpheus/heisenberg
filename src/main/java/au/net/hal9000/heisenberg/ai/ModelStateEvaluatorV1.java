@@ -11,15 +11,17 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     /** error. */
     public static final String MODEL_NOT_SUPPORTED = "model not supported";
 
-    /** Constructor.*/
+    public static final double GOAL_TOLERANCE = 1;
+
+    /** Constructor. */
     public ModelStateEvaluatorV1() {
     }
 
     @Override
-    public double evaluate(ModelState model) {
+    public double evaluate(ModelState modelState) {
         double result;
-        if (model instanceof ModelStateV1) {
-            ModelStateV1 modelV1 = (ModelStateV1) model;
+        if (modelState instanceof ModelStateV1) {
+            ModelStateV1 modelV1 = (ModelStateV1) modelState;
             Point3d agentPosition = modelV1.getAgentPosition();
             if (agentPosition == null) {
                 throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
@@ -35,4 +37,8 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
         return result;
     }
 
+    @Override
+    public boolean atGoal(ModelState modelState) {
+        return evaluate(modelState) < GOAL_TOLERANCE;
+    }
 }

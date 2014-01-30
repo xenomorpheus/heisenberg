@@ -1,8 +1,6 @@
 /**
 
-Artificial Intelligence.
-
-Computational Search algorithms.
+Artificial Intelligence AKA Computational Search algorithms.
 
 The eventual aim of this package is to allow Items to rationally move within the game.
 

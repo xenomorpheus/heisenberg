@@ -11,12 +11,25 @@ import java.util.Queue;
  */
 public class Search {
 
+    /**
+     * a function that supplies a list of possible actions from current model
+     * state.
+     */
     private SuccessorFunction successorFunction;
+
+    /** a function that determines how good a model state is . */
     private ModelStateEvaluator modelStateEvaluator;
 
     /**
      * Constructor.
+     * 
+     * @param successorFunction
+     *            a function that supplies a list of possible actions from
+     *            current model state.
+     * @param modelStateEvaluator
+     *            a function that determines how good a model state is .
      */
+
     public Search(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator) {
         this.successorFunction = successorFunction;
@@ -51,12 +64,20 @@ public class Search {
         return bestSuccessor;
     }
 
+    /**
+     * Return a list of actions to get from the current model state to reach the
+     * goal model state.
+     * 
+     * @param modelState
+     *            current model state.
+     * @return list of actions.
+     */
     public Queue<Action> findPath(ModelState modelState) {
         // double cost = costFunction.calculateCost(modelState,
         // bestSuccessor.getAction(), bestSuccessor.getModelState());
 
         Queue<Action> path = new LinkedList<Action>();
-        while (!goal(modelState)) {
+        while (!modelStateEvaluator.atGoal(modelState)) {
             Successor successor = findBestSuccessor(modelState);
             path.add(successor.getAction());
             modelState = successor.getModelState();
