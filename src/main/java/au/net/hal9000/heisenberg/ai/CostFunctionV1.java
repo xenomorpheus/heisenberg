@@ -18,9 +18,9 @@ public class CostFunctionV1 implements CostFunction {
      *            the ModelState after.
      * @return the cost of performing the move between ModelStates.
      */
-    public double calculateCost(ModelStateV1 before, ActionAgentMove action,
+    public double calculateCost(ModelStateV1 before, ActionAgentMoveV1 action,
             ModelStateV1 after) {
-        return action.getDelta().size();
+        return action.getDelta().length();
     }
 
 }

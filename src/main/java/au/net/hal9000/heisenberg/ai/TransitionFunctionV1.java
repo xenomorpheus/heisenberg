@@ -10,13 +10,13 @@ public class TransitionFunctionV1 implements TransitionFunction {
             throw new IllegalArgumentException("Expecting ModelStateV1 but got"
                     + modelState.getClass().getSimpleName());
         }
-        if (!(action instanceof ActionAgentMove)) {
+        if (!(action instanceof ActionAgentMoveV1)) {
             throw new IllegalArgumentException(
                     "Expecting ActionAgentMove but got"
                             + action.getClass().getSimpleName());
         }
         ModelStateV1 modelStateV1 = (ModelStateV1) modelState;
-        ActionAgentMove actionAgentMove = (ActionAgentMove) action;
+        ActionAgentMoveV1 actionAgentMove = (ActionAgentMoveV1) action;
         // Clone the ModelState
         ModelStateV1 newModelState;
         try {

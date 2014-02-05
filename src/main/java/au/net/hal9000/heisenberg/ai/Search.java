@@ -79,6 +79,7 @@ public class Search {
         Queue<Action> path = new LinkedList<Action>();
         while (!modelStateEvaluator.atGoal(modelState)) {
             Successor successor = findBestSuccessor(modelState);
+            System.out.println(successor);
             path.add(successor.getAction());
             modelState = successor.getModelState();
         }

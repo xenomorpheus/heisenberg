@@ -11,7 +11,7 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     /** error. */
     public static final String MODEL_NOT_SUPPORTED = "model not supported";
 
-    public static final double GOAL_TOLERANCE = 1;
+    public static final double GOAL_TOLERANCE = 0.01;
 
     /** Constructor. */
     public ModelStateEvaluatorV1() {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
- * A very simple model state.  It holds two positions, the agent and the goal.
+ * A very simple model state. It holds two positions, the agent and the goal.
  */
 public class ModelStateV1 implements ModelState, Cloneable {
 
@@ -117,6 +117,11 @@ public class ModelStateV1 implements ModelState, Cloneable {
             hashList[1] = goalPosition.hashCode();
         }
         return Arrays.hashCode(hashList);
+    }
+
+    @Override
+    public String toString() {
+        return "[agent=" + agentPosition + ", goal=" + goalPosition + "]";
     }
 
 }

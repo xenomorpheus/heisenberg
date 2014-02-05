@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.units.Point3d;
 
-public class ActionAgentMove implements Action {
+public class ActionAgentMoveV1 implements Action {
 
     /** human understandable label. */
     private String label;
@@ -17,7 +17,7 @@ public class ActionAgentMove implements Action {
      * @param delta
      *            movement amount.
      */
-    ActionAgentMove(String label, Point3d delta) {
+    ActionAgentMoveV1(String label, Point3d delta) {
         this.delta = delta;
         this.label = label;
     }
@@ -32,7 +32,10 @@ public class ActionAgentMove implements Action {
 
     @Override
     public String toString() {
-        return label;
+        if (label != null) {
+            return label;
+        }
+        return delta.toString();
     }
 
 }

@@ -16,25 +16,27 @@ import au.net.hal9000.heisenberg.units.Point3d;
 public final class SuccessorFunctionV1 implements SuccessorFunction {
 
     /** move agent North. */
-    static final ActionAgentMove NORTH = new ActionAgentMove("North",
+    static final ActionAgentMoveV1 NORTH = new ActionAgentMoveV1("North",
             new Point3d(0, 1, 0));
     /** move agent South. */
-    static final ActionAgentMove SOUTH = new ActionAgentMove("South",
+    static final ActionAgentMoveV1 SOUTH = new ActionAgentMoveV1("South",
             new Point3d(0, -1, 0));
     /** move agent East. */
-    static final ActionAgentMove EAST = new ActionAgentMove("East",
+    static final ActionAgentMoveV1 EAST = new ActionAgentMoveV1("East",
             new Point3d(1, 0, 0));
     /** move agent West. */
-    static final ActionAgentMove WEST = new ActionAgentMove("West",
+    static final ActionAgentMoveV1 WEST = new ActionAgentMoveV1("West",
             new Point3d(-1, 0, 0));
     /** A list of directions that might be possible. */
-    private static final ActionAgentMove[] DIRECTIONS = { NORTH, SOUTH, EAST,
+    private static final ActionAgentMoveV1[] DIRECTIONS = { NORTH, SOUTH, EAST,
             WEST };
 
+    /**   a Transition Function.*/
     private TransitionFunction transitionFunction;
 
     /**
      * Constructor.
+     * @param transtionFunction a Transition Function.
      */
     public SuccessorFunctionV1(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;
@@ -44,7 +46,7 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         // TODO add something smarter in the future.
         Queue<Successor> list = new LinkedList<Successor>();
-        for (ActionAgentMove action : DIRECTIONS) {
+        for (ActionAgentMoveV1 action : DIRECTIONS) {
             ModelState newModelState = transitionFunction.transition(
                     modelState, action);
             // TODO handle cases where action is not a legal move at this
