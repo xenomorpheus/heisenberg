@@ -1,20 +1,21 @@
 package au.net.hal9000.heisenberg.units;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/** 3D ponit in space.
+/**
+ * 3D ponit in space.
  * 
  * @author bruins
- *
+ * 
  */
 public class Point3dTest {
-    private static final double POINT3D_TOLERANCE = Point3d.getTolerance();
     private static final double TEST_TOLERANCE = 0.01f;
+    private static final double WITHIN_TOLERANCE = 0.9;
+    private static final double OUTSIDE_TOLERANCE = 1.1;
     private static final double ZERO = 0f;
     private static final double X_TEST = 1;
     private static final double Y_TEST = 2;
@@ -53,71 +54,48 @@ public class Point3dTest {
     }
 
     @Test
-    public void testClonePoint3d() {
+    public void testClonePoint3d() throws CloneNotSupportedException {
 
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
-        Point3d point2 = point.clone();
-        assertNotEquals("differnt object", point, point2);
-        assertEquals("X", X_TEST, point2.getX(), TEST_TOLERANCE);
-        assertEquals("Y", Y_TEST, point2.getY(), TEST_TOLERANCE);
-        assertEquals("Z", Z_TEST, point2.getZ(), TEST_TOLERANCE);
+        Point3d clone = point.clone();
+        assertTrue("differnt object", point != clone);
+        assertTrue("equals returns true", point.equals(clone));
+        assertEquals("X", X_TEST, clone.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST, clone.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST, clone.getZ(), TEST_TOLERANCE);
     }
 
     @Test
     public void testToString() {
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
-        assertEquals("[" + X_TEST + ", " + Y_TEST + ", " + Z_TEST + "]",
-                point.toString());
+        assertEquals("[1.00, 2.00, 3.00]", point.toString());
     }
 
+    /**
+     * Test the equals that compares to within a supplied margin.
+     */
     @Test
-    public void testEqualsFloat() {
+    public void testEqualsDouble() {
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
         Point3d point2 = new Point3d(X_TEST, Y_TEST, Z_TEST);
         assertTrue("equals", point.equals(point2));
         // x
-        point.setX(X_TEST + 0.9 * POINT3D_TOLERANCE);
-        assertTrue("true x", point.equals(point2));
-        point.setX(X_TEST + 1.1 * POINT3D_TOLERANCE);
-        assertFalse("false x", point.equals(point2));
+        point.setX(X_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
+        assertTrue("true x", point.equals(point2, Point3d.getTolerance()));
+        point.setX(X_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
+        assertFalse("false x", point.equals(point2, Point3d.getTolerance()));
         point.setX(X_TEST);
         // y
-        point.setY(Y_TEST + 0.9 * POINT3D_TOLERANCE);
-        assertTrue("true y", point.equals(point2));
-        point.setY(Y_TEST + 1.1 * POINT3D_TOLERANCE);
-        assertFalse("false y", point.equals(point2));
+        point.setY(Y_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
+        assertTrue("true y", point.equals(point2, Point3d.getTolerance()));
+        point.setY(Y_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
+        assertFalse("false y", point.equals(point2, Point3d.getTolerance()));
         point.setY(Y_TEST);
         // z
-        point.setZ(Z_TEST + 0.9 * POINT3D_TOLERANCE);
-        assertTrue("true z", point.equals(point2));
-        point.setZ(Z_TEST + 1.1 * POINT3D_TOLERANCE);
-        assertFalse("false z", point.equals(point2));
-        point.setX(Z_TEST);
-    }
-
-    @Test
-    public void testEqualsDouble() {
-        double tolerance = 10d;
-        Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
-        Point3d point2 = new Point3d(X_TEST, Y_TEST, Z_TEST);
-        assertTrue("equals", point.equals(point2, tolerance));
-        // x
-        point.setX(X_TEST + 0.9 * tolerance);
-        assertTrue("true x", point.equals(point2, tolerance));
-        point.setX(X_TEST + 1.1 * tolerance);
-        assertFalse("false x", point.equals(point2, tolerance));
-        point.setX(X_TEST);
-        // y
-        point.setY(Y_TEST + 0.9 * tolerance);
-        assertTrue("true y", point.equals(point2, tolerance));
-        point.setY(Y_TEST + 1.1 * tolerance);
-        assertFalse("false y", point.equals(point2, tolerance));
-        point.setY(Y_TEST);
-        // z
-        point.setZ(Z_TEST + 0.9 * tolerance);
-        assertTrue("true z", point.equals(point2, tolerance));
-        point.setZ(Z_TEST + 1.1 * tolerance);
-        assertFalse("false z", point.equals(point2, tolerance));
+        point.setZ(Z_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
+        assertTrue("true z", point.equals(point2, Point3d.getTolerance()));
+        point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
+        assertFalse("false z", point.equals(point2, Point3d.getTolerance()));
         point.setX(Z_TEST);
     }
 

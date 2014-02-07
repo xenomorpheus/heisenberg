@@ -45,7 +45,8 @@ public class SearchTestV2 {
         // System.out.println("Goal is at position: " + goalPosition);
         // System.out.println("Agent is at position: " + agentPosition);
         Queue<Action> gotPath = search.findPath(modelState);
-        System.out.println("path: " + gotPath);
+        System.out.println("gotPath     : " + gotPath);
+        System.out.println("expectedPath: " + expectedPath);
         assertTrue("path correct", expectedPath.equals(gotPath));
 
     }

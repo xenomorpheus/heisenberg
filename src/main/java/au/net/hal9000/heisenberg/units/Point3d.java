@@ -105,7 +105,7 @@ public class Point3d implements Serializable, Cloneable {
 
     @Override
     public String toString() {
-        return String.format("[%.2f,%.2f,%.2f]", x, y, z);
+        return String.format("[%.2f, %.2f, %.2f]", x, y, z);
     }
 
     /**
@@ -168,6 +168,21 @@ public class Point3d implements Serializable, Cloneable {
         if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
             return false;
         return true;
+    }
+
+    /**
+     * Return true each difference in x,y,z is less than tolerance.
+     * 
+     * @param other
+     *            point we are comparing to.
+     * @param tolerance
+     *            amount, per axis, where we consider points are different.
+     * @return
+     */
+    public boolean equals(Point3d other, double tolerance) {
+        return (Math.abs(x - other.getX()) < tolerance)
+                && (Math.abs(y - other.getY()) < tolerance)
+                && (Math.abs(z - other.getZ()) < tolerance);
     }
 
     /**

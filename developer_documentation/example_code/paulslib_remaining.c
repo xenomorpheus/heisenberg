@@ -5,7 +5,7 @@
  Knots "knots", degree "t".
  Ouput curve "outp", "res" of them.
  */
-void SplineCurve(Point3d *inp, int nn, int *knots, int t, Point3d *outp,
+void splineCurve(Point3d *inp, int nn, int *knots, int t, Point3d *outp,
 		int res) {
 	int i;
 	double interval, increment;
@@ -23,7 +23,7 @@ void SplineCurve(Point3d *inp, int nn, int *knots, int t, Point3d *outp,
  Figure out the knots, u[]
  There are n + t + 1 knots
  */
-void SplineKnots(int *u, int n, int t) {
+void splineKnots(int *u, int n, int t) {
 	int j;
 
 	for (j = 0; j <= n + t; j++) {
@@ -246,18 +246,6 @@ Point3d VectorSub(Point3d p1, Point3d p2) {
 	return (p);
 }
 
-/**
- Add two vectors p = p2 + p1
- */
-Point3d VectorAdd(Point3d p1, Point3d p2) {
-	Point3d p;
-
-	p.x = p2.x + p1.x;
-	p.y = p2.y + p1.y;
-	p.z = p2.z + p1.z;
-
-	return (p);
-}
 
 /**
  Return TRUE if two vectors are "equal" else FALSE
@@ -475,7 +463,7 @@ int FindClosest(Point3d p, Point3d *poly, int n, double *dmin, Point3d *pmin) {
 	*dmin = 1e32;
 	kmin = 0;
 	for (k = 0; k < n; k++) {
-		d = VectorLength(poly[k], p);
+		d = length(poly[k], p);
 		if (d < *dmin) {
 			*dmin = d;
 			kmin = k;
@@ -791,10 +779,10 @@ int LineFacet(Point3d p1, Point3d p2, Point3d pa, Point3d pb, Point3d pc,
 	Point3d n, pa1, pa2, pa3;
 
 	/* Make sure the arguments are OK */
-	if (VectorLength(p1, p2) < EPS)
+	if (length(p1, p2) < EPS)
 		return (FALSE);
-	if (VectorLength(pa, pb) < EPS || VectorLength(pb, pc) < EPS
-			|| VectorLength(pc, pa) < EPS)
+	if (length(pa, pb) < EPS || length(pb, pc) < EPS
+			|| length(pc, pa) < EPS)
 		return (FALSE);
 
 	/* Calculate the parameters for the plane */
@@ -3354,7 +3342,7 @@ double PolygonLength(Point3d *p, int np) {
 	double length = 0;
 
 	for (i = 0; i < np - 1; i++)
-		length += VectorLength(p[i], p[i + 1]);
+		length += length(p[i], p[i + 1]);
 
 	return (length);
 }

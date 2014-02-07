@@ -33,7 +33,7 @@ public class ModelStateV1Test {
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d();
         ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
-        Point3d newAgentPosition = new Point3d();
+        Point3d newAgentPosition = new Point3d(0, 0, 1);
         modelState.setAgentPosition(newAgentPosition);
         Point3d gotAgentPosition = modelState.getAgentPosition();
         assertEquals(newAgentPosition, gotAgentPosition);
@@ -56,7 +56,7 @@ public class ModelStateV1Test {
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d();
         ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
-        Point3d newGoalPosition = new Point3d();
+        Point3d newGoalPosition = new Point3d(0, 0, 1);
         modelState.setGoalPosition(newGoalPosition);
         Point3d gotGoalPosition = modelState.getGoalPosition();
         assertEquals(newGoalPosition, gotGoalPosition);

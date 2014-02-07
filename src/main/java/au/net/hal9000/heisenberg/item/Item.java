@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
 
+
 // Persistence
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Column;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
 
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -514,6 +516,146 @@ public abstract class Item implements Serializable {
 
     /* End of Setters and Getters */
     // misc methods
+
+    
+    // Auto generated
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((container == null) ? 0 : container.hashCode());
+        result = prime * result
+                + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + Float.floatToIntBits(hitPoints);
+        result = prime * result
+                + ((iconClosed == null) ? 0 : iconClosed.hashCode());
+        result = prime * result
+                + ((iconLeaf == null) ? 0 : iconLeaf.hashCode());
+        result = prime * result
+                + ((iconOpen == null) ? 0 : iconOpen.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + (int) (jpaId ^ (jpaId >>> 32));
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+        result = prime * result
+                + ((position == null) ? 0 : position.hashCode());
+        result = prime * result
+                + ((properties == null) ? 0 : properties.hashCode());
+        result = prime * result
+                + ((valueBase == null) ? 0 : valueBase.hashCode());
+        result = prime * result + Float.floatToIntBits(volumeBase);
+        result = prime * result + Float.floatToIntBits(weightBase);
+        return result;
+    }
+
+    // Auto generated
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Item other = (Item) obj;
+        if (container == null) {
+            if (other.container != null) {
+                return false;
+            }
+        } else if (!container.equals(other.container)) {
+            return false;
+        }
+        if (description == null) {
+            if (other.description != null) {
+                return false;
+            }
+        } else if (!description.equals(other.description)) {
+            return false;
+        }
+        if (Float.floatToIntBits(hitPoints) != Float
+                .floatToIntBits(other.hitPoints)) {
+            return false;
+        }
+        if (iconClosed == null) {
+            if (other.iconClosed != null) {
+                return false;
+            }
+        } else if (!iconClosed.equals(other.iconClosed)) {
+            return false;
+        }
+        if (iconLeaf == null) {
+            if (other.iconLeaf != null) {
+                return false;
+            }
+        } else if (!iconLeaf.equals(other.iconLeaf)) {
+            return false;
+        }
+        if (iconOpen == null) {
+            if (other.iconOpen != null) {
+                return false;
+            }
+        } else if (!iconOpen.equals(other.iconOpen)) {
+            return false;
+        }
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (jpaId != other.jpaId) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (owner == null) {
+            if (other.owner != null) {
+                return false;
+            }
+        } else if (!owner.equals(other.owner)) {
+            return false;
+        }
+        if (position == null) {
+            if (other.position != null) {
+                return false;
+            }
+        } else if (!position.equals(other.position)) {
+            return false;
+        }
+        if (properties == null) {
+            if (other.properties != null) {
+                return false;
+            }
+        } else if (!properties.equals(other.properties)) {
+            return false;
+        }
+        if (valueBase == null) {
+            if (other.valueBase != null) {
+                return false;
+            }
+        } else if (!valueBase.equals(other.valueBase)) {
+            return false;
+        }
+        if (Float.floatToIntBits(volumeBase) != Float
+                .floatToIntBits(other.volumeBase)) {
+            return false;
+        }
+        if (Float.floatToIntBits(weightBase) != Float
+                .floatToIntBits(other.weightBase)) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Shallow copy properties from one object to another.

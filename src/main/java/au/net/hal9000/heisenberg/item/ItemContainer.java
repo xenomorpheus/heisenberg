@@ -193,6 +193,53 @@ public abstract class ItemContainer extends Item implements Serializable {
         return total;
     }
 
+    // end of setters and getters
+
+    // misc methods
+
+    // Auto generated
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result
+                + ((contents == null) ? 0 : contents.hashCode());
+        result = prime * result + Float.floatToIntBits(volumeMax);
+        result = prime * result + Float.floatToIntBits(weightMax);
+        return result;
+    }
+
+    // Auto generated
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ItemContainer other = (ItemContainer) obj;
+        if (contents == null) {
+            if (other.contents != null) {
+                return false;
+            }
+        } else if (!contents.equals(other.contents)) {
+            return false;
+        }
+        if (Float.floatToIntBits(volumeMax) != Float
+                .floatToIntBits(other.volumeMax)) {
+            return false;
+        }
+        if (Float.floatToIntBits(weightMax) != Float
+                .floatToIntBits(other.weightMax)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Add the Item to the contents.
      * 

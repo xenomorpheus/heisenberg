@@ -188,9 +188,11 @@ public class Currency implements Serializable, Cloneable {
         this.cp += otherCollection.getCp();
     }
 
-    /** transfer all the value of the passed currency object. 
+    /**
+     * transfer all the value of the passed currency object.
      * 
-     * @param fromCollection losing collection.
+     * @param fromCollection
+     *            losing collection.
      */
     public void transfer(Currency fromCollection) {
         this.add(fromCollection);
@@ -221,24 +223,34 @@ public class Currency implements Serializable, Cloneable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        Boolean isEqual = false;
-        if (object instanceof Currency) {
-            final Currency otherCurrency = (Currency) object;
-            normalise();
-            otherCurrency.normalise();
-            isEqual = (pp == otherCurrency.getPp())
-                    && (gp == otherCurrency.getGp())
-                    && (sp == otherCurrency.getSp())
-                    && (cp == otherCurrency.getCp());
-        }
-        return isEqual;
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + cp;
+        result = prime * result + gp;
+        result = prime * result + pp;
+        result = prime * result + sp;
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        // TODO will this work for a non-nomalised Currency object?
-        return ((((pp * COIN_CONVERSION) + gp) * COIN_CONVERSION) + sp) * COIN_CONVERSION + cp;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Currency other = (Currency) obj;
+        if (cp != other.cp)
+            return false;
+        if (gp != other.gp)
+            return false;
+        if (pp != other.pp)
+            return false;
+        if (sp != other.sp)
+            return false;
+        return true;
     }
 
     @Override
@@ -285,7 +297,10 @@ public class Currency implements Serializable, Cloneable {
 
         // Make sure the cloning is deep, not shallow.
         // e.g. set the non-mutable, non-primitives
-
+        clone.pp = pp;
+        clone.gp = gp;
+        clone.sp = sp;
+        clone.cp = cp;
         return clone;
     }
 }

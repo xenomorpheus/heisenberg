@@ -37,5 +37,5 @@ public class Location extends ItemContainer implements Serializable {
     public Location(final String name) {
         super(name);
     }
-
+    
 }

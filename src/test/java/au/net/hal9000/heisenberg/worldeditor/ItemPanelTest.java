@@ -20,8 +20,13 @@ public class ItemPanelTest {
     /** panel height. */
     private static final int PANEL_HEIGHT = 400;
 
+    /**
+     * Test itemTreePanel.
+     * 
+     * @throws ConfigurationError
+     */
     @Test
-    public void iteTreePanel() throws ConfigurationError {
+    public void itemTreePanel() throws ConfigurationError {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);

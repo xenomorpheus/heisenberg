@@ -14,6 +14,12 @@ import java.io.ObjectOutputStream;
 
 import org.junit.Test;
 
+/**
+ * Test for Currentcy class.
+ * 
+ * @author bruins
+ * 
+ */
 public class CurrencyTest {
     /** float comparison tolerance. */
     private static final float TOLERANCE = 0.00001F;
@@ -26,6 +32,9 @@ public class CurrencyTest {
     /** cp test value. */
     private static final int CP = 8;
 
+    /**
+     * Test for constructor without params.
+     */
     @Test
     public void testCoinCollectionConstructorNoParams() {
         Currency cc = new Currency();
@@ -35,6 +44,9 @@ public class CurrencyTest {
         assertEquals("cp", 0, cc.getCp());
     }
 
+    /**
+     * Tests for constructor with params.
+     */
     @Test
     public void testCoinCollectionConstructorWithCoinParams() {
         Currency cc = new Currency(PP, GP, SP, CP);
@@ -44,6 +56,9 @@ public class CurrencyTest {
         assertEquals("cp", CP, cc.getCp());
     }
 
+    /**
+     * Tests for constructor with params.
+     */
     @Test
     public void testCoinCollectionConstructorWithCoinCollection() {
         Currency cc = new Currency(PP, GP, SP, CP);
@@ -54,6 +69,9 @@ public class CurrencyTest {
         assertEquals("cp", CP, cc2.getCp());
     }
 
+    /**
+     * Tests for platinum coin.
+     */
     @Test
     public void testPp() {
         Currency cc = new Currency();
@@ -61,6 +79,9 @@ public class CurrencyTest {
         assertEquals("10pp", 10.0F, cc.getPp(), TOLERANCE);
     }
 
+    /**
+     * Tests for gold coin.
+     */
     @Test
     public void testGp() {
         Currency cc = new Currency();
@@ -68,6 +89,9 @@ public class CurrencyTest {
         assertEquals("10gp", 10.0F, cc.getGp(), TOLERANCE);
     }
 
+    /**
+     * Tests for silver coin.
+     */
     @Test
     public void testSp() {
         Currency cc = new Currency();
@@ -75,6 +99,9 @@ public class CurrencyTest {
         assertEquals("10sp", 10.0F, cc.getSp(), TOLERANCE);
     }
 
+    /**
+     * Tests for copper coin.
+     */
     @Test
     public void testCp() {
         Currency cc = new Currency();
@@ -88,7 +115,9 @@ public class CurrencyTest {
         assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.getGpEquiv(), TOLERANCE);
     }
 
-    // Merging two piles of coins
+    /**
+     * Tests for transfer method.
+     */
     @Test
     public void testTransferCoinCollection() {
         Currency cc = new Currency(PP, GP, SP, CP);
@@ -98,7 +127,9 @@ public class CurrencyTest {
         assertEquals("transfer cc2", 0F, cc2.getGpEquiv(), TOLERANCE);
     }
 
-    // Adding two piles of coins
+    /**
+     * Tests for add method.
+     */
     @Test
     public void testAddCoinCollection() {
         /* test each coin type. */
@@ -109,7 +140,9 @@ public class CurrencyTest {
         assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), TOLERANCE);
     }
 
-    /* test equals. */
+    /**
+     * Tests for equals method.
+     */
     @Test
     public void testEquals() {
         /* test each coin type. */
@@ -121,6 +154,9 @@ public class CurrencyTest {
         assertFalse("not equals", cc.equals(new Currency(PP, GP, SP, CP + 1)));
     }
 
+    /**
+     * Tests of persistence methods.
+     */
     @Test
     public void testPersistence() {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
@@ -152,6 +188,9 @@ public class CurrencyTest {
 
     }
 
+    /**
+     * Tests for clone method.
+     */
     @Test
     public void testClone() {
         Currency original = new Currency();
@@ -188,18 +227,14 @@ public class CurrencyTest {
         // e.g. test the non-mutable, non-primitives
     }
 
+    /**
+     * Tests for hashCode method.
+     */
     @Test
     public void testHashCode() {
-        Currency zero = new Currency(0, 0, 0, 0);
-        assertEquals("zero", zero.hashCode(), 0);
-        Currency cp = new Currency(0, 0, 0, 1);
-        assertEquals("cp", cp.hashCode(), 1);
-        Currency sp = new Currency(0, 0, 1, 0);
-        assertEquals("sp", sp.hashCode(), 10);
-        Currency gp = new Currency(0, 1, 0, 0);
-        assertEquals("gp", gp.hashCode(), 100);
-        Currency pp = new Currency(1, 0, 0, 0);
-        assertEquals("pp", pp.hashCode(), 1000);
+        Currency c1 = new Currency(PP, GP, SP, CP);
+        Currency c2 = new Currency(PP, GP, SP, CP);
+        assertEquals("equals", c1.hashCode(), c2.hashCode());
 
     }
 }
