@@ -1,0 +1,23 @@
+Choose an AI search style
+
+e.g. planning, with memory, etc.
+
+Work out components, e.g. 
+  * model
+    * simplified estimation of real world
+    * concept of knowledge unit
+      * e.g. 
+    * concept of knowledge unit accuracy 
+      * initial accuracy estimate
+      * time last refreshed
+      * accuracy decay rate estimate : float, 0 to 1
+        * e.g. very low value - a wall is unlikely to change possition
+        * e.g. very high value - a running animal is very like to change possition
+
+    * memory (or is this just a synonym for model?)
+  * state evaluation functions
+  * actions
+    * update model
+    * movement
+
+

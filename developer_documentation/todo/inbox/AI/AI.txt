@@ -1,0 +1,88 @@
+Actions driven by an AI search algorithm.
+
+State Evaluation Function for the Model
+
+Start off in learning mode.
+
+Use prediction by evaluating possible future states.
+
+Prediction can't use sensors. 
+Predictions should use theoretical projections of 
+
+Model:
+* Health
+* Memory
+
+Search Algorithm will be based on metrics, that encapsulate needs/desires of Entity.
+Inputs:
+* Perhaps consider the F's - Food, Flight, Fight, Fuck,  - More ?
+* Health
+* Memory
+
+Outputs:
+* Actions
+
+Health:
+* Food %
+* Hydration %
+
+Perhaps have a mechanism that provides a list of actions (and possibly their action points)
+
+Actions:
+* Movement fast/slow
+* Kill (Future)
+* Eat
+* Drink
+* Sensors
+
+Movement
+* Normal
+* Stealth (future)
+* Fast (future)
+** May have more chance of killing at short range
+** Requires more energy
+** More visible
+
+Sensors
+* Sensors will update memory, e.g. likelihood of an item being at a location.
+* Sight
+* Listen
+* (Future) Pain
+
+Sight
+* Narrow Directional
+* Results vary on action points spent.
+** 0 - automatic
+** >0 for detailed
+* Details on area
+** multiple sets of data returned:
+*** reliability indication (e.g. it was foggy or distant)
+*** type of object
+* Loads sets of data into memory.
+** Memories to be tagged with Importance metric
+
+Listen
+* Wide Directional
+* Results vary on action points spent.
+* Details on area
+** multiply sets of data returned:
+*** reliability indication (e.g. it was muffled by wall)
+*** type of object
+* Loads sets of data into memory.
+** Memories to be tagged with Importance metric
+
+
+Memory
+* Initially Entity has no memory.
+* Knowledge will be time stamped.
+* Some kind of model?
+* capacity maximum
+** based on entries, importance, Item class (future) iq/wisdom. 
+* Think of use cases first, then apply design memory store.
+
+Location of Items vs. Time:
+* Probability of an Item being where last seen will drop off over time.
+** Probability map will 'flatten' over time.
+* Living Items can move, so have a greater drop off due to time.
+
+

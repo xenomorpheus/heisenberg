@@ -1,0 +1,10 @@
+Milestone 1
+* Model - Use true Items and properties 
+* Action
+   A movement
+   Others to follow
+* State Evaluation Function - Use distance to target object
+* Successor Function
+    A list of (Action, Cost) pairs.
+
+
