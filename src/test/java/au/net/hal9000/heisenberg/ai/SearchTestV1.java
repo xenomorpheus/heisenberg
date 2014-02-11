@@ -2,9 +2,6 @@ package au.net.hal9000.heisenberg.ai;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Queue;
-import java.util.LinkedList;
-
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Point3d;
@@ -25,7 +22,7 @@ public class SearchTestV1 {
     @Test
     public void test() {
 
-        Queue<Action> expectedPath = new LinkedList<Action>();
+        Path expectedPath = new Path();
         expectedPath.add(SuccessorFunctionV1.NORTH);
         expectedPath.add(SuccessorFunctionV1.NORTH);
         expectedPath.add(SuccessorFunctionV1.EAST);
@@ -46,7 +43,7 @@ public class SearchTestV1 {
 
         // System.out.println("Goal is at position: " + goalPosition);
         // System.out.println("Agent is at position: " + agentPosition);
-        Queue<Action> gotPath = search.findPath(modelState);
+        Path gotPath = search.findPath(modelState);
         assertTrue("path correct", expectedPath.equals(gotPath));
         System.out.println(gotPath);
 

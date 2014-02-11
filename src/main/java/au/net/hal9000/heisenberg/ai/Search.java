@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai;
 
-import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -47,7 +46,7 @@ public class Search {
     public Successor findBestSuccessor(ModelState modelState) {
         Queue<Successor> successors = successorFunction
                 .generateSuccessors(modelState);
-        // TODO handle when no successors from current possition.
+        // TODO handle when no successors from current position.
         // Get first successor off the list.
         Successor bestSuccessor = successors.remove();
         double bestValuationSoFar = modelStateEvaluator.evaluate(bestSuccessor
@@ -72,11 +71,11 @@ public class Search {
      *            current model state.
      * @return list of actions.
      */
-    public Queue<Action> findPath(ModelState modelState) {
+    public Path findPath(ModelState modelState) {
         // double cost = costFunction.calculateCost(modelState,
         // bestSuccessor.getAction(), bestSuccessor.getModelState());
 
-        Queue<Action> path = new LinkedList<Action>();
+        Path path = new Path();
         while (!modelStateEvaluator.atGoal(modelState)) {
             Successor successor = findBestSuccessor(modelState);
             System.out.println(successor);

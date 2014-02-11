@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.Action;
+import au.net.hal9000.heisenberg.ai.ActionAgentMoveV1;
+
 /**
  * 3D ponit in space.
  * 
@@ -97,6 +100,16 @@ public class Point3dTest {
         point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
         assertFalse("false z", point.equals(point2, Point3d.getTolerance()));
         point.setX(Z_TEST);
+    }
+
+    /**
+     * test equals.
+     */
+    @Test
+    public void testEquals() {
+        Action action1 = new ActionAgentMoveV1("label", new Point3d(0, 0, 0));
+        Action action2 = new ActionAgentMoveV1("label", new Point3d(0, 0, 0));
+        assertTrue(action1.equals(action2));
     }
 
 }

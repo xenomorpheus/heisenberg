@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.ai;
 
-import java.util.Arrays;
-
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**

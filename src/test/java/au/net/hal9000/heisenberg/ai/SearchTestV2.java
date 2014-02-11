@@ -14,9 +14,9 @@ import au.net.hal9000.heisenberg.units.Point3d;
  */
 public class SearchTestV2 {
 
-    /** desirect x pos. */
+    /** desired x pos. */
     private static final int X_POS = 3;
-    /** desirect y pos. */
+    /** desired y pos. */
     private static final int Y_POS = 4;
 
     /**
@@ -25,7 +25,7 @@ public class SearchTestV2 {
     @Test
     public void test() {
 
-        Queue<Action> expectedPath = new LinkedList<Action>();
+        Path expectedPath = new Path();
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
@@ -44,7 +44,7 @@ public class SearchTestV2 {
 
         // System.out.println("Goal is at position: " + goalPosition);
         // System.out.println("Agent is at position: " + agentPosition);
-        Queue<Action> gotPath = search.findPath(modelState);
+        Path gotPath = search.findPath(modelState);
         System.out.println("gotPath     : " + gotPath);
         System.out.println("expectedPath: " + expectedPath);
         assertTrue("path correct", expectedPath.equals(gotPath));
