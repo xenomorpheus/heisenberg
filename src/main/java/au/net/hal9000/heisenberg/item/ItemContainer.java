@@ -8,6 +8,7 @@ package au.net.hal9000.heisenberg.item;
 import java.io.Serializable;
 import java.util.Vector;
 
+
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
@@ -197,7 +198,9 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     // misc methods
 
-    // Auto generated
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -209,7 +212,25 @@ public abstract class ItemContainer extends Item implements Serializable {
         return result;
     }
 
-    // Auto generated
+    
+    
+    
+    
+    
+    
+
+    /**
+     * Add the Item to the contents.
+     * 
+     * @param item
+     */
+    public void add(Item item) {
+        add(contents.size(), item);
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -218,7 +239,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         if (!super.equals(obj)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof ItemContainer)) {
             return false;
         }
         ItemContainer other = (ItemContainer) obj;
@@ -238,15 +259,6 @@ public abstract class ItemContainer extends Item implements Serializable {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Add the Item to the contents.
-     * 
-     * @param item
-     */
-    public void add(Item item) {
-        add(contents.size(), item);
     }
 
     /**

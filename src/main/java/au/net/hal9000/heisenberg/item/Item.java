@@ -9,7 +9,6 @@ import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
 
-
 // Persistence
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Column;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -517,14 +515,14 @@ public abstract class Item implements Serializable {
     /* End of Setters and Getters */
     // misc methods
 
-    
-    // Auto generated
+    /** Mostly Auto generated.
+     * Note: container not considered to break loops.
+     * @return hash code.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                + ((container == null) ? 0 : container.hashCode());
         result = prime * result
                 + ((description == null) ? 0 : description.hashCode());
         result = prime * result + Float.floatToIntBits(hitPoints);
@@ -549,7 +547,14 @@ public abstract class Item implements Serializable {
         return result;
     }
 
-    // Auto generated
+    /**
+     * Note field container deliberately not used to break loops.
+     * Mostly auto-generated.
+     * 
+     * @param obj
+     *            object under comparison
+     * @return true if equals.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -562,13 +567,6 @@ public abstract class Item implements Serializable {
             return false;
         }
         Item other = (Item) obj;
-        if (container == null) {
-            if (other.container != null) {
-                return false;
-            }
-        } else if (!container.equals(other.container)) {
-            return false;
-        }
         if (description == null) {
             if (other.description != null) {
                 return false;
@@ -905,5 +903,5 @@ public abstract class Item implements Serializable {
     public double distanceEuclidean(Item other) {
         return position.distance(other.getPosition());
     }
-   
+
 }
