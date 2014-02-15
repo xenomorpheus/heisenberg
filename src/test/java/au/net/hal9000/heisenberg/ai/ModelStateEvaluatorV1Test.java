@@ -7,9 +7,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import au.net.hal9000.heisenberg.item.Cat;
-import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.Rat;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**

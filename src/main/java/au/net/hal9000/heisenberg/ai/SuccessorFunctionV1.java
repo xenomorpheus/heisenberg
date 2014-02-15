@@ -28,15 +28,16 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
     static final ActionAgentMoveV1 WEST = new ActionAgentMoveV1("West",
             new Point3d(-1, 0, 0));
     /** A list of directions that might be possible. */
-    private static final ActionAgentMoveV1[] DIRECTIONS = { NORTH, SOUTH, EAST,
-            WEST };
+    private static final ActionAgentMoveV1[] DIRECTIONS = {NORTH, SOUTH, EAST, WEST };
 
-    /**   a Transition Function.*/
+    /** a Transition Function. */
     private TransitionFunction transitionFunction;
 
     /**
      * Constructor.
-     * @param transtionFunction a Transition Function.
+     * 
+     * @param transtionFunction
+     *            a Transition Function.
      */
     public SuccessorFunctionV1(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;

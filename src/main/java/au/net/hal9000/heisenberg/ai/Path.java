@@ -3,8 +3,6 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.omg.CORBA.StringHolder;
-
 /** AI path of Action objects. */
 public class Path {
 

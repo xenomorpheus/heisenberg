@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Point3d;
 
-public class ActionAgentMoveV1 {
+public class ActionAgentMoveV1Test {
 
     @Test
     public void testEquals() {

@@ -515,8 +515,9 @@ public abstract class Item implements Serializable {
     /* End of Setters and Getters */
     // misc methods
 
-    /** Mostly Auto generated.
-     * Note: container not considered to break loops.
+    /**
+     * Mostly Auto generated. Note: container not considered to break loops.
+     * 
      * @return hash code.
      */
     @Override
@@ -548,8 +549,8 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Note field container deliberately not used to break loops.
-     * Mostly auto-generated.
+     * Note field container deliberately not used to break loops. Mostly
+     * auto-generated.
      * 
      * @param obj
      *            object under comparison
