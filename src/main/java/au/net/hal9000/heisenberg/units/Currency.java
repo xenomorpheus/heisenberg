@@ -235,21 +235,28 @@ public class Currency implements Serializable, Cloneable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Currency other = (Currency) obj;
-        if (cp != other.cp)
+        if (cp != other.cp) {
             return false;
-        if (gp != other.gp)
+        }
+        if (gp != other.gp) {
             return false;
-        if (pp != other.pp)
+        }
+        if (pp != other.pp) {
             return false;
-        if (sp != other.sp)
+        }
+        if (sp != other.sp) {
             return false;
+        }
         return true;
     }
 

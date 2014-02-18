@@ -534,7 +534,7 @@ public abstract class Item implements Serializable {
         result = prime * result
                 + ((iconOpen == null) ? 0 : iconOpen.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + (int) (jpaId ^ (jpaId >>> 32));
+        result = prime * result + (int) (jpaId ^ (jpaId >>> (prime + 1)));
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         result = prime * result

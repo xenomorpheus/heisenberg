@@ -17,8 +17,8 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
  * Item. Note to have contents the Item needs to be a subclass of ItemContainer.
  **/
 class ItemTreeModel implements TreeModel {
-    // We specify the root directory when we create the model.
-    protected Item root;
+    /** We specify the root directory when we create the model.*/
+    private Item root;
 
     // prepare fix issue 1: instantiate the notification support
     private TreeModelSupport support;
@@ -142,13 +142,13 @@ class ItemTreeModel implements TreeModel {
             System.out.println("Node Inserted.");
         }
 
-        @SuppressWarnings("deprecation")
         /**
          * Add a node into our model.
          * @param newNode the new node.
          * @param selNode the location for the new node.
          * @param childCount the index number in the selNode where the newNode is.
          */
+        @SuppressWarnings("deprecation")
         public void insertNodeInto(final Item newNode, final Item selNode,
                 final int childCount) {
             if (selNode instanceof ItemContainer) {
