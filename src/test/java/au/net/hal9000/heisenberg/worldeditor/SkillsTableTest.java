@@ -12,8 +12,17 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ * 
+ * @author bruins
+ *
+ */
 public class SkillsTableTest {
-
+    /** frame width. */
+    static final int FRAME_WIDTH = 800;
+    /** frame height. */
+    static final int FRAME_HEIGHT = 300;
+    
     @Test
     public void doTest() throws ConfigurationError {
 
@@ -45,7 +54,7 @@ public class SkillsTableTest {
                     // make sure the program exits when the frame closes
                     guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     guiFrame.setTitle("Skills Table");
-                    guiFrame.setSize(800, 300);
+                    guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
                     // This will center the JFrame in the middle of the screen
                     guiFrame.setLocationRelativeTo(null);

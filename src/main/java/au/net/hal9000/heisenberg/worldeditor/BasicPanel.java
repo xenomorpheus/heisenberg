@@ -110,9 +110,6 @@ public class BasicPanel extends JPanel {
      * Add components to Basic panel.
      */
     private void addComponents() {
-        Collection<PcClass> pcClassesItr = config.getPcClasses().values();
-        Collection<String> sizes = config.getSizes();
-        Collection<String> genders = config.getGenders();
 
         // create GribBagLayout and the GridBagLayout Constraints
         GridBagLayout gridBag = new GridBagLayout();
@@ -134,8 +131,22 @@ public class BasicPanel extends JPanel {
         cons.ipadx = 0;
 
         this.setLayout(gridBag);
+        row0(gridBag, cons);
+        row1(gridBag, cons);
+        row2(gridBag, cons);
+        row3(gridBag, cons);
+        row4(gridBag, cons);
+    }
 
-        int row = 0;
+    /**
+     * A row of the UI.
+     * @param gridBag the gridBag layout.
+     * @param cons cell constraints.
+     */
+    private void row0(GridBagLayout gridBag, GridBagConstraints cons) {
+        Collection<PcClass> pcClassesItr = config.getPcClasses().values();
+
+        final int row = 0;
         int pos = 0;
         // Name
         JLabel nameLbl = new JLabel("Name");
@@ -177,9 +188,18 @@ public class BasicPanel extends JPanel {
         cons.gridwidth = 1;
         pos += cons.gridwidth;
 
+    }
+
+    /**
+     * A row of the UI.
+     * @param gridBag the gridBag layout.
+     * @param cons cell constraints.
+     */
+    private void row1(GridBagLayout gridBag, GridBagConstraints cons) {
+
         // Row 1
-        row = 1;
-        pos = 0;
+        final int row = 1;
+        int pos = 0;
 
         // Description
         JLabel descriptionLbl = new JLabel("Description");
@@ -220,9 +240,18 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
         cons.gridwidth = 1;
 
+    }
+
+    /**
+     * A row of the UI.
+     * @param gridBag the gridBag layout.
+     * @param cons cell constraints.
+     */
+    private void row2(GridBagLayout gridBag, GridBagConstraints cons) {
+
         // Row 2
-        row = 2;
-        pos = 0;
+        final int row = 2;
+        int pos = 0;
 
         // Com
         JLabel comLbl = new JLabel("Com");
@@ -292,9 +321,18 @@ public class BasicPanel extends JPanel {
         this.add(genTextField);
         pos += cons.gridwidth;
 
+    }
+
+    /**
+     * A row of the UI.
+     * @param gridBag the gridBag layout.
+     * @param cons cell constraints.
+     */
+    private void row3(GridBagLayout gridBag, GridBagConstraints cons) {
+
         // Row 3
-        row = 3;
-        pos = 0;
+        final int row = 3;
+        int pos = 0;
         // Level
         JLabel levelLbl = new JLabel("Level");
         cons.gridx = pos;
@@ -367,10 +405,21 @@ public class BasicPanel extends JPanel {
         gridBag.setConstraints(manaTextField, cons);
         this.add(manaTextField);
         pos += cons.gridwidth;
+    }
+
+    /**
+     * A row of the UI.
+     * @param gridBag the gridBag layout.
+     * @param cons cell constraints.
+     */
+    private void row4(GridBagLayout gridBag, GridBagConstraints cons) {
 
         // Row 4
-        row = 4;
-        pos = 0;
+        Collection<String> sizes = config.getSizes();
+        Collection<String> genders = config.getGenders();
+
+        final int row = 4;
+        int pos = 0;
 
         // Size
         JLabel sizeLbl = new JLabel("Size");

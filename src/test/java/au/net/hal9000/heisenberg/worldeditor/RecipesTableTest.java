@@ -11,8 +11,23 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ * Unit tests for RecipesTable.
+ * 
+ * @author bruins
+ * 
+ */
 public class RecipesTableTest {
+    /** frame width. */
+    static final int FRAME_WIDTH = 800;
+    /** frame height. */
+    static final int FRAME_HEIGHT = 300;
 
+    /**
+     * 
+     * @throws ConfigurationError
+     *             if bad config.
+     */
     @Test
     public void testRecipesTable() throws ConfigurationError {
         PcRace pc = DummyData.elf();
@@ -21,6 +36,9 @@ public class RecipesTableTest {
         assertNotNull("BasicPanel not null", basicPanel);
     }
 
+    /**
+     * Test getRowCount.
+     */
     @Test
     public void testGetRowCount() {
 
@@ -28,6 +46,11 @@ public class RecipesTableTest {
         assertEquals(0, recipesTable.getRowCount());
     }
 
+    /**
+     * 
+     * @throws ConfigurationError
+     *             if bad config.
+     */
     public void doTest() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
@@ -36,7 +59,7 @@ public class RecipesTableTest {
         // make sure the program exits when the frame closes
         guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         guiFrame.setTitle("Skills Table");
-        guiFrame.setSize(800, 300);
+        guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
         // This will center the JFrame in the middle of the screen
         guiFrame.setLocationRelativeTo(null);
@@ -50,6 +73,11 @@ public class RecipesTableTest {
 
     }
 
+    /**
+     * 
+     * @param args
+     *            command line args, but not used.
+     */
     public static void main(String[] args) {
 
         // Use the event dispatch thread for Swing components

@@ -8,8 +8,11 @@ package au.net.hal9000.heisenberg.util;
  */
 public class Dice {
 
-    /** default number of sides on a dice. */
-    private static final int SIDES_DEFAULT  = 6;
+    
+    /** 6 sided die. */
+    static final int D6 = 6;
+    /** 20 sided die. */
+    static final int D20 = 20;
     
     /** constructor. */
     public Dice() {
@@ -22,7 +25,7 @@ public class Dice {
      * @return the value rolled on the dice.
      */
     public int roll() {
-        return roll(1, SIDES_DEFAULT);
+        return roll(1, D6);
     }
 
     /**
