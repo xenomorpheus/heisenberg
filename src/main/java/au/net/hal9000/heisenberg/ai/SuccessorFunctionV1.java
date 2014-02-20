@@ -36,7 +36,7 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
     /**
      * Constructor.
      * 
-     * @param transtionFunction
+     * @param transitionFunction
      *            a Transition Function.
      */
     public SuccessorFunctionV1(TransitionFunction transitionFunction) {
