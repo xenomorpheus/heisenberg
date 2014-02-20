@@ -74,8 +74,8 @@ public class BagOfHoldingTest {
                     FLOAT_TOLERANCE);
             assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
                     2F, FLOAT_TOLERANCE);
-            assertTrue("type=" + type + ", cost",
-                    boh.getValueBase().equals(expectedCost));
+            assertTrue("type=" + type + ", cost",expectedCost.equals(boh.getValueBase())
+                    );
             // Should look like an ordinary bag :-)
             assertEquals("type=" + type + ", description",
                     boh.getDescription(), ordinaryBag.getDescription());
@@ -90,6 +90,9 @@ public class BagOfHoldingTest {
 
     }
 
+    /**
+     * testing that the BoH is magical.
+     */
     @Test
     public void testMagical() {
         BagOfHolding bag = new BagOfHolding(1);
@@ -102,6 +105,9 @@ public class BagOfHoldingTest {
         assertTrue("is ExtraDimensional", bag instanceof ExtraDimensional);
     }
 
+    /** 
+     * testing that an ordinary Item may be added to the bag.
+     */
     @Test
     public void testAdd() {
         Cookie cookie = new Cookie();
@@ -111,8 +117,10 @@ public class BagOfHoldingTest {
         assertEquals("cookie location", bag, cookie.getContainer());
     }
 
-    // sharp exposed object causes rupture.
-    @Test
+    /**
+     * an exposed sharp object causes rupture.
+     */
+    @Test(expected = ExceptionInvalidType.class)
     public void testAddSharp() {
         Sword sword = new Sword();
         Human human = new Human();
@@ -121,15 +129,15 @@ public class BagOfHoldingTest {
         try {
             bag.add(sword);
         } catch (ExceptionInvalidType e) {
-            ;
-        } catch (Exception e) {
-            fail("wasn't epecting this exception.");
+            // The Exception we want
+            assertEquals("cookie location", human, sword.getContainer());
+            throw e;
         }
-
-        assertEquals("cookie location", human, sword.getContainer());
     }
 
-    // add a wrapped sword to a bag of holding.
+    /**
+     * a covered sharp object may be added.
+     */
     @Test
     public void testAddWrappedSharp() {
         Human human = new Human();
@@ -151,7 +159,10 @@ public class BagOfHoldingTest {
         assertEquals("scabard location", bag, scabbard.getContainer());
     }
 
-    @Test
+    /**
+     * an extra-dimensional object causes rupture.
+     */
+    @Test(expected = ExceptionInvalidType.class)
     public void testAddMultidimensional() {
         Human human = new Human();
         BagOfHolding bagInner = new BagOfHolding(1);
@@ -159,11 +170,10 @@ public class BagOfHoldingTest {
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(bagInner);
-            fail("expecting exception");
         } catch (ExceptionInvalidType e) {
-            ;// nothing to do.
+            assertEquals("cookie location", human, bagInner.getContainer());
+            throw e;
         }
-        assertEquals("cookie location", human, bagInner.getContainer());
     }
 
 }
