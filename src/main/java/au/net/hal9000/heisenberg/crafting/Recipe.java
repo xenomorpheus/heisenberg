@@ -315,31 +315,44 @@ public class Recipe {
      */
     public String details() {
         StringBuilder string = new StringBuilder();
-        string.append("Id: " + id + "\nDescription: " + description
-                + "\nProcess: " + process + "\nMana:" + mana
-                + "\nAction Point(s):" + actionPoints + "\n");
+        string.append("Id: " + id );
+        string.append(System.lineSeparator());
+        string.append("Description: " + description);
+        string.append(System.lineSeparator());
+        string.append("Process: " + process);
+        string.append(System.lineSeparator());
+        string.append("Mana:" + mana);
+        string.append(System.lineSeparator());
+        string.append("Action Point(s):" + actionPoints);
+        string.append(System.lineSeparator());
 
         if (skills != null) {
             int index = 0;
-            string.append("Skill(s):\n");
+            string.append("Skill(s):");
+            string.append(System.lineSeparator());
             for (Iterator<Skill> itr = skills.iterator(); itr.hasNext();) {
-                string.append("  " + index + ": " + itr.next().toString()
-                        + "\n");
+                string.append("  " + index + ": " + itr.next());
+                string.append(System.lineSeparator());
                 index++;
             }
         }
         if (requirements != null) {
-            string.append("Requirement(s):\n");
+            string.append("Requirement(s):");
+            string.append(System.lineSeparator());
             for (Requirement requirement : requirements) {
                 string.append("  " + requirement.getId() + ": "
-                        + requirement.getDescription() + "\n");
+                        + requirement.getDescription());
+                string.append(System.lineSeparator());
             }
         }
         if (products != null) {
-            string.append("Product(s):\n");
+            string.append("Product(s):");
+            string.append(System.lineSeparator());
             for (Product product : products) {
                 string.append("  " + product.getId() + ": "
-                        + product.getDescription() + "\n");
+                        + product.getDescription());
+                string.append(System.lineSeparator());
+
             }
         }
         return string.toString();

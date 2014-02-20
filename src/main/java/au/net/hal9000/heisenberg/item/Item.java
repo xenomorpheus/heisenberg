@@ -757,33 +757,44 @@ public abstract class Item implements Serializable {
 
         temp = this.getName();
         if (temp != null) {
-            text.append("Name: " + temp + "\n");
+            text.append("Name: " + temp);
+            text.append(System.lineSeparator());
+
         }
-        text.append("Class: " + getSimpleClassName() + "\n");
+        text.append("Class: " + getSimpleClassName());
+        text.append(System.lineSeparator());
+
         temp = this.getDescription();
         if ((temp != null) && (temp.length() > 0)) {
-            text.append("Description: " + temp + "\n");
+            text.append("Description: " + temp);
+            text.append(System.lineSeparator());
         }
-        text.append("Weight Base: " + this.getWeightBase() + "\n"
-                + "Volume Base: " + this.getVolumeBase() + "\n");
+        text.append("Weight Base: " + this.getWeightBase());
+        text.append(System.lineSeparator());
+        text.append("Volume Base: " + this.getVolumeBase());
+        text.append(System.lineSeparator());
 
         Currency valueBase = this.getValueBase();
         if (valueBase != null) {
-            text.append("Value Base: " + valueBase + "\n");
+            text.append("Value Base: " + valueBase);
+            text.append(System.lineSeparator());
         }
         ItemContainer container = this.getContainer();
         if (container != null) {
-            text.append("Container: " + container.getName() + "\n");
+            text.append("Container: " + container.getName());
+            text.append(System.lineSeparator());
         }
         Point3d position = this.getPosition();
         if (position != null) {
-            text.append("Position: " + position + "\n");
+            text.append("Position: " + position);
+            text.append(System.lineSeparator());
         }
         if (properties != null && !properties.isEmpty()) {
-            text.append("Properties:\n");
+            text.append("Properties:");
+            text.append(System.lineSeparator());
             for (Entry<Object, Object> entry : properties.entrySet()) {
-                text.append(" " + entry.getKey() + ": " + entry.getValue()
-                        + "\n");
+                text.append(" " + entry.getKey() + ": " + entry.getValue());
+                text.append(System.lineSeparator());
             }
         }
         return text.toString();

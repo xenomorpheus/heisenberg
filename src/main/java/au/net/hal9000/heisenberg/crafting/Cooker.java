@@ -189,9 +189,11 @@ public class Cooker extends ItemContainer {
         int manaRequired = recipe.getMana();
         if (manaRequired > 0) {
             if (chef == null) {
-                string.append("No chef set to supply mana\n");
+                string.append("No chef set to supply mana");
+                string.append(System.lineSeparator());
             } else if (manaRequired > chef.getMana()) {
-                string.append("Not enough mana\n");
+                string.append("Not enough mana");
+                string.append(System.lineSeparator());
             }
         }
 
@@ -199,9 +201,12 @@ public class Cooker extends ItemContainer {
         int actionPointsRequired = recipe.getActionPoints();
         if (actionPointsRequired > 0) {
             if (chef == null) {
-                string.append("No chef set to supply action points\n");
+                string.append("No chef set to supply action points");
+                string.append(System.lineSeparator());
             } else if (actionPointsRequired > chef.getActionPoints()) {
-                string.append("Not enough action points\n");
+                string.append("Not enough action points");
+                string.append(System.lineSeparator());
+
             }
         }
 
@@ -209,11 +214,13 @@ public class Cooker extends ItemContainer {
         Set<Skill> required = recipe.getSkills();
         if ((required != null) && (required.size() > 0)) {
             if (chef == null) {
-                string.append("No chef to supply skills\n");
+                string.append("No chef to supply skills");
+                string.append(System.lineSeparator());
             } else {
                 Set<Skill> chefSkills = chef.getSkills();
                 if ((chefSkills == null) || (!chefSkills.containsAll(required))) {
-                    string.append("Missing Skills\n");
+                    string.append("Missing Skills");
+                    string.append(System.lineSeparator());
                 }
             }
         }
@@ -254,8 +261,11 @@ public class Cooker extends ItemContainer {
         }
         // Not enough Requirement Items.
         if (requirementCount > ingredients.size()) {
-            errors.append("Too few ingredients " + requirementCount + " vs "
-                    + ingredients.size() + "\n");
+            errors.append("Too few ingredients ");
+            errors.append(requirementCount);
+            errors.append(" vs ");
+            errors.append(ingredients.size());
+            errors.append(System.lineSeparator());
         }
         List<Requirement> requirements = recipe.getRequirements();
         for (int index = 0; index < requirements.size(); index++) {
@@ -269,7 +279,9 @@ public class Cooker extends ItemContainer {
                     String reason = requirementItem.meetsRequirements(item);
                     if (reason != null) {
                         errors.append("Missing/bad ingredient index " + index
-                                + " because " + reason + "\n");
+                                + " because " + reason);
+                        errors.append(System.lineSeparator());
+
                     }
                 }
             }

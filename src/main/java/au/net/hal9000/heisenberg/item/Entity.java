@@ -261,31 +261,38 @@ public abstract class Entity extends ItemContainer {
         // Only add properties in this class.
 
         if (actionPoints != 0) {
-            text.append("Action Points: " + actionPoints + "\n");
+            text.append("Action Points: " + actionPoints);
+            text.append(System.lineSeparator());
+
         }
         if (gender != null) {
-            text.append("Gender: " + gender + "\n");
+            text.append("Gender: " + gender);
+            text.append(System.lineSeparator());
         }
         if (mana != 0) {
-            text.append("Mana: " + mana + "\n");
+            text.append("Mana: " + mana);
+            text.append(System.lineSeparator());
         }
 
         if (size != null) {
-            text.append("Size: " + size + "\n");
+            text.append("Size: " + size);
+            text.append(System.lineSeparator());
         }
 
         Set<Skill> skills = getSkills();
         if (skills != null && !skills.isEmpty()) {
             text.append("Skills:\n");
             for (Skill skill : skills) {
-                text.append("  " + skill + "\n");
+                text.append("  " + skill);
+                text.append(System.lineSeparator());
             }
         }
         Set<String> recipes = getRecipes();
         if (recipes != null && !recipes.isEmpty()) {
             text.append("Recipes:\n");
             for (String recipeId : recipes) {
-                text.append("  " + recipeId + "\n");
+                text.append("  " + recipeId);
+                text.append(System.lineSeparator());
             }
         }
         return text.toString();
