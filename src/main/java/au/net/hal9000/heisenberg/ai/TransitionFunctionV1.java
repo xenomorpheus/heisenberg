@@ -27,7 +27,7 @@ public class TransitionFunctionV1 implements TransitionFunction {
         // Apply the action
         Point3d agentPosition = newModelState.getAgentPosition();
         agentPosition.applyDelta(actionAgentMove.getDelta());
-        return (ModelState) newModelState;
+        return newModelState;
     }
 
 }
