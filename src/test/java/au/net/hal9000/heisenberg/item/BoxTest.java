@@ -1,18 +1,20 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Box;
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.Sword;
-
+/**
+ * Test Box class.
+ * 
+ * @author bruins
+ * 
+ */
 public class BoxTest {
 
-    // Normal item into box.
-    // item's location changes to box
+    /**
+     * Normal item into box.
+     */
     @Test
     public void testAddOrdinary() {
         Location world = new Location("World");
@@ -25,6 +27,7 @@ public class BoxTest {
         box.add(cookie);
         box.add(sword);
 
+        // item's location changes to box
         assertEquals("cookie location", box, cookie.getContainer());
         assertEquals("sword location", box, sword.getContainer());
     }

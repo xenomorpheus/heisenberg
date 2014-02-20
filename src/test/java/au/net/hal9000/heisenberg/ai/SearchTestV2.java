@@ -1,10 +1,5 @@
 package au.net.hal9000.heisenberg.ai;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.Queue;
-import java.util.LinkedList;
-
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Point3d;

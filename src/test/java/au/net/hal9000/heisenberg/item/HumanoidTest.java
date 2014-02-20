@@ -1,9 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import au.net.hal9000.heisenberg.item.Human;
 
 public class HumanoidTest {
     private static final float WITHIN_MARGIN = 0.00009F;
@@ -40,6 +39,9 @@ public class HumanoidTest {
 
     }
 
+    /**
+     * getRace should return Human.
+     */
     @Test
     public void testGetRace() {
         Human human = new Human();

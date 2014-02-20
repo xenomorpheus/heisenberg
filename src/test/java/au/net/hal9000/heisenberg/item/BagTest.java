@@ -1,19 +1,16 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Bag;
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.Sword;
-import au.net.hal9000.heisenberg.item.exception.*;
+import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
 
 public class BagTest {
 
-    // Normal item into bag.
-    // item's location changes to bag
+    /**
+     *  Normal item into bag.
+     */
     @Test
     public void testAddOrdinary() {
         Location world = new Location("World");
@@ -22,12 +19,14 @@ public class BagTest {
         cookie.setContainer(world);
         Bag bag = new Bag();
         bag.add(cookie);
+        // item's location changes to bag
         assertEquals("cookie location", bag, cookie.getContainer());
     }
 
-    // Sharp items throw ExceptionInvalidType
-    // Item's location remains unchanged.
-    @Test
+    /**
+     * Sharp items throw ExceptionInvalidType.
+     */
+    @Test(expected = ExceptionInvalidType.class)
     public void testAddSharpRupture() {
         Sword sword = new Sword();
         Location world = new Location("World");
@@ -35,15 +34,11 @@ public class BagTest {
         Bag bag = new Bag();
         try {
             bag.add(sword);
-            fail("Expecting invalid type");
         } catch (ExceptionInvalidType e) {
-            // nothing to do
-        } catch (ExceptionTooHeavy e) {
-            fail("too heavy");
-        } catch (ExceptionTooBig e) {
-            fail("too big");
+            // Item's location remains unchanged.
+            assertEquals("cookie location", world, sword.getContainer());
+            throw e;
         }
-        assertEquals("cookie location", world, sword.getContainer());
     }
 
 }

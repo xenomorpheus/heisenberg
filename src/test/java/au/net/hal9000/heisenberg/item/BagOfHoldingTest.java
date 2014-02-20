@@ -2,15 +2,10 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
-import au.net.hal9000.heisenberg.item.exception.ExceptionTooBig;
-import au.net.hal9000.heisenberg.item.exception.ExceptionTooHeavy;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
@@ -74,8 +69,8 @@ public class BagOfHoldingTest {
                     FLOAT_TOLERANCE);
             assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(),
                     2F, FLOAT_TOLERANCE);
-            assertTrue("type=" + type + ", cost",expectedCost.equals(boh.getValueBase())
-                    );
+            assertTrue("type=" + type + ", cost",
+                    expectedCost.equals(boh.getValueBase()));
             // Should look like an ordinary bag :-)
             assertEquals("type=" + type + ", description",
                     boh.getDescription(), ordinaryBag.getDescription());
@@ -99,13 +94,7 @@ public class BagOfHoldingTest {
         assertTrue("Magical", ItemProperty.isMagical(bag));
     }
 
-    @Test
-    public void testExtraDimensional() {
-        BagOfHolding bag = new BagOfHolding(1);
-        assertTrue("is ExtraDimensional", bag instanceof ExtraDimensional);
-    }
-
-    /** 
+    /**
      * testing that an ordinary Item may be added to the bag.
      */
     @Test

@@ -1,13 +1,16 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Vector;
+
 import org.junit.Test;
 
 // Custom
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Human;
-import au.net.hal9000.heisenberg.units.*;
+import au.net.hal9000.heisenberg.units.Currency;
+import au.net.hal9000.heisenberg.units.Point3d;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;

@@ -196,7 +196,7 @@ public class CurrencyTest {
         Currency original = new Currency();
         Currency clone = null;
         try {
-            clone = (Currency) original.clone();
+            clone = original.clone();
         } catch (CloneNotSupportedException e) {
             fail(e.toString());
         }
