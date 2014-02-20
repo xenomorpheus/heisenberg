@@ -1,77 +1,119 @@
 package au.net.hal9000.heisenberg.util;
 
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ * unit tests for AbilityScore class.
+ * 
+ * @author bruins
+ * 
+ */
 public class AbilityScoreTest {
+    /** test number for base value. */
+    private static final int BASE = 3;
+    /** test number for mod value. */
+    private static final int MODIFIER = 5;
 
+    /**
+     * test constructor with value/mod int pair.
+     */
     @Test
-    public void testAbilityScore() {
-        AbilityScore abilityScore = new AbilityScore("test", 3, 5);
+    public void testAbilityScoreStringIntInt() {
+        AbilityScore abilityScore = new AbilityScore("test", BASE, MODIFIER);
         assertEquals("test", abilityScore.getName());
-        assertEquals(3, abilityScore.getValue());
-        assertEquals(5, abilityScore.getMod());
+        assertEquals(BASE, abilityScore.getValue());
+        assertEquals(MODIFIER, abilityScore.getMod());
     }
 
+    /**
+     * test constructor with string for value.
+     */
     @Test
-    public void testAbilityScoreStringString1() {
+    public void testAbilityScoreStringInt() {
 
-        AbilityScore abilityScore = new AbilityScore("test", "123");
+        AbilityScore abilityScore = new AbilityScore("test", "" + BASE);
         assertEquals("test", abilityScore.getName());
-        assertEquals(123, abilityScore.getValue());
+        assertEquals(BASE, abilityScore.getValue());
         assertEquals(0, abilityScore.getMod());
     }
 
+    /**
+     * test constructor with string for value/mod pair.
+     */
     @Test
     public void testAbilityScoreStringString2() {
-        AbilityScore abilityScore = new AbilityScore("test", "2/23");
+        AbilityScore abilityScore = new AbilityScore("test", BASE + "/"
+                + MODIFIER);
         assertEquals("test", abilityScore.getName());
-        assertEquals(2, abilityScore.getValue());
-        assertEquals(23, abilityScore.getMod());
+        assertEquals(BASE, abilityScore.getValue());
+        assertEquals(MODIFIER, abilityScore.getMod());
     }
 
+    /**
+     * test constructor with string for value/mod pair, with mod having plus
+     * prefix.
+     */
     @Test
     public void testAbilityScoreStringString3() {
-        AbilityScore abilityScore = new AbilityScore("test", "2/+3");
+        AbilityScore abilityScore = new AbilityScore("test", BASE + "/+"
+                + MODIFIER);
         assertEquals("test", abilityScore.getName());
-        assertEquals(2, abilityScore.getValue());
-        assertEquals(3, abilityScore.getMod());
+        assertEquals(BASE, abilityScore.getValue());
+        assertEquals(MODIFIER, abilityScore.getMod());
     }
 
+    /**
+     * test constructor with string for value/mod pair, with value and mod
+     * having plus prefix.
+     */
     @Test
     public void testAbilityScoreStringString4() {
-        AbilityScore abilityScore = new AbilityScore("test", "+2/+3");
+        AbilityScore abilityScore = new AbilityScore("test", "+" + BASE + "/+"
+                + MODIFIER);
         assertEquals("test", abilityScore.getName());
-        assertEquals(2, abilityScore.getValue());
-        assertEquals(3, abilityScore.getMod());
+        assertEquals(BASE, abilityScore.getValue());
+        assertEquals(MODIFIER, abilityScore.getMod());
     }
 
+    /**
+     * test constructor with string for value/mod pair, with mod having minus
+     * prefix.
+     */
     @Test
     public void testAbilityScoreStringString5() {
-        AbilityScore abilityScore = new AbilityScore("test asdf", "10/-3");
+        AbilityScore abilityScore = new AbilityScore("test asdf", BASE + "/-"
+                + MODIFIER);
         assertEquals("test asdf", abilityScore.getName());
-        assertEquals(10, abilityScore.getValue());
-        assertEquals(-3, abilityScore.getMod());
+        assertEquals(BASE, abilityScore.getValue());
+        assertEquals(-1 * MODIFIER, abilityScore.getMod());
     }
 
-    @Test
-    public void testValueOptionalMod() {
-        AbilityScore abilityScore = new AbilityScore("test", 2, 3);
-        assertEquals("2/+3", abilityScore.valueOptionalMod());
-        abilityScore.setMod(0);
-        assertEquals("2", abilityScore.valueOptionalMod());
-        abilityScore.setMod(-4);
-        assertEquals("2/-4", abilityScore.valueOptionalMod());
-    }
-
+    /**
+     * test string generation with +/-/0 modifier.
+     */
     @Test
     public void testToString() {
-        AbilityScore abilityScore = new AbilityScore("test", 2, 3);
-        assertEquals("test: 2/+3", abilityScore.toString());
+        AbilityScore abilityScore = new AbilityScore("test", BASE, MODIFIER);
+        assertEquals("test: " + BASE + "/+" + MODIFIER, abilityScore.toString());
         abilityScore.setMod(0);
-        assertEquals("test: 2", abilityScore.toString());
+        assertEquals("test: " + BASE, abilityScore.toString());
+        abilityScore.setMod(-1 * MODIFIER);
+        assertEquals("test: " + BASE + "/-" + MODIFIER, abilityScore.toString());
     }
 
+    /**
+     * test value string with +/-/0 modifier.
+     */
+    @Test
+    public void testValueOptionalMod() {
+        AbilityScore abilityScore = new AbilityScore("test", BASE, MODIFIER);
+        assertEquals(BASE + "/+" + MODIFIER, abilityScore.valueOptionalMod());
+        abilityScore.setMod(0);
+        assertEquals(BASE + "", abilityScore.valueOptionalMod());
+        abilityScore.setMod(-1 * MODIFIER);
+        assertEquals(BASE + "/-" + MODIFIER, abilityScore.valueOptionalMod());
+
+    }
 }
