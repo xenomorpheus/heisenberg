@@ -5,9 +5,9 @@ import au.net.hal9000.heisenberg.units.Point3d;
 public class ActionAgentMoveV1 implements Action {
 
     /** human understandable label. */
-    private String label;
+    private final String label;
     /** amount of movement. */
-    private Point3d delta;
+    private final Point3d delta;
 
     /**
      * Constructor.
@@ -69,7 +69,7 @@ public class ActionAgentMoveV1 implements Action {
         if (!(obj instanceof ActionAgentMoveV1)) {
             return false;
         }
-        ActionAgentMoveV1 other = (ActionAgentMoveV1) obj;
+        final ActionAgentMoveV1 other = (ActionAgentMoveV1) obj;
         if (delta == null) {
             if (other.delta != null) {
                 return false;

@@ -281,7 +281,8 @@ public abstract class Entity extends ItemContainer {
 
         Set<Skill> skills = getSkills();
         if (skills != null && !skills.isEmpty()) {
-            text.append("Skills:\n");
+            text.append("Skills:");
+            text.append(System.lineSeparator());
             for (Skill skill : skills) {
                 text.append("  " + skill);
                 text.append(System.lineSeparator());
@@ -289,7 +290,8 @@ public abstract class Entity extends ItemContainer {
         }
         Set<String> recipes = getRecipes();
         if (recipes != null && !recipes.isEmpty()) {
-            text.append("Recipes:\n");
+            text.append("Recipes:");
+            text.append(System.lineSeparator());
             for (String recipeId : recipes) {
                 text.append("  " + recipeId);
                 text.append(System.lineSeparator());

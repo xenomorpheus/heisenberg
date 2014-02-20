@@ -61,9 +61,13 @@ public abstract class PcRace extends Entity {
 
     /**
      * Give me a PC that is a {@link PcClass} (e.g. Warrior).
-     * @param name common name (e.g. Jo Smith) of the PcRace.
-     * @param description appearance.
-     * @param pcClass the profession {@link PcClass} (e.g. Warrior).
+     * 
+     * @param name
+     *            common name (e.g. Jo Smith) of the PcRace.
+     * @param description
+     *            appearance.
+     * @param pcClass
+     *            the profession {@link PcClass} (e.g. Warrior).
      */
     public PcRace(String name, String description, PcClass pcClass) {
         this(name, description);
@@ -278,8 +282,8 @@ public abstract class PcRace extends Entity {
                 abilityScores.put(key, abilityScore);
             }
             abilityScoresRecalculate();
-        } 
-        
+        }
+
     }
 
     /**
@@ -341,21 +345,35 @@ public abstract class PcRace extends Entity {
 
         String race = getRace();
 
-        text.append("Level: " + level + "\nRace: " + race + "\n");
+        text.append("Level: " + level);
+        text.append(System.lineSeparator());
+        text.append("Race: " + race);
+        text.append(System.lineSeparator());
 
         if (pcClass != null) {
-            text.append("Class: " + pcClass.getId() + "\n");
+            text.append("Class: " + pcClass.getId());
+            text.append(System.lineSeparator());
         }
 
-        text.append("Combat Dice: D" + combatDice + "\nMagic Dice: D"
-                + magicDice + "\nStealth Dice: D" + stealthDice
-                + "\nGeneral Dice: D" + generalDice + "\nHealth: " + health
-                + "\nEncumbrance: " + encumbrance + "\n");
+        text.append("Combat Dice: D" + combatDice);
+        text.append(System.lineSeparator());
+        text.append("Magic Dice: D" + magicDice);
+        text.append(System.lineSeparator());
+        text.append("Stealth Dice: D" + stealthDice);
+        text.append(System.lineSeparator());
+        text.append("General Dice: D" + generalDice);
+        text.append(System.lineSeparator());
+        text.append("Health: " + health);
+        text.append(System.lineSeparator());
+        text.append("Encumbrance: " + encumbrance);
+        text.append(System.lineSeparator());
 
         if (abilityScores != null) {
-            text.append("Abilities:\n");
+            text.append("Abilities:");
+            text.append(System.lineSeparator());
             for (AbilityScore abilityScore : abilityScores.values()) {
-                text.append("  " + abilityScore + "\n");
+                text.append("  " + abilityScore);
+                text.append(System.lineSeparator());
             }
         }
         return text.toString();

@@ -60,7 +60,7 @@ public class CurrencyTest {
      * Tests for constructor with params.
      */
     @Test
-    public void testCoinCollectionConstructorWithCoinCollection() {
+    public void testCoinCollectionConstructorWithCC() {
         Currency cc = new Currency(PP, GP, SP, CP);
         Currency cc2 = new Currency(cc);
         assertEquals("pp", PP, cc2.getPp());

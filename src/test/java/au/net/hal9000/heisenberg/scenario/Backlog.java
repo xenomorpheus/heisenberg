@@ -14,7 +14,7 @@ public class Backlog {
     // Scenario 01
     @Test
     public void characterMountsHorse() {
-        println("\n** A character mounts a horse.");
+        println(System.lineSeparator()+"** A character mounts a horse.");
         // Halfling hobbit = new Halfling();
         // Horse horse = new Horse();
         // TODO hobbit.setMount(horse);
@@ -23,7 +23,7 @@ public class Backlog {
     // Scenario 01
     @Test
     public void characterPutsOnCloak() {
-        println("\n** A character puts on a cloak.");
+        println(System.lineSeparator()+"** A character puts on a cloak.");
         Human human = new Human();
         println("Human created with name: " + human);
         Cloak cloak = new Cloak();

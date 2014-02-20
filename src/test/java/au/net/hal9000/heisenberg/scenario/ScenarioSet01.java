@@ -33,7 +33,7 @@ public class ScenarioSet01 {
 
     @Test
     public void swordIntoScabbard() {
-        println("\n** A sword is placed in a scabbard.");
+        println(System.lineSeparator() + "** A sword is placed in a scabbard.");
         Sword sword = new Sword();
         println("Sword created with name: " + sword);
         Scabbard scabbard = new Scabbard();
@@ -49,7 +49,8 @@ public class ScenarioSet01 {
 
     @Test
     public void fullBackpackIntoBox() {
-        println("\n** A full backpack is placed in a box.");
+        println(System.lineSeparator()
+                + "** A full backpack is placed in a box.");
         Backpack backpack = new Backpack();
         println("Backpack created with name: " + backpack);
         Box box = new Box();
@@ -62,7 +63,7 @@ public class ScenarioSet01 {
 
     @Test
     public void crossbowIsLoaded() {
-        println("\n** A crossbow is loaded.");
+        println(System.lineSeparator() + "** A crossbow is loaded.");
         Crossbow crossbow = new Crossbow();
         println("Crossbow created with name: " + crossbow);
         CrossbowBolt bolt = new CrossbowBolt();
@@ -78,20 +79,22 @@ public class ScenarioSet01 {
 
     @Test
     public void torchIsLit() {
-        println("\n** A torch is lit.");
+        println(System.lineSeparator() + "** A torch is lit.");
         Torch torch = new Torch();
-        println("Torch description:\n" + torch.getDescription());
+        println("Torch description:" + System.lineSeparator() + ""
+                + torch.getDescription());
         println("Light the torch.");
         FlintAndTinder flintAndTinder = new FlintAndTinder();
         assertFalse("torch unlit", torch.isLit());
         torch.lightWith(flintAndTinder);
         assertTrue("torch unlit", torch.isLit());
-        println("Torch description:\n" + torch.getDescription());
+        println("Torch description:" + System.lineSeparator() + ""
+                + torch.getDescription());
     }
 
     @Test
     public void shieldAdd() {
-        println("\n** A Shield is equipped.");
+        println(System.lineSeparator() + "** A Shield is equipped.");
         Shield shield = new Shield();
         Human human = new Human();
         println("Equip the shield.");
@@ -105,7 +108,7 @@ public class ScenarioSet01 {
 
     @Test
     public void quiverIsFilled() {
-        println("\n** A quiver is filled.");
+        println(System.lineSeparator() + "** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");
         println("TODO - set quiver size");
@@ -131,16 +134,18 @@ public class ScenarioSet01 {
     // TODO candle runs out
     @Test
     public void candleRunsOut() {
-        println("\n** A candle runs out.");
+        println(System.lineSeparator() + "** A candle runs out.");
         Candle candle = new Candle();
-        println("Candle description:\n" + candle.getDescription());
+        println("Candle description:" + System.lineSeparator() + ""
+                + candle.getDescription());
         // TODO candle.run_out();
-        println("Torch description:\n" + candle.getDescription());
+        println("Torch description:" + System.lineSeparator() + ""
+                + candle.getDescription());
     }
 
     @Test
     public void hobbitEatsACookie() {
-        println("\n** A hobbit eats a cookie.");
+        println(System.lineSeparator() + "** A hobbit eats a cookie.");
         Halfling halfling = new Halfling();
         Cookie cookie = new Cookie();
         try {

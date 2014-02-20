@@ -47,10 +47,10 @@ public class PersistenceTest {
             long jpaId = item.getJpaId();
             assertNotEquals(0L, jpaId);
 
-            Query q = em.createQuery("select c from " + itemClass
+            Query query = em.createQuery("select c from " + itemClass
                     + " c where c.jpaId = " + jpaId);
 
-            Object resultList = q.getResultList();
+            Object resultList = query.getResultList();
             // http://stackoverflow.com/questions/262367/type-safety-unchecked-cast
             @SuppressWarnings("unchecked")
             List<Item> itemList = (List<Item>) resultList;

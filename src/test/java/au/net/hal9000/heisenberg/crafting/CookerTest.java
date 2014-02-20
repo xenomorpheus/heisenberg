@@ -392,7 +392,7 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough mana\n", cooker.cook());
+        assertEquals("cook works", "Not enough mana"+ System.lineSeparator(), cooker.cook());
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", 2, chef.getMana());
@@ -489,7 +489,7 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough action points\n", cooker.cook());
+        assertEquals("cook works", "Not enough action points"+ System.lineSeparator(), cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());

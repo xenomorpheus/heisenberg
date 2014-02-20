@@ -271,22 +271,54 @@ public class PcClass implements Comparable<PcClass> {
      * @return Plain text description of the object
      */
     public String getDetailedDescription() {
-        String string = "Id: " + id + "\nCombat Dice: D" + combatDice
-                + "\nMagic Dice: D" + magicDice + "\nStealth Dice: D"
-                + stealthDice + "\nGeneral Dice: D" + generalDice
-                + "\nAction Points: " + actionPoints + "\nhealth: " + health
-                + "\nmana: " + mana + "\nraceAllow: " + raceAllow
-                + "\ngenderAllow: " + genderAllow + "\nsizeAllow:" + sizeAllow
-                + "\nencumbrance: " + encumbrance + "\n";
+        StringBuilder text = new StringBuilder("Id: ");
+        text.append(id);
+        text.append(System.lineSeparator());
+        text.append("Combat Dice: D");
+        text.append(combatDice);
+        text.append(System.lineSeparator());
+        text.append("Magic Dice: D");
+        text.append(magicDice);
+        text.append(System.lineSeparator());
+        text.append("Stealth Dice: D");
+        text.append(stealthDice);
+        text.append(System.lineSeparator());
+        text.append("General Dice: D");
+        text.append(generalDice);
+        text.append(System.lineSeparator());
+        text.append("Action Points: ");
+        text.append(actionPoints);
+        text.append(System.lineSeparator());
+        text.append("health: ");
+        text.append(health);
+        text.append(System.lineSeparator());
+        text.append("mana: ");
+        text.append(mana);
+        text.append(System.lineSeparator());
+        text.append("raceAllow: ");
+        text.append(raceAllow);
+        text.append(System.lineSeparator());
+        text.append("genderAllow: ");
+        text.append(genderAllow);
+        text.append(System.lineSeparator());
+        text.append("sizeAllow:");
+        text.append(sizeAllow);
+        text.append(System.lineSeparator());
+        text.append("encumbrance: ");
+        text.append(encumbrance);
+        text.append(System.lineSeparator());
 
         if (abilityScores != null) {
-            string += "Abilities:\n";
+            text.append("Abilities:");
+            text.append(System.lineSeparator());
             Iterator<AbilityScore> itr = abilityScores.values().iterator();
             while (itr.hasNext()) {
-                string += "  " + itr.next().toString() + "\n";
+                text.append("  ");
+                text.append(itr.next());
+                text.append(System.lineSeparator());
             }
         }
-        return string;
+        return text.toString();
     }
 
     /** {@inheritDoc} */
