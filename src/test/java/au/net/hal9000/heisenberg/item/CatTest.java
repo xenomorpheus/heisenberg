@@ -63,7 +63,7 @@ public class CatTest {
         water.setWeightBase(1);
         dungeon.add(water);
         cat.setActionPoints(2);
-        assertEquals("Drink should return null", null,cat.drink( water));
+        assertEquals("Drink should return null", null, cat.drink(water));
         float hydrationAfter = ItemProperty.getHydration(cat);
         // Hydration increases after drinking water
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);
