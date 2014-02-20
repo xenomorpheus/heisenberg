@@ -350,7 +350,7 @@ public abstract class Item implements Serializable {
      *            set the owner of this item
      */
     public void setOwner(Item owner) {
-        this.owner = (Item) owner;
+        this.owner = owner;
     }
 
     /**
@@ -686,7 +686,7 @@ public abstract class Item implements Serializable {
         // TODO - Help Required - How do I delete an object that
         // may be referenced by other objects?
         // Perhaps listeners on the containers?
-        ItemContainer container = (ItemContainer) this.getContainer();
+        ItemContainer container = this.getContainer();
         if (container != null) {
             container.remove(this);
         }
