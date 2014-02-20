@@ -253,7 +253,10 @@ public class Point3d implements Serializable, Cloneable {
     /**
      * Calculate the blending value for the spline recursively. If the numerator
      * and denominator are 0 the result is 0.
-     * 
+     * @param k
+     * @param t
+     * @param u
+     * @param v 
      * @return bending value for the spline.
      */
     public static double splineBlend(int k, int t, int[] u, double v) {

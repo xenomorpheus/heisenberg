@@ -168,7 +168,7 @@ public class Recipe {
     // getters and setters
     // id
     /**
-     * Get the ID
+     * Get the ID.
      * 
      * @return The short identifier for this Recipe.
      */

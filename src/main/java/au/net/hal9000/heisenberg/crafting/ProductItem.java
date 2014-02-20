@@ -12,12 +12,12 @@ public class ProductItem extends Product {
     private String type;
 
     /**
-     * the weightBase of the new Item
+     * the weightBase of the new Item.
      */
     private float weightBase;
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            Any meaningful name for this requirement. Typically the short
@@ -35,7 +35,7 @@ public class ProductItem extends Product {
     }
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            the short name of the product item class.

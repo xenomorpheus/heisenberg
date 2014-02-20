@@ -35,7 +35,7 @@ public class RequirementItem extends Requirement {
     private float weightMin = 0;
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            the short name of the required item class.
@@ -46,7 +46,7 @@ public class RequirementItem extends Requirement {
     }
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            the short name of the required item class.
@@ -56,7 +56,7 @@ public class RequirementItem extends Requirement {
     }
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            the short name of the required item class.
@@ -109,7 +109,8 @@ public class RequirementItem extends Requirement {
     public final String getDescription() {
         StringBuilder string = new StringBuilder();
         string.append(super.getDescription());
-        string.append(", item type " + itemType);
+        string.append(", item type ");
+        string.append(itemType);
         if (weightMin > 0) {
             string.append(", weighing at least " + weightMin);
         }

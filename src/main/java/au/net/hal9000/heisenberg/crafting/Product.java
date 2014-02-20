@@ -48,8 +48,8 @@ public abstract class Product {
     }
 
     /**
-     * 
-     * @param cooker
+     * Does this cooker meet the requirements?
+     * @param cooker the cooker being evaluated.
      * @return the reason why this cooker can't build this product. Null if the
      *         cooker can build this product.
      */

@@ -20,7 +20,7 @@ public class ProductEntityProperty extends Product {
     private float propertyDelta;
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param id
      *            the short name of the required item class.

@@ -39,7 +39,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     // Getters and Setters
     /**
-     * Get the contents
+     * Get the contents.
      * 
      * @return the contents
      */
@@ -48,9 +48,9 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
-     * Set the contents
+     * Set the contents.
      * 
-     * @param contents
+     * @param contents the new contents of this container.
      */
     public void setContents(Vector<Item> contents) {
         this.contents = contents;
@@ -146,7 +146,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Used for tree display etc. <br>
      * 0-based index, -1 for missing.
      * 
-     * @param child
+     * @param child item to locate.
      * @return the index of the child item.
      */
     public int getIndexOfChild(final Item child) {
@@ -265,9 +265,9 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Add the Item to the contents.
      * 
      * @deprecated use transfer. add() is only for testing.
-     * @param index
-     * @param item
-     * @deprecated use transfer instead
+     * @param index index position to add at.
+     * @param item item to add.
+     * @deprecated use transfer instead.
      */
     public void add(int index, Item item) {
         ItemContainer itemCurrentContainer = item.getContainer();
@@ -333,7 +333,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Add multiple items to the contents.
      * 
-     * @param items
+     * @param items the items to add.
      */
     public void add(Vector<Item> items) {
         for (Item item : items) {
@@ -362,7 +362,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
-     * Empty the bag into this location
+     * Empty the bag into this location.
      * 
      * @param newLocation
      */

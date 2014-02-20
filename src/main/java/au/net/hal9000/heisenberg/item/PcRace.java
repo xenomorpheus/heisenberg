@@ -61,10 +61,13 @@ public abstract class PcRace extends Entity {
 
     /**
      * Give me a PC that is a {@link PcClass} (e.g. Warrior).
+     * @param name common name (e.g. Jo Smith) of the PcRace.
+     * @param description appearance.
+     * @param pcClass the profession {@link PcClass} (e.g. Warrior).
      */
-    public PcRace(String name, String description, PcClass pPcClass) {
+    public PcRace(String name, String description, PcClass pcClass) {
         this(name, description);
-        pcClass = pPcClass;
+        this.pcClass = pcClass;
         init();
     }
 
@@ -247,7 +250,7 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-     * Warning: will reset all abilityScore objects
+     * Warning: will reset all abilityScore objects.
      */
     private void setBasicsFromPcClass() {
         // dice

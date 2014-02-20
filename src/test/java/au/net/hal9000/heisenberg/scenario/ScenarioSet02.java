@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.item.property.Sharp;
 public class ScenarioSet02 {
 
     /**
-     * Example of making an existing sword Magical
+     * Example of making an existing sword Magical.
      */
     @Test
     public void makeMagical() {

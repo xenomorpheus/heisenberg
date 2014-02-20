@@ -22,6 +22,7 @@ public class PcRaceEditorTest {
 
     /**
      * Launch the application.
+     * @param command line args.
      */
     public static void main(String[] args) {
 

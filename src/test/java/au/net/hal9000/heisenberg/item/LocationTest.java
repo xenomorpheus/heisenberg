@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.Vector;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Location;
-
 public class LocationTest {
 
     @Test

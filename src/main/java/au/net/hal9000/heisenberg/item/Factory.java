@@ -36,7 +36,7 @@ public final class Factory {
      * 
      * @param type
      *            the type of Item to create.
-     * @param arguments
+     * @param arguments parameters to constructor.
      * @return the new Item.
      */
     public static Item createItem(String type, Object[] arguments) {

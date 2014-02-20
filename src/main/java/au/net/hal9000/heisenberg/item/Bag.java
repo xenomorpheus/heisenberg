@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.item.property.Sharp;
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Bag extends Box {
 
-    /** serial version */
+    /** serial version. */
     private static final long serialVersionUID = 1L;
 
     /** maximum default weight this bag can hold. */

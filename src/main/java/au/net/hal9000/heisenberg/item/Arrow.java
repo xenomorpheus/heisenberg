@@ -16,15 +16,24 @@ public class Arrow extends Item implements Sharp {
     private static final long serialVersionUID = 1L;
     private static final float VOLUME_BASE = 1; // TODO arrow volume default
 
-    // Constructor
+    /**
+     * Constructor.
+     * 
+     */
     public Arrow() {
         super("Arrow");
         this.setVolumeBase(VOLUME_BASE);
     }
 
-    public Arrow(final String pString) {
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            common name.
+     */
+    public Arrow(final String name) {
         this();
-        this.setName(pString);
+        this.setName(name);
     }
 
 }

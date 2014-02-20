@@ -319,7 +319,7 @@ public class CookerTest {
     }
 
     /**
-     * Test setting the chef
+     * Test setting the chef.
      */
     @Test
     public void testSetChef() {
@@ -530,7 +530,7 @@ public class CookerTest {
     }
 
     /**
-     * ID: test-skills-1 <BR>
+     * ID: test-skills-1. <BR>
      * Desc: Skill test, just enough <BR>
      * Equal skills to requirements <BR>
      * overall: true <BR>
@@ -568,7 +568,7 @@ public class CookerTest {
     }
 
     /**
-     * ID: test-skills-2 <BR>
+     * ID: test-skills-2. <BR>
      * Desc: Less skills than required <BR>
      * overall: fail <BR>
      * output: no other change <BR>
@@ -607,7 +607,7 @@ public class CookerTest {
     }
 
     /**
-     * ID: test-skills-3 <BR>
+     * ID: test-skills-3. <BR>
      * Desc: More skills than required <BR>
      * overall: true <BR>
      * output: no other change <BR>

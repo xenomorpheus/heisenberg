@@ -19,9 +19,9 @@ public class FactoryTest {
         config = new Configuration("src/test/resources/config.xml");
     }
 
-    private static void testBagOfHolding(BagOfHolding item) {
-        assertTrue("instanceof Item", item instanceof Item);
-        assertEquals("simple class", "BagOfHolding", item.getClass()
+    private static void testBagOfHolding(Object object) {
+        assertTrue("instanceof Item", object instanceof Item);
+        assertEquals("simple class", "BagOfHolding", object.getClass()
                 .getSimpleName());
     }
 
@@ -56,7 +56,7 @@ public class FactoryTest {
     }
 
     /**
-     * Create Item objects and test the instanceof
+     * Create Item objects and test the instanceof.
      */
     @Test
     public void createItemTestInstance() {

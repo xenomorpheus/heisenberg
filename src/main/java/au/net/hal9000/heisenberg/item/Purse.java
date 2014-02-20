@@ -14,12 +14,12 @@ public class Purse extends Item {
 
     private static final long serialVersionUID = 1L;
     // TODO put in config
-    /** conversion of coin count to weight units */
+    /** conversion of coin count to weight units. */
     public static final float COINS_TO_WEIGHT = 0.1f;
     // TODO give value and put in config
-    /** conversion of coin count to volume units */
+    /** conversion of coin count to volume units. */
     public static final float COINS_TO_VOLUME = 0.01f;
-    /** holder for currency */
+    /** holder for currency. */
     private Currency coins;
 
     public Purse(final String pString, Currency coins) {
@@ -36,7 +36,9 @@ public class Purse extends Item {
 
     /**
      * Constructor.
+     * 
      * @param coins
+     *            coin object to place in the Purse.
      */
     public Purse(Currency coins) {
         this("Purse", coins);
@@ -44,6 +46,7 @@ public class Purse extends Item {
 
     /**
      * Constructor.
+     * 
      * @param pString
      */
     public Purse(final String pString) {

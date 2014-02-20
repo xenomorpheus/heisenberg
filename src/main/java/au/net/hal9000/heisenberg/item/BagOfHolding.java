@@ -75,10 +75,10 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     /** type I value. */
     static final int TYPE_IV_VALUE_GP = 10000;
 
-    /** serial version */
+    /** serial version. */
     private static final long serialVersionUID = 1L;
 
-    /** Bag type I-IV */
+    /** Bag type I-IV. */
     private int type;
 
     /**

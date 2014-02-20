@@ -137,6 +137,11 @@ public class AbilityScore implements Comparable<AbilityScore> {
         return string;
     }
 
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return name + ": " + valueOptionalMod();
     }

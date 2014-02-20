@@ -10,15 +10,15 @@ public class SpriteSheetConfiguration {
      * 
      */
     private String id;
-    /** the filename of the sprite sheet, relative the the resourse root **/
+    /** the filename of the sprite sheet, relative the resource root. **/
     private String filename;
-    /** the width of a single icon within the sprite sheet **/
+    /** the width of a single icon within the sprite sheet. **/
     private int width;
-    /** the height of a single icon within the sprite sheet **/
+    /** the height of a single icon within the sprite sheet. **/
     private int height;
-    /** the number of rows of icons in the sprite sheet **/
+    /** the number of rows of icons in the sprite sheet. **/
     private int rows;
-    /** the number of columns of icons in the sprite sheet **/
+    /** the number of columns of icons in the sprite sheet. **/
     private int columns;
 
     public SpriteSheetConfiguration() {

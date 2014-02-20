@@ -20,7 +20,7 @@ public class RecipesTable extends JTable {
     /** column names. */
     private static final String[] COLUMN_NAMES = {"Id", "Description" };
 
-    /** Constructor */
+    /** Constructor. */
     RecipesTable() {
         super();
     }

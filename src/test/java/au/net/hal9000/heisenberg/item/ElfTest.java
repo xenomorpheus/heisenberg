@@ -10,7 +10,7 @@ public class ElfTest {
     @Test
     public void testInstanceof() {
 
-        Elf elf = new Elf();
+        Object elf = new Elf();
         assertTrue("is Elf", elf instanceof Elf);
         assertTrue("is Humanoid", elf instanceof Humanoid);
         assertTrue("is Entity", elf instanceof Entity);

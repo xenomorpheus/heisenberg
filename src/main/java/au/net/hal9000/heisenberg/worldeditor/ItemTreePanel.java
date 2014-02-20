@@ -31,7 +31,12 @@ public class ItemTreePanel extends JPanel {
     /** Choose the character class. */
     private JComboBox itemClassesList = null;
 
-    /** Constructor. */
+    /** 
+     * Constructor. 
+     * 
+     * @param config configuration to use for building the selection boxes.
+     * @param location the location to display.
+     */
     public ItemTreePanel(Configuration config, Location location) {
 
         setRoot(location);

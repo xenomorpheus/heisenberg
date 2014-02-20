@@ -57,7 +57,7 @@ public class SpritePack {
     }
 
     /**
-     * get one buffered image from the sprite pack
+     * get one buffered image from the sprite pack.
      * 
      * @param number
      *            the position in the sprite pack, starting at zero for top

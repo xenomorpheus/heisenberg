@@ -12,7 +12,7 @@ package au.net.hal9000.heisenberg.units;
 
 public class KeywordDetail implements Comparable<KeywordDetail> {
     /**
-     * the id
+     * the id.
      */
     private String id;
     /**

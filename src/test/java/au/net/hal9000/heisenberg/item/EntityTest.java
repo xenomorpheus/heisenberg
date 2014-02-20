@@ -70,7 +70,7 @@ public class EntityTest {
 
     @Test
     public void testInstanceof() {
-        Cat cat = new Cat();
+        Item cat = new Cat();
         assertTrue("is Entity", cat instanceof Entity);
         assertTrue("is Living", ItemProperty.isLiving(cat));
     }

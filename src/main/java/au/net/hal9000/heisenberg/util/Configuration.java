@@ -314,7 +314,7 @@ public class Configuration {
     }
 
     /**
-     * Read in an XML list of Recipe Product Items<br>
+     * Read in an XML list of Recipe Product Items.<br>
      * 
      * @param entries
      *            XML list of Item details.
@@ -341,7 +341,7 @@ public class Configuration {
     }
 
     /**
-     * Read in an XML list of Recipe Product Entity Properties<br>
+     * Read in an XML list of Recipe Product Entity Properties.<br>
      * 
      * @param entries
      *            XML list of Property details.
@@ -507,7 +507,7 @@ public class Configuration {
     /**
      * Read one PcClass object from an XML element.
      * 
-     * @param element
+     * @param element XML element.
      * @return a PcClass object.
      */
     private static PcClass xmlToPcClass(Element element) {
@@ -634,7 +634,7 @@ public class Configuration {
     // misc
 
     /**
-     * Get the Recipe object with this recipeId
+     * Get the Recipe object with this recipeId.
      * 
      * @param recipeId
      *            the id of the Recipe
