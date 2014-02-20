@@ -75,12 +75,6 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     /** type I value. */
     static final int TYPE_IV_VALUE_GP = 10000;
 
-    
-    
-
-
-
-
     /** serial version */
     private static final long serialVersionUID = 1L;
 
@@ -133,7 +127,6 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         if ((type < TYPE_I) || (type > TYPE_IV)) {
             throw new IllegalArgumentException("invalid type=" + type);
         }
-
 
         this.type = type;
         if (type == TYPE_I) {
