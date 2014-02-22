@@ -101,35 +101,35 @@ public class Recipe {
     /**
      * The identifier for this recipe.
      */
-    private String id;
+    private final String id;
     /**
      * The amount of actionPoints required for this recipe.
      */
-    private int actionPoints;
+    private final int actionPoints;
     /**
      * Describe the recipe in terms a game player understands.
      */
-    private String description;
+    private final String description;
     /**
      * The amount of Mana required for this recipe.
      */
-    private int mana;
+    private final int mana;
     /**
      * The name given to the subroutine.
      */
-    private String process;
+    private final String process;
     /**
      * What the recipe produces.
      */
-    private List<Product> products;
+    private final List<Product> products;
     /**
      * The total items required for this recipe.
      */
-    private List<Requirement> requirements;
+    private final List<Requirement> requirements;
     /**
      * The {@link Skill} objects required.
      */
-    private Set<Skill> skills;
+    private final Set<Skill> skills;
 
     /**
      * 

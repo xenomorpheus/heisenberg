@@ -7,8 +7,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionCantRemove;
-import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.CantRemoveException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemSearch;
@@ -169,7 +169,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     public Item getItem(Item item, ItemContainer newLocation) {
         Vector<Item> items = this.getContents();
         if (!items.removeElement(item)) {
-            throw new ExceptionCantRemove("remove failed");
+            throw new CantRemoveException("remove failed");
         }
         item.setContainer(newLocation);
         return item;
@@ -224,7 +224,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
         item.accept(search);
         if (search.getMatchingItemsCount() > 0) {
             this.rupture();
-            throw new ExceptionInvalidType("ExtraDimensional");
+            throw new InvalidTypeException("ExtraDimensional");
         }
         // TODO Do sharp objects cause a ED rupture?
 

@@ -5,7 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionCantWear;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 @Entity
@@ -34,10 +34,10 @@ public class Scabbard extends Box {
         // Currently there are no plans to allow low volume items
         // such a coins to be added instead of a sword.
         if (!(item instanceof Sword)) {
-            throw new ExceptionCantWear("non sword");
+            throw new CantWearException("non sword");
         }
         if (getChildCount() > 0) {
-            throw new ExceptionCantWear("scabbard full");
+            throw new CantWearException("scabbard full");
         }
         super.add(item);
     }

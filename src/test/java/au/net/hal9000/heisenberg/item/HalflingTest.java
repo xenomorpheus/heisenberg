@@ -10,10 +10,8 @@ public class HalflingTest {
 
     @Test
     public void testInstanceof() {
-
-        Halfling halfling = new Halfling();
-        assertTrue("is Halfling", halfling instanceof Halfling);
-        assertTrue("is Halflingoid", halfling instanceof Halfling);
+        Object halfling = new Halfling();
+        assertTrue("is Humanoid", halfling instanceof Humanoid);
         assertTrue("is Entity", halfling instanceof Entity);
         assertTrue("is item", halfling instanceof Item);
     }

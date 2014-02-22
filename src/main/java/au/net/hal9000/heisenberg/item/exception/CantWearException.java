@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.item.exception;
 
-public final class ExceptionCantWear extends RuntimeException {
+public final class CantWearException extends RuntimeException {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
-    public ExceptionCantWear(String string) {
+    public CantWearException(String string) {
         super(string);
     }
 }

@@ -7,6 +7,7 @@ package au.net.hal9000.heisenberg.ai;
  */
 public interface Action {
 
+    /** {@inheritDoc} */
     @Override
     String toString();
 

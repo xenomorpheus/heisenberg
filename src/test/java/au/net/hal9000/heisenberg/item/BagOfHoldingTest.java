@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
@@ -108,7 +108,7 @@ public class BagOfHoldingTest {
     /**
      * an exposed sharp object causes rupture.
      */
-    @Test(expected = ExceptionInvalidType.class)
+    @Test(expected = InvalidTypeException.class)
     public void testAddSharp() {
         Sword sword = new Sword();
         Human human = new Human();
@@ -116,7 +116,7 @@ public class BagOfHoldingTest {
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(sword);
-        } catch (ExceptionInvalidType e) {
+        } catch (InvalidTypeException e) {
             // The Exception we want
             assertEquals("cookie location", human, sword.getContainer());
             throw e;
@@ -150,7 +150,7 @@ public class BagOfHoldingTest {
     /**
      * an extra-dimensional object causes rupture.
      */
-    @Test(expected = ExceptionInvalidType.class)
+    @Test(expected = InvalidTypeException.class)
     public void testAddMultidimensional() {
         Human human = new Human();
         BagOfHolding bagInner = new BagOfHolding(1);
@@ -158,7 +158,7 @@ public class BagOfHoldingTest {
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(bagInner);
-        } catch (ExceptionInvalidType e) {
+        } catch (InvalidTypeException e) {
             assertEquals("cookie location", human, bagInner.getContainer());
             throw e;
         }

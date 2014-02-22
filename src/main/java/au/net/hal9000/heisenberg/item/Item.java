@@ -822,6 +822,7 @@ public abstract class Item implements Serializable {
         ObjectOutputStream out = new ObjectOutputStream(fos);
         out.writeObject(this);
         out.close();
+        fos.close();
     }
 
     // TODO thawFormFile

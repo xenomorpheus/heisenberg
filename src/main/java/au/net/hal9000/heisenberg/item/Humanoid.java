@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.PcClass;
 
@@ -61,11 +61,11 @@ public abstract class Humanoid extends PcRace {
      * Eat an item.
      * 
      * @param pFood food Item to eat.
-     * @throws ExceptionInvalidType
+     * @throws InvalidTypeException
      */
     public void eat(Item pFood) {
         if (!ItemProperty.isHumanoidFood(pFood)) {
-            throw new ExceptionInvalidType(this.getName() + " can't eat "
+            throw new InvalidTypeException(this.getName() + " can't eat "
                     + pFood.getName());
         }
         pFood.beNot();
@@ -76,11 +76,11 @@ public abstract class Humanoid extends PcRace {
      * 
      * @param item
      *            clothing Item to wear.
-     * @throws ExceptionInvalidType
+     * @throws InvalidTypeException
      */
     public void add(Item item) {
         if (!ItemProperty.isClothing(item)) {
-            throw new ExceptionInvalidType(this.getName() + " can't wear "
+            throw new InvalidTypeException(this.getName() + " can't wear "
                     + item.getName());
         }
         super.add(item);

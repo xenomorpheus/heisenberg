@@ -9,7 +9,7 @@ public class HumanTest {
 	@Test
 	public void testInstanceof() {
 
-		Human human = new Human();
+		Object human = new Human();
 		assertTrue("is Human", human instanceof Human);
 		assertTrue("is Humanoid", human instanceof Human);
 		assertTrue("is Entity", human instanceof Entity);

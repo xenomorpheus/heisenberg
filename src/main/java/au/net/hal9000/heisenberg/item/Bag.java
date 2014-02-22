@@ -5,7 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
 @Entity
@@ -55,7 +55,7 @@ public class Bag extends Box {
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {
             this.rupture();
-            throw new ExceptionInvalidType("Sharp");
+            throw new InvalidTypeException("Sharp");
         }
         super.add(item);
     }

@@ -1,11 +1,10 @@
 package au.net.hal9000.heisenberg.item.exception;
 
-public final class ExceptionTooHeavy extends RuntimeException {
+public final class CantRemoveException extends RuntimeException {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
-    public ExceptionTooHeavy(String string) {
+    public CantRemoveException(String string) {
         super(string);
     }
-
 }

@@ -63,7 +63,7 @@ public class Path {
         if (!(obj instanceof Path)) {
             return false;
         }
-        Path other = (Path) obj;
+        final Path other = (Path) obj;
         if (queue == null) {
             if (other.queue != null) {
                 return false;

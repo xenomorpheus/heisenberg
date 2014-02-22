@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.exception.ExceptionInvalidType;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
 public class BagTest {
 
@@ -26,7 +26,7 @@ public class BagTest {
     /**
      * Sharp items throw ExceptionInvalidType.
      */
-    @Test(expected = ExceptionInvalidType.class)
+    @Test(expected = InvalidTypeException.class)
     public void testAddSharpRupture() {
         Sword sword = new Sword();
         Location world = new Location("World");
@@ -34,7 +34,7 @@ public class BagTest {
         Bag bag = new Bag();
         try {
             bag.add(sword);
-        } catch (ExceptionInvalidType e) {
+        } catch (InvalidTypeException e) {
             // Item's location remains unchanged.
             assertEquals("cookie location", world, sword.getContainer());
             throw e;

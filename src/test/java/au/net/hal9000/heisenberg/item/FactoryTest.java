@@ -32,7 +32,7 @@ public class FactoryTest {
     public void createItemsAll() {
         Vector<String> classes = config.getItemClassIds();
         for (String type : classes) {
-            Item item = Factory.createItem(type);
+            Object item = Factory.createItem(type);
             assertTrue("instanceof Item", item instanceof Item);
             assertEquals("simple class", type, item.getClass().getSimpleName());
 

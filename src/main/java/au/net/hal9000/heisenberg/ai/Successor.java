@@ -34,6 +34,7 @@ public class Successor {
         return modelState;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "[action=" + action + ", modelStage=" + modelState + "]";

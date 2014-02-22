@@ -23,7 +23,7 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
-import au.net.hal9000.heisenberg.item.exception.ExceptionCantWear;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 
 public class ScenarioSet01 {
 
@@ -41,7 +41,7 @@ public class ScenarioSet01 {
         try {
             scabbard.add(sword);
             println("Sword now in scabbard.");
-        } catch (ExceptionCantWear e) {
+        } catch (CantWearException e) {
             fail("Could not sheath the sword.");
         }
         println("Sword location: " + sword.getContainer());

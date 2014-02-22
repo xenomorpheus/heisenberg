@@ -40,6 +40,7 @@ public final class ItemThawFromFile {
         ObjectOutputStream out = new ObjectOutputStream(fos);
         out.writeObject(item);
         out.close();
+        fos.close();
     }
 
     /**
@@ -56,6 +57,7 @@ public final class ItemThawFromFile {
         ObjectInputStream in = new ObjectInputStream(fis);
         Cookie newObj = (Cookie) in.readObject();
         in.close();
+        fis.close();
         return newObj;
     }
 
@@ -66,6 +68,7 @@ public final class ItemThawFromFile {
         ObjectInputStream in = new ObjectInputStream(fis);
         Wood newObj = (Wood) in.readObject();
         in.close();
+        fis.close();
         return newObj;
     }
 
