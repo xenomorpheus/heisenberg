@@ -8,6 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.exception.CantRemoveException;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -25,6 +26,8 @@ import au.net.hal9000.heisenberg.units.Currency;
  Type III   | 35 lb.     | 1,000 lb.             | 150 cu. ft.           | 7,400 gp
  Type IV    | 60 lb.     | 1,500 lb.             | 250 cu. ft.           |10,000 gp
 
+ */
+/**
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -164,9 +167,12 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      *            the item to relocate
      * @param newLocation
      *            new location
+     * 
      * @return the relocated item
+     * @throws CantRemoveException
      */
-    public Item getItem(Item item, ItemContainer newLocation) {
+    public Item getItem(Item item, ItemContainer newLocation)
+            throws CantRemoveException {
         Vector<Item> items = this.getContents();
         if (!items.removeElement(item)) {
             throw new CantRemoveException("remove failed");
@@ -178,6 +184,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     /**
      * Contents don't add to weight for a BoH. Magic.
      * 
+     * 
      * @return the total weight.
      */
     @Override
@@ -188,6 +195,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     /**
      * Contents don't add to volume for a BoH. Magic.
      * 
+     * 
      * @return the total volume.
      */
     @Override
@@ -197,6 +205,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
     /**
      * BOH Type I,II,III or IV.
+     * 
      * 
      * @return the type I-IV
      */
@@ -216,8 +225,10 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * @param item
      *            item to add.
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
-    public void add(Item item) {
+    public void add(Item item) throws InvalidTypeException, CantWearException {
 
         // Recursively check for ExtraDimensional items.
         ItemSearch search = new ItemSearchExtraDimensional();

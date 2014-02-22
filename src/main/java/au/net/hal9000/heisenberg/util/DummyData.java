@@ -25,12 +25,15 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
 /**
  * Utility class for building test Item objects.
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public final class DummyData {
     /** test skills. */
@@ -45,7 +48,9 @@ public final class DummyData {
     private DummyData() {
     }
 
-    /** return the config. */
+    /** return the config. * @return Configuration
+     * @throws ConfigurationError
+     */
     public static Configuration config() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
@@ -53,6 +58,11 @@ public final class DummyData {
 
     }
 
+    /**
+     * Method elf.
+     * @return PcRace
+     * @throws ConfigurationError
+     */
     public static PcRace elf() throws ConfigurationError {
         Configuration config = config();
         TreeMap<String, PcClass> pcClasses = config.getPcClasses();
@@ -63,16 +73,20 @@ public final class DummyData {
         pc.setGender("Female"); // TODO get from config
         pc.setSize("Small");
         pc.setLevel(TEST_LEVEL);
-        pc.skillsAdd(TEST_SKILLS);
+        pc.skillsAddArray(TEST_SKILLS);
         pc.recipesAdd(TEST_RECIPES);
         return pc;
     }
 
-    /** Create a demo world with some Item objects. 
+    /**
+     * Create a demo world with some Item objects.
+     * 
      * 
      * @return a demo world of Item objects.
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    public static Location getDemoWorld() {
+    public static Location getDemoWorld() throws InvalidTypeException, CantWearException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(TEST_WEIGHT_VOLUME);

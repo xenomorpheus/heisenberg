@@ -16,6 +16,7 @@ import au.net.hal9000.heisenberg.util.DummyData;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class RecipesTableTest {
     /** frame width. */
@@ -25,9 +26,9 @@ public class RecipesTableTest {
 
     /**
      * 
+    
      * @throws ConfigurationError
-     *             if bad config.
-     */
+     *             if bad config. */
     @Test
     public void testRecipesTable() throws ConfigurationError {
         PcRace pc = DummyData.elf();
@@ -48,9 +49,9 @@ public class RecipesTableTest {
 
     /**
      * 
+    
      * @throws ConfigurationError
-     *             if bad config.
-     */
+     *             if bad config. */
     public void doTest() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();

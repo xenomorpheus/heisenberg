@@ -6,34 +6,44 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Point3d;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
+/**
+ */
 public class CatTest {
 
-    Configuration config = null;
-
-    @Before
-    public void initialize() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
-    }
-
+    /**
+     * Method CatMove.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void CatMove() {
+    public void testCatMove() throws InvalidTypeException, CantWearException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy", "Black cat");
         cat.move(dungeon, new Point3d(0, 0, 0));
         Point3d pos = new Point3d(0, 0, 0);
         assertTrue(pos.equals(cat.getPosition()));
-        cat.move(new Point3d(10, 10, 0));
+        cat.moveToPoint3d(new Point3d(10, 10, 0));
         pos = new Point3d(10, 10, 0);
         assertTrue(pos.equals(cat.getPosition()));
     }
 
+    /**
+     * Method testDrinkRecipe.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testDrinkRecipe() {
+    public void testDrinkRecipe() throws InvalidTypeException,
+            CantWearException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy");
         // Hydration before
@@ -52,8 +62,14 @@ public class CatTest {
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);
     }
 
+    /**
+     * Method testDrink.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testDrink() {
+    public void testDrink() throws InvalidTypeException, CantWearException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy");
         // Hydration before

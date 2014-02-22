@@ -3,18 +3,29 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.*;
 
 import java.util.Vector;
+
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.units.Currency;
 
+/**
+ */
 public class ItemContainerTest {
 
+    /**
+     * Field TOLLERANCE.
+     */
     static float TOLLERANCE = 0.0001F;
 
     // TODO Add unit test for respecting max weight and volume of outer bag,
     // when adding Item to an inner bag.
     // Will require some kind of change notification system.
 
+    /**
+     * Method testSetVolumeMax.
+     */
     @Test
     public void testSetVolumeMax() {
         float volumeMax = 20F;
@@ -24,8 +35,14 @@ public class ItemContainerTest {
         assertEquals("bag.getVolumeMax=", volumeMax, v, TOLLERANCE);
     }
 
+    /**
+     * Method testAdd.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testAdd() {
+    public void testAdd() throws InvalidTypeException, CantWearException {
         float volumeMax = 10F;
         float weightMax = 20F;
         {
@@ -62,8 +79,14 @@ public class ItemContainerTest {
 
     }
 
+    /**
+     * Method testAddMulti.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testAddMulti() {
+    public void testAddMulti() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -80,8 +103,15 @@ public class ItemContainerTest {
         assertEquals("New Bag size", 3, newBag.getContentsCount());
     }
 
+    /**
+     * Method testGetContentsCount.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetContentsCount() {
+    public void testGetContentsCount() throws InvalidTypeException,
+            CantWearException {
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -92,8 +122,14 @@ public class ItemContainerTest {
         assertEquals("count", 3, bag.getContentsCount());
     }
 
+    /**
+     * Method testGetWeight.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetWeight() {
+    public void testGetWeight() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         bag.setWeightBase(10);
         Cookie c1 = new Cookie();
@@ -108,8 +144,14 @@ public class ItemContainerTest {
         assertEquals("weight", 17, bag.getWeight(), TOLLERANCE);
     }
 
+    /**
+     * Method testGetVolume.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetVolume() {
+    public void testGetVolume() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         bag.setVolumeBase(10);
         Cookie c1 = new Cookie();
@@ -124,8 +166,14 @@ public class ItemContainerTest {
         assertEquals("volume", 17, bag.getVolume(), TOLLERANCE);
     }
 
+    /**
+     * Method testGetValue.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetValue() {
+    public void testGetValue() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         bag.setValueBase(new Currency(1, 0, 0, 0));
         Cookie c1 = new Cookie();
@@ -140,8 +188,14 @@ public class ItemContainerTest {
         assertEquals("value", new Currency(1, 1, 1, 1), bag.getValue());
     }
 
+    /**
+     * Method testBeNot.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testBeNot() {
+    public void testBeNot() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -154,22 +208,38 @@ public class ItemContainerTest {
         assertEquals("empty size", 0, bag.getContentsCount());
     }
 
+    /**
+     * Method isLeaf.
+     */
     @Test
     public void isLeaf() {
         Bag bag = new Bag();
         assertFalse("isLeaf", bag.isLeaf());
     }
 
+    /**
+     * Method testGetChildCount.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testGetChildCount() {
+    public void testGetChildCount() throws InvalidTypeException,
+            CantWearException {
         Bag bag = new Bag();
         assertEquals("getChildCount", 0, bag.getChildCount());
         bag.add(new Cookie());
         assertEquals("getChildCount", 1, bag.getChildCount());
     }
 
+    /**
+     * Method testGetChildAt.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testGetChildAt() {
+    public void testGetChildAt() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         Cookie cookie = new Cookie();
         Scabbard scabbard = new Scabbard();
@@ -180,8 +250,15 @@ public class ItemContainerTest {
         assertEquals("getChildCount", scabbard, bag.getChildAt(1));
     }
 
+    /**
+     * Method testGetIndexOfChild.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testGetIndexOfChild() {
+    public void testGetIndexOfChild() throws InvalidTypeException,
+            CantWearException {
         Bag bag = new Bag();
         Scabbard scabbard = new Scabbard();
         Cookie cookie1 = new Cookie("Cookie1");
@@ -204,8 +281,14 @@ public class ItemContainerTest {
                 -1, bag.getIndexOfChild(cookie3));
     }
 
+    /**
+     * Method testAddLogging.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testAddLogging() {
+    public void testAddLogging() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         bag.setWeightMax(2);
         bag.setVolumeMax(2);

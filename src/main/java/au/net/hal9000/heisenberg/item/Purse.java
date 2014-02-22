@@ -7,11 +7,17 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Purse extends Item {
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
     // TODO put in config
     /** conversion of coin count to weight units. */
@@ -22,6 +28,11 @@ public class Purse extends Item {
     /** holder for currency. */
     private Currency coins;
 
+    /**
+     * Constructor for Purse.
+     * @param pString String
+     * @param coins Currency
+     */
     public Purse(final String pString, Currency coins) {
         super(pString);
         this.coins = coins;
@@ -56,25 +67,28 @@ public class Purse extends Item {
     /**
      * Number of coins in purse.
      * 
-     * @return number of coins
-     */
+    
+     * @return number of coins */
     public int getCoinCount() {
         return coins.getCp() + coins.getSp() + coins.getGp() + coins.getPp();
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return float
+     */
     @Override
     public float getWeight() {
         return this.getWeightBase() + this.getCoinCount() * COINS_TO_WEIGHT;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return float
+     */
     @Override
     public float getVolume() {
         return this.getVolumeBase() + this.getCoinCount() * COINS_TO_VOLUME;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return Currency
+     */
     @Override
     public Currency getValue() {
         // We take a fresh currency so we don't alter the Purse's inner currency

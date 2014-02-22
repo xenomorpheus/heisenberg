@@ -7,6 +7,7 @@ import java.util.Queue;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class Search {
 
@@ -40,8 +41,8 @@ public class Search {
      * 
      * @param modelState
      *            the current ModelState.
-     * @return a ModelState closer to the Goal state.
-     */
+    
+     * @return a ModelState closer to the Goal state. */
 
     public Successor findBestSuccessor(ModelState modelState) {
         Queue<Successor> successors = successorFunction
@@ -69,8 +70,8 @@ public class Search {
      * 
      * @param modelState
      *            current model state.
-     * @return list of actions.
-     */
+    
+     * @return list of actions. */
     public Path findPath(ModelState modelState) {
         // double cost = costFunction.calculateCost(modelState,
         // bestSuccessor.getAction(), bestSuccessor.getModelState());

@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class AbilityScore implements Comparable<AbilityScore> {
     /** name. */
@@ -77,8 +78,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-     * @return the name
-     */
+    
+     * @return the name */
     public final String getName() {
         return name;
     }
@@ -92,8 +93,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-     * @return the value
-     */
+    
+     * @return the value */
     public final int getValue() {
         return value;
     }
@@ -107,8 +108,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-     * @return the mod
-     */
+    
+     * @return the mod */
     public final int getMod() {
         return mod;
     }
@@ -123,8 +124,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     // misc
     /**
-     * @return Value with optional mod. e.g. 3/1 or 3
-     */
+    
+     * @return Value with optional mod. e.g. 3/1 or 3 */
     public String valueOptionalMod() {
         String string = "" + value;
         if (mod != 0) {
@@ -140,6 +141,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
     
     /**
      * {@inheritDoc}
+     * @return String
      */
     @Override
     public String toString() {
@@ -148,6 +150,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     /**
      * {@inheritDoc}
+     * @param other AbilityScore
+     * @return int
      */
     @Override
     public int compareTo(AbilityScore other) {

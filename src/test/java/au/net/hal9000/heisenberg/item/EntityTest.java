@@ -10,10 +10,17 @@ import java.util.Set;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class EntityTest {
 
+    /**
+     * Method testActionPoints.
+     */
     @Test
     public void testActionPoints() {
         final int expected = 17;
@@ -25,6 +32,9 @@ public class EntityTest {
         assertEquals(expected + 2, cat.getActionPoints());
     }
 
+    /**
+     * Method testGender.
+     */
     @Test
     public void testGender() {
         final String expected = "some name";
@@ -33,6 +43,9 @@ public class EntityTest {
         assertEquals(expected, cat.getGender());
     }
 
+    /**
+     * Method testMana.
+     */
     @Test
     public void testMana() {
         final int expected = 16;
@@ -42,6 +55,9 @@ public class EntityTest {
         assertEquals(expected, cat.getMana());
     }
 
+    /**
+     * Method testRecipes.
+     */
     @Test
     public void testRecipes() {
         Cat cat = new Cat();
@@ -52,6 +68,9 @@ public class EntityTest {
         // TODO cat.setRecipes();
     }
 
+    /**
+     * Method testSize.
+     */
     @Test
     public void testSize() {
         final String expected = "some name";
@@ -60,6 +79,9 @@ public class EntityTest {
         assertEquals(expected, cat.getSize());
     }
 
+    /**
+     * Method testGetCooker.
+     */
     @Test
     public void testGetCooker() {
         Cat cat = new Cat();
@@ -68,6 +90,9 @@ public class EntityTest {
         assertNotNull("cooker not null", cooker);
     }
 
+    /**
+     * Method testInstanceof.
+     */
     @Test
     public void testInstanceof() {
         Item cat = new Cat();
@@ -75,8 +100,14 @@ public class EntityTest {
         assertTrue("is Living", ItemProperty.isLiving(cat));
     }
 
+    /**
+     * Method testAdd.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testAdd() {
+    public void testAdd() throws InvalidTypeException, CantWearException {
 
         // Cat
         Cat cat = new Cat("Cat"); // Close enough

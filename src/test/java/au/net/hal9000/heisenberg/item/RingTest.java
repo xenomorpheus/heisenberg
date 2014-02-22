@@ -9,8 +9,13 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
+/**
+ */
 public class RingTest {
 
+    /**
+     * Method testRingConstructorNoAguments.
+     */
     @Test
     public void testRingConstructorNoAguments() {
         final Ring ring = new Ring();
@@ -20,6 +25,9 @@ public class RingTest {
         assertEquals("weightBase", 0.02f, ring.getWeightBase(), 0.001F);
     }
 
+    /**
+     * Method testImplementsMagic.
+     */
     @Test
     public void testImplementsMagic() {
         final Ring ring = new Ring();

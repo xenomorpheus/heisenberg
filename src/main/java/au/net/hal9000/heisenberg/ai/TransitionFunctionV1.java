@@ -2,8 +2,17 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.units.Point3d;
 
+/**
+ */
 public class TransitionFunctionV1 implements TransitionFunction {
 
+    /**
+     * Method transition.
+     * @param modelState ModelState
+     * @param action Action
+     * @return ModelState
+     * @see au.net.hal9000.heisenberg.ai.TransitionFunction#transition(ModelState, Action)
+     */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
         if (!(modelState instanceof ModelStateV1)) {

@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.item.Item;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public interface SplitByWeight {
 
@@ -20,8 +21,8 @@ public interface SplitByWeight {
      * 
      * @param newItemWeight
      *            the amount to carve off the original Item.
-     * @return the carved off new Item.
-     */
+    
+     * @return the carved off new Item. */
     Item splitByWeight(float newItemWeight);
 
 }

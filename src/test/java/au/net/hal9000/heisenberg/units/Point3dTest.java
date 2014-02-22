@@ -14,16 +14,48 @@ import au.net.hal9000.heisenberg.ai.ActionAgentMoveV1;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class Point3dTest {
+    /**
+     * Field TEST_TOLERANCE.
+     * (value is 0.01)
+     */
     private static final double TEST_TOLERANCE = 0.01f;
+    /**
+     * Field WITHIN_TOLERANCE.
+     * (value is 0.9)
+     */
     private static final double WITHIN_TOLERANCE = 0.9;
+    /**
+     * Field OUTSIDE_TOLERANCE.
+     * (value is 1.1)
+     */
     private static final double OUTSIDE_TOLERANCE = 1.1;
+    /**
+     * Field ZERO.
+     * (value is 0.0)
+     */
     private static final double ZERO = 0f;
+    /**
+     * Field X_TEST.
+     * (value is 1.0)
+     */
     private static final double X_TEST = 1;
+    /**
+     * Field Y_TEST.
+     * (value is 2.0)
+     */
     private static final double Y_TEST = 2;
+    /**
+     * Field Z_TEST.
+     * (value is 3.0)
+     */
     private static final double Z_TEST = 3;
 
+    /**
+     * Method testPoint3d.
+     */
     @Test
     public void testPoint3d() {
         Point3d point = new Point3d();
@@ -32,6 +64,9 @@ public class Point3dTest {
         assertEquals("Z", ZERO, point.getZ(), TEST_TOLERANCE);
     }
 
+    /**
+     * Method testPoint3dDoubleDoubleDouble.
+     */
     @Test
     public void testPoint3dDoubleDoubleDouble() {
 
@@ -41,6 +76,9 @@ public class Point3dTest {
         assertEquals("Z", Z_TEST, point.getZ(), TEST_TOLERANCE);
     }
 
+    /**
+     * Method testDistancePoint3d.
+     */
     @Test
     public void testDistancePoint3d() {
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
@@ -56,6 +94,10 @@ public class Point3dTest {
 
     }
 
+    /**
+     * Method testClonePoint3d.
+     * @throws CloneNotSupportedException
+     */
     @Test
     public void testClonePoint3d() throws CloneNotSupportedException {
 
@@ -68,6 +110,9 @@ public class Point3dTest {
         assertEquals("Z", Z_TEST, clone.getZ(), TEST_TOLERANCE);
     }
 
+    /**
+     * Method testToString.
+     */
     @Test
     public void testToString() {
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);

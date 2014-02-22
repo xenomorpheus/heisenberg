@@ -11,14 +11,27 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
+/**
+ */
 public class FactoryTest {
+    /**
+     * Field config.
+     */
     Configuration config;
 
+    /**
+     * Method setUp.
+     * @throws ConfigurationError
+     */
     @Before
     public void setUp() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
     }
 
+    /**
+     * Method testBagOfHolding.
+     * @param object Object
+     */
     private static void testBagOfHolding(Object object) {
         assertTrue("instanceof Item", object instanceof Item);
         assertEquals("simple class", "BagOfHolding", object.getClass()

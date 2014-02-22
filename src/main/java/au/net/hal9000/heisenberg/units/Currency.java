@@ -17,6 +17,7 @@ import java.io.Serializable;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class Currency implements Serializable, Cloneable {
     /** serial version id. */
@@ -92,12 +93,17 @@ public class Currency implements Serializable, Cloneable {
     }
 
     // instance methods
+    /**
+     * Method getGpEquiv.
+     * @return Float
+     */
     public Float getGpEquiv() {
         return (pp * PP_AS_GP) + gp + (sp * SP_AS_GP) + (cp * CP_AS_GP);
     }
 
     /**
      * Get the number of platinum pieces.
+     * @return int
      */
     public int getPp() {
         return pp;
@@ -118,6 +124,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Get the number of gold pieces.
+     * @return int
      */
     public int getGp() {
         return gp;
@@ -138,6 +145,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Get the number of silver pieces.
+     * @return int
      */
     public int getSp() {
         return sp;
@@ -158,6 +166,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Get the number of copper pieces.
+     * @return int
      */
     public int getCp() {
         return cp;
@@ -179,6 +188,7 @@ public class Currency implements Serializable, Cloneable {
     /**
      * increment the current object by the argument currency. note that the
      * currency arg is not changed.
+     * @param otherCollection Currency
      */
     public void add(final Currency otherCollection) {
         // add the value to the current Currency.
@@ -222,6 +232,10 @@ public class Currency implements Serializable, Cloneable {
         }
     }
 
+    /**
+     * Method hashCode.
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -233,6 +247,11 @@ public class Currency implements Serializable, Cloneable {
         return result;
     }
 
+    /**
+     * Method equals.
+     * @param obj Object
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -260,6 +279,10 @@ public class Currency implements Serializable, Cloneable {
         return true;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         String str = "0 gp";
@@ -287,10 +310,21 @@ public class Currency implements Serializable, Cloneable {
         return str;
     }
 
+    /**
+     * Method writeObject.
+     * @param out ObjectOutputStream
+     * @throws IOException
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
     }
 
+    /**
+     * Method readObject.
+     * @param in ObjectInputStream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void readObject(ObjectInputStream in) throws IOException,
             ClassNotFoundException {
         // our "pseudo-constructor"
@@ -298,6 +332,11 @@ public class Currency implements Serializable, Cloneable {
         // now we are a "live" object again, so let's run rebuild and start
     }
 
+    /**
+     * Method clone.
+     * @return Currency
+     * @throws CloneNotSupportedException
+     */
     @Override
     public Currency clone() throws CloneNotSupportedException {
         Currency clone = (Currency) super.clone();

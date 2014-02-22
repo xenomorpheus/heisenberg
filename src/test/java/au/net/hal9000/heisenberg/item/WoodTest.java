@@ -7,14 +7,22 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class WoodTest {
 
+    /**
+     * Method testIsHumanoidFood.
+     */
     @Test
     public void testIsHumanoidFood() {
         Wood wood = new Wood();
         assertFalse("is humanoid food", ItemProperty.isHumanoidFood(wood));
     }
 
+    /**
+     * Method testSplitByWeight.
+     */
     @Test
     public void testSplitByWeight() {
         final float tollerance = 0.0001f;

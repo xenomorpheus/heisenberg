@@ -95,6 +95,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * </P>
  * 
  * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class Recipe {
 
@@ -170,8 +171,8 @@ public class Recipe {
     /**
      * Get the ID.
      * 
-     * @return The short identifier for this Recipe.
-     */
+    
+     * @return The short identifier for this Recipe. */
     public final String getId() {
         return id;
     }
@@ -180,15 +181,15 @@ public class Recipe {
     /**
      * Get the Description.
      * 
-     * @return the description
-     */
+    
+     * @return the description */
     public final String getDescription() {
         return description;
     }
 
     /**
-     * @return the process
-     */
+    
+     * @return the process */
     public final String getProcess() {
         return process;
     }
@@ -197,8 +198,8 @@ public class Recipe {
     /**
      * Get the mana.
      * 
-     * @return the amount of mana required.
-     */
+    
+     * @return the amount of mana required. */
     public final int getMana() {
         return mana;
     }
@@ -207,8 +208,8 @@ public class Recipe {
     /**
      * Get the action points required.
      * 
-     * @return the action points required.
-     */
+    
+     * @return the action points required. */
     public final int getActionPoints() {
         return actionPoints;
     }
@@ -217,8 +218,8 @@ public class Recipe {
     /**
      * Get the count of Requirement objects.
      * 
-     * @return the count of Requirement objects.
-     */
+    
+     * @return the count of Requirement objects. */
     public final int getRequirementCount() {
         if (requirements == null) {
             return 0;
@@ -229,8 +230,8 @@ public class Recipe {
     /**
      * Get the list of Requirement objects.
      * 
-     * @return the list of Requirement objects.
-     */
+    
+     * @return the list of Requirement objects. */
     public final List<Requirement> getRequirements() {
         return requirements;
     }
@@ -240,14 +241,18 @@ public class Recipe {
      * 
      * @param index
      *            the index of the Requirement requested
-     * @return the Requirement at this index.
-     */
+    
+     * @return the Requirement at this index. */
     public final Requirement getRequirement(final int index) {
         return requirements.get(index);
     }
 
     // products
 
+    /**
+     * Method getProducts.
+     * @return List<Product>
+     */
     public List<Product> getProducts() {
         return products;
     }
@@ -255,15 +260,15 @@ public class Recipe {
     /**
      * @param index
      *            the index of the product we want details of.
-     * @return the info for product at the given index.
-     */
+    
+     * @return the info for product at the given index. */
     public final Product getProduct(final int index) {
         return products.get(index);
     }
 
     /**
-     * @return the number of products that this recipe produces.
-     */
+    
+     * @return the number of products that this recipe produces. */
     public final int getProductCount() {
         if (products == null) {
             return 0;
@@ -275,8 +280,8 @@ public class Recipe {
     /**
      * Get the count of Skill objects.
      * 
-     * @return a count of Skill objects
-     */
+    
+     * @return a count of Skill objects */
     public final int getSkillCount() {
         return skills.size();
     }
@@ -284,8 +289,8 @@ public class Recipe {
     /**
      * Get the Skill objects.
      * 
-     * @return a set of Skill objects
-     */
+    
+     * @return a set of Skill objects */
     public final Set<Skill> getSkills() {
         return skills;
     }
@@ -295,8 +300,8 @@ public class Recipe {
      * 
      * @param chef
      *            The Entity doing the cooking
-     * @return A Cooker object for this recipe.
-     */
+    
+     * @return A Cooker object for this recipe. */
     public final Cooker getNewCooker(Entity chef) {
         Cooker cooker = new Cooker(this);
         cooker.setChef(chef);
@@ -304,18 +309,18 @@ public class Recipe {
     }
 
     /**
-     * @return a description
-     */
+    
+     * @return a description */
     public String toString() {
         return id;
     }
 
     /**
-     * @return a description
-     */
+    
+     * @return a description */
     public String details() {
         StringBuilder string = new StringBuilder();
-        string.append("Id: " + id );
+        string.append("Id: " + id);
         string.append(System.lineSeparator());
         string.append("Description: " + description);
         string.append(System.lineSeparator());

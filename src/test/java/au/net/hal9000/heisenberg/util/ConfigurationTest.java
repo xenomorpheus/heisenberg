@@ -22,33 +22,54 @@ import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
 
+/**
+ */
 public class ConfigurationTest {
     /** float comparison tolerance. */
     private static final float TOLERANCE = 0.00001f;
+    /**
+     * Field config.
+     */
     Configuration config = null;
 
+    /**
+     * Method setUp.
+     * @throws ConfigurationError
+     */
     @Before
     public void setUp() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
     }
 
+    /**
+     * Method testCharacter.
+     */
     @Test
     public void testCharacter() {
         // TODO testCharacter
     }
 
+    /**
+     * Method testItemClasses.
+     */
     @Test
     public void testItemClasses() {
         Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
         assertTrue("count", itemClasses.size() > 7);
     }
 
+    /**
+     * Method testGetItemClassIds.
+     */
     @Test
     public void testGetItemClassIds() {
         Vector<String> ids = config.getItemClassIds();
         assertTrue("count", ids.size() > 7);
     }
 
+    /**
+     * Method testSpriteSheets.
+     */
     @Test
     public void testSpriteSheets() {
         TreeMap<String, SpriteSheetConfiguration> spriteSheets = config
@@ -56,6 +77,9 @@ public class ConfigurationTest {
         assertTrue("count", spriteSheets.size() > 0);
     }
 
+    /**
+     * Method testSpriteSheetGet.
+     */
     @Test
     public void testSpriteSheetGet() {
         SpriteSheetConfiguration details = config.getSpriteSheet("item");
@@ -67,24 +91,36 @@ public class ConfigurationTest {
         assertEquals(16, details.getColumns());
     }
 
+    /**
+     * Method testRaces.
+     */
     @Test
     public void testRaces() {
         Vector<String> races = config.getRaces();
         assertEquals("count", 3, races.size());
     }
 
+    /**
+     * Method testSizes.
+     */
     @Test
     public void testSizes() {
         Vector<String> sizes = config.getSizes();
         assertEquals("count", 3, sizes.size());
     }
 
+    /**
+     * Method testGenders.
+     */
     @Test
     public void testGenders() {
         Vector<String> genders = config.getGenders();
         assertEquals("count", 4, genders.size());
     }
 
+    /**
+     * Method testSkills.
+     */
     @Test
     public void testSkills() {
         TreeMap<String, SkillDetail> skillDetails = config.getSkillDetails();
@@ -96,6 +132,9 @@ public class ConfigurationTest {
                 fireLighting.getDescription());
     }
 
+    /**
+     * Method testRecipeRequirementItem.
+     */
     @Test
     public void testRecipeRequirementItem() {
         Recipe recipe1 = config.getRecipe("testItem1");
@@ -109,6 +148,9 @@ public class ConfigurationTest {
     }
 
     
+    /**
+     * Method testXmlToRecipeProductItems.
+     */
     @Test
     public void testXmlToRecipeProductItems() {
         Recipe recipe1 = config.getRecipe("testItem1");
@@ -124,6 +166,9 @@ public class ConfigurationTest {
     }
 
     
+    /**
+     * Method testXmlToRecipeProductProperty.
+     */
     @Test
     public void testXmlToRecipeProductProperty() {
         Recipe recipe1 = config.getRecipe("testDrinkWater");
@@ -136,6 +181,9 @@ public class ConfigurationTest {
         assertEquals("product0 propertyDelta", 15.0f, product0.getPropertyDelta(), TOLERANCE);    
     }
     
+    /**
+     * Method testRecipes.
+     */
     @Test
     public void testRecipes() {
         TreeMap<String, Recipe> recipes = config.getRecipes();
@@ -147,6 +195,9 @@ public class ConfigurationTest {
         }
     }
 
+    /**
+     * Method testRecipeTestItem1.
+     */
     @Test
     public void testRecipeTestItem1() {
         Recipe recipe = config.getRecipe("testItem1");
@@ -202,6 +253,9 @@ public class ConfigurationTest {
     }
 
 
+    /**
+     * Method testFireGround1.
+     */
     @Test
     public void testFireGround1() {
         TreeMap<String, Recipe> recipes = config.getRecipes();
@@ -226,6 +280,9 @@ public class ConfigurationTest {
                 productItem.getType());
     }
 
+    /**
+     * Method testSpell1.
+     */
     @Test
     public void testSpell1() {
         TreeMap<String, Recipe> recipes = config.getRecipes();
@@ -240,6 +297,9 @@ public class ConfigurationTest {
 
     }
 
+    /**
+     * Method testValues.
+     */
     @Test
     public void testValues() {
         PcClass warrior = config.getPcClass("testWarrior");

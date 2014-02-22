@@ -3,7 +3,11 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
+/**
+ */
 public class ProductItem extends Product {
 
     /**
@@ -46,28 +50,31 @@ public class ProductItem extends Product {
 
     // Getters
     /**
-     * @return the type of the item
-     */
+    
+     * @return the type of the item */
     public final String getType() {
         return type;
     }
 
     /**
      * 
-     * @return the required weightBase for the new item.
-     */
+    
+     * @return the required weightBase for the new item. */
     public float getWeightBase() {
         return weightBase;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return String
+     */
     @Override
     public final String getDescription() {
         return "Id: " + getId() + ", item type of " + type + ", weightBase "
                 + weightBase;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param cooker Cooker
+     * @return String
+     */
     @Override
     public final String meetsRequirements(final Cooker cooker) {
         // TODO Complain unless there is a Location to place item.
@@ -79,9 +86,15 @@ public class ProductItem extends Product {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc} * @param cooker Cooker
+     * 
+     * @return String
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Override
-    public final String createProduct(final Cooker cooker) {
+    public final String createProduct(final Cooker cooker) throws InvalidTypeException, CantWearException {
         ItemContainer newItemLocation = (ItemContainer) cooker
                 .findIngredientByName("Location");
         Item item = Factory.createItem(getType());

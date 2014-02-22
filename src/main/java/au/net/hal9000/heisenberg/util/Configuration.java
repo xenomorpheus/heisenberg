@@ -30,6 +30,7 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 
 public class Configuration {
@@ -57,8 +58,8 @@ public class Configuration {
     /** Constructor.
      * 
      * @param filename config file to read.
-     * @throws ConfigurationError
-     */
+    
+     * @throws ConfigurationError */
     public Configuration(String filename) throws ConfigurationError {
         super();
         this.init(filename);
@@ -76,8 +77,8 @@ public class Configuration {
     }
 
     /**
-     * @return Return the last config that was read.
-     */
+    
+     * @return Return the last config that was read. */
     public static Configuration lastConfig() {
         if (lastConfig == null) {
             throw new RuntimeException(
@@ -88,8 +89,8 @@ public class Configuration {
 
     // Getters and Setters
     /**
-     * @return the itemClasses
-     */
+    
+     * @return the itemClasses */
     public final Vector<ItemClassConfiguration> getItemClasses() {
         return itemClasses;
     }
@@ -97,32 +98,52 @@ public class Configuration {
     /**
      * get skill details.
      * 
-     * @return skill details.
-     */
+    
+     * @return skill details. */
     public final TreeMap<String, SkillDetail> getSkillDetails() {
         return skillDetails;
     }
 
+    /**
+     * Method getRecipes.
+     * @return TreeMap<String,Recipe>
+     */
     public final TreeMap<String, Recipe> getRecipes() {
         return recipes;
     }
 
     // TODO remove/refactor so caller can't modify pcClasses
+    /**
+     * Method getPcClasses.
+     * @return TreeMap<String,PcClass>
+     */
     public TreeMap<String, PcClass> getPcClasses() {
         return pcClasses;
     }
 
     // TODO remove/refactor so caller can't modify races
+    /**
+     * Method getRaces.
+     * @return Vector<String>
+     */
     public Vector<String> getRaces() {
         return races;
     }
 
     // TODO remove/refactor so caller can't modify sizes
+    /**
+     * Method getSizes.
+     * @return Vector<String>
+     */
     public Vector<String> getSizes() {
         return sizes;
     }
 
     // TODO remove/refactor so caller can't modify genders
+    /**
+     * Method getGenders.
+     * @return Vector<String>
+     */
     public Vector<String> getGenders() {
         return genders;
     }
@@ -130,13 +151,18 @@ public class Configuration {
     /**
      * Return the sprite sheet details.
      * 
-     * @return the sprite sheet details
-     */
+    
+     * @return the sprite sheet details */
     public TreeMap<String, SpriteSheetConfiguration> getSpriteSheets() {
         return spriteSheets;
     }
 
     // Misc
+    /**
+     * Method init.
+     * @param filename String
+     * @throws ConfigurationError
+     */
     private void init(String filename) throws ConfigurationError {
         File file = new File(filename);
 
@@ -197,8 +223,8 @@ public class Configuration {
      * Load details about each Item class.
      * 
      * @param itemClassesElement
-     * @return a collection of information about each Item type.
-     */
+    
+     * @return a collection of information about each Item type. */
     private Vector<ItemClassConfiguration> xmlToItemClasses(
             Element itemClassesElement) {
         Elements itemClassElements = itemClassesElement
@@ -237,8 +263,8 @@ public class Configuration {
      * 
      * @param elements
      *            Parsed XML structure.
-     * @return a Vector strings.
-     */
+    
+     * @return a Vector strings. */
     private Vector<String> xmlToIdList(Elements elements) {
         Vector<String> list = new Vector<String>();
         for (int i = 0; i < elements.size(); i++) {
@@ -247,6 +273,11 @@ public class Configuration {
         return list;
     }
 
+    /**
+     * Method xmlToPcClasses.
+     * @param pcClassesElements Elements
+     * @return TreeMap<String,PcClass>
+     */
     private TreeMap<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
         TreeMap<String, PcClass> classes = new TreeMap<String, PcClass>();
         for (int current = 0; current < pcClassesElements.size(); current++) {
@@ -262,8 +293,8 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Skill IDs
-     * @return Set of Skill Objects.
-     */
+    
+     * @return Set of Skill Objects. */
     public static Set<Skill> xmlToSkills(Elements entries) {
         Set<Skill> skills = new TreeSet<Skill>();
 
@@ -280,8 +311,8 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Item details.
-     * @return A list of RequirementItem objects.
-     */
+    
+     * @return A list of RequirementItem objects. */
     public static Vector<RequirementItem> xmlToRecipeRequirementItems(
             Elements entries) {
         Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
@@ -318,8 +349,8 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Item details.
-     * @return A list of Recipe Product objects.
-     */
+    
+     * @return A list of Recipe Product objects. */
     public static Vector<Product> xmlToRecipeProductItems(Elements entries) {
         Vector<Product> products = new Vector<Product>();
         for (int current = 0; current < entries.size(); current++) {
@@ -345,8 +376,8 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Property details.
-     * @return A list of Recipe Product objects.
-     */
+    
+     * @return A list of Recipe Product objects. */
     public static Vector<Product> xmlToRecipeProductEntityProperties(
             Elements entries) {
         Vector<Product> products = new Vector<Product>();
@@ -375,6 +406,7 @@ public class Configuration {
      * 
      * @param entry
      *            an XML Recipe Product element.
+     * @return Vector<Product>
      */
     public static Vector<Product> xmlToRecipeProducts(Element entry) {
 
@@ -398,6 +430,7 @@ public class Configuration {
      * 
      * @param entry
      *            an XML Requirement element.
+     * @return Vector<Requirement>
      */
     public static Vector<Requirement> xmlToRecipeRequirements(Element entry) {
         Vector<Requirement> requirements = new Vector<Requirement>();
@@ -416,8 +449,8 @@ public class Configuration {
      * 
      * @param recipeElement
      *            XML details of a Recipe.
-     * @return a Recipe object.
-     */
+    
+     * @return a Recipe object. */
     public static Recipe xmlToRecipe(Element recipeElement) {
         String id = recipeElement.getAttributeValue("id");
         String description = recipeElement.getAttributeValue("description");
@@ -467,10 +500,10 @@ public class Configuration {
      * 
      * @param element
      *            XML element containing recipes.
-     * @return A set of Recipe objects.
-     * @throws ParsingException
-     * @throws IOException
-     */
+    
+    
+    
+     * @return A set of Recipe objects. * @throws ParsingException * @throws IOException */
     public static TreeMap<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
@@ -488,8 +521,8 @@ public class Configuration {
      * Read multiple SkillDetail objects from an XML element.
      * 
      * @param element
-     * @return TreeMap of SkillDetail objects.
-     */
+    
+     * @return TreeMap of SkillDetail objects. */
     private static TreeMap<String, SkillDetail> xmlToSkillDetails(
             Element element) {
         Elements entries = element.getChildElements("skill");
@@ -508,8 +541,8 @@ public class Configuration {
      * Read one PcClass object from an XML element.
      * 
      * @param element XML element.
-     * @return a PcClass object.
-     */
+    
+     * @return a PcClass object. */
     private static PcClass xmlToPcClass(Element element) {
         PcClass pcClass = new PcClass();
 
@@ -583,8 +616,8 @@ public class Configuration {
      * Get an AbilityScore object from an XML element.
      * 
      * @param element
-     * @return the AbilityScore object.
-     */
+    
+     * @return the AbilityScore object. */
     private static AbilityScore xmlToAbilityScore(Element element) {
 
         String id = element.getAttributeValue("id");
@@ -600,8 +633,10 @@ public class Configuration {
 
     /**
      * 
-     * @param childElements
-     * @return
+    
+    
+     * @param spriteSheets Element
+     * @return TreeMap<String,SpriteSheetConfiguration>
      */
     private TreeMap<String, SpriteSheetConfiguration> xmlToSpriteSheets(
             Element spriteSheets) {
@@ -625,8 +660,8 @@ public class Configuration {
     /**
      * @param id
      *            the class name e.g. Soldier
-     * @return the PC Character Class.
-     */
+    
+     * @return the PC Character Class. */
     public PcClass getPcClass(String id) {
         return pcClasses.get(id);
     }
@@ -638,8 +673,8 @@ public class Configuration {
      * 
      * @param recipeId
      *            the id of the Recipe
-     * @return the Recipe object
-     */
+    
+     * @return the Recipe object */
     public Recipe getRecipe(String recipeId) {
         return recipes.get(recipeId);
     }
@@ -649,12 +684,16 @@ public class Configuration {
      * 
      * @param name
      *            name of sprite sheet.
-     * @return the sprite sheet details
-     */
+    
+     * @return the sprite sheet details */
     public SpriteSheetConfiguration getSpriteSheet(String name) {
         return spriteSheets.get(name);
     }
 
+    /**
+     * Method getItemClassIds.
+     * @return Vector<String>
+     */
     public Vector<String> getItemClassIds() {
         Vector<String> itemClassIds = new Vector<String>();
         for (ItemClassConfiguration itemClassConfiguration : itemClasses) {

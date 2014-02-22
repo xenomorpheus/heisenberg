@@ -5,6 +5,7 @@ package au.net.hal9000.heisenberg.util;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class Dice {
 
@@ -22,8 +23,8 @@ public class Dice {
     /**
      * defaults to 1d6.
      * 
-     * @return the value rolled on the dice.
-     */
+    
+     * @return the value rolled on the dice. */
     public int roll() {
         return roll(1, D6);
     }
@@ -33,8 +34,8 @@ public class Dice {
      * 
      * @param sides
      *            how many sides on the dice.
-     * @return the value rolled on the dice.
-     */
+    
+     * @return the value rolled on the dice. */
     public int roll(int sides) {
         return roll(1, sides);
     }
@@ -47,8 +48,8 @@ public class Dice {
      *            how many rolls of the dice.
      * @param sides
      *            how many sides on the dice.
-     * @return the total dice value of all rolls.
-     */
+    
+     * @return the total dice value of all rolls. */
     public int roll(int rolls, int sides) {
         int total = 0;
         if (rolls < 1) {

@@ -6,8 +6,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 
+/**
+ */
 public class HalflingTest {
 
+    /**
+     * Method testInstanceof.
+     */
     @Test
     public void testInstanceof() {
         Object halfling = new Halfling();
@@ -16,6 +21,9 @@ public class HalflingTest {
         assertTrue("is item", halfling instanceof Item);
     }
 
+    /**
+     * Method testGetRace.
+     */
     @Test
     public void testGetRace() {
         Halfling halfling = new Halfling();

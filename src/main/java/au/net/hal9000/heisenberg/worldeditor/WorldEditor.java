@@ -22,6 +22,8 @@ import au.net.hal9000.heisenberg.util.ItemIcon;
 
 /**
  * The main application window. Shows a tree of the items in this world.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class WorldEditor extends JFrame {
 
@@ -43,8 +45,8 @@ public class WorldEditor extends JFrame {
     /**
      * Constructor.
      * 
-     * @throws ConfigurationError
-     */
+    
+     * @throws ConfigurationError */
     public WorldEditor() throws ConfigurationError {
 
         // Persistence
@@ -115,12 +117,14 @@ public class WorldEditor extends JFrame {
 
     }
 
-    /** getter for Entity Manager. @return Entity Manager. */
+    /** getter for Entity Manager. @return Entity Manager. * @return EntityManager
+     */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
-    /** setter for Entity Manager. @param entityManager Entity Manager. */
+    /** setter for Entity Manager. @param entityManager Entity Manager. * @param entityManager EntityManager
+     */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -153,8 +157,8 @@ public class WorldEditor extends JFrame {
     /**
      * Construct UI menu bar.
      * @param actionListener the listener for the menu events.
-     * @return a menu bar.
-     */
+    
+     * @return a menu bar. */
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
         // Application Menu

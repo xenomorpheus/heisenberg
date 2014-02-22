@@ -4,8 +4,13 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+/**
+ */
 public class HumanTest {
 
+	/**
+	 * Method testInstanceof.
+	 */
 	@Test
 	public void testInstanceof() {
 
@@ -16,6 +21,9 @@ public class HumanTest {
 		assertTrue("is item", human instanceof Item);
 	}
 
+	/**
+	 * Method testGetRace.
+	 */
 	@Test
 	public void testGetRace() {
 		Human human = new Human();

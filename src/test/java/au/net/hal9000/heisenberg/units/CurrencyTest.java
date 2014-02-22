@@ -19,6 +19,7 @@ import org.junit.Test;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class CurrencyTest {
     /** float comparison tolerance. */
@@ -109,6 +110,9 @@ public class CurrencyTest {
         assertEquals("10cp", 10.0F, cc.getCp(), TOLERANCE);
     }
 
+    /**
+     * Method testGetGpEquiv.
+     */
     @Test
     public void testGetGpEquiv() {
         Currency cc = new Currency(PP, GP, SP, CP);

@@ -5,8 +5,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ */
 public class ElfTest {
 
+    /**
+     * Method testInstanceof.
+     */
     @Test
     public void testInstanceof() {
 
@@ -17,6 +22,9 @@ public class ElfTest {
         assertTrue("is item", elf instanceof Item);
     }
 
+    /**
+     * Method testGetRace.
+     */
     @Test
     public void testGetRace() {
         Elf elf = new Elf();

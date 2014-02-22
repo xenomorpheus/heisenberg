@@ -8,38 +8,68 @@ package au.net.hal9000.heisenberg.item;
 import java.io.Serializable;
 import java.util.Vector;
 
-
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 // import org.apache.log4j.BasicConfigurator;
 
+/**
+ */
 public abstract class ItemContainer extends Item implements Serializable {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
+    /**
+     * Field LOGGER.
+     */
     private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
             .getName());
+    /**
+     * Field weightMax.
+     */
     private float weightMax = 0;
+    /**
+     * Field volumeMax.
+     */
     private float volumeMax = 0;
+    /**
+     * Field contents.
+     */
     private Vector<Item> contents = new Vector<Item>();
 
     // Constructor
-    public ItemContainer(String string, String description) {
+    /**
+     * Constructor for ItemContainer.
+     * 
+     * @param string
+     *            String
+     * @param description
+     *            String
+     */
+    protected ItemContainer(String string, String description) {
         super(string, description);
     }
 
-    public ItemContainer(String string) {
+    /**
+     * Constructor for ItemContainer.
+     * 
+     * @param string
+     *            String
+     */
+    protected ItemContainer(String string) {
         this(string, "");
     }
 
     // Getters and Setters
     /**
      * Get the contents.
+     * 
      * 
      * @return the contents
      */
@@ -50,13 +80,15 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Set the contents.
      * 
-     * @param contents the new contents of this container.
+     * @param contents
+     *            the new contents of this container.
      */
     public void setContents(Vector<Item> contents) {
         this.contents = contents;
     }
 
     /**
+     * 
      * @return The max weight that can be carried.
      */
     public float getWeightMax() {
@@ -75,6 +107,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     /**
      * get the maximum volume that this item can hold.
+     * 
      * 
      * @return the maximum volume that this item can hold.
      */
@@ -97,6 +130,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @param item
      *            Item looking for
+     * 
      * @return true iff found
      */
     public boolean contains(Item item) {
@@ -109,6 +143,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * We aren't a leaf as we can hold items.
      * 
+     * 
      * @return false
      */
     @Override
@@ -120,6 +155,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Used for tree display.
      * 
      * Return the number of first-level items this in this container.
+     * 
      * 
      * @return the number of children.
      */
@@ -136,6 +172,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @param index
      *            get child with with this index in list of items.
+     * 
      * @return the item requested.
      */
     public Item getChildAt(final int index) {
@@ -146,7 +183,9 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Used for tree display etc. <br>
      * 0-based index, -1 for missing.
      * 
-     * @param child item to locate.
+     * @param child
+     *            item to locate.
+     * 
      * @return the index of the child item.
      */
     public int getIndexOfChild(final Item child) {
@@ -155,6 +194,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     /**
      * 
+     * 
      * @return get all the first level contents
      */
     public Vector<Item> getChildren() {
@@ -162,6 +202,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
+     * 
      * 
      * @return Total weight, including contents.
      */
@@ -174,6 +215,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     /**
      * 
+     * 
      * @return Total volume, including contents.
      */
     @Override
@@ -184,6 +226,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     /**
+     * 
      * 
      * @return Total value, including contents.
      */
@@ -198,8 +241,15 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     // misc methods
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
+     */
+    /**
+     * Method hashCode.
+     * 
+     * @return int
      */
     @Override
     public int hashCode() {
@@ -212,24 +262,29 @@ public abstract class ItemContainer extends Item implements Serializable {
         return result;
     }
 
-    
-    
-    
-    
-    
-    
-
     /**
      * Add the Item to the contents.
      * 
      * @param item
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
-    public void add(Item item) {
+    public void add(Item item) throws InvalidTypeException, CantWearException {
         add(contents.size(), item);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
+     */
+    /**
+     * Method equals.
+     * 
+     * @param obj
+     *            Object
+     * @return boolean
      */
     @Override
     public boolean equals(Object obj) {
@@ -265,9 +320,10 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Add the Item to the contents.
      * 
      * @deprecated use transfer. add() is only for testing.
-     * @param index index position to add at.
-     * @param item item to add.
-     * @deprecated use transfer instead.
+     * @param index
+     *            index position to add at.
+     * @param item
+     *            item to add.
      */
     public void add(int index, Item item) {
         ItemContainer itemCurrentContainer = item.getContainer();
@@ -333,9 +389,14 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Add multiple items to the contents.
      * 
-     * @param items the items to add.
+     * @param items
+     *            the items to add.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
-    public void add(Vector<Item> items) {
+    public void add(Vector<Item> items) throws InvalidTypeException,
+            CantWearException {
         for (Item item : items) {
             this.add(item);
         }
@@ -344,8 +405,9 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Take the top item out of the contents.
      * 
-     * @return the top item in the contents
-     * @throws EmptyStackException
+     * 
+     * 
+     * @return the top item in the contents * @throws EmptyStackException
      */
     public Item pop() {
         return contents.remove(contents.size() - 1);
@@ -354,8 +416,9 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Peek at the top item of contents without removing it.
      * 
-     * @return The top item.
-     * @throws EmptyStackException
+     * 
+     * 
+     * @return The top item. * @throws EmptyStackException
      */
     public Item peek() {
         return contents.lastElement();
@@ -365,8 +428,12 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Empty the bag into this location.
      * 
      * @param newLocation
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
-    public void empty(ItemContainer newLocation) {
+    public void empty(ItemContainer newLocation) throws InvalidTypeException,
+            CantWearException {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);
@@ -375,6 +442,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     /**
      * Get the number of items in the container.
+     * 
      * 
      * @return the number of items directly inside the container. Items with
      *         other items don't add to the count as they are *NOT* directly
@@ -387,6 +455,7 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Use getWeight() to get total including contents. Magic containers will
      * override getWeight().
+     * 
      * 
      * @return the weight of just the contents.
      */
@@ -402,6 +471,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Use getVolume() to get total including contents. Magic containers will
      * override getVolume().
      * 
+     * 
      * @return the volume of just the contents.
      */
     private float getContentsVolume() {
@@ -416,6 +486,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Use getValue() to get total including contents. Magic containers will
      * override getValue().
      * 
+     * 
      * @return the value of just the contents.
      */
     private Currency getContentsValue() {
@@ -428,6 +499,12 @@ public abstract class ItemContainer extends Item implements Serializable {
 
     // TODO rename Visitor Pattern style
     // Find contents that match the criteria
+    /**
+     * Method accept.
+     * 
+     * @param visitor
+     *            ItemVisitor
+     */
     public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
         for (Item item : getContents()) {
@@ -506,7 +583,9 @@ public abstract class ItemContainer extends Item implements Serializable {
         item.getPosition().applyDelta(delta);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc} * @param item Item
+     */
     @Override
     public void setAllFrom(Item item) {
         super.setAllFrom(item);

@@ -6,10 +6,19 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
+/**
+ */
 public class PurseTest {
 
+    /**
+     * Field MARGIN_OF_ERROR.
+     * (value is 1.0E-4)
+     */
     private static final float MARGIN_OF_ERROR = 0.0001f;
 
+    /**
+     * Method testPurse.
+     */
     @Test
     public void testPurse() {
         Purse purse = new Purse();
@@ -23,12 +32,18 @@ public class PurseTest {
         // TODO add more
     }
 
+    /**
+     * Method testPurseString.
+     */
     @Test
     public void testPurseString() {
         Purse purse = new Purse("ThisName");
         assertEquals("Name", "ThisName", purse.getName());
     }
 
+    /**
+     * Method testGetCoinCount.
+     */
     @Test
     public void testGetCoinCount() {
         // empty
@@ -41,6 +56,9 @@ public class PurseTest {
 
     }
 
+    /**
+     * Method testGetVolume.
+     */
     @Test
     public void testGetVolume() {
         // empty
@@ -55,6 +73,9 @@ public class PurseTest {
                 MARGIN_OF_ERROR);
     }
 
+    /**
+     * Method testGetValue.
+     */
     @Test
     public void testGetValue() {
         // empty
@@ -69,6 +90,9 @@ public class PurseTest {
         assertEquals("getValue - coins", expect2, purse2.getValue());
     }
 
+    /**
+     * Method testGetWeight.
+     */
     @Test
     public void testGetWeight() {
         // empty

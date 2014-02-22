@@ -9,6 +9,7 @@ import org.junit.Test;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class AbilityScoreTest {
     /** test number for base value. */

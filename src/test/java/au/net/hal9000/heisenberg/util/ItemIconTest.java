@@ -14,9 +14,14 @@ import au.net.hal9000.heisenberg.item.Sword;
 /**
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class ItemIconTest {
 
+    /**
+     * Method testSetIcon.
+     * @throws ConfigurationError
+     */
     @Test
     public void testSetIcon() throws ConfigurationError {
         Configuration config = DummyData.config();

@@ -6,6 +6,7 @@ package au.net.hal9000.heisenberg.ai;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 
 public interface ModelStateEvaluator {
@@ -15,8 +16,8 @@ public interface ModelStateEvaluator {
      * 
      * @param modelState
      *            the state of the model.
-     * @return How the goal?
-     */
+    
+     * @return How the goal? */
     double evaluate(ModelState modelState);
 
     /**
@@ -24,8 +25,8 @@ public interface ModelStateEvaluator {
      * 
      * @param modelState
      *            the state of the model.
-     * @return Are we at the goal?
-     */
+    
+     * @return Are we at the goal? */
 
     boolean atGoal(ModelState modelState);
 }

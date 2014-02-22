@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public final class Factory {
 
@@ -25,8 +26,8 @@ public final class Factory {
      * 
      * @param type
      *            the type of Item to create.
-     * @return the new Item.
-     */
+    
+     * @return the new Item. */
     public static Item createItem(String type) {
         return createItem(type, null);
     }
@@ -37,8 +38,8 @@ public final class Factory {
      * @param type
      *            the type of Item to create.
      * @param arguments parameters to constructor.
-     * @return the new Item.
-     */
+    
+     * @return the new Item. */
     public static Item createItem(String type, Object[] arguments) {
         try {
             Class<?> itemClass = Class.forName(packageName + "." + type);

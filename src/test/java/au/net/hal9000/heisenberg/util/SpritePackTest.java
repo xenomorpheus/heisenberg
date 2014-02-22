@@ -6,14 +6,22 @@ import java.awt.image.BufferedImage;
 
 import org.junit.Test;
 
+/**
+ */
 public class SpritePackTest {
 
+    /**
+     * Method testSpritePack.
+     */
     @Test
     public void testSpritePack() {
         SpritePack sp = new SpritePack();
         assertNotNull(sp);
     }
 
+    /**
+     * Method testInitStringIntIntIntInt.
+     */
     @Test
     public void testInitStringIntIntIntInt() {
         SpritePack sp = new SpritePack();
@@ -21,6 +29,9 @@ public class SpritePackTest {
         sp.init(spritePackFilename, 24, 24, 33, 16);
     }
 
+    /**
+     * Method testGetSpriteInt.
+     */
     @Test
     public void testGetSpriteInt() {
         SpritePack sp = new SpritePack();

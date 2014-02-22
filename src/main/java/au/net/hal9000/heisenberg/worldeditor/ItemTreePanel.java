@@ -19,6 +19,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
  * A window with hierarchical representation of the game objects.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ItemTreePanel extends JPanel {
     /** serial version id. */
@@ -26,7 +28,13 @@ public class ItemTreePanel extends JPanel {
 
     // Create a TreeModel object to represent our tree of Item objects
     // at the specified location.
+    /**
+     * Field treeModel.
+     */
     private ItemTreeModel treeModel = null;
+    /**
+     * Field tree.
+     */
     private JTree tree = new JTree();
     /** Choose the character class. */
     private JComboBox itemClassesList = null;

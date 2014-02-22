@@ -3,7 +3,9 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/** AI path of Action objects. */
+/** AI path of Action objects. * @author bruins
+ * @version $Revision: 1.0 $
+ */
 public class Path {
 
     /** path. */
@@ -18,8 +20,8 @@ public class Path {
     }
 
     /**
-     * @return the queue
-     */
+    
+     * @return the queue */
     public Queue<Action> getQueue() {
         return queue;
     }
@@ -39,6 +41,10 @@ public class Path {
      * 
      * @see java.lang.Object#hashCode()
      */
+    /**
+     * Method hashCode.
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -51,6 +57,11 @@ public class Path {
      * (non-Javadoc)
      * 
      * @see java.lang.Object#equals(java.lang.Object)
+     */
+    /**
+     * Method equals.
+     * @param obj Object
+     * @return boolean
      */
     @Override
     public boolean equals(Object obj) {
@@ -74,6 +85,10 @@ public class Path {
         return true;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();

@@ -4,8 +4,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 
+/**
+ */
 public class PcClassTest {
 
+	/**
+	 * Method testId.
+	 */
 	@Test
 	public final void testId() {
 		PcClass pc = new PcClass();
@@ -13,6 +18,9 @@ public class PcClassTest {
 		assertEquals(pc.getId(), "fred");
 	}
 
+	/**
+	 * Method testCombatDice.
+	 */
 	@Test
 	public final void testCombatDice() {
 		PcClass pc = new PcClass();
@@ -20,6 +28,9 @@ public class PcClassTest {
 		assertEquals(pc.getCombatDice(), 4);
 	}
 
+	/**
+	 * Method testMagicDice.
+	 */
 	@Test
 	public final void testMagicDice() {
 		PcClass pc = new PcClass();
@@ -27,6 +38,9 @@ public class PcClassTest {
 		assertEquals(pc.getMagicDice(), 4);
 	}
 
+	/**
+	 * Method testStealthDice.
+	 */
 	@Test
 	public final void testStealthDice() {
 		PcClass pc = new PcClass();
@@ -34,6 +48,9 @@ public class PcClassTest {
 		assertEquals(pc.getStealthDice(), 4);
 	}
 
+	/**
+	 * Method testGeneralDice.
+	 */
 	@Test
 	public final void testGeneralDice() {
 		PcClass pc = new PcClass();
@@ -41,6 +58,9 @@ public class PcClassTest {
 		assertEquals(pc.getGeneralDice(), 4);
 	}
 
+	/**
+	 * Method testActionPoints.
+	 */
 	@Test
 	public final void testActionPoints() {
 		PcClass pc = new PcClass();
@@ -48,6 +68,9 @@ public class PcClassTest {
 		assertEquals(pc.getActionPoints(), 4);
 	}
 
+	/**
+	 * Method testHealth.
+	 */
 	@Test
 	public final void testHealth() {
 		PcClass pc = new PcClass();
@@ -55,6 +78,9 @@ public class PcClassTest {
 		assertEquals(pc.getHealth(), 4);
 	}
 
+	/**
+	 * Method testMana.
+	 */
 	@Test
 	public final void testMana() {
 		PcClass pc = new PcClass();
@@ -62,6 +88,9 @@ public class PcClassTest {
 		assertEquals(pc.getMana(), 4);
 	}
 
+	/**
+	 * Method testRaceAllow.
+	 */
 	@Test
 	public final void testRaceAllow() {
 		PcClass pc = new PcClass();
@@ -69,6 +98,9 @@ public class PcClassTest {
 		assertEquals(pc.getRaceAllow(), "human");
 	}
 
+	/**
+	 * Method testGenderAllow.
+	 */
 	@Test
 	public final void testGenderAllow() {
 		PcClass pc = new PcClass();
@@ -76,6 +108,9 @@ public class PcClassTest {
 		assertEquals(pc.getGenderAllow(), "any");
 	}
 
+	/**
+	 * Method testSizeAllow.
+	 */
 	@Test
 	public final void testSizeAllow() {
 		PcClass pc = new PcClass();
@@ -83,6 +118,9 @@ public class PcClassTest {
 		assertEquals(pc.getSizeAllow(), "any");
 	}
 
+	/**
+	 * Method testEncumbrance.
+	 */
 	@Test
 	public final void testEncumbrance() {
 		PcClass pc = new PcClass();
@@ -91,25 +129,40 @@ public class PcClassTest {
 	}
 
 	// TODO testAbilityScores
+	/**
+	 * Method testAbilityScores.
+	 */
 	@Test
 	public final void testAbilityScores() {
 	}
 
 	// TODO testAbilityScore
+	/**
+	 * Method testAbilityScore.
+	 */
 	@Test
 	public final void testAbilityScore() {
 	}
 
 	// TODO PcClass testToString
+	/**
+	 * Method testToString.
+	 */
 	@Test
 	public final void testToString() {
 	}
 
 	// TODO PcClass testDescription
+	/**
+	 * Method testDescription.
+	 */
 	@Test
 	public final void testDescription() {
 	}
 
+	/**
+	 * Method testCompareTo.
+	 */
 	@Test
 	public final void testCompareTo() {
 		PcClass pc1 = new PcClass();

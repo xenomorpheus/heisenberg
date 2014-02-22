@@ -14,6 +14,7 @@ import au.net.hal9000.heisenberg.item.PcRace;
  * Description Pane.
  * @author bruins
  *
+ * @version $Revision: 1.0 $
  */
 public class DescriptionPane extends JScrollPane {
 
@@ -22,9 +23,18 @@ public class DescriptionPane extends JScrollPane {
     /** Logger. */
     private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class
             .getName());
+    /**
+     * Field pc.
+     */
     private PcRace pc;
+    /**
+     * Field descriptionTextArea.
+     */
     private JTextArea descriptionTextArea = new JTextArea(30, 25);
 
+    /**
+     * Constructor for DescriptionPane.
+     */
     DescriptionPane() {
         super();
 

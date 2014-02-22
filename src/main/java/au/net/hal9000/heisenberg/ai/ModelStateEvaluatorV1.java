@@ -2,6 +2,8 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.units.Point3d;
 
+/**
+ */
 public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
 
     /** error. */
@@ -11,12 +13,22 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     /** error. */
     public static final String MODEL_NOT_SUPPORTED = "model not supported";
 
+    /**
+     * Field GOAL_TOLERANCE.
+     * (value is 0.01)
+     */
     public static final double GOAL_TOLERANCE = 0.01;
 
     /** Constructor. */
     public ModelStateEvaluatorV1() {
     }
 
+    /**
+     * Method evaluate.
+     * @param modelState ModelState
+     * @return double
+     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#evaluate(ModelState)
+     */
     @Override
     public double evaluate(ModelState modelState) {
         double result;
@@ -37,6 +49,12 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
         return result;
     }
 
+    /**
+     * Method atGoal.
+     * @param modelState ModelState
+     * @return boolean
+     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#atGoal(ModelState)
+     */
     @Override
     public boolean atGoal(ModelState modelState) {
         return evaluate(modelState) < GOAL_TOLERANCE;

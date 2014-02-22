@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.units.Currency;
  * Default value is 5gp ? Default weight ?
  * 
  * @author bruins
- * 
+ * @version $Revision: 1.0 $
  */
 
 @Entity
@@ -26,7 +26,7 @@ public class Ring extends Item {
 
     /** default value. */
     private static final int DEFAULT_VALUE_GP = 5;
-    
+
     /** default weight. */
     private static final float DEFAULT_WEIGHT = 0.02f;
 

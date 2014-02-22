@@ -7,6 +7,8 @@ import java.util.Vector;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -37,6 +39,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class Cooker extends ItemContainer {
 
@@ -106,6 +109,7 @@ public class Cooker extends ItemContainer {
     /**
      * get the chef.
      * 
+     * 
      * @return the person doing the cooking.
      */
     public final Entity getChef() {
@@ -121,9 +125,13 @@ public class Cooker extends ItemContainer {
      *            where to add Item
      * @param item
      *            the Item we are making available.
+     * 
      * @return error message or null if it worked
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    public final String setItemsAvailable(final int index, final Item item) {
+    public final String setItemsAvailable(final int index, final Item item)
+            throws InvalidTypeException, CantWearException {
         // item exists
         if (item == null) {
             return ITEM_MAY_NOT_BE_NULL;
@@ -162,6 +170,7 @@ public class Cooker extends ItemContainer {
      * 
      * @param index
      *            the index of the Requirement requested
+     * 
      * @return the Requirement at this index.
      */
     public final Requirement getRequirement(final int index) {
@@ -171,6 +180,7 @@ public class Cooker extends ItemContainer {
     /**
      * Return the number of requirements.
      * 
+     * 
      * @return the number of requirements.
      */
     public final int getRequirementCount() {
@@ -179,6 +189,7 @@ public class Cooker extends ItemContainer {
 
     /**
      * Used the check the requirements are met.
+     * 
      * 
      * @return undef if requirements met, otherwise the reason.
      */
@@ -249,6 +260,7 @@ public class Cooker extends ItemContainer {
 
     /**
      * Check that every required Requirement is matched by an Item.
+     * 
      * 
      * @return null iff all requirements are met.
      */
@@ -330,9 +342,12 @@ public class Cooker extends ItemContainer {
     /**
      * Create all the products of the recipe.
      * 
+     * 
      * @return null if good, or error string.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
      */
-    private String createProducts() {
+    private String createProducts() throws InvalidTypeException, CantWearException {
         StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
@@ -352,8 +367,12 @@ public class Cooker extends ItemContainer {
     /**
      * We will start with a restriction that all cooking is done at once. e.g.
      * we wan't allow cooking over multiple rounds.
+     * 
+     * @return String
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    public final String cook() {
+    public final String cook() throws InvalidTypeException, CantWearException {
         String requirementsMetError = requirementsMet();
         if (requirementsMetError != null) {
             return requirementsMetError;
@@ -368,6 +387,8 @@ public class Cooker extends ItemContainer {
 
     /**
      * A short description.
+     * 
+     * @return String
      */
     public final String toString() {
         return "Cooker for recipe:" + recipe.getId();
@@ -378,9 +399,13 @@ public class Cooker extends ItemContainer {
      * 
      * @param container
      *            destination ItemContainer.
+     * @param index
+     *            int
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     public final void clearItemsAvailable(final int index,
-            final ItemContainer container) {
+            final ItemContainer container) throws InvalidTypeException, CantWearException {
         if (container == null) {
             throw new IllegalArgumentException("container may not be null");
         }
@@ -389,6 +414,13 @@ public class Cooker extends ItemContainer {
         ingredients.remove(index);
     }
 
+    /**
+     * Method findIngredientByName.
+     * 
+     * @param name
+     *            String
+     * @return Item
+     */
     public Item findIngredientByName(final String name) {
         for (int index = getRequirementCount() - 1; index >= 0; index--) {
             Requirement requirement = getRequirement(index);

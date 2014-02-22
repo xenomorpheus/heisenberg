@@ -14,6 +14,7 @@ package au.net.hal9000.heisenberg.crafting;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public abstract class Requirement {
 
@@ -28,12 +29,21 @@ public abstract class Requirement {
      */
     private boolean isConsumed = true;
 
-    public Requirement(String id) {
+    /**
+     * Constructor for Requirement.
+     * @param id String
+     */
+    protected Requirement(String id) {
         super();
         this.id = id;
     }
 
-    public Requirement(String id, boolean isConsumed) {
+    /**
+     * Constructor for Requirement.
+     * @param id String
+     * @param isConsumed boolean
+     */
+    protected Requirement(String id, boolean isConsumed) {
         this(id);
         this.isConsumed = isConsumed;
     }
@@ -41,20 +51,24 @@ public abstract class Requirement {
     // setters and getters
     /**
      * Get the id.
-     * @return the id.
-     */
+    
+     * @return the id. */
     public String getId() {
         return id;
     }
 
     // isConsumed
+    /**
+     * Method isConsumed.
+     * @return boolean
+     */
     public boolean isConsumed() {
         return isConsumed;
     }
 
     /**
-     * @return Return a description of the object.
-     */
+    
+     * @return Return a description of the object. */
     String getDescription() {
         String string = "Id: " + id;
         if (isConsumed) {

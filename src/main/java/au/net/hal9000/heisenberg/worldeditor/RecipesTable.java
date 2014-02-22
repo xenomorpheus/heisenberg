@@ -13,6 +13,8 @@ import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 
+/**
+ */
 public class RecipesTable extends JTable {
 
     /** serial version id. */
@@ -40,18 +42,36 @@ public class RecipesTable extends JTable {
         this.setModel(new MyTableModel(pc));
     }
 
+    /**
+     */
     private class MyTableModel extends AbstractTableModel {
         /**
          * 
          */
         private static final long serialVersionUID = 1L;
+        /**
+         * Field config.
+         */
         private Configuration config = Configuration.lastConfig();
+        /**
+         * Field logger.
+         */
         private final Logger logger = Logger.getLogger(RecipesTable.class
                 .getName());
 
+        /**
+         * Field recipeIds.
+         */
         private ArrayList<String> recipeIds;
+        /**
+         * Field recipes.
+         */
         private TreeMap<String, Recipe> recipes;
 
+        /**
+         * Constructor for MyTableModel.
+         * @param pc PcRace
+         */
         public MyTableModel(PcRace pc) {
             recipes = config.getRecipes();
             Set<String> pcRecipeIds = null;
@@ -65,10 +85,21 @@ public class RecipesTable extends JTable {
             }
         }
 
+        /**
+         * Method getColumnName.
+         * @param col int
+         * @return String
+         * @see javax.swing.table.TableModel#getColumnName(int)
+         */
         public String getColumnName(int col) {
             return COLUMN_NAMES[col].toString();
         }
 
+        /**
+         * Method getRowCount.
+         * @return int
+         * @see javax.swing.table.TableModel#getRowCount()
+         */
         public int getRowCount() {
             int count = 0;
             if (recipeIds != null) {
@@ -77,10 +108,22 @@ public class RecipesTable extends JTable {
             return count;
         }
 
+        /**
+         * Method getColumnCount.
+         * @return int
+         * @see javax.swing.table.TableModel#getColumnCount()
+         */
         public int getColumnCount() {
             return 2;
         }
 
+        /**
+         * Method getValueAt.
+         * @param row int
+         * @param col int
+         * @return Object
+         * @see javax.swing.table.TableModel#getValueAt(int, int)
+         */
         public Object getValueAt(int row, int col) {
             String recipeId = recipeIds.get(row);
             String result = null;
@@ -95,10 +138,24 @@ public class RecipesTable extends JTable {
             return result;
         }
 
+        /**
+         * Method isCellEditable.
+         * @param row int
+         * @param col int
+         * @return boolean
+         * @see javax.swing.table.TableModel#isCellEditable(int, int)
+         */
         public boolean isCellEditable(int row, int col) {
             return false;
         }
 
+        /**
+         * Method setValueAt.
+         * @param value Object
+         * @param row int
+         * @param col int
+         * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
+         */
         public void setValueAt(Object value, int row, int col) {
             // rowData[row][col] = value;
             fireTableCellUpdated(row, col);

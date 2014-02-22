@@ -20,6 +20,7 @@ import au.net.hal9000.heisenberg.item.Wood;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public final class ItemThawFromFile {
     /** Constructor. */
@@ -33,8 +34,8 @@ public final class ItemThawFromFile {
      *            store the object in the file.
      * @param item
      *            item to store.
-     * @throws IOException
-     */
+    
+     * @throws IOException */
     public static void freezeToFile(final String filename, Item item) throws IOException {
         FileOutputStream fos = new FileOutputStream(filename);
         ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -48,10 +49,10 @@ public final class ItemThawFromFile {
      * 
      * @param filename
      *            file to read from.
-     * @return A Cookie object.
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
+    
+    
+    
+     * @return A Cookie object. * @throws IOException * @throws ClassNotFoundException */
     public static Cookie cookieThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
@@ -62,6 +63,13 @@ public final class ItemThawFromFile {
     }
 
     // Not used (yet)
+    /**
+     * Method woodThawFromFile.
+     * @param filename String
+     * @return Wood
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Wood woodThawFromFile(String filename) throws IOException,
             ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
@@ -73,6 +81,13 @@ public final class ItemThawFromFile {
     }
 
     // Not used (yet)
+    /**
+     * Method waterThawFromFile.
+     * @param filename String
+     * @return Water
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Water waterThawFromFile(String filename) throws IOException,
             ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
@@ -83,6 +98,13 @@ public final class ItemThawFromFile {
     }
 
     // Not used (yet)
+    /**
+     * Method flintAndTinderThawFromFile.
+     * @param filename String
+     * @return FlintAndTinder
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static FlintAndTinder flintAndTinderThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
@@ -92,6 +114,13 @@ public final class ItemThawFromFile {
     }
 
     // Static
+    /**
+     * Method smallGroundFileThawFromFile.
+     * @param filename String
+     * @return SmallGroundFire
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static SmallGroundFire smallGroundFileThawFromFile(String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
@@ -105,6 +134,13 @@ public final class ItemThawFromFile {
     // throw new NotSerializableException("Not today!");
     // }
 
+    /**
+     * Method locationThawFromFile.
+     * @param filename String
+     * @return Location
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Location locationThawFromFile(final String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);
@@ -114,6 +150,13 @@ public final class ItemThawFromFile {
     }
 
     // Static
+    /**
+     * Method bagThawFromFile.
+     * @param filename String
+     * @return Bag
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Bag bagThawFromFile(final String filename) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(filename);
         ObjectInputStream in = new ObjectInputStream(fis);

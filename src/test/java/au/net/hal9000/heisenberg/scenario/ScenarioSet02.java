@@ -10,6 +10,8 @@ import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
+/**
+ */
 public class ScenarioSet02 {
 
     /**

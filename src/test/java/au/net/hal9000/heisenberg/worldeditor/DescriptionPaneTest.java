@@ -10,6 +10,8 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ */
 public class DescriptionPaneTest {
     /** frame width. */
     static final int FRAME_WIDTH = 800;
@@ -17,6 +19,10 @@ public class DescriptionPaneTest {
     static final int FRAME_HEIGHT = 600;
 
 
+    /**
+     * Method doTest.
+     * @throws ConfigurationError
+     */
     @Test
     public void doTest() throws ConfigurationError {
 

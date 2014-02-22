@@ -9,6 +9,7 @@ import org.junit.Test;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class DiceTest {
     /** number of tries to see if dice will fail. */
@@ -81,6 +82,9 @@ public class DiceTest {
         }
     }
 
+    /**
+     * Method testRollIntInt.
+     */
     @Test
     public void testRollIntInt() {
         Dice dice = new Dice();

@@ -12,8 +12,13 @@ import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
 
+/**
+ */
 public class RequirementItemTest {
 
+    /**
+     * Method testGetDescription.
+     */
     @Test
     public void testGetDescription() {
         RequirementItem requirementItem = new RequirementItem("Bag", "Bag",
@@ -29,6 +34,9 @@ public class RequirementItemTest {
                 requirementItem.getDescription());
     }
 
+    /**
+     * Method testIsConsumed.
+     */
     @Test
     public void testIsConsumed() {
         RequirementItem requirementItem = new RequirementItem("Bag", "Bag",
@@ -38,6 +46,9 @@ public class RequirementItemTest {
         assertTrue("not consumed", requirementItem.isConsumed());
     }
 
+    /**
+     * Method testMeetsRequirements.
+     */
     @Test
     public void testMeetsRequirements() {
 
@@ -55,6 +66,9 @@ public class RequirementItemTest {
                 requirementItem.meetsRequirements(new Box()));
     }
 
+    /**
+     * Method testMeetsRequirementsMinWeight.
+     */
     @Test
     public void testMeetsRequirementsMinWeight() {
         // The requirement
@@ -82,6 +96,9 @@ public class RequirementItemTest {
                 requirementItem.meetsRequirements(cookieLite));
     }
 
+    /**
+     * Method testToString.
+     */
     @Test
     public void testToString() {
         RequirementItem requirementItem = new RequirementItem("Cookie");

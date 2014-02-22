@@ -7,6 +7,8 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import au.net.hal9000.heisenberg.item.Item;
 
+/**
+ */
 public class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
     /**
@@ -14,6 +16,18 @@ public class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Method getTreeCellRendererComponent.
+     * @param tree JTree
+     * @param value Object
+     * @param sel boolean
+     * @param exp boolean
+     * @param leaf boolean
+     * @param row int
+     * @param hasFocus boolean
+     * @return Component
+     * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(JTree, Object, boolean, boolean, boolean, int, boolean)
+     */
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value,
             boolean sel, boolean exp, boolean leaf, int row, boolean hasFocus) {

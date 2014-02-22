@@ -24,15 +24,29 @@ import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
+/**
+ */
 public class ScenarioSet01 {
 
+    /**
+     * Method println.
+     * 
+     * @param string
+     *            String
+     */
     private void println(String string) {
         // System.out.println(string);
     }
 
+    /**
+     * Method swordIntoScabbard.
+     * 
+     * @throws InvalidTypeException
+     */
     @Test
-    public void swordIntoScabbard() {
+    public void swordIntoScabbard() throws InvalidTypeException {
         println(System.lineSeparator() + "** A sword is placed in a scabbard.");
         Sword sword = new Sword();
         println("Sword created with name: " + sword);
@@ -47,8 +61,15 @@ public class ScenarioSet01 {
         println("Sword location: " + sword.getContainer());
     }
 
+    /**
+     * Method fullBackpackIntoBox.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void fullBackpackIntoBox() {
+    public void fullBackpackIntoBox() throws InvalidTypeException,
+            CantWearException {
         println(System.lineSeparator()
                 + "** A full backpack is placed in a box.");
         Backpack backpack = new Backpack();
@@ -61,6 +82,9 @@ public class ScenarioSet01 {
         println("Backpack location: " + backpack.getContainer());
     }
 
+    /**
+     * Method crossbowIsLoaded.
+     */
     @Test
     public void crossbowIsLoaded() {
         println(System.lineSeparator() + "** A crossbow is loaded.");
@@ -77,6 +101,9 @@ public class ScenarioSet01 {
         println("Crossbow has been loaded with the bolt");
     }
 
+    /**
+     * Method torchIsLit.
+     */
     @Test
     public void torchIsLit() {
         println(System.lineSeparator() + "** A torch is lit.");
@@ -92,20 +119,25 @@ public class ScenarioSet01 {
                 + torch.getDescription());
     }
 
+    /**
+     * Method shieldAdd.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void shieldAdd() {
+    public void shieldAdd() throws InvalidTypeException, CantWearException {
         println(System.lineSeparator() + "** A Shield is equipped.");
         Shield shield = new Shield();
         Human human = new Human();
         println("Equip the shield.");
-        try {
-            human.add(shield);
-        } catch (Exception e) {
-            fail("Humanoid could not wear shield");
-        }
+        human.add(shield);
         println("Shield location: " + shield.getContainer());
     }
 
+    /**
+     * Method quiverIsFilled.
+     */
     @Test
     public void quiverIsFilled() {
         println(System.lineSeparator() + "** A quiver is filled.");
@@ -132,6 +164,9 @@ public class ScenarioSet01 {
     }
 
     // TODO candle runs out
+    /**
+     * Method candleRunsOut.
+     */
     @Test
     public void candleRunsOut() {
         println(System.lineSeparator() + "** A candle runs out.");
@@ -143,6 +178,9 @@ public class ScenarioSet01 {
                 + candle.getDescription());
     }
 
+    /**
+     * Method hobbitEatsACookie.
+     */
     @Test
     public void hobbitEatsACookie() {
         println(System.lineSeparator() + "** A hobbit eats a cookie.");

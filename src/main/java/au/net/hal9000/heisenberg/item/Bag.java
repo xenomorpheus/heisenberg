@@ -5,9 +5,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
+/**
+ * A common Bog for holding multiple Item objects.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
@@ -45,13 +49,23 @@ public class Bag extends Box {
     // Methods
 
     // TODO finish rupture
+    /**
+     * Method rupture.
+     */
     public void rupture() {
         // System.out.println("Ordinary rupture");
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     * 
+     * @param item
+     *            Item
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Override
-    public void add(final Item item) {
+    public void add(final Item item) throws InvalidTypeException, CantWearException {
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {
             this.rupture();

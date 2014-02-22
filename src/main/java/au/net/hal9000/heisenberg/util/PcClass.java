@@ -17,11 +17,15 @@ import java.util.Iterator;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 
 public class PcClass implements Comparable<PcClass> {
 
     // e.g. "Soldier"
+    /**
+     * Field id.
+     */
     private String id;
     /** combat dice. */
     private int combatDice = 0;
@@ -32,21 +36,48 @@ public class PcClass implements Comparable<PcClass> {
     /** general dice. */
     private int generalDice = 0;
     // misc
+    /**
+     * Field actionPoints.
+     */
     private int actionPoints = 0;
+    /**
+     * Field health.
+     */
     private int health = 0;
+    /**
+     * Field mana.
+     */
     private int mana = 0;
+    /**
+     * Field raceAllow.
+     */
     private String raceAllow;
+    /**
+     * Field genderAllow.
+     */
     private String genderAllow;
+    /**
+     * Field sizeAllow.
+     */
     private String sizeAllow;
+    /**
+     * Field encumbrance.
+     */
     private int encumbrance = 0;
+    /**
+     * Field abilityScores.
+     */
     private TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 
+    /**
+     * Constructor for PcClass.
+     */
     public PcClass() {
     }
 
     /**
-     * @return the id
-     */
+    
+     * @return the id */
     public final String getId() {
         return id;
     }
@@ -60,8 +91,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the combatDice
-     */
+    
+     * @return the combatDice */
     public final int getCombatDice() {
         return combatDice;
     }
@@ -75,8 +106,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the magicDice
-     */
+    
+     * @return the magicDice */
     public final int getMagicDice() {
         return magicDice;
     }
@@ -90,8 +121,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the stealthDice
-     */
+    
+     * @return the stealthDice */
     public final int getStealthDice() {
         return stealthDice;
     }
@@ -105,8 +136,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the generalDice
-     */
+    
+     * @return the generalDice */
     public final int getGeneralDice() {
         return generalDice;
     }
@@ -120,8 +151,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the actionPoints
-     */
+    
+     * @return the actionPoints */
     public final int getActionPoints() {
         return actionPoints;
     }
@@ -135,8 +166,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the health
-     */
+    
+     * @return the health */
     public final int getHealth() {
         return health;
     }
@@ -150,8 +181,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the mana
-     */
+    
+     * @return the mana */
     public final int getMana() {
         return mana;
     }
@@ -165,8 +196,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the raceAllow
-     */
+    
+     * @return the raceAllow */
     public final String getRaceAllow() {
         return raceAllow;
     }
@@ -180,8 +211,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the genderAllow
-     */
+    
+     * @return the genderAllow */
     public final String getGenderAllow() {
         return genderAllow;
     }
@@ -195,8 +226,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the sizeAllow
-     */
+    
+     * @return the sizeAllow */
     public final String getSizeAllow() {
         return sizeAllow;
     }
@@ -210,8 +241,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the encumbrance
-     */
+    
+     * @return the encumbrance */
     public final int getEncumbrance() {
         return encumbrance;
     }
@@ -225,8 +256,8 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the abilityScores
-     */
+    
+     * @return the abilityScores */
     public final TreeMap<String, AbilityScore> getAbilityScores() {
         return abilityScores;
     }
@@ -245,8 +276,8 @@ public class PcClass implements Comparable<PcClass> {
     /**
      * @param name
      *            name of AbilityScore
-     * @return the AbilityScore object
-     */
+    
+     * @return the AbilityScore object */
     public AbilityScore getAbilityScore(String name) {
         return abilityScores.get(name);
     }
@@ -261,15 +292,15 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-     * @return the short string.
-     */
+    
+     * @return the short string. */
     public String toString() {
         return id;
     }
 
     /**
-     * @return Plain text description of the object
-     */
+    
+     * @return Plain text description of the object */
     public String getDetailedDescription() {
         StringBuilder text = new StringBuilder("Id: ");
         text.append(id);
@@ -321,7 +352,9 @@ public class PcClass implements Comparable<PcClass> {
         return text.toString();
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param other PcClass
+     * @return int
+     */
     @Override
     public int compareTo(PcClass other) {
         return this.id.compareTo(other.getId());

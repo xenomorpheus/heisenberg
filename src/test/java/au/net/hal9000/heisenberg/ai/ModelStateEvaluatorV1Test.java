@@ -14,6 +14,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class ModelStateEvaluatorV1Test {
     /** tolerance for comparing floats. */
@@ -61,6 +62,9 @@ public class ModelStateEvaluatorV1Test {
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
+    /**
+     * Method testEvaluateBadGoal.
+     */
     @Test
     public void testEvaluateBadGoal() {
         ModelStateV1 modelStateV1 = new ModelStateV1(null, null);
@@ -75,6 +79,9 @@ public class ModelStateEvaluatorV1Test {
         fail("should not get here");
     }
 
+    /**
+     * Method testEvaluateBadAgent.
+     */
     @Test
     public void testEvaluateBadAgent() {
         ModelStateV1 modelStateV1 = new ModelStateV1(null, null);

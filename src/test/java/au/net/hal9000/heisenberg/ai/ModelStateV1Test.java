@@ -14,6 +14,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class ModelStateV1Test {
 
@@ -66,8 +67,8 @@ public class ModelStateV1Test {
     /**
      * test clone.
      * 
-     * @throws CloneNotSupportedException
-     */
+    
+     * @throws CloneNotSupportedException */
     @Test
     public void testClone() throws CloneNotSupportedException {
         Point3d agentPosition = new Point3d(0, 1, 2);

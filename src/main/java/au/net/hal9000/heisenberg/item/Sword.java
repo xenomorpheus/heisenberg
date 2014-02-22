@@ -7,17 +7,30 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Sword extends Item implements Sharp {
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor for Sword.
+     */
     public Sword() {
         this("Sword");
     }
 
+    /**
+     * Constructor for Sword.
+     * @param pString String
+     */
     public Sword(final String pString) {
         super(pString);
     }

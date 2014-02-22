@@ -5,8 +5,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
@@ -39,17 +43,21 @@ public class Quiver extends ItemContainer {
     /**
      * Add arrows to the quiver.
      * 
-     * @param arrow arrow Item to add to Quiver.
+     * @param arrow
+     *            arrow Item to add to Quiver.
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    public void add(final Arrow arrow) {
+    public void add(final Arrow arrow) throws InvalidTypeException, CantWearException {
         super.add(arrow);
     }
 
     /**
      * This method is required to override the parent class method.
      * 
-     * @deprecated
+    
      * @param item item to attempt (and fail) to add to quiver.
+     * @deprecated since <unknown>
      */
     @Override
     public void add(final Item item) {

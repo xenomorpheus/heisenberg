@@ -5,8 +5,13 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+/**
+ */
 public class SkillDetailTest {
 
+    /**
+     * Method testSkillStringString.
+     */
     @Test
     public void testSkillStringString() {
         try {

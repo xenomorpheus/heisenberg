@@ -7,8 +7,14 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ */
 public class AbilityScoresTableTest {
 
+    /**
+     * Method testAbilityScoresTable.
+     * @throws ConfigurationError
+     */
     @Test
     public void testAbilityScoresTable() throws ConfigurationError {
         PcRace pc = DummyData.elf();
@@ -17,6 +23,9 @@ public class AbilityScoresTableTest {
         assertNotNull("BasicPanel not null", basicPanel);
     }
 
+    /**
+     * Method testGetRowCount.
+     */
     @Test
     public void testGetRowCount() {
 

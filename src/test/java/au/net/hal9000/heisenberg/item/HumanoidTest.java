@@ -4,11 +4,22 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+
+/**
+ */
 public class HumanoidTest {
+    /**
+     * Field WITHIN_MARGIN. (value is 9.0E-5)
+     */
     private static final float WITHIN_MARGIN = 0.00009F;
 
     /*
      * Most tests will use a Human as a representative of Humanoid.
+     */
+    /**
+     * Method testGetWeight.
      */
     @Test
     public void testGetWeight() {
@@ -19,8 +30,15 @@ public class HumanoidTest {
         assertEquals("getWeight", human.getWeight(), 7F, WITHIN_MARGIN);
     }
 
+    /**
+     * Method testGetIndexOfChild.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetIndexOfChild() {
+    public void testGetIndexOfChild() throws InvalidTypeException,
+            CantWearException {
         Human human = new Human(); // Close enough for this abstract class
 
         assertEquals("getIndexOfChild head", 0,
@@ -45,8 +63,7 @@ public class HumanoidTest {
     @Test
     public void testGetRace() {
         Human human = new Human();
-        assertEquals("getRace","Human", human.getRace());
+        assertEquals("getRace", "Human", human.getRace());
     }
-    
-    
+
 }

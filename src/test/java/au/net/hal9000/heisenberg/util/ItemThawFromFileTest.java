@@ -11,21 +11,24 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Bag;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
 /**
  * Testing Persistence of Item objects.
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class ItemThawFromFileTest {
 
     /**
      * Testing freezing and thawing a simple Item to a file.
      * 
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
+    
+    
+     * @throws IOException * @throws ClassNotFoundException */
     @Test
     public void cookieFilePersistenceTest() throws IOException,
             ClassNotFoundException {
@@ -46,11 +49,15 @@ public class ItemThawFromFileTest {
     /**
      * Persist two Item objects to disk.
      * 
+     * 
+     * 
      * @throws IOException
-     * @throws ClassNotFoundException
+     *             * @throws ClassNotFoundException
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void persistTwoCookies() throws IOException, ClassNotFoundException {
+    public void persistTwoCookies() throws IOException, ClassNotFoundException, InvalidTypeException, CantWearException {
         // System.out.println("\n** persist two cookies.");
         Location old = new Location("world");
         Cookie cookie = new Cookie();
@@ -74,9 +81,9 @@ public class ItemThawFromFileTest {
 
     /**
      * Freeze and thaw a Container Item to file.
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
+    
+    
+     * @throws IOException * @throws ClassNotFoundException */
     @Test
     public void locationPersistenceShallowTest() throws IOException,
             ClassNotFoundException {
@@ -97,9 +104,17 @@ public class ItemThawFromFileTest {
 
     }
 
+    /**
+     * Method locationPersistenceDeepTest.
+     * 
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
     public void locationPersistenceDeepTest() throws IOException,
-            ClassNotFoundException {
+            ClassNotFoundException, InvalidTypeException, CantWearException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "location_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
@@ -117,6 +132,11 @@ public class ItemThawFromFileTest {
 
     }
 
+    /**
+     * Method cookiePersistenceShallowTest.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Test
     public void cookiePersistenceShallowTest() throws IOException,
             ClassNotFoundException {
@@ -134,9 +154,16 @@ public class ItemThawFromFileTest {
 
     }
 
+    /**
+     * Method cookiePersistenceDeepTest.
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
     public void cookiePersistenceDeepTest() throws IOException,
-            ClassNotFoundException {
+            ClassNotFoundException, InvalidTypeException, CantWearException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "bag_persit_test.ser");
         String filename = fileObj.getAbsolutePath();

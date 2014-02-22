@@ -16,6 +16,7 @@ import au.net.hal9000.heisenberg.util.DummyData;
  * 
  * @author bruins
  *
+ * @version $Revision: 1.0 $
  */
 public class SkillsTableTest {
     /** frame width. */
@@ -23,6 +24,10 @@ public class SkillsTableTest {
     /** frame height. */
     static final int FRAME_HEIGHT = 300;
     
+    /**
+     * Method doTest.
+     * @throws ConfigurationError
+     */
     @Test
     public void doTest() throws ConfigurationError {
 

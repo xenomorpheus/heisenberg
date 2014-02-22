@@ -8,9 +8,16 @@ import au.net.hal9000.heisenberg.item.Item;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public abstract class ItemSplitByWeight {
 
+    /**
+     * Method splitByWeight.
+     * @param item Item
+     * @param newItemWeight float
+     * @return Item
+     */
     public static Item splitByWeight(Item item, float newItemWeight) {
         if (newItemWeight <= 0) {
             throw new IllegalArgumentException(

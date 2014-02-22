@@ -10,13 +10,14 @@ import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
+/**
+ * Some plain water.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Water extends Item implements SplitByWeight {
-    /**
-     * Some plain water.
-     */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
 
     /** constructor. */
@@ -51,7 +52,11 @@ public class Water extends Item implements SplitByWeight {
 
     // Static
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc} * @param newItemWeight float
+     * 
+     * @return Item
+     */
     @Override
     public Item splitByWeight(float newItemWeight) {
         return ItemSplitByWeight.splitByWeight(this, newItemWeight);

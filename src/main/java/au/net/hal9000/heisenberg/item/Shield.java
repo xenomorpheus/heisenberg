@@ -18,6 +18,8 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  *  TODO perhaps create a protection Interface.
  */
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
@@ -26,9 +28,16 @@ public class Shield extends Item {
     // ToHitModifier toHitModifier = new ToHitModifier();
     // DamageModifier damageModifier = new DamageModifier();
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
 
     // Constructor(s)
+    /**
+     * Constructor for Shield.
+     */
     public Shield() {
         super("Shield");
         ItemProperty.setClothing(this, true);

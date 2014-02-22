@@ -5,36 +5,56 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ */
 public class ProductItemTest {
 
+    /**
+     * Method productItemStringTest.
+     */
     @Test
     public void productItemStringTest() {
         new ProductItem("someId");
     }
 
+    /**
+     * Method productItemStringStringTest.
+     */
     @Test
     public void productItemStringStringTest() {
         new ProductItem("SomeId", "SomeType", 0);
     }
 
+    /**
+     * Method getIdTest.
+     */
     @Test
     public void getIdTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertTrue("id", "SomeId".equals(productItem.getId()));
     }
 
+    /**
+     * Method getTypeTest.
+     */
     @Test
     public void getTypeTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertTrue("type", "SomeType".equals(productItem.getType()));
     }
 
+    /**
+     * Method getWeightBaseTest.
+     */
     @Test
     public void getWeightBaseTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
         assertEquals("weightBase", 1.2f, productItem.getWeightBase(), 0.0001f);
     }
 
+    /**
+     * Method getDescriptionTest.
+     */
     @Test
     public void getDescriptionTest() {
         ProductItem productItem = new ProductItem("SomeId", "SomeType", 1.2f);
@@ -43,6 +63,9 @@ public class ProductItemTest {
                 productItem.getDescription());
     }
 
+    /**
+     * Method meetsRequirementsTest.
+     */
     @Test
     public void meetsRequirementsTest() {
         // TODO complete
@@ -51,6 +74,9 @@ public class ProductItemTest {
         // String string = productItem.meetsRequirements(cooker);
     }
 
+    /**
+     * Method createProductTest.
+     */
     @Test
     public void createProductTest() {
         // TODO complete

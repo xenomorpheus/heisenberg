@@ -10,77 +10,106 @@ import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
+/**
+ */
 public class ItemSearchExtraDimensionalTest {
 
+    /**
+     * Method testAccept. Ordinary non-ED, non-container.
+     */
     @Test
-    public void testAccept() {
+    public void testAccept1()
 
-        // Ordinary non-ED, non-container
-        {
-            Cookie cookie = new Cookie();
-            ItemSearch searchCookie = new ItemSearchExtraDimensional();
-            cookie.accept(searchCookie);
-            assertEquals("count", 0, searchCookie.getMatchingItemsCount());
-        }
+    {
+        Cookie cookie = new Cookie();
+        ItemSearch searchCookie = new ItemSearchExtraDimensional();
+        cookie.accept(searchCookie);
+        assertEquals("count", 0, searchCookie.getMatchingItemsCount());
+    }
 
-        // Ordinary non-ED, container
-        {
-            Box box = new Box();
-            ItemSearch searchBox = new ItemSearchExtraDimensional();
-            box.accept(searchBox);
-            assertEquals("count", 0, searchBox.getMatchingItemsCount());
-        }
+    /**
+     * Method testAccept. Ordinary non-ED, container.
+     */
+    @Test
+    public void testAccept2() {
+        Box box = new Box();
+        ItemSearch searchBox = new ItemSearchExtraDimensional();
+        box.accept(searchBox);
+        assertEquals("count", 0, searchBox.getMatchingItemsCount());
+    }
 
-        // Empty ED container
-        {
-            BagOfHolding boh = new BagOfHolding(2);
-            ItemSearch searchBoh = new ItemSearchExtraDimensional();
-            boh.accept(searchBoh);
-            assertEquals("count", 1, searchBoh.getMatchingItemsCount());
-        }
+    /**
+     * Method testAccept. Empty ED container.
+     */
+    @Test
+    public void testAccept3() {
+        BagOfHolding boh = new BagOfHolding(2);
+        ItemSearch searchBoh = new ItemSearchExtraDimensional();
+        boh.accept(searchBoh);
+        assertEquals("count", 1, searchBoh.getMatchingItemsCount());
+    }
 
-        // Ordinary container with ED inside
-        {
-            Box box = new Box();
-            BagOfHolding boh = new BagOfHolding(1);
-            box.setWeightMax(boh.getWeight());
-            box.setVolumeMax(boh.getVolume());
-            box.add(boh);
-            ItemSearch searchBox2 = new ItemSearchExtraDimensional();
-            box.accept(searchBox2);
-            assertEquals("count", 1, searchBox2.getMatchingItemsCount());
-        }
+    // Ordinary container with ED inside
+    /**
+     * Method testAccept.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
+    @Test
+    public void testAccept4() throws InvalidTypeException, CantWearException {
+        Box box = new Box();
+        BagOfHolding boh = new BagOfHolding(1);
+        box.setWeightMax(boh.getWeight());
+        box.setVolumeMax(boh.getVolume());
+        box.add(boh);
+        ItemSearch searchBox2 = new ItemSearchExtraDimensional();
+        box.accept(searchBox2);
+        assertEquals("count", 1, searchBox2.getMatchingItemsCount());
+    }
 
-        // Ordinary container with non-ED inside
-        {
-            Box box = new Box();
-            BagOfHolding boh = new BagOfHolding(1);
-            box.setWeightMax(boh.getWeight());
-            box.setVolumeMax(boh.getVolume());
-            box.add(boh);
-            ItemSearch searchBox3 = new ItemSearchExtraDimensional();
-            box.accept(searchBox3);
-            assertEquals("count", 1, searchBox3.getMatchingItemsCount());
-        }
+    // Ordinary container with non-ED inside
+    /**
+     * Method testAccept.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
+    @Test
+    public void testAccept5() throws InvalidTypeException, CantWearException {
+        Box box = new Box();
+        BagOfHolding boh = new BagOfHolding(1);
+        box.setWeightMax(boh.getWeight());
+        box.setVolumeMax(boh.getVolume());
+        box.add(boh);
+        ItemSearch searchBox3 = new ItemSearchExtraDimensional();
+        box.accept(searchBox3);
+        assertEquals("count", 1, searchBox3.getMatchingItemsCount());
+    }
 
-        // java Container with ED and non-ED inside
-        {
-            Box box = new Box();
-            BagOfHolding boh = new BagOfHolding(1);
-            Cookie cookie = new Cookie();
-            Vector<Item> container = new Vector<Item>();
-            container.add(box);
-            container.add(boh);
-            container.add(cookie);
+    // java Container with ED and non-ED inside
+    /**
+     * Method testAccept.
+     */
+    @Test
+    public void testAccept6() {
+        Box box = new Box();
+        BagOfHolding boh = new BagOfHolding(1);
+        Cookie cookie = new Cookie();
+        Vector<Item> container = new Vector<Item>();
+        container.add(box);
+        container.add(boh);
+        container.add(cookie);
 
-            ItemSearch search = new ItemSearchExtraDimensional();
-            search.visit(container);
+        ItemSearch search = new ItemSearchExtraDimensional();
+        search.visit(container);
 
-            box.accept(search);
-            assertEquals("count", 1, search.getMatchingItemsCount());
-            assertEquals("found", boh, search.getMatchingItems().elementAt(0));
-        }
+        box.accept(search);
+        assertEquals("count", 1, search.getMatchingItemsCount());
+        assertEquals("found", boh, search.getMatchingItems().elementAt(0));
     }
 
 }

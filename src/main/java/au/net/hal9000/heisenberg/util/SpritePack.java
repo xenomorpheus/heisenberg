@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class SpritePack {
     /** so we can find the resource files. **/
@@ -62,8 +63,8 @@ public class SpritePack {
      * @param number
      *            the position in the sprite pack, starting at zero for top
      *            left.
-     * @return the buffered image at that position
-     */
+    
+     * @return the buffered image at that position */
     public BufferedImage getSprite(int number) {
         return sprites[number];
     }

@@ -8,6 +8,8 @@ import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
  * Test that the entire process of AI, AKA Computational Search.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class SearchTestV1 {
 

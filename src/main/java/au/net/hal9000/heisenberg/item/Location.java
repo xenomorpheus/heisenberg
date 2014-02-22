@@ -12,6 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

@@ -6,8 +6,13 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class HumanoidHeadTest {
 
+    /**
+     * Method testLiving.
+     */
     @Test
     public void testLiving() {
         HumanoidHead head = new HumanoidHead();

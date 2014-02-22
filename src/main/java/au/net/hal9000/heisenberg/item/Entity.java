@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -14,6 +16,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 
 public abstract class Entity extends ItemContainer {
@@ -55,10 +58,18 @@ public abstract class Entity extends ItemContainer {
      * The {@link Skill} objects required.
      */
     private Set<Skill> skills;
+    /**
+     * Field size.
+     */
     private String size;
 
     // Constructor
-    public Entity(String name, String description) {
+    /**
+     * Constructor for Entity.
+     * @param name String
+     * @param description String
+     */
+    protected Entity(String name, String description) {
         super(name, description);
         // By default PCs are living, but this may be changed at any time.
         ItemProperty.setLiving(this, true);
@@ -69,7 +80,11 @@ public abstract class Entity extends ItemContainer {
         ItemProperty.setRest(this, HEALTH_METRIC_IDEAL);
     }
 
-    public Entity(String name) {
+    /**
+     * Constructor for Entity.
+     * @param name String
+     */
+    protected Entity(String name) {
         this(name, "");
     }
 
@@ -77,8 +92,8 @@ public abstract class Entity extends ItemContainer {
 
     // Getters and Setters
     /**
-     * @return the actionPoints
-     */
+    
+     * @return the actionPoints */
     public final int getActionPoints() {
         return actionPoints;
     }
@@ -102,8 +117,8 @@ public abstract class Entity extends ItemContainer {
     }
 
     /**
-     * @return the gender
-     */
+    
+     * @return the gender */
     public final String getGender() {
         return gender;
     }
@@ -117,8 +132,8 @@ public abstract class Entity extends ItemContainer {
     }
 
     /**
-     * @return the mana
-     */
+    
+     * @return the mana */
     public final int getMana() {
         return mana;
     }
@@ -145,8 +160,8 @@ public abstract class Entity extends ItemContainer {
     /**
      * Get the Recipe objects this PcRace object knows.
      * 
-     * @return the set of Recipe objects
-     */
+    
+     * @return the set of Recipe objects */
     public Set<String> getRecipes() {
         return recipes;
     }
@@ -187,8 +202,8 @@ public abstract class Entity extends ItemContainer {
     }
 
     /**
-     * @return the size
-     */
+    
+     * @return the size */
     public final String getSize() {
         return size;
     }
@@ -205,8 +220,8 @@ public abstract class Entity extends ItemContainer {
     /**
      * Get the Skill objects.
      * 
-     * @return a set of Skill objects
-     */
+    
+     * @return a set of Skill objects */
     public final Set<Skill> getSkills() {
         return skills;
     }
@@ -238,9 +253,9 @@ public abstract class Entity extends ItemContainer {
      * Add extra Skills to the list of required ingredients.
      * 
      * @param newSkills
-     *            additinal skills to set on Entity.
+     *            additional skills to set on Entity.
      */
-    public final void skillsAdd(final String[] newSkills) {
+    public final void skillsAddArray(final String[] newSkills) {
         for (String skillId : newSkills) {
             skillsAdd(new Skill(skillId));
         }
@@ -251,8 +266,8 @@ public abstract class Entity extends ItemContainer {
     /**
      * Return a detailed description of the object.
      * 
-     * @return Plain text description of the object
-     */
+    
+     * @return Plain text description of the object */
     public String detailedDescription() {
         StringBuilder text = new StringBuilder();
 
@@ -305,8 +320,8 @@ public abstract class Entity extends ItemContainer {
      * 
      * @param recipeId
      *            The ID of the recipe we wish to use for cooking.
-     * @return a new cooker object
-     */
+    
+     * @return a new cooker object */
     public Cooker getCooker(String recipeId) {
         Configuration configuration = Configuration.lastConfig();
         return configuration.getRecipe(recipeId).getNewCooker(this);
@@ -317,9 +332,12 @@ public abstract class Entity extends ItemContainer {
      * 
      * @param item
      *            Water (or sub-class)
+     * 
      * @return Any error message, or null on success.
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    public String drink(Item item) {
+    public String drink(Item item) throws InvalidTypeException, CantWearException {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, item);
         if (error != null) {

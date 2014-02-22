@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+/**
+ */
 public class Successor {
 
     /** an action the agent can perform. */
@@ -21,20 +23,21 @@ public class Successor {
     }
 
     /**
-     * @return get the action.
-     */
+    
+     * @return get the action. */
     public Action getAction() {
         return action;
     }
 
     /**
-     * @return get the new model state.
-     */
+    
+     * @return get the new model state. */
     public ModelState getModelState() {
         return modelState;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return String
+     */
     @Override
     public String toString() {
         return "[action=" + action + ", modelStage=" + modelState + "]";

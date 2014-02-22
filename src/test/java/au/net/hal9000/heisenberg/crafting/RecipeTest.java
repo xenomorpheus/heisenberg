@@ -12,17 +12,46 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Skill;
 
+/**
+ */
 public class RecipeTest {
+    /**
+     * Field PROCESS_NAME.
+     * (value is ""process name"")
+     */
     private static final String PROCESS_NAME = "process name";
+    /**
+     * Field REQUIRED_ACTION_POINTS.
+     * (value is 42)
+     */
     private static final int REQUIRED_ACTION_POINTS = 42;
+    /**
+     * Field REQUIRED_MANA.
+     * (value is 3)
+     */
     private static final int REQUIRED_MANA = 3;
+    /**
+     * Field REQUIRED_SKILLS.
+     */
     private static final String[] REQUIRED_SKILLS = new String[] { "Skill0",
             "Skill1", "Skill2" };
 
+    /**
+     * Field simple.
+     */
     private Recipe simple;
+    /**
+     * Field requirementsAll.
+     */
     private List<Requirement> requirementsAll;
+    /**
+     * Field recipeAll.
+     */
     private Recipe recipeAll;
 
+    /**
+     * Method setup.
+     */
     @Before
     public void setup() {
         simple = new Recipe("recipe1", "the first recipe", null, 2,
@@ -52,6 +81,9 @@ public class RecipeTest {
 
     }
 
+    /**
+     * Method testRecipeIngredients.
+     */
     @Test
     public void testRecipeIngredients() {
 
@@ -75,55 +107,88 @@ public class RecipeTest {
         assertEquals("ingredient 1", wood, recipe.getRequirement(1));
     }
 
+    /**
+     * Method testGetId.
+     */
     @Test
     public void testGetId() {
         assertEquals("id", "recipe1", recipeAll.getId());
     }
 
+    /**
+     * Method testGetDescription.
+     */
     @Test
     public void testGetDescription() {
         assertEquals("description", "the first recipe",
                 recipeAll.getDescription());
     }
 
+    /**
+     * Method testGetProcess.
+     */
     @Test
     public void testGetProcess() {
         assertEquals("process", PROCESS_NAME, recipeAll.getProcess());
     }
 
+    /**
+     * Method testGetMana.
+     */
     @Test
     public void testGetMana() {
         assertEquals("mana", 2, recipeAll.getMana());
     }
 
+    /**
+     * Method testGetActionPoints.
+     */
     @Test
     public void testGetActionPoints() {
         assertEquals("actionPoints", REQUIRED_ACTION_POINTS,
                 recipeAll.getActionPoints());
     }
 
+    /**
+     * Method testGetRequirementCount.
+     */
     @Test
     public void testGetRequirementCount() {
         assertEquals("requirement count", requirementsAll.size(),
                 recipeAll.getRequirementCount());
     }
 
+    /**
+     * Method testGetRequirements.
+     */
     @Test
     public void testGetRequirements() {
     }
 
+    /**
+     * Method testGetRequirement.
+     */
     @Test
     public void testGetRequirement() {
     }
 
+    /**
+     * Method testGetProducts.
+     */
     @Test
     public void testGetProducts() {
     }
 
+    /**
+     * Method testGetProduct.
+     */
     @Test
     public void testGetProduct() {
     }
 
+    /**
+     * Method testGetProductCount.
+     */
     @Test
     public void testGetProductCount() {
         // Product(s)
@@ -137,25 +202,40 @@ public class RecipeTest {
         assertEquals("count", 1, recipe.getProductCount());
     }
 
+    /**
+     * Method testGetSkillCount.
+     */
     @Test
     public void testGetSkillCount() {
         assertEquals("skill count", REQUIRED_SKILLS.length,
                 recipeAll.getSkillCount());
     }
 
+    /**
+     * Method testGetSkills.
+     */
     @Test
     public void testGetSkills() {
     }
 
+    /**
+     * Method testGetNewCooker.
+     */
     @Test
     public void testGetNewCooker() {
     }
 
+    /**
+     * Method testToString.
+     */
     @Test
     public void testToString() {
         assertEquals("recipe1", simple.getId());
     }
 
+    /**
+     * Method testDetails.
+     */
     @Test
     public void testDetails() {
         StringBuilder text = new StringBuilder("Id: recipe1");
@@ -172,6 +252,9 @@ public class RecipeTest {
         assertEquals("simple", text.toString(), simple.details());
     }
 
+    /**
+     * Method testDetailsComplex.
+     */
     @Test
     public void testDetailsComplex() {
         StringBuilder text = new StringBuilder("Id: recipe1");

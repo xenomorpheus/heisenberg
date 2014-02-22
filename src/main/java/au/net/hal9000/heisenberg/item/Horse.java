@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  * A horse.
  * @author bruins
  *
+ * @version $Revision: 1.0 $
  */
 
 @Entity
@@ -37,6 +38,10 @@ public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
         ItemProperty.setLiving(this, true);
     }
 
+    /**
+     * Method getRace.
+     * @return String
+     */
     protected String getRace() {
         return null;
     }

@@ -11,10 +11,15 @@ import au.net.hal9000.heisenberg.item.Entity;
 
 import org.junit.Test;
 
+/**
+ */
 public class ItemPropertyTest {
     /** comparison tolerance. */
     static final float TOLERANCE = 0.00001f;
 
+    /**
+     * Method testAeration.
+     */
     @Test
     public void testAeration() {
         final float startValue = 12.3f;
@@ -29,6 +34,9 @@ public class ItemPropertyTest {
                 ItemProperty.getAeration(entity), TOLERANCE);
     }
 
+    /**
+     * Method testClothing.
+     */
     @Test
     public void testClothing() {
         Entity entity = new Cat();
@@ -38,6 +46,9 @@ public class ItemPropertyTest {
         assertFalse("Clothing unset", ItemProperty.isClothing(entity));
     }
 
+    /**
+     * Method testEntertainment.
+     */
     @Test
     public void testEntertainment() {
         final float startValue = 12.3f;
@@ -52,6 +63,9 @@ public class ItemPropertyTest {
                 ItemProperty.getEntertainment(entity), TOLERANCE);
     }
 
+    /**
+     * Method testHumanoidFood.
+     */
     @Test
     public void testHumanoidFood() {
         Entity entity = new Cat();
@@ -61,6 +75,9 @@ public class ItemPropertyTest {
         assertFalse("HumanoidFood unset", ItemProperty.isHumanoidFood(entity));
     }
 
+    /**
+     * Method testNourishment.
+     */
     @Test
     public void testNourishment() {
         final float startValue = 12.3f;
@@ -75,6 +92,9 @@ public class ItemPropertyTest {
                 ItemProperty.getNourishment(entity), TOLERANCE);
     }
 
+    /**
+     * Method testLiving.
+     */
     @Test
     public void testLiving() {
         Entity entity = new Cat();
@@ -84,6 +104,9 @@ public class ItemPropertyTest {
         assertFalse("Living unset", ItemProperty.isLiving(entity));
     }
 
+    /**
+     * Method testMagical.
+     */
     @Test
     public void testMagical() {
         Entity entity = new Cat();
@@ -93,6 +116,9 @@ public class ItemPropertyTest {
         assertFalse("Magical unset", ItemProperty.isMagical(entity));
     }
 
+    /**
+     * Method testHydration.
+     */
     @Test
     public void testHydration() {
         final float startValue = 12.3f;
@@ -107,6 +133,9 @@ public class ItemPropertyTest {
                 ItemProperty.getHydration(entity), TOLERANCE);
     }
 
+    /**
+     * Method testRest.
+     */
     @Test
     public void testRest() {
         final float startValue = 12.3f;

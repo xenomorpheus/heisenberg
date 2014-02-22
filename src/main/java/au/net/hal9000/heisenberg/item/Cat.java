@@ -5,6 +5,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
@@ -15,15 +17,27 @@ public class Cat extends au.net.hal9000.heisenberg.item.Entity {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor for Cat.
+     */
     public Cat() {
         super("Cat");
     }
 
+    /**
+     * Constructor for Cat.
+     * @param name String
+     */
     public Cat(String name) {
         this();
         setName(name);
     }
 
+    /**
+     * Constructor for Cat.
+     * @param name String
+     * @param description String
+     */
     public Cat(String name, String description) {
         this();
         setName(name);

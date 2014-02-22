@@ -14,13 +14,24 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.item.Wood;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
+/**
+ */
 public class ScenarioSet03 {
+    /**
+     * Field config.
+     */
     private Configuration config = null;
 
+    /**
+     * Method initialize.
+     * @throws ConfigurationError
+     */
     @Before
     public void initialize() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
@@ -34,8 +45,13 @@ public class ScenarioSet03 {
     // E.g. Cooking skill can be a group of cooking recipes.
     // E.g. Woodland skill can be a group of hunting, tracking, etc recipes.
 
+    /**
+     * Method testFireGround1.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
-    public void testFireGround1() {
+    public void testFireGround1() throws InvalidTypeException, CantWearException {
         // The recipe we are going to test
         Recipe recipe = config.getRecipe("testFireGround1");
 

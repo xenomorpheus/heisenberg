@@ -22,6 +22,8 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
+/**
+ */
 public class BasicPanel extends JPanel {
 
     /**
@@ -30,31 +32,85 @@ public class BasicPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     // Misc
+    /**
+     * Field pc.
+     */
     private PcRace pc;
+    /**
+     * Field config.
+     */
     private Configuration config = Configuration.lastConfig();
 
     // Fields
     // Row 0
+    /**
+     * Field nameTextField.
+     */
     private JTextField nameTextField;
+    /**
+     * Field classComboBox.
+     */
     private JComboBox classComboBox;
     // Row 1
+    /**
+     * Field descriptionTextField.
+     */
     private JTextField descriptionTextField;
+    /**
+     * Field raceTextField.
+     */
     private JTextField raceTextField;
     // Row 2
+    /**
+     * Field comTextField.
+     */
     private JTextField comTextField;
+    /**
+     * Field magTextField.
+     */
     private JTextField magTextField;
+    /**
+     * Field steTextField.
+     */
     private JTextField steTextField;
+    /**
+     * Field genTextField.
+     */
     private JTextField genTextField;
     // Row 3
+    /**
+     * Field levelSpinner.
+     */
     private JSpinner levelSpinner;
+    /**
+     * Field levelModel.
+     */
     private SpinnerModel levelModel;
+    /**
+     * Field actionPointsTextField.
+     */
     private JTextField actionPointsTextField;
+    /**
+     * Field healthTextField.
+     */
     private JTextField healthTextField;
+    /**
+     * Field manaTextField.
+     */
     private JTextField manaTextField;
     // Row 4
+    /**
+     * Field sizeComboBox.
+     */
     private JComboBox sizeComboBox;
+    /**
+     * Field genderComboBox.
+     */
     private JComboBox genderComboBox;
 
+    /**
+     * Constructor for BasicPanel.
+     */
     public BasicPanel() {
         super();
 
@@ -477,6 +533,8 @@ public class BasicPanel extends JPanel {
 
         /**
          * Handle changes in text fields when user hits return.
+         * @param e ActionEvent
+         * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -497,6 +555,11 @@ public class BasicPanel extends JPanel {
      */
     private class BasicTextFieldFocusEvent implements FocusListener {
 
+        /**
+         * Method focusGained.
+         * @param arg0 FocusEvent
+         * @see java.awt.event.FocusListener#focusGained(FocusEvent)
+         */
         @Override
         public void focusGained(FocusEvent arg0) {
             // No action
@@ -506,6 +569,8 @@ public class BasicPanel extends JPanel {
         /**
          * Handle changes in text fields. Changes are processed when field loses
          * focus. No need to updateForm as changes are already visible.
+         * @param e FocusEvent
+         * @see java.awt.event.FocusListener#focusLost(FocusEvent)
          */
         @Override
         public void focusLost(FocusEvent e) {
@@ -521,9 +586,15 @@ public class BasicPanel extends JPanel {
         }
     }
 
-    /** Listens to multiple form elements. */
+    /** Listens to multiple form elements. * @author bruins
+     */
     private class BasicItemListener implements ItemListener {
 
+        /**
+         * Method itemStateChanged.
+         * @param evt ItemEvent
+         * @see java.awt.event.ItemListener#itemStateChanged(ItemEvent)
+         */
         @Override
         public void itemStateChanged(ItemEvent evt) {
             Object source = evt.getSource();

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
@@ -14,14 +15,20 @@ import au.net.hal9000.heisenberg.units.Currency;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class BagOfHoldingTest {
     /** how close do the floats need to be to match. */
     private static final float FLOAT_TOLERANCE = 0.00009F;
 
-    /** test the properties for each type of bag. */
+    /**
+     * test the properties for each type of bag.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void typeTest() {
+    public void typeTest() throws InvalidTypeException, CantWearException {
         Bag ordinaryBag = new Bag();
         for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
             float expectedWeightBase = 0F;
@@ -95,9 +102,12 @@ public class BagOfHoldingTest {
 
     /**
      * testing that an ordinary Item may be added to the bag.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test
-    public void testAdd() {
+    public void testAdd() throws InvalidTypeException, CantWearException {
         Cookie cookie = new Cookie();
         cookie.setContainer(new Human());
         BagOfHolding bag = new BagOfHolding(1);
@@ -107,9 +117,12 @@ public class BagOfHoldingTest {
 
     /**
      * an exposed sharp object causes rupture.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharp() {
+    public void testAddSharp() throws InvalidTypeException, CantWearException {
         Sword sword = new Sword();
         Human human = new Human();
         sword.setContainer(human);
@@ -125,9 +138,12 @@ public class BagOfHoldingTest {
 
     /**
      * a covered sharp object may be added.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testAddWrappedSharp() {
+    public void testAddWrappedSharp() throws InvalidTypeException, CantWearException {
         Human human = new Human();
         Sword sword = new Sword();
         sword.setContainer(human);
@@ -149,9 +165,12 @@ public class BagOfHoldingTest {
 
     /**
      * an extra-dimensional object causes rupture.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddMultidimensional() {
+    public void testAddMultidimensional() throws InvalidTypeException, CantWearException {
         Human human = new Human();
         BagOfHolding bagInner = new BagOfHolding(1);
         bagInner.setContainer(human);

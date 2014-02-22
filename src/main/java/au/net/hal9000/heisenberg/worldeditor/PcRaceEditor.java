@@ -9,6 +9,8 @@ import javax.swing.JTabbedPane;
 
 import au.net.hal9000.heisenberg.item.PcRace;
 
+/**
+ */
 public class PcRaceEditor extends JPanel {
     /** window default x pos. */
     private static final int X_POS = 100;
@@ -21,12 +23,30 @@ public class PcRaceEditor extends JPanel {
 
     /** serial version id.  */
     private static final long serialVersionUID = 1L;
+    /**
+     * Field pcRace.
+     */
     private PcRace pcRace;
 
+    /**
+     * Field basicPanel.
+     */
     private BasicPanel basicPanel = new BasicPanel();
+    /**
+     * Field abilityScoresTable.
+     */
     private AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+    /**
+     * Field skillsTable.
+     */
     private SkillsTable skillsTable = new SkillsTable();
+    /**
+     * Field recipesTable.
+     */
     private RecipesTable recipesTable = new RecipesTable();
+    /**
+     * Field descriptionPane.
+     */
     private DescriptionPane descriptionPane = new DescriptionPane();
 
     /**
@@ -68,8 +88,8 @@ public class PcRaceEditor extends JPanel {
     /**
      * Get the PcClass object we are editing.
      * 
-     * @return the PcClass object we are editing.
-     */
+    
+     * @return the PcClass object we are editing. */
 
     public PcRace getPcRace() {
         return pcRace;

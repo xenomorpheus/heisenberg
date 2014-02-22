@@ -5,6 +5,7 @@ package au.net.hal9000.heisenberg.item.property;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 
 public interface LightSource {
@@ -14,8 +15,8 @@ public interface LightSource {
      * 
      * @param ignighter
      *            possible source of ignition.
-     * @return true if ignition occurred.
-     */
+    
+     * @return true if ignition occurred. */
     boolean lightWith(Object ignighter);
 
     /**
@@ -26,8 +27,8 @@ public interface LightSource {
     /**
      * Is this torch lit?
      * 
-     * @return true if lit
-     */
+    
+     * @return true if lit */
     boolean isLit();
 
 }

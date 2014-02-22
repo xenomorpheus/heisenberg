@@ -14,9 +14,14 @@ package au.net.hal9000.heisenberg.units;
  * </P>
  * 
  * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class Skill extends Keyword {
 
+    /**
+     * Constructor for Skill.
+     * @param string String
+     */
     public Skill(String string) {
         super(string);
     }

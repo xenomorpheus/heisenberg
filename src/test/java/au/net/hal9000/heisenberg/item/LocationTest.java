@@ -1,11 +1,21 @@
 package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.Vector;
+
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+
+/**
+ */
 public class LocationTest {
 
+    /**
+     * Method testSetVolumeMax.
+     */
     @Test
     public void testSetVolumeMax() {
         float volumeMax = 20F;
@@ -15,8 +25,13 @@ public class LocationTest {
         assertEquals("location.getVolumeMax=", volumeMax, v, 0.0001F);
     }
 
+    /**
+     * Method testAdd.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
-    public void testAdd() {
+    public void testAdd() throws InvalidTypeException, CantWearException {
         float volumeMax = 10F;
         float weightMax = 20F;
         // Location
@@ -31,8 +46,14 @@ public class LocationTest {
         location.add(i);
     }
 
+    /**
+     * Method testAddMulti.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
     @Test
-    public void testAddMulti() {
+    public void testAddMulti() throws InvalidTypeException, CantWearException {
         Location location = new Location("World");
         Location newLocation = new Location("New Location");
         Cookie c1 = new Cookie();
@@ -50,8 +71,13 @@ public class LocationTest {
         assertEquals("newLocation size", 3, newLocation.getContentsCount());
     }
 
+    /**
+     * Method testBeNot.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
-    public void testBeNot() {
+    public void testBeNot() throws InvalidTypeException, CantWearException {
         Location location = new Location("World");
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();

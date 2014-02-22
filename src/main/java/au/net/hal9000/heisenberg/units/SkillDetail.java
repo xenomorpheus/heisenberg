@@ -14,10 +14,13 @@ package au.net.hal9000.heisenberg.units;
  * </P>
  * 
  * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class SkillDetail extends KeywordDetail {
     /**
      * The word that is invoked as part of a spell.
+     * @param id String
+     * @param description String
      */
     public SkillDetail(String id, String description) {
         super(id, description);

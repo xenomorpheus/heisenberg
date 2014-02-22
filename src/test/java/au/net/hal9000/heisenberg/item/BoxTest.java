@@ -4,19 +4,26 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+
 /**
  * Test Box class.
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class BoxTest {
 
     /**
      * Normal item into box.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test
-    public void testAddOrdinary() {
+    public void testAddOrdinary() throws InvalidTypeException, CantWearException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         Sword sword = new Sword();

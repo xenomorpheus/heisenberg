@@ -15,9 +15,18 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 
+/**
+ */
 public class ItemTest {
+    /**
+     * Field WITHIN_MARGIN.
+     * (value is 9.0E-5)
+     */
     private static final float WITHIN_MARGIN = 0.00009F;
 
+    /**
+     * Method testItem.
+     */
     @Test
     public void testItem() {
         Cookie i = new Cookie();
@@ -29,12 +38,18 @@ public class ItemTest {
         assertEquals("Item() location", null, i.getContainer());
     }
 
+    /**
+     * Method testItemWithName.
+     */
     @Test
     public void testItemWithName() {
         Cookie i = new Cookie("The Name");
         assertEquals("Item() name", "The Name", i.getName());
     }
 
+    /**
+     * Method testItemWithNameAndDescription.
+     */
     @Test
     public void testItemWithNameAndDescription() {
         Cookie i = new Cookie("The Name", "The Description");
@@ -43,6 +58,9 @@ public class ItemTest {
                 i.getDescription());
     }
 
+    /**
+     * Method testName.
+     */
     @Test
     public void testName() {
         Cookie i = new Cookie("A Name");
@@ -52,6 +70,9 @@ public class ItemTest {
         assertEquals("setname & getname", "fred", i.getName());
     }
 
+    /**
+     * Method testDescription.
+     */
     @Test
     public void testDescription() {
         Cookie i = new Cookie();
@@ -59,6 +80,9 @@ public class ItemTest {
         assertEquals("description", "A Description", i.getDescription());
     }
 
+    /**
+     * Method testBaseWeight.
+     */
     @Test
     public void testBaseWeight() {
         Cookie i = new Cookie();
@@ -66,6 +90,9 @@ public class ItemTest {
         assertEquals("weightBase", i.getWeightBase(), 0.123F, WITHIN_MARGIN);
     }
 
+    /**
+     * Method testWeight.
+     */
     @Test
     public void testWeight() {
         Cookie i = new Cookie();
@@ -94,6 +121,9 @@ public class ItemTest {
                 i.getValueBase().equals(new Currency(pp, gp, sp, cp + 1)));
     }
 
+    /**
+     * Method testLocation.
+     */
     @Test
     public void testLocation() {
         Cookie cookie = new Cookie();
@@ -102,6 +132,10 @@ public class ItemTest {
         assertEquals("location", human, cookie.getContainer());
     }
 
+    /**
+     * Method testToString.
+     * @throws ConfigurationError
+     */
     @Test
     public void testToString() throws ConfigurationError {
 
@@ -117,6 +151,9 @@ public class ItemTest {
         }
     }
 
+    /**
+     * Method testSetVolumeMax.
+     */
     @Test
     public void testSetVolumeMax() {
         float volumeBase = 20F;
@@ -126,6 +163,9 @@ public class ItemTest {
         assertEquals("getVolumeBase=", volumeBase, v, 0.0001F);
     }
 
+    /**
+     * Method testEquals.
+     */
     @Test
     public void testEquals() {
         Cookie first = new Cookie();
@@ -134,6 +174,9 @@ public class ItemTest {
         assertFalse("equals false for other", first.equals(second));
     }
 
+    /**
+     * Method testProperties.
+     */
     @Test
     public void testProperties() {
         Cookie cookie = new Cookie();
@@ -154,7 +197,7 @@ public class ItemTest {
         // Try to move, but will fail as not in an ItemContainer.
         boolean threwException = false;
         try {
-            cookie.move(new Point3d(1, 2, 3));
+            cookie.moveToPoint3d(new Point3d(1, 2, 3));
         } catch (RuntimeException e) {
             threwException = true;
         }
@@ -172,7 +215,7 @@ public class ItemTest {
         Location container = new Location();
         cookie.setContainer(container);
         Point3d expectedPosition = new Point3d(2, 4, 8);
-        cookie.move(expectedPosition);
+        cookie.moveToPoint3d(expectedPosition);
         Point3d actualPosition = cookie.getPosition();
         assertTrue("Has ItemContainer - final pos",
                 expectedPosition.equals(actualPosition));

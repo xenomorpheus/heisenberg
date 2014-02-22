@@ -7,6 +7,7 @@ import java.util.Queue;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public interface SuccessorFunction {
 
@@ -17,7 +18,7 @@ public interface SuccessorFunction {
      * 
      * @param modelState
      *            current ModelState before performing an action.
-     * @return return a list of ModelState objects.
-     */
+    
+     * @return return a list of ModelState objects. */
     Queue<Successor> generateSuccessors(ModelState modelState);
 }

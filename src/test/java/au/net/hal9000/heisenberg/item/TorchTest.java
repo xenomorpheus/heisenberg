@@ -4,10 +4,19 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ */
 public class TorchTest {
+    /**
+     * Field MARGIN.
+     * (value is 1.0E-5)
+     */
     private static final float MARGIN = 0.00001f;
 
     // Name and Description
+    /**
+     * Method testName.
+     */
     @Test
     public void testName() {
         final String defaultName = "Torch";
@@ -26,6 +35,9 @@ public class TorchTest {
     // TODO test light from Torch / Candle
     // TODO test *NOT* lit from OrbOfLight
 
+    /**
+     * Method testSetType.
+     */
     @Test
     public void testSetType() {
         int type = 1;

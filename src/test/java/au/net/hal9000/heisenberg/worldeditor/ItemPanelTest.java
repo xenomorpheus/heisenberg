@@ -8,11 +8,15 @@ import javax.swing.SwingUtilities;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-/** Test the ItemPanel. */
+/** Test the ItemPanel. * @author bruins
+ * @version $Revision: 1.0 $
+ */
 public class ItemPanelTest {
     /** panel width. */
     private static final int PANEL_WIDTH = 400;
@@ -23,16 +27,22 @@ public class ItemPanelTest {
     /**
      * Test itemTreePanel.
      * 
-     * @throws ConfigurationError
-     */
+    
+     * @throws ConfigurationError 
+     * @throws CantWearException 
+     * @throws InvalidTypeException */
     @Test
-    public void itemTreePanel() throws ConfigurationError {
+    public void itemTreePanel() throws ConfigurationError, InvalidTypeException, CantWearException {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
         assertNotNull("Not Null", itemTreePanel);
     }
 
+    /**
+     * Method main.
+     * @param arg String[]
+     */
     public static void main(String[] arg) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -53,6 +63,13 @@ public class ItemPanelTest {
                 }
                 // location.setWeightMax(100000);
                 // location.setVolumeMax(100000);
+ catch (InvalidTypeException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (CantWearException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
     }

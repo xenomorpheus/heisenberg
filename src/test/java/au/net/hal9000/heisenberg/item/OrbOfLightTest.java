@@ -7,9 +7,14 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class OrbOfLightTest {
 
     // Name and Description
+    /**
+     * Method testName.
+     */
     @Test
     public void testName() {
         final String defaultName = "Orb Of Light";
@@ -25,6 +30,9 @@ public class OrbOfLightTest {
         assertEquals(expectedDescription, custom.getDescription());
     }
 
+    /**
+     * Method testMagical.
+     */
     @Test
     public void testMagical() {
         OrbOfLight ool = new OrbOfLight();

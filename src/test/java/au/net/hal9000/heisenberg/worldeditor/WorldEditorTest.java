@@ -13,8 +13,13 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
+/**
+ */
 public class WorldEditorTest {
 
+    /**
+     * Method testGetMenus.
+     */
     @Test
     public void testGetMenus() {
         ActionListener actionListener = new ActionListener() {
@@ -30,6 +35,10 @@ public class WorldEditorTest {
         assertNotNull("Not null", jMenuBar);
     }
 
+    /**
+     * Method testWorldEditor.
+     * @throws ConfigurationError
+     */
     @Test
     public void testWorldEditor() throws ConfigurationError {
         WorldEditor worldEditor = new WorldEditor();

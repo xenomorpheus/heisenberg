@@ -1,57 +1,117 @@
 package au.net.hal9000.heisenberg.item;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.PcClass;
 
+/**
+ */
 public abstract class Humanoid extends PcRace {
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
+    /**
+     * Field head.
+     */
     private HumanoidHead head = new HumanoidHead();
+    /**
+     * Field leftHand.
+     */
     private Hand leftHand = new Hand("Left Hand");
+    /**
+     * Field rightHand.
+     */
     private Hand rightHand = new Hand("Right Hand");
 
     // Constructors
-    public Humanoid(String name) {
+    /**
+     * Constructor for Humanoid.
+     * @param name String
+     */
+    protected Humanoid(String name) {
         super(name);
     }
 
-    public Humanoid(String string, String description) {
+    /**
+     * Constructor for Humanoid.
+     * @param string String
+     * @param description String
+     */
+    protected Humanoid(String string, String description) {
         super(string, description);
     }
 
-    public Humanoid(String name, String description, PcClass pcClass) {
+    /**
+     * Constructor for Humanoid.
+     * @param name String
+     * @param description String
+     * @param pcClass PcClass
+     */
+    protected Humanoid(String name, String description, PcClass pcClass) {
         super(name, description, pcClass);
     }
 
-    public Humanoid(String name, PcClass pcClass) {
+    /**
+     * Constructor for Humanoid.
+     * @param name String
+     * @param pcClass PcClass
+     */
+    protected Humanoid(String name, PcClass pcClass) {
         super(name, pcClass);
     }
 
     // Getters and Setters
     // Head
+    /**
+     * Method getHead.
+     * @return HumanoidHead
+     */
     public HumanoidHead getHead() {
         return head;
     }
 
+    /**
+     * Method setHead.
+     * @param head HumanoidHead
+     */
     public void setHead(HumanoidHead head) {
         this.head = head;
     }
 
     // left Hand
+    /**
+     * Method getLeftHand.
+     * @return Hand
+     */
     public Hand getLeftHand() {
         return leftHand;
     }
 
+    /**
+     * Method setLeftHand.
+     * @param hand Hand
+     */
     public void setLeftHand(Hand hand) {
         this.leftHand = hand;
     }
 
     // right Hand
+    /**
+     * Method getRightHand.
+     * @return Hand
+     */
     public Hand getRightHand() {
         return rightHand;
     }
 
+    /**
+     * Method setRightHand.
+     * @param hand Hand
+     */
     public void setRightHand(Hand hand) {
         this.rightHand = hand;
     }
@@ -61,9 +121,9 @@ public abstract class Humanoid extends PcRace {
      * Eat an item.
      * 
      * @param pFood food Item to eat.
-     * @throws InvalidTypeException
-     */
-    public void eat(Item pFood) {
+    
+     * @throws InvalidTypeException */
+    public void eat(Item pFood) throws InvalidTypeException {
         if (!ItemProperty.isHumanoidFood(pFood)) {
             throw new InvalidTypeException(this.getName() + " can't eat "
                     + pFood.getName());
@@ -76,9 +136,11 @@ public abstract class Humanoid extends PcRace {
      * 
      * @param item
      *            clothing Item to wear.
+     * 
      * @throws InvalidTypeException
+     * @throws CantWearException
      */
-    public void add(Item item) {
+    public void add(Item item) throws InvalidTypeException, CantWearException {
         if (!ItemProperty.isClothing(item)) {
             throw new InvalidTypeException(this.getName() + " can't wear "
                     + item.getName());
@@ -86,7 +148,8 @@ public abstract class Humanoid extends PcRace {
         super.add(item);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return float
+     */
     @Override
     public float getWeight() {
         float total = super.getWeight();
@@ -100,7 +163,8 @@ public abstract class Humanoid extends PcRace {
         return total;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return float
+     */
     @Override
     public float getVolume() {
         float total = super.getVolume();
@@ -130,13 +194,15 @@ public abstract class Humanoid extends PcRace {
     }
 
     // Traverse Tree
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return boolean
+     */
     @Override
     public boolean isLeaf() {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return int
+     */
     @Override
     public int getChildCount() {
         int count = 1; // head
@@ -150,7 +216,9 @@ public abstract class Humanoid extends PcRace {
         return count;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param index int
+     * @return Item
+     */
     @Override
     public Item getChildAt(int index) {
         // index is zero offset.
@@ -180,7 +248,9 @@ public abstract class Humanoid extends PcRace {
         return super.getChildAt(index);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param child Item
+     * @return int
+     */
     @Override
     public int getIndexOfChild(Item child) {
         // index is zero offset.
@@ -216,14 +286,16 @@ public abstract class Humanoid extends PcRace {
     }
 
     // Visitor Design Pattern. Find items that match the criteria
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param visitor ItemVisitor
+     */
     @Override
     public void accept(ItemVisitor visitor) {
         // TODO visit head, optional hands then super
         visitor.visit(this);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return String
+     */
     @Override
     public String getRace() {
         return this.getClass().getSimpleName();

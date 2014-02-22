@@ -4,15 +4,22 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
+/**
+ */
 public class BagTest {
 
     /**
-     *  Normal item into bag.
+     * Normal item into bag.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test
-    public void testAddOrdinary() {
+    public void testAddOrdinary() throws InvalidTypeException,
+            CantWearException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         // set the location so we can see that it changes
@@ -25,9 +32,13 @@ public class BagTest {
 
     /**
      * Sharp items throw ExceptionInvalidType.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharpRupture() {
+    public void testAddSharpRupture() throws InvalidTypeException,
+            CantWearException {
         Sword sword = new Sword();
         Location world = new Location("World");
         sword.setContainer(world);

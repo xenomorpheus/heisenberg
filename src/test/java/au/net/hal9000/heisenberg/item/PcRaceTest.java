@@ -14,7 +14,12 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
 
+/**
+ */
 public class PcRaceTest {
+    /**
+     * Field config.
+     */
     private Configuration config = null;
 
     /*
@@ -22,12 +27,19 @@ public class PcRaceTest {
      * should be in the same order as the fields or methods.
      */
 
+    /**
+     * Method setUp.
+     * @throws ConfigurationError
+     */
     @Before
     public void setUp() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
     }
 
     // Constructor
+    /**
+     * Method testPcRace.
+     */
     @Test
     public void testPcRace() {
         Human human = new Human();
@@ -38,6 +50,9 @@ public class PcRaceTest {
         assertTrue("living", ItemProperty.isLiving(human));
     }
 
+    /**
+     * Method testPcRaceString.
+     */
     @Test
     public void testPcRaceString() {
         Human human = new Human("Fred1");
@@ -47,6 +62,9 @@ public class PcRaceTest {
         assertTrue("living1", ItemProperty.isLiving(human));
     }
 
+    /**
+     * Method testPcRaceStringString.
+     */
     @Test
     public void testPcRaceStringString() {
         Human human = new Human("Fred2", "Desc2");
@@ -56,6 +74,9 @@ public class PcRaceTest {
         assertTrue("living2", ItemProperty.isLiving(human));
     }
 
+    /**
+     * Method testPcRaceStringPcClass.
+     */
     @Test
     public void testPcRaceStringPcClass() {
         final PcClass expectedValue = new PcClass();
@@ -67,6 +88,9 @@ public class PcRaceTest {
         assertSame(expectedValue, human.getPcClass());
     }
 
+    /**
+     * Method testPcRaceStringStringPcClass.
+     */
     @Test
     public void testPcRaceStringStringPcClass() {
         final PcClass expectedValue = new PcClass();
@@ -79,6 +103,9 @@ public class PcRaceTest {
     }
 
     // Getters and Setters in field order.
+    /**
+     * Method testLevel.
+     */
     @Test
     public void testLevel() {
         final int expectedValue = 18;
@@ -88,6 +115,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getLevel());
     }
 
+    /**
+     * Method testPcClass.
+     */
     @Test
     public void testPcClass() {
         final PcClass expectedValue = new PcClass();
@@ -112,6 +142,10 @@ public class PcRaceTest {
         checkBasicsAreZero(human);
     }
 
+    /**
+     * Method checkBasicsAreZero.
+     * @param pc PcRace
+     */
     public void checkBasicsAreZero(PcRace pc) {
         assertEquals("combatDice", 0, pc.getCombatDice());
         assertEquals("magicDice", 0, pc.getMagicDice());
@@ -123,6 +157,9 @@ public class PcRaceTest {
         assertEquals("health", 0, pc.getHealth());
     }
 
+    /**
+     * Method testCombatDice.
+     */
     @Test
     public void testCombatDice() {
         final int expectedValue = 12;
@@ -132,6 +169,9 @@ public class PcRaceTest {
         assertEquals("combatDice", expectedValue, human.getCombatDice());
     }
 
+    /**
+     * Method testMagicDice.
+     */
     @Test
     public void testMagicDice() {
         final int expectedValue = 13;
@@ -141,6 +181,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getMagicDice());
     }
 
+    /**
+     * Method testStealthDice.
+     */
     @Test
     public void testStealthDice() {
         final int expectedValue = 14;
@@ -150,6 +193,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getStealthDice());
     }
 
+    /**
+     * Method testGeneralDice.
+     */
     @Test
     public void testGeneralDice() {
         final int expectedValue = 15;
@@ -159,6 +205,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getGeneralDice());
     }
 
+    /**
+     * Method testEncumbrance.
+     */
     @Test
     public void testEncumbrance() {
         final int expectedValue = 16;
@@ -168,6 +217,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getEncumbrance());
     }
 
+    /**
+     * Method testHealth.
+     */
     @Test
     public void testHealth() {
         final int expectedValue = 16;
@@ -177,6 +229,9 @@ public class PcRaceTest {
         assertEquals(expectedValue, human.getHealth());
     }
 
+    /**
+     * Method testValues.
+     */
     @Test
     public void testValues() {
         PcClass warrior = config.getPcClass("testWarrior");
@@ -198,12 +253,18 @@ public class PcRaceTest {
 
     }
 
+    /**
+     * Method testAbilityScores.
+     */
     @Test
     public void testAbilityScores() {
         // change level with ability scores : default, null and not null.
         // fail("todo");
     }
 
+    /**
+     * Method testGetDetailedDescription.
+     */
     @Test
     public void testGetDetailedDescription() {
         // vanilla - no mods.
@@ -228,7 +289,7 @@ public class PcRaceTest {
         PcClass warrior = config.getPcClass("testWarrior");
         human.setPcClass(warrior);
         human.setLevel(3);
-        human.skillsAdd(new String[] { "testSkill1", "testSkill2", "testSkill3" });
+        human.skillsAddArray(new String[] { "testSkill1", "testSkill2", "testSkill3" });
         human.recipesAdd(new String[] { "testItem1", "testFireGround1",
                 "testSpell1" });
 
@@ -236,6 +297,9 @@ public class PcRaceTest {
                 human.detailedDescription());
     }
 
+    /**
+     * Method testSetAllFrom.
+     */
     @Test
     public void testSetAllFrom() {
         // Only test the fields that are implemented at this level.
@@ -288,6 +352,9 @@ public class PcRaceTest {
         assertEquals("health", health, elf.getHealth());
     }
 
+    /**
+     * Method testSetBasicsFromClass.
+     */
     @Test
     public void testSetBasicsFromClass() {
         // TODO fail("todo");

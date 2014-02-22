@@ -6,23 +6,38 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class ScabbardTest {
 
+    /**
+     * Method testIsHumanoidClothing.
+     */
     @Test
     public void testIsHumanoidClothing() {
         Scabbard scabbard = new Scabbard();
         assertTrue("is humanoid clothing", ItemProperty.isClothing(scabbard));
     }
 
+    /**
+     * Method testIsWearable.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
-    public void testIsWearable() {
+    public void testIsWearable() throws InvalidTypeException, CantWearException {
         Human human = new Human();
         Scabbard scabbard = new Scabbard();
         human.add(scabbard);
     }
 
+    /**
+     * Method testAddSword.
+     */
     @Test
     public void testAddSword() {
         Scabbard scabbard = new Scabbard();
@@ -37,8 +52,14 @@ public class ScabbardTest {
     // TODO Add test for adding non-sword, should fail.
     // Perhaps consider volume so a penny would fit.
 
+    /**
+     * Method testGetIndexOfChild.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
-    public void testGetIndexOfChild() {
+    public void testGetIndexOfChild() throws InvalidTypeException, CantWearException {
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
         assertEquals("empty", -1, scabbard.getIndexOfChild(sword));

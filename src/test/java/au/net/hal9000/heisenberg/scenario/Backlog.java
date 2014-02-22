@@ -5,13 +5,22 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Cloak;
 import au.net.hal9000.heisenberg.item.Human;
 
+/**
+ */
 public class Backlog {
 
+    /**
+     * Method println.
+     * @param string String
+     */
     private void println(String string) {
         // System.out.println(string);
     }
 
     // Scenario 01
+    /**
+     * Method characterMountsHorse.
+     */
     @Test
     public void characterMountsHorse() {
         println(System.lineSeparator()+"** A character mounts a horse.");
@@ -21,6 +30,9 @@ public class Backlog {
     }
 
     // Scenario 01
+    /**
+     * Method characterPutsOnCloak.
+     */
     @Test
     public void characterPutsOnCloak() {
         println(System.lineSeparator()+"** A character puts on a cloak.");

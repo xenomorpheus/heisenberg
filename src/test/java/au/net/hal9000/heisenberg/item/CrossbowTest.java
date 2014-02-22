@@ -3,8 +3,13 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+/**
+ */
 public class CrossbowTest {
 
+    /**
+     * Method testSetGetLoadedBolt.
+     */
     @Test
     public void testSetGetLoadedBolt() {
         Crossbow crossbow = new Crossbow();

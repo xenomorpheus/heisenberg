@@ -8,12 +8,22 @@ import javax.persistence.InheritanceType;
 
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 // @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
 public class Arrow extends Item implements Sharp {
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
+    /**
+     * Field VOLUME_BASE.
+     * (value is 1.0)
+     */
     private static final float VOLUME_BASE = 1; // TODO arrow volume default
 
     /**

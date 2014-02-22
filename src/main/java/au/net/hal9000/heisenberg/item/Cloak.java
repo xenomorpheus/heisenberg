@@ -7,17 +7,30 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Cloak extends Item {
 
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor for Cloak.
+     */
     public Cloak() {
         this("Cloak");
     }
 
+    /**
+     * Constructor for Cloak.
+     * @param pString String
+     */
     public Cloak(String pString) {
         super(pString);
         ItemProperty.setClothing(this, true);

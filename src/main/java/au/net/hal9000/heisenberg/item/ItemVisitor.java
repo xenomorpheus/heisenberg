@@ -6,6 +6,7 @@ import java.util.Vector;
  * Visitor Design Pattern for Item class.
  * @author bruins
  *
+ * @version $Revision: 1.0 $
  */
 public interface ItemVisitor {
     

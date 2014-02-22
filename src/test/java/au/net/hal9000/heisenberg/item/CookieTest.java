@@ -15,7 +15,12 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
+/**
+ */
 public class CookieTest {
+    /**
+     * Method testEquals.
+     */
     @Test
     public void testEquals() {
         Cookie first = new Cookie();
@@ -24,12 +29,18 @@ public class CookieTest {
         assertFalse("equals false for other", first.equals(second));
     }
 
+    /**
+     * Method testIsHumanoidFood.
+     */
     @Test
     public void testIsHumanoidFood() {
         Cookie cookie = new Cookie();
         assertTrue("is humanoid food", ItemProperty.isHumanoidFood(cookie));
     }
 
+    /**
+     * Method testGetSimpleClassName.
+     */
     @Test
     public void testGetSimpleClassName() {
         Cookie cookie = new Cookie();

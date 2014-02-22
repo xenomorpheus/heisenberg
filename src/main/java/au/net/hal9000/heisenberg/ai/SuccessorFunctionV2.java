@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public final class SuccessorFunctionV2 implements SuccessorFunction {
     /** a Transition Function. */
@@ -27,6 +28,12 @@ public final class SuccessorFunctionV2 implements SuccessorFunction {
         this.transitionFunction = transitionFunction;
     }
 
+    /**
+     * Method generateSuccessors.
+     * @param modelState ModelState
+     * @return Queue<Successor>
+     * @see au.net.hal9000.heisenberg.ai.SuccessorFunction#generateSuccessors(ModelState)
+     */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         final double stepSize = 1.0; // TODO movement rate

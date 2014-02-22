@@ -4,8 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ */
 public class ItemClassConfigurationTest {
 
+	/**
+	 * Method testItemClasses.
+	 */
 	@Test
 	public void testItemClasses() {
 		ItemClassConfiguration itemClassConf = new ItemClassConfiguration();

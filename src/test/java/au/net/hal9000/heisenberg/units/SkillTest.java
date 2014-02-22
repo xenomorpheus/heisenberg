@@ -4,8 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ */
 public class SkillTest {
 
+    /**
+     * Method testSkillString.
+     */
     @Test
     public void testSkillString() {
         Skill skill = new Skill("theId");

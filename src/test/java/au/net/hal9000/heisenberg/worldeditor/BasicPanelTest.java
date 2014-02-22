@@ -12,12 +12,18 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ */
 public class BasicPanelTest {
     /** frame width. */
     static final int FRAME_WIDTH = 800;
     /** frame height. */
     static final int FRAME_HEIGHT = 300;
 
+    /**
+     * Method doTest.
+     * @throws ConfigurationError
+     */
     @Test
     public void doTest() throws ConfigurationError {
 

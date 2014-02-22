@@ -12,11 +12,15 @@ import au.net.hal9000.heisenberg.item.Water;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public class ItemSplitByWeightTest {
     /** float comparison tolerance. */
     private static final float TOLERANCE = 0.0001f;
 
+    /**
+     * Method testsplitByWeightZero.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testsplitByWeightZero() {
 
@@ -25,6 +29,9 @@ public class ItemSplitByWeightTest {
         water.splitByWeight(0.0f);
     }
 
+    /**
+     * Method testsplitByWeightEqual.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testsplitByWeightEqual() {
 
@@ -35,6 +42,9 @@ public class ItemSplitByWeightTest {
         water.splitByWeight(1.0f);
     }
 
+    /**
+     * Method testsplitByWeightWorking.
+     */
     @Test
     public void testsplitByWeightWorking() {
 

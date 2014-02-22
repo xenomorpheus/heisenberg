@@ -12,14 +12,23 @@ import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.util.Configuration;
 
+/**
+ */
 public class SkillsTable extends JTable {
 
     /**
      * 
      */
     private static final String[] COLUMN_NAMES = {"Id", "Description" };
+    /**
+     * Field serialVersionUID.
+     * (value is 1)
+     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor for SkillsTable.
+     */
     SkillsTable() {
         super();
     }
@@ -39,17 +48,32 @@ public class SkillsTable extends JTable {
         this.setModel(new MyTableModel(pc));
     }
 
+    /**
+     */
     private class MyTableModel extends AbstractTableModel {
         /**
          * 
          */
         private static final long serialVersionUID = 1L;
+        /**
+         * Field config.
+         */
         private Configuration config = Configuration.lastConfig();
 
 
+        /**
+         * Field orderedSkills.
+         */
         private ArrayList<Skill> orderedSkills;
+        /**
+         * Field skillDetails.
+         */
         private TreeMap<String, SkillDetail> skillDetails;
 
+        /**
+         * Constructor for MyTableModel.
+         * @param pc PcRace
+         */
         public MyTableModel(final PcRace pc) {
             Set<Skill> pcSkills = pc.getSkills();
             if (pcSkills == null) {
@@ -60,19 +84,42 @@ public class SkillsTable extends JTable {
             skillDetails = config.getSkillDetails();
         }
 
+        /**
+         * Method getColumnName.
+         * @param col int
+         * @return String
+         * @see javax.swing.table.TableModel#getColumnName(int)
+         */
         @Override
         public String getColumnName(int col) {
             return COLUMN_NAMES[col].toString();
         }
 
+        /**
+         * Method getRowCount.
+         * @return int
+         * @see javax.swing.table.TableModel#getRowCount()
+         */
         public int getRowCount() {
             return orderedSkills.size();
         }
 
+        /**
+         * Method getColumnCount.
+         * @return int
+         * @see javax.swing.table.TableModel#getColumnCount()
+         */
         public int getColumnCount() {
             return 2;
         }
 
+        /**
+         * Method getValueAt.
+         * @param row int
+         * @param col int
+         * @return Object
+         * @see javax.swing.table.TableModel#getValueAt(int, int)
+         */
         public Object getValueAt(int row, int col) {
             Skill skillCell = orderedSkills.get(row);
             String skillId = skillCell.toString();
@@ -88,11 +135,25 @@ public class SkillsTable extends JTable {
             return result;
         }
 
+        /**
+         * Method isCellEditable.
+         * @param row int
+         * @param col int
+         * @return boolean
+         * @see javax.swing.table.TableModel#isCellEditable(int, int)
+         */
         @Override
         public boolean isCellEditable(int row, int col) {
             return false;
         }
 
+        /**
+         * Method setValueAt.
+         * @param value Object
+         * @param row int
+         * @param col int
+         * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
+         */
         @Override
         public void setValueAt(Object value, int row, int col) {
             // rowData[row][col] = value;

@@ -6,10 +6,19 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ */
 public class CandleTest {
+    /**
+     * Field MARGIN.
+     * (value is 1.0E-5)
+     */
     private static final float MARGIN = 0.00001f;
 
     // Name and Description
+    /**
+     * Method testName.
+     */
     @Test
     public void testName() {
         // defaults
@@ -26,6 +35,9 @@ public class CandleTest {
         assertEquals(expectedDescription, custom.getDescription());
     }
 
+    /**
+     * Method testSetType.
+     */
     @Test
     public void testSetType() {
         int type = 1;
@@ -39,6 +51,9 @@ public class CandleTest {
         }
     }
 
+    /**
+     * Method testLit.
+     */
     @Test
     public void testLit() {
         Candle candle = new Candle();
@@ -49,6 +64,9 @@ public class CandleTest {
         assertFalse(candle.isLit());
     }
 
+    /**
+     * Method testLightWith.
+     */
     @Test
     public void testLightWith() {
         Candle candle = new Candle();
@@ -93,6 +111,9 @@ public class CandleTest {
 
     }
 
+    /**
+     * Method testExtinquish.
+     */
     @Test
     public void testExtinquish() {
         Candle candle = new Candle("TheCandle");
@@ -103,6 +124,9 @@ public class CandleTest {
         assertFalse("extinguish isLit=false", candle.isLit());
     }
 
+    /**
+     * Method testGetDetailedDescription.
+     */
     @Test
     public void testGetDetailedDescription() {
         Candle candle = new Candle();
@@ -120,6 +144,11 @@ public class CandleTest {
         assertNotEquals(-1, description.indexOf("Candle is extinguished."));
     }
 
+    /**
+     * Method assertNotEquals.
+     * @param i int
+     * @param indexOf int
+     */
     private void assertNotEquals(int i, int indexOf) {
         // TODO Auto-generated method stub
 

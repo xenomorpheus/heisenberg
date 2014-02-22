@@ -14,12 +14,20 @@ import javax.persistence.Query;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 
+/**
+ */
 public class PersistenceTest {
 
+    /**
+     * Method oneOfEachItem.
+     * @throws ConfigurationError
+     */
     @Test
     public void oneOfEachItem() throws ConfigurationError {
         Configuration config = new Configuration(
@@ -66,8 +74,13 @@ public class PersistenceTest {
         em.close();
     }
 
+    /**
+     * Method testContainer.
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
     @Test
-    public void testContainer() {
+    public void testContainer() throws InvalidTypeException, CantWearException {
         Bag bag = new Bag();
         Cookie cookie1 = new Cookie();
         Cookie cookie2 = new Cookie();
@@ -95,7 +108,13 @@ public class PersistenceTest {
         em.close();
     }
 
-    public static Location testGetWorld() {
+    /**
+     * Method testGetWorld.
+     * @return Location
+     * @throws CantWearException 
+     * @throws InvalidTypeException 
+     */
+    public static Location testGetWorld() throws InvalidTypeException, CantWearException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(100000);
@@ -162,9 +181,15 @@ public class PersistenceTest {
         return world;
     }
 
+    /**
+     * Method testLocation.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     */
     @Test
     // world persistence
-    public void testLocation() {
+    public void testLocation() throws InvalidTypeException, CantWearException {
 
         Location loc = testGetWorld();
 

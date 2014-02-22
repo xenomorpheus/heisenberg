@@ -9,6 +9,8 @@ import au.net.hal9000.heisenberg.item.property.LightSource;
 
 /**
  * A simple tallow candle.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 
 @Entity
@@ -70,7 +72,8 @@ public class Candle extends Item implements LightSource {
         this.lit = lit;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return boolean
+     */
     @Override
     public boolean isLit() {
         return lit;
@@ -95,6 +98,9 @@ public class Candle extends Item implements LightSource {
     /**
      * Light the torch. <br>
      * TODO require the torch to have remaining fuel.
+     * @param ignighter Object
+     * @return boolean
+     * @see au.net.hal9000.heisenberg.item.property.LightSource#lightWith(Object)
      */
     /** {@inheritDoc} */
     @Override
@@ -122,7 +128,8 @@ public class Candle extends Item implements LightSource {
 
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return String
+     */
     @Override
     public String detailedDescription() {
         StringBuilder string = new StringBuilder(super.detailedDescription());

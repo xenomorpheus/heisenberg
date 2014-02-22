@@ -8,16 +8,53 @@ import au.net.hal9000.heisenberg.item.Item;
  * 
  * @author bruins
  * 
+ * @version $Revision: 1.0 $
  */
 public final class ItemProperty {
+    /**
+     * Field AERATION.
+     * (value is ""aeration"")
+     */
     public static final String AERATION = "aeration";
+    /**
+     * Field ENTERTAINMENT.
+     * (value is ""entertainment"")
+     */
     public static final String ENTERTAINMENT = "entertainment";
+    /**
+     * Field HYDRATION.
+     * (value is ""hydration"")
+     */
     public static final String HYDRATION = "hydration";
+    /**
+     * Field IS_CLOTHING.
+     * (value is ""is clothing"")
+     */
     public static final String IS_CLOTHING = "is clothing";
+    /**
+     * Field IS_HUMANOID_FOOD.
+     * (value is ""is humanoid food"")
+     */
     public static final String IS_HUMANOID_FOOD = "is humanoid food";
+    /**
+     * Field IS_LIVING.
+     * (value is ""is living"")
+     */
     public static final String IS_LIVING = "is living";
+    /**
+     * Field IS_MAGICAL.
+     * (value is ""is magical"")
+     */
     public static final String IS_MAGICAL = "is magical";
+    /**
+     * Field NOURISHMENT.
+     * (value is ""nourishment"")
+     */
     public static final String NOURISHMENT = "nourishment";
+    /**
+     * Field REST.
+     * (value is ""rest"")
+     */
     public static final String REST = "rest";
 
     /**
@@ -42,6 +79,7 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
+     * @return float
      */
 
     public static float getAeration(Item item) {
@@ -55,6 +93,7 @@ public final class ItemProperty {
      *            the item we are changing the property of.
      * @param delta
      *            the amount we wish to change this property.
+     * @return float
      */
 
     public static float alterAeration(Item item, float delta) {
@@ -78,8 +117,8 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-     * @return clothing the status
-     */
+    
+     * @return clothing the status */
 
     public static boolean isClothing(Item item) {
         return (Boolean) item.getProperty(IS_CLOTHING);
@@ -110,6 +149,7 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
+     * @return float
      */
 
     public static float getEntertainment(Item item) {
@@ -123,6 +163,7 @@ public final class ItemProperty {
      *            the item we are changing the property of.
      * @param delta
      *            the amount we wish to change this property.
+     * @return float
      */
 
     public static float alterEntertainment(Item item, float delta) {
@@ -146,8 +187,8 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-     * @return isHumanoidFood the status
-     */
+    
+     * @return isHumanoidFood the status */
 
     public static boolean isHumanoidFood(Item item) {
         return (Boolean) item.getProperty(IS_HUMANOID_FOOD);
@@ -178,6 +219,7 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
+     * @return float
      */
 
     public static float getHydration(Item item) {
@@ -191,6 +233,7 @@ public final class ItemProperty {
      *            the item we are changing the property of.
      * @param delta
      *            the amount we wish to change this property.
+     * @return float
      */
 
     public static float alterHydration(Item item, float delta) {
@@ -214,8 +257,8 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-     * @return living the status
-     */
+    
+     * @return living the status */
 
     public static boolean isLiving(Item item) {
         return (Boolean) item.getProperty(IS_LIVING);
@@ -244,8 +287,8 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-     * @return magical the status
-     */
+    
+     * @return magical the status */
 
     public static boolean isMagical(Item item) {
         return (Boolean) item.getProperty(IS_MAGICAL);
@@ -276,6 +319,7 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
+     * @return float
      */
 
     public static float getNourishment(Item item) {
@@ -289,6 +333,7 @@ public final class ItemProperty {
      *            the item we are changing the property of.
      * @param delta
      *            the amount we wish to change this property.
+     * @return float
      */
 
     public static float alterNourishment(Item item, float delta) {
@@ -314,6 +359,7 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
+     * @return float
      */
 
     public static float getRest(Item item) {
@@ -327,6 +373,7 @@ public final class ItemProperty {
      *            the item we are changing the property of.
      * @param delta
      *            the amount we wish to change this property.
+     * @return float
      */
 
     public static float alterRest(Item item, float delta) {
@@ -337,6 +384,12 @@ public final class ItemProperty {
     }
 
     // misc
+    /**
+     * Method alterPropertyByName.
+     * @param entity Entity
+     * @param propertyName String
+     * @param propertyDelta float
+     */
     public static void alterPropertyByName(Entity entity, String propertyName,
             float propertyDelta) {
 
