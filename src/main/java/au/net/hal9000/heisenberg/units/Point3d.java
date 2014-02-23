@@ -147,7 +147,7 @@ public class Point3d implements Serializable, Cloneable {
      */
     @Override
     public Point3d clone() throws CloneNotSupportedException {
-        Point3d clone = new Point3d();
+        final Point3d clone = (Point3d) super.clone();
         clone.x = x;
         clone.y = y;
         clone.z = z;

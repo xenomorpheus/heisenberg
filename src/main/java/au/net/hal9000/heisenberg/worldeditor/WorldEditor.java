@@ -15,6 +15,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.exception.CantWearException;
+import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
@@ -22,6 +24,7 @@ import au.net.hal9000.heisenberg.util.ItemIcon;
 
 /**
  * The main application window. Shows a tree of the items in this world.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -45,17 +48,17 @@ public class WorldEditor extends JFrame {
     /**
      * Constructor.
      * 
-    
-     * @throws ConfigurationError */
+     * 
+     * @throws ConfigurationError
+     */
     public WorldEditor() throws ConfigurationError {
 
-        // Persistence
+        /** Config. */
+        final Configuration config = DummyData.config();
+        /** Persistence. */
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = factory.createEntityManager();
-
-        // Config
-        Configuration config = DummyData.config();
 
         // Icons
         ItemIcon.setIcon(config);
@@ -85,7 +88,15 @@ public class WorldEditor extends JFrame {
                     setLocation(new Location());
                 }
                 if ("Demo".equals(eventName)) {
-                    setLocation(DummyData.getDemoWorld());
+                    try {
+                        setLocation(DummyData.getDemoWorld());
+                    } catch (InvalidTypeException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (CantWearException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
                 if ("Open".equals(eventName)) {
                     // TODO load.
@@ -117,13 +128,17 @@ public class WorldEditor extends JFrame {
 
     }
 
-    /** getter for Entity Manager. @return Entity Manager. * @return EntityManager
+    /**
+     * getter for Entity Manager. @return Entity Manager. * @return
+     * EntityManager
      */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
-    /** setter for Entity Manager. @param entityManager Entity Manager. * @param entityManager EntityManager
+    /**
+     * setter for Entity Manager. @param entityManager Entity Manager. * @param
+     * entityManager EntityManager
      */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -156,9 +171,12 @@ public class WorldEditor extends JFrame {
 
     /**
      * Construct UI menu bar.
-     * @param actionListener the listener for the menu events.
-    
-     * @return a menu bar. */
+     * 
+     * @param actionListener
+     *            the listener for the menu events.
+     * 
+     * @return a menu bar.
+     */
     public static JMenuBar getMenus(ActionListener actionListener) {
         JMenuBar menubar = new JMenuBar();
         // Application Menu

@@ -46,37 +46,42 @@ public class ItemContainerTest {
     public void testAdd() throws InvalidTypeException, CantWearException {
         float volumeMax = 10F;
         float weightMax = 20F;
-        {
-            // Bag
-            Bag bag = new Bag();
-            bag.setWeightMax(weightMax);
-            bag.setVolumeMax(volumeMax);
-            // Item
-            Cookie i = new Cookie();
-            // This should just fit
-            i.setVolumeBase(volumeMax);
-            i.setWeightBase(weightMax);
-            bag.add(i);
-            // Check location is set
-            assertEquals("location set", bag, i.getContainer());
-        }
+        // Bag
+        Bag bag = new Bag();
+        bag.setWeightMax(weightMax);
+        bag.setVolumeMax(volumeMax);
+        // Item
+        Cookie i = new Cookie();
+        // This should just fit
+        i.setVolumeBase(volumeMax);
+        i.setWeightBase(weightMax);
+        bag.add(i);
+        // Check location is set
+        assertEquals("location set", bag, i.getContainer());
+    }
 
-        {
-            // add function should be smart enough to cause the removal
-            // from the losing container.
-            Bag bag1 = new Bag();
-            Bag bag2 = new Bag();
-            Cookie cookie = new Cookie();
-            assertEquals("bag1 count setup ", 0, bag1.getChildCount());
-            assertEquals("bag2 count setup ", 0, bag2.getChildCount());
-            // add cookie to one bag
-            bag1.add(cookie);
-            assertEquals("bag1 count setup ", 1, bag1.getChildCount());
-            // transfer cookie to other bag
-            bag2.add(cookie);
-            assertEquals("bag1 count setup ", 0, bag1.getChildCount());
-            assertEquals("bag2 count setup ", 1, bag2.getChildCount());
-        }
+    /**
+     * Add function should be smart enough to cause the removal from the losing
+     * container.
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     */
+    @Test
+    public void testAddDoesRemove() throws InvalidTypeException,
+            CantWearException {
+        Bag bag1 = new Bag();
+        Bag bag2 = new Bag();
+        Cookie cookie = new Cookie();
+        assertEquals("bag1 count setup ", 0, bag1.getChildCount());
+        assertEquals("bag2 count setup ", 0, bag2.getChildCount());
+        // add cookie to one bag
+        bag1.add(cookie);
+        assertEquals("bag1 count setup ", 1, bag1.getChildCount());
+        // transfer cookie to other bag
+        bag2.add(cookie);
+        assertEquals("bag1 count setup ", 0, bag1.getChildCount());
+        assertEquals("bag2 count setup ", 1, bag2.getChildCount());
 
     }
 
@@ -88,6 +93,7 @@ public class ItemContainerTest {
      */
     @Test
     public void testAddMulti() throws InvalidTypeException, CantWearException {
+        final int size = 3;
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -98,10 +104,10 @@ public class ItemContainerTest {
         items.add(c2);
         items.add(c3);
         bag.add(items);
-        assertEquals("add multi size", 3, bag.getContentsCount());
+        assertEquals("add multi size", size, bag.getContentsCount());
         bag.empty(newBag);
         assertEquals("bag empty size", 0, bag.getContentsCount());
-        assertEquals("New Bag size", 3, newBag.getContentsCount());
+        assertEquals("New Bag size", size, newBag.getContentsCount());
     }
 
     /**
@@ -113,10 +119,10 @@ public class ItemContainerTest {
     @Test
     public void testGetContentsCount() throws InvalidTypeException,
             CantWearException {
-        Bag bag = new Bag();
-        Cookie c1 = new Cookie();
-        Cookie c2 = new Cookie();
-        Cookie c3 = new Cookie();
+        final Bag bag = new Bag();
+        final Cookie c1 = new Cookie();
+        final Cookie c2 = new Cookie();
+        final Cookie c3 = new Cookie();
         bag.add(c1);
         bag.add(c2);
         bag.add(c3);
