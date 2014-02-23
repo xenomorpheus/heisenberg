@@ -39,7 +39,7 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
 public class Configuration {
 
     /** Singleton. Holder of the config */
-    private static Configuration lastConfig = null;
+    private static Configuration LastConfig = null;
     /** A list of genders. */
     private Vector<String> genders;
     /** A list of ItemClassConfiguration objects. */
@@ -79,7 +79,7 @@ public class Configuration {
      * @param config
      */
     private static void setLastConfig(Configuration config) {
-        Configuration.lastConfig = config;
+        Configuration.LastConfig = config;
     }
 
     /**
@@ -87,11 +87,11 @@ public class Configuration {
      * @return Return the last config that was read.
      */
     public static Configuration lastConfig() {
-        if (null == lastConfig) {
+        if (null == LastConfig) {
             throw new RuntimeException(
                     "Please fetch config before using Singleton");
         }
-        return lastConfig;
+        return LastConfig;
     }
 
     // Getters and Setters
@@ -601,37 +601,37 @@ public class Configuration {
         pcClass.setMagicDice(Integer.parseInt(magicDice));
         // stealthDice
         String stealthDice = element.getAttributeValue("stealthDice");
-        if (stealthDice == null) {
+        if (null == stealthDice) {
             throw new IllegalArgumentException("stealthDice must be set");
         }
         pcClass.setStealthDice(Integer.parseInt(stealthDice));
         // generalDice
         String generalDice = element.getAttributeValue("generalDice");
-        if (generalDice == null) {
+        if (null == generalDice) {
             throw new IllegalArgumentException("generalDice must be set");
         }
         pcClass.setGeneralDice(Integer.parseInt(generalDice));
         // encumbrance
         String encumbrance = element.getAttributeValue("encumbrance");
-        if (encumbrance == null) {
+        if (null == encumbrance) {
             throw new IllegalArgumentException("encumbrance must be set");
         }
         pcClass.setEncumbrance(Integer.parseInt(encumbrance));
         // mana
         String mana = element.getAttributeValue("mana");
-        if (mana == null) {
+        if (null == mana) {
             throw new IllegalArgumentException("mana must be set");
         }
         pcClass.setMana(Integer.parseInt(mana));
         // actionPoint
         String actionPoint = element.getAttributeValue("actionPoint");
-        if (actionPoint == null) {
+        if (null == actionPoint) {
             throw new IllegalArgumentException("actionPoint must be set");
         }
         pcClass.setActionPoints(Integer.parseInt(actionPoint));
         // health
         String health = element.getAttributeValue("health");
-        if (health == null) {
+        if (null == health) {
             throw new IllegalArgumentException("health must be set");
         }
         pcClass.setHealth(Integer.parseInt(health));
@@ -655,11 +655,11 @@ public class Configuration {
     private static AbilityScore xmlToAbilityScore(Element element) {
 
         String id = element.getAttributeValue("id");
-        if (id == null) {
+        if (null == id) {
             throw new IllegalArgumentException("id missing");
         }
         String value = element.getAttributeValue("value");
-        if (value == null) {
+        if (null == value) {
             throw new IllegalArgumentException("value missing");
         }
         return new AbilityScore(id, value);

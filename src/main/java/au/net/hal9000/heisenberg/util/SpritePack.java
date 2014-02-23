@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
  */
 public class SpritePack {
     /** so we can find the resource files. **/
-    private static ClassLoader classLoader = SpritePack.class.getClassLoader();
+    private static ClassLoader ClassLoader = SpritePack.class.getClassLoader();
 
     /** a collection of sprites unpacked from the image. **/
     private BufferedImage[] sprites;
@@ -42,7 +42,7 @@ public class SpritePack {
             int rows, int cols) {
         BufferedImage bigImg = null;
         try {
-            bigImg = ImageIO.read(classLoader.getResource(spritePackFilename));
+            bigImg = ImageIO.read(ClassLoader.getResource(spritePackFilename));
         } catch (IOException e) {
             e.printStackTrace();
             return;

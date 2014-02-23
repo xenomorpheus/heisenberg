@@ -604,7 +604,7 @@ public abstract class Item implements Serializable {
             return false;
         }
         if (null == id) {
-            if (other.id != null) {
+            if (null != other.id) {
                 return false;
             }
         } else if (!id.equals(other.id)) {
@@ -613,36 +613,36 @@ public abstract class Item implements Serializable {
         if (jpaId != other.jpaId) {
             return false;
         }
-        if (name == null) {
-            if (other.name != null) {
+        if (null == name) {
+            if (null != other.name) {
                 return false;
             }
         } else if (!name.equals(other.name)) {
             return false;
         }
-        if (owner == null) {
-            if (other.owner != null) {
+        if (null == owner) {
+            if (null != other.owner) {
                 return false;
             }
         } else if (!owner.equals(other.owner)) {
             return false;
         }
-        if (position == null) {
-            if (other.position != null) {
+        if (null == position) {
+            if (null != other.position) {
                 return false;
             }
         } else if (!position.equals(other.position)) {
             return false;
         }
-        if (properties == null) {
-            if (other.properties != null) {
+        if (null == properties) {
+            if (null != other.properties) {
                 return false;
             }
         } else if (!properties.equals(other.properties)) {
             return false;
         }
-        if (valueBase == null) {
-            if (other.valueBase != null) {
+        if (null == valueBase) {
+            if (null != other.valueBase) {
                 return false;
             }
         } else if (!valueBase.equals(other.valueBase)) {
@@ -690,7 +690,7 @@ public abstract class Item implements Serializable {
         // may be referenced by other objects?
         // Perhaps listeners on the containers?
         ItemContainer container = this.getContainer();
-        if (container != null) {
+        if (null != container) {
             container.remove(this);
         }
     }
@@ -735,7 +735,7 @@ public abstract class Item implements Serializable {
      * 
      */
     public void moveToPoint3d(Point3d requestedPosition) {
-        if (container == null) {
+        if (null == container) {
             throw new UnsupportedOperationException("No ItemContainer - Can't move");
         } else {
             container.moveItemAbsolute(this, requestedPosition);
@@ -749,7 +749,7 @@ public abstract class Item implements Serializable {
     @Override
     public String toString() {
         String string = getName();
-        if ((string == null) || (string.length() == 0)) {
+        if ((null == string) || (0 == string.length())) {
             string = this.getClass().getSimpleName().toLowerCase();
         }
         return string;
@@ -763,7 +763,7 @@ public abstract class Item implements Serializable {
         String temp;
 
         temp = this.getName();
-        if (temp != null) {
+        if (null != temp) {
             text.append("Name: " + temp);
             text.append(System.lineSeparator());
 
@@ -772,7 +772,7 @@ public abstract class Item implements Serializable {
         text.append(System.lineSeparator());
 
         temp = this.getDescription();
-        if ((temp != null) && (temp.length() > 0)) {
+        if ((null != temp) && (temp.length() > 0)) {
             text.append("Description: " + temp);
             text.append(System.lineSeparator());
         }
@@ -782,17 +782,17 @@ public abstract class Item implements Serializable {
         text.append(System.lineSeparator());
 
         Currency valueBase = this.getValueBase();
-        if (valueBase != null) {
+        if (null != valueBase) {
             text.append("Value Base: " + valueBase);
             text.append(System.lineSeparator());
         }
         ItemContainer container = this.getContainer();
-        if (container != null) {
+        if (null != container) {
             text.append("Container: " + container.getName());
             text.append(System.lineSeparator());
         }
         Point3d position = this.getPosition();
-        if (position != null) {
+        if (null != position) {
             text.append("Position: " + position);
             text.append(System.lineSeparator());
         }
