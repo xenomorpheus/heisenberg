@@ -76,7 +76,7 @@ public class SkillsTable extends JTable {
          */
         public MyTableModel(final PcRace pc) {
             Set<Skill> pcSkills = pc.getSkills();
-            if (pcSkills == null) {
+            if (null == pcSkills) {
                 orderedSkills = new ArrayList<Skill>();
             } else {
                 orderedSkills = new ArrayList<Skill>(pcSkills);
@@ -124,11 +124,11 @@ public class SkillsTable extends JTable {
             Skill skillCell = orderedSkills.get(row);
             String skillId = skillCell.toString();
             String result = null;
-            if (col == 0) {
+            if (0 == col) {
                 result = skillId;
             } else {
                 SkillDetail skillDetail = skillDetails.get(skillId);
-                if (skillDetail != null) {
+                if (null != skillDetail) {
                     result = skillDetail.getDescription();
                 }
             }

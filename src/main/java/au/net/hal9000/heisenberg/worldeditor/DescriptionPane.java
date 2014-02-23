@@ -52,7 +52,7 @@ public class DescriptionPane extends JScrollPane {
         descriptionTextArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (pc == null) {
+                if (null == pc) {
                     descriptionTextArea.setText("");
                     LOGGER.error("pc is NULL");
                 } else {
@@ -75,7 +75,7 @@ public class DescriptionPane extends JScrollPane {
      */
     public void setItem(final PcRace pc) {
         this.pc = pc;
-        if (pc == null) {
+        if (null == pc) {
             descriptionTextArea.setText("");
         } else {
             descriptionTextArea.setText(pc.detailedDescription());

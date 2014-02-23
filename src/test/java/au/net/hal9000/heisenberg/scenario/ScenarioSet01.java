@@ -137,29 +137,28 @@ public class ScenarioSet01 {
 
     /**
      * Method quiverIsFilled.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void quiverIsFilled() {
+    public void quiverIsFilled() throws InvalidTypeException, CantWearException {
         println(System.lineSeparator() + "** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");
         println("TODO - set quiver size");
-        try {
-            println("Arrow created.");
-            quiver.add(new Arrow());
-            println("Arrow created.");
-            quiver.add(new Arrow());
-            println("Arrow created.");
-            quiver.add(new Arrow());
-            println("Arrow created.");
-            quiver.add(new Arrow());
-            println("Arrow created.");
-            quiver.add(new Arrow());
-            println("Arrow created.");
-            quiver.add(new Arrow());
-        } catch (Exception e) {
-            fail(e.toString());
-        }
+        println("Arrow created.");
+        quiver.add(new Arrow());
+        println("Arrow created.");
+        quiver.add(new Arrow());
+        println("Arrow created.");
+        quiver.add(new Arrow());
+        println("Arrow created.");
+        quiver.add(new Arrow());
+        println("Arrow created.");
+        quiver.add(new Arrow());
+        println("Arrow created.");
+        quiver.add(new Arrow());
         println("Quiver Description: " + quiver.detailedDescription());
     }
 
@@ -180,18 +179,16 @@ public class ScenarioSet01 {
 
     /**
      * Method hobbitEatsACookie.
+     * 
+     * @throws InvalidTypeException
      */
     @Test
-    public void hobbitEatsACookie() {
+    public void hobbitEatsACookie() throws InvalidTypeException {
         println(System.lineSeparator() + "** A hobbit eats a cookie.");
         Halfling halfling = new Halfling();
         Cookie cookie = new Cookie();
-        try {
-            halfling.eat(cookie);
-            println("Halfling ate a cookie");
-        } catch (Exception e) {
-            fail("Failed to eat Cookie because " + e.toString());
-        }
+        halfling.eat(cookie);
+        println("Halfling ate a cookie");
     }
 
 }

@@ -43,7 +43,7 @@ public class TorchTest {
         int type = 1;
         Torch torch = new Torch();
         torch.setType(type);
-        if (type == 1) {
+        if (1 == type) {
             assertEquals("volumeBase", 1.0f, torch.getVolumeBase(), MARGIN);
             assertEquals("weightBase", 1.0f, torch.getWeightBase(), MARGIN);
         }

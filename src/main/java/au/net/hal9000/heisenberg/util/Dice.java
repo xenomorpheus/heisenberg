@@ -9,12 +9,11 @@ package au.net.hal9000.heisenberg.util;
  */
 public class Dice {
 
-    
     /** 6 sided die. */
-    static final int D6 = 6;
+    static final int D_SIX = 6;
     /** 20 sided die. */
-    static final int D20 = 20;
-    
+    static final int D_TWENTY = 20;
+
     /** constructor. */
     public Dice() {
         super();
@@ -23,10 +22,11 @@ public class Dice {
     /**
      * defaults to 1d6.
      * 
-    
-     * @return the value rolled on the dice. */
+     * 
+     * @return the value rolled on the dice.
+     */
     public int roll() {
-        return roll(1, D6);
+        return roll(1, D_SIX);
     }
 
     /**
@@ -34,8 +34,9 @@ public class Dice {
      * 
      * @param sides
      *            how many sides on the dice.
-    
-     * @return the value rolled on the dice. */
+     * 
+     * @return the value rolled on the dice.
+     */
     public int roll(int sides) {
         return roll(1, sides);
     }
@@ -48,8 +49,9 @@ public class Dice {
      *            how many rolls of the dice.
      * @param sides
      *            how many sides on the dice.
-    
-     * @return the total dice value of all rolls. */
+     * 
+     * @return the total dice value of all rolls.
+     */
     public int roll(int rolls, int sides) {
         int total = 0;
         if (rolls < 1) {

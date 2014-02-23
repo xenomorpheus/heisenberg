@@ -79,7 +79,6 @@ public class Search {
         Path path = new Path();
         while (!modelStateEvaluator.atGoal(modelState)) {
             Successor successor = findBestSuccessor(modelState);
-            System.out.println(successor);
             path.add(successor.getAction());
             modelState = successor.getModelState();
         }

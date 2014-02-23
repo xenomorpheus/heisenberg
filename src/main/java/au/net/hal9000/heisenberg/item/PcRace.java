@@ -129,7 +129,7 @@ public abstract class PcRace extends Entity {
      */
     public final void setPcClass(final PcClass pcClass) {
         this.pcClass = pcClass;
-        if (pcClass == null) {
+        if (null == pcClass) {
             clearClassBaseFields();
         } else {
             setBasicsFromPcClass();
@@ -257,7 +257,7 @@ public abstract class PcRace extends Entity {
      *            Any existing AbilityScore with this name will be removed.
      */
     public void setAnAbilityScore(AbilityScore abilityScore) {
-        if (abilityScores == null) {
+        if (null == abilityScores) {
             abilityScores = new TreeMap<String, AbilityScore>();
         }
         abilityScores.put(abilityScore.getName(), abilityScore);
@@ -269,7 +269,7 @@ public abstract class PcRace extends Entity {
      * Method init.
      */
     protected void init() {
-        if (pcClass == null) {
+        if (null == pcClass) {
             clearClassBaseFields();
         } else {
             setBasicsFromPcClass();
@@ -297,7 +297,7 @@ public abstract class PcRace extends Entity {
         // TODO don't reach inside object's data structures - keySet()
         TreeMap<String, AbilityScore> pcClassAbilityScores = pcClass
                 .getAbilityScores();
-        if (pcClassAbilityScores != null) {
+        if (null != pcClassAbilityScores) {
             // TODO do we need to clear existing abilities
             // What about ability scores not from pcClass ? Add a unit test to
             // ensure they are preserved.
@@ -314,7 +314,7 @@ public abstract class PcRace extends Entity {
      * Ensure that the abilityScores.
      */
     private void abilityScoresEnsureExists() {
-        if (abilityScores == null) {
+        if (null == abilityScores) {
             abilityScores = new TreeMap<String, AbilityScore>();
         }
     }
@@ -328,8 +328,8 @@ public abstract class PcRace extends Entity {
         // TODO we should be iterating over pcClass's ability key set.
         // We need to make sure that we preserve any ability scores that aren't
         // on the pcClass.
-        if (pcClass != null) {
-            if (abilityScores == null) {
+        if (null != pcClass) {
+            if (null == abilityScores) {
                 abilityScoresEnsureExists();
             }
             for (String key : abilityScores.keySet()) {
@@ -377,7 +377,7 @@ public abstract class PcRace extends Entity {
         text.append("Race: " + race);
         text.append(System.lineSeparator());
 
-        if (pcClass != null) {
+        if (null != pcClass) {
             text.append("Class: " + pcClass.getId());
             text.append(System.lineSeparator());
         }
@@ -395,7 +395,7 @@ public abstract class PcRace extends Entity {
         text.append("Encumbrance: " + encumbrance);
         text.append(System.lineSeparator());
 
-        if (abilityScores != null) {
+        if (null != abilityScores) {
             text.append("Abilities:");
             text.append(System.lineSeparator());
             for (AbilityScore abilityScore : abilityScores.values()) {

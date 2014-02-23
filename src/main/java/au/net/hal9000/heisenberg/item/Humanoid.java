@@ -154,10 +154,10 @@ public abstract class Humanoid extends PcRace {
     public float getWeight() {
         float total = super.getWeight();
         total += head.getWeight();
-        if (leftHand != null) {
+        if (null != leftHand) {
             total += leftHand.getWeight();
         }
-        if (rightHand != null) {
+        if (null != rightHand) {
             total += rightHand.getWeight();
         }
         return total;
@@ -169,10 +169,10 @@ public abstract class Humanoid extends PcRace {
     public float getVolume() {
         float total = super.getVolume();
         total += head.getVolume();
-        if (leftHand != null) {
+        if (null != leftHand) {
             total += leftHand.getVolume();
         }
-        if (rightHand != null) {
+        if (null != rightHand) {
             total += rightHand.getVolume();
         }
         return total;
@@ -183,10 +183,10 @@ public abstract class Humanoid extends PcRace {
     public void beNot() {
         // Call beNot on the Items directly declared in this class.
         head.beNot();
-        if (leftHand != null) {
+        if (null != leftHand) {
             leftHand.beNot();
         }
-        if (rightHand != null) {
+        if (null != rightHand) {
             rightHand.beNot();
         }
         // Get super to do the rest.
@@ -206,10 +206,10 @@ public abstract class Humanoid extends PcRace {
     @Override
     public int getChildCount() {
         int count = 1; // head
-        if (leftHand != null) {
+        if (null != leftHand) {
             count++;
         }
-        if (rightHand != null) {
+        if (null != rightHand) {
             count++;
         }
         count += super.getChildCount();
@@ -223,22 +223,22 @@ public abstract class Humanoid extends PcRace {
     public Item getChildAt(int index) {
         // index is zero offset.
         // head
-        if (index == 0) {
+        if (0 == index) {
             return head;
         }
         index--;
 
         // leftHand
-        if (leftHand != null) {
-            if (index == 0) {
+        if (null != leftHand) {
+            if (0 == index) {
                 return leftHand;
             }
             index--;
         }
 
         // rightHand
-        if (rightHand != null) {
-            if (index == 0) {
+        if (null != rightHand) {
+            if (0 == index) {
                 return rightHand;
             }
             index--;
@@ -261,7 +261,7 @@ public abstract class Humanoid extends PcRace {
         }
 
         // leftHand
-        if (leftHand != null) {
+        if (null != leftHand) {
             index++;
             if (leftHand.equals(child)) {
                 return index;
@@ -269,7 +269,7 @@ public abstract class Humanoid extends PcRace {
         }
 
         // rightHand
-        if (rightHand != null) {
+        if (null != rightHand) {
             index++;
             if (rightHand.equals(child)) {
                 return index;

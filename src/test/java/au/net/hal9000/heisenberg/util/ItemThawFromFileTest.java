@@ -73,7 +73,7 @@ public class ItemThawFromFileTest {
         // Get the object back
         Location newObj = ItemThawFromFile.locationThawFromFile(filename);
 
-        assertTrue("newObj not null", newObj != null);
+        assertTrue("newObj not null", null != newObj);
         assertTrue("deserialized Location equals old cookie",
                 old.equals(newObj));
         // TODO - check for the cookies in the newObj
@@ -98,7 +98,7 @@ public class ItemThawFromFileTest {
         // Get the object back
         Location newObj = ItemThawFromFile.locationThawFromFile(filename);
 
-        assertTrue("newObj not null", newObj != null);
+        assertTrue("newObj not null", null != newObj);
         assertTrue("deserialized Location equals old cookie",
                 old.equals(newObj));
 

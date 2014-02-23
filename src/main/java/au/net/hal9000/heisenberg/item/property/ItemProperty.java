@@ -393,7 +393,7 @@ public final class ItemProperty {
     public static void alterPropertyByName(Entity entity, String propertyName,
             float propertyDelta) {
 
-        if (propertyName == null) {
+        if (null == propertyName) {
             throw new RuntimeException("Missing property name");
         } else if (AERATION.equals(propertyName)) {
             ItemProperty.alterAeration(entity, propertyDelta);

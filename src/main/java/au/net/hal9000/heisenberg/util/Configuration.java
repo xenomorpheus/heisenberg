@@ -1,16 +1,21 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
 
+// XML Parser
 import nu.xom.Attribute;
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
+import nu.xom.ParsingException;
+import nu.xom.ValidityException;
+
 import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
@@ -55,11 +60,14 @@ public class Configuration {
     /** Images to show in UI. */
     private TreeMap<String, SpriteSheetConfiguration> spriteSheets;
 
-    /** Constructor.
+    /**
+     * Constructor.
      * 
-     * @param filename config file to read.
-    
-     * @throws ConfigurationError */
+     * @param filename
+     *            config file to read.
+     * 
+     * @throws ConfigurationError
+     */
     public Configuration(String filename) throws ConfigurationError {
         super();
         this.init(filename);
@@ -77,10 +85,11 @@ public class Configuration {
     }
 
     /**
-    
-     * @return Return the last config that was read. */
+     * 
+     * @return Return the last config that was read.
+     */
     public static Configuration lastConfig() {
-        if (lastConfig == null) {
+        if (null == lastConfig) {
             throw new RuntimeException(
                     "Please fetch config before using Singleton");
         }
@@ -89,8 +98,9 @@ public class Configuration {
 
     // Getters and Setters
     /**
-    
-     * @return the itemClasses */
+     * 
+     * @return the itemClasses
+     */
     public final Vector<ItemClassConfiguration> getItemClasses() {
         return itemClasses;
     }
@@ -98,14 +108,16 @@ public class Configuration {
     /**
      * get skill details.
      * 
-    
-     * @return skill details. */
+     * 
+     * @return skill details.
+     */
     public final TreeMap<String, SkillDetail> getSkillDetails() {
         return skillDetails;
     }
 
     /**
      * Method getRecipes.
+     * 
      * @return TreeMap<String,Recipe>
      */
     public final TreeMap<String, Recipe> getRecipes() {
@@ -115,6 +127,7 @@ public class Configuration {
     // TODO remove/refactor so caller can't modify pcClasses
     /**
      * Method getPcClasses.
+     * 
      * @return TreeMap<String,PcClass>
      */
     public TreeMap<String, PcClass> getPcClasses() {
@@ -124,6 +137,7 @@ public class Configuration {
     // TODO remove/refactor so caller can't modify races
     /**
      * Method getRaces.
+     * 
      * @return Vector<String>
      */
     public Vector<String> getRaces() {
@@ -133,6 +147,7 @@ public class Configuration {
     // TODO remove/refactor so caller can't modify sizes
     /**
      * Method getSizes.
+     * 
      * @return Vector<String>
      */
     public Vector<String> getSizes() {
@@ -142,6 +157,7 @@ public class Configuration {
     // TODO remove/refactor so caller can't modify genders
     /**
      * Method getGenders.
+     * 
      * @return Vector<String>
      */
     public Vector<String> getGenders() {
@@ -151,8 +167,9 @@ public class Configuration {
     /**
      * Return the sprite sheet details.
      * 
-    
-     * @return the sprite sheet details */
+     * 
+     * @return the sprite sheet details
+     */
     public TreeMap<String, SpriteSheetConfiguration> getSpriteSheets() {
         return spriteSheets;
     }
@@ -160,7 +177,9 @@ public class Configuration {
     // Misc
     /**
      * Method init.
-     * @param filename String
+     * 
+     * @param filename
+     *            String
      * @throws ConfigurationError
      */
     private void init(String filename) throws ConfigurationError {
@@ -170,8 +189,10 @@ public class Configuration {
         Document doc;
         try {
             doc = builder.build(file);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+        } catch (ParsingException e) {
+            throw new ConfigurationError(e);
+        } catch (IOException e) {
+            // TODO retry
             throw new ConfigurationError(e);
         }
         Element root = doc.getRootElement();
@@ -223,8 +244,9 @@ public class Configuration {
      * Load details about each Item class.
      * 
      * @param itemClassesElement
-    
-     * @return a collection of information about each Item type. */
+     * 
+     * @return a collection of information about each Item type.
+     */
     private Vector<ItemClassConfiguration> xmlToItemClasses(
             Element itemClassesElement) {
         Elements itemClassElements = itemClassesElement
@@ -237,19 +259,19 @@ public class Configuration {
             itemClassConfiguration.setId(id);
             // iconClosedId
             String iconClosedId = element.getAttributeValue("iconClosedId");
-            if (iconClosedId != null) {
+            if (null != iconClosedId) {
                 itemClassConfiguration.setIconOpenId(Integer
                         .parseInt(iconClosedId));
             }
             // iconLeafId
             String iconLeafId = element.getAttributeValue("iconLeafId");
-            if (iconLeafId != null) {
+            if (null != iconLeafId) {
                 itemClassConfiguration.setIconOpenId(Integer
                         .parseInt(iconLeafId));
             }
             // iconOpenId
             String iconOpenId = element.getAttributeValue("iconOpenId");
-            if (iconOpenId != null) {
+            if (null != iconOpenId) {
                 itemClassConfiguration.setIconOpenId(Integer
                         .parseInt(iconOpenId));
             }
@@ -263,8 +285,9 @@ public class Configuration {
      * 
      * @param elements
      *            Parsed XML structure.
-    
-     * @return a Vector strings. */
+     * 
+     * @return a Vector strings.
+     */
     private Vector<String> xmlToIdList(Elements elements) {
         Vector<String> list = new Vector<String>();
         for (int i = 0; i < elements.size(); i++) {
@@ -275,7 +298,9 @@ public class Configuration {
 
     /**
      * Method xmlToPcClasses.
-     * @param pcClassesElements Elements
+     * 
+     * @param pcClassesElements
+     *            Elements
      * @return TreeMap<String,PcClass>
      */
     private TreeMap<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
@@ -293,8 +318,9 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Skill IDs
-    
-     * @return Set of Skill Objects. */
+     * 
+     * @return Set of Skill Objects.
+     */
     public static Set<Skill> xmlToSkills(Elements entries) {
         Set<Skill> skills = new TreeSet<Skill>();
 
@@ -311,8 +337,9 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Item details.
-    
-     * @return A list of RequirementItem objects. */
+     * 
+     * @return A list of RequirementItem objects.
+     */
     public static Vector<RequirementItem> xmlToRecipeRequirementItems(
             Elements entries) {
         Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
@@ -321,19 +348,19 @@ public class Configuration {
             String itemId = entry.getAttributeValue("id");
             // type
             String itemType = entry.getAttributeValue("type");
-            if (itemType == null) {
+            if (null == itemType) {
                 itemType = itemId;
             }
             // consumed
             String consumedString = entry.getAttributeValue("consumed");
             boolean consumed = true;
-            if (consumedString != null) {
+            if (null != consumedString) {
                 consumed = Boolean.parseBoolean(consumedString);
             }
             // weightMin
             float weightMin = 0;
             String weightMinString = entry.getAttributeValue("weightMin");
-            if (weightMinString != null) {
+            if (null != weightMinString) {
                 weightMin = Float.parseFloat(weightMinString);
             }
 
@@ -349,20 +376,21 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Item details.
-    
-     * @return A list of Recipe Product objects. */
+     * 
+     * @return A list of Recipe Product objects.
+     */
     public static Vector<Product> xmlToRecipeProductItems(Elements entries) {
         Vector<Product> products = new Vector<Product>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String id = entry.getAttributeValue("id");
             String type = entry.getAttributeValue("itemType");
-            if (type == null) {
+            if (null == type) {
                 type = id;
             }
             String weightBaseString = entry.getAttributeValue("weightBase");
             float weightBase = 0;
-            if (weightBaseString != null) {
+            if (null != weightBaseString) {
                 weightBase = Float.parseFloat(weightBaseString);
             }
             ProductItem product = new ProductItem(id, type, weightBase);
@@ -376,8 +404,9 @@ public class Configuration {
      * 
      * @param entries
      *            XML list of Property details.
-    
-     * @return A list of Recipe Product objects. */
+     * 
+     * @return A list of Recipe Product objects.
+     */
     public static Vector<Product> xmlToRecipeProductEntityProperties(
             Elements entries) {
         Vector<Product> products = new Vector<Product>();
@@ -385,13 +414,13 @@ public class Configuration {
             Element entry = entries.get(current);
             String id = entry.getAttributeValue("id");
             String propertyName = entry.getAttributeValue("propertyName");
-            if (propertyName == null) {
+            if (null == propertyName) {
                 propertyName = id;
             }
             String propertyDeltaString = entry
                     .getAttributeValue("propertyDelta");
             float propertyDelta = 0;
-            if (propertyDeltaString != null) {
+            if (null != propertyDeltaString) {
                 propertyDelta = Float.parseFloat(propertyDeltaString);
             }
             ProductEntityProperty product = new ProductEntityProperty(id,
@@ -411,14 +440,14 @@ public class Configuration {
     public static Vector<Product> xmlToRecipeProducts(Element entry) {
 
         Vector<Product> products = new Vector<Product>();
-        if (entry != null) {
+        if (null != entry) {
             Elements items = entry.getChildElements("item");
-            if (items != null) {
+            if (null != items) {
                 products.addAll(xmlToRecipeProductItems(items));
             }
 
             Elements properties = entry.getChildElements("property");
-            if (properties != null) {
+            if (null != properties) {
                 products.addAll(xmlToRecipeProductEntityProperties(properties));
             }
         }
@@ -449,8 +478,9 @@ public class Configuration {
      * 
      * @param recipeElement
      *            XML details of a Recipe.
-    
-     * @return a Recipe object. */
+     * 
+     * @return a Recipe object.
+     */
     public static Recipe xmlToRecipe(Element recipeElement) {
         String id = recipeElement.getAttributeValue("id");
         String description = recipeElement.getAttributeValue("description");
@@ -459,20 +489,20 @@ public class Configuration {
         // mana
         int mana = 0;
         Attribute manaAttribute = recipeElement.getAttribute("mana");
-        if (manaAttribute != null) {
+        if (null != manaAttribute) {
             mana = Integer.parseInt(manaAttribute.getValue());
         }
         // actionPoints
         int actionPoints = 0;
         Attribute actionPointsAttribute = recipeElement
                 .getAttribute("actionPoints");
-        if (actionPointsAttribute != null) {
+        if (null != actionPointsAttribute) {
             actionPoints = Integer.parseInt(actionPointsAttribute.getValue());
         }
         // process
         String process = null;
         Attribute processAttribute = recipeElement.getAttribute("process");
-        if (processAttribute != null) {
+        if (null != processAttribute) {
             process = processAttribute.getValue();
         }
 
@@ -500,10 +530,12 @@ public class Configuration {
      * 
      * @param element
      *            XML element containing recipes.
-    
-    
-    
-     * @return A set of Recipe objects. * @throws ParsingException * @throws IOException */
+     * 
+     * 
+     * 
+     * @return A set of Recipe objects. * @throws ParsingException * @throws
+     *         IOException
+     */
     public static TreeMap<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
@@ -521,8 +553,9 @@ public class Configuration {
      * Read multiple SkillDetail objects from an XML element.
      * 
      * @param element
-    
-     * @return TreeMap of SkillDetail objects. */
+     * 
+     * @return TreeMap of SkillDetail objects.
+     */
     private static TreeMap<String, SkillDetail> xmlToSkillDetails(
             Element element) {
         Elements entries = element.getChildElements("skill");
@@ -540,29 +573,31 @@ public class Configuration {
     /**
      * Read one PcClass object from an XML element.
      * 
-     * @param element XML element.
-    
-     * @return a PcClass object. */
+     * @param element
+     *            XML element.
+     * 
+     * @return a PcClass object.
+     */
     private static PcClass xmlToPcClass(Element element) {
         PcClass pcClass = new PcClass();
 
         // id
         String id = element.getAttributeValue("id");
-        if (id == null) {
+        if (null == id) {
             throw new IllegalArgumentException("id must be set");
         }
         pcClass.setId(id);
 
         // combatDice
         String combatDice = element.getAttributeValue("combatDice");
-        if (combatDice == null) {
+        if (null == combatDice) {
             throw new IllegalArgumentException("combatDice must be set");
         }
         pcClass.setCombatDice(Integer.parseInt(combatDice));
 
         // magicDice
         String magicDice = element.getAttributeValue("magicDice");
-        if (magicDice == null) {
+        if (null == magicDice) {
             throw new IllegalArgumentException("magicDice must be set");
         }
         pcClass.setMagicDice(Integer.parseInt(magicDice));
@@ -616,8 +651,9 @@ public class Configuration {
      * Get an AbilityScore object from an XML element.
      * 
      * @param element
-    
-     * @return the AbilityScore object. */
+     * 
+     * @return the AbilityScore object.
+     */
     private static AbilityScore xmlToAbilityScore(Element element) {
 
         String id = element.getAttributeValue("id");
@@ -633,9 +669,10 @@ public class Configuration {
 
     /**
      * 
-    
-    
-     * @param spriteSheets Element
+     * 
+     * 
+     * @param spriteSheets
+     *            Element
      * @return TreeMap<String,SpriteSheetConfiguration>
      */
     private TreeMap<String, SpriteSheetConfiguration> xmlToSpriteSheets(
@@ -660,8 +697,9 @@ public class Configuration {
     /**
      * @param id
      *            the class name e.g. Soldier
-    
-     * @return the PC Character Class. */
+     * 
+     * @return the PC Character Class.
+     */
     public PcClass getPcClass(String id) {
         return pcClasses.get(id);
     }
@@ -673,8 +711,9 @@ public class Configuration {
      * 
      * @param recipeId
      *            the id of the Recipe
-    
-     * @return the Recipe object */
+     * 
+     * @return the Recipe object
+     */
     public Recipe getRecipe(String recipeId) {
         return recipes.get(recipeId);
     }
@@ -684,14 +723,16 @@ public class Configuration {
      * 
      * @param name
      *            name of sprite sheet.
-    
-     * @return the sprite sheet details */
+     * 
+     * @return the sprite sheet details
+     */
     public SpriteSheetConfiguration getSpriteSheet(String name) {
         return spriteSheets.get(name);
     }
 
     /**
      * Method getItemClassIds.
+     * 
      * @return Vector<String>
      */
     public Vector<String> getItemClassIds() {

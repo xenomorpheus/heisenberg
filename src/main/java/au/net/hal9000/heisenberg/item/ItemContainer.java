@@ -161,7 +161,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     public int getChildCount() {
         int count = 0;
-        if (contents != null) {
+        if (null != contents) {
             count = contents.size();
         }
         return count;
@@ -256,7 +256,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + ((contents == null) ? 0 : contents.hashCode());
+                + ((null == contents) ? 0 : contents.hashCode());
         result = prime * result + Float.floatToIntBits(volumeMax);
         result = prime * result + Float.floatToIntBits(weightMax);
         return result;
@@ -298,8 +298,8 @@ public abstract class ItemContainer extends Item implements Serializable {
             return false;
         }
         ItemContainer other = (ItemContainer) obj;
-        if (contents == null) {
-            if (other.contents != null) {
+        if (null == contents) {
+            if (null != other.contents) {
                 return false;
             }
         } else if (!contents.equals(other.contents)) {
@@ -327,7 +327,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      */
     public void add(int index, Item item) {
         ItemContainer itemCurrentContainer = item.getContainer();
-        if (itemCurrentContainer != null) {
+        if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
                 LOGGER.error("Already in container");
                 // Nothing to do.
@@ -365,7 +365,7 @@ public abstract class ItemContainer extends Item implements Serializable {
         }
         // remove item from existing location
         ItemContainer currentLocation = item.getContainer();
-        if (currentLocation != null) {
+        if (null != currentLocation) {
             currentLocation.remove(item);
         }
 

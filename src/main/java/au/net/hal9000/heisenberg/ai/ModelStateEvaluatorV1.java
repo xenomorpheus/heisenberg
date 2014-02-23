@@ -35,11 +35,11 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
         if (modelState instanceof ModelStateV1) {
             ModelStateV1 modelV1 = (ModelStateV1) modelState;
             Point3d agentPosition = modelV1.getAgentPosition();
-            if (agentPosition == null) {
+            if (null == agentPosition) {
                 throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
             }
             Point3d goalPosition = modelV1.getGoalPosition();
-            if (goalPosition == null) {
+            if (null == goalPosition) {
                 throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
             }
             result = agentPosition.distance(goalPosition);

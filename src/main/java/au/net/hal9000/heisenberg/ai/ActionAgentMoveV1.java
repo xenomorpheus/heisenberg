@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ActionAgentMoveV1 implements Action {
 
@@ -35,12 +37,12 @@ public class ActionAgentMoveV1 implements Action {
 
     /**
      * Method toString.
-     * @return String
-     * @see au.net.hal9000.heisenberg.ai.Action#toString()
-     */
+    
+    
+     * @return String * @see au.net.hal9000.heisenberg.ai.Action#toString() */
     @Override
     public String toString() {
-        if (label != null) {
+        if (null != label) {
             return label;
         }
         return delta.toString();
@@ -53,14 +55,14 @@ public class ActionAgentMoveV1 implements Action {
      */
     /**
      * Method hashCode.
-     * @return int
-     */
+    
+     * @return int */
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((delta == null) ? 0 : delta.hashCode());
-        result = prime * result + ((label == null) ? 0 : label.hashCode());
+        result = prime * result + ((null == delta) ? 0 : delta.hashCode());
+        result = prime * result + ((null == label) ? 0 : label.hashCode());
         return result;
     }
 
@@ -72,29 +74,29 @@ public class ActionAgentMoveV1 implements Action {
     /**
      * Method equals.
      * @param obj Object
-     * @return boolean
-     */
+    
+     * @return boolean */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (!(obj instanceof ActionAgentMoveV1)) {
             return false;
         }
         final ActionAgentMoveV1 other = (ActionAgentMoveV1) obj;
-        if (delta == null) {
-            if (other.delta != null) {
+        if (null == delta) {
+            if (null != other.delta) {
                 return false;
             }
         } else if (!delta.equals(other.delta)) {
             return false;
         }
-        if (label == null) {
-            if (other.label != null) {
+        if (null == label) {
+            if (null != other.label) {
                 return false;
             }
         } else if (!label.equals(other.label)) {

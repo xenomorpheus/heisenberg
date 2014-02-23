@@ -43,7 +43,7 @@ public class CandleTest {
         int type = 1;
         Candle candle = new Candle();
         candle.setType(type);
-        if (type == 1) {
+        if (1 == type) {
             assertEquals("volumeBase", Candle.VOLUME_DEFAULT,
                     candle.getVolumeBase(), MARGIN);
             assertEquals("weightBase", Candle.WEIGHT_DEFAULT,

@@ -39,7 +39,7 @@ public final class ItemIcon {
                 .getItemClasses();
         for (ItemClassConfiguration itemClassConfiguration : itemClassConfigurations) {
             int iconOpenId = itemClassConfiguration.getIconOpenId();
-            if (iconOpenId != 0) {
+            if (0 != iconOpenId) {
                 Item.setIconOpenDefaultForClass(itemClassConfiguration.getId(),
                         new ImageIcon(spritePack.getSprite(iconOpenId)));
             }

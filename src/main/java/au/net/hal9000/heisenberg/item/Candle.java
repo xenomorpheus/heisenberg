@@ -87,7 +87,7 @@ public class Candle extends Item implements LightSource {
      *            candle type.
      */
     public void setType(final int type) {
-        if (type == 1) {
+        if (1 == type) {
             this.setVolumeBase(VOLUME_DEFAULT);
             this.setWeightBase(WEIGHT_DEFAULT);
         } else {

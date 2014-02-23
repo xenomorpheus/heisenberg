@@ -80,9 +80,9 @@ public class ModelStateV1 implements ModelState, Cloneable {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((agentPosition == null) ? 0 : agentPosition.hashCode());
+                + ((null == agentPosition) ? 0 : agentPosition.hashCode());
         result = prime * result
-                + ((goalPosition == null) ? 0 : goalPosition.hashCode());
+                + ((null == goalPosition) ? 0 : goalPosition.hashCode());
         return result;
     }
 
@@ -97,22 +97,22 @@ public class ModelStateV1 implements ModelState, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
         ModelStateV1 other = (ModelStateV1) obj;
-        if (agentPosition == null) {
-            if (other.agentPosition != null) {
+        if (null == agentPosition) {
+            if (null != other.agentPosition) {
                 return false;
             }
         } else if (!agentPosition.equals(other.agentPosition)) {
             return false;
         }
-        if (goalPosition == null) {
-            if (other.goalPosition != null) {
+        if (null == goalPosition) {
+            if (null != other.goalPosition) {
                 return false;
             }
         } else if (!goalPosition.equals(other.goalPosition)) {

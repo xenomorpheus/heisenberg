@@ -257,7 +257,7 @@ public class Currency implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (getClass() != obj.getClass()) {
@@ -286,22 +286,22 @@ public class Currency implements Serializable, Cloneable {
     @Override
     public String toString() {
         String str = "0 gp";
-        if (pp != 0 || gp != 0 || sp != 0 || cp != 0) {
+        if (0 != pp || 0 != gp || 0 != sp || 0 != cp) {
             StringBuilder sb = new StringBuilder();
             String joiner = "";
-            if (pp != 0) {
+            if (0 != pp) {
                 sb.append(this.pp + "pp" + joiner);
                 joiner = ",";
             }
-            if (gp != 0) {
+            if (0 != gp) {
                 sb.append(this.gp + "gp" + joiner);
                 joiner = ",";
             }
-            if (sp != 0) {
+            if (0 != sp) {
                 sb.append(this.sp + "sp" + joiner);
                 joiner = ",";
             }
-            if (cp != 0) {
+            if (0 != cp) {
                 sb.append(this.cp + "cp" + joiner);
                 joiner = ",";
             }

@@ -49,7 +49,7 @@ public class Path {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((queue == null) ? 0 : queue.hashCode());
+        result = prime * result + ((null == queue) ? 0 : queue.hashCode());
         return result;
     }
 
@@ -68,15 +68,15 @@ public class Path {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (!(obj instanceof Path)) {
             return false;
         }
         final Path other = (Path) obj;
-        if (queue == null) {
-            if (other.queue != null) {
+        if (null == queue) {
+            if (null != other.queue) {
                 return false;
             }
         } else if (!queue.equals(other.queue)) {

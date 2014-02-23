@@ -77,11 +77,11 @@ public class ProductEntityProperty extends Product {
     String meetsRequirements(Cooker cooker) {
         // Need to find a target to apply property change to.
         // A chef is a valid target.
-        if (cooker.getChef() != null) {
+        if (null != cooker.getChef()) {
             return null;
         }
         // A Target has been specified.
-        if (cooker.findIngredientByName("Target") != null) {
+        if (null != cooker.findIngredientByName("Target")) {
             return null;
         }
         return "A Target or chef is required";

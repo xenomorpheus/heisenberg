@@ -631,7 +631,7 @@ public class BasicPanel extends JPanel {
      * update the form.
      */
     private void updateForm() {
-        if (pc != null) {
+        if (null != pc) {
 
             // TODO only change values if required.
             // e.g. don't trigger needless change events.

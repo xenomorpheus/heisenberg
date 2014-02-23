@@ -62,8 +62,8 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
         // Modifier
         String modString = matcher.group(2);
-        if (modString != null) {
-            if (modString.length() > 0 && modString.charAt(0) == '+') {
+        if (null != modString) {
+            if (modString.length() > 0 && '+' == modString.charAt(0)) {
                 modString = modString.substring(1);
             }
             mod = Integer.parseInt(modString);
@@ -71,7 +71,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
         // Value
         String valueString = matcher.group(1);
-        if (valueString.length() > 0 && valueString.charAt(0) == '+') {
+        if (valueString.length() > 0 && '+' == valueString.charAt(0)) {
             valueString = valueString.substring(1);
         }
         value = Integer.parseInt(valueString);
@@ -128,7 +128,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
      * @return Value with optional mod. e.g. 3/1 or 3 */
     public String valueOptionalMod() {
         String string = "" + value;
-        if (mod != 0) {
+        if (0 != mod) {
             if (mod > 0) {
                 string += "/+" + mod;
             } else {

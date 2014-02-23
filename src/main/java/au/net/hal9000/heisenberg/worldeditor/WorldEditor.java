@@ -93,7 +93,7 @@ public class WorldEditor extends JFrame {
                     // pointer to top location.
                 }
                 if ("Save".equals(eventName)) {
-                    if (entityManager != null) {
+                    if (null != entityManager) {
                         entityManager.getTransaction().begin();
                         entityManager.persist(location);
                         entityManager.getTransaction().commit();
@@ -136,7 +136,7 @@ public class WorldEditor extends JFrame {
      *            new location.
      */
     public void setLocation(Location location) {
-        if (location != null) {
+        if (null != location) {
             location.beNot();
             location = null;
         }
@@ -146,7 +146,7 @@ public class WorldEditor extends JFrame {
 
     /** quit the program. */
     public void exitProgram() {
-        if (entityManager != null) {
+        if (null != entityManager) {
             entityManager.close();
             entityManager = null;
         }

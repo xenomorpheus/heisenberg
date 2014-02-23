@@ -74,7 +74,7 @@ public class ItemTreePanel extends JPanel {
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
                     Item selNode = (Item) tree.getLastSelectedPathComponent();
-                    if ((selNode != null) && !selNode.isLeaf()) {
+                    if ((null != selNode) && !selNode.isLeaf()) {
                         ItemContainer selContainer = (ItemContainer) selNode;
                         // Add the desired item.
                         // A list of Items that could be added.

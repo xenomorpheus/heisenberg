@@ -62,7 +62,7 @@ public class AbilityScoresTable extends JTable {
          */
         public MyTableModel(PcRace pc) {
             TreeMap<String, AbilityScore> abilityScores = pc.getAbilityScores();
-            if (abilityScores != null) {
+            if (null != abilityScores) {
                 pcAbilityScores = new ArrayList<AbilityScore>(
                         abilityScores.values());
             }
@@ -85,7 +85,7 @@ public class AbilityScoresTable extends JTable {
          */
         public int getRowCount() {
             int count = 0;
-            if (pcAbilityScores != null) {
+            if (null != pcAbilityScores) {
                 count = pcAbilityScores.size();
             }
             return count;
@@ -109,7 +109,7 @@ public class AbilityScoresTable extends JTable {
          */
         public Object getValueAt(int row, int col) {
             AbilityScore abilityScore = pcAbilityScores.get(row);
-            if (col == 0) {
+            if (0 == col) {
                 return abilityScore.getName();
             } else {
                 return abilityScore.valueOptionalMod();

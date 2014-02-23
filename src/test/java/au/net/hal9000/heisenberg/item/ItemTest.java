@@ -19,8 +19,7 @@ import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
  */
 public class ItemTest {
     /**
-     * Field WITHIN_MARGIN.
-     * (value is 9.0E-5)
+     * Field WITHIN_MARGIN. (value is 9.0E-5)
      */
     private static final float WITHIN_MARGIN = 0.00009F;
 
@@ -134,6 +133,7 @@ public class ItemTest {
 
     /**
      * Method testToString.
+     * 
      * @throws ConfigurationError
      */
     @Test
@@ -146,7 +146,7 @@ public class ItemTest {
         for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
             String itemClass = itemClassConfiguration.getId();
             String string = Factory.createItem(itemClass).toString();
-            assertTrue(itemClass + ".toString not null", string != null);
+            assertTrue(itemClass + ".toString not null", null != string);
             assertTrue(itemClass + ".toString length", string.length() > 0);
         }
     }
@@ -186,7 +186,7 @@ public class ItemTest {
     }
 
     /** Move without a container. */
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void testMoveNoContainer() {
         Cookie cookie = new Cookie();
 
@@ -194,17 +194,16 @@ public class ItemTest {
         Point3d expectedPosition = new Point3d(10, 20, 30);
         // Before test we place in a known position.
         cookie.setPosition(expectedPosition);
-        // Try to move, but will fail as not in an ItemContainer.
-        boolean threwException = false;
         try {
+            // Try to move, but will fail as not in an ItemContainer.
             cookie.moveToPoint3d(new Point3d(1, 2, 3));
-        } catch (RuntimeException e) {
-            threwException = true;
+        } catch (UnsupportedOperationException e) {
+
+            Point3d actualPosition = cookie.getPosition();
+            assertTrue("No ItemContainer - final pos",
+                    expectedPosition.equals(actualPosition));
+            throw e;
         }
-        assertTrue("Exeption thrown", threwException);
-        Point3d actualPosition = cookie.getPosition();
-        assertTrue("No ItemContainer - final pos",
-                expectedPosition.equals(actualPosition));
     }
 
     /** Move within a container. */

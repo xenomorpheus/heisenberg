@@ -192,7 +192,7 @@ public class Point3d implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (getClass() != obj.getClass()) {
@@ -298,7 +298,7 @@ public class Point3d implements Serializable, Cloneable {
     public static double splineBlend(int k, int t, int[] u, double v) {
         double value;
 
-        if (t == 1) {
+        if (1 == t) {
             if ((u[k] <= v) && (v < u[k + 1])) {
                 value = 1;
             } else {

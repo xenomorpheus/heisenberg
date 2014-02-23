@@ -43,7 +43,7 @@ public final class Factory {
     public static Item createItem(String type, Object[] arguments) {
         try {
             Class<?> itemClass = Class.forName(packageName + "." + type);
-            if (arguments == null) {
+            if (null == arguments) {
                 return (Item) itemClass.newInstance();
             } else {
                 final Class<?>[] partypes = new Class[arguments.length];

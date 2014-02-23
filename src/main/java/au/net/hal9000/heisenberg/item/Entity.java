@@ -183,7 +183,7 @@ public abstract class Entity extends ItemContainer {
      *            a Recipe id
      */
     public void recipeAdd(String recipeId) {
-        if (recipes == null) {
+        if (null == recipes) {
             recipes = new TreeSet<String>();
         }
         this.recipes.add(recipeId);
@@ -243,7 +243,7 @@ public abstract class Entity extends ItemContainer {
      *            The freshly learnt Skill.
      */
     public final void skillsAdd(final Skill skill) {
-        if (skills == null) {
+        if (null == skills) {
             skills = new TreeSet<Skill>();
         }
         skills.add(skill);
@@ -275,27 +275,27 @@ public abstract class Entity extends ItemContainer {
         text.append(super.detailedDescription());
         // Only add properties in this class.
 
-        if (actionPoints != 0) {
+        if (0 != actionPoints) {
             text.append("Action Points: " + actionPoints);
             text.append(System.lineSeparator());
 
         }
-        if (gender != null) {
+        if (null != gender) {
             text.append("Gender: " + gender);
             text.append(System.lineSeparator());
         }
-        if (mana != 0) {
+        if (0 != mana) {
             text.append("Mana: " + mana);
             text.append(System.lineSeparator());
         }
 
-        if (size != null) {
+        if (null != size) {
             text.append("Size: " + size);
             text.append(System.lineSeparator());
         }
 
         Set<Skill> skills = getSkills();
-        if (skills != null && !skills.isEmpty()) {
+        if (null != skills && !skills.isEmpty()) {
             text.append("Skills:");
             text.append(System.lineSeparator());
             for (Skill skill : skills) {
@@ -304,7 +304,7 @@ public abstract class Entity extends ItemContainer {
             }
         }
         Set<String> recipes = getRecipes();
-        if (recipes != null && !recipes.isEmpty()) {
+        if (null != recipes && !recipes.isEmpty()) {
             text.append("Recipes:");
             text.append(System.lineSeparator());
             for (String recipeId : recipes) {
@@ -340,7 +340,7 @@ public abstract class Entity extends ItemContainer {
     public String drink(Item item) throws InvalidTypeException, CantWearException {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, item);
-        if (error != null) {
+        if (null != error) {
             return error;
         }
         return cooker.cook();

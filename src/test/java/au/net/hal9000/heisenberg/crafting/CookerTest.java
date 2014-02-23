@@ -42,10 +42,11 @@ public class CookerTest {
     /**
      * Field config.
      */
-    Configuration config = null;
+    private Configuration config = null;
 
     /**
      * Method initialize.
+     * 
      * @throws ConfigurationError
      */
     @Before
@@ -56,12 +57,14 @@ public class CookerTest {
     /**
      * Magically create a Cookie. e.g. using only magic and time. An example of
      * common use - create an Item.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testItemCreation() throws InvalidTypeException, CantWearException {
+    public void testItemCreation() throws InvalidTypeException,
+            CantWearException {
         Recipe recipe = config.getRecipe("testItem1");
 
         // Setup the chef
@@ -102,7 +105,8 @@ public class CookerTest {
      * @throws InvalidTypeException
      */
     @Test
-    public void testFindIngredientByName() throws InvalidTypeException, CantWearException {
+    public void testFindIngredientByName() throws InvalidTypeException,
+            CantWearException {
         RequirementItem requirementItem = new RequirementItem("Location",
                 "Location", false);
         Vector<Requirement> requirements = new Vector<Requirement>();
@@ -119,8 +123,9 @@ public class CookerTest {
 
     /**
      * An example of common use - A spell.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
@@ -153,12 +158,14 @@ public class CookerTest {
     /**
      * Mixture of everything.<br>
      * This is a stand-along test. Doesn't require config.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      * 
      */
     @Test
-    public void testFullProcess() throws InvalidTypeException, CantWearException {
+    public void testFullProcess() throws InvalidTypeException,
+            CantWearException {
 
         Location world = new Location("World");
         Cookie cookie = new Cookie();
@@ -251,11 +258,13 @@ public class CookerTest {
 
     /**
      * Method testRecipeItemsAvailable.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testRecipeItemsAvailable() throws InvalidTypeException, CantWearException {
+    public void testRecipeItemsAvailable() throws InvalidTypeException,
+            CantWearException {
 
         Location world = new Location("world");
         world.setVolumeMax(-1);
@@ -334,11 +343,13 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: no change <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testCookGeneralNull() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralNull() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-general-null",
@@ -374,11 +385,13 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: mana=0 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testCookGeneralMana1() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralMana1() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-1", "Mana test, just enough.",
@@ -408,12 +421,14 @@ public class CookerTest {
      * Input: mana 2 <BR>
      * overall: fail <BR>
      * output: mana 2 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookGeneralMana2() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralMana2() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-2", "Mana test, not enough.",
@@ -426,7 +441,8 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough mana"+ System.lineSeparator(), cooker.cook());
+        assertEquals("cook works", "Not enough mana" + System.lineSeparator(),
+                cooker.cook());
 
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", 2, chef.getMana());
@@ -441,12 +457,14 @@ public class CookerTest {
      * Input: mana 4 <BR>
      * overall: pass <BR>
      * output: mana 1 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookGeneralMana3() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralMana3() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-3",
@@ -475,11 +493,13 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: actionPoints=0 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testCookGeneralActionPoints1() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralActionPoints1() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-1",
@@ -511,12 +531,14 @@ public class CookerTest {
      * Input: actionPoints 2 <BR>
      * overall: fail <BR>
      * output: actionPoints 2 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookGeneralActionPoints2() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralActionPoints2() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-2",
@@ -529,7 +551,9 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Not enough action points"+ System.lineSeparator(), cooker.cook());
+        assertEquals("cook works",
+                "Not enough action points" + System.lineSeparator(),
+                cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());
@@ -544,12 +568,14 @@ public class CookerTest {
      * Input: actionPoints 4 <BR>
      * overall: pass <BR>
      * output: actionPoints 1 <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookGeneralActionPoints3() throws InvalidTypeException, CantWearException {
+    public void testCookGeneralActionPoints3() throws InvalidTypeException,
+            CantWearException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-3",
@@ -577,12 +603,14 @@ public class CookerTest {
      * Equal skills to requirements <BR>
      * overall: true <BR>
      * output: no other change <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookSkills1() throws InvalidTypeException, CantWearException {
+    public void testCookSkills1() throws InvalidTypeException,
+            CantWearException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -616,12 +644,14 @@ public class CookerTest {
      * Desc: Less skills than required <BR>
      * overall: fail <BR>
      * output: no other change <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void testCookSkills2() throws InvalidTypeException, CantWearException {
+    public void testCookSkills2() throws InvalidTypeException,
+            CantWearException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -663,7 +693,8 @@ public class CookerTest {
      */
 
     @Test
-    public void testCookSkills3() throws InvalidTypeException, CantWearException {
+    public void testCookSkills3() throws InvalidTypeException,
+            CantWearException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -701,8 +732,9 @@ public class CookerTest {
      * Input: Cookie <BR>
      * overall: true <BR>
      * output: The Cookie is consumed. <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
@@ -750,12 +782,14 @@ public class CookerTest {
      * Input: Cookie <BR>
      * overall: true <BR>
      * output: The Cookie is NOT consumed. <BR>
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
 
     @Test
-    public void TestCookItem1Catalyst() throws InvalidTypeException, CantWearException {
+    public void TestCookItem1Catalyst() throws InvalidTypeException,
+            CantWearException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);

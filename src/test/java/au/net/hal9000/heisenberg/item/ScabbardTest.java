@@ -25,8 +25,9 @@ public class ScabbardTest {
 
     /**
      * Method testIsWearable.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
     public void testIsWearable() throws InvalidTypeException, CantWearException {
@@ -37,16 +38,16 @@ public class ScabbardTest {
 
     /**
      * Method testAddSword.
+     * 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
     @Test
-    public void testAddSword() {
+    public void testAddSword() throws InvalidTypeException, CantWearException {
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
-        try {
-            scabbard.add(sword);
-        } catch (Exception e) {
-            fail(e.toString());
-        }
+        scabbard.add(sword);
+
     }
 
     // TODO Add test for adding non-sword, should fail.
@@ -59,7 +60,8 @@ public class ScabbardTest {
      * @throws InvalidTypeException
      */
     @Test
-    public void testGetIndexOfChild() throws InvalidTypeException, CantWearException {
+    public void testGetIndexOfChild() throws InvalidTypeException,
+            CantWearException {
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
         assertEquals("empty", -1, scabbard.getIndexOfChild(sword));

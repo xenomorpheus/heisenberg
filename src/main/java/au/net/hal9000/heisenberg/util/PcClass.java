@@ -339,7 +339,7 @@ public class PcClass implements Comparable<PcClass> {
         text.append(encumbrance);
         text.append(System.lineSeparator());
 
-        if (abilityScores != null) {
+        if (null != abilityScores) {
             text.append("Abilities:");
             text.append(System.lineSeparator());
             Iterator<AbilityScore> itr = abilityScores.values().iterator();

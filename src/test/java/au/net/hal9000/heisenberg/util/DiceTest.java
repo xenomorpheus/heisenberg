@@ -35,7 +35,7 @@ public class DiceTest {
         // Check that default (d6) is within range
         for (int test = 0; test < TEST_MAX; test++) {
             int roll = dice.roll();
-            assertTrue("1d6 valid range", (roll >= 1) && (roll <= Dice.D6));
+            assertTrue("1d6 valid range", (roll >= 1) && (roll <= Dice.D_SIX));
         }
     }
 
@@ -73,7 +73,7 @@ public class DiceTest {
     public void testRollInt() {
         // Check return values
         Dice dice = new Dice();
-        for (int sides = 1; sides <= Dice.D20; sides++) {
+        for (int sides = 1; sides <= Dice.D_TWENTY; sides++) {
             for (int test = 0; test < TEST_MAX; test++) {
                 int roll = dice.roll(sides);
                 assertTrue("1d" + sides + " valid range", (roll >= 1)
@@ -90,7 +90,7 @@ public class DiceTest {
         Dice dice = new Dice();
 
         // Check return values
-        for (int sides = 1; sides <= Dice.D20; sides++) {
+        for (int sides = 1; sides <= Dice.D_TWENTY; sides++) {
             for (int test = 0; test < TEST_MAX; test++) {
                 for (int rolls = 1; rolls <= ROLL_MAX; rolls++) {
                     // Check that roll is within range

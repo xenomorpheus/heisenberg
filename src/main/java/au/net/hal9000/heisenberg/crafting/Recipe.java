@@ -221,7 +221,7 @@ public class Recipe {
     
      * @return the count of Requirement objects. */
     public final int getRequirementCount() {
-        if (requirements == null) {
+        if (null == requirements) {
             return 0;
         }
         return requirements.size();
@@ -270,7 +270,7 @@ public class Recipe {
     
      * @return the number of products that this recipe produces. */
     public final int getProductCount() {
-        if (products == null) {
+        if (null == products) {
             return 0;
         }
         return products.size();
@@ -331,7 +331,7 @@ public class Recipe {
         string.append("Action Point(s):" + actionPoints);
         string.append(System.lineSeparator());
 
-        if (skills != null) {
+        if (null != skills) {
             int index = 0;
             string.append("Skill(s):");
             string.append(System.lineSeparator());
@@ -341,7 +341,7 @@ public class Recipe {
                 index++;
             }
         }
-        if (requirements != null) {
+        if (null != requirements) {
             string.append("Requirement(s):");
             string.append(System.lineSeparator());
             for (Requirement requirement : requirements) {
@@ -350,7 +350,7 @@ public class Recipe {
                 string.append(System.lineSeparator());
             }
         }
-        if (products != null) {
+        if (null != products) {
             string.append("Product(s):");
             string.append(System.lineSeparator());
             for (Product product : products) {

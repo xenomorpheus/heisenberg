@@ -43,6 +43,17 @@ import au.net.hal9000.heisenberg.units.Skill;
  */
 public class Cooker extends ItemContainer {
 
+    /** error message. **/
+    public static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
+    /** error message. **/
+    public static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
+    /** error message. **/
+    public static final String NO_SUCH_REQUIREMENT = "no such requirement";
+    /** error message. **/
+    public static final String ALREADY_OCCUPIED = "already occupied";
+    /** error message. **/
+    public static final String BAD_KEY = "bad key";
+
     /**
      * serial version.
      */
@@ -60,17 +71,6 @@ public class Cooker extends ItemContainer {
      * Ingredients we will cook with.
      */
     private List<Item> ingredients = new Vector<Item>();
-
-    /** error message. **/
-    public static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
-    /** error message. **/
-    public static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
-    /** error message. **/
-    public static final String NO_SUCH_REQUIREMENT = "no such requirement";
-    /** error message. **/
-    public static final String ALREADY_OCCUPIED = "already occupied";
-    /** error message. **/
-    public static final String BAD_KEY = "bad key";
 
     /**
      * Constructor.
@@ -133,12 +133,12 @@ public class Cooker extends ItemContainer {
     public final String setItemsAvailable(final int index, final Item item)
             throws InvalidTypeException, CantWearException {
         // item exists
-        if (item == null) {
+        if (null == item) {
             return ITEM_MAY_NOT_BE_NULL;
         }
 
         // spot is free?
-        if ((ingredients.size() > index) && (ingredients.get(index) != null)) {
+        if ((ingredients.size() > index) && (null != ingredients.get(index))) {
             return ALREADY_OCCUPIED;
         }
         // already in this container?
@@ -146,15 +146,15 @@ public class Cooker extends ItemContainer {
             return ALREADY_CONTAINS_THAT_ITEM;
         }
         // is there a requirement to fulfill ?
-        RequirementItem requirementItem = (RequirementItem) recipe
+        final RequirementItem requirementItem = (RequirementItem) recipe
                 .getRequirement(index);
-        if (requirementItem == null) {
+        if (null == requirementItem) {
             return NO_SUCH_REQUIREMENT;
         }
 
         // Does the Item fulfill the Requirement?
-        String rejectionReason = requirementItem.meetsRequirements(item);
-        if (rejectionReason != null) {
+        final String rejectionReason = requirementItem.meetsRequirements(item);
+        if (null != rejectionReason) {
             return rejectionReason;
         }
 
@@ -194,12 +194,12 @@ public class Cooker extends ItemContainer {
      * @return undef if requirements met, otherwise the reason.
      */
     private String requirementsMet() {
-        StringBuilder string = new StringBuilder();
+        final StringBuilder string = new StringBuilder();
 
         // mana
         int manaRequired = recipe.getMana();
         if (manaRequired > 0) {
-            if (chef == null) {
+            if (null == chef) {
                 string.append("No chef set to supply mana");
                 string.append(System.lineSeparator());
             } else if (manaRequired > chef.getMana()) {
@@ -211,7 +211,7 @@ public class Cooker extends ItemContainer {
         // actionPoints
         int actionPointsRequired = recipe.getActionPoints();
         if (actionPointsRequired > 0) {
-            if (chef == null) {
+            if (null == chef) {
                 string.append("No chef set to supply action points");
                 string.append(System.lineSeparator());
             } else if (actionPointsRequired > chef.getActionPoints()) {
@@ -222,14 +222,14 @@ public class Cooker extends ItemContainer {
         }
 
         // skills
-        Set<Skill> required = recipe.getSkills();
-        if ((required != null) && (required.size() > 0)) {
-            if (chef == null) {
+        final Set<Skill> required = recipe.getSkills();
+        if ((null != required) && (required.size() > 0)) {
+            if (null == chef) {
                 string.append("No chef to supply skills");
                 string.append(System.lineSeparator());
             } else {
-                Set<Skill> chefSkills = chef.getSkills();
-                if ((chefSkills == null) || (!chefSkills.containsAll(required))) {
+                final Set<Skill> chefSkills = chef.getSkills();
+                if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
                     string.append("Missing Skills");
                     string.append(System.lineSeparator());
                 }
@@ -237,8 +237,8 @@ public class Cooker extends ItemContainer {
         }
 
         // Requirement
-        String requiredItems = requirementsItemMet();
-        if (requiredItems != null) {
+        final String requiredItems = requirementsItemMet();
+        if (null != requiredItems) {
             string.append(requiredItems);
         }
 
@@ -246,13 +246,13 @@ public class Cooker extends ItemContainer {
         if (recipe.getProductCount() > 0) {
             for (Product product : recipe.getProducts()) {
                 String missingRequirement = product.meetsRequirements(this);
-                if (missingRequirement != null) {
+                if (null != missingRequirement) {
                     string.append(missingRequirement);
                 }
             }
 
         }
-        if (string.length() == 0) {
+        if (0 == string.length()) {
             return null;
         }
         return string.toString();
@@ -268,7 +268,7 @@ public class Cooker extends ItemContainer {
         StringBuilder errors = new StringBuilder();
         int requirementCount = getRequirementCount();
         // No requirements
-        if (requirementCount == 0) {
+        if (0 == requirementCount) {
             return null;
         }
         // Not enough Requirement Items.
@@ -289,16 +289,15 @@ public class Cooker extends ItemContainer {
                 } else {
                     Item item = ingredients.get(index);
                     String reason = requirementItem.meetsRequirements(item);
-                    if (reason != null) {
+                    if (null != reason) {
                         errors.append("Missing/bad ingredient index " + index
                                 + " because " + reason);
                         errors.append(System.lineSeparator());
-
                     }
                 }
             }
         }
-        if (errors.length() == 0) {
+        if (0 == errors.length()) {
             return null;
         }
         return errors.toString();
@@ -324,7 +323,7 @@ public class Cooker extends ItemContainer {
         int requirementCount = recipe.getRequirementCount();
 
         if (requirementCount > 0) {
-            List<Requirement> requirements = recipe.getRequirements();
+            final List<Requirement> requirements = recipe.getRequirements();
             for (int i = 0; i < requirements.size(); i++) {
                 Requirement requirement = requirements.get(i);
                 if (requirement instanceof RequirementItem) {
@@ -344,21 +343,22 @@ public class Cooker extends ItemContainer {
      * 
      * 
      * @return null if good, or error string.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
+     * @throws CantWearException
+     * @throws InvalidTypeException
      */
-    private String createProducts() throws InvalidTypeException, CantWearException {
+    private String createProducts() throws InvalidTypeException,
+            CantWearException {
         StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
             for (Product product : recipe.getProducts()) {
                 String error = product.createProduct(this);
-                if (error != null) {
+                if (null != error) {
                     errors.append(error);
                 }
             }
         }
-        if (errors.length() == 0) {
+        if (0 == errors.length()) {
             return null;
         }
         return errors.toString();
@@ -374,12 +374,12 @@ public class Cooker extends ItemContainer {
      */
     public final String cook() throws InvalidTypeException, CantWearException {
         String requirementsMetError = requirementsMet();
-        if (requirementsMetError != null) {
+        if (null != requirementsMetError) {
             return requirementsMetError;
         }
         requirementsConsume();
         String createProductsError = createProducts();
-        if (createProductsError != null) {
+        if (null != createProductsError) {
             return createProductsError;
         }
         return null;
@@ -405,8 +405,9 @@ public class Cooker extends ItemContainer {
      * @throws InvalidTypeException
      */
     public final void clearItemsAvailable(final int index,
-            final ItemContainer container) throws InvalidTypeException, CantWearException {
-        if (container == null) {
+            final ItemContainer container) throws InvalidTypeException,
+            CantWearException {
+        if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }
         Item item = ingredients.get(index);

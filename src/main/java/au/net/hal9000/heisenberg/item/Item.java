@@ -4,10 +4,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.Properties;
+
 
 
 // Persistence
@@ -19,7 +21,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Column;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
@@ -76,7 +77,7 @@ public abstract class Item implements Serializable {
 
     /** For each class of Item, the icon to show when open. */
     // TODO Consider moving out into own class.
-    private static TreeMap<String, Icon> iconOpenDefaultForClass = new TreeMap<String, Icon>();
+    private static Map<String, Icon> iconOpenDefaultForClass = new TreeMap<String, Icon>();
 
     // Initialise as many values as possible.
     /**
@@ -530,24 +531,24 @@ public abstract class Item implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((description == null) ? 0 : description.hashCode());
+                + ((null == description) ? 0 : description.hashCode());
         result = prime * result + Float.floatToIntBits(hitPoints);
         result = prime * result
-                + ((iconClosed == null) ? 0 : iconClosed.hashCode());
+                + ((null == iconClosed) ? 0 : iconClosed.hashCode());
         result = prime * result
-                + ((iconLeaf == null) ? 0 : iconLeaf.hashCode());
+                + ((null == iconLeaf) ? 0 : iconLeaf.hashCode());
         result = prime * result
-                + ((iconOpen == null) ? 0 : iconOpen.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+                + ((null == iconOpen) ? 0 : iconOpen.hashCode());
+        result = prime * result + ((null == id) ? 0 : id.hashCode());
         result = prime * result + (int) (jpaId ^ (jpaId >>> (prime + 1)));
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+        result = prime * result + ((null == name) ? 0 : name.hashCode());
+        result = prime * result + ((null == owner) ? 0 : owner.hashCode());
         result = prime * result
-                + ((position == null) ? 0 : position.hashCode());
+                + ((null == position) ? 0 : position.hashCode());
         result = prime * result
-                + ((properties == null) ? 0 : properties.hashCode());
+                + ((null == properties) ? 0 : properties.hashCode());
         result = prime * result
-                + ((valueBase == null) ? 0 : valueBase.hashCode());
+                + ((null == valueBase) ? 0 : valueBase.hashCode());
         result = prime * result + Float.floatToIntBits(volumeBase);
         result = prime * result + Float.floatToIntBits(weightBase);
         return result;
@@ -566,15 +567,15 @@ public abstract class Item implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (null == obj) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
         Item other = (Item) obj;
-        if (description == null) {
-            if (other.description != null) {
+        if (null == description) {
+            if (null != other.description) {
                 return false;
             }
         } else if (!description.equals(other.description)) {
@@ -584,28 +585,28 @@ public abstract class Item implements Serializable {
                 .floatToIntBits(other.hitPoints)) {
             return false;
         }
-        if (iconClosed == null) {
-            if (other.iconClosed != null) {
+        if (null == iconClosed) {
+            if (null != other.iconClosed) {
                 return false;
             }
         } else if (!iconClosed.equals(other.iconClosed)) {
             return false;
         }
-        if (iconLeaf == null) {
-            if (other.iconLeaf != null) {
+        if (null == iconLeaf) {
+            if (null != other.iconLeaf) {
                 return false;
             }
         } else if (!iconLeaf.equals(other.iconLeaf)) {
             return false;
         }
-        if (iconOpen == null) {
-            if (other.iconOpen != null) {
+        if (null == iconOpen) {
+            if (null != other.iconOpen) {
                 return false;
             }
         } else if (!iconOpen.equals(other.iconOpen)) {
             return false;
         }
-        if (id == null) {
+        if (null == id) {
             if (other.id != null) {
                 return false;
             }
@@ -738,7 +739,7 @@ public abstract class Item implements Serializable {
      */
     public void moveToPoint3d(Point3d requestedPosition) {
         if (container == null) {
-            throw new RuntimeException("No ItemContainer - Can't move");
+            throw new UnsupportedOperationException("No ItemContainer - Can't move");
         } else {
             container.moveItemAbsolute(this, requestedPosition);
         }

@@ -102,7 +102,7 @@ class ItemTreeModel implements TreeModel {
 
     public Item[] getPathToRoot(Item node) {
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        while ((node != null)) {
+        while ((null != node)) {
             itemArrayList.add(0, node);
             node = node.getContainer();
         }
