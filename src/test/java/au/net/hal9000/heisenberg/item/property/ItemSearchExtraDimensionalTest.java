@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Vector;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

@@ -75,7 +75,7 @@ public class AbilityScoresTable extends JTable {
          * @see javax.swing.table.TableModel#getColumnName(int)
          */
         public String getColumnName(int col) {
-            return columnNames[col].toString();
+            return columnNames[col];
         }
 
         /**

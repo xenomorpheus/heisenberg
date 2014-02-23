@@ -92,7 +92,7 @@ public class SkillsTable extends JTable {
          */
         @Override
         public String getColumnName(int col) {
-            return COLUMN_NAMES[col].toString();
+            return COLUMN_NAMES[col];
         }
 
         /**

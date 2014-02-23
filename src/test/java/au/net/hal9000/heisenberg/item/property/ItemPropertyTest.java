@@ -1,15 +1,15 @@
 package au.net.hal9000.heisenberg.item.property;
 
+import java.util.Vector;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Vector;
+import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Entity;
-
-import org.junit.Test;
 
 /**
  */

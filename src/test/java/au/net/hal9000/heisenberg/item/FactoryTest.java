@@ -21,6 +21,7 @@ public class FactoryTest {
 
     /**
      * Method setUp.
+     * 
      * @throws ConfigurationError
      */
     @Before
@@ -30,7 +31,9 @@ public class FactoryTest {
 
     /**
      * Method testBagOfHolding.
-     * @param object Object
+     * 
+     * @param object
+     *            Object
      */
     private static void testBagOfHolding(Object object) {
         assertTrue("instanceof Item", object instanceof Item);

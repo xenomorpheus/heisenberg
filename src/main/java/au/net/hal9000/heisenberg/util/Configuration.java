@@ -2,19 +2,10 @@ package au.net.hal9000.heisenberg.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.TreeMap;
-import java.util.Vector;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
-
-import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
-import au.net.hal9000.heisenberg.crafting.Requirement;
-import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.crafting.Product;
-import au.net.hal9000.heisenberg.crafting.ProductItem;
-import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.units.Skill;
-import au.net.hal9000.heisenberg.units.SkillDetail;
+import java.util.Vector;
 
 // XML Parser
 import nu.xom.Attribute;
@@ -23,7 +14,14 @@ import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
-
+import au.net.hal9000.heisenberg.crafting.Product;
+import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
+import au.net.hal9000.heisenberg.crafting.ProductItem;
+import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.crafting.Requirement;
+import au.net.hal9000.heisenberg.crafting.RequirementItem;
+import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillDetail;
 
 /**
  * Configuration read the XML config file and return in an object to easily
@@ -291,7 +289,7 @@ public class Configuration {
     private Vector<String> xmlToIdList(Elements elements) {
         Vector<String> list = new Vector<String>();
         for (int i = 0; i < elements.size(); i++) {
-            list.add(elements.get(i).getAttributeValue("id").toString());
+            list.add(elements.get(i).getAttributeValue("id"));
         }
         return list;
     }

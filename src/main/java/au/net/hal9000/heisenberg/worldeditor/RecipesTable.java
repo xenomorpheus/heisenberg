@@ -92,7 +92,7 @@ public class RecipesTable extends JTable {
          * @see javax.swing.table.TableModel#getColumnName(int)
          */
         public String getColumnName(int col) {
-            return COLUMN_NAMES[col].toString();
+            return COLUMN_NAMES[col];
         }
 
         /**

@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public final class Factory {
 
     /** The name of this package. */
-    private static String packageName = Factory.class.getPackage().getName();
+    private static final String PACKAGE_NAME = Factory.class.getPackage().getName();
 
     /**
      * Constructor.
@@ -43,7 +43,7 @@ public final class Factory {
      * @return the new Item. */
     public static Item createItem(String type, Object[] arguments) {
         try {
-            Class<?> itemClass = Class.forName(packageName + "." + type);
+            Class<?> itemClass = Class.forName(PACKAGE_NAME + "." + type);
             if (null == arguments) {
                 return (Item) itemClass.newInstance();
             } else {

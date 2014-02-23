@@ -6,18 +6,16 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 import java.util.Properties;
+import java.util.TreeMap;
 import java.util.UUID;
 
-
-
+import javax.persistence.Column;
 // Persistence
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.Column;
 import javax.persistence.InheritanceType;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -73,11 +71,11 @@ public abstract class Item implements Serializable {
     // Logger.getLogger(Item.class.getName());
 
     /** name of this package. */
-    private static String packageName = Factory.class.getPackage().getName();
+    private static final String PACKAGE_NAME = Factory.class.getPackage().getName();
 
     /** For each class of Item, the icon to show when open. */
     // TODO Consider moving out into own class.
-    private static Map<String, Icon> iconOpenDefaultForClass = new TreeMap<String, Icon>();
+    private static final Map<String, Icon> ICON_OPEN_DEFAULT_FOR_CLASS = new TreeMap<String, Icon>();
 
     // Initialise as many values as possible.
     /**
@@ -856,7 +854,7 @@ public abstract class Item implements Serializable {
     public final boolean instanceOf(String type) {
         boolean isInstance;
         try {
-            Class<?> itemClass = Class.forName(packageName + "." + type);
+            Class<?> itemClass = Class.forName(PACKAGE_NAME + "." + type);
             isInstance = itemClass.isInstance(this);
         } catch (ClassNotFoundException e) {
             isInstance = false; // NOP
@@ -893,7 +891,7 @@ public abstract class Item implements Serializable {
      */
     public static void setIconOpenDefaultForClass(String simpleClassName,
             ImageIcon imageIcon) {
-        iconOpenDefaultForClass.put(simpleClassName, imageIcon);
+        ICON_OPEN_DEFAULT_FOR_CLASS.put(simpleClassName, imageIcon);
     }
 
     // TODO consider refactoring out into a different class
@@ -905,7 +903,7 @@ public abstract class Item implements Serializable {
     
      * @return Icon to show. */
     public static Icon getIconOpenDefaultForClass(String simpleClassName) {
-        return iconOpenDefaultForClass.get(simpleClassName);
+        return ICON_OPEN_DEFAULT_FOR_CLASS.get(simpleClassName);
     }
 
     // TODO consider refactoring out into a different class
@@ -913,7 +911,7 @@ public abstract class Item implements Serializable {
      * Clear the Icon to show in the UI when collection is opened.
      */
     public static void clearIconOpenDefaultForClass() {
-        iconOpenDefaultForClass.clear();
+        ICON_OPEN_DEFAULT_FOR_CLASS.clear();
     }
 
     /**
