@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.ai;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class Successor {
 
@@ -37,6 +39,7 @@ public class Successor {
     }
 
     /** {@inheritDoc} * @return String
+     * @return String
      */
     @Override
     public String toString() {

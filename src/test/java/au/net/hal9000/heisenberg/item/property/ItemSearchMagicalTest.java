@@ -14,6 +14,8 @@ import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ItemSearchMagicalTest {
 
@@ -53,9 +55,9 @@ public class ItemSearchMagicalTest {
     /**
      * Method testAccept. Ordinary container with non-magical inside.
      * 
-     * @throws CantWearException
-     * @throws InvalidTypeException
-     */
+    
+    
+     * @throws InvalidTypeException * @throws CantWearException */
     @Test
     public void testAccept4() throws InvalidTypeException, CantWearException {
         Box box = new Box();
@@ -71,9 +73,9 @@ public class ItemSearchMagicalTest {
     /**
      * Method testAccept. Ordinary container with magical inside.
      * 
-     * @throws CantWearException
-     * @throws InvalidTypeException
-     */
+    
+    
+     * @throws InvalidTypeException * @throws CantWearException */
     @Test
     public void testAccept5() throws InvalidTypeException, CantWearException {
         Box box = new Box();
@@ -91,9 +93,9 @@ public class ItemSearchMagicalTest {
      * Method testAccept. Ordinary container with magical and non-magical
      * inside.
      * 
-     * @throws CantWearException
-     * @throws InvalidTypeException
-     */
+    
+    
+     * @throws InvalidTypeException * @throws CantWearException */
     @Test
     public void testAccept6() throws InvalidTypeException, CantWearException {
         Box box = new Box();

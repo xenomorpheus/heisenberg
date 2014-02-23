@@ -14,7 +14,6 @@ import au.net.hal9000.heisenberg.units.Currency;
  * Test the BagOfHolding class.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public class BagOfHoldingTest {
@@ -143,7 +142,8 @@ public class BagOfHoldingTest {
      * @throws InvalidTypeException
      */
     @Test
-    public void testAddWrappedSharp() throws InvalidTypeException, CantWearException {
+    public void testAddWrappedSharp() throws InvalidTypeException,
+            CantWearException {
         Human human = new Human();
         Sword sword = new Sword();
         sword.setContainer(human);
@@ -170,7 +170,8 @@ public class BagOfHoldingTest {
      * @throws CantWearException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddMultidimensional() throws InvalidTypeException, CantWearException {
+    public void testAddMultidimensional() throws InvalidTypeException,
+            CantWearException {
         Human human = new Human();
         BagOfHolding bagInner = new BagOfHolding(1);
         bagInner.setContainer(human);

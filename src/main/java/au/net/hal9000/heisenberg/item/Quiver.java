@@ -10,6 +10,9 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
+ * A common quiver for holding arrows.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

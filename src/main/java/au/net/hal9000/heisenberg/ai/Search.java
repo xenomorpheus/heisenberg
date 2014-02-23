@@ -6,7 +6,6 @@ import java.util.Queue;
  * Find a better ModelState.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public class Search {

@@ -11,7 +11,6 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 1. Doesn't know about walls.<br>
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public final class SuccessorFunctionV2 implements SuccessorFunction {
@@ -60,7 +59,7 @@ public final class SuccessorFunctionV2 implements SuccessorFunction {
                 // TODO handle cases where action is not a legal move at
                 // this ModelState.
                 list.add(new Successor(action, newModelState));
-                delta = delta.clone();
+                delta = delta.duplicate();
                 delta.rotateZ(theta);
             }
         }

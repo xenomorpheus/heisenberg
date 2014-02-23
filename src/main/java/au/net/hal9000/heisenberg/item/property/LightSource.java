@@ -4,7 +4,6 @@ package au.net.hal9000.heisenberg.item.property;
  * Sources of light, e.g. torches, lanterns etc.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 

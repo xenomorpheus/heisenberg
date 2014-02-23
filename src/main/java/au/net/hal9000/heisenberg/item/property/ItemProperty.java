@@ -7,7 +7,6 @@ import au.net.hal9000.heisenberg.item.Item;
  * Miscellaneous properties of an Item that don't deserve their own field.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public final class ItemProperty {

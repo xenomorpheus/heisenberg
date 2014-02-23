@@ -10,7 +10,9 @@ import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
 /**
- * Some plain wood.
+ * Some common wood.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

@@ -7,6 +7,8 @@ import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ProductItem extends Product {
 

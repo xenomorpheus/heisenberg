@@ -11,7 +11,9 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 
 /**
- * Some plain water.
+ * Some common water.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

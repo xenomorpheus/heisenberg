@@ -11,7 +11,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  * A magical Orb of light.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 

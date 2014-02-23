@@ -11,7 +11,6 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
  * Test Box class.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public class BoxTest {

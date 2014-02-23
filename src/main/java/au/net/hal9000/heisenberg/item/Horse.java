@@ -9,9 +9,8 @@ import au.net.hal9000.heisenberg.item.property.HumanoidMount;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
- * A horse.
+ * A common horse.
  * @author bruins
- *
  * @version $Revision: 1.0 $
  */
 

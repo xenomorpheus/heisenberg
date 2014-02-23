@@ -11,7 +11,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * clearing.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 @Entity

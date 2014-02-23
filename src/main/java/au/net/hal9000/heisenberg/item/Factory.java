@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
  * Factory Design Pattern. Create different type of Item objects.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public final class Factory {

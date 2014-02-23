@@ -17,8 +17,9 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 // import org.apache.log4j.BasicConfigurator;
-
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public abstract class ItemContainer extends Item implements Serializable {
     /**

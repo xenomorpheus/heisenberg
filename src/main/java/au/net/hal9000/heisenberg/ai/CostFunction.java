@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.ai;
 /**
  * Standard AI cost function for the transition from one state to another by an
  * action.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public interface CostFunction {
 

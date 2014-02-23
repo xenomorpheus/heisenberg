@@ -55,7 +55,6 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * An item may be repaired which will ...<br>
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 

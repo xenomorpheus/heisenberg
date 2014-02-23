@@ -9,7 +9,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * A simple box container.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 @Entity

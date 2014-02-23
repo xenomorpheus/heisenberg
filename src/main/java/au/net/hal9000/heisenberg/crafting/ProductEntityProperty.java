@@ -7,7 +7,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  * As much as possible consider these objects immutable.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public class ProductEntityProperty extends Product {

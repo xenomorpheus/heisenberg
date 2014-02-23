@@ -15,7 +15,6 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * May living or undead.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 

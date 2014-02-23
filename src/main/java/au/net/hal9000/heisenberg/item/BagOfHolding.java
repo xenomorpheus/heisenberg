@@ -28,6 +28,8 @@ import au.net.hal9000.heisenberg.units.Currency;
 
  */
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -168,9 +170,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * @param newLocation
      *            new location
      * 
-     * @return the relocated item
-     * @throws CantRemoveException
-     */
+    
+    
+     * @return the relocated item * @throws CantRemoveException */
     public Item getItem(Item item, ItemContainer newLocation)
             throws CantRemoveException {
         Vector<Item> items = this.getContents();
@@ -185,8 +187,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * Contents don't add to weight for a BoH. Magic.
      * 
      * 
-     * @return the total weight.
-     */
+    
+     * @return the total weight. */
     @Override
     public float getWeight() {
         return this.getWeightBase();
@@ -196,8 +198,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * Contents don't add to volume for a BoH. Magic.
      * 
      * 
-     * @return the total volume.
-     */
+    
+     * @return the total volume. */
     @Override
     public float getVolume() {
         return this.getVolumeBase();
@@ -207,8 +209,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * BOH Type I,II,III or IV.
      * 
      * 
-     * @return the type I-IV
-     */
+    
+     * @return the type I-IV */
     public int getType() {
         return type;
     }
@@ -225,9 +227,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * @param item
      *            item to add.
-     * @throws InvalidTypeException
-     * @throws CantWearException
-     */
+    
+    
+     * @throws InvalidTypeException * @throws CantWearException */
     public void add(Item item) throws InvalidTypeException, CantWearException {
 
         // Recursively check for ExtraDimensional items.

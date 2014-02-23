@@ -38,7 +38,6 @@ import au.net.hal9000.heisenberg.units.Skill;
  * 
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public class Cooker extends ItemContainer {

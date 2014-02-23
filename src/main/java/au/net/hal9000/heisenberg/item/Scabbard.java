@@ -11,6 +11,8 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
  * An ordinary scabbard (with belt) for holding a sword.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

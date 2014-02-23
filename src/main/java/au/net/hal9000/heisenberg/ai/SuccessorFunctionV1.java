@@ -11,7 +11,6 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 2. Only knows about movement.<br>
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public final class SuccessorFunctionV1 implements SuccessorFunction {

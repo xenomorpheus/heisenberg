@@ -6,7 +6,6 @@ import java.util.Queue;
  * Generate new ModelState objects from current object.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public interface SuccessorFunction {

@@ -11,6 +11,8 @@ import au.net.hal9000.heisenberg.item.property.Sharp;
 
 /**
  * A common Bog for holding multiple Item objects.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -61,9 +63,9 @@ public class Bag extends Box {
      * 
      * @param item
      *            Item
-     * @throws InvalidTypeException
-     * @throws CantWearException
-     */
+    
+    
+     * @throws InvalidTypeException * @throws CantWearException */
     @Override
     public void add(final Item item) throws InvalidTypeException, CantWearException {
         // Look for sharp items. Wrapped sharp items are safe.

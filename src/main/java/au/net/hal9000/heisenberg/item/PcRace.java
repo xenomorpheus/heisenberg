@@ -10,7 +10,6 @@ import au.net.hal9000.heisenberg.util.PcClass;
  * playing the game.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 public abstract class PcRace extends Entity {

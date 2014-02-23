@@ -7,6 +7,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * A small ground fire.
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

@@ -9,6 +9,8 @@ import javax.persistence.InheritanceType;
 import au.net.hal9000.heisenberg.item.property.Sharp;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

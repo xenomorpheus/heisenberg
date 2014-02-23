@@ -6,6 +6,8 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public abstract class Humanoid extends PcRace {
 

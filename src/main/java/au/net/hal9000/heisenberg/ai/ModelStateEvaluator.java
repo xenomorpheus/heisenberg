@@ -5,7 +5,6 @@ package au.net.hal9000.heisenberg.ai;
  * are to the goal state.
  * 
  * @author bruins
- * 
  * @version $Revision: 1.0 $
  */
 

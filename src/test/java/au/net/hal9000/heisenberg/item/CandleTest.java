@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class CandleTest {
     /**
