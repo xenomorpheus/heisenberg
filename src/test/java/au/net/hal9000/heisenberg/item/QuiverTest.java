@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -16,9 +18,11 @@ public class QuiverTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void quiverAddArrow() throws InvalidTypeException, CantWearException {
+    public void quiverAddArrow() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Quiver quiver = new Quiver();
         Arrow arrow = new Arrow();
         quiver.add(arrow);

@@ -27,6 +27,8 @@ import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * Utility class for building test Item objects.
@@ -86,8 +88,10 @@ public final class DummyData {
      * @return a demo world of Item objects.
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
-    public static Location getDemoWorld() throws InvalidTypeException, CantWearException {
+    public static Location getDemoWorld() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(TEST_WEIGHT_VOLUME);

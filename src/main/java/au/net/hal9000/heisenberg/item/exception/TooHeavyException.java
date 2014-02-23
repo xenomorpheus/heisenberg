@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.exception;
 
 /**
  */
-public final class TooHeavyException extends RuntimeException {
+public final class TooHeavyException extends Exception {
 
     /**
      * Constructor for TooHeavyException.

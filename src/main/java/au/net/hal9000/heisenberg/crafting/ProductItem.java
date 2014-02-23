@@ -5,6 +5,8 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * @author bruins
@@ -52,21 +54,24 @@ public class ProductItem extends Product {
 
     // Getters
     /**
-    
-     * @return the type of the item */
+     * 
+     * @return the type of the item
+     */
     public final String getType() {
         return type;
     }
 
     /**
      * 
-    
-     * @return the required weightBase for the new item. */
+     * 
+     * @return the required weightBase for the new item.
+     */
     public float getWeightBase() {
         return weightBase;
     }
 
-    /** {@inheritDoc} * @return String
+    /**
+     * {@inheritDoc} * @return String
      */
     @Override
     public final String getDescription() {
@@ -74,7 +79,9 @@ public class ProductItem extends Product {
                 + weightBase;
     }
 
-    /** {@inheritDoc} * @param cooker Cooker
+    /**
+     * {@inheritDoc} * @param cooker Cooker
+     * 
      * @return String
      */
     @Override
@@ -92,11 +99,14 @@ public class ProductItem extends Product {
      * {@inheritDoc} * @param cooker Cooker
      * 
      * @return String
-     * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     * @throws CantWearException 
      */
     @Override
-    public final String createProduct(final Cooker cooker) throws InvalidTypeException, CantWearException {
+    public final String createProduct(final Cooker cooker)
+            throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         ItemContainer newItemLocation = (ItemContainer) cooker
                 .findIngredientByName("Location");
         Item item = Factory.createItem(getType());

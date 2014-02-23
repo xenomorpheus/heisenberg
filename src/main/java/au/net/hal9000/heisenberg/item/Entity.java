@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -335,8 +337,10 @@ public abstract class Entity extends ItemContainer {
      * @return Any error message, or null on success.
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
-    public String drink(Item item) throws InvalidTypeException, CantWearException {
+    public String drink(Item item) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, item);
         if (null != error) {

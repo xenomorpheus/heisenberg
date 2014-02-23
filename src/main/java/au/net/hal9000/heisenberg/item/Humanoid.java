@@ -2,6 +2,8 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.PcClass;
 
@@ -141,8 +143,10 @@ public abstract class Humanoid extends PcRace {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
-    public void add(Item item) throws InvalidTypeException, CantWearException {
+    public void add(Item item) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         if (!ItemProperty.isClothing(item)) {
             throw new InvalidTypeException(this.getName() + " can't wear "
                     + item.getName());

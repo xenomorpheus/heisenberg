@@ -8,11 +8,15 @@ package au.net.hal9000.heisenberg.item;
 import java.io.Serializable;
 import java.util.Vector;
 
+
+
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
@@ -267,11 +271,13 @@ public abstract class ItemContainer extends Item implements Serializable {
      * Add the Item to the contents.
      * 
      * @param item
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     * @throws InvalidTypeException 
+     * @throws CantWearException 
      * 
-     * @throws InvalidTypeException
-     * @throws CantWearException
      */
-    public void add(Item item) throws InvalidTypeException, CantWearException {
+    public void add(Item item) throws TooHeavyException, TooLargeException, InvalidTypeException, CantWearException {
         add(contents.size(), item);
     }
 
@@ -325,8 +331,10 @@ public abstract class ItemContainer extends Item implements Serializable {
      *            index position to add at.
      * @param item
      *            item to add.
+     * @throws TooHeavyException
+     * @throws TooLargeException
      */
-    public void add(int index, Item item) {
+    public void add(int index, Item item) throws TooHeavyException, TooLargeException {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
@@ -344,10 +352,18 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
-                LOGGER.error("TooHeavy - Adding " + item.getName()
-                        + " weighing " + item.getWeight() + " will total "
-                        + total + ", which is too heavy for " + this.getName()
-                        + ", weightMax=" + weightMax);
+                StringBuilder text = new StringBuilder();
+                text.append("TooHeavy - Adding ");
+                text.append(item.getName());
+                text.append(" weighing ");
+                text.append(item.getWeight());
+                text.append(" will total ");
+                text.append(total);
+                text.append(", which is too heavy for ");
+                text.append(this.getName());
+                text.append(", weightMax=");
+                text.append(weightMax);
+                throw new TooHeavyException(text.toString());
             }
         }
 
@@ -357,11 +373,18 @@ public abstract class ItemContainer extends Item implements Serializable {
             float total = this.getContentsVolume();
             total += item.getVolume();
             if (total > volumeMax) {
-                // ExceptionTooBig
-                LOGGER.error("TooBig - Adding " + item.getName()
-                        + " of volume " + item.getVolume() + " will total "
-                        + total + ", which is too big for " + this.getName()
-                        + ", volumeMax=" + volumeMax);
+                StringBuilder text = new StringBuilder();
+                text.append("TooLarge - Adding ");
+                text.append(item.getName());
+                text.append(" weighing ");
+                text.append(item.getWeight());
+                text.append(" will total ");
+                text.append(total);
+                text.append(", which is too heavy for ");
+                text.append(this.getName());
+                text.append(", weightMax=");
+                text.append(weightMax);
+                throw new TooLargeException(text.toString());
             }
         }
         // remove item from existing location
@@ -394,10 +417,11 @@ public abstract class ItemContainer extends Item implements Serializable {
      *            the items to add.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     * @throws CantWearException 
      */
-    public void add(Vector<Item> items) throws InvalidTypeException,
-            CantWearException {
+    public void add(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         for (Item item : items) {
             this.add(item);
         }
@@ -432,9 +456,11 @@ public abstract class ItemContainer extends Item implements Serializable {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     public void empty(ItemContainer newLocation) throws InvalidTypeException,
-            CantWearException {
+             TooHeavyException, TooLargeException, CantWearException {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);

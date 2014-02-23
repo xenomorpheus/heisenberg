@@ -10,11 +10,15 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-/** Test the ItemPanel. * @author bruins
+/**
+ * Test the ItemPanel. * @author bruins
+ * 
  * @version $Revision: 1.0 $
  */
 public class ItemPanelTest {
@@ -27,12 +31,17 @@ public class ItemPanelTest {
     /**
      * Test itemTreePanel.
      * 
-    
-     * @throws ConfigurationError 
-     * @throws CantWearException 
-     * @throws InvalidTypeException */
+     * 
+     * @throws ConfigurationError
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
     @Test
-    public void itemTreePanel() throws ConfigurationError, InvalidTypeException, CantWearException {
+    public void itemTreePanel() throws ConfigurationError,
+            InvalidTypeException, CantWearException, TooHeavyException,
+            TooLargeException {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
@@ -41,7 +50,9 @@ public class ItemPanelTest {
 
     /**
      * Method main.
-     * @param arg String[]
+     * 
+     * @param arg
+     *            String[]
      */
     public static void main(String[] arg) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -49,6 +60,8 @@ public class ItemPanelTest {
                 try {
                     Configuration config = DummyData.config();
                     Location location = DummyData.getDemoWorld();
+                    // location.setWeightMax(100000);
+                    // location.setVolumeMax(100000);
                     ItemTreePanel itemTreePanel = new ItemTreePanel(config,
                             location);
                     itemTreePanel.setVisible(true);
@@ -60,13 +73,16 @@ public class ItemPanelTest {
                 } catch (ConfigurationError e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }
-                // location.setWeightMax(100000);
-                // location.setVolumeMax(100000);
- catch (InvalidTypeException e) {
+                } catch (InvalidTypeException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (CantWearException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (TooHeavyException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (TooLargeException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

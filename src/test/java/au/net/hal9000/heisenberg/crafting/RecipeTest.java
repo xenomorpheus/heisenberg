@@ -13,21 +13,19 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
+ * Testing Recipe class.
  */
 public class RecipeTest {
     /**
-     * Field PROCESS_NAME.
-     * (value is ""process name"")
+     * Field PROCESS_NAME. (value is ""process name"")
      */
     private static final String PROCESS_NAME = "process name";
     /**
-     * Field REQUIRED_ACTION_POINTS.
-     * (value is 42)
+     * Field REQUIRED_ACTION_POINTS. (value is 42)
      */
     private static final int REQUIRED_ACTION_POINTS = 42;
     /**
-     * Field REQUIRED_MANA.
-     * (value is 3)
+     * Field REQUIRED_MANA. (value is 3)
      */
     private static final int REQUIRED_MANA = 3;
     /**
@@ -54,7 +52,7 @@ public class RecipeTest {
      */
     @Before
     public void setUp() {
-        simple = new Recipe("recipe1", "the first recipe", null, 2,
+        simple = new Recipe("recipe1", "the first recipe", null, REQUIRED_MANA,
                 REQUIRED_ACTION_POINTS, null, null, null);
         requirementsAll = new Vector<Requirement>();
 
@@ -76,7 +74,7 @@ public class RecipeTest {
         }
 
         // Build a recipe with the list of required ingredients
-        recipeAll = new Recipe("recipe1", "the first recipe", PROCESS_NAME, 2,
+        recipeAll = new Recipe("recipe1", "the first recipe", PROCESS_NAME, REQUIRED_MANA,
                 REQUIRED_ACTION_POINTS, requirementsAll, skills, products);
 
     }
@@ -137,7 +135,7 @@ public class RecipeTest {
      */
     @Test
     public void testGetMana() {
-        assertEquals("mana", 2, recipeAll.getMana());
+        assertEquals("mana", REQUIRED_MANA, recipeAll.getMana());
     }
 
     /**
@@ -196,8 +194,8 @@ public class RecipeTest {
         products.add(new ProductItem("SmallGroundFire"));
 
         // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("recipe1", "the first recipe", null, 2,
-                REQUIRED_ACTION_POINTS, null, null, products);
+        Recipe recipe = new Recipe("recipe1", "the first recipe", null,
+                REQUIRED_MANA, REQUIRED_ACTION_POINTS, null, null, products);
 
         assertEquals("count", 1, recipe.getProductCount());
     }
@@ -244,7 +242,8 @@ public class RecipeTest {
         text.append(System.lineSeparator());
         text.append("Process: null");
         text.append(System.lineSeparator());
-        text.append("Mana:2");
+        text.append("Mana:");
+        text.append(REQUIRED_MANA);
         text.append(System.lineSeparator());
         text.append("Action Point(s):");
         text.append(REQUIRED_ACTION_POINTS);
@@ -264,7 +263,8 @@ public class RecipeTest {
         text.append("Process: ");
         text.append(PROCESS_NAME);
         text.append(System.lineSeparator());
-        text.append("Mana:2");
+        text.append("Mana:");
+        text.append(REQUIRED_MANA);
         text.append(System.lineSeparator());
         text.append("Action Point(s):");
         text.append(REQUIRED_ACTION_POINTS);

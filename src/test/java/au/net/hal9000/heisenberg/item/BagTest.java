@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * @author bruins
@@ -18,10 +20,12 @@ public class BagTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void testAddOrdinary() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         // set the location so we can see that it changes
@@ -37,10 +41,12 @@ public class BagTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test(expected = InvalidTypeException.class)
     public void testAddSharpRupture() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Sword sword = new Sword();
         Location world = new Location("World");
         sword.setContainer(world);

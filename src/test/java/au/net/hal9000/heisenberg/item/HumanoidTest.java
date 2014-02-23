@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -35,10 +37,12 @@ public class HumanoidTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void testGetIndexOfChild() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Human human = new Human(); // Close enough for this abstract class
 
         assertEquals("getIndexOfChild head", 0,

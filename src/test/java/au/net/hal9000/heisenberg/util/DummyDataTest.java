@@ -8,6 +8,8 @@ import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -28,9 +30,11 @@ public class DummyDataTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testGetDemoWorld() throws InvalidTypeException, CantWearException {
+    public void testGetDemoWorld() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location loc = DummyData.getDemoWorld();
         assertNotNull(loc);
     }

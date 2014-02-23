@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.util.ArrayList;
+
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -11,6 +12,8 @@ import org.jdesktop.swingx.tree.TreeModelSupport;
 
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * This class provides a model that allows JTree to traverse the contents of an
@@ -80,12 +83,14 @@ class ItemTreeModel implements TreeModel {
      *            the location for the new node.
      * @param childCount
      *            the index number in the selNode where the newNode is.
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
 
     // fix issue 2: notify the listeners on inserts
     @SuppressWarnings("deprecation")
     public void insertNodeInto(final Item newNode, final ItemContainer selNode,
-            final int childCount) {
+            final int childCount) throws TooHeavyException, TooLargeException {
         selNode.add(childCount, (Item) newNode);
         newNode.setContainer(selNode);
         support.fireChildAdded(new TreePath(getPathToRoot((Item) selNode)),
@@ -215,10 +220,12 @@ class ItemTreeModel implements TreeModel {
          * @param newNode the new node.
          * @param selNode the location for the new node.
          * @param childCount the index number in the selNode where the newNode is.
+         * @throws TooLargeException 
+         * @throws TooHeavyException 
          */
         @SuppressWarnings("deprecation")
         public void insertNodeInto(final Item newNode, final Item selNode,
-                final int childCount) {
+                final int childCount) throws TooHeavyException, TooLargeException {
             if (selNode instanceof ItemContainer) {
                 ((ItemContainer) selNode).add(childCount, (Item) newNode);
             } else {

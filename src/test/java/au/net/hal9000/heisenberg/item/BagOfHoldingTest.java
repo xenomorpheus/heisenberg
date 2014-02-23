@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
@@ -25,9 +27,11 @@ public class BagOfHoldingTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void typeTest() throws InvalidTypeException, CantWearException {
+    public void typeTest() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Bag ordinaryBag = new Bag();
         for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
             float expectedWeightBase = 0F;
@@ -104,9 +108,11 @@ public class BagOfHoldingTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testAdd() throws InvalidTypeException, CantWearException {
+    public void testAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Cookie cookie = new Cookie();
         cookie.setContainer(new Human());
         BagOfHolding bag = new BagOfHolding(1);
@@ -119,9 +125,11 @@ public class BagOfHoldingTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharp() throws InvalidTypeException, CantWearException {
+    public void testAddSharp() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Sword sword = new Sword();
         Human human = new Human();
         sword.setContainer(human);
@@ -140,10 +148,12 @@ public class BagOfHoldingTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void testAddWrappedSharp() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Human human = new Human();
         Sword sword = new Sword();
         sword.setContainer(human);
@@ -168,10 +178,12 @@ public class BagOfHoldingTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test(expected = InvalidTypeException.class)
     public void testAddMultidimensional() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Human human = new Human();
         BagOfHolding bagInner = new BagOfHolding(1);
         bagInner.setContainer(human);

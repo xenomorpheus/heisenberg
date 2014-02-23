@@ -12,6 +12,8 @@ import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * @author bruins
@@ -57,9 +59,11 @@ public class ItemSearchMagicalTest {
      * 
     
     
-     * @throws InvalidTypeException * @throws CantWearException */
+     * @throws InvalidTypeException * @throws CantWearException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException */
     @Test
-    public void testAccept4() throws InvalidTypeException, CantWearException {
+    public void testAccept4() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Box box = new Box();
         Cookie cookie = new Cookie();
         box.setWeightMax(cookie.getWeight());
@@ -75,9 +79,11 @@ public class ItemSearchMagicalTest {
      * 
     
     
-     * @throws InvalidTypeException * @throws CantWearException */
+     * @throws InvalidTypeException * @throws CantWearException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException */
     @Test
-    public void testAccept5() throws InvalidTypeException, CantWearException {
+    public void testAccept5() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());
@@ -95,9 +101,11 @@ public class ItemSearchMagicalTest {
      * 
     
     
-     * @throws InvalidTypeException * @throws CantWearException */
+     * @throws InvalidTypeException * @throws CantWearException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException */
     @Test
-    public void testAccept6() throws InvalidTypeException, CantWearException {
+    public void testAccept6() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         Cookie cookie = new Cookie();

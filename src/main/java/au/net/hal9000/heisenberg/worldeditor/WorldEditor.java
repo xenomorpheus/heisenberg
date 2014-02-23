@@ -17,6 +17,8 @@ import javax.swing.JMenuItem;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
@@ -94,6 +96,12 @@ public class WorldEditor extends JFrame {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     } catch (CantWearException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (TooHeavyException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (TooLargeException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }

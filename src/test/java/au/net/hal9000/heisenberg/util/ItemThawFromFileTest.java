@@ -13,6 +13,8 @@ import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * Testing Persistence of Item objects.
@@ -55,9 +57,11 @@ public class ItemThawFromFileTest {
      *             * @throws ClassNotFoundException
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void persistTwoCookies() throws IOException, ClassNotFoundException, InvalidTypeException, CantWearException {
+    public void persistTwoCookies() throws IOException, ClassNotFoundException, InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         // System.out.println("\n** persist two cookies.");
         Location old = new Location("world");
         Cookie cookie = new Cookie();
@@ -111,10 +115,12 @@ public class ItemThawFromFileTest {
      * @throws ClassNotFoundException
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void locationPersistenceDeepTest() throws IOException,
-            ClassNotFoundException, InvalidTypeException, CantWearException {
+            ClassNotFoundException, InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "location_persit_test.ser");
         String filename = fileObj.getAbsolutePath();
@@ -160,10 +166,12 @@ public class ItemThawFromFileTest {
      * @throws ClassNotFoundException
      * @throws CantWearException 
      * @throws InvalidTypeException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void cookiePersistenceDeepTest() throws IOException,
-            ClassNotFoundException, InvalidTypeException, CantWearException {
+            ClassNotFoundException, InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         File fileObj = new File(System.getProperty("java.io.tmpdir"),
                 "bag_persit_test.ser");
         String filename = fileObj.getAbsolutePath();

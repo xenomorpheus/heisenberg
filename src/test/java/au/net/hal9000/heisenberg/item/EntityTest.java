@@ -12,6 +12,8 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -105,9 +107,11 @@ public class EntityTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testAdd() throws InvalidTypeException, CantWearException {
+    public void testAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
 
         // Cat
         Cat cat = new Cat("Cat"); // Close enough

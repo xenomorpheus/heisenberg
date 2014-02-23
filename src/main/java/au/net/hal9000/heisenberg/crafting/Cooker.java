@@ -9,6 +9,8 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -126,11 +128,13 @@ public class Cooker extends ItemContainer {
      *            the Item we are making available.
      * 
      * @return error message or null if it worked
-     * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
+     * @throws CantWearException 
      */
     public final String setItemsAvailable(final int index, final Item item)
-            throws InvalidTypeException, CantWearException {
+            throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         // item exists
         if (null == item) {
             return ITEM_MAY_NOT_BE_NULL;
@@ -342,11 +346,12 @@ public class Cooker extends ItemContainer {
      * 
      * 
      * @return null if good, or error string.
-     * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
+     * @throws CantWearException 
      */
-    private String createProducts() throws InvalidTypeException,
-            CantWearException {
+    private String createProducts() throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
@@ -368,10 +373,12 @@ public class Cooker extends ItemContainer {
      * we wan't allow cooking over multiple rounds.
      * 
      * @return String
-     * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
+     * @throws CantWearException 
      */
-    public final String cook() throws InvalidTypeException, CantWearException {
+    public final String cook() throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         String requirementsMetError = requirementsMet();
         if (null != requirementsMetError) {
             return requirementsMetError;
@@ -400,12 +407,13 @@ public class Cooker extends ItemContainer {
      *            destination ItemContainer.
      * @param index
      *            int
-     * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
+     * @throws CantWearException 
      */
     public final void clearItemsAvailable(final int index,
-            final ItemContainer container) throws InvalidTypeException,
-            CantWearException {
+            final ItemContainer container) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }

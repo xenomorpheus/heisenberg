@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Currency;
 
 /**
@@ -41,9 +43,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAdd() throws InvalidTypeException, CantWearException {
+    public void testAdd() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         float volumeMax = 10F;
         float weightMax = 20F;
         // Bag
@@ -66,10 +71,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testAddDoesRemove() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Bag bag1 = new Bag();
         Bag bag2 = new Bag();
         Cookie cookie = new Cookie();
@@ -90,9 +97,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAddMulti() throws InvalidTypeException, CantWearException {
+    public void testAddMulti() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         final int size = 3;
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
@@ -115,10 +125,12 @@ public class ItemContainerTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testGetContentsCount() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         final Bag bag = new Bag();
         final Cookie c1 = new Cookie();
         final Cookie c2 = new Cookie();
@@ -134,9 +146,12 @@ public class ItemContainerTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testGetWeight() throws InvalidTypeException, CantWearException {
+    public void testGetWeight() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setWeightBase(10);
         Cookie c1 = new Cookie();
@@ -156,9 +171,12 @@ public class ItemContainerTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testGetVolume() throws InvalidTypeException, CantWearException {
+    public void testGetVolume() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setVolumeBase(10);
         Cookie c1 = new Cookie();
@@ -178,9 +196,12 @@ public class ItemContainerTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testGetValue() throws InvalidTypeException, CantWearException {
+    public void testGetValue() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setValueBase(new Currency(1, 0, 0, 0));
         Cookie c1 = new Cookie();
@@ -200,9 +221,12 @@ public class ItemContainerTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testBeNot() throws InvalidTypeException, CantWearException {
+    public void testBeNot() throws InvalidTypeException, CantWearException,
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -229,10 +253,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testGetChildCount() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         assertEquals("getChildCount", 0, bag.getChildCount());
         bag.add(new Cookie());
@@ -244,9 +270,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testGetChildAt() throws InvalidTypeException, CantWearException {
+    public void testGetChildAt() throws InvalidTypeException,
+            CantWearException, TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Cookie cookie = new Cookie();
         Scabbard scabbard = new Scabbard();
@@ -262,10 +291,12 @@ public class ItemContainerTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testGetIndexOfChild() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Scabbard scabbard = new Scabbard();
         Cookie cookie1 = new Cookie("Cookie1");
@@ -289,22 +320,49 @@ public class ItemContainerTest {
     }
 
     /**
-     * Method testAddLogging.
+     * 
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    @Test
-    public void testAddLogging() throws InvalidTypeException, CantWearException {
+    @Test(expected = TooHeavyException.class)
+    public void testAddTooHeavy() throws InvalidTypeException,
+            CantWearException, TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setWeightMax(2);
-        bag.setVolumeMax(2);
         Cookie cookie = new Cookie();
         cookie.setWeightBase(3);
+        try {
+            bag.add(cookie);
+        } catch (TooHeavyException e) {
+            assertEquals("container", null, cookie.getContainer());
+            throw e;
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
+    @Test(expected = TooLargeException.class)
+    public void testAddTooLarge() throws InvalidTypeException,
+            CantWearException, TooHeavyException, TooLargeException {
+        Bag bag = new Bag();
+        bag.setVolumeMax(2);
+        Cookie cookie = new Cookie();
         cookie.setVolumeBase(3);
-        bag.add(cookie);
-        // Re-add
-        bag.add(cookie);
+        try {
+            bag.add(cookie);
+        } catch (TooLargeException e) {
+            assertEquals("container", null, cookie.getContainer());
+            throw e;
+        }
     }
 
 }

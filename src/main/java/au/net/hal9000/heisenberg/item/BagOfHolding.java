@@ -7,9 +7,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.CantRemoveException;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.ItemNotPresentException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ExtraDimensional;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemSearch;
@@ -170,14 +172,15 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * @param newLocation
      *            new location
      * 
-    
-    
-     * @return the relocated item * @throws CantRemoveException */
+     * 
+     * 
+     * @return the relocated item * @throws CantRemoveException
+     */
     public Item getItem(Item item, ItemContainer newLocation)
-            throws CantRemoveException {
+            throws ItemNotPresentException {
         Vector<Item> items = this.getContents();
         if (!items.removeElement(item)) {
-            throw new CantRemoveException("remove failed");
+            throw new ItemNotPresentException("remove failed");
         }
         item.setContainer(newLocation);
         return item;
@@ -187,8 +190,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * Contents don't add to weight for a BoH. Magic.
      * 
      * 
-    
-     * @return the total weight. */
+     * 
+     * @return the total weight.
+     */
     @Override
     public float getWeight() {
         return this.getWeightBase();
@@ -198,8 +202,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * Contents don't add to volume for a BoH. Magic.
      * 
      * 
-    
-     * @return the total volume. */
+     * 
+     * @return the total volume.
+     */
     @Override
     public float getVolume() {
         return this.getVolumeBase();
@@ -209,8 +214,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * BOH Type I,II,III or IV.
      * 
      * 
-    
-     * @return the type I-IV */
+     * 
+     * @return the type I-IV
+     */
     public int getType() {
         return type;
     }
@@ -227,10 +233,14 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * @param item
      *            item to add.
-    
-    
-     * @throws InvalidTypeException * @throws CantWearException */
-    public void add(Item item) throws InvalidTypeException, CantWearException {
+     * 
+     * 
+     * @throws InvalidTypeException
+     * @throws CantWearException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
+     */
+    public void add(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
 
         // Recursively check for ExtraDimensional items.
         ItemSearch search = new ItemSearchExtraDimensional();

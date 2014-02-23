@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * Test Box class.
@@ -20,9 +22,11 @@ public class BoxTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testAddOrdinary() throws InvalidTypeException, CantWearException {
+    public void testAddOrdinary() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         Sword sword = new Sword();

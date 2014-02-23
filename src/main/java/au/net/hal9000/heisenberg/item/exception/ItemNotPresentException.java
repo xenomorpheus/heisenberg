@@ -2,12 +2,12 @@ package au.net.hal9000.heisenberg.item.exception;
 
 /**
  */
-public final class ItemNotPresentException extends RuntimeException {
+public final class ItemNotPresentException extends Exception {
 
     /**
      * Constructor for ItemNotPresentException.
      */
-    public ItemNotPresentException() {
-        super();
+    public ItemNotPresentException(String string) {
+        super(string);
     };
 }

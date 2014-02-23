@@ -15,6 +15,8 @@ import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
@@ -83,8 +85,13 @@ public class ItemTreePanel extends JPanel {
                         String itemClass = itemClassesList.getSelectedItem()
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
-                        treeModel.insertNodeInto(newNode, selContainer,
-                                selContainer.getChildCount());
+                        try {
+                            treeModel.insertNodeInto(newNode, selContainer,
+                                    selContainer.getChildCount());
+                        } catch (TooHeavyException | TooLargeException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
                         Item[] nodes = treeModel.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
                         System.out.println("DEBUG: path is " + path);

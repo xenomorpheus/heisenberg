@@ -7,6 +7,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -50,8 +52,10 @@ public class Quiver extends ItemContainer {
      *            arrow Item to add to Quiver.
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
-    public void add(final Arrow arrow) throws InvalidTypeException, CantWearException {
+    public void add(final Arrow arrow) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         super.add(arrow);
     }
 

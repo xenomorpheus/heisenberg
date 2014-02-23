@@ -8,6 +8,8 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Point3d;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -22,9 +24,11 @@ public class CatTest {
      * 
      * @throws CantWearException
      * @throws InvalidTypeException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testCatMove() throws InvalidTypeException, CantWearException {
+    public void testCatMove() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy", "Black cat");
         cat.move(dungeon, new Point3d(0, 0, 0));
@@ -40,11 +44,14 @@ public class CatTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
     public void testDrinkRecipe() throws InvalidTypeException,
-            CantWearException {
+            CantWearException, TooHeavyException, TooLargeException {
         Location dungeon = new Location("Dungeon");
+        dungeon.setWeightMax(1);
         Cat cat = new Cat("Fluffy");
         // Hydration before
         float hydrationBefore = ItemProperty.getHydration(cat);
@@ -67,10 +74,13 @@ public class CatTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testDrink() throws InvalidTypeException, CantWearException {
+    public void testDrink() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location dungeon = new Location("Dungeon");
+        dungeon.setWeightMax(1);
         Cat cat = new Cat("Fluffy");
         // Hydration before
         float hydrationBefore = ItemProperty.getHydration(cat);

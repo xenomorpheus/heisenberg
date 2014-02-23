@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -26,9 +28,11 @@ public class CloakTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testIsWearable() throws InvalidTypeException, CantWearException {
+    public void testIsWearable() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Human human = new Human();
         Cloak cloak = new Cloak();
         human.add(cloak);

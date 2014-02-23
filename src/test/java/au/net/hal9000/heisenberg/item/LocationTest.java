@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
+import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -29,9 +31,11 @@ public class LocationTest {
      * Method testAdd.
      * @throws CantWearException 
      * @throws InvalidTypeException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testAdd() throws InvalidTypeException, CantWearException {
+    public void testAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         float volumeMax = 10F;
         float weightMax = 20F;
         // Location
@@ -51,9 +55,11 @@ public class LocationTest {
      * 
      * @throws InvalidTypeException
      * @throws CantWearException
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testAddMulti() throws InvalidTypeException, CantWearException {
+    public void testAddMulti() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location location = new Location("World");
         Location newLocation = new Location("New Location");
         Cookie c1 = new Cookie();
@@ -75,9 +81,11 @@ public class LocationTest {
      * Method testBeNot.
      * @throws CantWearException 
      * @throws InvalidTypeException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @Test
-    public void testBeNot() throws InvalidTypeException, CantWearException {
+    public void testBeNot() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
         Location location = new Location("World");
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
