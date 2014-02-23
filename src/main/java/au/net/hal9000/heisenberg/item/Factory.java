@@ -19,6 +19,7 @@ public final class Factory {
      * Constructor.
      */
     private Factory() {
+        super();
     }
 
     /**

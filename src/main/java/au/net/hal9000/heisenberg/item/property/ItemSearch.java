@@ -19,7 +19,7 @@ public abstract class ItemSearch implements ItemVisitor {
      */
     protected ItemSearch() {
         super();
-        this.matchingItems = new Vector<Item>();
+        matchingItems = new Vector<Item>();
     }
 
     /**

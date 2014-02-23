@@ -46,6 +46,7 @@ public final class DummyData {
     private static final int TEST_WEIGHT_VOLUME = 100000;
     /** Constructor. */
     private DummyData() {
+        super();
     }
 
     /** return the config. * @return Configuration

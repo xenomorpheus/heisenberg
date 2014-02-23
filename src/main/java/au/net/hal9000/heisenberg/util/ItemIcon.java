@@ -17,6 +17,7 @@ public final class ItemIcon {
 
     /** Constructor. */
     private ItemIcon() {
+        super();
     }
 
     /**

@@ -61,6 +61,7 @@ public final class ItemProperty {
      * Utility Class constructor.
      */
     private ItemProperty() {
+        super();
     }
 
     // Aeration

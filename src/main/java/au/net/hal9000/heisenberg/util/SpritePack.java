@@ -21,7 +21,7 @@ public class SpritePack {
 
     /** Constructor. **/
     public SpritePack() {
-
+        super();
     }
 
     /**

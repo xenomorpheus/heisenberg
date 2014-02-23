@@ -31,13 +31,13 @@ public class Complex implements Serializable, Cloneable {
      * 
      * @param real
      *            real component
-     * @param imag
+     * @param img
      *            imaginary component
      */
-    public Complex(double real, double imag) {
+    public Complex(double real, double img) {
         super();
         this.real = real;
-        this.img = imag;
+        this.img = img;
     }
 
     /**

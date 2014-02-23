@@ -96,7 +96,7 @@ public abstract class Humanoid extends PcRace {
      * @param hand Hand
      */
     public void setLeftHand(Hand hand) {
-        this.leftHand = hand;
+        leftHand = hand;
     }
 
     // right Hand
@@ -113,7 +113,7 @@ public abstract class Humanoid extends PcRace {
      * @param hand Hand
      */
     public void setRightHand(Hand hand) {
-        this.rightHand = hand;
+        rightHand = hand;
     }
 
     // Misc

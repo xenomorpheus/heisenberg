@@ -50,7 +50,7 @@ public class Crossbow extends Item {
      * @param bolt CrossbowBolt
      */
     public void setLoadedBolt(final CrossbowBolt bolt) {
-        this.loadedBolt = bolt;
+        loadedBolt = bolt;
     }
 
     // bow plus bolt if present.

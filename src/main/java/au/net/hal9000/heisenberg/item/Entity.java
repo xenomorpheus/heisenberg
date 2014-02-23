@@ -186,7 +186,7 @@ public abstract class Entity extends ItemContainer {
         if (null == recipes) {
             recipes = new TreeSet<String>();
         }
-        this.recipes.add(recipeId);
+        recipes.add(recipeId);
     }
 
     /**

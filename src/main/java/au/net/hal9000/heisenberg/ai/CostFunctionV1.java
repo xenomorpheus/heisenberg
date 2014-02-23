@@ -10,6 +10,7 @@ public class CostFunctionV1 implements CostFunction {
      * Constructor for CostFunctionV1.
      */
     public CostFunctionV1() {
+        super();
     }
 
     // TODO - this is just a fake version while testing.

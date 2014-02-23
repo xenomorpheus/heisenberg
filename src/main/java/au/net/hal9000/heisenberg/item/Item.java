@@ -189,11 +189,11 @@ public abstract class Item implements Serializable {
      * Set the Table Id. <br>
      * JPA requires a primary key.
      * 
-     * @param pJpaId
+     * @param jpaId
      *            the Id to set
      */
-    public void setJpaId(final long pJpaId) {
-        this.jpaId = pJpaId;
+    public void setJpaId(final long jpaId) {
+        this.jpaId = jpaId;
     }
 
     /**
@@ -214,7 +214,7 @@ public abstract class Item implements Serializable {
      *            the Id to set
      */
     public void setId(final UUID pId) {
-        this.id = pId;
+        id = pId;
     }
 
     /**
@@ -223,7 +223,7 @@ public abstract class Item implements Serializable {
     
      * @return the current container {@link ItemContainer}. */
     public ItemContainer getContainer() {
-        return this.container;
+        return container;
     }
 
     /**
@@ -248,11 +248,11 @@ public abstract class Item implements Serializable {
     /**
      * Set the description.
      * 
-     * @param pDescription
+     * @param description
      *            the description
      */
-    public void setDescription(final String pDescription) {
-        this.description = pDescription;
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     /**
@@ -339,11 +339,11 @@ public abstract class Item implements Serializable {
     /**
      * Set the name.
      * 
-     * @param pName
+     * @param name
      *            the name to set
      */
-    public void setName(final String pName) {
-        this.name = pName;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     /** @return The owner of this item */
@@ -452,11 +452,11 @@ public abstract class Item implements Serializable {
     /**
      * value before addition of other items such as those carried.
      * 
-     * @param pValueBase
+     * @param valueBase
      *            The value before any contained items.
      */
-    public void setValueBase(final Currency pValueBase) {
-        this.valueBase = pValueBase;
+    public void setValueBase(final Currency valueBase) {
+        this.valueBase = valueBase;
     }
 
     // volume related
@@ -511,11 +511,11 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * @param baseWeight
+     * @param weightBase
      *            weight before addition of other items such as those carried.
      */
-    public void setWeightBase(final float baseWeight) {
-        this.weightBase = baseWeight;
+    public void setWeightBase(final float weightBase) {
+        this.weightBase = weightBase;
     }
 
     /* End of Setters and Getters */

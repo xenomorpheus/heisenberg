@@ -39,7 +39,7 @@ public class ModelStateV1 implements ModelState, Cloneable {
      *            set agent position.
      */
     public void setAgentPosition(Point3d position3d) {
-        this.agentPosition = position3d;
+        agentPosition = position3d;
     }
 
     /**
@@ -54,7 +54,7 @@ public class ModelStateV1 implements ModelState, Cloneable {
      *            set goal position.
      */
     public void setGoalPosition(Point3d position3d) {
-        this.goalPosition = position3d;
+        goalPosition = position3d;
     }
 
     /**
@@ -65,8 +65,8 @@ public class ModelStateV1 implements ModelState, Cloneable {
     @Override
     public ModelStateV1 clone() throws CloneNotSupportedException {
         ModelStateV1 newModeState = (ModelStateV1) super.clone();
-        newModeState.agentPosition = this.agentPosition.clone();
-        newModeState.goalPosition = this.goalPosition.clone();
+        newModeState.agentPosition = agentPosition.clone();
+        newModeState.goalPosition = goalPosition.clone();
         return newModeState;
     }
 

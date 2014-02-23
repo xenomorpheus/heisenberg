@@ -73,6 +73,7 @@ public class PcClass implements Comparable<PcClass> {
      * Constructor for PcClass.
      */
     public PcClass() {
+        super();
     }
 
     /**
@@ -357,7 +358,7 @@ public class PcClass implements Comparable<PcClass> {
      */
     @Override
     public int compareTo(PcClass other) {
-        return this.id.compareTo(other.getId());
+        return id.compareTo(other.getId());
     }
 
 }

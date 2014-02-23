@@ -192,10 +192,10 @@ public class Currency implements Serializable, Cloneable {
      */
     public void add(final Currency otherCollection) {
         // add the value to the current Currency.
-        this.pp += otherCollection.getPp();
-        this.gp += otherCollection.getGp();
-        this.sp += otherCollection.getSp();
-        this.cp += otherCollection.getCp();
+        pp += otherCollection.getPp();
+        gp += otherCollection.getGp();
+        sp += otherCollection.getSp();
+        cp += otherCollection.getCp();
     }
 
     /**
@@ -290,19 +290,19 @@ public class Currency implements Serializable, Cloneable {
             StringBuilder sb = new StringBuilder();
             String joiner = "";
             if (0 != pp) {
-                sb.append(this.pp + "pp" + joiner);
+                sb.append(pp + "pp" + joiner);
                 joiner = ",";
             }
             if (0 != gp) {
-                sb.append(this.gp + "gp" + joiner);
+                sb.append(gp + "gp" + joiner);
                 joiner = ",";
             }
             if (0 != sp) {
-                sb.append(this.sp + "sp" + joiner);
+                sb.append(sp + "sp" + joiner);
                 joiner = ",";
             }
             if (0 != cp) {
-                sb.append(this.cp + "cp" + joiner);
+                sb.append(cp + "cp" + joiner);
                 joiner = ",";
             }
             str = sb.toString();

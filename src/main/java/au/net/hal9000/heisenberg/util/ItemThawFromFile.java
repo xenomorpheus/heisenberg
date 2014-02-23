@@ -25,6 +25,7 @@ import au.net.hal9000.heisenberg.item.Wood;
 public final class ItemThawFromFile {
     /** Constructor. */
     private ItemThawFromFile() {
+        super();
     }
 
     /**

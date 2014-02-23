@@ -21,6 +21,7 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
 
     /** Constructor. */
     public ModelStateEvaluatorV1() {
+        super();
     }
 
     /**

@@ -102,7 +102,7 @@ public class PcRaceEditor extends JPanel {
      *            the PcClass object we are editing.
      */
     public void setPcRace(PcRace pc) {
-        this.pcRace = pc;
+        pcRace = pc;
         basicPanel.setItem(pc);
         abilityScoresTable.setItem(pc);
         skillsTable.setItem(pc);
