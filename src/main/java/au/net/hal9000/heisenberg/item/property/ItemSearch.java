@@ -1,9 +1,10 @@
 package au.net.hal9000.heisenberg.item.property;
 
+import java.util.Vector;
+
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemVisitor;
 
-import java.util.Vector;
 
 /**
  */

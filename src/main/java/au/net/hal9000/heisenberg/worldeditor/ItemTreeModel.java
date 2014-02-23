@@ -1,12 +1,12 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import java.util.ArrayList;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import java.util.ArrayList;
 import org.jdesktop.swingx.tree.TreeModelSupport;
 
 import au.net.hal9000.heisenberg.item.Item;

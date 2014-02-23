@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import java.util.UUID;
 import java.util.Properties;
+import java.util.UUID;
 
 
 
@@ -17,8 +17,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Column;
+import javax.persistence.InheritanceType;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 

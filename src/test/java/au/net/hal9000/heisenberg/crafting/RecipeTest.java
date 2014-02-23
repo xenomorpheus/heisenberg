@@ -3,9 +3,9 @@ package au.net.hal9000.heisenberg.crafting;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Vector;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +53,7 @@ public class RecipeTest {
      * Method setup.
      */
     @Before
-    public void setup() {
+    public void setUp() {
         simple = new Recipe("recipe1", "the first recipe", null, 2,
                 REQUIRED_ACTION_POINTS, null, null, null);
         requirementsAll = new Vector<Requirement>();

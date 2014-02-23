@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.TreeMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 /**
  * 

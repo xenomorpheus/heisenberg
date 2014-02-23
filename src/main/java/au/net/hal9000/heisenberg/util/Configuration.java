@@ -7,15 +7,6 @@ import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
 
-// XML Parser
-import nu.xom.Attribute;
-import nu.xom.Builder;
-import nu.xom.Document;
-import nu.xom.Element;
-import nu.xom.Elements;
-import nu.xom.ParsingException;
-import nu.xom.ValidityException;
-
 import au.net.hal9000.heisenberg.crafting.ProductEntityProperty;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
@@ -24,6 +15,15 @@ import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
+
+// XML Parser
+import nu.xom.Attribute;
+import nu.xom.Builder;
+import nu.xom.Document;
+import nu.xom.Element;
+import nu.xom.Elements;
+import nu.xom.ParsingException;
+
 
 /**
  * Configuration read the XML config file and return in an object to easily

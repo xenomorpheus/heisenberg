@@ -3,17 +3,17 @@ package au.net.hal9000.heisenberg.crafting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Vector;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Vector;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
-import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Human;
+import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.item.Water;

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * AbilityScore properties.<br>
