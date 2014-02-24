@@ -12,17 +12,14 @@ import au.net.hal9000.heisenberg.util.DummyData;
 /**
  * 
  * @author bruins
- *
+ * 
  * @version $Revision: 1.0 $
  */
 public class SkillsTableTest {
-    /** frame width. */
-    static final int FRAME_WIDTH = 800;
-    /** frame height. */
-    static final int FRAME_HEIGHT = 300;
-    
+
     /**
      * Method doTest.
+     * 
      * @throws ConfigurationError
      */
     @Test

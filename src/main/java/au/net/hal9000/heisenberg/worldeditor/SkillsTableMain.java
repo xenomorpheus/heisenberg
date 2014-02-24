@@ -8,6 +8,10 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
 public class SkillsTableMain {
+    /** frame width. */
+    static final int FRAME_WIDTH = 800;
+    /** frame height. */
+    static final int FRAME_HEIGHT = 300;
 
     /**
      * app to test the skills table.

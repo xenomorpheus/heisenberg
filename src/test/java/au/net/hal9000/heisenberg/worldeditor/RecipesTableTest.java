@@ -3,7 +3,10 @@ package au.net.hal9000.heisenberg.worldeditor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import javax.swing.JFrame;
+
 import org.junit.Test;
+
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
