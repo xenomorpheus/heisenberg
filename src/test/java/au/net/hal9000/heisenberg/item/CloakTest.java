@@ -38,12 +38,4 @@ public class CloakTest {
         human.add(cloak);
     }
 
-    /**
-     * Method testCloak.
-     */
-    @Test
-    public void testCloak() {
-        Cloak cloak = new Cloak();
-    }
-
 }
