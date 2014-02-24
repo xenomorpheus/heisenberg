@@ -72,7 +72,8 @@ public abstract class Item implements Serializable {
     // Logger.getLogger(Item.class.getName());
 
     /** name of this package. */
-    private static final String PACKAGE_NAME = Factory.class.getPackage().getName();
+    private static final String PACKAGE_NAME = Factory.class.getPackage()
+            .getName();
 
     /** For each class of Item, the icon to show when open. */
     // TODO Consider moving out into own class.
@@ -178,8 +179,9 @@ public abstract class Item implements Serializable {
      * get the Table ID of the item.<br>
      * JPA requires a primary key.
      * 
-    
-     * @return the Id */
+     * 
+     * @return the Id
+     */
     public long getJpaId() {
         return jpaId;
     }
@@ -199,8 +201,9 @@ public abstract class Item implements Serializable {
      * get the ID of the item. We need to be ale to tell the difference between<br>
      * two items with the same properties.
      * 
-    
-     * @return the Id */
+     * 
+     * @return the Id
+     */
     public UUID getId() {
         return id;
     }
@@ -219,8 +222,9 @@ public abstract class Item implements Serializable {
     /**
      * Get the current container.
      * 
-    
-     * @return the current container {@link ItemContainer}. */
+     * 
+     * @return the current container {@link ItemContainer}.
+     */
     public ItemContainer getContainer() {
         return container;
     }
@@ -238,8 +242,9 @@ public abstract class Item implements Serializable {
     /**
      * Get the description.
      * 
-    
-     * @return the description */
+     * 
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
@@ -255,8 +260,9 @@ public abstract class Item implements Serializable {
     }
 
     /**
-    
-     * @return the structural integrity / health. */
+     * 
+     * @return the structural integrity / health.
+     */
     public float getHitPoints() {
         return hitPoints;
     }
@@ -272,8 +278,9 @@ public abstract class Item implements Serializable {
     /**
      * Return the Icon to draw when displaying this Item in the tree view.
      * 
-    
-     * @return the Icon. */
+     * 
+     * @return the Icon.
+     */
     public Icon getIconClosed() {
         return iconClosed;
     }
@@ -291,8 +298,9 @@ public abstract class Item implements Serializable {
     /**
      * Return the Icon to draw when displaying this Item in the tree view.
      * 
-    
-     * @return the Icon. */
+     * 
+     * @return the Icon.
+     */
     public Icon getIconOpen() {
         return iconOpen;
     }
@@ -310,8 +318,9 @@ public abstract class Item implements Serializable {
     /**
      * Return the Icon to draw when displaying this Item in the tree view.
      * 
-    
-     * @return the Icon. */
+     * 
+     * @return the Icon.
+     */
     public Icon getIconLeaf() {
         return iconLeaf;
     }
@@ -329,8 +338,9 @@ public abstract class Item implements Serializable {
     /**
      * get the name of the item.
      * 
-    
-     * @return the name */
+     * 
+     * @return the name
+     */
     public String getName() {
         return name;
     }
@@ -360,8 +370,9 @@ public abstract class Item implements Serializable {
 
     /**
      * 
-    
-     * @return return the position. */
+     * 
+     * @return return the position.
+     */
     public Point3d getPosition() {
         return position;
     }
@@ -378,9 +389,10 @@ public abstract class Item implements Serializable {
 
     // property related
     /**
-    
+     * 
      * @return the properties - A set of key/value pairs that don't warrant real
-     *         setters and getters. */
+     *         setters and getters.
+     */
     public Properties getProperties() {
         return properties;
     }
@@ -400,8 +412,9 @@ public abstract class Item implements Serializable {
      * 
      * @param key
      *            key name
-    
-     * @return the value */
+     * 
+     * @return the value
+     */
     public Object getProperty(String key) {
         return properties.get(key);
     }
@@ -432,8 +445,9 @@ public abstract class Item implements Serializable {
     /**
      * value before addition of other items such as those carried.
      * 
-    
-     * @return The value before any contained items. */
+     * 
+     * @return The value before any contained items.
+     */
     public Currency getValueBase() {
         return valueBase;
     }
@@ -442,8 +456,9 @@ public abstract class Item implements Serializable {
      * For simple items the value is the valueBase. Will be overridden by
      * collections
      * 
-    
-     * @return the total value including contained items. */
+     * 
+     * @return the total value including contained items.
+     */
     public Currency getValue() {
         return valueBase;
     }
@@ -464,8 +479,9 @@ public abstract class Item implements Serializable {
      * For simple items the weight is the weightBase. Will be overridden by
      * collections
      * 
-    
-     * @return the amount of 3D space that this item occupies. */
+     * 
+     * @return the amount of 3D space that this item occupies.
+     */
 
     public float getVolume() {
         return volumeBase;
@@ -474,8 +490,9 @@ public abstract class Item implements Serializable {
     /**
      * volume before addition of other items such as those carried.
      * 
-    
-     * @return the volume that this item occupies without any contained items. */
+     * 
+     * @return the volume that this item occupies without any contained items.
+     */
     public float getVolumeBase() {
         return volumeBase;
     }
@@ -496,15 +513,17 @@ public abstract class Item implements Serializable {
      * Set the total weight. For simple items the weight is the weightBase. May
      * be overridden by collections.
      * 
-    
-     * @return the total weight */
+     * 
+     * @return the total weight
+     */
     public float getWeight() {
         return weightBase;
     }
 
     /**
-    
-     * @return weight before addition of other items such as those carried */
+     * 
+     * @return weight before addition of other items such as those carried
+     */
     public float getWeightBase() {
         return weightBase;
     }
@@ -523,8 +542,9 @@ public abstract class Item implements Serializable {
     /**
      * Mostly Auto generated. Note: container not considered to break loops.
      * 
-    
-     * @return hash code. */
+     * 
+     * @return hash code.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -559,8 +579,9 @@ public abstract class Item implements Serializable {
      * 
      * @param obj
      *            object under comparison
-    
-     * @return true if equals. */
+     * 
+     * @return true if equals.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -706,12 +727,14 @@ public abstract class Item implements Serializable {
      *            the container that will hold this item.
      * @param requestedPosition
      *            the requested position within the container.
-     * @throws CantWearException 
-     * @throws InvalidTypeException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws CantWearException
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public void move(ItemContainer container, Point3d requestedPosition) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void move(ItemContainer container, Point3d requestedPosition)
+            throws InvalidTypeException, CantWearException, TooHeavyException,
+            TooLargeException {
         container.add(this);
         moveToPoint3d(requestedPosition);
     }
@@ -723,10 +746,11 @@ public abstract class Item implements Serializable {
      *            the container that will hold this item.
      * @throws CantWearException
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public void move(ItemContainer container) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void move(ItemContainer container) throws InvalidTypeException,
+            CantWearException, TooHeavyException, TooLargeException {
         container.add(this);
     }
 
@@ -742,16 +766,18 @@ public abstract class Item implements Serializable {
      */
     public void moveToPoint3d(Point3d requestedPosition) {
         if (null == container) {
-            throw new UnsupportedOperationException("No ItemContainer - Can't move");
+            throw new UnsupportedOperationException(
+                    "No ItemContainer - Can't move");
         } else {
             container.moveItemAbsolute(this, requestedPosition);
         }
     }
 
     /**
-    
      * 
-     * @return A short identifying string. e.g. 'Cookie', 'John Smith' */
+     * 
+     * @return A short identifying string. e.g. 'Cookie', 'John Smith'
+     */
     @Override
     public String toString() {
         String string = getName();
@@ -762,8 +788,9 @@ public abstract class Item implements Serializable {
     }
 
     /**
-    
-     * @return A description. e.g. 'A lit candle' */
+     * 
+     * @return A description. e.g. 'A lit candle'
+     */
     public String detailedDescription() {
         StringBuilder text = new StringBuilder();
         String temp;
@@ -828,8 +855,9 @@ public abstract class Item implements Serializable {
      * 
      * @param filename
      *            output file.
-    
-     * @throws IOException */
+     * 
+     * @throws IOException
+     */
     public void freezeToFile(String filename) throws IOException {
         FileOutputStream fos = new FileOutputStream(filename);
         ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -843,8 +871,9 @@ public abstract class Item implements Serializable {
     /**
      * This is used for tree traversal.
      * 
-    
-     * @return True unless this Item has child Items.<br> */
+     * 
+     * @return True unless this Item has child Items.<br>
+     */
     public boolean isLeaf() {
         return true;
     }
@@ -854,8 +883,9 @@ public abstract class Item implements Serializable {
      * 
      * @param type
      *            the type of Item to create.
-    
-     * @return the new Item. */
+     * 
+     * @return the new Item.
+     */
     public final boolean instanceOf(String type) {
         boolean isInstance;
         try {
@@ -870,8 +900,9 @@ public abstract class Item implements Serializable {
     /**
      * Returns the simple type of this item e.g. Cookie, Arrow, etc.
      * 
-    
-     * @return the simple type of this item e.g. Cookie, Arrow, etc. */
+     * 
+     * @return the simple type of this item e.g. Cookie, Arrow, etc.
+     */
     public String getSimpleClassName() {
         return getClass().getSimpleName();
     }
@@ -879,8 +910,9 @@ public abstract class Item implements Serializable {
     /**
      * For this Item type, get the default Icon to show when this item is open.
      * 
-    
-     * @return The Icon. */
+     * 
+     * @return The Icon.
+     */
     public Icon getIconOpenDefault() {
         return getIconOpenDefaultForClass(getSimpleClassName());
     }
@@ -905,8 +937,9 @@ public abstract class Item implements Serializable {
      * 
      * @param simpleClassName
      *            Simple Item name e.g. Cookie.
-    
-     * @return Icon to show. */
+     * 
+     * @return Icon to show.
+     */
     public static Icon getIconOpenDefaultForClass(String simpleClassName) {
         return ICON_OPEN_DEFAULT_FOR_CLASS.get(simpleClassName);
     }
@@ -924,8 +957,9 @@ public abstract class Item implements Serializable {
      * 
      * @param other
      *            other item.
-    
-     * @return the distance to the other object. */
+     * 
+     * @return the distance to the other object.
+     */
     public double distanceEuclidean(Item other) {
         return position.distance(other.getPosition());
     }

@@ -21,6 +21,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
  * A window with hierarchical representation of the game objects.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -41,11 +42,13 @@ public class ItemTreePanel extends JPanel {
     /** Choose the character class. */
     private JComboBox<String> itemClassesList = null;
 
-    /** 
-     * Constructor. 
+    /**
+     * Constructor.
      * 
-     * @param config configuration to use for building the selection boxes.
-     * @param location the location to display.
+     * @param config
+     *            configuration to use for building the selection boxes.
+     * @param location
+     *            the location to display.
      */
     public ItemTreePanel(Configuration config, Location location) {
 
@@ -95,9 +98,9 @@ public class ItemTreePanel extends JPanel {
                         Item[] nodes = treeModel.getPathToRoot(newNode);
                         TreePath path = new TreePath(nodes);
                         System.out.println("DEBUG: path is " + path);
-                        tree.scrollPathToVisible(path);
-                        tree.setSelectionPath(path);
-                        tree.startEditingAtPath(path);
+                        // tree.scrollPathToVisible(path);
+                        // tree.setSelectionPath(path);
+                        // tree.startEditingAtPath(path);
                     }
                 }
             }
@@ -111,7 +114,9 @@ public class ItemTreePanel extends JPanel {
 
     /**
      * Set the root object in this tree.
-     * @param root the root object of the tree.
+     * 
+     * @param root
+     *            the root object of the tree.
      */
     public void setRoot(Location root) {
         // Create a TreeModel object to represent our m_tree of files
