@@ -3,9 +3,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
 import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -71,29 +68,6 @@ public class RecipesTableTest {
         // add to JFrame
         guiFrame.add(basicPanel);
         guiFrame.setVisible(true);
-
-    }
-
-    /**
-     * 
-     * @param args
-     *            command line args, but not used.
-     */
-    public static void main(String[] args) {
-
-        // Use the event dispatch thread for Swing components
-        SwingUtilities.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    RecipesTableTest recipesTableTest = new RecipesTableTest();
-                    recipesTableTest.doTest();
-                } catch (ConfigurationError e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
     }
 

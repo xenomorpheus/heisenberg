@@ -5,9 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JMenuBar;
-import javax.swing.SwingUtilities;
 
 import org.junit.Test;
 
@@ -37,40 +35,13 @@ public class WorldEditorTest {
 
     /**
      * Method testWorldEditor.
+     * 
      * @throws ConfigurationError
      */
     @Test
     public void testWorldEditor() throws ConfigurationError {
         WorldEditor worldEditor = new WorldEditor();
         assertNotNull("Not null", worldEditor);
-
-    }
-
-    /**
-     * app to test the world editor.
-     * 
-     * @param args
-     *            not used
-     */
-    public static void main(String[] args) {
-
-        // Use the event dispatch thread for Swing components
-        SwingUtilities.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    WorldEditor worldEditor = new WorldEditor();
-                    // Center
-                    worldEditor.setLocationRelativeTo(null);
-                    // Kill app
-                    worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    worldEditor.setVisible(true);
-                } catch (ConfigurationError e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
     }
 

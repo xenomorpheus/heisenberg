@@ -23,6 +23,7 @@ public class DescriptionPane extends JScrollPane {
     /** Logger. */
     private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class
             .getName());
+    
     /**
      * Field pc.
      */
