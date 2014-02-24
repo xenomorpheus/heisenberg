@@ -11,7 +11,9 @@ public class Backlog {
 
     /**
      * Method println.
-     * @param string String
+     * 
+     * @param string
+     *            String
      */
     private void println(String string) {
         // System.out.println(string);
@@ -23,7 +25,7 @@ public class Backlog {
      */
     @Test
     public void characterMountsHorse() {
-        println(System.lineSeparator()+"** A character mounts a horse.");
+        println(System.lineSeparator() + "** A character mounts a horse.");
         // Halfling hobbit = new Halfling();
         // Horse horse = new Horse();
         // TODO hobbit.setMount(horse);
@@ -35,7 +37,7 @@ public class Backlog {
      */
     @Test
     public void characterPutsOnCloak() {
-        println(System.lineSeparator()+"** A character puts on a cloak.");
+        println(System.lineSeparator() + "** A character puts on a cloak.");
         Human human = new Human();
         println("Human created with name: " + human);
         Cloak cloak = new Cloak();
