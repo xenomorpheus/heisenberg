@@ -155,16 +155,16 @@ public class WorldEditor extends JFrame {
     /**
      * set the location.
      * 
-     * @param location
+     * @param newLocation
      *            new location.
      */
-    public void setLocation(Location location) {
+    public void setLocation(Location newLocation) {
         if (null != location) {
             location.beNot();
             location = null;
         }
-        this.location = location;
-        itemTreePanel.setRoot(location);
+        location = newLocation;
+        itemTreePanel.setRoot(newLocation);
     }
 
     /** quit the program. */
