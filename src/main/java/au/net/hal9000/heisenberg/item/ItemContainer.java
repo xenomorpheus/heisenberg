@@ -326,7 +326,6 @@ public abstract class ItemContainer extends Item implements Serializable {
     /**
      * Add the Item to the contents.
      * 
-     * @deprecated use transfer. add() is only for testing.
      * @param index
      *            index position to add at.
      * @param item
@@ -348,7 +347,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
         // check Weight
         final float weightMax = this.getWeightMax();
-        if (weightMax >= 0) {
+        if (weightMax > 0) {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
@@ -369,7 +368,7 @@ public abstract class ItemContainer extends Item implements Serializable {
 
         // check Volume
         final float volumeMax = this.getVolumeMax();
-        if (volumeMax >= 0) {
+        if (volumeMax > 0) {
             float total = this.getContentsVolume();
             total += item.getVolume();
             if (total > volumeMax) {
@@ -387,16 +386,16 @@ public abstract class ItemContainer extends Item implements Serializable {
                 throw new TooLargeException(text.toString());
             }
         }
+
         // remove item from existing location
-        ItemContainer currentLocation = item.getContainer();
-        if (null != currentLocation) {
-            currentLocation.remove(item);
+        if (null != itemCurrentContainer) {
+        	itemCurrentContainer.remove(item);
         }
 
         // Add the item and update the item's location.
         int currentSize = contents.size();
         if (index > (currentSize + 1)) {
-            throw new RuntimeException("Requested possition " + index
+            throw new RuntimeException("Requested position " + index
                     + " much greater " + currentSize + ". container is a "
                     + this.getName() + ", added item is " + item.getName());
         }
@@ -404,8 +403,8 @@ public abstract class ItemContainer extends Item implements Serializable {
         // check
         int pos = contents.indexOf(item);
         if (pos != index) {
-            throw new RuntimeException("Requested possition " + index
-                    + " != reported possition " + pos);
+            throw new RuntimeException("Requested position " + index
+                    + " != reported position " + pos);
         }
         item.setContainer(this);
     }
@@ -421,7 +420,7 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @throws TooHeavyException
      * @throws CantWearException 
      */
-    public void add(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    public void addItems(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
         for (Item item : items) {
             this.add(item);
         }

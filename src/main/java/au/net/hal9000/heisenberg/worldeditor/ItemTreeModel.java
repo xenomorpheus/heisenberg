@@ -88,11 +88,9 @@ class ItemTreeModel implements TreeModel {
      */
 
     // fix issue 2: notify the listeners on inserts
-    @SuppressWarnings("deprecation")
     public void insertNodeInto(final Item newNode, final ItemContainer selNode,
             final int childCount) throws TooHeavyException, TooLargeException {
         selNode.add(childCount, (Item) newNode);
-        newNode.setContainer(selNode);
         support.fireChildAdded(new TreePath(getPathToRoot((Item) selNode)),
                 childCount, newNode);
     }
@@ -111,7 +109,7 @@ class ItemTreeModel implements TreeModel {
             itemArrayList.add(0, node);
             node = node.getContainer();
         }
-        return itemArrayList.toArray(new Item[itemArrayList.size()]);
+        return itemArrayList.toArray(new Item[itemArrayList.size()]); // check this
     }
 
     // Tell JTree how many children a node has
@@ -223,7 +221,6 @@ class ItemTreeModel implements TreeModel {
          * @throws TooLargeException 
          * @throws TooHeavyException 
          */
-        @SuppressWarnings("deprecation")
         public void insertNodeInto(final Item newNode, final Item selNode,
                 final int childCount) throws TooHeavyException, TooLargeException {
             if (selNode instanceof ItemContainer) {

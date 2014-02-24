@@ -74,6 +74,10 @@ public class WorldEditor extends JFrame {
         setBounds(100, 100, 894, 634);
 
         // Main container
+        location = new Location("The world");
+        location.setWeightMax(1000000);
+        location.setVolumeMax(1000000);
+
         setLayout(new BorderLayout());
         itemTreePanel = new ItemTreePanel(config, location);
         itemTreePanel.setVisible(true);
@@ -87,7 +91,10 @@ public class WorldEditor extends JFrame {
                 String eventName = event.getActionCommand();
 
                 if ("New".equals(eventName)) {
-                    setLocation(new Location());
+                    location = new Location("The world");
+                    location.setWeightMax(1000000);
+                    location.setVolumeMax(1000000);
+                    setLocation(location);
                 }
                 if ("Demo".equals(eventName)) {
                     try {

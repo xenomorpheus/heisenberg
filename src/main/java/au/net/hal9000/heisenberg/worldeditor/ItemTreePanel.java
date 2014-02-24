@@ -39,7 +39,7 @@ public class ItemTreePanel extends JPanel {
      */
     private JTree tree = new JTree();
     /** Choose the character class. */
-    private JComboBox itemClassesList = null;
+    private JComboBox<String> itemClassesList = null;
 
     /** 
      * Constructor. 
@@ -62,7 +62,7 @@ public class ItemTreePanel extends JPanel {
         JPanel addButtonPanel = new JPanel();
 
         // A JComboBox of Item types we can add
-        itemClassesList = new JComboBox(config.getItemClassIds());
+        itemClassesList = new JComboBox<String>(config.getItemClassIds());
         addButtonPanel.add(itemClassesList);
 
         // The "Add" Button

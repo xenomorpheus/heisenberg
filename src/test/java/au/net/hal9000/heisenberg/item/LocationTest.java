@@ -69,7 +69,7 @@ public class LocationTest {
         items.add(c1);
         items.add(c2);
         items.add(c3);
-        location.add(items);
+        location.addItems(items);
         assertEquals("add multi size", 3, location.getContentsCount());
         location.empty(newLocation);
         assertEquals("location size after empty", 0,

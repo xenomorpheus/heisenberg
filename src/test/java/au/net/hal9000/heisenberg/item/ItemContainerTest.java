@@ -113,7 +113,7 @@ public class ItemContainerTest {
         items.add(c1);
         items.add(c2);
         items.add(c3);
-        bag.add(items);
+        bag.addItems(items);
         assertEquals("add multi size", size, bag.getContentsCount());
         bag.empty(newBag);
         assertEquals("bag empty size", 0, bag.getContentsCount());
