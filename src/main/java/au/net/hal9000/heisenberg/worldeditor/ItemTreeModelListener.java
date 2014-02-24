@@ -61,8 +61,6 @@ public class ItemTreeModelListener implements TreeModelListener {
      *            the location for the new node.
      * @param childCount
      *            the index number in the selNode where the newNode is.
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     public void insertNodeInto(Item newNode, Item selNode, int childCount)
             throws TooHeavyException, TooLargeException {
