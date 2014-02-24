@@ -50,7 +50,7 @@ public class BasicPanel extends JPanel {
     /**
      * Field classComboBox.
      */
-    private JComboBox classComboBox;
+    private JComboBox<PcClass> classComboBox;
     // Row 1
     /**
      * Field descriptionTextField.
@@ -102,11 +102,11 @@ public class BasicPanel extends JPanel {
     /**
      * Field sizeComboBox.
      */
-    private JComboBox sizeComboBox;
+    private JComboBox<String> sizeComboBox;
     /**
      * Field genderComboBox.
      */
-    private JComboBox genderComboBox;
+    private JComboBox<String> genderComboBox;
 
     /**
      * Constructor for BasicPanel.
@@ -231,7 +231,7 @@ public class BasicPanel extends JPanel {
         this.add(classLbl);
         pos += cons.gridwidth;
 
-        classComboBox = new JComboBox();
+        classComboBox = new JComboBox<>();
         for (PcClass pcClass : pcClassesItr) {
             classComboBox.addItem(pcClass);
         }
@@ -486,7 +486,7 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
 
         // Size List
-        sizeComboBox = new JComboBox();
+        sizeComboBox = new JComboBox<>();
         for (String aSize : sizes) {
             sizeComboBox.addItem(aSize);
         }
@@ -508,7 +508,7 @@ public class BasicPanel extends JPanel {
         pos += cons.gridwidth;
 
         // Gender List
-        genderComboBox = new JComboBox();
+        genderComboBox = new JComboBox<>();
         for (String aGender : genders) {
             genderComboBox.addItem(aGender);
         }
