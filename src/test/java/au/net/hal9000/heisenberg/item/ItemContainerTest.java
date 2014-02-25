@@ -240,15 +240,6 @@ public class ItemContainerTest {
     }
 
     /**
-     * Method isLeaf.
-     */
-    @Test
-    public void isLeaf() {
-        Bag bag = new Bag();
-        assertFalse("isLeaf", bag.isLeaf());
-    }
-
-    /**
      * Method testGetChildCount.
      * 
      * @throws InvalidTypeException

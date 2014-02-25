@@ -199,14 +199,6 @@ public abstract class Humanoid extends PcRace {
         super.beNot();
     }
 
-    // Traverse Tree
-    /** {@inheritDoc} * @return boolean
-     */
-    @Override
-    public boolean isLeaf() {
-        return false;
-    }
-
     /** {@inheritDoc} * @return int
      */
     @Override

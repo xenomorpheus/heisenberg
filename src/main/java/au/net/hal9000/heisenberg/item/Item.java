@@ -869,16 +869,6 @@ public abstract class Item implements Serializable {
     // TODO thawFormFile
 
     /**
-     * This is used for tree traversal.
-     * 
-     * 
-     * @return True unless this Item has child Items.<br>
-     */
-    public boolean isLeaf() {
-        return true;
-    }
-
-    /**
      * Create a new Item of the specified type.
      * 
      * @param type

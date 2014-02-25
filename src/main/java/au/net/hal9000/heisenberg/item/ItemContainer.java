@@ -143,18 +143,6 @@ public abstract class ItemContainer extends Item implements Serializable {
     }
 
     // Misc
-    /**
-     * Used for tree display.
-     * 
-     * We aren't a leaf as we can hold items.
-     * 
-     * 
-     * @return false
-     */
-    @Override
-    public boolean isLeaf() {
-        return false;
-    }
 
     /**
      * Used for tree display.
