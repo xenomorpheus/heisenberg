@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.util.ArrayList;
-
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -10,8 +8,6 @@ import org.jdesktop.swingx.tree.TreeModelSupport;
 
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * This class provides a model that allows JTree to traverse the contents of an
@@ -24,9 +20,8 @@ class ItemTreeModel implements TreeModel {
     /** We specify the root directory when we create the model. */
     private Item root;
 
-    // prepare fix issue 1: instantiate the notification support
     /**
-     * Field support.
+     * instantiate the notification support
      */
     private TreeModelSupport support;
 
@@ -37,25 +32,25 @@ class ItemTreeModel implements TreeModel {
      *            Item
      */
     public ItemTreeModel(Item root) {
+        super();
         this.root = root;
         support = new TreeModelSupport(this);
     }
 
-    // The model knows how to return the root object of the m_tree
     /**
-     * Method getRoot.
+     * Return the root node.
      * 
      * @return Object
      * @see javax.swing.tree.TreeModel#getRoot()
      */
     @Override
     public Object getRoot() {
+        System.out.println("getRoot " + root);
         return root;
     }
 
-    // Tell JTree whether an object in the m_tree is a leaf or not
     /**
-     * Method isLeaf.
+     * Tell JTree whether an object in the m_tree is a leaf or not.
      * 
      * @param node
      *            Object
@@ -64,81 +59,33 @@ class ItemTreeModel implements TreeModel {
      */
     @Override
     public boolean isLeaf(Object node) {
-        return ((Item) node).isLeaf();
-    }
+        boolean isLeaf = true;
 
-    // fix issue 1: accept listener
-    /**
-     * Method addTreeModelListener.
-     * 
-     * @param l
-     *            TreeModelListener
-     * @see javax.swing.tree.TreeModel#addTreeModelListener(TreeModelListener)
-     */
-    @Override
-    public void addTreeModelListener(TreeModelListener l) {
-        support.addTreeModelListener(l);
-    }
-
-    /**
-     * Add a node into our model.
-     * 
-     * @param newNode
-     *            the new node.
-     * @param selNode
-     *            the location for the new node.
-     * @param childCount
-     *            the index number in the selNode where the newNode is.
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     */
-
-    // fix issue 2: notify the listeners on inserts
-    public void insertNodeInto(Item newNode, ItemContainer selNode,
-            int childCount) throws TooHeavyException, TooLargeException {
-        selNode.add(childCount, (Item) newNode);
-        support.fireChildAdded(new TreePath(getPathToRoot((Item) selNode)),
-                childCount, newNode);
-    }
-
-    /**
-     * Get path up to the root node.
-     * 
-     * @param node
-     *            starting node
-     * 
-     * @return an array of nodes starting at the root
-     */
-
-    public Item[] getPathToRoot(Item node) {
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        while ((null != node)) {
-            itemArrayList.add(0, node);
-            node = node.getContainer();
+        if (node instanceof ItemContainer) {
+            isLeaf = false;
         }
-        return itemArrayList.toArray(new Item[itemArrayList.size()]); // check
-                                                                      // this
+        System.out.println("isLeaf " + node + "= " + isLeaf);
+        return isLeaf;
     }
 
-    // Tell JTree how many children a node has
     /**
-     * Method getChildCount.
+     * Tell JTree how many children a node has.
      * 
      * @param node
-     *            Object
-     * @return int
+     *            node.
+     * @return int number of children.
      * @see javax.swing.tree.TreeModel#getChildCount(Object)
      */
     @Override
     public int getChildCount(Object node) {
+        System.out.println("getChildCount " + node);
         return ((ItemContainer) node).getChildCount();
     }
 
-    // Fetch any numbered child of a node for the JTree.
-    // Our model returns Item objects for all nodes in the m_tree. The
-    // JTree displays these by calling the Item.toString() method.
     /**
-     * Method getChild.
+     * Method getChild. Fetch any numbered child of a node for the JTree. Our
+     * model returns Item objects for all nodes in the m_tree. The JTree
+     * displays these by calling the Item.toString() method.
      * 
      * @param parent
      *            Object
@@ -149,7 +96,10 @@ class ItemTreeModel implements TreeModel {
      */
     @Override
     public Object getChild(Object parent, int index) {
-        return ((ItemContainer) parent).getChildAt(index);
+        Item child = ((ItemContainer) parent).getChildAt(index);
+        System.out.println("getChild parent='" + parent + "', index=" + index
+                + ", child=" + child);
+        return child;
     }
 
     // Figure out a child's position in its parent node.
@@ -165,24 +115,41 @@ class ItemTreeModel implements TreeModel {
      */
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        return ((ItemContainer) parent).getIndexOfChild((Item) child);
+        int index = ((ItemContainer) parent).getIndexOfChild((Item) child);
+        System.out.println("getIndexOfChild " + parent + " " + child + "="
+                + index);
+        return index;
     }
 
-    // This method is only invoked by the JTree for editable trees.
     /**
-     * Method valueForPathChanged.
+     * This method is only invoked by the JTree for editable trees.
      * 
      * @param path
      *            TreePath
-     * @param newvalue
+     * @param newValue
      *            Object
      * @see javax.swing.tree.TreeModel#valueForPathChanged(TreePath, Object)
      */
     @Override
-    public void valueForPathChanged(TreePath path, Object newvalue) {
+    public void valueForPathChanged(TreePath path, Object newValue) {
         Item item = (Item) path.getLastPathComponent();
-        item.setName((String) newvalue);
+        System.out.println("valueForPathChanged path=" + path + ", newValue='"
+                + newValue + "', item='" + item + "'");
+        // item.setName((String) newValue);
         // fireTreeNodesChanged(new TreeModelEvent(this, path));
+    }
+
+    /**
+     * Method addTreeModelListener.
+     * 
+     * @param l
+     *            TreeModelListener
+     * @see javax.swing.tree.TreeModel#addTreeModelListener(TreeModelListener)
+     */
+    @Override
+    public void addTreeModelListener(TreeModelListener l) {
+        System.out.println("addTreeModelListener");
+        support.addTreeModelListener(l);
     }
 
     /**
@@ -195,7 +162,7 @@ class ItemTreeModel implements TreeModel {
     @Override
     public void removeTreeModelListener(TreeModelListener l) {
         System.out.println("removeTreeModelListener");
+        support.removeTreeModelListener(l);
     }
 
- 
 }

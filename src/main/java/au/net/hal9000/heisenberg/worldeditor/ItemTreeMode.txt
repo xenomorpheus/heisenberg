@@ -1,0 +1,50 @@
+    /**
+     * Add a node into our model.
+     * 
+     * @param newNode
+     *            the new node.
+     * @param selNode
+     *            the location for the new node.
+     * @param childCount
+     *            the index number in the selNode where the newNode is.
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
+
+    // fix issue 2: notify the listeners on inserts
+    public void insertNodeInto(Item newNode, ItemContainer selNode,
+            int childCount) throws TooHeavyException, TooLargeException {
+
+        System.out.println("Calling insertNodeInto for newNode='" + newNode
+                + "', selNode='" + selNode + "', childCount=" + childCount);
+        selNode.add(childCount, newNode);
+        TreePath tp = getPathToRoot(selNode);
+        System.out.println("TreePath to selNode=" + tp);
+        support.fireChildAdded(tp, childCount, newNode);
+    }
+
+
+/////////////////// Listener
+
+    /**
+     * Add a node into our model.
+     * 
+     * @param newNode
+     *            the new node.
+     * @param selNode
+     *            the location for the new node.
+     * @param childCount
+     *            the index number in the selNode where the newNode is.
+     */
+    public void insertNodeInto(Item newNode, Item selNode, int childCount)
+            {
+        if (selNode instanceof ItemContainer) {
+            ((ItemContainer) selNode).add(childCount, (Item) newNode);
+        } else {
+            System.out.println("bad parent container:" + selNode);
+        }
+    }
+
+    
+
+    

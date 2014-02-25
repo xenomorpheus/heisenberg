@@ -1,8 +1,10 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,6 +44,9 @@ public class ItemTreePanel extends JPanel {
     /** Choose the character class. */
     private JComboBox<String> itemClassesList = null;
 
+    /** toolkit. */
+    private Toolkit toolkit = Toolkit.getDefaultToolkit();
+
     /**
      * Constructor.
      * 
@@ -78,8 +83,8 @@ public class ItemTreePanel extends JPanel {
                 // TODO get from event. How?
                 String eventName = event.getActionCommand();
                 if ("Add".equals(eventName)) {
-                    Item selNode = (Item) tree.getLastSelectedPathComponent();
-                    if ((null != selNode) && !selNode.isLeaf()) {
+                    Object selNode = tree.getLastSelectedPathComponent();
+                    if (selNode instanceof ItemContainer) {
                         ItemContainer selContainer = (ItemContainer) selNode;
                         // Add the desired item.
                         // A list of Items that could be added.
@@ -89,18 +94,21 @@ public class ItemTreePanel extends JPanel {
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
                         try {
-                            treeModel.insertNodeInto(newNode, selContainer,
-                                    selContainer.getChildCount());
+                            selContainer.add(selContainer.getChildCount(),newNode);
                         } catch (TooHeavyException | TooLargeException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                        Item[] nodes = treeModel.getPathToRoot(newNode);
-                        TreePath path = new TreePath(nodes);
+                        System.out.println("DEBUG: newNode is " + newNode);
+
+                        TreePath path =  getPathToRoot(newNode);
                         System.out.println("DEBUG: path is " + path);
-                        // tree.scrollPathToVisible(path);
-                        // tree.setSelectionPath(path);
-                        // tree.startEditingAtPath(path);
+                        tree.scrollPathToVisible(path);
+                        tree.setSelectionPath(path);
+                        tree.startEditingAtPath(path);
+                    } else {
+                        toolkit.beep();
+                        System.out.println("Not a container");
                     }
                 }
             }
@@ -127,4 +135,26 @@ public class ItemTreePanel extends JPanel {
         tree.setSelectionRow(0);
     }
 
+    /**
+     * Get path from root to the target node.
+     * 
+     * @param node
+     *            target node
+     * 
+     * @return a TreePath of nodes from root to the target node.
+     */
+
+    private TreePath getPathToRoot(Item node) {
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        Item debugTarget = node;
+        while ((null != node)) {
+            // insert at start of list.
+            itemArrayList.add(0, node);
+            node = node.getContainer();
+        }
+        System.out.println("getPathToRoot node='" + debugTarget + "', path="
+                + itemArrayList);
+        return new TreePath(itemArrayList.toArray(new Item[itemArrayList.size()]));
+    }
+    
 }

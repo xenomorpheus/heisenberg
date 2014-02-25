@@ -3,11 +3,7 @@ package au.net.hal9000.heisenberg.worldeditor;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-
-import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import javax.swing.tree.TreeModel;
 
 /**
  * THIS CODE IS NOT USED.  WHERE DO I LINK IT IN???????
@@ -16,6 +12,14 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
  *
  */
 public class ItemTreeModelListener implements TreeModelListener {
+    
+    /** tree model.*/
+    private TreeModel treeModel;
+
+    public ItemTreeModelListener(TreeModel treeModel){
+        super();
+        this.treeModel = treeModel;
+    }
     /**
      * Method treeNodesChanged.
      * 
@@ -23,6 +27,7 @@ public class ItemTreeModelListener implements TreeModelListener {
      *            TreeModelEvent
      * @see javax.swing.event.TreeModelListener#treeNodesChanged(TreeModelEvent)
      */
+    @Override
     public void treeNodesChanged(TreeModelEvent e) {
         DefaultMutableTreeNode node;
         node = (DefaultMutableTreeNode) (e.getTreePath().getLastPathComponent());
@@ -52,24 +57,6 @@ public class ItemTreeModelListener implements TreeModelListener {
         System.out.println("Node Inserted.");
     }
 
-    /**
-     * Add a node into our model.
-     * 
-     * @param newNode
-     *            the new node.
-     * @param selNode
-     *            the location for the new node.
-     * @param childCount
-     *            the index number in the selNode where the newNode is.
-     */
-    public void insertNodeInto(Item newNode, Item selNode, int childCount)
-            throws TooHeavyException, TooLargeException {
-        if (selNode instanceof ItemContainer) {
-            ((ItemContainer) selNode).add(childCount, (Item) newNode);
-        } else {
-            System.out.println("bad parent container:" + selNode);
-        }
-    }
 
     /**
      * Method treeNodesRemoved.
