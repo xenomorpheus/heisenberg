@@ -11,6 +11,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import au.net.hal9000.heisenberg.item.Factory;
@@ -27,7 +30,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemTreePanel extends JPanel {
+public class ItemTreePanel extends JPanel implements TreeModelListener {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
@@ -129,6 +132,10 @@ public class ItemTreePanel extends JPanel {
     public void setRoot(Location root) {
         // Create a TreeModel object to represent our m_tree of files
         treeModel = new ItemTreeModel(root);
+        
+        // This class will listen to changes in the TreeModel.
+        treeModel.addTreeModelListener(this);
+
         // Create a JTree and tell it to display our model
         tree.setModel(treeModel);
         tree.setEditable(true);
@@ -155,6 +162,71 @@ public class ItemTreePanel extends JPanel {
         System.out.println("getPathToRoot node='" + debugTarget + "', path="
                 + itemArrayList);
         return new TreePath(itemArrayList.toArray(new Item[itemArrayList.size()]));
+    }
+
+    /**
+     * Method treeNodesChanged.
+     * 
+     * @param e
+     *            TreeModelEvent
+     * @see javax.swing.event.TreeModelListener#treeNodesChanged(TreeModelEvent)
+     */
+    @Override
+    public void treeNodesChanged(TreeModelEvent e) {
+        DefaultMutableTreeNode node;
+        node = (DefaultMutableTreeNode) (e.getTreePath().getLastPathComponent());
+
+        /*
+         * If the event lists children, then the changed node is the child of
+         * the node we've already gotten. Otherwise, the changed node and the
+         * specified node are the same.
+         */
+
+        int index = e.getChildIndices()[0];
+        node = (DefaultMutableTreeNode) (node.getChildAt(index));
+
+        System.out.println("The user has finished editing the node.");
+        System.out.println("New value: " + node.getUserObject());
+    }
+
+    /**
+     * Method treeNodesInserted.
+     * 
+     * @param e
+     *            TreeModelEvent
+     * @see javax.swing.event.TreeModelListener#treeNodesInserted(TreeModelEvent)
+     */
+    @Override
+    public void treeNodesInserted(TreeModelEvent e) {
+        // TODO finish
+        System.out.println("Node Inserted.");
+    }
+
+
+    /**
+     * Method treeNodesRemoved.
+     * 
+     * @param e
+     *            TreeModelEvent
+     * @see javax.swing.event.TreeModelListener#treeNodesRemoved(TreeModelEvent)
+     */
+    @Override
+    public void treeNodesRemoved(TreeModelEvent e) {
+        // TODO finish
+        System.out.println("treeNodesRemoved - Node Removed.");
+    }
+
+    /**
+     * Method treeStructureChanged.
+     * 
+     * @param e
+     *            TreeModelEvent
+     * @see javax.swing.event.TreeModelListener#treeStructureChanged(TreeModelEvent)
+     */
+    @Override
+    public void treeStructureChanged(TreeModelEvent e) {
+        // TODO finish
+        System.out.println("treeStructureChanged - Node Changed.");
     }
     
 }
