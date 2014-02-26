@@ -45,7 +45,7 @@ class ItemTreeModel implements TreeModel {
      */
     @Override
     public Object getRoot() {
-        System.out.println("getRoot " + root);
+        // TODO System.out.println("getRoot " + root);
         return root;
     }
 
@@ -62,9 +62,10 @@ class ItemTreeModel implements TreeModel {
         boolean isLeaf = true;
 
         if (node instanceof ItemContainer) {
-            isLeaf = false;
+            ItemContainer container = (ItemContainer) node;
+            isLeaf = container.getContentsCount() == 0;
         }
-        System.out.println("isLeaf " + node + "= " + isLeaf);
+        // TODO System.out.println("isLeaf " + node + "= " + isLeaf);
         return isLeaf;
     }
 
