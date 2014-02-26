@@ -19,6 +19,7 @@ public class ItemTreeModelListener implements TreeModelListener {
     public ItemTreeModelListener(TreeModel treeModel){
         super();
         this.treeModel = treeModel;
+        treeModel.addTreeModelListener(this);
     }
     /**
      * Method treeNodesChanged.
