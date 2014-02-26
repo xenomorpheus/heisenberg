@@ -120,7 +120,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener {
         addButtonPanel.add(addButton);
 
         add(scrollpane, BorderLayout.NORTH);
-        add(addButtonPanel, BorderLayout.CENTER);
+        add(addButtonPanel, BorderLayout.SOUTH);
     }
 
     /**
