@@ -126,9 +126,9 @@ public class ItemTest {
     @Test
     public void testLocation() {
         Cookie cookie = new Cookie();
-        Human human = new Human("human");
-        cookie.setContainer(human);
-        assertEquals("location", human, cookie.getContainer());
+        Box box = new Box();
+        cookie.setContainer(box);
+        assertEquals("location", box, cookie.getContainer());
     }
 
     /**

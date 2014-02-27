@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
+
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -25,14 +25,14 @@ public class ItemTreePanelTest {
      * 
      * 
      * @throws ConfigurationError
-     * @throws CantWearException
+
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void itemTreePanel() throws ConfigurationError,
-            InvalidTypeException, CantWearException, TooHeavyException,
+            InvalidTypeException,  TooHeavyException,
             TooLargeException {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();

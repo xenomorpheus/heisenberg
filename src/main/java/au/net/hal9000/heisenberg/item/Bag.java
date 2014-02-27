@@ -5,7 +5,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -71,10 +70,9 @@ public class Bag extends Box {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
     @Override
-    public void add(final Item item) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    public void add(final Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {
             this.rupture();

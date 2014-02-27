@@ -10,13 +10,14 @@ import java.util.Vector;
 
 
 
+
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
@@ -25,7 +26,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class ItemContainer extends Item implements Serializable {
+public class ItemContainer extends Item implements Serializable {
     /**
      * 
      */
@@ -262,10 +263,9 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @throws TooLargeException
      * @throws TooHeavyException
      * @throws InvalidTypeException 
-     * @throws CantWearException 
      * 
      */
-    public void add(Item item) throws TooHeavyException, TooLargeException, InvalidTypeException, CantWearException {
+    public void add(Item item) throws TooHeavyException, TooLargeException, InvalidTypeException {
         add(contents.size(), item);
     }
 
@@ -406,9 +406,8 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
-     * @throws CantWearException 
      */
-    public void addItems(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    public void addItems(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException {
         for (Item item : items) {
             this.add(item);
         }
@@ -442,12 +441,11 @@ public abstract class ItemContainer extends Item implements Serializable {
      * @param newLocation
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     public void empty(ItemContainer newLocation) throws InvalidTypeException,
-             TooHeavyException, TooLargeException, CantWearException {
+             TooHeavyException, TooLargeException {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);

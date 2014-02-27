@@ -5,7 +5,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -50,12 +49,11 @@ public class Quiver extends ItemContainer {
      * 
      * @param arrow
      *            arrow Item to add to Quiver.
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
-    public void add(final Arrow arrow) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void add(final Arrow arrow) throws InvalidTypeException,  TooHeavyException, TooLargeException {
         super.add(arrow);
     }
 

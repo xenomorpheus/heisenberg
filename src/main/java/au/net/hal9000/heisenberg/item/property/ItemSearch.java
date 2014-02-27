@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item.property;
 import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.ItemVisitor;
 
 
 /**
@@ -52,7 +51,7 @@ public abstract class ItemSearch implements ItemVisitor {
     /**
      * Method visit.
      * @param item Item
-     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(Item)
+     * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(Item)
      */
     public abstract void visit(Item item);
 

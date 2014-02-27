@@ -10,7 +10,6 @@ import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -57,13 +56,13 @@ public class ItemSearchMagicalTest {
     /**
      * Method testAccept. Ordinary container with non-magical inside.
      * 
-    
-    
-     * @throws InvalidTypeException * @throws CantWearException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException */
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
     @Test
-    public void testAccept4() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAccept4() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Box box = new Box();
         Cookie cookie = new Cookie();
         box.setWeightMax(cookie.getWeight());
@@ -77,13 +76,15 @@ public class ItemSearchMagicalTest {
     /**
      * Method testAccept. Ordinary container with magical inside.
      * 
-    
-    
-     * @throws InvalidTypeException * @throws CantWearException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException */
+     * 
+     * 
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
     @Test
-    public void testAccept5() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAccept5() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());
@@ -99,13 +100,16 @@ public class ItemSearchMagicalTest {
      * Method testAccept. Ordinary container with magical and non-magical
      * inside.
      * 
-    
-    
-     * @throws InvalidTypeException * @throws CantWearException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException */
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             *
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     */
     @Test
-    public void testAccept6() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAccept6() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         Cookie cookie = new Cookie();

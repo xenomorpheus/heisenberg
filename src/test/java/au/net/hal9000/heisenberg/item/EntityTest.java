@@ -10,10 +10,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -102,22 +98,6 @@ public class EntityTest {
         assertTrue("is Living", ItemProperty.isLiving(cat));
     }
 
-    /**
-     * Method testAdd.
-     * 
-     * @throws CantWearException
-     * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
-    @Test
-    public void testAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
-
-        // Cat
-        Cat cat = new Cat("Cat"); // Close enough
-        Item shield = new Shield();
-        cat.add(shield);
-    }
 
     // TODO testSetAllFrom - just test the fields at this level.
 

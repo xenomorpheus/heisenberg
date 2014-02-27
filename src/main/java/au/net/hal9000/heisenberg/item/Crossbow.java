@@ -5,6 +5,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.property.ItemVisitor;
+
 /**
  * @author bruins
  * @version $Revision: 1.0 $

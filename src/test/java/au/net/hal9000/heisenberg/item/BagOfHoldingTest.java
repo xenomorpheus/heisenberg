@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -26,12 +25,13 @@ public class BagOfHoldingTest {
      * test the properties for each type of bag.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void typeTest() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void typeTest() throws InvalidTypeException, 
+            TooHeavyException, TooLargeException {
         Bag ordinaryBag = new Bag();
         for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
             float expectedWeightBase = 0F;
@@ -107,38 +107,40 @@ public class BagOfHoldingTest {
      * testing that an ordinary Item may be added to the bag.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAdd() throws InvalidTypeException, 
+            TooHeavyException, TooLargeException {
         Cookie cookie = new Cookie();
-        cookie.setContainer(new Human());
-        BagOfHolding bag = new BagOfHolding(1);
-        bag.add(cookie);
-        assertEquals("cookie location", bag, cookie.getContainer());
+        cookie.setContainer(new Box());
+        BagOfHolding bagOfHolding = new BagOfHolding(1);
+        bagOfHolding.add(cookie);
+        assertEquals("cookie location", bagOfHolding, cookie.getContainer());
     }
 
     /**
      * an exposed sharp object causes rupture.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharp() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAddSharp() throws InvalidTypeException, 
+            TooHeavyException, TooLargeException {
         Sword sword = new Sword();
-        Human human = new Human();
-        sword.setContainer(human);
+        Box box = new Box();
+        sword.setContainer(box);
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(sword);
         } catch (InvalidTypeException e) {
             // The Exception we want
-            assertEquals("cookie location", human, sword.getContainer());
+            assertEquals("cookie location", box, sword.getContainer());
             throw e;
         }
     }
@@ -146,23 +148,23 @@ public class BagOfHoldingTest {
     /**
      * a covered sharp object may be added.
      * 
-     * @throws CantWearException
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testAddWrappedSharp() throws InvalidTypeException,
-            CantWearException, TooHeavyException, TooLargeException {
-        Human human = new Human();
+             TooHeavyException, TooLargeException {
+        Box box = new Box();
         Sword sword = new Sword();
-        sword.setContainer(human);
+        sword.setContainer(box);
         Scabbard scabbard = new Scabbard();
-        scabbard.setContainer(human);
+        scabbard.setContainer(box);
         scabbard.add(sword);
         // Check that locations are what we expect
         assertEquals("sword location", scabbard, sword.getContainer());
-        assertEquals("scabard location", human, scabbard.getContainer());
+        assertEquals("scabard location", box, scabbard.getContainer());
         BagOfHolding bag = new BagOfHolding(1);
 
         // Try adding the scabbard to the BOH
@@ -177,21 +179,21 @@ public class BagOfHoldingTest {
      * an extra-dimensional object causes rupture.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test(expected = InvalidTypeException.class)
     public void testAddMultidimensional() throws InvalidTypeException,
-            CantWearException, TooHeavyException, TooLargeException {
-        Human human = new Human();
+             TooHeavyException, TooLargeException {
+        Box box = new Box();
         BagOfHolding bagInner = new BagOfHolding(1);
-        bagInner.setContainer(human);
+        bagInner.setContainer(box);
         BagOfHolding bag = new BagOfHolding(1);
         try {
             bag.add(bagInner);
         } catch (InvalidTypeException e) {
-            assertEquals("cookie location", human, bagInner.getContainer());
+            assertEquals("cookie location", box, bagInner.getContainer());
             throw e;
         }
     }

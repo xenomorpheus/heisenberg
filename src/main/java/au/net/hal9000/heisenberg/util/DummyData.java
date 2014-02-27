@@ -25,7 +25,6 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -86,12 +85,11 @@ public final class DummyData {
      * 
      * 
      * @return a demo world of Item objects.
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
-    public static Location getDemoWorld() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public static Location getDemoWorld() throws InvalidTypeException, TooHeavyException, TooLargeException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(TEST_WEIGHT_VOLUME);
@@ -138,10 +136,10 @@ public final class DummyData {
         human.setWeightMax(TEST_WEIGHT_VOLUME);
         human.setVolumeMax(TEST_WEIGHT_VOLUME);
 
-        human.add(new Shield());
-        human.add(scabbard2);
-        human.add(quiver);
-        human.add(backpack);
+        human.wear(new Shield());
+        human.wear(scabbard2);
+        human.wear(quiver);
+        human.wear(backpack);
         world.add(human);
 
         Hand leftHand = human.getLeftHand();

@@ -20,12 +20,12 @@ import javax.persistence.InheritanceType;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Point3d;
 
@@ -727,14 +727,12 @@ public abstract class Item implements Serializable {
      *            the container that will hold this item.
      * @param requestedPosition
      *            the requested position within the container.
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     public void move(ItemContainer container, Point3d requestedPosition)
-            throws InvalidTypeException, CantWearException, TooHeavyException,
-            TooLargeException {
+            throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
         moveToPoint3d(requestedPosition);
     }
@@ -744,13 +742,12 @@ public abstract class Item implements Serializable {
      * 
      * @param container
      *            the container that will hold this item.
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     public void move(ItemContainer container) throws InvalidTypeException,
-            CantWearException, TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         container.add(this);
     }
 

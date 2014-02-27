@@ -1,6 +1,8 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.property;
 
 import java.util.Vector;
+
+import au.net.hal9000.heisenberg.item.Item;
 
 /**
  * Visitor Design Pattern for Item class.

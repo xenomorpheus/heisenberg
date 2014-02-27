@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
+
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -19,13 +19,14 @@ public class CatTest {
     /**
      * Method CatMove.
      * 
-     * @throws CantWearException
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testCatMove() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testCatMove() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy", "Black cat");
         cat.move(dungeon, new Point3d(0, 0, 0));
@@ -40,13 +41,13 @@ public class CatTest {
      * Method testDrinkRecipe.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testDrinkRecipe() throws InvalidTypeException,
-            CantWearException, TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Location dungeon = new Location("Dungeon");
         dungeon.setWeightMax(1);
         Cat cat = new Cat("Fluffy");
@@ -70,12 +71,13 @@ public class CatTest {
      * Method testDrink.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testDrink() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testDrink() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Location dungeon = new Location("Dungeon");
         dungeon.setWeightMax(1);
         Cat cat = new Cat("Fluffy");

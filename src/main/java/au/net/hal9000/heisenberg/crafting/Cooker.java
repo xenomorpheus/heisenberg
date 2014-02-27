@@ -7,7 +7,6 @@ import java.util.Vector;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -131,10 +130,9 @@ public class Cooker extends ItemContainer {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
     public final String setItemsAvailable(final int index, final Item item)
-            throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+            throws InvalidTypeException, TooHeavyException, TooLargeException {
         // item exists
         if (null == item) {
             return ITEM_MAY_NOT_BE_NULL;
@@ -349,9 +347,8 @@ public class Cooker extends ItemContainer {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
-    private String createProducts() throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    private String createProducts() throws InvalidTypeException, TooHeavyException, TooLargeException {
         StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
@@ -376,9 +373,8 @@ public class Cooker extends ItemContainer {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
-    public final String cook() throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    public final String cook() throws InvalidTypeException, TooHeavyException, TooLargeException {
         String requirementsMetError = requirementsMet();
         if (null != requirementsMetError) {
             return requirementsMetError;
@@ -410,10 +406,9 @@ public class Cooker extends ItemContainer {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
     public final void clearItemsAvailable(final int index,
-            final ItemContainer container) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+            final ItemContainer container) throws InvalidTypeException,  TooHeavyException, TooLargeException {
         if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }

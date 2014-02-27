@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -70,8 +69,7 @@ public abstract class Product {
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
-     * @throws CantWearException 
      */
-    abstract String createProduct(Cooker cooker) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException;
+    abstract String createProduct(Cooker cooker) throws InvalidTypeException, TooHeavyException, TooLargeException;
 
 }

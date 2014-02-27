@@ -10,7 +10,6 @@ import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -58,13 +57,14 @@ public class ItemSearchExtraDimensionalTest {
     /**
      * Method testAccept.
      * 
-     * @throws CantWearException
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAccept4() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAccept4() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());
@@ -79,13 +79,14 @@ public class ItemSearchExtraDimensionalTest {
     /**
      * Method testAccept.
      * 
-     * @throws CantWearException
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAccept5() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testAccept5() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());

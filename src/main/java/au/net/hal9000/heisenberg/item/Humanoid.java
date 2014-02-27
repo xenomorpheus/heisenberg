@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
@@ -14,10 +14,21 @@ import au.net.hal9000.heisenberg.util.PcClass;
 public abstract class Humanoid extends PcRace {
 
     /**
-     * Field serialVersionUID.
-     * (value is 1)
+     * Field serialVersionUID. (value is 1)
      */
     private static final long serialVersionUID = 1L;
+    /**
+     * head percentage of max weight and volume.
+     */
+    private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
+    /**
+     * left hand percentage of max weight and volume.
+     */
+    private static final float LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
+    /**
+     * right hand percentage of max weight and volume.
+     */
+    private static final float RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
     /**
      * Field head.
      */
@@ -31,10 +42,17 @@ public abstract class Humanoid extends PcRace {
      */
     private Hand rightHand = new Hand("Right Hand");
 
+    /**
+     * Field core.
+     */
+    private ItemContainer core = new ItemContainer("core");
+
     // Constructors
     /**
      * Constructor for Humanoid.
-     * @param name String
+     * 
+     * @param name
+     *            String
      */
     protected Humanoid(String name) {
         super(name);
@@ -42,8 +60,11 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Constructor for Humanoid.
-     * @param string String
-     * @param description String
+     * 
+     * @param string
+     *            String
+     * @param description
+     *            String
      */
     protected Humanoid(String string, String description) {
         super(string, description);
@@ -51,9 +72,13 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Constructor for Humanoid.
-     * @param name String
-     * @param description String
-     * @param pcClass PcClass
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
+     * @param pcClass
+     *            PcClass
      */
     protected Humanoid(String name, String description, PcClass pcClass) {
         super(name, description, pcClass);
@@ -61,8 +86,11 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Constructor for Humanoid.
-     * @param name String
-     * @param pcClass PcClass
+     * 
+     * @param name
+     *            String
+     * @param pcClass
+     *            PcClass
      */
     protected Humanoid(String name, PcClass pcClass) {
         super(name, pcClass);
@@ -72,6 +100,7 @@ public abstract class Humanoid extends PcRace {
     // Head
     /**
      * Method getHead.
+     * 
      * @return HumanoidHead
      */
     public HumanoidHead getHead() {
@@ -80,7 +109,9 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Method setHead.
-     * @param head HumanoidHead
+     * 
+     * @param head
+     *            HumanoidHead
      */
     public void setHead(HumanoidHead head) {
         this.head = head;
@@ -89,6 +120,7 @@ public abstract class Humanoid extends PcRace {
     // left Hand
     /**
      * Method getLeftHand.
+     * 
      * @return Hand
      */
     public Hand getLeftHand() {
@@ -97,7 +129,9 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Method setLeftHand.
-     * @param hand Hand
+     * 
+     * @param hand
+     *            Hand
      */
     public void setLeftHand(Hand hand) {
         leftHand = hand;
@@ -106,6 +140,7 @@ public abstract class Humanoid extends PcRace {
     // right Hand
     /**
      * Method getRightHand.
+     * 
      * @return Hand
      */
     public Hand getRightHand() {
@@ -114,19 +149,90 @@ public abstract class Humanoid extends PcRace {
 
     /**
      * Method setRightHand.
-     * @param hand Hand
+     * 
+     * @param hand
+     *            Hand
      */
     public void setRightHand(Hand hand) {
         rightHand = hand;
+    }
+
+    // Weight and capacity is spread across body.
+    /**
+     * 
+     * @return The max weight that can be carried.
+     */
+    public float getWeightMax() {
+        float weightMax = 0;
+        return weightMax;
+    }
+
+    /**
+     * Set the max weight that may be carried.
+     * 
+     * @param weightMax
+     *            The max weight that can be carried.
+     */
+    public void setWeightMax(float weightMax) {
+        float corePercentage = 100;
+        // head
+        head.setWeightMax(weightMax * HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // left hand
+        leftHand.setWeightMax(weightMax
+                * LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // right hand
+        rightHand.setWeightMax(weightMax
+                * RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // core
+        core.setWeightMax(weightMax * corePercentage);
+    }
+
+    /**
+     * get the maximum volume that this item can hold.
+     * 
+     * 
+     * @return the maximum volume that this item can hold.
+     */
+    public float getVolumeMax() {
+        float volumeMax = 0;
+        return volumeMax;
+    }
+
+    /**
+     * Set the maximum volume that this item can hold.
+     * 
+     * @param volumeMax
+     *            the maximum volume that this item can hold.
+     */
+    public void setVolumeMax(float volumeMax) {
+        float corePercentage = 100;
+        // head
+        head.setVolumeMax(volumeMax * HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // left hand
+        leftHand.setVolumeMax(volumeMax
+                * LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // right hand
+        rightHand.setVolumeMax(volumeMax
+                * RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
+        corePercentage -= RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
+        // core
+        core.setVolumeMax(volumeMax * corePercentage);
     }
 
     // Misc
     /**
      * Eat an item.
      * 
-     * @param pFood food Item to eat.
-    
-     * @throws InvalidTypeException */
+     * @param pFood
+     *            food Item to eat.
+     * 
+     * @throws InvalidTypeException
+     */
     public void eat(Item pFood) throws InvalidTypeException {
         if (!ItemProperty.isHumanoidFood(pFood)) {
             throw new InvalidTypeException(this.getName() + " can't eat "
@@ -142,23 +248,24 @@ public abstract class Humanoid extends PcRace {
      *            clothing Item to wear.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public void add(Item item) throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void wear(Item item) throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         if (!ItemProperty.isClothing(item)) {
             throw new InvalidTypeException(this.getName() + " can't wear "
                     + item.getName());
         }
-        super.add(item);
+        core.add(item);
     }
 
-    /** {@inheritDoc} * @return float
+    /**
+     * {@inheritDoc} * @return float
      */
     @Override
     public float getWeight() {
-        float total = super.getWeight();
+        float total = core.getWeight();
         total += head.getWeight();
         if (null != leftHand) {
             total += leftHand.getWeight();
@@ -169,11 +276,12 @@ public abstract class Humanoid extends PcRace {
         return total;
     }
 
-    /** {@inheritDoc} * @return float
+    /**
+     * {@inheritDoc} * @return float
      */
     @Override
     public float getVolume() {
-        float total = super.getVolume();
+        float total = core.getVolume();
         total += head.getVolume();
         if (null != leftHand) {
             total += leftHand.getVolume();
@@ -188,111 +296,36 @@ public abstract class Humanoid extends PcRace {
     @Override
     public void beNot() {
         // Call beNot on the Items directly declared in this class.
-        head.beNot();
         if (null != leftHand) {
             leftHand.beNot();
         }
         if (null != rightHand) {
             rightHand.beNot();
         }
+        core.beNot();
+        head.beNot();
         // Get super to do the rest.
         super.beNot();
     }
 
-    /** {@inheritDoc} * @return int
-     */
-    @Override
-    public int getChildCount() {
-        int count = 1; // head
-        if (null != leftHand) {
-            count++;
-        }
-        if (null != rightHand) {
-            count++;
-        }
-        count += super.getChildCount();
-        return count;
-    }
-
-    /** {@inheritDoc} * @param index int
-     * @return Item
-     */
-    @Override
-    public Item getChildAt(int index) {
-        // index is zero offset.
-        // head
-        if (0 == index) {
-            return head;
-        }
-        index--;
-
-        // leftHand
-        if (null != leftHand) {
-            if (0 == index) {
-                return leftHand;
-            }
-            index--;
-        }
-
-        // rightHand
-        if (null != rightHand) {
-            if (0 == index) {
-                return rightHand;
-            }
-            index--;
-        }
-
-        // Child is on super.
-        return super.getChildAt(index);
-    }
-
-    /** {@inheritDoc} * @param child Item
-     * @return int
-     */
-    @Override
-    public int getIndexOfChild(Item child) {
-        // index is zero offset.
-        int index = 0;
-        // head
-        if (head.equals(child)) {
-            return index;
-        }
-
-        // leftHand
-        if (null != leftHand) {
-            index++;
-            if (leftHand.equals(child)) {
-                return index;
-            }
-        }
-
-        // rightHand
-        if (null != rightHand) {
-            index++;
-            if (rightHand.equals(child)) {
-                return index;
-            }
-        }
-
-        // Child is on super.
-        int superIndexOfChild = super.getIndexOfChild(child);
-        if (superIndexOfChild >= 0) {
-            return index + 1 + superIndexOfChild;
-        }
-        // not found
-        return -1;
-    }
-
     // Visitor Design Pattern. Find items that match the criteria
-    /** {@inheritDoc} * @param visitor ItemVisitor
+    /**
+     * {@inheritDoc} * @param visitor ItemVisitor
      */
     @Override
     public void accept(ItemVisitor visitor) {
-        // TODO visit head, optional hands then super
-        visitor.visit(this);
+        visitor.visit(head);
+        if (null != leftHand) {
+            visitor.visit(leftHand);
+        }
+        if (null != rightHand) {
+            visitor.visit(rightHand);
+        }
+        visitor.visit(core);
     }
 
-    /** {@inheritDoc} * @return String
+    /**
+     * {@inheritDoc} * @return String
      */
     @Override
     public String getRace() {

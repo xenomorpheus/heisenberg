@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
+
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -77,13 +77,13 @@ public class PersistenceTest {
 
     /**
      * Method testContainer.
-     * @throws CantWearException 
+ 
      * @throws InvalidTypeException 
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
     @Test
-    public void testContainer() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testContainer() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Cookie cookie1 = new Cookie();
         Cookie cookie2 = new Cookie();
@@ -114,12 +114,12 @@ public class PersistenceTest {
     /**
      * Method testGetWorld.
      * @return Location
-     * @throws CantWearException 
+ 
      * @throws InvalidTypeException 
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
-    public static Location testGetWorld() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public static Location testGetWorld() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(100000);
@@ -168,10 +168,10 @@ public class PersistenceTest {
         human.setWeightMax(100000);
         human.setVolumeMax(100000);
 
-        human.add(new Shield());
-        human.add(scabbard2);
-        human.add(quiver);
-        human.add(backpack);
+        human.wear(new Shield());
+        human.wear(scabbard2);
+        human.wear(quiver);
+        human.wear(backpack);
 
         world.add(new Sword());
         world.add(new Horse());
@@ -189,14 +189,14 @@ public class PersistenceTest {
     /**
      * Method testLocation.
      * 
-     * @throws CantWearException
+
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
     @Test
     // world persistence
-    public void testLocation() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void testLocation() throws InvalidTypeException,  TooHeavyException, TooLargeException {
 
         Location loc = testGetWorld();
 

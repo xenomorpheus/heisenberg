@@ -23,7 +23,6 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -59,7 +58,7 @@ public class ScenarioSet01 {
         try {
             scabbard.add(sword);
             println("Sword now in scabbard.");
-        } catch (CantWearException e) {
+        } catch (InvalidTypeException e) {
             fail("Could not sheath the sword.");
         }
         println("Sword location: " + sword.getContainer());
@@ -69,13 +68,12 @@ public class ScenarioSet01 {
      * Method fullBackpackIntoBox.
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
     @Test
     public void fullBackpackIntoBox() throws InvalidTypeException,
-            CantWearException, TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         println(System.lineSeparator()
                 + "** A full backpack is placed in a box.");
         Backpack backpack = new Backpack();
@@ -128,31 +126,29 @@ public class ScenarioSet01 {
     /**
      * Method shieldAdd.
      * 
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
     @Test
-    public void shieldAdd() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void shieldAdd() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A Shield is equipped.");
         Shield shield = new Shield();
         Human human = new Human();
         println("Equip the shield.");
-        human.add(shield);
+        human.wear(shield);
         println("Shield location: " + shield.getContainer());
     }
 
     /**
      * Method quiverIsFilled.
      * 
-     * @throws CantWearException
      * @throws InvalidTypeException
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
     @Test
-    public void quiverIsFilled() throws InvalidTypeException, CantWearException, TooHeavyException, TooLargeException {
+    public void quiverIsFilled() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");

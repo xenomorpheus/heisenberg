@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -102,11 +101,10 @@ public class ProductItem extends Product {
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
-     * @throws CantWearException 
      */
     @Override
     public final String createProduct(final Cooker cooker)
-            throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+            throws InvalidTypeException, TooHeavyException, TooLargeException {
         ItemContainer newItemLocation = (ItemContainer) cooker
                 .findIngredientByName("Location");
         Item item = Factory.createItem(getType());

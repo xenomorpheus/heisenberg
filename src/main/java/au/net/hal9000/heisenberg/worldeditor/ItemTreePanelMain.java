@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -46,9 +45,6 @@ public class ItemTreePanelMain {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (InvalidTypeException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (CantWearException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (TooHeavyException e) {

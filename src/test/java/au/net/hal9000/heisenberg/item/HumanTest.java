@@ -30,4 +30,8 @@ public class HumanTest {
 		Human human = new Human();
 		assertEquals("Human", human.getName());
 	}
+	
+	
+
+	
 }

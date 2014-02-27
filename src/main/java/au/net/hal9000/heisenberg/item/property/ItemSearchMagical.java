@@ -21,7 +21,7 @@ public class ItemSearchMagical extends ItemSearch {
     /**
      * Method visit.
      * @param item Item
-     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(Item)
+     * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(Item)
      */
     public void visit(Item item) {
         if (ItemProperty.isMagical(item)) {

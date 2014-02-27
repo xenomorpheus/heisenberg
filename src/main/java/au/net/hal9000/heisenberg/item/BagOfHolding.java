@@ -7,7 +7,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.exception.CantWearException;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.ItemNotPresentException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
@@ -236,11 +235,10 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws CantWearException 
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
-    public void add(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException, CantWearException {
+    public void add(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
 
         // Recursively check for ExtraDimensional items.
         ItemSearch search = new ItemSearchExtraDimensional();
