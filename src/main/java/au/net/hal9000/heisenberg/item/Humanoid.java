@@ -8,6 +8,8 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
+ * Humanoid is more to do with the shape, so can be undead.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */

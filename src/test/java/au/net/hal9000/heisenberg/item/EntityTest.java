@@ -99,6 +99,7 @@ public class EntityTest {
     }
 
 
+
     // TODO testSetAllFrom - just test the fields at this level.
 
     // TODO clone - On an abstract class ?

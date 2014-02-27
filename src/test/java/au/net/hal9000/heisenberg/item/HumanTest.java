@@ -31,7 +31,13 @@ public class HumanTest {
 		assertEquals("Human", human.getName());
 	}
 	
-	
-
-	
+    /**
+     * Test drink
+     */
+    @Test
+    public void testDrink() {
+        Human human = new Human();
+        Water water = new Water();
+        human.drink(water);
+    }
 }
