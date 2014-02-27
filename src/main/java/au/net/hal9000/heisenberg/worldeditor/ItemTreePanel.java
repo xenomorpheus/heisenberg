@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -30,7 +32,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemTreePanel extends JPanel implements TreeModelListener {
+public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
@@ -227,6 +229,12 @@ public class ItemTreePanel extends JPanel implements TreeModelListener {
     public void treeStructureChanged(TreeModelEvent e) {
         // TODO finish
         System.out.println("treeStructureChanged - Node Changed.");
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        // TODO Auto-generated method stub
+        System.out.println("propertyChange - Node Changed.");
     }
     
 }

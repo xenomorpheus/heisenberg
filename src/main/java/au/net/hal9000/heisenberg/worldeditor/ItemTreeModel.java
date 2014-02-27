@@ -1,5 +1,8 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -19,6 +22,9 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
 class ItemTreeModel implements TreeModel {
     /** We specify the root directory when we create the model. */
     private Item root;
+
+    /** Support for PropertyChange messaging. */
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /**
      * instantiate the notification support
@@ -133,11 +139,10 @@ class ItemTreeModel implements TreeModel {
      */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        Item item = (Item) path.getLastPathComponent();
+        Item oldValue = (Item) path.getLastPathComponent();
         System.out.println("valueForPathChanged path=" + path + ", newValue='"
-                + newValue + "', item='" + item + "'");
-        // item.setName((String) newValue);
-        // fireTreeNodesChanged(new TreeModelEvent(this, path));
+                + newValue + "', oldValue='" + oldValue + "'");
+        this.pcs.firePropertyChange("value", oldValue, newValue);
     }
 
     /**
@@ -164,6 +169,16 @@ class ItemTreeModel implements TreeModel {
     public void removeTreeModelListener(TreeModelListener l) {
         System.out.println("removeTreeModelListener");
         support.removeTreeModelListener(l);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        System.out.println("addPropertyChangeListener");
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        System.out.println("removePropertyChangeListener");
+        this.pcs.removePropertyChangeListener(listener);
     }
 
 }
