@@ -599,27 +599,26 @@ public class BasicPanel extends JPanel {
         public void itemStateChanged(ItemEvent evt) {
             Object source = evt.getSource();
             if (source instanceof JComboBox) {
-                JComboBox comboBox = (JComboBox) source;
 
                 if (evt.getStateChange() == ItemEvent.SELECTED) {
 
                     // Class
-                    if (comboBox == classComboBox) {
-                        PcClass pcClass = (PcClass) comboBox.getSelectedItem();
+                    if (source == classComboBox) {
+                        PcClass pcClass = (PcClass)classComboBox.getSelectedItem();
                         pc.setPcClass(pcClass);
                     }
 
                     // Size
-                    else if (comboBox == sizeComboBox) {
-                        String newSize = (String) comboBox.getSelectedItem();
+                    else if (source == sizeComboBox) {
+                        String newSize = (String) sizeComboBox.getSelectedItem();
                         if (!newSize.equals(pc.getSize())) {
                             pc.setSize(newSize);
                         }
                     }
 
                     // Gender
-                    else if (comboBox == genderComboBox) {
-                        pc.setGender((String) comboBox.getSelectedItem());
+                    else if (source == genderComboBox) {
+                        pc.setGender((String) genderComboBox.getSelectedItem());
                     }
 
                 }

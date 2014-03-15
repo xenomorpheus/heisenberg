@@ -2,10 +2,12 @@ package au.net.hal9000.heisenberg.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Vector;
+import java.util.List;
+
 
 // XML Parser
 import nu.xom.Attribute;
@@ -41,20 +43,20 @@ public class Configuration {
     /** Singleton. Holder of the config */
     private static Configuration LastConfig = null;
     /** A list of genders. */
-    private Vector<String> genders;
+    private List<String> genders;
     /** A list of ItemClassConfiguration objects. */
-    private Vector<ItemClassConfiguration> itemClasses;
+    private List<ItemClassConfiguration> itemClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
     /** A map of possible pcClass details. */
     private TreeMap<String, PcClass> pcClasses;
     /** list of valid races. */
-    private Vector<String> races;
+    private List<String> races;
     /** A map of Recipe objects. */
     private TreeMap<String, Recipe> recipes;
     /** A map of SkillDetail objects. */
     private TreeMap<String, SkillDetail> skillDetails;
     /** A list of sizes. */
-    private Vector<String> sizes;
+    private List<String> sizes;
     /** Images to show in UI. */
     private TreeMap<String, SpriteSheetConfiguration> spriteSheets;
 
@@ -99,7 +101,7 @@ public class Configuration {
      * 
      * @return the itemClasses
      */
-    public final Vector<ItemClassConfiguration> getItemClasses() {
+    public final List<ItemClassConfiguration> getItemClasses() {
         return itemClasses;
     }
 
@@ -136,9 +138,9 @@ public class Configuration {
     /**
      * Method getRaces.
      * 
-     * @return Vector<String>
+     * @return List<String>
      */
-    public Vector<String> getRaces() {
+    public List<String> getRaces() {
         return races;
     }
 
@@ -146,9 +148,9 @@ public class Configuration {
     /**
      * Method getSizes.
      * 
-     * @return Vector<String>
+     * @return List<String>
      */
-    public Vector<String> getSizes() {
+    public List<String> getSizes() {
         return sizes;
     }
 
@@ -156,9 +158,9 @@ public class Configuration {
     /**
      * Method getGenders.
      * 
-     * @return Vector<String>
+     * @return List<String>
      */
-    public Vector<String> getGenders() {
+    public List<String> getGenders() {
         return genders;
     }
 
@@ -245,11 +247,11 @@ public class Configuration {
      * 
      * @return a collection of information about each Item type.
      */
-    private Vector<ItemClassConfiguration> xmlToItemClasses(
+    private List<ItemClassConfiguration> xmlToItemClasses(
             Element itemClassesElement) {
         Elements itemClassElements = itemClassesElement
                 .getChildElements("item");
-        Vector<ItemClassConfiguration> myItemClasses = new Vector<ItemClassConfiguration>();
+        List<ItemClassConfiguration> myItemClasses = new ArrayList<ItemClassConfiguration>();
         for (int i = 0; i < itemClassElements.size(); i++) {
             Element element = itemClassElements.get(i);
             ItemClassConfiguration itemClassConfiguration = new ItemClassConfiguration();
@@ -284,10 +286,10 @@ public class Configuration {
      * @param elements
      *            Parsed XML structure.
      * 
-     * @return a Vector strings.
+     * @return a List strings.
      */
-    private Vector<String> xmlToIdList(Elements elements) {
-        Vector<String> list = new Vector<String>();
+    private List<String> xmlToIdList(Elements elements) {
+        List<String> list = new ArrayList<String>();
         for (int i = 0; i < elements.size(); i++) {
             list.add(elements.get(i).getAttributeValue("id"));
         }
@@ -338,9 +340,9 @@ public class Configuration {
      * 
      * @return A list of RequirementItem objects.
      */
-    public static Vector<RequirementItem> xmlToRecipeRequirementItems(
+    public static List<RequirementItem> xmlToRecipeRequirementItems(
             Elements entries) {
-        Vector<RequirementItem> ingredients = new Vector<RequirementItem>();
+        List<RequirementItem> ingredients = new ArrayList<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String itemId = entry.getAttributeValue("id");
@@ -377,8 +379,8 @@ public class Configuration {
      * 
      * @return A list of Recipe Product objects.
      */
-    public static Vector<Product> xmlToRecipeProductItems(Elements entries) {
-        Vector<Product> products = new Vector<Product>();
+    public static List<Product> xmlToRecipeProductItems(Elements entries) {
+        List<Product> products = new ArrayList<Product>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String id = entry.getAttributeValue("id");
@@ -405,9 +407,9 @@ public class Configuration {
      * 
      * @return A list of Recipe Product objects.
      */
-    public static Vector<Product> xmlToRecipeProductEntityProperties(
+    public static List<Product> xmlToRecipeProductEntityProperties(
             Elements entries) {
-        Vector<Product> products = new Vector<Product>();
+        List<Product> products = new ArrayList<Product>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String id = entry.getAttributeValue("id");
@@ -433,11 +435,11 @@ public class Configuration {
      * 
      * @param entry
      *            an XML Recipe Product element.
-     * @return Vector<Product>
+     * @return List<Product>
      */
-    public static Vector<Product> xmlToRecipeProducts(Element entry) {
+    public static List<Product> xmlToRecipeProducts(Element entry) {
 
-        Vector<Product> products = new Vector<Product>();
+        List<Product> products = new ArrayList<Product>();
         if (null != entry) {
             Elements items = entry.getChildElements("item");
             if (null != items) {
@@ -457,10 +459,10 @@ public class Configuration {
      * 
      * @param entry
      *            an XML Requirement element.
-     * @return Vector<Requirement>
+     * @return List<Requirement>
      */
-    public static Vector<Requirement> xmlToRecipeRequirements(Element entry) {
-        Vector<Requirement> requirements = new Vector<Requirement>();
+    public static List<Requirement> xmlToRecipeRequirements(Element entry) {
+        List<Requirement> requirements = new ArrayList<Requirement>();
 
         Elements items = entry.getChildElements("item");
         requirements.addAll(xmlToRecipeRequirementItems(items));
@@ -512,11 +514,11 @@ public class Configuration {
         // Requirement objects
         Element requirementsElement = recipeElement
                 .getFirstChildElement("requirements");
-        Vector<Requirement> requirements = xmlToRecipeRequirements(requirementsElement);
+        List<Requirement> requirements = xmlToRecipeRequirements(requirementsElement);
 
         // Product objects.
         Element productElement = recipeElement.getFirstChildElement("products");
-        Vector<Product> products = xmlToRecipeProducts(productElement);
+        List<Product> products = xmlToRecipeProducts(productElement);
 
         // Return the completed recipe
         return new Recipe(id, description, process, mana, actionPoints,
@@ -731,10 +733,10 @@ public class Configuration {
     /**
      * Method getItemClassIds.
      * 
-     * @return Vector<String>
+     * @return List<String>
      */
-    public Vector<String> getItemClassIds() {
-        Vector<String> itemClassIds = new Vector<String>();
+    public List<String> getItemClassIds() {
+        List<String> itemClassIds = new ArrayList<String>();
         for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
             itemClassIds.add(itemClassConfiguration.getId());
         }

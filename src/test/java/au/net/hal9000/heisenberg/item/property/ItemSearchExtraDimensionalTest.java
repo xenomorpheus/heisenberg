@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -106,7 +107,7 @@ public class ItemSearchExtraDimensionalTest {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         Cookie cookie = new Cookie();
-        Vector<Item> container = new Vector<Item>();
+        List<Item> container = new ArrayList<Item>();
         container.add(box);
         container.add(boh);
         container.add(cookie);
@@ -116,7 +117,7 @@ public class ItemSearchExtraDimensionalTest {
 
         box.accept(search);
         assertEquals("count", 1, search.getMatchingItemsCount());
-        assertEquals("found", boh, search.getMatchingItems().elementAt(0));
+        assertEquals("found", boh, search.getMatchingItems().get(0));
     }
 
 }

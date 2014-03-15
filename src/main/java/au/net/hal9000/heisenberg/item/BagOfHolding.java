@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.Vector;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -177,8 +177,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      */
     public Item getItem(Item item, ItemContainer newLocation)
             throws ItemNotPresentException {
-        Vector<Item> items = this.getContents();
-        if (!items.removeElement(item)) {
+        List<Item> items = this.getContents();
+        if (!items.remove(item)) {
             throw new ItemNotPresentException("remove failed");
         }
         item.setContainer(newLocation);

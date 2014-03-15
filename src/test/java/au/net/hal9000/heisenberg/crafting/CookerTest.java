@@ -3,9 +3,10 @@ package au.net.hal9000.heisenberg.crafting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Vector;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -113,7 +114,7 @@ public class CookerTest {
              TooHeavyException, TooLargeException {
         RequirementItem requirementItem = new RequirementItem("Location",
                 "Location", false);
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
         requirements.add(requirementItem);
         Recipe recipe = new Recipe("someId", null, "someProcess", 0, 0,
                 requirements, null, null);
@@ -179,11 +180,11 @@ public class CookerTest {
         Cookie cookie = new Cookie();
         world.add(cookie);
 
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
         requirements.add(new RequirementItem("Location", "Location", false, 0));
         requirements.add(new RequirementItem("Cookie"));
 
-        Vector<Product> products = new Vector<Product>();
+        List<Product> products = new ArrayList<Product>();
         products.add(new ProductItem("Cookie"));
 
         // Skill(s)
@@ -238,7 +239,7 @@ public class CookerTest {
     @Test
     public void testRecipeIngredients() {
 
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
 
         // RequirementItem
         // FlintAndTinder (not consumed)
@@ -279,7 +280,7 @@ public class CookerTest {
         Location world = new Location("world");
         world.setVolumeMax(-1);
         world.setWeightMax(-1);
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
 
         // RequirementItem
         // FlintAndTinder, not consumed
@@ -776,7 +777,7 @@ public class CookerTest {
         world.add(cookie);
 
         // RequirementItem
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
         requirements.add(new RequirementItem("Cookie"));
 
         // Build a recipe with the list of required ingredients
@@ -829,7 +830,7 @@ public class CookerTest {
         world.add(cookie);
 
         // RequirementItem
-        Vector<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
         requirements.add(new RequirementItem("Cookie", "Cookie", false, 0));
 
         // Build a recipe with the list of required ingredients

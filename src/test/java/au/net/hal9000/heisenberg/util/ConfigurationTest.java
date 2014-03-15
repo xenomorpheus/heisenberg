@@ -7,7 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.Vector;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testItemClasses() {
-        Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
+        List<ItemClassConfiguration> itemClasses = config.getItemClasses();
         assertTrue("count", itemClasses.size() > 7);
     }
 
@@ -63,7 +63,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testGetItemClassIds() {
-        Vector<String> ids = config.getItemClassIds();
+        List<String> ids = config.getItemClassIds();
         assertTrue("count", ids.size() > 7);
     }
 
@@ -96,7 +96,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testRaces() {
-        Vector<String> races = config.getRaces();
+        List<String> races = config.getRaces();
         assertEquals("count", 3, races.size());
     }
 
@@ -105,7 +105,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testSizes() {
-        Vector<String> sizes = config.getSizes();
+        List<String> sizes = config.getSizes();
         assertEquals("count", 3, sizes.size());
     }
 
@@ -114,7 +114,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testGenders() {
-        Vector<String> genders = config.getGenders();
+        List<String> genders = config.getGenders();
         assertEquals("count", 4, genders.size());
     }
 

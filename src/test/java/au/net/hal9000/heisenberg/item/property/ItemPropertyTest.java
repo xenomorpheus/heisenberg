@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -155,7 +156,7 @@ public class ItemPropertyTest {
      */
     @Test
     public void testAlterPropertyByName() {
-        Vector<String> properties = new Vector<String>();
+        List<String> properties = new ArrayList<String>();
         properties.add(ItemProperty.AERATION);
         properties.add(ItemProperty.ENTERTAINMENT);
         properties.add(ItemProperty.NOURISHMENT);

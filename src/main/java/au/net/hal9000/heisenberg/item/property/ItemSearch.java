@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.item.Item;
 
@@ -14,14 +15,14 @@ public abstract class ItemSearch implements ItemVisitor {
     /**
      * Field matchingItems.
      */
-    private Vector<Item> matchingItems;
+    private List<Item> matchingItems;
 
     /**
      * Constructor for ItemSearch.
      */
     protected ItemSearch() {
         super();
-        matchingItems = new Vector<Item>();
+        matchingItems = new ArrayList<Item>();
     }
 
     /**
@@ -34,9 +35,9 @@ public abstract class ItemSearch implements ItemVisitor {
 
     /**
      * Method getMatchingItems.
-     * @return Vector<Item>
+     * @return List<Item>
      */
-    public Vector<Item> getMatchingItems() {
+    public List<Item> getMatchingItems() {
         return matchingItems;
     }
 
@@ -57,8 +58,8 @@ public abstract class ItemSearch implements ItemVisitor {
 
     /**
      * Method visit.
-     * @param item Vector<Item>
-     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(Vector<Item>)
+     * @param item List<Item>
+     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(List<Item>)
      */
-    public abstract void visit(Vector<Item> item);
+    public abstract void visit(List<Item> item);
 }

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item.property;
 
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.item.Item;
 
@@ -31,10 +31,10 @@ public class ItemSearchExtraDimensional extends ItemSearch {
 
     /**
      * Method visit.
-     * @param itemVector Vector<Item>
-     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(Vector<Item>)
+     * @param itemVector List<Item>
+     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(List<Item>)
      */
-    public void visit(Vector<Item> itemVector) {
+    public void visit(List<Item> itemVector) {
         Iterator<Item> itr = itemVector.iterator();
         while (itr.hasNext()) {
             Item item = itr.next();

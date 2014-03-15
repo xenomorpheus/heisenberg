@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.crafting;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
@@ -70,7 +70,7 @@ public class Cooker extends ItemContainer {
     /**
      * Ingredients we will cook with.
      */
-    private List<Item> ingredients = new Vector<Item>();
+    private List<Item> ingredients = new ArrayList<Item>();
 
     /**
      * Constructor.

@@ -1,9 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
@@ -19,7 +17,7 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
  * @author bruins
  * @version $Revision: 1.0 $
  **/
-class ItemTreeModel implements TreeModel {
+class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** We specify the root directory when we create the model. */
     private Item root;
 
@@ -29,7 +27,7 @@ class ItemTreeModel implements TreeModel {
     /**
      * instantiate the notification support
      */
-    private TreeModelSupport support;
+    private TreeModelSupport treeModelSupport;
 
     /**
      * Constructor for ItemTreeModel.
@@ -40,7 +38,6 @@ class ItemTreeModel implements TreeModel {
     public ItemTreeModel(Item root) {
         super();
         this.root = root;
-        support = new TreeModelSupport(this);
     }
 
     /**
@@ -128,57 +125,10 @@ class ItemTreeModel implements TreeModel {
         return index;
     }
 
-    /**
-     * This method is only invoked by the JTree for editable trees.
-     * 
-     * @param path
-     *            TreePath
-     * @param newValue
-     *            Object
-     * @see javax.swing.tree.TreeModel#valueForPathChanged(TreePath, Object)
-     */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        Item oldValue = (Item) path.getLastPathComponent();
-        System.out.println("valueForPathChanged path=" + path + ", newValue='"
-                + newValue + "', oldValue='" + oldValue + "'");
-        this.pcs.firePropertyChange("value", oldValue, newValue);
-    }
-
-    /**
-     * Method addTreeModelListener.
-     * 
-     * @param l
-     *            TreeModelListener
-     * @see javax.swing.tree.TreeModel#addTreeModelListener(TreeModelListener)
-     */
-    @Override
-    public void addTreeModelListener(TreeModelListener l) {
-        System.out.println("addTreeModelListener");
-        support.addTreeModelListener(l);
-    }
-
-    /**
-     * Method removeTreeModelListener.
-     * 
-     * @param l
-     *            TreeModelListener
-     * @see javax.swing.tree.TreeModel#removeTreeModelListener(TreeModelListener)
-     */
-    @Override
-    public void removeTreeModelListener(TreeModelListener l) {
-        System.out.println("removeTreeModelListener");
-        support.removeTreeModelListener(l);
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        System.out.println("addPropertyChangeListener");
-        this.pcs.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        System.out.println("removePropertyChangeListener");
-        this.pcs.removePropertyChangeListener(listener);
+        // TODO Auto-generated method stub
+        
     }
 
 }

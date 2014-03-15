@@ -22,15 +22,19 @@ public abstract class Humanoid extends PcRace {
     /**
      * head percentage of max weight and volume.
      */
-    private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
+    private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
     /**
      * left hand percentage of max weight and volume.
      */
-    private static final float LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
+    private static final float LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
     /**
      * right hand percentage of max weight and volume.
      */
-    private static final float RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 7;
+    private static final float RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
+    /**
+     * core percentage of max weight and volume.
+     */
+    private static final float CORE_PERCENTAGE_MAX_WEIGHT_VOLUME = 36;
     /**
      * Field head.
      */
@@ -176,20 +180,16 @@ public abstract class Humanoid extends PcRace {
      *            The max weight that can be carried.
      */
     public void setWeightMax(float weightMax) {
-        float corePercentage = 100;
         // head
         head.setWeightMax(weightMax * HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME);
-        corePercentage -= HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME;
         // left hand
         leftHand.setWeightMax(weightMax
                 * LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
-        corePercentage -= LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
         // right hand
         rightHand.setWeightMax(weightMax
                 * RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
-        corePercentage -= RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME;
         // core
-        core.setWeightMax(weightMax * corePercentage);
+        core.setWeightMax(weightMax * CORE_PERCENTAGE_MAX_WEIGHT_VOLUME);
     }
 
     /**
@@ -263,7 +263,7 @@ public abstract class Humanoid extends PcRace {
     }
 
     /**
-     * {@inheritDoc} * @return float
+     * {@inheritDoc}
      */
     @Override
     public float getWeight() {
@@ -279,7 +279,7 @@ public abstract class Humanoid extends PcRace {
     }
 
     /**
-     * {@inheritDoc} * @return float
+     * {@inheritDoc}
      */
     @Override
     public float getVolume() {

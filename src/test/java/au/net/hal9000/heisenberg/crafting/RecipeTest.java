@@ -2,10 +2,10 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class RecipeTest {
     public void setUp() {
         simple = new Recipe("recipe1", "the first recipe", null, REQUIRED_MANA,
                 REQUIRED_ACTION_POINTS, null, null, null);
-        requirementsAll = new Vector<Requirement>();
+        requirementsAll = new ArrayList<Requirement>();
 
         // RequirementItem
         RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
@@ -64,7 +64,7 @@ public class RecipeTest {
         requirementsAll.add(wood);
 
         // Product(s)
-        List<Product> products = new Vector<Product>();
+        List<Product> products = new ArrayList<Product>();
         products.add(new ProductItem("SmallGroundFire"));
 
         // Skills
@@ -85,7 +85,7 @@ public class RecipeTest {
     @Test
     public void testRecipeIngredients() {
 
-        List<Requirement> requirements = new Vector<Requirement>();
+        List<Requirement> requirements = new ArrayList<Requirement>();
 
         // RequirementItem
         RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder",
@@ -190,7 +190,7 @@ public class RecipeTest {
     @Test
     public void testGetProductCount() {
         // Product(s)
-        List<Product> products = new Vector<Product>();
+        List<Product> products = new ArrayList<Product>();
         products.add(new ProductItem("SmallGroundFire"));
 
         // Build a recipe with the list of required ingredients

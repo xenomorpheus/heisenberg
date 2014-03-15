@@ -2,7 +2,8 @@ package au.net.hal9000.heisenberg.item.property;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -93,7 +94,7 @@ public class ItemSearchMagicalTest {
         ItemSearch searchBox = new ItemSearchMagical();
         box.accept(searchBox);
         assertEquals("count", 1, searchBox.getMatchingItemsCount());
-        assertEquals("found", boh, searchBox.getMatchingItems().elementAt(0));
+        assertEquals("found", boh, searchBox.getMatchingItems().get(0));
     }
 
     /**
@@ -120,7 +121,7 @@ public class ItemSearchMagicalTest {
         ItemSearch searchBox = new ItemSearchMagical();
         box.accept(searchBox);
         assertEquals("count", 1, searchBox.getMatchingItemsCount());
-        assertEquals("found", boh, searchBox.getMatchingItems().elementAt(0));
+        assertEquals("found", boh, searchBox.getMatchingItems().get(0));
     }
 
     /**
@@ -131,7 +132,7 @@ public class ItemSearchMagicalTest {
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         Cookie cookie = new Cookie();
-        Vector<Item> container = new Vector<Item>();
+        List<Item> container = new ArrayList<Item>();
         container.add(box);
         container.add(boh);
         container.add(cookie);
@@ -141,7 +142,7 @@ public class ItemSearchMagicalTest {
 
         box.accept(search);
         assertEquals("count", 1, search.getMatchingItemsCount());
-        assertEquals("found", boh, search.getMatchingItems().elementAt(0));
+        assertEquals("found", boh, search.getMatchingItems().get(0));
     }
 
 }

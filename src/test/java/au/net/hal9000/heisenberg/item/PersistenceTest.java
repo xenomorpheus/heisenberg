@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,7 +32,7 @@ public class PersistenceTest {
     public void oneOfEachItem() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
-        Vector<ItemClassConfiguration> itemClasses = config.getItemClasses();
+        List<ItemClassConfiguration> itemClasses = config.getItemClasses();
 
         final String persistenceUnitName = "items";
         EntityManagerFactory factory = Persistence

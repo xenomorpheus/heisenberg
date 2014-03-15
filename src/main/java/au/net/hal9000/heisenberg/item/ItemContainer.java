@@ -6,7 +6,9 @@ package au.net.hal9000.heisenberg.item;
  */
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 
@@ -47,7 +49,7 @@ public class ItemContainer extends Item implements Serializable {
     /**
      * Field contents.
      */
-    private Vector<Item> contents = new Vector<Item>();
+    private List<Item> contents = new ArrayList<Item>();
 
     // Constructor
     /**
@@ -79,7 +81,7 @@ public class ItemContainer extends Item implements Serializable {
      * 
      * @return the contents
      */
-    public Vector<Item> getContents() {
+    public List<Item> getContents() {
         return contents;
     }
 
@@ -89,7 +91,7 @@ public class ItemContainer extends Item implements Serializable {
      * @param contents
      *            the new contents of this container.
      */
-    public void setContents(Vector<Item> contents) {
+    public void setContents(List<Item> contents) {
         this.contents = contents;
     }
 
@@ -191,7 +193,7 @@ public class ItemContainer extends Item implements Serializable {
      * 
      * @return get all the first level contents
      */
-    public Vector<Item> getChildren() {
+    public List<Item> getChildren() {
         return contents;
     }
 
@@ -407,7 +409,7 @@ public class ItemContainer extends Item implements Serializable {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public void addItems(Vector<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void addItems(List<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException {
         for (Item item : items) {
             this.add(item);
         }
@@ -422,17 +424,6 @@ public class ItemContainer extends Item implements Serializable {
      */
     public Item pop() {
         return contents.remove(contents.size() - 1);
-    }
-
-    /**
-     * Peek at the top item of contents without removing it.
-     * 
-     * 
-     * 
-     * @return The top item. * @throws EmptyStackException
-     */
-    public Item peek() {
-        return contents.lastElement();
     }
 
     /**

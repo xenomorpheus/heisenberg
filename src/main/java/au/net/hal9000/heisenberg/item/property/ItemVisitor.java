@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import java.util.Vector;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.item.Item;
 
@@ -21,6 +21,6 @@ public interface ItemVisitor {
      * Visit these items.
      * @param items set of items.
      */
-    void visit(Vector<Item> items);
+    void visit(List<Item> items);
 
 }

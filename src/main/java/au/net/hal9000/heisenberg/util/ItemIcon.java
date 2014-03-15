@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.Vector;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -36,7 +36,7 @@ public final class ItemIcon {
                 spritePackDetail.getRows(), spritePackDetail.getColumns());
 
         // For each type of Item, set the default Icon.
-        Vector<ItemClassConfiguration> itemClassConfigurations = config
+        List<ItemClassConfiguration> itemClassConfigurations = config
                 .getItemClasses();
         for (ItemClassConfiguration itemClassConfiguration : itemClassConfigurations) {
             int iconOpenId = itemClassConfiguration.getIconOpenId();

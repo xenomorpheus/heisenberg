@@ -1,3 +1,6 @@
+2014-03-15
+Replaced Vector types with more general form of List.
+
 2013-08-31
 Fleshing out the ProductItem class. 
 Trying to work towards having a Recipe for eating.
@@ -224,7 +227,7 @@ Much more difficult in java than it needs to be.
 Started adding PcClass (PC Class) java class.
 
 2012-09-06
-Replaced ArrayList with Vector to improve be thread safety.
+Replaced ArrayList with List to improve be thread safety.
 
 2012-09-05
 Merged character class properties from designer doco into XML config.

@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Vector;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class FactoryTest {
      */
     @Test
     public void createItemsAll() {
-        Vector<String> classes = config.getItemClassIds();
+        List<String> classes = config.getItemClassIds();
         for (String type : classes) {
             Object item = Factory.createItem(type);
             assertTrue("instanceof Item", item instanceof Item);

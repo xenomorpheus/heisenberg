@@ -2,10 +2,10 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
-
 
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
@@ -65,7 +65,7 @@ public class LocationTest {
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
         Cookie c3 = new Cookie();
-        Vector<Item> items = new Vector<Item>();
+        List<Item> items = new ArrayList<Item>();
         items.add(c1);
         items.add(c2);
         items.add(c3);
