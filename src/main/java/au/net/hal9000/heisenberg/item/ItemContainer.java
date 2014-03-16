@@ -9,10 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
@@ -237,11 +233,6 @@ public class ItemContainer extends Item implements Serializable {
 
     // misc methods
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     /**
      * Method hashCode.
      * 
@@ -258,24 +249,6 @@ public class ItemContainer extends Item implements Serializable {
         return result;
     }
 
-    /**
-     * Add the Item to the contents.
-     * 
-     * @param item
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     * @throws InvalidTypeException 
-     * 
-     */
-    public void add(Item item) throws TooHeavyException, TooLargeException, InvalidTypeException {
-        add(contents.size(), item);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     /**
      * Method equals.
      * 
@@ -316,6 +289,20 @@ public class ItemContainer extends Item implements Serializable {
     /**
      * Add the Item to the contents.
      * 
+     * @param item
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     * @throws InvalidTypeException
+     * 
+     */
+    public void add(Item item) throws TooHeavyException, TooLargeException,
+            InvalidTypeException {
+        add(contents.size(), item);
+    }
+
+    /**
+     * Add the Item to the contents.
+     * 
      * @param index
      *            index position to add at.
      * @param item
@@ -323,7 +310,8 @@ public class ItemContainer extends Item implements Serializable {
      * @throws TooHeavyException
      * @throws TooLargeException
      */
-    public void add(int index, Item item) throws TooHeavyException, TooLargeException {
+    public void add(int index, Item item) throws TooHeavyException,
+            TooLargeException {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
@@ -379,7 +367,7 @@ public class ItemContainer extends Item implements Serializable {
 
         // remove item from existing location
         if (null != itemCurrentContainer) {
-        	itemCurrentContainer.remove(item);
+            itemCurrentContainer.remove(item);
         }
 
         // Add the item and update the item's location.
@@ -409,7 +397,8 @@ public class ItemContainer extends Item implements Serializable {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public void addItems(List<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void addItems(List<Item> items) throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         for (Item item : items) {
             this.add(item);
         }
@@ -436,7 +425,7 @@ public class ItemContainer extends Item implements Serializable {
      * @throws TooHeavyException
      */
     public void empty(ItemContainer newLocation) throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);
