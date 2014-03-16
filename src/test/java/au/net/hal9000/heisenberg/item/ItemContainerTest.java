@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -41,13 +44,13 @@ public class ItemContainerTest {
      * Method testAdd.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testAdd() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testAdd() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         float volumeMax = 10F;
         float weightMax = 20F;
         // Bag
@@ -69,39 +72,62 @@ public class ItemContainerTest {
      * container.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void testAddDoesRemove() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
-        Bag bag1 = new Bag();
-        Bag bag2 = new Bag();
+            TooHeavyException, TooLargeException {
+        Bag bagStart = new Bag("Start");
+        Bag bagFinal = new Bag("Final");
         Cookie cookie = new Cookie();
-        assertEquals("bag1 count setup ", 0, bag1.getChildCount());
-        assertEquals("bag2 count setup ", 0, bag2.getChildCount());
+        assertEquals("Setup - bagStart count setup ", 0,
+                bagStart.getChildCount());
+        assertEquals("Setup - bagFinal count setup ", 0,
+                bagFinal.getChildCount());
+        assertNull("Setup - cookie's container", cookie.getContainer());
+        assertFalse("Setup - bagStart contains cookie",
+                bagStart.contains(cookie));
+        assertFalse("Setup - bagFinal contains cookie",
+                bagStart.contains(cookie));
         // add cookie to one bag
-        bag1.add(cookie);
-        assertEquals("bag1 count setup ", 1, bag1.getChildCount());
+        bagStart.add(cookie);
+        assertEquals("Start - bagStart count setup ", 1,
+                bagStart.getChildCount());
+        assertEquals("Start - bagFinal count setup ", 0,
+                bagFinal.getChildCount());
+        assertEquals("Start - cookie's container", bagStart,
+                cookie.getContainer());
+        assertTrue("Start - bagStart contains cookie",
+                bagStart.contains(cookie));
+        assertFalse("Start - bagFinal contains cookie",
+                bagFinal.contains(cookie));
         // transfer cookie to other bag
-        bag2.add(cookie);
-        assertEquals("bag1 count setup ", 0, bag1.getChildCount());
-        assertEquals("bag2 count setup ", 1, bag2.getChildCount());
-
+        bagFinal.add(cookie);
+        assertEquals("Final - bagStart count setup ", 0,
+                bagStart.getChildCount());
+        assertEquals("Final - bagFinal count setup ", 1,
+                bagFinal.getChildCount());
+        assertEquals("Final - cookie's container", bagFinal,
+                cookie.getContainer());
+        assertFalse("Final - bagStart contains cookie",
+                bagStart.contains(cookie));
+        assertTrue("Final - bagFinal contains cookie",
+                bagFinal.contains(cookie));
     }
 
     /**
      * Method testAddMulti.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testAddMulti() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testAddMulti() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         final int size = 3;
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
@@ -122,14 +148,14 @@ public class ItemContainerTest {
     /**
      * Method testGetContentsCount.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void testGetContentsCount() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         final Bag bag = new Bag();
         final Cookie c1 = new Cookie();
         final Cookie c2 = new Cookie();
@@ -143,14 +169,14 @@ public class ItemContainerTest {
     /**
      * Method testGetWeight.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testGetWeight() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testGetWeight() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Bag bag = new Bag();
         bag.setWeightBase(10);
         Cookie c1 = new Cookie();
@@ -168,14 +194,14 @@ public class ItemContainerTest {
     /**
      * Method testGetVolume.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testGetVolume() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testGetVolume() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Bag bag = new Bag();
         bag.setVolumeBase(10);
         Cookie c1 = new Cookie();
@@ -193,14 +219,14 @@ public class ItemContainerTest {
     /**
      * Method testGetValue.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testGetValue() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testGetValue() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Bag bag = new Bag();
         bag.setValueBase(new Currency(1, 0, 0, 0));
         Cookie c1 = new Cookie();
@@ -218,14 +244,14 @@ public class ItemContainerTest {
     /**
      * Method testBeNot.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testBeNot() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testBeNot() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Bag bag = new Bag();
         Cookie c1 = new Cookie();
         Cookie c2 = new Cookie();
@@ -242,13 +268,13 @@ public class ItemContainerTest {
      * Method testGetChildCount.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void testGetChildCount() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         assertEquals("getChildCount", 0, bag.getChildCount());
         bag.add(new Cookie());
@@ -259,13 +285,13 @@ public class ItemContainerTest {
      * Method testGetChildAt.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void testGetChildAt() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Cookie cookie = new Cookie();
         Scabbard scabbard = new Scabbard();
@@ -280,13 +306,13 @@ public class ItemContainerTest {
      * Method testGetIndexOfChild.
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
     public void testGetIndexOfChild() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         Scabbard scabbard = new Scabbard();
         Cookie cookie1 = new Cookie("Cookie1");
@@ -313,13 +339,13 @@ public class ItemContainerTest {
      * 
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test(expected = TooHeavyException.class)
     public void testAddTooHeavy() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setWeightMax(2);
         Cookie cookie = new Cookie();
@@ -336,13 +362,13 @@ public class ItemContainerTest {
      * 
      * 
      * @throws InvalidTypeException
-
+     * 
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test(expected = TooLargeException.class)
     public void testAddTooLarge() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Bag bag = new Bag();
         bag.setVolumeMax(2);
         Cookie cookie = new Cookie();
