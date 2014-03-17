@@ -65,8 +65,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         boolean isLeaf = true;
 
         if (node instanceof ItemContainer) {
-            ItemContainer container = (ItemContainer) node;
-            isLeaf = container.getContentsCount() == 0;
+            isLeaf = true;
         }
         // TODO System.out.println("isLeaf " + node + "= " + isLeaf);
         return isLeaf;

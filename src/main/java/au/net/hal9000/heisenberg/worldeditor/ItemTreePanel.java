@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -34,7 +33,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
+public class ItemTreePanel extends JPanel implements TreeModelListener,
+        PropertyChangeListener {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
@@ -77,8 +77,8 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
         JPanel addButtonPanel = new JPanel();
 
         // A JComboBox of Item types we can add
-        List<String> classIds=  config.getItemClassIds();
-        String[] classIdStrings = classIds.toArray(new String[classIds.size()]);        
+        List<String> classIds = config.getItemClassIds();
+        String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
         itemClassesList = new JComboBox<String>(classIdStrings);
         addButtonPanel.add(itemClassesList);
 
@@ -103,14 +103,15 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
                         try {
-                            selContainer.add(selContainer.getChildCount(),newNode);
+                            selContainer.add(selContainer.getChildCount(),
+                                    newNode);
                         } catch (TooHeavyException | TooLargeException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                         System.out.println("DEBUG: newNode is " + newNode);
 
-                        TreePath path =  getPathToRoot(newNode);
+                        TreePath path = getPathToRoot(newNode);
                         System.out.println("DEBUG: path is " + path);
                         tree.scrollPathToVisible(path);
                         tree.setSelectionPath(path);
@@ -138,7 +139,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     public void setRoot(Location root) {
         // Create a TreeModel object to represent our m_tree of files
         treeModel = new ItemTreeModel(root);
-        
+
         // This class will listen to changes in the TreeModel.
         treeModel.addTreeModelListener(this);
 
@@ -157,17 +158,14 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
      * @return a TreePath of nodes from root to the target node.
      */
 
-    private TreePath getPathToRoot(Item node) {
+    static TreePath getPathToRoot(Item node) {
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        Item debugTarget = node;
         while ((null != node)) {
-            // insert at start of list.
-            itemArrayList.add(0, node);
+            itemArrayList.add(node);
             node = node.getContainer();
         }
-        System.out.println("getPathToRoot node='" + debugTarget + "', path="
-                + itemArrayList);
-        return new TreePath(itemArrayList.toArray(new Item[itemArrayList.size()]));
+        return new TreePath(
+                itemArrayList.toArray(new Item[itemArrayList.size()]));
     }
 
     /**
@@ -208,7 +206,6 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
         System.out.println("Node Inserted.");
     }
 
-
     /**
      * Method treeNodesRemoved.
      * 
@@ -240,5 +237,5 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
         // TODO Auto-generated method stub
         System.out.println("propertyChange - Node Changed.");
     }
-    
+
 }
