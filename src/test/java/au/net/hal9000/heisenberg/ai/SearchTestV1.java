@@ -13,9 +13,9 @@ import au.net.hal9000.heisenberg.units.Point3d;
  */
 public class SearchTestV1 {
 
-    /** desirect x pos. */
+    /** desired x pos. */
     private static final int X_POS = 3;
-    /** desirect y pos. */
+    /** desired y pos. */
     private static final int Y_POS = 4;
 
     /**
@@ -24,6 +24,7 @@ public class SearchTestV1 {
     @Test
     public void test() {
 
+        // The expected Actions to reach the Goal.
         Path expectedPath = new Path();
         expectedPath.add(SuccessorFunctionV1.NORTH);
         expectedPath.add(SuccessorFunctionV1.NORTH);
@@ -32,22 +33,23 @@ public class SearchTestV1 {
         expectedPath.add(SuccessorFunctionV1.EAST);
         expectedPath.add(SuccessorFunctionV1.NORTH);
         expectedPath.add(SuccessorFunctionV1.EAST);
+        
+        // Initial ModelState
         Point3d agentPosition = new Point3d();
-        Point3d goalPosition = new Point3d(X_POS, Y_POS, 0);
-        ModelState modelState = new ModelStateV1(agentPosition, goalPosition);
+        Point3d desiredGoalPosition = new Point3d(X_POS, Y_POS, 0);
+        ModelState initialModelState = new ModelStateV1(agentPosition, desiredGoalPosition);
 
+        
+        // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorV1();
         TransitionFunction transitionFunction = new TransitionFunctionV1();
         SuccessorFunction successorFunction = new SuccessorFunctionV1(
                 transitionFunction);
-
         Search search = new Search(successorFunction, modelStateEvaluator);
 
-        // System.out.println("Goal is at position: " + goalPosition);
-        // System.out.println("Agent is at position: " + agentPosition);
-        Path gotPath = search.findPath(modelState);
+        
+        // Search
+        Path gotPath = search.findPath(initialModelState);
         assertTrue("path correct", expectedPath.equals(gotPath));
-        System.out.println(gotPath);
-
     }
 }

@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.units.Point3d;
@@ -22,29 +24,28 @@ public class SearchTestV2 {
     @Test
     public void test() {
 
+        // The expected Actions to reach the Goal.
         Path expectedPath = new Path();
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
         expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
+
+        // Initial ModelState        
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d(X_POS, Y_POS, 0);
         ModelState modelState = new ModelStateV1(agentPosition, goalPosition);
 
+        // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorV1();
         TransitionFunction transitionFunction = new TransitionFunctionV1();
         SuccessorFunction successorFunction = new SuccessorFunctionV2(
                 transitionFunction);
-
         Search search = new Search(successorFunction, modelStateEvaluator);
 
-        // System.out.println("Goal is at position: " + goalPosition);
-        // System.out.println("Agent is at position: " + agentPosition);
+        // Search
         Path gotPath = search.findPath(modelState);
-        // System.out.println("gotPath     : " + gotPath);
-        // System.out.println("expectedPath: " + expectedPath);
-        // TODO assertTrue("path correct", expectedPath.equals(gotPath));
-
+        assertTrue("path correct", expectedPath.equals(gotPath));
     }
 }

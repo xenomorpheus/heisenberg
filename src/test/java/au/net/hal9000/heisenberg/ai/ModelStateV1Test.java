@@ -31,14 +31,16 @@ public class ModelStateV1Test {
     /** test setAgentPosition. */
     @Test
     public void testSetAgentPosition() {
-        Point3d agentPosition = new Point3d();
+        Point3d agentPositionInitial = new Point3d();
         Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
-        Point3d newAgentPosition = new Point3d(0, 0, 1);
-        modelState.setAgentPosition(newAgentPosition);
-        Point3d gotAgentPosition = modelState.getAgentPosition();
-        assertEquals(newAgentPosition, gotAgentPosition);
-        assertNotEquals(agentPosition, gotAgentPosition);
+        ModelStateV1 modelState = new ModelStateV1(agentPositionInitial, goalPosition);
+        Point3d agentPositionNew = new Point3d(0, 0, 1);
+        assertNotEquals("test integrity. Possitions must be different", agentPositionInitial, agentPositionNew);
+        // Run test
+
+        modelState.setAgentPosition(agentPositionNew);
+        Point3d agentPositionGot = modelState.getAgentPosition();
+        assertEquals("Position should be updated",agentPositionNew, agentPositionGot);
     }
 
     /** test getGoalPosition. */
@@ -47,27 +49,27 @@ public class ModelStateV1Test {
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d();
         ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
-        Point3d gotGoalPosition = modelState.getGoalPosition();
-        assertEquals(goalPosition, gotGoalPosition);
+        Point3d goalPositionGot = modelState.getGoalPosition();
+        assertEquals(goalPosition, goalPositionGot);
     }
 
     /** test setGoalPosition. */
     @Test
     public void testSetGoalPosition() {
         Point3d agentPosition = new Point3d();
-        Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
+        Point3d initialGoalPosition = new Point3d();
+        ModelStateV1 modelState = new ModelStateV1(agentPosition, initialGoalPosition);
         Point3d newGoalPosition = new Point3d(0, 0, 1);
+        assertNotEquals("test integrity. Possitions must be different", initialGoalPosition, newGoalPosition);
+        // Run test
         modelState.setGoalPosition(newGoalPosition);
         Point3d gotGoalPosition = modelState.getGoalPosition();
-        assertEquals(newGoalPosition, gotGoalPosition);
-        assertNotEquals(goalPosition, gotGoalPosition);
+        assertEquals("Position should be updated", newGoalPosition, gotGoalPosition);
     }
 
     /**
      * test clone.
      * 
-    
      * @throws CloneNotSupportedException */
     @Test
     public void testClone() throws CloneNotSupportedException {

@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.Queue;
 
 /**
- * Generate new ModelState objects from current object.
+ * Generate all possible ModelState objects from current ModelState object.
  * 
  * @author bruins
  * @version $Revision: 1.0 $

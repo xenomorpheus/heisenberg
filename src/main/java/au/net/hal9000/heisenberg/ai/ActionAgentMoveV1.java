@@ -29,17 +29,19 @@ public class ActionAgentMoveV1 implements Action {
 
     /**
      * 
-    
-     * @return the amount of movement. */
+     * 
+     * @return the amount of movement.
+     */
     public Point3d getDelta() {
         return delta;
     }
 
     /**
      * Method toString.
-    
-    
-     * @return String * @see au.net.hal9000.heisenberg.ai.Action#toString() */
+     * 
+     * @see au.net.hal9000.heisenberg.ai.Action#toString()
+     * @return String
+     */
     @Override
     public String toString() {
         if (null != label) {
@@ -55,8 +57,9 @@ public class ActionAgentMoveV1 implements Action {
      */
     /**
      * Method hashCode.
-    
-     * @return int */
+     * 
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -73,9 +76,12 @@ public class ActionAgentMoveV1 implements Action {
      */
     /**
      * Method equals.
-     * @param obj Object
-    
-     * @return boolean */
+     * 
+     * @param obj
+     *            Object
+     * 
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

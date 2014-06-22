@@ -1,15 +1,16 @@
 package au.net.hal9000.heisenberg.ai;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * AI path of Action objects. * @author bruins
+ * AI path of Action objects. <br>
  * 
  * @version $Revision: 1.0 $
  * @author bruins
  */
-public class Path {
+public class Path implements Iterable<Action>{
 
     /** a list of actions. */
     private Queue<Action> queue = new LinkedList<Action>();
@@ -76,16 +77,37 @@ public class Path {
             return false;
         }
         final Path other = (Path) obj;
-        if (null == queue) {
-            if (null != other.queue) {
+        if ( size() != other.size()){
+            return false;
+        }
+        // Compare each element
+        Iterator<Action> otherIterator = other.iterator();
+        for (Action action : this){
+            Action otherAction = otherIterator.next();
+            if (! action.equals(otherAction)){
                 return false;
             }
-        } else if (!queue.equals(other.queue)) {
-            return false;
         }
         return true;
     }
 
+    /**
+     * Method size
+     * @return number of Actions
+     */
+    public int size(){
+        return queue.size();
+    }
+
+    /**
+     * Method iterator
+     * @return Iterator of Actions
+     */
+    public Iterator<Action> iterator(){
+        return queue.iterator();
+    }
+    
+    
     /**
      * Method toString.
      * 

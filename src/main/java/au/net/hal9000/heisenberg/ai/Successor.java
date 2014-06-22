@@ -1,6 +1,10 @@
 package au.net.hal9000.heisenberg.ai;
 
 /**
+ * A Successor object contains two things:<br>
+ * 1) A valid Action that may be performed at the current ModelState.<br>
+ * 2) The resultant ModelState when the Action is performed.<br>
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -25,20 +29,24 @@ public class Successor {
     }
 
     /**
-    
-     * @return get the action. */
+     * 
+     * @return get the action.
+     */
     public Action getAction() {
         return action;
     }
 
     /**
-    
-     * @return get the new model state. */
+     * 
+     * @return get the new model state.
+     */
     public ModelState getModelState() {
         return modelState;
     }
 
-    /** {@inheritDoc} * @return String
+    /**
+     * {@inheritDoc}
+     * 
      * @return String
      */
     @Override

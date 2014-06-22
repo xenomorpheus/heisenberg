@@ -1,8 +1,11 @@
 package au.net.hal9000.heisenberg.ai;
 
 /**
- * Hold the state of the module. AI - Computational Search. Used by an evaluation
- * function can determine how close we are to the goal state. Marker Interface.
+ * This is a Marker Interface.<br>
+ * <br>
+ * Agents think of the world in a simplified version of the world called the model.<br>
+ * A ModelState object holds an instantaneous representation of that state.
+ * Typically a ModelState object will be evaluated to determine how close the Agent is the Goal.
  * 
  * @author bruins
  * @version $Revision: 1.0 $

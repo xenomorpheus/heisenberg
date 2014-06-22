@@ -7,7 +7,8 @@ import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
  * Generate new ModelState objects from current object. This version is
- * particularly dumb. 1. Doesn't know about walls.<br>
+ * particularly dumb.<br>
+ * 1. Doesn't know about walls.<br>
  * 2. Only knows about movement.<br>
  * 
  * @author bruins
