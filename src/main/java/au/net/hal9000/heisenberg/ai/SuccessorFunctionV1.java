@@ -3,33 +3,21 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import au.net.hal9000.heisenberg.units.Point3d;
-
 /**
  * Generate new ModelState objects from current object. This version is
  * particularly dumb.<br>
  * 1. Doesn't know about walls.<br>
- * 2. Only knows about movement.<br>
+ * 2. Only moves horizontally or vertically.<br>
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
 public final class SuccessorFunctionV1 implements SuccessorFunction {
 
-    /** move agent North. */
-    static final ActionAgentMoveV1 NORTH = new ActionAgentMoveV1("North",
-            new Point3d(0, 1, 0));
-    /** move agent South. */
-    static final ActionAgentMoveV1 SOUTH = new ActionAgentMoveV1("South",
-            new Point3d(0, -1, 0));
-    /** move agent East. */
-    static final ActionAgentMoveV1 EAST = new ActionAgentMoveV1("East",
-            new Point3d(1, 0, 0));
-    /** move agent West. */
-    static final ActionAgentMoveV1 WEST = new ActionAgentMoveV1("West",
-            new Point3d(-1, 0, 0));
     /** A list of directions that might be possible. */
-    private static final ActionAgentMoveV1[] DIRECTIONS = {NORTH, SOUTH, EAST, WEST };
+    private static final ActionAgentMoveV1[] DIRECTIONS = {
+            ActionAgentMoveV1.NORTH, ActionAgentMoveV1.SOUTH,
+            ActionAgentMoveV1.EAST, ActionAgentMoveV1.WEST };
 
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
@@ -46,7 +34,9 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
 
     /**
      * Method generateSuccessors.
-     * @param modelState ModelState
+     * 
+     * @param modelState
+     *            ModelState
      * @return Queue<Successor>
      * @see au.net.hal9000.heisenberg.ai.SuccessorFunction#generateSuccessors(ModelState)
      */

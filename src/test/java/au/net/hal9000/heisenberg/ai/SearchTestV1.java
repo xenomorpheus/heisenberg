@@ -26,13 +26,13 @@ public class SearchTestV1 {
 
         // The expected Actions to reach the Goal.
         Path expectedPath = new Path();
-        expectedPath.add(SuccessorFunctionV1.NORTH);
-        expectedPath.add(SuccessorFunctionV1.NORTH);
-        expectedPath.add(SuccessorFunctionV1.EAST);
-        expectedPath.add(SuccessorFunctionV1.NORTH);
-        expectedPath.add(SuccessorFunctionV1.EAST);
-        expectedPath.add(SuccessorFunctionV1.NORTH);
-        expectedPath.add(SuccessorFunctionV1.EAST);
+        expectedPath.add(ActionAgentMoveV1.NORTH);
+        expectedPath.add(ActionAgentMoveV1.NORTH);
+        expectedPath.add(ActionAgentMoveV1.EAST);
+        expectedPath.add(ActionAgentMoveV1.NORTH);
+        expectedPath.add(ActionAgentMoveV1.EAST);
+        expectedPath.add(ActionAgentMoveV1.NORTH);
+        expectedPath.add(ActionAgentMoveV1.EAST);
         
         // Initial ModelState
         Point3d agentPosition = new Point3d();
@@ -47,7 +47,6 @@ public class SearchTestV1 {
                 transitionFunction);
         Search search = new Search(successorFunction, modelStateEvaluator);
 
-        
         // Search
         Path gotPath = search.findPath(initialModelState);
         assertTrue("path correct", expectedPath.equals(gotPath));

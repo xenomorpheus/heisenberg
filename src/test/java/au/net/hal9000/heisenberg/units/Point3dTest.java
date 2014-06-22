@@ -6,10 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.ai.Action;
-import au.net.hal9000.heisenberg.ai.ActionAgentMoveV1;
-import au.net.hal9000.heisenberg.ai.ModelStateV1;
-
 /**
  * 3D ponit in space.
  * 
@@ -123,22 +119,22 @@ public class Point3dTest {
         Point3d point2 = new Point3d(X_TEST, Y_TEST, Z_TEST);
         assertTrue("equals", point.equals(point2));
         // x
-        point.setX(X_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
-        assertTrue("true x", point.equals(point2, Point3d.getTolerance()));
-        point.setX(X_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
-        assertFalse("false x", point.equals(point2, Point3d.getTolerance()));
+        point.setX(X_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true x", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        point.setX(X_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false x", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setX(X_TEST);
         // y
-        point.setY(Y_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
-        assertTrue("true y", point.equals(point2, Point3d.getTolerance()));
-        point.setY(Y_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
-        assertFalse("false y", point.equals(point2, Point3d.getTolerance()));
+        point.setY(Y_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true y", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        point.setY(Y_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false y", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setY(Y_TEST);
         // z
-        point.setZ(Z_TEST + WITHIN_TOLERANCE * Point3d.getTolerance());
-        assertTrue("true z", point.equals(point2, Point3d.getTolerance()));
-        point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Point3d.getTolerance());
-        assertFalse("false z", point.equals(point2, Point3d.getTolerance()));
+        point.setZ(Z_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true z", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false z", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setX(Z_TEST);
     }
 

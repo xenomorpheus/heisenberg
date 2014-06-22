@@ -8,6 +8,19 @@ import au.net.hal9000.heisenberg.units.Point3d;
  */
 public class ActionAgentMoveV1 implements Action {
 
+    /** move agent North. */
+    public static final ActionAgentMoveV1 NORTH = new ActionAgentMoveV1("North",
+            new Point3d(0, 1, 0));
+    /** move agent South. */
+    public static final ActionAgentMoveV1 SOUTH = new ActionAgentMoveV1("South",
+            new Point3d(0, -1, 0));
+    /** move agent East. */
+    public static final ActionAgentMoveV1 EAST = new ActionAgentMoveV1("East",
+            new Point3d(1, 0, 0));
+    /** move agent West. */
+    public static final ActionAgentMoveV1 WEST = new ActionAgentMoveV1("West",
+            new Point3d(-1, 0, 0));
+    
     /** human understandable label. */
     private final String label;
     /** amount of movement. */

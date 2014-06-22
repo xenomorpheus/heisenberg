@@ -9,6 +9,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * Generate new ModelState objects from current object.<br>
  * This version is particularly dumb. <br>
  * 1. Doesn't know about walls.<br>
+ * 2. It generates 4 Successors at 90 degrees to each other, with a step of 1.0 unit.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
