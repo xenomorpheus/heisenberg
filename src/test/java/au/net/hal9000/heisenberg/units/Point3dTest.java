@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.Action;
 import au.net.hal9000.heisenberg.ai.ActionAgentMoveV1;
+import au.net.hal9000.heisenberg.ai.ModelStateV1;
 
 /**
  * 3D ponit in space.
@@ -18,38 +19,31 @@ import au.net.hal9000.heisenberg.ai.ActionAgentMoveV1;
  */
 public class Point3dTest {
     /**
-     * Field TEST_TOLERANCE.
-     * (value is 0.01)
+     * Field TEST_TOLERANCE. (value is 0.01)
      */
     private static final double TEST_TOLERANCE = 0.01f;
     /**
-     * Field WITHIN_TOLERANCE.
-     * (value is 0.9)
+     * Field WITHIN_TOLERANCE. (value is 0.9)
      */
     private static final double WITHIN_TOLERANCE = 0.9;
     /**
-     * Field OUTSIDE_TOLERANCE.
-     * (value is 1.1)
+     * Field OUTSIDE_TOLERANCE. (value is 1.1)
      */
     private static final double OUTSIDE_TOLERANCE = 1.1;
     /**
-     * Field ZERO.
-     * (value is 0.0)
+     * Field ZERO. (value is 0.0)
      */
     private static final double ZERO = 0f;
     /**
-     * Field X_TEST.
-     * (value is 1.0)
+     * Field X_TEST. (value is 1.0)
      */
     private static final double X_TEST = 1;
     /**
-     * Field Y_TEST.
-     * (value is 2.0)
+     * Field Y_TEST. (value is 2.0)
      */
     private static final double Y_TEST = 2;
     /**
-     * Field Z_TEST.
-     * (value is 3.0)
+     * Field Z_TEST. (value is 3.0)
      */
     private static final double Z_TEST = 3;
 
@@ -96,6 +90,7 @@ public class Point3dTest {
 
     /**
      * Method testClonePoint3d.
+     * 
      * @throws CloneNotSupportedException
      */
     @Test
@@ -152,9 +147,12 @@ public class Point3dTest {
      */
     @Test
     public void testEquals() {
-        Action action1 = new ActionAgentMoveV1("label", new Point3d(0, 0, 0));
-        Action action2 = new ActionAgentMoveV1("label", new Point3d(0, 0, 0));
-        assertTrue(action1.equals(action2));
+        Point3d point1 = new Point3d();
+        Point3d point2 = new Point3d(0, 0, 0);
+        Point3d point3 = new Point3d(0, 0, 1);
+        assertTrue(point1.equals(point2));
+        assertFalse(point1.equals(point3));
+        assertFalse(point2.equals(point3));
     }
 
 }
