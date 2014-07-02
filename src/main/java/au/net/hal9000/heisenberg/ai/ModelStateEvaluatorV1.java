@@ -53,13 +53,13 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     }
 
     /**
-     * Method atGoal.
+     * Method isAtGoal.
      * @param modelState ModelState
      * @return boolean
-     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#atGoal(ModelState)
+     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#isAtGoal(ModelState)
      */
     @Override
-    public boolean atGoal(ModelState modelState) {
+    public boolean isAtGoal(ModelState modelState) {
         return evaluate(modelState) < GOAL_TOLERANCE;
     }
 }

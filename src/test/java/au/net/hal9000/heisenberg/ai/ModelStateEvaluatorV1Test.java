@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.ai;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Rule;
@@ -94,6 +96,31 @@ public class ModelStateEvaluatorV1Test {
         // Missing agentPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
         fail("should not get here");
+    }
+
+    /**
+     * test if agent is at a goal.
+     */
+    @Test
+    public void testIsAtGoal() {
+        // goal
+        Point3d goalPosition = new Point3d();
+
+        // agent
+        Point3d agentPosition = new Point3d();
+
+        // state
+        ModelStateV1 modelStateV1 = new ModelStateV1(agentPosition,
+                goalPosition);
+        ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
+        assertTrue("At goal", modelStateEvaluatorV1.isAtGoal(modelStateV1));
+        agentPosition.setX(1.0f);
+        assertFalse("Agent off by 1.0 in X",
+                modelStateEvaluatorV1.isAtGoal(modelStateV1));
+        agentPosition.setX(0.0f);
+        agentPosition.setY(1.0f);
+        assertFalse("Agent off by 1.0 in Y",
+                modelStateEvaluatorV1.isAtGoal(modelStateV1));
     }
 
 }
