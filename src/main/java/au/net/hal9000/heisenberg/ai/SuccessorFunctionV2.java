@@ -54,7 +54,7 @@ public final class SuccessorFunctionV2 implements SuccessorFunction {
             double theta = Math.PI * 2 / directionCount;
 
             for (int directionIndex = 0; directionIndex < directionCount; directionIndex++) {
-                Action action = new ActionAgentMoveV1(null, delta);
+                Action action = new ActionV1(delta);
                 ModelState newModelState = transitionFunction.transition(
                         modelState, action);
                 // TODO handle cases where action is not a legal move at

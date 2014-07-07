@@ -21,7 +21,7 @@ public interface CostFunction {
      *            the ModelState after.
     
      * @return the cost of performing the move between ModelStates. */
-    double calculateCost(ModelStateV1 before, ActionAgentMoveV1 action,
+    double calculateCost(ModelStateV1 before, ActionV1 action,
             ModelStateV1 after);
 
 }

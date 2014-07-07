@@ -26,11 +26,11 @@ public class SearchTestV2 {
 
         // The expected Actions to reach the Goal.
         Path expectedPath = new Path();
-        expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath.add(new ActionAgentMoveV1(null, new Point3d(0.6, 0.8, 0)));
+        expectedPath.add(new ActionV1(new Point3d(0.6, 0.8, 0)));
+        expectedPath.add(new ActionV1(new Point3d(0.6, 0.8, 0)));
+        expectedPath.add(new ActionV1(new Point3d(0.6, 0.8, 0)));
+        expectedPath.add(new ActionV1(new Point3d(0.6, 0.8, 0)));
+        expectedPath.add(new ActionV1(new Point3d(0.6, 0.8, 0)));
 
         // Initial ModelState        
         Point3d agentPosition = new Point3d();

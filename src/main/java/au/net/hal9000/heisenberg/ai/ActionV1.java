@@ -3,22 +3,25 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
+ * Very simple actions - Agent movement only.
+ * 
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ActionAgentMoveV1 implements Action {
+public class ActionV1 implements Action {
 
     /** move agent North. */
-    public static final ActionAgentMoveV1 NORTH = new ActionAgentMoveV1("North",
+    public static final ActionV1 NORTH = new ActionV1("North",
             new Point3d(0, 1, 0));
     /** move agent South. */
-    public static final ActionAgentMoveV1 SOUTH = new ActionAgentMoveV1("South",
+    public static final ActionV1 SOUTH = new ActionV1("South",
             new Point3d(0, -1, 0));
     /** move agent East. */
-    public static final ActionAgentMoveV1 EAST = new ActionAgentMoveV1("East",
+    public static final ActionV1 EAST = new ActionV1("East",
             new Point3d(1, 0, 0));
     /** move agent West. */
-    public static final ActionAgentMoveV1 WEST = new ActionAgentMoveV1("West",
+    public static final ActionV1 WEST = new ActionV1("West",
             new Point3d(-1, 0, 0));
     
     /** human understandable label. */
@@ -30,16 +33,28 @@ public class ActionAgentMoveV1 implements Action {
      * Constructor.
      * 
      * @param label
-     *            TODO
+     *            a nick name for this action.
      * @param delta
      *            movement amount.
      */
 
-    public ActionAgentMoveV1(String label, Point3d delta) {
+    public ActionV1(String label, Point3d delta) {
+        super();
         this.label = label;
         this.delta = delta;
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param delta
+     *            movement amount.
+     */
+
+    public ActionV1(Point3d delta) {
+        this("custom", delta);
+    }
+    
     /**
      * 
      * 
@@ -103,10 +118,10 @@ public class ActionAgentMoveV1 implements Action {
         if (null == obj) {
             return false;
         }
-        if (!(obj instanceof ActionAgentMoveV1)) {
+        if (!(obj instanceof ActionV1)) {
             return false;
         }
-        final ActionAgentMoveV1 other = (ActionAgentMoveV1) obj;
+        final ActionV1 other = (ActionV1) obj;
         if (null == delta) {
             if (null != other.delta) {
                 return false;

@@ -13,7 +13,7 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
     /** error. */
     public static final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
     /** error. */
-    public static final String MODEL_NOT_SUPPORTED = "model not supported";
+    public static final String MODEL_STATE_NOT_SUPPORTED = "model state not supported";
 
     /**
      * Field GOAL_TOLERANCE.
@@ -47,7 +47,7 @@ public class ModelStateEvaluatorV1 implements ModelStateEvaluator {
             }
             result = agentPosition.distance(goalPosition);
         } else {
-            throw new IllegalArgumentException(MODEL_NOT_SUPPORTED);
+            throw new IllegalArgumentException(MODEL_STATE_NOT_SUPPORTED);
         }
         return result;
     }

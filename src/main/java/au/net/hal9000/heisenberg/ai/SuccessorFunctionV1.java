@@ -15,9 +15,9 @@ import java.util.Queue;
 public final class SuccessorFunctionV1 implements SuccessorFunction {
 
     /** A list of directions that might be possible. */
-    private static final ActionAgentMoveV1[] DIRECTIONS = {
-            ActionAgentMoveV1.NORTH, ActionAgentMoveV1.SOUTH,
-            ActionAgentMoveV1.EAST, ActionAgentMoveV1.WEST };
+    private static final ActionV1[] DIRECTIONS = {
+            ActionV1.NORTH, ActionV1.SOUTH,
+            ActionV1.EAST, ActionV1.WEST };
 
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
@@ -44,7 +44,7 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         // TODO add something smarter in the future.
         Queue<Successor> list = new LinkedList<Successor>();
-        for (ActionAgentMoveV1 action : DIRECTIONS) {
+        for (ActionV1 action : DIRECTIONS) {
             ModelState newModelState = transitionFunction.transition(
                     modelState, action);
             // TODO handle cases where action is not a legal move at this

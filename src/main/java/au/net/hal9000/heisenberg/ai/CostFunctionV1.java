@@ -31,7 +31,7 @@ public class CostFunctionV1 implements CostFunction {
     
      * @return the cost of performing the move between ModelStates. * @see au.net.hal9000.heisenberg.ai.CostFunction#calculateCost(ModelStateV1,
      *      ActionAgentMoveV1, ModelStateV1) */
-    public double calculateCost(ModelStateV1 before, ActionAgentMoveV1 action,
+    public double calculateCost(ModelStateV1 before, ActionV1 action,
             ModelStateV1 after) {
         return action.getDelta().length();
     }
