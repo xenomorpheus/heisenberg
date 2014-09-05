@@ -13,30 +13,25 @@ import org.jbox2d.testbed.framework.TestbedTest;
 
 public class MazeCat extends TestbedTest {
     private static final long CAT_TAG = 100l;
+    private static final long RAT_TAG = 101l;
     private Body cat;
+    private Body rat;
+
 
     @Override
-    public Long getTag(Body body) {
-        if (body == cat) {
-            return CAT_TAG;
+    public synchronized void step(TestbedSettings settings) {
+        float cat_max_normal_impulse = 0.002f;
+        super.step(settings);
+        Vec2 impulse = rat.getPosition().sub(cat.getPosition());
+        if (impulse.length() > cat_max_normal_impulse){
+            impulse.normalize();
+            impulse.mulLocal(cat_max_normal_impulse);
         }
-        return super.getTag(body);
+        cat.applyLinearImpulse(impulse, cat.getPosition());
+        setCamera(cat.getPosition());
     }
-
-    @Override
-    public void processBody(Body body, Long tag) {
-        if (tag == CAT_TAG) {
-            cat = body;
-        } else {
-            super.processBody(body, tag);
-        }
-    }
-
-    @Override
-    public boolean isSaveLoadEnabled() {
-        return true;
-    }
-
+    
+    
     @Override
     public void initTest(boolean deserialized) {
         if (deserialized) {
@@ -106,23 +101,21 @@ public class MazeCat extends TestbedTest {
             body.createFixture(fd);
         }
 
-        
         // Cat
         {
-//            PolygonShape shape = new PolygonShape();
-//            Vec2 vertices[] = new Vec2[8];
-//            vertices[0] = new Vec2(-1.5f, -0.5f);
-//            vertices[1] = new Vec2(1.5f, -0.5f);
-//            vertices[2] = new Vec2(1.5f, 0.0f);
-//            vertices[3] = new Vec2(0.0f, 0.9f);
-//            vertices[4] = new Vec2(-1.15f, 0.9f);
-//            vertices[5] = new Vec2(-1.5f, 0.2f);
-//            shape.set(vertices, 6);
+            // PolygonShape shape = new PolygonShape();
+            // Vec2 vertices[] = new Vec2[8];
+            // vertices[0] = new Vec2(-1.5f, -0.5f);
+            // vertices[1] = new Vec2(1.5f, -0.5f);
+            // vertices[2] = new Vec2(1.5f, 0.0f);
+            // vertices[3] = new Vec2(0.0f, 0.9f);
+            // vertices[4] = new Vec2(-1.15f, 0.9f);
+            // vertices[5] = new Vec2(-1.5f, 0.2f);
+            // shape.set(vertices, 6);
 
-            
             CircleShape shape = new CircleShape();
-            shape.m_radius = 0.15f;            
-            
+            shape.m_radius = 0.15f;
+
             FixtureDef fd = new FixtureDef();
             fd.shape = shape;
             fd.density = 0.5f;
@@ -136,6 +129,26 @@ public class MazeCat extends TestbedTest {
             cat = world.createBody(bd);
             cat.createFixture(fd);
         }
+
+        // Rat
+        {
+
+            CircleShape shape = new CircleShape();
+            shape.m_radius = 0.05f;
+
+            FixtureDef fd = new FixtureDef();
+            fd.shape = shape;
+            fd.density = 0.5f;
+            fd.friction = 0.3f;
+            fd.restitution = 0.2f;
+
+            // body definition
+            BodyDef bd = new BodyDef();
+            bd.type = BodyType.DYNAMIC;
+            bd.position.set(14.0f, 0.0f);
+            rat = world.createBody(bd);
+            rat.createFixture(fd);
+        }
     }
 
     @Override
@@ -145,14 +158,34 @@ public class MazeCat extends TestbedTest {
 
     @Override
     public float getDefaultCameraScale() {
-        return 15;
+        return 35;
     }
 
     @Override
-    public synchronized void step(TestbedSettings settings) {
-        super.step(settings);
-        cat.applyLinearImpulse(new Vec2(0, 0.002f), cat.getPosition());
-        setCamera(cat.getPosition());
+    public Long getTag(Body body) {
+        if (body == cat) {
+            return CAT_TAG;
+        }
+        if (body == rat) {
+            return RAT_TAG;
+        }
+        return super.getTag(body);
+    }
+
+    @Override
+    public void processBody(Body body, Long tag) {
+        if (tag == CAT_TAG) {
+            cat = body;
+        } else if (tag == RAT_TAG) {
+            rat = body;
+        } else {
+            super.processBody(body, tag);
+        }
+    }
+
+    @Override
+    public boolean isSaveLoadEnabled() {
+        return true;
     }
 
 }
