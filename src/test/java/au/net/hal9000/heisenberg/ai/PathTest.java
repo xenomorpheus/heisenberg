@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @version $Revision: 1.0 $
  */
-public class PathTest extends Path {
+public class PathTest{
 
     /**
      * 
