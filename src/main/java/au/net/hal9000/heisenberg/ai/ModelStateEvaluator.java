@@ -17,7 +17,7 @@ public interface ModelStateEvaluator {
      *            the state of the model.
     
      * @return How close to the goal? */
-    double evaluate(ModelState modelState);
+    public double evaluate(ModelState modelState);
 
     /**
      * Are we at the goal?
@@ -27,5 +27,5 @@ public interface ModelStateEvaluator {
     
      * @return Are we at the goal? */
 
-    boolean isAtGoal(ModelState modelState);
+    public boolean isAtGoal(ModelState modelState);
 }

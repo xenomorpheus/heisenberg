@@ -12,12 +12,12 @@ import java.util.Queue;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public final class SuccessorFunctionV1 implements SuccessorFunction {
+public final class SuccessorFunctionNSEW implements SuccessorFunction {
 
     /** A list of directions that might be possible. */
-    private static final ActionV1[] DIRECTIONS = {
-            ActionV1.NORTH, ActionV1.SOUTH,
-            ActionV1.EAST, ActionV1.WEST };
+    private static final ActionMove[] DIRECTIONS = {
+            ActionMoveImpl.NORTH, ActionMoveImpl.SOUTH,
+            ActionMoveImpl.EAST, ActionMoveImpl.WEST };
 
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
@@ -28,7 +28,7 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
      * @param transitionFunction
      *            a Transition Function.
      */
-    public SuccessorFunctionV1(TransitionFunction transitionFunction) {
+    public SuccessorFunctionNSEW(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;
     }
 
@@ -43,13 +43,13 @@ public final class SuccessorFunctionV1 implements SuccessorFunction {
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         // TODO add something smarter in the future.
-        Queue<Successor> list = new LinkedList<Successor>();
-        for (ActionV1 action : DIRECTIONS) {
+        Queue<Successor> list = new LinkedList<>();
+        for (ActionMove action : DIRECTIONS) {
             ModelState newModelState = transitionFunction.transition(
                     modelState, action);
             // TODO handle cases where action is not a legal move at this
             // ModelState.
-            list.add(new Successor(action, newModelState));
+            list.add(new SuccessorImpl(newModelState, action, action.getDelta().length()));
         }
         return list;
     }

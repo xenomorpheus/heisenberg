@@ -1,14 +1,12 @@
 package au.net.hal9000.heisenberg.ai;
 
-import java.util.Queue;
-
 /**
- * Find a better ModelState.
+ * Base class for all search algorithms
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class Search {
+public abstract class Search {
 
     /**
      * a function that supplies a list of possible actions from current model
@@ -26,41 +24,30 @@ public class Search {
      *            a function that supplies a list of possible actions from
      *            current model state.
      * @param modelStateEvaluator
-     *            a function that determines how good a model state is .
+     *            a function that determines how close Agent is to goal.
      */
 
     public Search(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator) {
+        super();
         this.successorFunction = successorFunction;
         this.modelStateEvaluator = modelStateEvaluator;
     }
 
-    /**
-     * Find a ModelState closer to the Goal state.
-     * 
-     * @param modelState
-     *            the current ModelState.
-    
-     * @return a ModelState closer to the Goal state. */
+    public SuccessorFunction getSuccessorFunction() {
+        return successorFunction;
+    }
 
-    public Successor findBestSuccessor(ModelState modelState) {
-        Queue<Successor> successors = successorFunction
-                .generateSuccessors(modelState);
-        // TODO handle when no successors from current position.
-        // Get first successor off the list.
-        Successor bestSuccessor = successors.remove();
-        double bestValuationSoFar = modelStateEvaluator.evaluate(bestSuccessor
-                .getModelState());
-        // Work through the remainder successors looking for a better one.
-        for (Successor successor : successors) {
-            double valuation = modelStateEvaluator.evaluate(successor
-                    .getModelState());
-            if (valuation < bestValuationSoFar) {
-                bestSuccessor = successor;
-                bestValuationSoFar = valuation;
-            }
-        }
-        return bestSuccessor;
+    public void setSuccessorFunction(SuccessorFunction successorFunction) {
+        this.successorFunction = successorFunction;
+    }
+
+    public ModelStateEvaluator getModelStateEvaluator() {
+        return modelStateEvaluator;
+    }
+
+    public void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator) {
+        this.modelStateEvaluator = modelStateEvaluator;
     }
 
     /**
@@ -69,19 +56,9 @@ public class Search {
      * 
      * @param modelState
      *            current model state.
-    
-     * @return list of actions. */
-    public Path findPath(ModelState modelState) {
-        // double cost = costFunction.calculateCost(modelState,
-        // bestSuccessor.getAction(), bestSuccessor.getModelState());
-
-        Path path = new Path();
-        while (!modelStateEvaluator.isAtGoal(modelState)) {
-            Successor successor = findBestSuccessor(modelState);
-            path.add(successor.getAction());
-            modelState = successor.getModelState();
-        }
-        return path;
-    }
+     * 
+     * @return list of actions.
+     */
+    public abstract Path findPathToGoal(ModelState modelState);
 
 }

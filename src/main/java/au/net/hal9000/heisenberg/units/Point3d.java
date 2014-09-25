@@ -115,7 +115,7 @@ public class Point3d implements Serializable, Cloneable {
      * @param other
      *            other Point3d object.
      * 
-     * @return distance (modulus) to other point.
+     * @return straight-line distance to other point.
      */
     public double distance(Point3d other) {
         return Math.sqrt(Math.pow(x - other.x, 2.0)

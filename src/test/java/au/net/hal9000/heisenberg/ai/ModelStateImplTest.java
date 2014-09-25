@@ -16,14 +16,14 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @version $Revision: 1.0 $
  */
-public class ModelStateV1Test {
+public class ModelStateImplTest {
 
     /** test getAgentPosition. */
     @Test
     public void testGetAgentPosition() {
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
         Point3d gotAgentPosition = modelState.getAgentPosition();
         assertEquals(agentPosition, gotAgentPosition);
     }
@@ -33,7 +33,7 @@ public class ModelStateV1Test {
     public void testSetAgentPosition() {
         Point3d agentPositionInitial = new Point3d();
         Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPositionInitial, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPositionInitial, goalPosition);
         Point3d agentPositionNew = new Point3d(0, 0, 1);
         assertNotEquals("test integrity. Possitions must be different", agentPositionInitial, agentPositionNew);
         // Run test
@@ -48,7 +48,7 @@ public class ModelStateV1Test {
     public void testGetGoalPosition() {
         Point3d agentPosition = new Point3d();
         Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
         Point3d goalPositionGot = modelState.getGoalPosition();
         assertEquals(goalPosition, goalPositionGot);
     }
@@ -58,7 +58,7 @@ public class ModelStateV1Test {
     public void testSetGoalPosition() {
         Point3d agentPosition = new Point3d();
         Point3d initialGoalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, initialGoalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, initialGoalPosition);
         Point3d newGoalPosition = new Point3d(0, 0, 1);
         assertNotEquals("test integrity. Possitions must be different", initialGoalPosition, newGoalPosition);
         // Run test
@@ -75,9 +75,9 @@ public class ModelStateV1Test {
     public void testClone() throws CloneNotSupportedException {
         Point3d agentPosition = new Point3d(0, 1, 2);
         Point3d goalPosition = new Point3d(2, 1, 0);
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
+        ModelStateImpl modelState = new ModelStateImpl(agentPosition, goalPosition);
         // ModelState
-        ModelStateV1 newModelState = modelState.clone();
+        ModelStateImpl newModelState = modelState.clone();
         assertFalse("ensure a new ModelStateV1 is created",
                 modelState == newModelState);
         assertTrue("ensure new ModelStateV1 equals() old",
@@ -101,11 +101,11 @@ public class ModelStateV1Test {
     public void testHashCode() {
         Point3d agentPosition = new Point3d(0, 1, 2);
         Point3d goalPosition = new Point3d();
-        ModelStateV1 modelState = new ModelStateV1(agentPosition, goalPosition);
+        ModelStateImpl modelState = new ModelStateImpl(agentPosition, goalPosition);
 
         Point3d agentPosition2 = new Point3d(0, 1, 2);
         Point3d goalPosition2 = new Point3d();
-        ModelStateV1 modelState2 = new ModelStateV1(agentPosition2,
+        ModelStateImpl modelState2 = new ModelStateImpl(agentPosition2,
                 goalPosition2);
         assertEquals(modelState.hashCode(), modelState2.hashCode());
 

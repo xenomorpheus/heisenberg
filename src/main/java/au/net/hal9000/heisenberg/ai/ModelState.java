@@ -1,15 +1,39 @@
 package au.net.hal9000.heisenberg.ai;
 
-/**
- * This is a Marker Interface.<br>
- * <br>
- * Agents think of the world in a simplified version of the world called the model.<br>
- * A ModelState object holds an instantaneous representation of that state.
- * Typically a ModelState object will be evaluated to determine how close the Agent is the Goal.
- * 
- * @author bruins
- * @version $Revision: 1.0 $
- */
+import au.net.hal9000.heisenberg.units.Point3d;
+
 public interface ModelState {
+
+    /**
+     * 
+     * @return get agent position.
+     */
+    public abstract Point3d getAgentPosition();
+
+    /**
+     * @param position3d
+     *            set agent position.
+     */
+    public abstract void setAgentPosition(Point3d position3d);
+
+    /**
+     * 
+     * @return get goal position.
+     */
+    public abstract Point3d getGoalPosition();
+
+    /**
+     * @param position3d
+     *            set goal position.
+     */
+    public abstract void setGoalPosition(Point3d position3d);
+
+    /**
+     * Method clone.
+     * 
+     * @return ModelStateV1
+     * @throws CloneNotSupportedException
+     */
+    public abstract ModelState clone() throws CloneNotSupportedException;
 
 }

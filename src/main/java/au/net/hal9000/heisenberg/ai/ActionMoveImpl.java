@@ -9,19 +9,19 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ActionV1 implements Action {
+public final class ActionMoveImpl implements ActionMove {
 
     /** move agent North. */
-    public static final ActionV1 NORTH = new ActionV1("North",
+    public static final ActionMoveImpl NORTH = new ActionMoveImpl("North",
             new Point3d(0, 1, 0));
     /** move agent South. */
-    public static final ActionV1 SOUTH = new ActionV1("South",
+    public static final ActionMoveImpl SOUTH = new ActionMoveImpl("South",
             new Point3d(0, -1, 0));
     /** move agent East. */
-    public static final ActionV1 EAST = new ActionV1("East",
+    public static final ActionMoveImpl EAST = new ActionMoveImpl("East",
             new Point3d(1, 0, 0));
     /** move agent West. */
-    public static final ActionV1 WEST = new ActionV1("West",
+    public static final ActionMoveImpl WEST = new ActionMoveImpl("West",
             new Point3d(-1, 0, 0));
     
     /** human understandable label. */
@@ -38,7 +38,7 @@ public class ActionV1 implements Action {
      *            movement amount.
      */
 
-    public ActionV1(String label, Point3d delta) {
+    public ActionMoveImpl(String label, Point3d delta) {
         super();
         this.label = label;
         this.delta = delta;
@@ -51,15 +51,15 @@ public class ActionV1 implements Action {
      *            movement amount.
      */
 
-    public ActionV1(Point3d delta) {
+    public ActionMoveImpl(Point3d delta) {
         this("custom", delta);
     }
     
     /**
-     * 
-     * 
+     * {@inheritDoc}
      * @return the amount of movement.
      */
+    @Override
     public Point3d getDelta() {
         return delta;
     }
@@ -118,10 +118,10 @@ public class ActionV1 implements Action {
         if (null == obj) {
             return false;
         }
-        if (!(obj instanceof ActionV1)) {
+        if (!(obj instanceof ActionMoveImpl)) {
             return false;
         }
-        final ActionV1 other = (ActionV1) obj;
+        final ActionMoveImpl other = (ActionMoveImpl) obj;
         if (null == delta) {
             if (null != other.delta) {
                 return false;

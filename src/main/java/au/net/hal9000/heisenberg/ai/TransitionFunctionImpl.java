@@ -6,7 +6,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class TransitionFunctionV1 implements TransitionFunction {
+public class TransitionFunctionImpl implements TransitionFunction {
 
     /**
      * Method transition.
@@ -17,19 +17,19 @@ public class TransitionFunctionV1 implements TransitionFunction {
      */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
-        if (!(modelState instanceof ModelStateV1)) {
+        if (!(modelState instanceof ModelStateImpl)) {
             throw new IllegalArgumentException("Expecting ModelStateV1 but got"
                     + modelState.getClass().getSimpleName());
         }
-        if (!(action instanceof ActionV1)) {
+        if (!(action instanceof ActionMoveImpl)) {
             throw new IllegalArgumentException(
                     "Expecting ActionAgentMove but got"
                             + action.getClass().getSimpleName());
         }
-        ModelStateV1 modelStateV1 = (ModelStateV1) modelState;
-        ActionV1 actionAgentMove = (ActionV1) action;
+        ModelState modelStateV1 = (ModelState) modelState;
+        ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
         // Clone the ModelState
-        ModelStateV1 newModelState;
+        ModelState newModelState;
         try {
             newModelState = modelStateV1.clone();
         } catch (CloneNotSupportedException e) {

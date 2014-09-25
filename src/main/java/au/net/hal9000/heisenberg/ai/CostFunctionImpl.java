@@ -7,12 +7,12 @@ package au.net.hal9000.heisenberg.ai;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class CostFunctionV1 implements CostFunction {
+public class CostFunctionImpl implements CostFunction {
 
     /**
      * Constructor for CostFunctionV1.
      */
-    public CostFunctionV1() {
+    public CostFunctionImpl() {
         super();
     }
 
@@ -29,11 +29,11 @@ public class CostFunctionV1 implements CostFunction {
      *            the ModelState after.
      * 
      * @return the cost of performing the move between ModelStates.
-     * @see au.net.hal9000.heisenberg.ai.CostFunction#calculateCost(ModelStateV1,
-     *      ActionAgentMoveV1, ModelStateV1)
+     * @see au.net.hal9000.heisenberg.ai.CostFunction#calculateCost(ModelStateImpl,
+     *      ActionAgentMoveV1, ModelStateImpl)
      */
-    public double calculateCost(ModelStateV1 before, ActionV1 action,
-            ModelStateV1 after) {
+    public double calculateCost(ModelState before, ActionMoveImpl action,
+            ModelState after) {
         return action.getDelta().length();
     }
 

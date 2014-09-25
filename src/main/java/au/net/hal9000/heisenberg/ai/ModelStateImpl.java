@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ModelStateV1 implements ModelState, Cloneable {
+public class ModelStateImpl implements ModelState, Cloneable {
 
     /** The agent moving to goal. */
     private Point3d agentPosition;
@@ -23,52 +23,49 @@ public class ModelStateV1 implements ModelState, Cloneable {
      * @param goalPosition
      *            goal position.
      */
-    public ModelStateV1(Point3d agentPosition, Point3d goalPosition) {
+    public ModelStateImpl(Point3d agentPosition, Point3d goalPosition) {
         this.agentPosition = agentPosition;
         this.goalPosition = goalPosition;
     }
 
-    /**
-     * 
-     * @return get agent position.
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.ModelState#getAgentPosition()
      */
+    @Override
     public Point3d getAgentPosition() {
         return agentPosition;
     }
 
-    /**
-     * @param position3d
-     *            set agent position.
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.ModelState#setAgentPosition(au.net.hal9000.heisenberg.units.Point3d)
      */
+    @Override
     public void setAgentPosition(Point3d position3d) {
         agentPosition = position3d;
     }
 
-    /**
-     * 
-     * @return get goal position.
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.ModelState#getGoalPosition()
      */
+    @Override
     public Point3d getGoalPosition() {
         return goalPosition;
     }
 
-    /**
-     * @param position3d
-     *            set goal position.
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.ModelState#setGoalPosition(au.net.hal9000.heisenberg.units.Point3d)
      */
+    @Override
     public void setGoalPosition(Point3d position3d) {
         goalPosition = position3d;
     }
 
-    /**
-     * Method clone.
-     * 
-     * @return ModelStateV1
-     * @throws CloneNotSupportedException
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.ModelState#clone()
      */
     @Override
-    public ModelStateV1 clone() throws CloneNotSupportedException {
-        ModelStateV1 newModeState = (ModelStateV1) super.clone();
+    public ModelStateImpl clone() throws CloneNotSupportedException {
+        ModelStateImpl newModeState = (ModelStateImpl) super.clone();
         newModeState.agentPosition = agentPosition.clone();
         newModeState.goalPosition = goalPosition.clone();
         return newModeState;
@@ -110,7 +107,7 @@ public class ModelStateV1 implements ModelState, Cloneable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ModelStateV1 other = (ModelStateV1) obj;
+        ModelStateImpl other = (ModelStateImpl) obj;
         if (null == agentPosition) {
             if (null != other.agentPosition) {
                 return false;

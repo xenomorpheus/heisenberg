@@ -18,7 +18,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * 
  * @version $Revision: 1.0 $
  */
-public class ModelStateEvaluatorV1Test {
+public class ModelStateEvaluatorImplTest {
     /** tolerance for comparing floats. */
     static final double DIFF = 0.00001f;
 
@@ -34,9 +34,9 @@ public class ModelStateEvaluatorV1Test {
         Point3d agentPosition = new Point3d();
 
         // state
-        ModelStateV1 modelStateV1 = new ModelStateV1(agentPosition,
+        ModelState modelStateV1 = new ModelStateImpl(agentPosition,
                 goalPosition);
-        ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
+        ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         // Agent at goal - Return ZERO
         double valuationGoal = modelStateEvaluatorV1.evaluate(modelStateV1);
@@ -69,13 +69,13 @@ public class ModelStateEvaluatorV1Test {
      */
     @Test
     public void testEvaluateBadGoal() {
-        ModelStateV1 modelStateV1 = new ModelStateV1(null, null);
+        ModelState modelStateV1 = new ModelStateImpl(null, null);
         modelStateV1.setAgentPosition(new Point3d());
-        ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
+        ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx
-                .expectMessage(ModelStateEvaluatorV1.GOAL_MAY_MAY_NOT_BE_NULL);
+                .expectMessage(ModelStateEvaluatorImpl.GOAL_MAY_MAY_NOT_BE_NULL);
         // Missing goalPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
         fail("should not get here");
@@ -86,13 +86,13 @@ public class ModelStateEvaluatorV1Test {
      */
     @Test
     public void testEvaluateBadAgent() {
-        ModelStateV1 modelStateV1 = new ModelStateV1(null, null);
+        ModelState modelStateV1 = new ModelStateImpl(null, null);
         modelStateV1.setGoalPosition(new Point3d());
-        ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
+        ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx
-                .expectMessage(ModelStateEvaluatorV1.AGENT_MAY_MAY_NOT_BE_NULL);
+                .expectMessage(ModelStateEvaluatorImpl.AGENT_MAY_MAY_NOT_BE_NULL);
         // Missing agentPosition, throws RuntimeException
         modelStateEvaluatorV1.evaluate(modelStateV1);
         fail("should not get here");
@@ -110,9 +110,9 @@ public class ModelStateEvaluatorV1Test {
         Point3d agentPosition = new Point3d();
 
         // state
-        ModelStateV1 modelStateV1 = new ModelStateV1(agentPosition,
+        ModelState modelStateV1 = new ModelStateImpl(agentPosition,
                 goalPosition);
-        ModelStateEvaluatorV1 modelStateEvaluatorV1 = new ModelStateEvaluatorV1();
+        ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
         assertTrue("At goal", modelStateEvaluatorV1.isAtGoal(modelStateV1));
         agentPosition.setX(1.0f);
         assertFalse("Agent off by 1.0 in X",
