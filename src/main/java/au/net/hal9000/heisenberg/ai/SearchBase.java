@@ -1,12 +1,17 @@
 package au.net.hal9000.heisenberg.ai;
 
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Search;
+import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
+
 /**
  * Base class for all search algorithms
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class Search {
+public abstract class SearchBase implements Search {
 
     /**
      * a function that supplies a list of possible actions from current model
@@ -27,38 +32,49 @@ public abstract class Search {
      *            a function that determines how close Agent is to goal.
      */
 
-    public Search(SuccessorFunction successorFunction,
+    public SearchBase(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator) {
         super();
         this.successorFunction = successorFunction;
         this.modelStateEvaluator = modelStateEvaluator;
     }
 
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Search#getSuccessorFunction()
+     */
+    @Override
     public SuccessorFunction getSuccessorFunction() {
         return successorFunction;
     }
 
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Search#setSuccessorFunction(au.net.hal9000.heisenberg.ai.api.SuccessorFunction)
+     */
+    @Override
     public void setSuccessorFunction(SuccessorFunction successorFunction) {
         this.successorFunction = successorFunction;
     }
 
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Search#getModelStateEvaluator()
+     */
+    @Override
     public ModelStateEvaluator getModelStateEvaluator() {
         return modelStateEvaluator;
     }
 
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Search#setModelStateEvaluator(au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator)
+     */
+    @Override
     public void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator) {
         this.modelStateEvaluator = modelStateEvaluator;
     }
 
-    /**
-     * Return a list of actions to get from the current model state to reach the
-     * goal model state.
-     * 
-     * @param modelState
-     *            current model state.
-     * 
-     * @return list of actions.
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Search#findPathToGoal(au.net.hal9000.heisenberg.ai.api.ModelState)
      */
+    @Override
     public abstract Path findPathToGoal(ModelState modelState);
 
 }

@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
+import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
@@ -67,7 +68,7 @@ public final class ActionMoveImpl implements ActionMove {
     /**
      * Method toString.
      * 
-     * @see au.net.hal9000.heisenberg.ai.Action#toString()
+     * @see au.net.hal9000.heisenberg.ai.api.Action#toString()
      * @return String
      */
     @Override

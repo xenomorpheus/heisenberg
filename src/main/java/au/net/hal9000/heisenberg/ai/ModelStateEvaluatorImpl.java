@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
@@ -30,7 +32,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
      * Method evaluate.
      * @param modelState ModelState
      * @return double
-     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#evaluate(ModelState)
+     * @see au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator#evaluate(ModelState)
      */
     @Override
     public double evaluate(ModelState modelState) {
@@ -56,7 +58,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
      * Method isAtGoal.
      * @param modelState ModelState
      * @return boolean
-     * @see au.net.hal9000.heisenberg.ai.ModelStateEvaluator#isAtGoal(ModelState)
+     * @see au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator#isAtGoal(ModelState)
      */
     @Override
     public boolean isAtGoal(ModelState modelState) {

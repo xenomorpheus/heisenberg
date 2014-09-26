@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import au.net.hal9000.heisenberg.ai.api.Action;
+
 /**
  * AI path of Action objects. <br>
  * 

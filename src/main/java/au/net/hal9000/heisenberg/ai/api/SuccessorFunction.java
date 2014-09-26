@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
 
 import java.util.Queue;
 

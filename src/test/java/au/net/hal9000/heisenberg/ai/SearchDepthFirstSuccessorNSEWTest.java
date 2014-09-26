@@ -4,6 +4,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Search;
+import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
+import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**

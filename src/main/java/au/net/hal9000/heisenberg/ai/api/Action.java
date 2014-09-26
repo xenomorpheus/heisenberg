@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
 
 /**
  * Apply an Action object to a ModelState to produce a new ModelState.

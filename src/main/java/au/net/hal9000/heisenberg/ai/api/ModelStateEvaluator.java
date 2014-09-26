@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
 
 /**
  * Evaluate the state of the model and give an evaluation rating on how close we

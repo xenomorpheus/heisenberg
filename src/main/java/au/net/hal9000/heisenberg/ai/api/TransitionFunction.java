@@ -1,4 +1,5 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
+
 
 /**
  * The TransitionFunction takes a ModelState and applies the Action which results in a new ModelState object.<br>

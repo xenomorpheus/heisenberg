@@ -1,5 +1,9 @@
 package au.net.hal9000.heisenberg.ai;
 
+import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.Successor;
+
 /**
  * A Successor object contains three things:<br>
  * 1) The resultant ModelState when the Action is performed.<br>

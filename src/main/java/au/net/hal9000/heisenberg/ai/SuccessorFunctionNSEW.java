@@ -3,6 +3,12 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.Successor;
+import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
+import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
+
 /**
  * Generate new ModelState objects from current object. This version is
  * particularly dumb.<br>
@@ -38,7 +44,7 @@ public final class SuccessorFunctionNSEW implements SuccessorFunction {
      * @param modelState
      *            ModelState
      * @return Queue<Successor>
-     * @see au.net.hal9000.heisenberg.ai.SuccessorFunction#generateSuccessors(ModelState)
+     * @see au.net.hal9000.heisenberg.ai.api.SuccessorFunction#generateSuccessors(ModelState)
      */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {

@@ -1,4 +1,6 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
+
+import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
 
 /**
  * Standard AI cost function for the transition from one state to another by an

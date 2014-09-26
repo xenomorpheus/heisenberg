@@ -1,4 +1,5 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
+
 
 /**
  * A Successor object contains three things:<br>

@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.api;
 
 import au.net.hal9000.heisenberg.units.Point3d;
 
