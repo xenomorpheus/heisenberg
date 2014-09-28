@@ -21,7 +21,7 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class SearchDepthFirstSuccessorNSEWTest {
+public class SearchUniformCostNSEWTest {
 
     /** desired x pos. */
     private static final int X_POS = 3;
@@ -55,7 +55,7 @@ public class SearchDepthFirstSuccessorNSEWTest {
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
         SuccessorFunction successorFunction = new SuccessorFunctionNSEW(
                 transitionFunction);
-        Search search = new SearchDepthFirst(successorFunction,
+        Search search = new SearchUniformCost(successorFunction,
                 modelStateEvaluator);
 
         // Search

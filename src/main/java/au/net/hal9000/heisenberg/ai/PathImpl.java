@@ -111,8 +111,11 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
+        String join = "";
         for (Action action : queue) {
+            string.append(join);
             string.append(action.toString());
+            join = ", ";
         }
         return string.toString();
     }

@@ -9,7 +9,8 @@ import au.net.hal9000.heisenberg.ai.api.FringeElement;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
 
-public class FringeElementImpl implements FringeElement {
+public class FringeElementImpl implements FringeElement,
+        Comparable<FringeElementImpl> {
     ModelState modelState;
     Path pathSoFar;
     double costSoFar;
@@ -36,4 +37,15 @@ public class FringeElementImpl implements FringeElement {
         return costSoFar;
     }
 
+    @Override
+    public String toString() {
+        return "[ModelState=" + modelState + ", pathSoFar=" + pathSoFar
+                + ", costSoFar=" + costSoFar + "]";
+    }
+
+    @Override
+    public int compareTo(FringeElementImpl o) {
+        double oCost = o.getCostSoFar();
+        return (costSoFar < oCost) ? -1 : ((costSoFar > oCost) ? 1 : 0);
+    }
 }

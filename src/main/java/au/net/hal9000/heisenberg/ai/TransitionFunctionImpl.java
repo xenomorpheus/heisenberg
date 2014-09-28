@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
-import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
  * @author bruins
@@ -11,6 +10,13 @@ import au.net.hal9000.heisenberg.units.Point3d;
  */
 public class TransitionFunctionImpl implements TransitionFunction {
 
+    /**
+     * Constructor
+     */
+    public TransitionFunctionImpl(){
+        super();
+    }
+    
     /**
      * Method transition.
      * @param modelState ModelState
@@ -29,18 +35,17 @@ public class TransitionFunctionImpl implements TransitionFunction {
                     "Expecting ActionAgentMove but got"
                             + action.getClass().getSimpleName());
         }
-        ModelState modelStateV1 = (ModelState) modelState;
+        ModelStateImpl modelStateImpl = (ModelStateImpl) modelState;
         ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
         // Clone the ModelState
         ModelState newModelState;
         try {
-            newModelState = modelStateV1.clone();
+            newModelState = modelStateImpl.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Trying to clone modelState", e);
         }
         // Apply the action
-        Point3d agentPosition = newModelState.getAgentPosition();
-        agentPosition.applyDelta(actionAgentMove.getDelta());
+        newModelState.getAgentPosition().applyDelta(actionAgentMove.getDelta());
         return newModelState;
     }
 

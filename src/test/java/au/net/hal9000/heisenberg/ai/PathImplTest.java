@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -57,12 +58,14 @@ public class PathImplTest {
     public void testClone() throws CloneNotSupportedException {
         PathImpl path = new PathImpl();
 
-        path.add(new ActionMoveImpl("label", new Point3d(0, 0, 0)));
-        path.add(new ActionMoveImpl("label", new Point3d(0, 0, 0)));
+        path.add(new ActionMoveImpl("label", new Point3d(1, 0, 0)));
+        path.add(new ActionMoveImpl("label", new Point3d(2, 0, 0)));
         PathImpl clone = path.clone();
         assertTrue(path.equals(clone));
         assertTrue(clone.equals(path));
-
+        path.add(new ActionMoveImpl("label", new Point3d(3, 0, 0)));
+        assertFalse(path.equals(clone));
+        assertFalse(clone.equals(path));
     }
 
 }
