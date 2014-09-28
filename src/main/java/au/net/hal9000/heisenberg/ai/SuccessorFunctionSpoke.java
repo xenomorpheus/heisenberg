@@ -24,6 +24,12 @@ import au.net.hal9000.heisenberg.units.Point3d;
 public final class SuccessorFunctionSpoke implements SuccessorFunction {
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
+    
+    // We may want to someday set these by the constructor
+    /** how far to move */
+    private double stepSize = 1.0;
+    /** how many directions to consider */
+    private int directionCount = 4;
 
     /**
      * Constructor.
@@ -45,8 +51,6 @@ public final class SuccessorFunctionSpoke implements SuccessorFunction {
      */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
-        final double stepSize = 1.0; // TODO movement rate
-        final int directionCount = 4;
 
         Queue<Successor> list = new LinkedList<>();
         if (modelState instanceof ModelStateImpl) {

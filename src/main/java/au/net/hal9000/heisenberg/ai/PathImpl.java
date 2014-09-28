@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.Path;
 
 /**
  * AI path of Action objects. <br>
@@ -12,7 +13,7 @@ import au.net.hal9000.heisenberg.ai.api.Action;
  * @version $Revision: 1.0 $
  * @author bruins
  */
-public class Path implements Iterable<Action>{
+public class PathImpl implements Iterable<Action>, Path, Cloneable{
 
     /** a list of actions. */
     private Queue<Action> queue = new LinkedList<Action>();
@@ -21,16 +22,8 @@ public class Path implements Iterable<Action>{
      * Constructor.
      * 
      */
-    public Path() {
+    public PathImpl() {
         super();
-    }
-
-    /**
-     * 
-     * @return the queue
-     */
-    public Queue<Action> getQueue() {
-        return queue;
     }
 
     /**
@@ -39,7 +32,8 @@ public class Path implements Iterable<Action>{
      * @param action
      *            action to add.
      */
-    void add(Action action) {
+    @Override
+    public void add(Action action) {
         queue.add(action);
     }
 
@@ -75,10 +69,10 @@ public class Path implements Iterable<Action>{
         if (null == obj) {
             return false;
         }
-        if (!(obj instanceof Path)) {
+        if (!(obj instanceof PathImpl)) {
             return false;
         }
-        final Path other = (Path) obj;
+        final PathImpl other = (PathImpl) obj;
         if ( size() != other.size()){
             return false;
         }
@@ -93,18 +87,17 @@ public class Path implements Iterable<Action>{
         return true;
     }
 
-    /**
-     * Method size
-     * @return number of Actions
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Path#size()
      */
-    public int size(){
+    private int size(){
         return queue.size();
     }
 
-    /**
-     * Method iterator
-     * @return Iterator of Actions
+    /* (non-Javadoc)
+     * @see au.net.hal9000.heisenberg.ai.Path#iterator()
      */
+    @Override
     public Iterator<Action> iterator(){
         return queue.iterator();
     }
@@ -124,4 +117,17 @@ public class Path implements Iterable<Action>{
         return string.toString();
     }
 
+    /** Clone 
+     * @throws CloneNotSupportedException */
+    @Override
+    public PathImpl clone() throws CloneNotSupportedException{
+        PathImpl path = (PathImpl) super.clone();
+        // TODO is this correct?
+        path.queue = new LinkedList<Action>();
+        for(Action action: queue){
+            path.add(action);
+        }
+        return path;
+    }
+    
 }

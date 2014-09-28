@@ -15,14 +15,22 @@ public interface Successor {
 
     /**
      * 
+     * @see au.net.hal9000.heisenberg.ai.api.ModelState
      * @return get the new model state.
      */
     public abstract ModelState getModelState();
 
     /**
-     * 
+     * @see au.net.hal9000.heisenberg.ai.api.Action
      * @return get the action.
      */
     public abstract Action getAction();
 
+    /**
+     * 
+     * @return get the cost.
+     */
+    public abstract double getCost();
+    
+    
 }

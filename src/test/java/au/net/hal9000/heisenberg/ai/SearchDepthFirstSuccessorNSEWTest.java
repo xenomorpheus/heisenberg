@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
@@ -34,7 +35,7 @@ public class SearchDepthFirstSuccessorNSEWTest {
     public void test() {
 
         // The expected Actions to reach the Goal.
-        Path expectedPath = new Path();
+        PathImpl expectedPath = new PathImpl();
         expectedPath.add(ActionMoveImpl.NORTH);
         expectedPath.add(ActionMoveImpl.NORTH);
         expectedPath.add(ActionMoveImpl.EAST);

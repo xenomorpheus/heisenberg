@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import au.net.hal9000.heisenberg.ai.Path;
 
 public interface Search {
 

@@ -36,22 +36,31 @@ public class SuccessorImpl implements Successor {
         this.cost = cost;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Successor#getAction()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Action getAction() {
         return action;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Successor#getModelState()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public ModelState getModelState() {
         return modelState;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getCost() {
+        return cost;
+    }
+
+    
     /**
      * {@inheritDoc}
      * 

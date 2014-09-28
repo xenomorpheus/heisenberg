@@ -29,41 +29,26 @@ public class ModelStateImpl implements ModelState, Cloneable {
         this.goalPosition = goalPosition;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.ModelState#getAgentPosition()
-     */
     @Override
     public Point3d getAgentPosition() {
         return agentPosition;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.ModelState#setAgentPosition(au.net.hal9000.heisenberg.units.Point3d)
-     */
     @Override
     public void setAgentPosition(Point3d position3d) {
         agentPosition = position3d;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.ModelState#getGoalPosition()
-     */
     @Override
     public Point3d getGoalPosition() {
         return goalPosition;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.ModelState#setGoalPosition(au.net.hal9000.heisenberg.units.Point3d)
-     */
     @Override
     public void setGoalPosition(Point3d position3d) {
         goalPosition = position3d;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.ModelState#clone()
-     */
     @Override
     public ModelStateImpl clone() throws CloneNotSupportedException {
         ModelStateImpl newModeState = (ModelStateImpl) super.clone();

@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 

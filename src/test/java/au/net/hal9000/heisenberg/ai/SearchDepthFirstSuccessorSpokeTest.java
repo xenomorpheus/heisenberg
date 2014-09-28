@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
@@ -38,7 +39,7 @@ public class SearchDepthFirstSuccessorSpokeTest {
     public void test() throws CloneNotSupportedException {
 
         // The expected Actions to reach the Goal.
-        Path expectedPath = new Path();
+        PathImpl expectedPath = new PathImpl();
         
         // length is one unit.
         Point3d point = new Point3d(X_POS / HYPOT, Y_POS / HYPOT, 0);
