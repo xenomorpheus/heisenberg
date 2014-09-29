@@ -1,8 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -13,10 +12,10 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * @version $Revision: 1.0 $
  * @author bruins
  */
-public class PathImpl implements Iterable<Action>, Path, Cloneable{
+public class PathImpl implements Path, Cloneable{
 
     /** a list of actions. */
-    private Queue<Action> queue = new LinkedList<Action>();
+    private ArrayList<Action> actions = new ArrayList<Action>();
 
     /**
      * Constructor.
@@ -34,7 +33,7 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
      */
     @Override
     public void add(Action action) {
-        queue.add(action);
+        actions.add(action);
     }
 
     /**
@@ -48,7 +47,7 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((null == queue) ? 0 : queue.hashCode());
+        result = prime * result + ((null == actions) ? 0 : actions.hashCode());
         return result;
     }
 
@@ -91,7 +90,7 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
      * @see au.net.hal9000.heisenberg.ai.Path#size()
      */
     private int size(){
-        return queue.size();
+        return actions.size();
     }
 
     /* (non-Javadoc)
@@ -99,7 +98,7 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
      */
     @Override
     public Iterator<Action> iterator(){
-        return queue.iterator();
+        return actions.iterator();
     }
     
     
@@ -112,7 +111,7 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
     public String toString() {
         StringBuilder string = new StringBuilder();
         String join = "";
-        for (Action action : queue) {
+        for (Action action : actions) {
             string.append(join);
             string.append(action.toString());
             join = ", ";
@@ -126,11 +125,12 @@ public class PathImpl implements Iterable<Action>, Path, Cloneable{
     public PathImpl clone() throws CloneNotSupportedException{
         PathImpl path = (PathImpl) super.clone();
         // TODO is this correct?
-        path.queue = new LinkedList<Action>();
-        for(Action action: queue){
+        path.actions = new ArrayList<Action>();
+        for(Action action: actions){
             path.add(action);
         }
         return path;
     }
+
     
 }

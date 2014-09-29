@@ -1,14 +1,10 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import java.util.Iterator;
 
-public interface Path {
 
-    /**
-     * Method iterator
-     * @return Iterator of Actions
-     */
-    public abstract Iterator<Action> iterator();
+
+
+public interface Path extends Iterable<Action>{
 
     /**
      * add action to path.

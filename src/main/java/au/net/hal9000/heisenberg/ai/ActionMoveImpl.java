@@ -14,10 +14,10 @@ public final class ActionMoveImpl implements ActionMove {
 
     /** move agent North. */
     public static final ActionMoveImpl NORTH = new ActionMoveImpl("North",
-            new Point3d(0, 1, 0));
+            new Point3d(0, -1, 0));
     /** move agent South. */
     public static final ActionMoveImpl SOUTH = new ActionMoveImpl("South",
-            new Point3d(0, -1, 0));
+            new Point3d(0, 1, 0));
     /** move agent East. */
     public static final ActionMoveImpl EAST = new ActionMoveImpl("East",
             new Point3d(1, 0, 0));

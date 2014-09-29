@@ -55,8 +55,6 @@ public class SearchUniformCost extends SearchBase {
 
         while (!fringe.isEmpty()) {
             FringeElement fringeElement = fringe.remove();
-
-            System.out.println("\nfe=" + fringeElement);
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
             double costSoFar = fringeElement.getCostSoFar();
@@ -72,10 +70,8 @@ public class SearchUniformCost extends SearchBase {
                 // Don't add states to the fringe more than once.
                 if (hasVisited(inFringe, successor.getModelState(),
                         DISTANCE_THRESHOLD)) {
-                    System.out.println("HAVE VISITED=" + successor);
                     continue;
                 }
-                System.out.println("ADDING=" + successor);
                 Path newPathSoFar;
 
                 try {
@@ -83,7 +79,7 @@ public class SearchUniformCost extends SearchBase {
                 } catch (CloneNotSupportedException e) {
                     throw new RuntimeException("Failed to clone path", e);
                 }
-                pathSoFar.add(successor.getAction());
+                newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
                 fringe.add(new FringeElementImpl(successor.getModelState(),
                         newPathSoFar, newCostSoFar));

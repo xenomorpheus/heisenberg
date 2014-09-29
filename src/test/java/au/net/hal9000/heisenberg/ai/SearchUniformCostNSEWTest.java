@@ -1,9 +1,11 @@
 package au.net.hal9000.heisenberg.ai;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -26,7 +28,7 @@ public class SearchUniformCostNSEWTest {
     /** desired x pos. */
     private static final int X_POS = 3;
     /** desired y pos. */
-    private static final int Y_POS = 4;
+    private static final int Y_POS = -4;
 
     /**
      * Test that the entire process of AI, AKA Computational Search.
@@ -60,6 +62,20 @@ public class SearchUniformCostNSEWTest {
 
         // Search
         Path gotPath = search.findPathToGoal(initialModelState);
-        assertTrue("path correct", expectedPath.equals(gotPath));
+        int actionCount = 0;
+        int actionNorthCount = 0;
+        int actionEastCount = 0;
+        for(Action action: gotPath){
+             ActionMoveImpl actionMove = (ActionMoveImpl)action;
+             actionCount++;
+             if (ActionMoveImpl.NORTH.equals(actionMove)){
+                actionNorthCount++;
+             } else if (ActionMoveImpl.EAST.equals(actionMove)){
+                actionEastCount++;
+             } 
+        }
+        assertEquals("action count", 7, actionCount);
+        assertEquals("action North count", 4, actionNorthCount);
+        assertEquals("action East count", 3, actionEastCount);
     }
 }
