@@ -31,15 +31,6 @@ public class SearchUniformCostNSEWTest {
     private static final int Y_POS = -4;
 
     private void testHelper(GoalEstFunction gFunction) {
-        // The expected Actions to reach the Goal.
-        PathImpl expectedPath = new PathImpl();
-        expectedPath.add(ActionMoveImpl.NORTH);
-        expectedPath.add(ActionMoveImpl.NORTH);
-        expectedPath.add(ActionMoveImpl.EAST);
-        expectedPath.add(ActionMoveImpl.NORTH);
-        expectedPath.add(ActionMoveImpl.EAST);
-        expectedPath.add(ActionMoveImpl.NORTH);
-        expectedPath.add(ActionMoveImpl.EAST);
 
         // Initial ModelState
         Point3d agentPosition = new Point3d();

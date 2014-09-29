@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -35,8 +36,7 @@ public class SearchUniformCostSpokeTest {
      * 
      * @throws CloneNotSupportedException
      */
-    @Test
-    public void test() throws CloneNotSupportedException {
+    private void testHelper(GoalEstFunction gFunction) throws CloneNotSupportedException  {
 
         // The expected Actions to reach the Goal.
         PathImpl expectedPath = new PathImpl();
@@ -60,10 +60,38 @@ public class SearchUniformCostSpokeTest {
         SuccessorFunction successorFunction = new SuccessorFunctionSpoke(
                 transitionFunction);
         Search search = new SearchAStar(successorFunction,
-                modelStateEvaluator);
+                modelStateEvaluator,gFunction);
 
         // Search
         Path gotPath = search.findPathToGoal(modelState);
         assertTrue("path correct", expectedPath.equals(gotPath));
     }
+
+    /**
+     * Test that the entire process of AI, AKA Computational Search.
+     * @throws CloneNotSupportedException 
+     */
+    @Test
+    public void testWithSearchAStar() throws CloneNotSupportedException {
+        GoalEstFunction gFunction = new GoalEstFunction() {
+
+            @Override
+            public double estimatedCostToGoal(ModelState modelState) {
+                return modelState.getAgentPosition().distance(
+                        modelState.getGoalPosition());
+            }
+
+        };
+        testHelper(gFunction);
+    }
+
+    /**
+     * Test that the entire process of AI, AKA Computational Search.
+     * @throws CloneNotSupportedException 
+     */
+    @Test
+    public void testWithSearchUniformCost() throws CloneNotSupportedException {
+        testHelper(null);
+    }
+
 }
