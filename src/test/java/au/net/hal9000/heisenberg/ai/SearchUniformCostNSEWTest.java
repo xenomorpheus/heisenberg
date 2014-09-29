@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -30,12 +30,7 @@ public class SearchUniformCostNSEWTest {
     /** desired y pos. */
     private static final int Y_POS = -4;
 
-    /**
-     * Test that the entire process of AI, AKA Computational Search.
-     */
-    @Test
-    public void test() {
-
+    private void testHelper(GoalEstFunction gFunction) {
         // The expected Actions to reach the Goal.
         PathImpl expectedPath = new PathImpl();
         expectedPath.add(ActionMoveImpl.NORTH);
@@ -57,25 +52,52 @@ public class SearchUniformCostNSEWTest {
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
         SuccessorFunction successorFunction = new SuccessorFunctionNSEW(
                 transitionFunction);
-        Search search = new SearchUniformCost(successorFunction,
-                modelStateEvaluator);
+        Search search = new SearchAStar(successorFunction, modelStateEvaluator,
+                gFunction);
 
         // Search
         Path gotPath = search.findPathToGoal(initialModelState);
         int actionCount = 0;
         int actionNorthCount = 0;
         int actionEastCount = 0;
-        for(Action action: gotPath){
-             ActionMoveImpl actionMove = (ActionMoveImpl)action;
-             actionCount++;
-             if (ActionMoveImpl.NORTH.equals(actionMove)){
+        for (Action action : gotPath) {
+            ActionMoveImpl actionMove = (ActionMoveImpl) action;
+            actionCount++;
+            if (ActionMoveImpl.NORTH.equals(actionMove)) {
                 actionNorthCount++;
-             } else if (ActionMoveImpl.EAST.equals(actionMove)){
+            } else if (ActionMoveImpl.EAST.equals(actionMove)) {
                 actionEastCount++;
-             } 
+            }
         }
-        assertEquals("action count", 7, actionCount);
-        assertEquals("action North count", 4, actionNorthCount);
-        assertEquals("action East count", 3, actionEastCount);
+        assertEquals("action count", Math.abs(X_POS) + Math.abs(Y_POS),
+                actionCount);
+        assertEquals("action North count", -Y_POS, actionNorthCount);
+        assertEquals("action East count", X_POS, actionEastCount);
+
+    }
+
+    /**
+     * Test that the entire process of AI, AKA Computational Search.
+     */
+    @Test
+    public void testWithSearchAStar() {
+        GoalEstFunction gFunction = new GoalEstFunction() {
+
+            @Override
+            public double estimatedCostToGoal(ModelState modelState) {
+                return modelState.getAgentPosition().distance(
+                        modelState.getGoalPosition());
+            }
+
+        };
+        testHelper(gFunction);
+    }
+
+    /**
+     * Test that the entire process of AI, AKA Computational Search.
+     */
+    @Test
+    public void testWithSearchUniformCost() {
+        testHelper(null);
     }
 }

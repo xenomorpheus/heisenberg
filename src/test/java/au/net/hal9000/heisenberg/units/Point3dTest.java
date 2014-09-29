@@ -81,6 +81,10 @@ public class Point3dTest {
         // 10*10 + 20*20 + 30*30 = 1400
         assertEquals("same", Math.sqrt(1400), point.distance(point3),
                 TEST_TOLERANCE);
+        
+        Point3d p1 = new Point3d(0,3,0);
+        Point3d p2 = new Point3d(4,0,0);
+        assertEquals("3 4 5 triangle", 5f, p1.distance(p2), TEST_TOLERANCE);
 
     }
 

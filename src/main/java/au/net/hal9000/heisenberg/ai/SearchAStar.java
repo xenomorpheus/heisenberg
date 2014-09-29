@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.api.FringeElement;
+import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -14,17 +15,28 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.units.Point3d;
 
 /**
- * Uniform Cost Search
+ * A-Star Search & Uniform Cost Search.<br>
+ * Uniform Cost Search is just SearchAStar without an estimate of cost to goal.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class SearchUniformCost extends SearchBase {
+public class SearchAStar extends SearchBase {
     /** how close do points need to be to be considered already visited */
     static double DISTANCE_THRESHOLD = 0.5;
 
-    /** constructor */
-    public SearchUniformCost(SuccessorFunction successorFunction,
+    /** estimated distance to goal */
+    GoalEstFunction gFunction = null;
+
+    /** constructor - A-Star search */
+    public SearchAStar(SuccessorFunction successorFunction,
+            ModelStateEvaluator modelStateEvaluator, GoalEstFunction gFunction) {
+        this(successorFunction, modelStateEvaluator);
+        this.gFunction = gFunction;
+    }
+
+    /** constructor - Uniform Cost Search */
+    public SearchAStar(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator) {
         super(successorFunction, modelStateEvaluator);
     }
@@ -37,10 +49,11 @@ public class SearchUniformCost extends SearchBase {
      *            current model state.
      * 
      * @return list of actions.
-     * @throws CloneNotSupportedException
      */
     @Override
     public Path findPathToGoal(ModelState modelState) {
+
+        Path resultPath;
         /**
          * places we have already searched. <br>
          * This is to break loops in graph searches
@@ -49,18 +62,20 @@ public class SearchUniformCost extends SearchBase {
 
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
-        
-        fringe.add(new FringeElementImpl(modelState, new PathImpl(), 0f));
+
+        fringe.add(new FringeElementImpl(modelState, new PathImpl(), 0f, 0));
         inFringe.add(modelState.getAgentPosition());
 
-        while (!fringe.isEmpty()) {
+        resultPath = null;
+        fringe: while (!fringe.isEmpty()) {
             FringeElement fringeElement = fringe.remove();
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
             double costSoFar = fringeElement.getCostSoFar();
 
             if (getModelStateEvaluator().isAtGoal(currentModelState)) {
-                return pathSoFar;
+                resultPath = pathSoFar;
+                break fringe;
             }
 
             Queue<Successor> successors = getSuccessorFunction()
@@ -68,12 +83,15 @@ public class SearchUniformCost extends SearchBase {
             for (Successor successor : successors) {
 
                 // Don't add states to the fringe more than once.
-                if (hasVisited(inFringe, successor.getModelState(),
+                ModelState successorModelState = successor.getModelState();
+                if (hasVisited(inFringe, successorModelState,
                         DISTANCE_THRESHOLD)) {
                     continue;
                 }
-                Path newPathSoFar;
+                inFringe.add(successorModelState.getAgentPosition());
 
+                // Add a new fringe element with extra action and cost.
+                Path newPathSoFar;
                 try {
                     newPathSoFar = pathSoFar.clone();
                 } catch (CloneNotSupportedException e) {
@@ -81,16 +99,18 @@ public class SearchUniformCost extends SearchBase {
                 }
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
-                fringe.add(new FringeElementImpl(successor.getModelState(),
-                        newPathSoFar, newCostSoFar));
-
-                // Don't add states to the fringe more than once.
-                inFringe.add(successor.getModelState().getAgentPosition());
-
+                double distanceToGoal = 0;
+                if (gFunction != null) {
+                    distanceToGoal = gFunction
+                            .estimatedCostToGoal(successorModelState);
+                }
+                fringe.add(new FringeElementImpl(successorModelState,
+                        newPathSoFar, newCostSoFar, newCostSoFar
+                                + distanceToGoal));
             }
 
         }
-        return null;
+        return resultPath;
     }
 
     /**

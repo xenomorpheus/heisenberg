@@ -23,4 +23,12 @@ public interface FringeElement {
      */
     public abstract double getCostSoFar();
 
+    /**
+     * get order.
+     * 
+     * @return order.
+     */
+    public abstract double getOrder();
+    
+    
 }

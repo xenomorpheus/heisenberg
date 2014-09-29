@@ -59,7 +59,7 @@ public class SearchUniformCostSpokeTest {
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
         SuccessorFunction successorFunction = new SuccessorFunctionSpoke(
                 transitionFunction);
-        Search search = new SearchUniformCost(successorFunction,
+        Search search = new SearchAStar(successorFunction,
                 modelStateEvaluator);
 
         // Search

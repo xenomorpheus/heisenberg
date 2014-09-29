@@ -11,15 +11,17 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 
 public class FringeElementImpl implements FringeElement,
         Comparable<FringeElementImpl> {
-    ModelState modelState;
-    Path pathSoFar;
-    double costSoFar;
+    private ModelState modelState;
+    private Path pathSoFar;
+    private double costSoFar;
+    private double order;
 
     public FringeElementImpl(ModelState modelState, Path pathSoFar,
-            double costSoFar) {
+            double costSoFar, double order) {
         this.modelState = modelState;
         this.pathSoFar = pathSoFar;
         this.costSoFar = costSoFar;
+        this.order = order;
     }
 
     @Override
@@ -37,15 +39,19 @@ public class FringeElementImpl implements FringeElement,
         return costSoFar;
     }
 
+    public double getOrder() {
+        return order;
+    }
+
     @Override
     public String toString() {
         return "[ModelState=" + modelState + ", pathSoFar=" + pathSoFar
-                + ", costSoFar=" + costSoFar + "]";
+                + ", costSoFar=" + costSoFar + ", order="+order+"]";
     }
 
     @Override
     public int compareTo(FringeElementImpl o) {
-        double oCost = o.getCostSoFar();
-        return (costSoFar < oCost) ? -1 : ((costSoFar > oCost) ? 1 : 0);
+        double oOrder = o.getOrder();
+        return (order < oOrder) ? -1 : ((order > oOrder) ? 1 : 0);
     }
 }
