@@ -2,6 +2,69 @@ AI Cat
 Agent - cat s/w
 
 
+
+f(n) = g(n) + h(n)
+
+f(n) = the evaluation (of a node) function.
+g(n) = the cost from the start node to the current node (n).
+h(n) = the estimated cost from the current node to the goal.
+
+
+
+Ideas for units to measure state evaluation (f/g/h)
+=========================================================
+
+Energy:
+Energy expended (e.g. living plus any movment) is bad (positive ?)
+Energy gained (e.g. eating) is good (negative)
+What about coming up with a negative total ?
+Energy may not be a good measure.
+Is twice the energy, twice as good (happy) ?
+Money:  Double money doesn't give double happiness.
+
+
+
+Ideas for h(n)
+
+
+h(n)
+= a1 * "health / happiness" of agent.
++ a2 * "health / happiness" of "friends" ?
++ a2 * "health / happiness" of environment
+
+
+Health and happiness of agent
+===============================
+h(n)
+= a1 * metric(hydration)
++ a2 * metric(nourishment)
+
+Future:
+rest, aeration etc.
+
+Idea:
+a1, a2, etc. should be computed via RL (Reinforcement Learning).
+
+
+
+
+
+Ideas for computing health metric coeffecients a1, a2.
+===========================================================
+a1, a2, etc. should be computed via RL (Reinforcement Learning).
+
+initial a1 based on time to die from lack of hydration.
+initial a1 based on time to die from lack of nourishment.
+
+Use RL to fine tune.
+
+Setup unit tests for sevaral situations to check reasonable values
+for overal health / happiness.
+
+
+
+
+
 Action Item
 =================================
 Add Items:
@@ -23,9 +86,17 @@ entertainment              ideal 100 - DONE
 Detailed Plans
 =====================================
 
-Born with racial memory:
+Should cat be Born with racial memory?
 Tendency to hunt / drink / eat /sleep
-Expressed as pre-loaded coefficients for actions.
+If so, how ?
+Perhaps the co-efficients on the metrics for state evaluation functions.
+
+h(n) 
+= a1 * distance_to_smaller_animal_when_hungry(n)
++ a2 * distance_to_water_when_thirsty(n)
+???
+
+
 
 
 Actions:
@@ -47,7 +118,7 @@ Mice
 Fish?
 
 
-Agent goals: (rl features)
+Agent goals: (RL features)
 0 bad eg. Penalties for low. 
 100 ideal
 150 max, minor penalties over 100

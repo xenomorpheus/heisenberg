@@ -1,0 +1,14 @@
+
+RL - Reinforcement Learning
+
+Aim:
+to enable game agents to learn by utilising RL.
+
+* Revise reinforcement learning notes.
+
+* Write psedo-code for RL implemented in java.
+
+* Incorporate into overall AI design.
+
+* Implement
+
