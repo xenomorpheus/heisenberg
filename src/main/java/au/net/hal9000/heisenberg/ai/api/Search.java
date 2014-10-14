@@ -5,7 +5,7 @@ public interface Search {
     /**
      * @return the successor function.
      */
-    public abstract SuccessorFunction getSuccessorFunction();
+    SuccessorFunction getSuccessorFunction();
 
     /**
      * set the successor function
@@ -13,19 +13,18 @@ public interface Search {
      * @param successorFunction
      *            the successor function.
      */
-    public abstract void setSuccessorFunction(
-            SuccessorFunction successorFunction);
+    void setSuccessorFunction(SuccessorFunction successorFunction);
 
     /**
      * @return the model state evaluator function.
      */
-    public abstract ModelStateEvaluator getModelStateEvaluator();
+    ModelStateEvaluator getModelStateEvaluator();
 
     /**
-     * @param modelStateEvaluator the model state evaluator function.
+     * @param modelStateEvaluator
+     *            the model state evaluator function.
      */
-    public abstract void setModelStateEvaluator(
-            ModelStateEvaluator modelStateEvaluator);
+    void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator);
 
     /**
      * Return a list of actions to get from the current model state to reach the
@@ -36,6 +35,6 @@ public interface Search {
      * 
      * @return list of actions.
      */
-    public abstract Path findPathToGoal(ModelState modelState);
+    Path findPathToGoal(ModelState modelState);
 
 }

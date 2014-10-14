@@ -3,11 +3,13 @@ package au.net.hal9000.heisenberg.ui;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import org.jbox2d.testbed.framework.TestbedController.UpdateBehavior;
 import org.jbox2d.testbed.framework.TestbedFrame;
 import org.jbox2d.testbed.framework.TestbedModel;
 import org.jbox2d.testbed.framework.TestbedPanel;
-import org.jbox2d.testbed.framework.TestbedController.UpdateBehavior;
 
+/**
+ */
 public class Main {
 
     /**

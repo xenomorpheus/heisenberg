@@ -7,6 +7,8 @@ import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
+/**
+ */
 public class BasicPanelMain {
     /** frame width. */
     static final int FRAME_WIDTH = 800;

@@ -14,14 +14,42 @@ import org.jbox2d.dynamics.World;
 import org.jbox2d.testbed.framework.TestbedSettings;
 import org.jbox2d.testbed.framework.TestbedTest;
 
+/**
+ */
 public class MazeCat extends TestbedTest {
+    /**
+     * Field CAT_TAG.
+     * (value is 100)
+     */
     private static final long CAT_TAG = 100L;
+    /**
+     * Field RAT_TAG.
+     * (value is 101)
+     */
     private static final long RAT_TAG = 101L;
+    /**
+     * Field OUTER_WALL_TAG.
+     * (value is 102)
+     */
     private static final long OUTER_WALL_TAG = 102L;
+    /**
+     * Field BARRIER_TAG.
+     * (value is 103)
+     */
     private static final long BARRIER_TAG = 103L;
+    /**
+     * Field cat.
+     */
     private Body cat;
+    /**
+     * Field rat.
+     */
     private Body rat;
 
+    /**
+     * Method step.
+     * @param settings TestbedSettings
+     */
     @Override
     public synchronized void step(TestbedSettings settings) {
 
@@ -38,6 +66,10 @@ public class MazeCat extends TestbedTest {
         setCamera(cat.getPosition());
     }
 
+    /**
+     * Method initTest.
+     * @param deserialized boolean
+     */
     @Override
     public void initTest(boolean deserialized) {
         if (deserialized) {
@@ -151,16 +183,30 @@ public class MazeCat extends TestbedTest {
         }
     }
 
+    /**
+     * Method getTestName.
+     * @return String
+     */
     @Override
     public String getTestName() {
         return "Maze Cat";
     }
 
+    /**
+     * Method getDefaultCameraScale.
+     * @return float
+     */
     @Override
     public float getDefaultCameraScale() {
         return 35;
     }
 
+    /**
+     * Method getTag.
+     * @param body Body
+     * @return Long
+     * @see org.jbox2d.serialization.JbSerializer$ObjectSigner#getTag(Body)
+     */
     @Override
     public Long getTag(Body body) {
         if (body == cat) {
@@ -172,6 +218,12 @@ public class MazeCat extends TestbedTest {
         return super.getTag(body);
     }
 
+    /**
+     * Method processBody.
+     * @param body Body
+     * @param tag Long
+     * @see org.jbox2d.serialization.JbDeserializer$ObjectListener#processBody(Body, Long)
+     */
     @Override
     public void processBody(Body body, Long tag) {
         if (tag == CAT_TAG) {
@@ -183,12 +235,19 @@ public class MazeCat extends TestbedTest {
         }
     }
 
+    /**
+     * Method isSaveLoadEnabled.
+     * @return boolean
+     */
     @Override
     public boolean isSaveLoadEnabled() {
         return true;
     }
 
     // look for obstacles from Cat to Rat
+    /**
+     * Method vision.
+     */
     private void vision() {
         RayCastMultipleCallback mcallback = new RayCastMultipleCallback();
         mcallback.init();
@@ -211,17 +270,46 @@ public class MazeCat extends TestbedTest {
 
     // This ray cast collects multiple hits along the ray. Polygon 0 is
     // filtered.
+    /**
+     */
     private class RayCastMultipleCallback implements RayCastCallback {
+        /**
+         * Field RAYCAST_TERMINATE.
+         * (value is 0.0)
+         */
         static final float RAYCAST_TERMINATE = 0f;
         // static final float RAYCAST_FILTER = -1f;
+        /**
+         * Field RAYCAST_CONTINUE.
+         * (value is 1.0)
+         */
         static final float RAYCAST_CONTINUE = 1f;
 
+        /**
+         * Field E_MAX_COUNT.
+         * (value is 30)
+         */
         static final int E_MAX_COUNT = 30;
+        /**
+         * Field m_points.
+         */
         private Vec2 m_points[] = new Vec2[E_MAX_COUNT];
+        /**
+         * Field m_normals.
+         */
         private Vec2 m_normals[] = new Vec2[E_MAX_COUNT];
+        /**
+         * Field m_user_data.
+         */
         private Object m_user_data[] = new Object[E_MAX_COUNT];
+        /**
+         * Field m_count.
+         */
         private int m_count;
 
+        /**
+         * Method init.
+         */
         public void init() {
             for (int i = 0; i < E_MAX_COUNT; i++) {
                 m_points[i] = new Vec2();
@@ -231,6 +319,15 @@ public class MazeCat extends TestbedTest {
             m_count = 0;
         }
 
+        /**
+         * Method reportFixture.
+         * @param fixture Fixture
+         * @param point Vec2
+         * @param normal Vec2
+         * @param fraction float
+         * @return float
+         * @see org.jbox2d.callbacks.RayCastCallback#reportFixture(Fixture, Vec2, Vec2, float)
+         */
         @Override
         public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal,
                 float fraction) {

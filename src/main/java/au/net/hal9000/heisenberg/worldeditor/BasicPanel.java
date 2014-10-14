@@ -23,6 +23,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class BasicPanel extends JPanel {
 
@@ -534,8 +536,8 @@ public class BasicPanel extends JPanel {
         /**
          * Handle changes in text fields when user hits return.
          * @param e ActionEvent
-         * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-         */
+        
+         * @see java.awt.event.ActionListener#actionPerformed(ActionEvent) */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == nameTextField) {
@@ -558,8 +560,8 @@ public class BasicPanel extends JPanel {
         /**
          * Method focusGained.
          * @param arg0 FocusEvent
-         * @see java.awt.event.FocusListener#focusGained(FocusEvent)
-         */
+        
+         * @see java.awt.event.FocusListener#focusGained(FocusEvent) */
         @Override
         public void focusGained(FocusEvent arg0) {
             // No action
@@ -570,8 +572,8 @@ public class BasicPanel extends JPanel {
          * Handle changes in text fields. Changes are processed when field loses
          * focus. No need to updateForm as changes are already visible.
          * @param e FocusEvent
-         * @see java.awt.event.FocusListener#focusLost(FocusEvent)
-         */
+        
+         * @see java.awt.event.FocusListener#focusLost(FocusEvent) */
         @Override
         public void focusLost(FocusEvent e) {
             Object component = e.getComponent();
@@ -587,14 +589,15 @@ public class BasicPanel extends JPanel {
     }
 
     /** Listens to multiple form elements. * @author bruins
+     * @author bruins
      */
     private class BasicItemListener implements ItemListener {
 
         /**
          * Method itemStateChanged.
          * @param evt ItemEvent
-         * @see java.awt.event.ItemListener#itemStateChanged(ItemEvent)
-         */
+        
+         * @see java.awt.event.ItemListener#itemStateChanged(ItemEvent) */
         @Override
         public void itemStateChanged(ItemEvent evt) {
             Object source = evt.getSource();

@@ -37,11 +37,23 @@ import org.jbox2d.pooling.arrays.Vec2Array;
 
 import com.jogamp.opengl.util.awt.TextRenderer;
 
+/**
+ */
 public class JoglDebugDraw extends DebugDraw {
 
+  /**
+   * Field panel.
+   */
   private final JoglPanel panel;
+  /**
+   * Field text.
+   */
   private final TextRenderer text;
 
+  /**
+   * Constructor for JoglDebugDraw.
+   * @param argPanel JoglPanel
+   */
   public JoglDebugDraw(JoglPanel argPanel) {
     super(new OBBViewportTransform());
     
@@ -50,6 +62,12 @@ public class JoglDebugDraw extends DebugDraw {
     viewportTransform.setYFlip(false);
   }
 
+  /**
+   * Method drawPoint.
+   * @param argPoint Vec2
+   * @param argRadiusOnScreen float
+   * @param argColor Color3f
+   */
   @Override
   public void drawPoint(Vec2 argPoint, float argRadiusOnScreen, Color3f argColor) {
     Vec2 vec = getWorldToScreen(argPoint);
@@ -60,7 +78,16 @@ public class JoglDebugDraw extends DebugDraw {
     gl.glEnd();
   }
 
+  /**
+   * Field trans.
+   */
   private final Vec2 trans = new Vec2();
+  /**
+   * Method drawSolidPolygon.
+   * @param vertices Vec2[]
+   * @param vertexCount int
+   * @param color Color3f
+   */
   @Override
   public void drawSolidPolygon(Vec2[] vertices, int vertexCount, Color3f color) {
     GL2 gl = panel.getGL().getGL2();
@@ -81,7 +108,16 @@ public class JoglDebugDraw extends DebugDraw {
     gl.glEnd();
   }
 
+  /**
+   * Field vec2Array.
+   */
   private final Vec2Array vec2Array = new Vec2Array();
+  /**
+   * Method drawCircle.
+   * @param center Vec2
+   * @param radius float
+   * @param color Color3f
+   */
   @Override
   public void drawCircle(Vec2 center, float radius, Color3f color) {
     Vec2[] vecs = vec2Array.get(20);
@@ -89,6 +125,13 @@ public class JoglDebugDraw extends DebugDraw {
     drawPolygon(vecs, 20, color);
   }
 
+  /**
+   * Method drawSolidCircle.
+   * @param center Vec2
+   * @param radius float
+   * @param axis Vec2
+   * @param color Color3f
+   */
   @Override
   public void drawSolidCircle(Vec2 center, float radius, Vec2 axis, Color3f color) {
     Vec2[] vecs = vec2Array.get(20);
@@ -97,6 +140,12 @@ public class JoglDebugDraw extends DebugDraw {
     drawSegment(center, vecs[0], color);
   }
 
+  /**
+   * Method drawSegment.
+   * @param p1 Vec2
+   * @param p2 Vec2
+   * @param color Color3f
+   */
   @Override
   public void drawSegment(Vec2 p1, Vec2 p2, Color3f color) {
     GL2 gl = panel.getGL().getGL2();
@@ -109,12 +158,23 @@ public class JoglDebugDraw extends DebugDraw {
     gl.glEnd();
   }
 
+  /**
+   * Method drawTransform.
+   * @param xf Transform
+   */
   @Override
   public void drawTransform(Transform xf) {
     // TODO Auto-generated method stub
 
   }
 
+  /**
+   * Method drawString.
+   * @param x float
+   * @param y float
+   * @param s String
+   * @param color Color3f
+   */
   @Override
   public void drawString(float x, float y, String s, Color3f color) {
     text.beginRendering(panel.getWidth(), panel.getHeight());
@@ -125,6 +185,13 @@ public class JoglDebugDraw extends DebugDraw {
 
   // CIRCLE GENERATOR
 
+  /**
+   * Method generateCirle.
+   * @param argCenter Vec2
+   * @param argRadius float
+   * @param argPoints Vec2[]
+   * @param argNumPoints int
+   */
   private void generateCirle(Vec2 argCenter, float argRadius, Vec2[] argPoints, int argNumPoints) {
     float inc = MathUtils.TWOPI / argNumPoints;
 

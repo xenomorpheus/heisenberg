@@ -7,28 +7,27 @@ public interface FringeElement {
      * 
      * @return model state.
      */
-    public abstract ModelState getModelState();
+    ModelState getModelState();
 
     /**
      * get the path so far.
      * 
      * @return path so far.
      */
-    public abstract Path getPathSoFar();
+    Path getPathSoFar();
 
     /**
      * get cost so far.
      * 
      * @return cost so far.
      */
-    public abstract double getCostSoFar();
+    double getCostSoFar();
 
     /**
      * get order.
      * 
      * @return order.
      */
-    public abstract double estimatedTotalCost();
-    
-    
+    double estimatedTotalCost();
+
 }

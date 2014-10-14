@@ -28,6 +28,8 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ScenarioSet01 {
 
@@ -44,10 +46,10 @@ public class ScenarioSet01 {
     /**
      * Method swordIntoScabbard.
      * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
+    
+    
+    
+     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
     @Test
     public void swordIntoScabbard() throws InvalidTypeException, TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A sword is placed in a scabbard.");
@@ -67,10 +69,10 @@ public class ScenarioSet01 {
     /**
      * Method fullBackpackIntoBox.
      * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
+    
+    
+    
+     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
     @Test
     public void fullBackpackIntoBox() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
@@ -126,10 +128,10 @@ public class ScenarioSet01 {
     /**
      * Method shieldAdd.
      * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
+    
+    
+    
+     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
     @Test
     public void shieldAdd() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A Shield is equipped.");
@@ -143,10 +145,10 @@ public class ScenarioSet01 {
     /**
      * Method quiverIsFilled.
      * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
+    
+    
+    
+     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
     @Test
     public void quiverIsFilled() throws InvalidTypeException,  TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A quiver is filled.");
@@ -186,8 +188,8 @@ public class ScenarioSet01 {
     /**
      * Method hobbitEatsACookie.
      * 
-     * @throws InvalidTypeException
-     */
+    
+     * @throws InvalidTypeException */
     @Test
     public void hobbitEatsACookie() throws InvalidTypeException {
         println(System.lineSeparator() + "** A hobbit eats a cookie.");

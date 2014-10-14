@@ -5,10 +5,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
-
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
+import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 
 /**
  * Some common water.

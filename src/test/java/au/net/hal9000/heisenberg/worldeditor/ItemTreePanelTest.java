@@ -18,14 +18,16 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
 /**
- * Test the ItemPanel. * @author bruins
+ * Test the ItemPanel.
  * 
+ * @author bruins
  * @version $Revision: 1.0 $
  */
 public class ItemTreePanelTest {
 
     /**
      * Test testItemTreePanel.
+     * 
      * @throws ConfigurationError
      * @throws InvalidTypeException
      * @throws TooLargeException
@@ -33,20 +35,20 @@ public class ItemTreePanelTest {
      */
     @Test
     public void testItemTreePanel() throws ConfigurationError,
-            InvalidTypeException,  TooHeavyException,
-            TooLargeException {
+            InvalidTypeException, TooHeavyException, TooLargeException {
         Configuration config = DummyData.config();
         Location location = DummyData.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
         assertNotNull("Not Null", itemTreePanel);
     }
-    
+
     @Test
-    public void testGetPathToRoot() throws TooHeavyException, TooLargeException, InvalidTypeException {
+    public void testGetPathToRoot() throws TooHeavyException,
+            TooLargeException, InvalidTypeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);
-        TreePath expected = new TreePath(new Item[]{cookie, world});
+        TreePath expected = new TreePath(new Item[] { cookie, world });
         TreePath got = ItemTreePanel.getPathToRoot(cookie);
         assertEquals("path", expected, got);
     }

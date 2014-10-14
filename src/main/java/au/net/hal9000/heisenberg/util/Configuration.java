@@ -3,13 +3,11 @@ package au.net.hal9000.heisenberg.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.List;
-
-
 
 // XML Parser
 import nu.xom.Attribute;

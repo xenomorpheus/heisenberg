@@ -7,7 +7,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
-/*
+/**
  * Shield.
  * 
  * 1) Reduces the chance that a attack will land.<br>

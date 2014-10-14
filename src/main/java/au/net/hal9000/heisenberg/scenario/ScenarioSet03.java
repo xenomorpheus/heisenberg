@@ -22,6 +22,8 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class ScenarioSet03 {
     /**
@@ -31,8 +33,8 @@ public class ScenarioSet03 {
 
     /**
      * Method initialize.
-     * @throws ConfigurationError
-     */
+    
+     * @throws ConfigurationError */
     @Before
     public void initialize() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
@@ -48,10 +50,10 @@ public class ScenarioSet03 {
 
     /**
      * Method testFireGround1.
-     * @throws InvalidTypeException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
-     */
+    
+    
+    
+     * @throws InvalidTypeException  * @throws TooHeavyException  * @throws TooLargeException  */
     @Test
     public void testFireGround1() throws InvalidTypeException, TooHeavyException, TooLargeException {
         // The recipe we are going to test

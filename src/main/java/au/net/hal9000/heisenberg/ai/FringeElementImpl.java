@@ -12,6 +12,8 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * The path to get there<br>
  * The cost so far.<br>
  * 
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 
 public class FringeElementImpl implements FringeElement,
@@ -46,29 +48,38 @@ public class FringeElementImpl implements FringeElement,
         this.estimatedTotalCost = estimatedTotalCost;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return ModelState
+     */
     @Override
     public ModelState getModelState() {
         return modelState;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return Path
+     */
     @Override
     public Path getPathSoFar() {
         return pathSoFar;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return double
+     */
     @Override
     public double getCostSoFar() {
         return costSoFar;
     }
 
+    /**
+     * Method estimatedTotalCost.
+     * @return double
+     * @see au.net.hal9000.heisenberg.ai.api.FringeElement#estimatedTotalCost()
+     */
     public double estimatedTotalCost() {
         return estimatedTotalCost;
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @return String
+     */
     @Override
     public String toString() {
         return "[ModelState=" + modelState + ", pathSoFar=" + pathSoFar
@@ -76,7 +87,9 @@ public class FringeElementImpl implements FringeElement,
                 + estimatedTotalCost + "]";
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} * @param o FringeElementImpl
+     * @return int
+     */
     @Override
     public int compareTo(FringeElementImpl o) {
         double oEstimatedTotalCost = o.estimatedTotalCost();

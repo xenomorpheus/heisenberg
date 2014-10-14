@@ -43,15 +43,39 @@ import org.jbox2d.testbed.framework.TestbedModel;
 import org.jbox2d.testbed.framework.TestbedPanel;
 import org.jbox2d.testbed.framework.TestbedTest;
 
+/**
+ */
 public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener {
+  /**
+   * Field serialVersionUID.
+   * (value is 1)
+   */
   private static final long serialVersionUID = 1L;
   
+  /**
+   * Field ZOOM_OUT_SCALE.
+   * (value is 0.95)
+   */
   private static final float ZOOM_OUT_SCALE = .95f;
+  /**
+   * Field ZOOM_IN_SCALE.
+   * (value is 1.05)
+   */
   private static final float ZOOM_IN_SCALE = 1.05f;
   
+  /**
+   * Field draw.
+   */
   private final JoglDebugDraw draw;
+  /**
+   * Field model.
+   */
   private final TestbedModel model;
 
+  /**
+   * Constructor for JoglPanel.
+   * @param argModel TestbedModel
+   */
   public JoglPanel(TestbedModel argModel) {
     super(new GLCapabilities(GLProfile.getDefault()));
     model = argModel;
@@ -97,13 +121,15 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     });
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @return DebugDraw
+   */
   @Override
   public DebugDraw getDebugDraw() {
     return draw;
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @return boolean
+   */
   @Override
   public boolean render() {
     return true;
@@ -115,7 +141,8 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     display();
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @param arg0 GLAutoDrawable
+   */
   @Override
   public void display(GLAutoDrawable arg0) {
     getGL().getGL2().glClear(GL2.GL_COLOR_BUFFER_BIT);
@@ -127,14 +154,16 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     getGL().glFlush();
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @param arg0 GLAutoDrawable
+   */
   @Override
   public void dispose(GLAutoDrawable arg0) {
     // TODO Auto-generated method stub
 
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @param arg0 GLAutoDrawable
+   */
   @Override
   public void init(GLAutoDrawable arg0) {
     getGL().getGL2().glLineWidth(1f);
@@ -142,7 +171,12 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     getGL().getGL2().glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc} * @param arg0 GLAutoDrawable
+   * @param arg1 int
+   * @param arg2 int
+   * @param arg3 int
+   * @param arg4 int
+   */
   @Override
   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
     GL2 gl2 = arg0.getGL().getGL2();

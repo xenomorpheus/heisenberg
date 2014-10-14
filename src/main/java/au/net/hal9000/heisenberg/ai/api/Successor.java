@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-
 /**
  * A Successor object contains three things:<br>
  * 1) The resultant ModelState when the Action is performed.<br>
@@ -18,19 +17,18 @@ public interface Successor {
      * @see au.net.hal9000.heisenberg.ai.api.ModelState
      * @return get the new model state.
      */
-    public abstract ModelState getModelState();
+    ModelState getModelState();
 
     /**
      * @see au.net.hal9000.heisenberg.ai.api.Action
      * @return get the action.
      */
-    public abstract Action getAction();
+    Action getAction();
 
     /**
      * 
      * @return get the cost.
      */
-    public abstract double getCost();
-    
-    
+    double getCost();
+
 }

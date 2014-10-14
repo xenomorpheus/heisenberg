@@ -8,13 +8,15 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
 /**
+ * @author bruins
+ * @version $Revision: 1.0 $
  */
 public class DescriptionPaneTest {
 
     /**
      * Method doTest.
-     * @throws ConfigurationError
-     */
+    
+     * @throws ConfigurationError */
     @Test
     public void doTest() throws ConfigurationError {
 
