@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 import au.net.hal9000.heisenberg.util.AbilityScore;
@@ -47,7 +48,7 @@ public abstract class PcRace extends Entity {
     /**
      * Field abilityScores.
      */
-    private TreeMap<String, AbilityScore> abilityScores;
+    private Map<String, AbilityScore> abilityScores;
 
     // Constructors
 
@@ -228,7 +229,7 @@ public abstract class PcRace extends Entity {
     /**
     
      * @return the abilityScores */
-    public final TreeMap<String, AbilityScore> getAbilityScores() {
+    public final Map<String, AbilityScore> getAbilityScores() {
         return abilityScores;
     }
 
@@ -237,7 +238,7 @@ public abstract class PcRace extends Entity {
      *            the abilityScores to set
      */
     public final void setAbilityScores(
-            TreeMap<String, AbilityScore> abilityScores) {
+            Map<String, AbilityScore> abilityScores) {
         this.abilityScores = abilityScores;
     }
 
@@ -294,7 +295,7 @@ public abstract class PcRace extends Entity {
         abilityScoresEnsureExists();
 
         // TODO don't reach inside object's data structures - keySet()
-        TreeMap<String, AbilityScore> pcClassAbilityScores = pcClass
+        Map<String, AbilityScore> pcClassAbilityScores = pcClass
                 .getAbilityScores();
         if (null != pcClassAbilityScores) {
             // TODO do we need to clear existing abilities

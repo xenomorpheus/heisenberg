@@ -1,8 +1,9 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -64,11 +65,11 @@ public class SkillsTable extends JTable {
         /**
          * Field orderedSkills.
          */
-        private ArrayList<Skill> orderedSkills;
+        private List<Skill> orderedSkills;
         /**
          * Field skillDetails.
          */
-        private TreeMap<String, SkillDetail> skillDetails;
+        private Map<String, SkillDetail> skillDetails;
 
         /**
          * Constructor for MyTableModel.

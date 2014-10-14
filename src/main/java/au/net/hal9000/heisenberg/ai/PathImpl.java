@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -15,7 +16,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 public class PathImpl implements Path, Cloneable{
 
     /** a list of actions. */
-    private ArrayList<Action> actions = new ArrayList<Action>();
+    private List<Action> actions = new ArrayList<Action>();
 
     /**
      * Constructor.

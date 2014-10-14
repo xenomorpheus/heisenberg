@@ -3,10 +3,12 @@ package au.net.hal9000.heisenberg.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.List;
+
 
 
 // XML Parser
@@ -48,17 +50,17 @@ public class Configuration {
     private List<ItemClassConfiguration> itemClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
     /** A map of possible pcClass details. */
-    private TreeMap<String, PcClass> pcClasses;
+    private Map<String, PcClass> pcClasses;
     /** list of valid races. */
     private List<String> races;
     /** A map of Recipe objects. */
-    private TreeMap<String, Recipe> recipes;
+    private Map<String, Recipe> recipes;
     /** A map of SkillDetail objects. */
-    private TreeMap<String, SkillDetail> skillDetails;
+    private Map<String, SkillDetail> skillDetails;
     /** A list of sizes. */
     private List<String> sizes;
     /** Images to show in UI. */
-    private TreeMap<String, SpriteSheetConfiguration> spriteSheets;
+    private Map<String, SpriteSheetConfiguration> spriteSheets;
 
     /**
      * Constructor.
@@ -111,7 +113,7 @@ public class Configuration {
      * 
      * @return skill details.
      */
-    public final TreeMap<String, SkillDetail> getSkillDetails() {
+    public final Map<String, SkillDetail> getSkillDetails() {
         return skillDetails;
     }
 
@@ -120,7 +122,7 @@ public class Configuration {
      * 
      * @return TreeMap<String,Recipe>
      */
-    public final TreeMap<String, Recipe> getRecipes() {
+    public final Map<String, Recipe> getRecipes() {
         return recipes;
     }
 
@@ -130,7 +132,7 @@ public class Configuration {
      * 
      * @return TreeMap<String,PcClass>
      */
-    public TreeMap<String, PcClass> getPcClasses() {
+    public Map<String, PcClass> getPcClasses() {
         return pcClasses;
     }
 
@@ -170,7 +172,7 @@ public class Configuration {
      * 
      * @return the sprite sheet details
      */
-    public TreeMap<String, SpriteSheetConfiguration> getSpriteSheets() {
+    public Map<String, SpriteSheetConfiguration> getSpriteSheets() {
         return spriteSheets;
     }
 
@@ -303,8 +305,8 @@ public class Configuration {
      *            Elements
      * @return TreeMap<String,PcClass>
      */
-    private TreeMap<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
-        TreeMap<String, PcClass> classes = new TreeMap<String, PcClass>();
+    private Map<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
+        Map<String, PcClass> classes = new TreeMap<String, PcClass>();
         for (int current = 0; current < pcClassesElements.size(); current++) {
             PcClass pcClass = xmlToPcClass(pcClassesElements.get(current));
             classes.put(pcClass.getId(), pcClass);
@@ -536,10 +538,10 @@ public class Configuration {
      * @return A set of Recipe objects. * @throws ParsingException * @throws
      *         IOException
      */
-    public static TreeMap<String, Recipe> xmlToRecipes(Element element) {
+    public static Map<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
-        TreeMap<String, Recipe> recipes = new TreeMap<String, Recipe>();
+        Map<String, Recipe> recipes = new TreeMap<String, Recipe>();
         for (int recipeCurrent = 0; recipeCurrent < recipeElementSet.size(); recipeCurrent++) {
             // get current Recipe
             Element recipeElement = recipeElementSet.get(recipeCurrent);
@@ -556,10 +558,10 @@ public class Configuration {
      * 
      * @return TreeMap of SkillDetail objects.
      */
-    private static TreeMap<String, SkillDetail> xmlToSkillDetails(
+    private static Map<String, SkillDetail> xmlToSkillDetails(
             Element element) {
         Elements entries = element.getChildElements("skill");
-        TreeMap<String, SkillDetail> skillDetails = new TreeMap<String, SkillDetail>();
+        Map<String, SkillDetail> skillDetails = new TreeMap<String, SkillDetail>();
         for (int current = 0; current < entries.size(); current++) {
             // get current Skill
             Element entry = entries.get(current);
@@ -675,10 +677,10 @@ public class Configuration {
      *            Element
      * @return TreeMap<String,SpriteSheetConfiguration>
      */
-    private TreeMap<String, SpriteSheetConfiguration> xmlToSpriteSheets(
+    private Map<String, SpriteSheetConfiguration> xmlToSpriteSheets(
             Element spriteSheets) {
         Elements entries = spriteSheets.getChildElements();
-        TreeMap<String, SpriteSheetConfiguration> mySpriteSheets = new TreeMap<String, SpriteSheetConfiguration>();
+        Map<String, SpriteSheetConfiguration> mySpriteSheets = new TreeMap<String, SpriteSheetConfiguration>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             SpriteSheetConfiguration ssd = new SpriteSheetConfiguration();

@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
  * @author bruins
  * @version $Revision: 1.0 $
  **/
-class ItemTreeModel extends AbstractTreeModel implements TreeModel {
+public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** We specify the root directory when we create the model. */
     private Item root;
 

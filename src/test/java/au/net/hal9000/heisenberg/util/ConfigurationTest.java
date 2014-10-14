@@ -5,9 +5,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,6 @@ import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
-
 /**
  */
 public class ConfigurationTest {
@@ -34,6 +33,7 @@ public class ConfigurationTest {
 
     /**
      * Method setUp.
+     * 
      * @throws ConfigurationError
      */
     @Before
@@ -72,7 +72,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testSpriteSheets() {
-        TreeMap<String, SpriteSheetConfiguration> spriteSheets = config
+        Map<String, SpriteSheetConfiguration> spriteSheets = config
                 .getSpriteSheets();
         assertTrue("count", spriteSheets.size() > 0);
     }
@@ -123,7 +123,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testSkills() {
-        TreeMap<String, SkillDetail> skillDetails = config.getSkillDetails();
+        Map<String, SkillDetail> skillDetails = config.getSkillDetails();
         SkillDetail fireLighting = skillDetails.get("testFireLighting");
         assertEquals("FireLighting-id", "testFireLighting",
                 fireLighting.getId());
@@ -138,7 +138,7 @@ public class ConfigurationTest {
     @Test
     public void testRecipeRequirementItem() {
         Recipe recipe1 = config.getRecipe("testItem1");
-        assertEquals("requirement count", 2, recipe1.getRequirementCount() );
+        assertEquals("requirement count", 2, recipe1.getRequirementCount());
         RequirementItem requirementItem = (RequirementItem) recipe1
                 .getRequirement(0);
         assertNotNull("requirement not null", requirementItem);
@@ -147,46 +147,45 @@ public class ConfigurationTest {
                 requirementItem.getItemType());
     }
 
-    
     /**
      * Method testXmlToRecipeProductItems.
      */
     @Test
     public void testXmlToRecipeProductItems() {
         Recipe recipe1 = config.getRecipe("testItem1");
-        assertEquals("product count", 1, recipe1.getProductCount() );
-        ProductItem product0 = (ProductItem) recipe1
-                .getProduct(0);
+        assertEquals("product count", 1, recipe1.getProductCount());
+        ProductItem product0 = (ProductItem) recipe1.getProduct(0);
         assertNotNull("product0 not null", product0);
         assertEquals("product0 id", "Cookie", product0.getId());
-        assertEquals("product0 itemType", "Cookie",
-                product0.getType());
-        assertEquals("product0 getWeightBase", 1, product0.getWeightBase(), TOLERANCE);
-    
+        assertEquals("product0 itemType", "Cookie", product0.getType());
+        assertEquals("product0 getWeightBase", 1, product0.getWeightBase(),
+                TOLERANCE);
+
     }
 
-    
     /**
      * Method testXmlToRecipeProductProperty.
      */
     @Test
     public void testXmlToRecipeProductProperty() {
         Recipe recipe1 = config.getRecipe("testDrinkWater");
-        assertEquals("product count", 1, recipe1.getProductCount() );
+        assertEquals("product count", 1, recipe1.getProductCount());
         ProductEntityProperty product0 = (ProductEntityProperty) recipe1
                 .getProduct(0);
         assertNotNull("product0 not null", product0);
         assertEquals("product0 id", "HydrationId", product0.getId());
-        assertEquals("product0 propertyName", "hydration", product0.getPropertyName());
-        assertEquals("product0 propertyDelta", 15.0f, product0.getPropertyDelta(), TOLERANCE);    
+        assertEquals("product0 propertyName", "hydration",
+                product0.getPropertyName());
+        assertEquals("product0 propertyDelta", 15.0f,
+                product0.getPropertyDelta(), TOLERANCE);
     }
-    
+
     /**
      * Method testRecipes.
      */
     @Test
     public void testRecipes() {
-        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Map<String, Recipe> recipes = config.getRecipes();
         assertNotNull("ingredients !=null", recipes);
         assertTrue("requirement count", 2 <= recipes.size());
         for (Recipe recipe : recipes.values()) {
@@ -252,13 +251,12 @@ public class ConfigurationTest {
 
     }
 
-
     /**
      * Method testFireGround1.
      */
     @Test
     public void testFireGround1() {
-        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Map<String, Recipe> recipes = config.getRecipes();
         Recipe recipe = recipes.get("testFireGround1");
         assertEquals("description", "small open ground fire",
                 recipe.getDescription());
@@ -285,7 +283,7 @@ public class ConfigurationTest {
      */
     @Test
     public void testSpell1() {
-        TreeMap<String, Recipe> recipes = config.getRecipes();
+        Map<String, Recipe> recipes = config.getRecipes();
         Recipe recipe = recipes.get("testSpell1");
         assertEquals("description", "spell test 1", recipe.getDescription());
         assertEquals("process", "testSpell1", recipe.getProcess());
@@ -351,6 +349,5 @@ public class ConfigurationTest {
         // assertEquals("~", warrior.getSizeAllow());
         // assertEquals("~", warrior.getRaceAllow());
     }
-
 
 }

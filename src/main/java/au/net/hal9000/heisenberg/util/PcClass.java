@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -67,7 +68,7 @@ public class PcClass implements Comparable<PcClass> {
     /**
      * Field abilityScores.
      */
-    private TreeMap<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
+    private Map<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 
     /**
      * Constructor for PcClass.
@@ -259,7 +260,7 @@ public class PcClass implements Comparable<PcClass> {
     /**
     
      * @return the abilityScores */
-    public final TreeMap<String, AbilityScore> getAbilityScores() {
+    public final Map<String, AbilityScore> getAbilityScores() {
         return abilityScores;
     }
 
@@ -268,7 +269,7 @@ public class PcClass implements Comparable<PcClass> {
      *            the abilityScores to set
      */
     public final void setAbilityScores(
-            TreeMap<String, AbilityScore> abilityScores) {
+            Map<String, AbilityScore> abilityScores) {
         this.abilityScores = abilityScores;
     }
 

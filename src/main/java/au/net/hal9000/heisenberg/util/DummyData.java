@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.TreeMap;
+import java.util.Map;
 
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
@@ -67,7 +67,7 @@ public final class DummyData {
      */
     public static PcRace elf() throws ConfigurationError {
         Configuration config = config();
-        TreeMap<String, PcClass> pcClasses = config.getPcClasses();
+        Map<String, PcClass> pcClasses = config.getPcClasses();
         PcRace pc = (PcRace) Factory.createItem("Elf");
         pc.setName("Jane");
         pc.setPcClass(pcClasses.get("Paladin"));

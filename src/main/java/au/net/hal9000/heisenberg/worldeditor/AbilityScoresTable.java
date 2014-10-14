@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.Map;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -61,7 +61,7 @@ public class AbilityScoresTable extends JTable {
          * @param pc PcRace
          */
         public MyTableModel(PcRace pc) {
-            TreeMap<String, AbilityScore> abilityScores = pc.getAbilityScores();
+            Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
             if (null != abilityScores) {
                 pcAbilityScores = new ArrayList<AbilityScore>(
                         abilityScores.values());
