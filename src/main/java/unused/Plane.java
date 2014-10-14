@@ -35,7 +35,8 @@ public class Plane implements Serializable, Cloneable {
      *            y coord
      * @param z
      *            z coord
-     * @param 2 c coord
+     * @param c
+     *            c coord
      */
     public Plane(double x, double y, double z, double c) {
         super();

@@ -85,18 +85,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         return ((ItemContainer) node).getChildCount();
     }
 
-    /**
-     * Method getChild. Fetch any numbered child of a node for the JTree. Our
-     * model returns Item objects for all nodes in the m_tree. The JTree
-     * displays these by calling the Item.toString() method.
-     * 
-     * @param parent
-     *            Object
-     * @param index
-     *            int
-     * @return Object
-     * @see javax.swing.tree.TreeModel#getChild(Object, int)
-     */
+    /** {@inheritDoc} */
     @Override
     public Object getChild(Object parent, int index) {
         Item child = ((ItemContainer) parent).getChildAt(index);
@@ -105,17 +94,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         return child;
     }
 
-    // Figure out a child's position in its parent node.
-    /**
-     * Method getIndexOfChild.
-     * 
-     * @param parent
-     *            Object
-     * @param child
-     *            Object
-     * @return int
-     * @see javax.swing.tree.TreeModel#getIndexOfChild(Object, Object)
-     */
+    /** {@inheritDoc} */
     @Override
     public int getIndexOfChild(Object parent, Object child) {
         int index = ((ItemContainer) parent).getIndexOfChild((Item) child);
@@ -124,6 +103,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         return index;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
         // TODO Auto-generated method stub

@@ -30,7 +30,9 @@ public abstract class Requirement {
 
     /**
      * Constructor for Requirement.
-     * @param id String
+     * 
+     * @param id
+     *            String
      */
     protected Requirement(String id) {
         super();
@@ -39,8 +41,11 @@ public abstract class Requirement {
 
     /**
      * Constructor for Requirement.
-     * @param id String
-     * @param isConsumed boolean
+     * 
+     * @param id
+     *            String
+     * @param isConsumed
+     *            boolean
      */
     protected Requirement(String id, boolean isConsumed) {
         this(id);
@@ -50,8 +55,9 @@ public abstract class Requirement {
     // setters and getters
     /**
      * Get the id.
-    
-     * @return the id. */
+     * 
+     * @return the id.
+     */
     public String getId() {
         return id;
     }
@@ -59,6 +65,7 @@ public abstract class Requirement {
     // isConsumed
     /**
      * Method isConsumed.
+     * 
      * @return boolean
      */
     public boolean isConsumed() {
@@ -66,8 +73,9 @@ public abstract class Requirement {
     }
 
     /**
-    
-     * @return Return a description of the object. */
+     * 
+     * @return Return a description of the object.
+     */
     String getDescription() {
         String string = "Id: " + id;
         if (isConsumed) {

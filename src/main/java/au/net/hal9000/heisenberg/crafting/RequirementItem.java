@@ -15,9 +15,6 @@ import au.net.hal9000.heisenberg.item.Item;
  * <li>Item - FlintAndTinder, not consumed.
  * <ul>
  * 
- * 
- * 
- * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -39,8 +36,10 @@ public class RequirementItem extends Requirement {
      * 
      * @param id
      *            the short name of the required item class.
-     * @param itemType String
-     * @param isConsumed boolean
+     * @param itemType
+     *            String
+     * @param isConsumed
+     *            boolean
      */
     public RequirementItem(final String id, String itemType, boolean isConsumed) {
         super(id, isConsumed);
@@ -62,9 +61,12 @@ public class RequirementItem extends Requirement {
      * 
      * @param id
      *            the short name of the required item class.
-     * @param itemType String
-     * @param isConsumed boolean
-     * @param weightMin float
+     * @param itemType
+     *            String
+     * @param isConsumed
+     *            boolean
+     * @param weightMin
+     *            float
      */
     public RequirementItem(final String id, String itemType,
             boolean isConsumed, float weightMin) {
@@ -75,14 +77,16 @@ public class RequirementItem extends Requirement {
     // Setters
 
     /**
-    
-     * @return the itemType */
+     * 
+     * @return the itemType
+     */
     public final String getItemType() {
         return itemType;
     }
 
     /**
      * Method getWeightMin.
+     * 
      * @return float
      */
     public float getWeightMin() {
@@ -91,6 +95,7 @@ public class RequirementItem extends Requirement {
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     public final String toString() {
@@ -102,8 +107,9 @@ public class RequirementItem extends Requirement {
      * 
      * @param item
      *            the Item being evaluated.
-    
-     * @return null if the Item meets the requirements. */
+     * 
+     * @return null if the Item meets the requirements.
+     */
     public final String meetsRequirements(final Item item) {
 
         // Correct Class
@@ -117,8 +123,7 @@ public class RequirementItem extends Requirement {
         return null;
     }
 
-    /** {@inheritDoc} * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public final String getDescription() {
         StringBuilder string = new StringBuilder();

@@ -40,41 +40,31 @@ public abstract class SearchBase implements Search {
         this.modelStateEvaluator = modelStateEvaluator;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Search#getSuccessorFunction()
-     */
+    /** {@inheritDoc} */
     @Override
     public SuccessorFunction getSuccessorFunction() {
         return successorFunction;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Search#setSuccessorFunction(au.net.hal9000.heisenberg.ai.api.SuccessorFunction)
-     */
+    /** {@inheritDoc} */
     @Override
     public void setSuccessorFunction(SuccessorFunction successorFunction) {
         this.successorFunction = successorFunction;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Search#getModelStateEvaluator()
-     */
+    /** {@inheritDoc} */
     @Override
     public ModelStateEvaluator getModelStateEvaluator() {
         return modelStateEvaluator;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Search#setModelStateEvaluator(au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator)
-     */
+    /** {@inheritDoc} */
     @Override
     public void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator) {
         this.modelStateEvaluator = modelStateEvaluator;
     }
 
-    /* (non-Javadoc)
-     * @see au.net.hal9000.heisenberg.ai.Search#findPathToGoal(au.net.hal9000.heisenberg.ai.api.ModelState)
-     */
+    /** {@inheritDoc} */
     @Override
     public abstract Path findPathToGoal(ModelState modelState);
 

@@ -17,6 +17,6 @@ public interface ActionMove extends Action {
      * 
      * @return the amount of movement.
      */
-    public Point3d getDelta();
+    Point3d getDelta();
 
 }

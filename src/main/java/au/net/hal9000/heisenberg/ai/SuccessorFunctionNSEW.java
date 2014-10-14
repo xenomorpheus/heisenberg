@@ -12,8 +12,9 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 /**
  * Generate new ModelState objects from current object. This version is
  * particularly dumb.<br>
- * 1. Doesn't know about walls.<br>
- * 2. Only moves horizontally or vertically.<br>
+ * 1. Only moves horizontally or vertically. North, South, East or West.<br>
+ * 2. Doesn't know about goals.<br>
+ * 3. Doesn't know about walls.<br>
  * 
  * @author bruins
  * @version $Revision: 1.0 $

@@ -8,6 +8,8 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
+ * The results of the crafting process. e.g. Item objects.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -61,28 +63,20 @@ public class ProductItem extends Product {
     }
 
     /**
-     * 
-     * 
      * @return the required weightBase for the new item.
      */
     public float getWeightBase() {
         return weightBase;
     }
 
-    /**
-     * {@inheritDoc} * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public final String getDescription() {
         return "Id: " + getId() + ", item type of " + type + ", weightBase "
                 + weightBase;
     }
 
-    /**
-     * {@inheritDoc} * @param cooker Cooker
-     * 
-     * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public final String meetsRequirements(final Cooker cooker) {
         // TODO Complain unless there is a Location to place item.
@@ -94,14 +88,7 @@ public class ProductItem extends Product {
         return null;
     }
 
-    /**
-     * {@inheritDoc} * @param cooker Cooker
-     * 
-     * @return String
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     */
+    /** {@inheritDoc} */
     @Override
     public final String createProduct(final Cooker cooker)
             throws InvalidTypeException, TooHeavyException, TooLargeException {

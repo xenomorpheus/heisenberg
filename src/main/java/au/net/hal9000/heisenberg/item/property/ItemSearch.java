@@ -59,7 +59,7 @@ public abstract class ItemSearch implements ItemVisitor {
     /**
      * Method visit.
      * @param item List<Item>
-     * @see au.net.hal9000.heisenberg.item.ItemVisitor#visit(List<Item>)
+     * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
      */
     public abstract void visit(List<Item> item);
 }

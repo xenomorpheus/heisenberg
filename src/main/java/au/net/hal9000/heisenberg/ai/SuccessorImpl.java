@@ -24,11 +24,13 @@ public class SuccessorImpl implements Successor {
 
     /**
      * Constructor.
+     * 
      * @param modelState
      *            the new state if the action is performed by the agent.
      * @param action
      *            the possible action.
-     * @param cost the cost of performing this action
+     * @param cost
+     *            the cost of performing this action
      */
     public SuccessorImpl(ModelState modelState, Action action, double cost) {
         this.modelState = modelState;
@@ -60,7 +62,6 @@ public class SuccessorImpl implements Successor {
         return cost;
     }
 
-    
     /**
      * {@inheritDoc}
      * 
@@ -68,7 +69,8 @@ public class SuccessorImpl implements Successor {
      */
     @Override
     public String toString() {
-        return "[modelStage=" + modelState + ", action=" + action + ", cost=" + cost + "]";
+        return "[modelStage=" + modelState + ", action=" + action + ", cost="
+                + cost + "]";
     }
 
 }

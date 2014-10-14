@@ -97,21 +97,25 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     });
   }
 
+  /** {@inheritDoc} */
   @Override
   public DebugDraw getDebugDraw() {
     return draw;
   }
 
+  /** {@inheritDoc} */
   @Override
   public boolean render() {
     return true;
   }
 
+  /** {@inheritDoc} */
   @Override
   public void paintScreen() {
     display();
   }
 
+  /** {@inheritDoc} */
   @Override
   public void display(GLAutoDrawable arg0) {
     getGL().getGL2().glClear(GL2.GL_COLOR_BUFFER_BIT);
@@ -123,12 +127,14 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     getGL().glFlush();
   }
 
+  /** {@inheritDoc} */
   @Override
   public void dispose(GLAutoDrawable arg0) {
     // TODO Auto-generated method stub
 
   }
 
+  /** {@inheritDoc} */
   @Override
   public void init(GLAutoDrawable arg0) {
     getGL().getGL2().glLineWidth(1f);
@@ -136,6 +142,7 @@ public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener
     getGL().getGL2().glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
   }
 
+  /** {@inheritDoc} */
   @Override
   public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
     GL2 gl2 = arg0.getGL().getGL2();

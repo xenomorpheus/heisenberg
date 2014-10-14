@@ -26,13 +26,18 @@ public class SearchAStar extends SearchBase {
     static double DISTANCE_THRESHOLD = 0.5;
 
     /** estimated distance to goal */
-    GoalEstFunction gFunction = null;
+    GoalEstFunction goalEstCostFunction = null;
 
-    /** constructor - A-Star search */
+    /** constructor - A-Star search
+     * 
+     * @param successorFunction the successor function.
+     * @param modelStateEvaluator the model state evaluator.
+     * @param gFunction the function to estimate distance to gaol.
+     */
     public SearchAStar(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator, GoalEstFunction gFunction) {
         this(successorFunction, modelStateEvaluator);
-        this.gFunction = gFunction;
+        this.goalEstCostFunction = gFunction;
     }
 
     /** constructor - Uniform Cost Search */
@@ -100,8 +105,8 @@ public class SearchAStar extends SearchBase {
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
                 double distanceToGoal = 0;
-                if (gFunction != null) {
-                    distanceToGoal = gFunction
+                if (goalEstCostFunction != null) {
+                    distanceToGoal = goalEstCostFunction
                             .estimatedCostToGoal(successorModelState);
                 }
                 fringe.add(new FringeElementImpl(successorModelState,
@@ -122,7 +127,7 @@ public class SearchAStar extends SearchBase {
      *            state of model.
      * @param proximityThreshold
      *            how close to places to be considered visited.
-     * @return
+     * @return true iff agent has visted this location.
      */
     private boolean hasVisited(List<Point3d> visited, ModelState modelState,
             double proximityThreshold) {

@@ -32,9 +32,10 @@ public class CostFunctionImpl implements CostFunction {
      *            the ModelState after.
      * 
      * @return the cost of performing the move between ModelStates.
-     * @see au.net.hal9000.heisenberg.ai.api.CostFunction#calculateCost(ModelStateImpl,
-     *      ActionAgentMoveV1, ModelStateImpl)
+     * @see au.net.hal9000.heisenberg.ai.api.CostFunction#calculateCost(ModelState before, ActionMoveImpl action,
+            ModelState after)
      */
+    @Override
     public double calculateCost(ModelState before, ActionMoveImpl action,
             ModelState after) {
         return action.getDelta().length();

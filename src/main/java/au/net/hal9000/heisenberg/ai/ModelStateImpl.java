@@ -29,26 +29,31 @@ public class ModelStateImpl implements ModelState, Cloneable {
         this.goalPosition = goalPosition;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Point3d getAgentPosition() {
         return agentPosition;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setAgentPosition(Point3d position3d) {
         agentPosition = position3d;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Point3d getGoalPosition() {
         return goalPosition;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setGoalPosition(Point3d position3d) {
         goalPosition = position3d;
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelStateImpl clone() throws CloneNotSupportedException {
         ModelStateImpl newModeState = (ModelStateImpl) super.clone();

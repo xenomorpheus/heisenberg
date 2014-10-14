@@ -10,10 +10,6 @@ import junit.framework.TestCase;
 /**
  * The class <code>AnimalTest</code> contains tests for the class {@link <code>Animal</code>}
  * 
- * @pattern JUnit Test Case
- * 
- * @generatedBy CodePro at 27/02/14 11:04 PM
- * 
  * @author bruins
  * 
  * @version $Revision$

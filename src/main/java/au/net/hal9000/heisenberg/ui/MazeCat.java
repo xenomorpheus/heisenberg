@@ -15,10 +15,10 @@ import org.jbox2d.testbed.framework.TestbedSettings;
 import org.jbox2d.testbed.framework.TestbedTest;
 
 public class MazeCat extends TestbedTest {
-    private static final long CAT_TAG = 100l;
-    private static final long RAT_TAG = 101l;
-    private static final long OUTER_WALL_TAG = 102l;
-    private static final long BARRIER_TAG = 103l;
+    private static final long CAT_TAG = 100L;
+    private static final long RAT_TAG = 101L;
+    private static final long OUTER_WALL_TAG = 102L;
+    private static final long BARRIER_TAG = 103L;
     private Body cat;
     private Body rat;
 

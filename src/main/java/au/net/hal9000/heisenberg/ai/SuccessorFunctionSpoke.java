@@ -14,9 +14,10 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * Generate new ModelState objects from current ModelState object and
  * transitionFunction.<br>
  * This version is particularly dumb. <br>
- * 1. Doesn't know about walls.<br>
- * 2. It generates 4 Successors at 90 degrees to each other, with a step of 1.0
- * unit.
+ * 1. It generates 4 Successors at 90 degrees to each other, with a step of 1.0
+ * unit. <br>
+ * 2. Doesn't know about walls.<br>
+ * 3. Does know about goals.<br>
  * 
  * @author bruins
  * @version $Revision: 1.0 $

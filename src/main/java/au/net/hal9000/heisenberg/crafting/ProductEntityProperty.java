@@ -26,7 +26,8 @@ public class ProductEntityProperty extends Product {
      *            the short name of the required item class.
      * @param propertyDelta
      *            the amount to change the property.
-     * @param propertyName String
+     * @param propertyName
+     *            String
      */
     public ProductEntityProperty(final String id, final String propertyName,
             float propertyDelta) {
@@ -38,16 +39,18 @@ public class ProductEntityProperty extends Product {
     // Getters
 
     /**
-    
-     * @return the Entity property name. */
+     * 
+     * @return the Entity property name.
+     */
     public final String getPropertyName() {
         return propertyName;
     }
 
     /**
      * 
-    
-     * @return the amount the Entity property will change. */
+     * 
+     * @return the amount the Entity property will change.
+     */
     public float getPropertyDelta() {
         return propertyDelta;
     }
@@ -55,23 +58,21 @@ public class ProductEntityProperty extends Product {
     // misc
     /**
      * Method toString.
+     * 
      * @return String
      */
     public final String toString() {
         return getDescription();
     }
 
-    /** {@inheritDoc} * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public final String getDescription() {
         return super.getDescription() + " type " + propertyName + ", delta is "
                 + propertyDelta;
     }
 
-    /** {@inheritDoc} * @param cooker Cooker
-     * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     String meetsRequirements(Cooker cooker) {
         // Need to find a target to apply property change to.
@@ -86,9 +87,7 @@ public class ProductEntityProperty extends Product {
         return "A Target or chef is required";
     }
 
-    /** {@inheritDoc} * @param cooker Cooker
-     * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public final String createProduct(final Cooker cooker) {
         Entity entity = cooker.getChef();

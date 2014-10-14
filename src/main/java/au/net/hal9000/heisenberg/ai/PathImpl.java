@@ -119,8 +119,7 @@ public class PathImpl implements Path, Cloneable{
         return string.toString();
     }
 
-    /** Clone 
-     * @throws CloneNotSupportedException */
+    /** {@inheritDoc} */
     @Override
     public PathImpl clone() throws CloneNotSupportedException{
         PathImpl path = (PathImpl) super.clone();
