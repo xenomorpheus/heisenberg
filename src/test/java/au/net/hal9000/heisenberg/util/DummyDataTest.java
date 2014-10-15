@@ -17,6 +17,7 @@ public class DummyDataTest {
 
     /**
      * Method testElf.
+     * 
      * @throws ConfigurationError
      */
     @Test
@@ -28,15 +29,16 @@ public class DummyDataTest {
     /**
      * Method testGetDemoWorld.
      * 
-
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testGetDemoWorld() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void testGetDemoWorld() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         Location loc = DummyData.getDemoWorld();
         assertNotNull(loc);
     }
-    
+
 }

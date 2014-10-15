@@ -6,7 +6,6 @@ import au.net.hal9000.heisenberg.units.Point3d;
 /**
  * Very simple actions - Agent movement only.
  * 
- * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -24,7 +23,7 @@ public final class ActionMoveImpl implements ActionMove {
     /** move agent West. */
     public static final ActionMoveImpl WEST = new ActionMoveImpl("West",
             new Point3d(-1, 0, 0));
-    
+
     /** human understandable label. */
     private final String label;
     /** amount of movement. */
@@ -39,7 +38,7 @@ public final class ActionMoveImpl implements ActionMove {
      *            movement amount.
      */
 
-    public ActionMoveImpl(String label, Point3d delta) {
+    public ActionMoveImpl(final String label, final Point3d delta) {
         super();
         this.label = label;
         this.delta = delta;
@@ -52,12 +51,13 @@ public final class ActionMoveImpl implements ActionMove {
      *            movement amount.
      */
 
-    public ActionMoveImpl(Point3d delta) {
+    public ActionMoveImpl(final Point3d delta) {
         this("custom", delta);
     }
-    
+
     /**
      * {@inheritDoc}
+     * 
      * @return the amount of movement.
      */
     @Override
@@ -79,11 +79,6 @@ public final class ActionMoveImpl implements ActionMove {
         return delta.toString();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     /**
      * Method hashCode.
      * 
@@ -98,11 +93,6 @@ public final class ActionMoveImpl implements ActionMove {
         return result;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     /**
      * Method equals.
      * 
@@ -112,7 +102,7 @@ public final class ActionMoveImpl implements ActionMove {
      * @return boolean
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

@@ -3,7 +3,8 @@
  */
 package au.net.hal9000.heisenberg.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 

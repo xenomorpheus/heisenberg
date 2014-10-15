@@ -22,27 +22,37 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @version $Revision: 1.0 $
  */
 public class SearchAStar extends SearchBase {
-    /** how close do points need to be to be considered already visited */
-    static double DISTANCE_THRESHOLD = 0.5;
+    /** how close do points need to be to be considered already visited. */
+    private static final double DISTANCE_THRESHOLD = 0.5;
 
-    /** estimated distance to goal */
-    GoalEstFunction goalEstCostFunction = null;
+    /** estimated distance to goal. */
+    private GoalEstFunction goalEstCostFunction = null;
 
-    /** constructor - A-Star search
+    /**
+     * constructor - A-Star search.
      * 
-     * @param successorFunction the successor function.
-     * @param modelStateEvaluator the model state evaluator.
-     * @param goalEstCostFunction the function to estimate distance to gaol.
+     * @param successorFunction
+     *            the successor function.
+     * @param modelStateEvaluator
+     *            the model state evaluator.
+     * @param goalEstCostFunction
+     *            the function to estimate distance to gaol.
      */
-    public SearchAStar(SuccessorFunction successorFunction,
-            ModelStateEvaluator modelStateEvaluator, GoalEstFunction goalEstCostFunction) {
+    public SearchAStar(final SuccessorFunction successorFunction,
+            final ModelStateEvaluator modelStateEvaluator,
+            final GoalEstFunction goalEstCostFunction) {
         this(successorFunction, modelStateEvaluator);
         this.goalEstCostFunction = goalEstCostFunction;
     }
 
-    /** constructor - Uniform Cost Search */
-    public SearchAStar(SuccessorFunction successorFunction,
-            ModelStateEvaluator modelStateEvaluator) {
+    /**
+     * constructor - Uniform Cost Search.
+     * 
+     * @param successorFunction
+     * @param modelStateEvaluator
+     */
+    public SearchAStar(final SuccessorFunction successorFunction,
+            final ModelStateEvaluator modelStateEvaluator) {
         super(successorFunction, modelStateEvaluator);
     }
 
@@ -56,7 +66,7 @@ public class SearchAStar extends SearchBase {
      * @return list of actions.
      */
     @Override
-    public Path findPathToGoal(ModelState modelState) {
+    public final Path findPathToGoal(final ModelState modelState) {
 
         Path resultPath;
         /**
@@ -72,7 +82,7 @@ public class SearchAStar extends SearchBase {
         inFringe.add(modelState.getAgentPosition());
 
         resultPath = null;
-        fringe: while (!fringe.isEmpty()) {
+        while (!fringe.isEmpty()) {
             FringeElement fringeElement = fringe.remove();
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
@@ -80,7 +90,7 @@ public class SearchAStar extends SearchBase {
 
             if (getModelStateEvaluator().isAtGoal(currentModelState)) {
                 resultPath = pathSoFar;
-                break fringe;
+                break;
             }
 
             Queue<Successor> successors = getSuccessorFunction()

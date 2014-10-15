@@ -36,8 +36,8 @@ public class CostFunctionImpl implements CostFunction {
             ModelState after)
      */
     @Override
-    public double calculateCost(ModelState before, ActionMoveImpl action,
-            ModelState after) {
+    public double calculateCost(final ModelState before, final ActionMoveImpl action,
+            final ModelState after) {
         return action.getDelta().length();
     }
 

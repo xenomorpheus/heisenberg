@@ -11,9 +11,9 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 public class TransitionFunctionImpl implements TransitionFunction {
 
     /**
-     * Constructor
+     * Constructor.
      */
-    public TransitionFunctionImpl(){
+    public TransitionFunctionImpl() {
         super();
     }
     

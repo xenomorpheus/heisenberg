@@ -74,16 +74,16 @@ public class Point3dTest {
         Point3d point = new Point3d(X_TEST, Y_TEST, Z_TEST);
         Point3d point2 = new Point3d(X_TEST, Y_TEST, Z_TEST);
         assertEquals("same", ZERO, point.distance(point2), TEST_TOLERANCE);
-        double x3 = 11; // 10
-        double y3 = 22; // 20
-        double z3 = 33; // 30
+        final double x3 = 11; // 10
+        final double y3 = 22; // 20
+        final double z3 = 33; // 30
         Point3d point3 = new Point3d(x3, y3, z3);
         // 10*10 + 20*20 + 30*30 = 1400
         assertEquals("same", Math.sqrt(1400), point.distance(point3),
                 TEST_TOLERANCE);
-        
-        Point3d p1 = new Point3d(0,3,0);
-        Point3d p2 = new Point3d(4,0,0);
+
+        final Point3d p1 = new Point3d(0, 3, 0);
+        final Point3d p2 = new Point3d(4, 0, 0);
         assertEquals("3 4 5 triangle", 5f, p1.distance(p2), TEST_TOLERANCE);
 
     }
@@ -124,21 +124,27 @@ public class Point3dTest {
         assertTrue("equals", point.equals(point2));
         // x
         point.setX(X_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true x", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertTrue("true x",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setX(X_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false x", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertFalse("false x",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setX(X_TEST);
         // y
         point.setY(Y_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true y", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertTrue("true y",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setY(Y_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false y", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertFalse("false y",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setY(Y_TEST);
         // z
         point.setZ(Z_TEST + WITHIN_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true z", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertTrue("true z",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Point3d.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false z", point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
+        assertFalse("false z",
+                point.equals(point2, Point3d.DEFAULT_AXIS_TOLERANCE));
         point.setX(Z_TEST);
     }
 

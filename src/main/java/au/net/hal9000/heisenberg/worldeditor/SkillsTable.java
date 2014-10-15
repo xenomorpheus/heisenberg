@@ -75,7 +75,7 @@ public class SkillsTable extends JTable {
          * Constructor for MyTableModel.
          * @param pc PcRace
          */
-        public MyTableModel(final PcRace pc) {
+        private MyTableModel(final PcRace pc) {
             Set<Skill> pcSkills = pc.getSkills();
             if (null == pcSkills) {
                 orderedSkills = new ArrayList<Skill>();

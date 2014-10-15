@@ -23,15 +23,16 @@ import au.net.hal9000.heisenberg.units.Point3d;
  * @version $Revision: 1.0 $
  */
 public final class SuccessorFunctionSpoke implements SuccessorFunction {
+
+    // We may want to someday set these by the constructor
+    /** how far to move. */
+    private final double stepSize = 1.0;
+    /** how many directions to consider. */
+    private final int directionCount = 4;
+    
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
     
-    // We may want to someday set these by the constructor
-    /** how far to move */
-    private double stepSize = 1.0;
-    /** how many directions to consider */
-    private int directionCount = 4;
-
     /**
      * Constructor.
      * 

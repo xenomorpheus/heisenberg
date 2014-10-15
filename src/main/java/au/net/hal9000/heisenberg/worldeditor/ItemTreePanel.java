@@ -64,17 +64,19 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      */
     public ItemTreePanel(Configuration config, Location location) {
 
+        // The JTree can get big, so allow it to scroll.
+        JScrollPane scrollpane = new JScrollPane();
+
+        // The "Add" Button Panel
+        JPanel addButtonPanel = new JPanel();
+
         setRoot(location);
         setLayout(new BorderLayout());
 
         tree.setCellRenderer(new ItemTreeCellRenderer());
 
-        // The JTree can get big, so allow it to scroll.
-        JScrollPane scrollpane = new JScrollPane();
         scrollpane.setViewportView(tree);
 
-        // The "Add" Button Panel
-        JPanel addButtonPanel = new JPanel();
 
         // A JComboBox of Item types we can add
         List<String> classIds = config.getItemClassIds();
@@ -109,16 +111,16 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                        System.out.println("DEBUG: newNode is " + newNode);
+                        debug("newNode is " + newNode);
 
                         TreePath path = getPathToRoot(newNode);
-                        System.out.println("DEBUG: path is " + path);
+                        debug("path is " + path);
                         tree.scrollPathToVisible(path);
                         tree.setSelectionPath(path);
                         tree.startEditingAtPath(path);
                     } else {
                         toolkit.beep();
-                        System.out.println("Not a container");
+                        debug("Not a container");
                     }
                 }
             }
@@ -159,22 +161,16 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      */
 
     static TreePath getPathToRoot(Item node) {
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        List<Item> itemList = new ArrayList<Item>();
         while ((null != node)) {
-            itemArrayList.add(node);
+            itemList.add(node);
             node = node.getContainer();
         }
         return new TreePath(
-                itemArrayList.toArray(new Item[itemArrayList.size()]));
+                itemList.toArray(new Item[itemList.size()]));
     }
 
-    /**
-     * Method treeNodesChanged.
-     * 
-     * @param e
-     *            TreeModelEvent
-     * @see javax.swing.event.TreeModelListener#treeNodesChanged(TreeModelEvent)
-     */
+    /** {@inheritDoc} */
     @Override
     public void treeNodesChanged(TreeModelEvent e) {
         DefaultMutableTreeNode node;
@@ -189,53 +185,40 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         int index = e.getChildIndices()[0];
         node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-        System.out.println("The user has finished editing the node.");
-        System.out.println("New value: " + node.getUserObject());
+        debug("The user has finished editing the node.");
+        debug("New value: " + node.getUserObject());
     }
 
-    /**
-     * Method treeNodesInserted.
-     * 
-     * @param e
-     *            TreeModelEvent
-     * @see javax.swing.event.TreeModelListener#treeNodesInserted(TreeModelEvent)
-     */
+    /** {@inheritDoc} */
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
         // TODO finish
-        System.out.println("Node Inserted.");
+        debug("Node Inserted.");
     }
 
-    /**
-     * Method treeNodesRemoved.
-     * 
-     * @param e
-     *            TreeModelEvent
-     * @see javax.swing.event.TreeModelListener#treeNodesRemoved(TreeModelEvent)
-     */
+    /** {@inheritDoc} */
     @Override
     public void treeNodesRemoved(TreeModelEvent e) {
         // TODO finish
-        System.out.println("treeNodesRemoved - Node Removed.");
+        debug("treeNodesRemoved - Node Removed.");
     }
 
-    /**
-     * Method treeStructureChanged.
-     * 
-     * @param e
-     *            TreeModelEvent
-     * @see javax.swing.event.TreeModelListener#treeStructureChanged(TreeModelEvent)
-     */
+    /** {@inheritDoc} */
     @Override
     public void treeStructureChanged(TreeModelEvent e) {
         // TODO finish
-        System.out.println("treeStructureChanged - Node Changed.");
+        debug("treeStructureChanged - Node Changed.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // TODO Auto-generated method stub
-        System.out.println("propertyChange - Node Changed.");
+        debug("propertyChange - Node Changed.");
+    }
+    
+    private void debug(String string){
+        System.out.println("DEBUG: " + string);
     }
 
 }

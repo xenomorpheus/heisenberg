@@ -1,4 +1,4 @@
-package unused;
+package au.net.hal9000.heisenberg.unused;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

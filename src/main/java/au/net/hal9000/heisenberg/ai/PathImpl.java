@@ -87,18 +87,14 @@ public class PathImpl implements Path, Cloneable {
         return true;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /** 
      * @see au.net.hal9000.heisenberg.ai.Path#size()
      */
     private int size() {
         return actions.size();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /** 
      * @see au.net.hal9000.heisenberg.ai.Path#iterator()
      */
     @Override
@@ -113,7 +109,8 @@ public class PathImpl implements Path, Cloneable {
      */
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder(actions.size() * 3 + 3);
+        final int stringsPerAction = 3;
+        StringBuilder string = new StringBuilder(actions.size() * stringsPerAction + 1);
         String join = "";
         for (Action action : actions) {
             string.append(join);

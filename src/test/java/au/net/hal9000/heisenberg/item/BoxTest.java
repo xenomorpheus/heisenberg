@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -21,12 +20,13 @@ public class BoxTest {
      * Normal item into box.
      * 
      * @throws InvalidTypeException
-
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testAddOrdinary() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void testAddOrdinary() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         Sword sword = new Sword();

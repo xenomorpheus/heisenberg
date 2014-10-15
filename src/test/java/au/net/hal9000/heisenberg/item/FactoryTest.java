@@ -17,7 +17,7 @@ public class FactoryTest {
     /**
      * Field config.
      */
-    Configuration config;
+    private Configuration config;
 
     /**
      * Method setUp.

@@ -703,7 +703,7 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Missing Skills\n", cooker.cook());
+        assertEquals("cook works", "Missing Skills"+System.lineSeparator(), cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());

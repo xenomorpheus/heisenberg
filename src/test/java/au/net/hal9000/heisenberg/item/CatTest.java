@@ -1,11 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;

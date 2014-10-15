@@ -75,7 +75,7 @@ public class RecipesTable extends JTable {
          * @param pc
          *            PcRace
          */
-        public MyTableModel(PcRace pc) {
+        private MyTableModel(PcRace pc) {
             recipes = config.getRecipes();
             Set<String> pcRecipeIds = null;
             if (null == pc) {

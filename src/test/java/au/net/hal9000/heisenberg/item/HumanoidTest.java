@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -44,29 +43,33 @@ public class HumanoidTest {
     /**
      * Method testWear.
      * 
-
+     * 
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
     @Test
-    public void testWear() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testWear() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Human human = new Human(); // Close enough
         Item shield = new Shield();
         human.wear(shield);
     }
 
-    /** Test trying to wear non-clothing.
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
- 
-     * @throws InvalidTypeException */
-    @Test (expected=InvalidTypeException.class)
-    public void testAddItem() throws InvalidTypeException,  TooHeavyException, TooLargeException{
+    /**
+     * Test trying to wear non-clothing.
+     * 
+     * @throws TooLargeException
+     * @throws TooHeavyException
+     * 
+     * @throws InvalidTypeException
+     */
+    @Test(expected = InvalidTypeException.class)
+    public void testAddItem() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Human human = new Human();
         Cookie cookie = new Cookie();
         human.wear(cookie);
     }
-    
+
 }

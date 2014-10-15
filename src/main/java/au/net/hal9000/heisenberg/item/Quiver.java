@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
  * A common quiver for holding arrows.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -50,18 +51,20 @@ public class Quiver extends ItemContainer {
      * @param arrow
      *            arrow Item to add to Quiver.
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public void add(final Arrow arrow) throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void add(final Arrow arrow) throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         super.add(arrow);
     }
 
     /**
      * This method is required to override the parent class method.
      * 
-    
-     * @param item item to attempt (and fail) to add to quiver.
+     * 
+     * @param item
+     *            item to attempt (and fail) to add to quiver.
      * @deprecated since <unknown>
      */
     @Override

@@ -84,9 +84,10 @@ public class ItemTest {
      */
     @Test
     public void testBaseWeight() {
+        final float weight = 0.123F;
         Cookie i = new Cookie();
-        i.setWeightBase(0.123F);
-        assertEquals("weightBase", i.getWeightBase(), 0.123F, WITHIN_MARGIN);
+        i.setWeightBase(weight);
+        assertEquals("weightBase", i.getWeightBase(), weight, WITHIN_MARGIN);
     }
 
     /**
@@ -94,9 +95,10 @@ public class ItemTest {
      */
     @Test
     public void testWeight() {
+        final float weight = 0.123F;
         Cookie i = new Cookie();
-        i.setWeightBase(0.123F);
-        assertEquals("weight", i.getWeight(), 0.123F, WITHIN_MARGIN);
+        i.setWeightBase(weight);
+        assertEquals("weight", i.getWeight(), weight, WITHIN_MARGIN);
     }
 
     /** test value base. */

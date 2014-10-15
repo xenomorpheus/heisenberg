@@ -1,4 +1,4 @@
-package unused;
+package au.net.hal9000.heisenberg.unused;
 
 import java.io.Serializable;
 

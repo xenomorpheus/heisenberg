@@ -73,6 +73,7 @@ public class Candle extends Item implements LightSource {
         this.lit = lit;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isLit() {
         return lit;
@@ -94,15 +95,6 @@ public class Candle extends Item implements LightSource {
         }
     }
 
-    /**
-     * Light the torch. <br>
-     * TODO require the torch to have remaining fuel.
-     * 
-     * @param ignighter
-     *            Object
-     * @return boolean
-     * @see au.net.hal9000.heisenberg.item.property.LightSource#lightWith(Object)
-     */
     /** {@inheritDoc} */
     @Override
     public boolean lightWith(Object ignighter) {
@@ -145,5 +137,4 @@ public class Candle extends Item implements LightSource {
         }
         return string.toString();
     }
-
 }

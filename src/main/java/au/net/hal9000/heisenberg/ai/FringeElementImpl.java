@@ -48,22 +48,19 @@ public class FringeElementImpl implements FringeElement,
         this.estimatedTotalCost = estimatedTotalCost;
     }
 
-    /** {@inheritDoc} * @return ModelState
-     */
+    /** {@inheritDoc} */
     @Override
     public ModelState getModelState() {
         return modelState;
     }
 
-    /** {@inheritDoc} * @return Path
-     */
+    /** {@inheritDoc} */
     @Override
     public Path getPathSoFar() {
         return pathSoFar;
     }
 
-    /** {@inheritDoc} * @return double
-     */
+    /** {@inheritDoc} */
     @Override
     public double getCostSoFar() {
         return costSoFar;
@@ -78,8 +75,7 @@ public class FringeElementImpl implements FringeElement,
         return estimatedTotalCost;
     }
 
-    /** {@inheritDoc} * @return String
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "[ModelState=" + modelState + ", pathSoFar=" + pathSoFar
@@ -87,12 +83,10 @@ public class FringeElementImpl implements FringeElement,
                 + estimatedTotalCost + "]";
     }
 
-    /** {@inheritDoc} * @param o FringeElementImpl
-     * @return int
-     */
+    /** {@inheritDoc} */
     @Override
-    public int compareTo(FringeElementImpl o) {
-        double oEstimatedTotalCost = o.estimatedTotalCost();
+    public int compareTo(FringeElementImpl other) {
+        double oEstimatedTotalCost = other.estimatedTotalCost();
         return (estimatedTotalCost < oEstimatedTotalCost) ? -1
                 : ((estimatedTotalCost > oEstimatedTotalCost) ? 1 : 0);
     }

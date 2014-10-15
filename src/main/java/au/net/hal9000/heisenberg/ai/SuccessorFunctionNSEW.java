@@ -23,8 +23,8 @@ public final class SuccessorFunctionNSEW implements SuccessorFunction {
 
     /** A list of directions that might be possible. */
     private static final ActionMove[] DIRECTIONS = {
-            ActionMoveImpl.NORTH, ActionMoveImpl.SOUTH,
-            ActionMoveImpl.EAST, ActionMoveImpl.WEST };
+        ActionMoveImpl.NORTH, ActionMoveImpl.SOUTH,
+        ActionMoveImpl.EAST, ActionMoveImpl.WEST };
 
     /** a Transition Function. */
     private TransitionFunction transitionFunction;

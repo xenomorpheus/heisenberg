@@ -23,9 +23,7 @@ public class ItemSearchExtraDimensionalTest {
      * Method testAccept. Ordinary non-ED, non-container.
      */
     @Test
-    public void testAccept1()
-
-    {
+    public void testAccept1() {
         Cookie cookie = new Cookie();
         ItemSearch searchCookie = new ItemSearchExtraDimensional();
         cookie.accept(searchCookie);

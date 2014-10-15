@@ -33,7 +33,7 @@ public abstract class SearchBase implements Search {
      *            a function that determines how close Agent is to goal.
      */
 
-    public SearchBase(SuccessorFunction successorFunction,
+    protected SearchBase(SuccessorFunction successorFunction,
             ModelStateEvaluator modelStateEvaluator) {
         super();
         this.successorFunction = successorFunction;

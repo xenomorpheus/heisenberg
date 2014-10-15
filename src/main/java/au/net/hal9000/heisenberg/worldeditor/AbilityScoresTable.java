@@ -63,7 +63,7 @@ public class AbilityScoresTable extends JTable {
          * Constructor for MyTableModel.
          * @param pc PcRace
          */
-        public MyTableModel(PcRace pc) {
+        private MyTableModel(PcRace pc) {
             Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
             if (null != abilityScores) {
                 pcAbilityScores = new ArrayList<AbilityScore>(

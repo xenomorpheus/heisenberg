@@ -11,10 +11,10 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
  * A Recipe may have any number of Requirement objects.
  * 
  * e.g.
- * <ul>
+ * <ol>
  * <li>Item - Wood with a minimum of 3 weight units.
  * <li>Item - FlintAndTinder, not consumed.
- * <ul>
+ * </ol>
  * 
  * @author bruins
  * @version $Revision: 1.0 $
@@ -38,25 +38,30 @@ public abstract class Product {
     /**
      * Get the ID.
      * 
-    
-     * @return the ID. */
+     * 
+     * @return the ID.
+     */
     public String getId() {
         return id;
     }
 
     /**
-    
-     * @return Return a description of the object. */
+     * 
+     * @return Return a description of the object.
+     */
     public String getDescription() {
         return "Id: " + id;
     }
 
     /**
      * Does this cooker meet the requirements?
-     * @param cooker the cooker being evaluated.
-    
+     * 
+     * @param cooker
+     *            the cooker being evaluated.
+     * 
      * @return the reason why this cooker can't build this product. Null if the
-     *         cooker can build this product. */
+     *         cooker can build this product.
+     */
     abstract String meetsRequirements(Cooker cooker);
 
     /**
@@ -67,9 +72,10 @@ public abstract class Product {
      * @return the reason why this coker can't crate this product. Null if the
      *         cooker can build this product.
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    abstract String createProduct(Cooker cooker) throws InvalidTypeException, TooHeavyException, TooLargeException;
+    abstract String createProduct(Cooker cooker) throws InvalidTypeException,
+            TooHeavyException, TooLargeException;
 
 }

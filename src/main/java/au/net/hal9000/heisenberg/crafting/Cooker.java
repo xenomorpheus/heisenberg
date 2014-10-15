@@ -128,8 +128,8 @@ public class Cooker extends ItemContainer {
      * 
      * @return error message or null if it worked
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     public final String setItemsAvailable(final int index, final Item item)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
@@ -345,10 +345,11 @@ public class Cooker extends ItemContainer {
      * 
      * @return null if good, or error string.
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    private String createProducts() throws InvalidTypeException, TooHeavyException, TooLargeException {
+    private String createProducts() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         StringBuilder errors = new StringBuilder();
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
@@ -371,10 +372,11 @@ public class Cooker extends ItemContainer {
      * 
      * @return String
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public final String cook() throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public final String cook() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         String requirementsMetError = requirementsMet();
         if (null != requirementsMetError) {
             return requirementsMetError;
@@ -404,11 +406,12 @@ public class Cooker extends ItemContainer {
      * @param index
      *            int
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     public final void clearItemsAvailable(final int index,
-            final ItemContainer container) throws InvalidTypeException,  TooHeavyException, TooLargeException {
+            final ItemContainer container) throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }

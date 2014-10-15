@@ -10,8 +10,11 @@ public abstract class Animal extends Entity {
     // Constructor
     /**
      * Constructor for Animal.
-     * @param name String
-     * @param description String
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
      */
     protected Animal(String name, String description) {
         super(name, description);
@@ -19,13 +22,14 @@ public abstract class Animal extends Entity {
 
     /**
      * Constructor for Animal.
-     * @param name String
+     * 
+     * @param name
+     *            String
      */
     protected Animal(String name) {
         this(name, "");
     }
-    
-    
+
     /**
      * serial version ID.
      */
@@ -39,10 +43,11 @@ public abstract class Animal extends Entity {
      * 
      * @return Any error message, or null on success.
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public String drink(Water water) throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public String drink(Water water) throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, water);
         if (null != error) {
@@ -50,6 +55,5 @@ public abstract class Animal extends Entity {
         }
         return cooker.cook();
     }
-    
-    
+
 }

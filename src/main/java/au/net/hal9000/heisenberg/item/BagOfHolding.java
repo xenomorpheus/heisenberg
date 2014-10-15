@@ -170,10 +170,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      *            the item to relocate
      * @param newLocation
      *            new location
-     * 
-     * 
-     * 
-     * @return the relocated item * @throws CantRemoveException
+     * @throws ItemNotPresentException
+     * @return the relocated item
      */
     public Item getItem(Item item, ItemContainer newLocation)
             throws ItemNotPresentException {
@@ -235,10 +233,11 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public void add(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void add(Item item) throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
 
         // Recursively check for ExtraDimensional items.
         ItemSearch search = new ItemSearchExtraDimensional();

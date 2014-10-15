@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import junit.framework.TestCase;
 
 /**
- * The class <code>AnimalTest</code> contains tests for the class {@link <code>Animal</code>}
+ * The class <code>AnimalTest</code> contains tests for the class {@link <code>Animal</code>}.
  * 
  * @author bruins
  * 
