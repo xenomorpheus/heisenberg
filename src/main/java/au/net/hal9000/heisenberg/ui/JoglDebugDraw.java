@@ -41,163 +41,203 @@ import com.jogamp.opengl.util.awt.TextRenderer;
  */
 public class JoglDebugDraw extends DebugDraw {
 
-  /**
-   * Field panel.
-   */
-  private final JoglPanel panel;
-  /**
-   * Field text.
-   */
-  private final TextRenderer text;
+    /**
+     * Field panel.
+     */
+    private final JoglPanel panel;
+    /**
+     * Field text.
+     */
+    private final TextRenderer text;
 
-  /**
-   * Constructor for JoglDebugDraw.
-   * @param argPanel JoglPanel
-   */
-  public JoglDebugDraw(JoglPanel argPanel) {
-    super(new OBBViewportTransform());
-    
-    panel = argPanel;
-    text = new TextRenderer(new Font("Courier New", Font.PLAIN, 12));
-    viewportTransform.setYFlip(false);
-  }
+    /**
+     * Constructor for JoglDebugDraw.
+     * 
+     * @param argPanel
+     *            JoglPanel
+     */
+    public JoglDebugDraw(JoglPanel argPanel) {
+        super(new OBBViewportTransform());
 
-  /**
-   * Method drawPoint.
-   * @param argPoint Vec2
-   * @param argRadiusOnScreen float
-   * @param argColor Color3f
-   */
-  @Override
-  public void drawPoint(Vec2 argPoint, float argRadiusOnScreen, Color3f argColor) {
-    Vec2 vec = getWorldToScreen(argPoint);
-    GL2 gl = panel.getGL().getGL2();
-    gl.glBegin(GL2.GL_POINT);
-    gl.glPointSize(argRadiusOnScreen);
-    gl.glVertex2f(vec.x, vec.y);
-    gl.glEnd();
-  }
-
-  /**
-   * Field trans.
-   */
-  private final Vec2 trans = new Vec2();
-  /**
-   * Method drawSolidPolygon.
-   * @param vertices Vec2[]
-   * @param vertexCount int
-   * @param color Color3f
-   */
-  @Override
-  public void drawSolidPolygon(Vec2[] vertices, int vertexCount, Color3f color) {
-    GL2 gl = panel.getGL().getGL2();
-    gl.glBegin(GL2.GL_TRIANGLE_FAN);
-    gl.glColor4f(color.x, color.y, color.z, .4f);
-    for(int i=0; i<vertexCount; i++){
-      getWorldToScreenToOut(vertices[i], trans);
-      gl.glVertex2f(trans.x, trans.y);
+        panel = argPanel;
+        text = new TextRenderer(new Font("Courier New", Font.PLAIN, 12));
+        viewportTransform.setYFlip(false);
     }
-    gl.glEnd();
-    
-    gl.glBegin(GL2.GL_LINE_LOOP);
-    gl.glColor4f(color.x, color.y, color.z, 1f);
-    for(int i=0; i<vertexCount; i++){
-      getWorldToScreenToOut(vertices[i], trans);
-      gl.glVertex2f(trans.x, trans.y);
+
+    /**
+     * Method drawPoint.
+     * 
+     * @param argPoint
+     *            Vec2
+     * @param argRadiusOnScreen
+     *            float
+     * @param argColor
+     *            Color3f
+     */
+    @Override
+    public void drawPoint(Vec2 argPoint, float argRadiusOnScreen,
+            Color3f argColor) {
+        Vec2 vec = getWorldToScreen(argPoint);
+        GL2 gl = panel.getGL().getGL2();
+        gl.glBegin(GL2.GL_POINT);
+        gl.glPointSize(argRadiusOnScreen);
+        gl.glVertex2f(vec.x, vec.y);
+        gl.glEnd();
     }
-    gl.glEnd();
-  }
 
-  /**
-   * Field vec2Array.
-   */
-  private final Vec2Array vec2Array = new Vec2Array();
-  /**
-   * Method drawCircle.
-   * @param center Vec2
-   * @param radius float
-   * @param color Color3f
-   */
-  @Override
-  public void drawCircle(Vec2 center, float radius, Color3f color) {
-    Vec2[] vecs = vec2Array.get(20);
-    generateCirle(center, radius, vecs, 20);
-    drawPolygon(vecs, 20, color);
-  }
+    /**
+     * Field trans.
+     */
+    private final Vec2 trans = new Vec2();
 
-  /**
-   * Method drawSolidCircle.
-   * @param center Vec2
-   * @param radius float
-   * @param axis Vec2
-   * @param color Color3f
-   */
-  @Override
-  public void drawSolidCircle(Vec2 center, float radius, Vec2 axis, Color3f color) {
-    Vec2[] vecs = vec2Array.get(20);
-    generateCirle(center, radius, vecs, 20);
-    drawSolidPolygon(vecs, 20, color);
-    drawSegment(center, vecs[0], color);
-  }
+    /**
+     * Method drawSolidPolygon.
+     * 
+     * @param vertices
+     *            Vec2[]
+     * @param vertexCount
+     *            int
+     * @param color
+     *            Color3f
+     */
+    @Override
+    public void drawSolidPolygon(Vec2[] vertices, int vertexCount, Color3f color) {
+        GL2 gl = panel.getGL().getGL2();
+        gl.glBegin(GL2.GL_TRIANGLE_FAN);
+        gl.glColor4f(color.x, color.y, color.z, .4f);
+        for (int i = 0; i < vertexCount; i++) {
+            getWorldToScreenToOut(vertices[i], trans);
+            gl.glVertex2f(trans.x, trans.y);
+        }
+        gl.glEnd();
 
-  /**
-   * Method drawSegment.
-   * @param p1 Vec2
-   * @param p2 Vec2
-   * @param color Color3f
-   */
-  @Override
-  public void drawSegment(Vec2 p1, Vec2 p2, Color3f color) {
-    GL2 gl = panel.getGL().getGL2();
-    gl.glBegin(GL2.GL_LINES);
-    gl.glColor3f(color.x, color.y, color.z);
-    getWorldToScreenToOut(p1, trans);
-    gl.glVertex2f(trans.x, trans.y);
-    getWorldToScreenToOut(p2, trans);
-    gl.glVertex2f(trans.x, trans.y);
-    gl.glEnd();
-  }
-
-  /**
-   * Method drawTransform.
-   * @param xf Transform
-   */
-  @Override
-  public void drawTransform(Transform xf) {
-    // TODO Auto-generated method stub
-
-  }
-
-  /**
-   * Method drawString.
-   * @param x float
-   * @param y float
-   * @param s String
-   * @param color Color3f
-   */
-  @Override
-  public void drawString(float x, float y, String s, Color3f color) {
-    text.beginRendering(panel.getWidth(), panel.getHeight());
-    text.setColor(color.x, color.y, color.z, 1);
-    text.draw(s, (int)x,panel.getHeight() -  (int)y);
-    text.endRendering();
-  }
-
-  // CIRCLE GENERATOR
-
-  /**
-   * Method generateCirle.
-   * @param argCenter Vec2
-   * @param argRadius float
-   * @param argPoints Vec2[]
-   * @param argNumPoints int
-   */
-  private void generateCirle(Vec2 argCenter, float argRadius, Vec2[] argPoints, int argNumPoints) {
-    float inc = MathUtils.TWOPI / argNumPoints;
-
-    for (int i = 0; i < argNumPoints; i++) {
-      argPoints[i].x = (argCenter.x + MathUtils.cos(i * inc) * argRadius);
-      argPoints[i].y = (argCenter.y + MathUtils.sin(i * inc) * argRadius);
+        gl.glBegin(GL2.GL_LINE_LOOP);
+        gl.glColor4f(color.x, color.y, color.z, 1f);
+        for (int i = 0; i < vertexCount; i++) {
+            getWorldToScreenToOut(vertices[i], trans);
+            gl.glVertex2f(trans.x, trans.y);
+        }
+        gl.glEnd();
     }
-  }
+
+    /**
+     * Field vec2Array.
+     */
+    private final Vec2Array vec2Array = new Vec2Array();
+
+    /**
+     * Method drawCircle.
+     * 
+     * @param center
+     *            Vec2
+     * @param radius
+     *            float
+     * @param color
+     *            Color3f
+     */
+    @Override
+    public void drawCircle(Vec2 center, float radius, Color3f color) {
+        Vec2[] vecs = vec2Array.get(20);
+        generateCirle(center, radius, vecs, 20);
+        drawPolygon(vecs, 20, color);
+    }
+
+    /**
+     * Method drawSolidCircle.
+     * 
+     * @param center
+     *            Vec2
+     * @param radius
+     *            float
+     * @param axis
+     *            Vec2
+     * @param color
+     *            Color3f
+     */
+    @Override
+    public void drawSolidCircle(Vec2 center, float radius, Vec2 axis,
+            Color3f color) {
+        Vec2[] vecs = vec2Array.get(20);
+        generateCirle(center, radius, vecs, 20);
+        drawSolidPolygon(vecs, 20, color);
+        drawSegment(center, vecs[0], color);
+    }
+
+    /**
+     * Method drawSegment.
+     * 
+     * @param p1
+     *            Vec2
+     * @param p2
+     *            Vec2
+     * @param color
+     *            Color3f
+     */
+    @Override
+    public void drawSegment(Vec2 p1, Vec2 p2, Color3f color) {
+        GL2 gl = panel.getGL().getGL2();
+        gl.glBegin(GL2.GL_LINES);
+        gl.glColor3f(color.x, color.y, color.z);
+        getWorldToScreenToOut(p1, trans);
+        gl.glVertex2f(trans.x, trans.y);
+        getWorldToScreenToOut(p2, trans);
+        gl.glVertex2f(trans.x, trans.y);
+        gl.glEnd();
+    }
+
+    /**
+     * Method drawTransform.
+     * 
+     * @param xf
+     *            Transform
+     */
+    @Override
+    public void drawTransform(Transform xf) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /**
+     * Method drawString.
+     * 
+     * @param x
+     *            float
+     * @param y
+     *            float
+     * @param s
+     *            String
+     * @param color
+     *            Color3f
+     */
+    @Override
+    public void drawString(float x, float y, String s, Color3f color) {
+        text.beginRendering(panel.getWidth(), panel.getHeight());
+        text.setColor(color.x, color.y, color.z, 1);
+        text.draw(s, (int) x, panel.getHeight() - (int) y);
+        text.endRendering();
+    }
+
+    // CIRCLE GENERATOR
+
+    /**
+     * Method generateCirle.
+     * 
+     * @param argCenter
+     *            Vec2
+     * @param argRadius
+     *            float
+     * @param argPoints
+     *            Vec2[]
+     * @param argNumPoints
+     *            int
+     */
+    private void generateCirle(Vec2 argCenter, float argRadius,
+            Vec2[] argPoints, int argNumPoints) {
+        float inc = MathUtils.TWOPI / argNumPoints;
+
+        for (int i = 0; i < argNumPoints; i++) {
+            argPoints[i].x = (argCenter.x + MathUtils.cos(i * inc) * argRadius);
+            argPoints[i].y = (argCenter.y + MathUtils.sin(i * inc) * argRadius);
+        }
+    }
 }

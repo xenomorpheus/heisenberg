@@ -17,49 +17,43 @@ import org.jbox2d.testbed.framework.TestbedTest;
 /**
  */
 public class MazeCat extends TestbedTest {
-    /**
-     * Field CAT_TAG.
-     * (value is 100)
-     */
+
+    /** impule normally applied to make a cat move. */
+    private static final float CAT_NORMAL_IMPULSE = 0.002f;
+
+    /** Field CAT_TAG. (value is 100) */
+
     private static final long CAT_TAG = 100L;
-    /**
-     * Field RAT_TAG.
-     * (value is 101)
-     */
+    /** Field RAT_TAG. (value is 101) */
     private static final long RAT_TAG = 101L;
-    /**
-     * Field OUTER_WALL_TAG.
-     * (value is 102)
-     */
+
+    /** Field OUTER_WALL_TAG. (value is 102) */
     private static final long OUTER_WALL_TAG = 102L;
-    /**
-     * Field BARRIER_TAG.
-     * (value is 103)
-     */
+
+    /** Field BARRIER_TAG. (value is 103) */
     private static final long BARRIER_TAG = 103L;
-    /**
-     * Field cat.
-     */
+
+    /** Field cat. */
     private Body cat;
-    /**
-     * Field rat.
-     */
+
+    /** Field rat. */
     private Body rat;
 
     /**
      * Method step.
-     * @param settings TestbedSettings
+     * 
+     * @param settings
+     *            TestbedSettings
      */
     @Override
     public synchronized void step(TestbedSettings settings) {
 
-        float cat_max_normal_impulse = 0.002f;
         super.step(settings);
 
         Vec2 impulse = rat.getPosition().sub(cat.getPosition());
-        if (impulse.length() > cat_max_normal_impulse) {
+        if (impulse.length() > CAT_NORMAL_IMPULSE) {
             impulse.normalize();
-            impulse.mulLocal(cat_max_normal_impulse);
+            impulse.mulLocal(CAT_NORMAL_IMPULSE);
         }
         vision();
         cat.applyLinearImpulse(impulse, cat.getPosition());
@@ -68,7 +62,9 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method initTest.
-     * @param deserialized boolean
+     * 
+     * @param deserialized
+     *            boolean
      */
     @Override
     public void initTest(boolean deserialized) {
@@ -185,6 +181,7 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method getTestName.
+     * 
      * @return String
      */
     @Override
@@ -194,6 +191,7 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method getDefaultCameraScale.
+     * 
      * @return float
      */
     @Override
@@ -203,7 +201,9 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method getTag.
-     * @param body Body
+     * 
+     * @param body
+     *            Body
      * @return Long
      * @see org.jbox2d.serialization.JbSerializer$ObjectSigner#getTag(Body)
      */
@@ -220,9 +220,13 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method processBody.
-     * @param body Body
-     * @param tag Long
-     * @see org.jbox2d.serialization.JbDeserializer$ObjectListener#processBody(Body, Long)
+     * 
+     * @param body
+     *            Body
+     * @param tag
+     *            Long
+     * @see org.jbox2d.serialization.JbDeserializer$ObjectListener#processBody(Body,
+     *      Long)
      */
     @Override
     public void processBody(Body body, Long tag) {
@@ -237,6 +241,7 @@ public class MazeCat extends TestbedTest {
 
     /**
      * Method isSaveLoadEnabled.
+     * 
      * @return boolean
      */
     @Override
@@ -262,8 +267,8 @@ public class MazeCat extends TestbedTest {
         for (int i = 0; i < mcallback.m_count; ++i) {
             Vec2 point = mcallback.m_points[i];
             // Vec2 normal = mcallback.m_normals[i];
-            Long tag = (Long)mcallback.m_user_data[i];
-            System.out.println("Saw tag="+tag+", at pos="+point);
+            Long tag = (Long) mcallback.m_user_data[i];
+            System.out.println("Saw tag=" + tag + ", at pos=" + point);
         }
 
     }
@@ -274,20 +279,17 @@ public class MazeCat extends TestbedTest {
      */
     private class RayCastMultipleCallback implements RayCastCallback {
         /**
-         * Field RAYCAST_TERMINATE.
-         * (value is 0.0)
+         * Field RAYCAST_TERMINATE. (value is 0.0)
          */
         static final float RAYCAST_TERMINATE = 0f;
         // static final float RAYCAST_FILTER = -1f;
         /**
-         * Field RAYCAST_CONTINUE.
-         * (value is 1.0)
+         * Field RAYCAST_CONTINUE. (value is 1.0)
          */
         static final float RAYCAST_CONTINUE = 1f;
 
         /**
-         * Field E_MAX_COUNT.
-         * (value is 30)
+         * Field E_MAX_COUNT. (value is 30)
          */
         static final int E_MAX_COUNT = 30;
         /**
@@ -321,12 +323,18 @@ public class MazeCat extends TestbedTest {
 
         /**
          * Method reportFixture.
-         * @param fixture Fixture
-         * @param point Vec2
-         * @param normal Vec2
-         * @param fraction float
+         * 
+         * @param fixture
+         *            Fixture
+         * @param point
+         *            Vec2
+         * @param normal
+         *            Vec2
+         * @param fraction
+         *            float
          * @return float
-         * @see org.jbox2d.callbacks.RayCastCallback#reportFixture(Fixture, Vec2, Vec2, float)
+         * @see org.jbox2d.callbacks.RayCastCallback#reportFixture(Fixture,
+         *      Vec2, Vec2, float)
          */
         @Override
         public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal,

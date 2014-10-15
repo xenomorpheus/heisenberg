@@ -61,13 +61,13 @@ public class CookerTest {
      * common use - create an Item.
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testItemCreation() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Recipe recipe = config.getRecipe("testItem1");
 
         // Setup the chef
@@ -106,12 +106,12 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testFindIngredientByName() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         RequirementItem requirementItem = new RequirementItem("Location",
                 "Location", false);
         List<Requirement> requirements = new ArrayList<Requirement>();
@@ -131,12 +131,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
-    public void testSpell() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void testSpell() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
 
         final int manaRemaining = 1;
         final int actionPointsRemaining = 2;
@@ -168,13 +169,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      * 
      */
     @Test
     public void testFullProcess() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         Location world = new Location("World");
         Cookie cookie = new Cookie();
@@ -270,12 +271,12 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testRecipeItemsAvailable() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         Location world = new Location("world");
         world.setVolumeMax(-1);
@@ -357,12 +358,12 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testCookGeneralNull() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-general-null",
@@ -401,12 +402,12 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testCookGeneralMana1() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-1", "Mana test, just enough.",
@@ -439,13 +440,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookGeneralMana2() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-2", "Mana test, not enough.",
@@ -477,13 +478,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookGeneralMana3() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-3",
@@ -515,12 +516,12 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     public void testCookGeneralActionPoints1() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-1",
@@ -555,13 +556,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookGeneralActionPoints2() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-2",
@@ -594,13 +595,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookGeneralActionPoints3() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-3",
@@ -631,13 +632,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookSkills1() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -674,13 +675,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookSkills2() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -703,7 +704,8 @@ public class CookerTest {
         // Get a cooker
         Cooker cooker = recipe.getNewCooker(chef);
 
-        assertEquals("cook works", "Missing Skills"+System.lineSeparator(), cooker.cook());
+        assertEquals("cook works", "Missing Skills" + System.lineSeparator(),
+                cooker.cook());
 
         // Check the chef has paid in ActionPoints and ActionPoints
         assertEquals("mana", 0, chef.getMana());
@@ -719,13 +721,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void testCookSkills3() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -766,12 +768,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
-    public void TestCookItem1() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void TestCookItem1() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);
@@ -818,13 +821,13 @@ public class CookerTest {
      * 
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
 
     @Test
     public void TestCookItem1Catalyst() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+            TooHeavyException, TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);

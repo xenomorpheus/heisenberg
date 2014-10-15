@@ -38,19 +38,24 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
  */
 public final class DummyData {
     /** test skills. */
-    private static final String[] TEST_SKILLS = new String[] {"testSkill1", "testSkill2", "testSkill3"};
+    private static final String[] TEST_SKILLS = new String[] { "testSkill1",
+            "testSkill2", "testSkill3" };
     /** test recipes. */
-    private static final String[] TEST_RECIPES = new String[] {"testItem1", "testFireGround1", "testSpell1" };
+    private static final String[] TEST_RECIPES = new String[] { "testItem1",
+            "testFireGround1", "testSpell1" };
     /** test level. */
     private static final int TEST_LEVEL = 3;
     /** test weight or volume. */
     private static final int TEST_WEIGHT_VOLUME = 100000;
+
     /** Constructor. */
     private DummyData() {
         super();
     }
 
-    /** return the config. * @return Configuration
+    /**
+     * return the config. * @return Configuration
+     * 
      * @throws ConfigurationError
      */
     public static Configuration config() throws ConfigurationError {
@@ -62,6 +67,7 @@ public final class DummyData {
 
     /**
      * Method elf.
+     * 
      * @return PcRace
      * @throws ConfigurationError
      */
@@ -86,10 +92,11 @@ public final class DummyData {
      * 
      * @return a demo world of Item objects.
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public static Location getDemoWorld() throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public static Location getDemoWorld() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(TEST_WEIGHT_VOLUME);

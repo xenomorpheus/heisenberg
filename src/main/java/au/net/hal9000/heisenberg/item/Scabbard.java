@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
  * An ordinary scabbard (with belt) for holding a sword.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -48,11 +49,12 @@ public class Scabbard extends Box {
      * {@inheritDoc} * @param item Item
      * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Override
-    public void add(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void add(Item item) throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         // We need to accept all Items, not just swords,
         // otherwise our super will accept them for us
         // which is bad.

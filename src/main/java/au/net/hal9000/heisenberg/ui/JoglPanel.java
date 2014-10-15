@@ -45,157 +45,178 @@ import org.jbox2d.testbed.framework.TestbedTest;
 
 /**
  */
-public class JoglPanel extends GLJPanel implements TestbedPanel, GLEventListener {
-  /**
-   * Field serialVersionUID.
-   * (value is 1)
-   */
-  private static final long serialVersionUID = 1L;
-  
-  /**
-   * Field ZOOM_OUT_SCALE.
-   * (value is 0.95)
-   */
-  private static final float ZOOM_OUT_SCALE = .95f;
-  /**
-   * Field ZOOM_IN_SCALE.
-   * (value is 1.05)
-   */
-  private static final float ZOOM_IN_SCALE = 1.05f;
-  
-  /**
-   * Field draw.
-   */
-  private final JoglDebugDraw draw;
-  /**
-   * Field model.
-   */
-  private final TestbedModel model;
+public class JoglPanel extends GLJPanel implements TestbedPanel,
+        GLEventListener {
+    /**
+     * Field serialVersionUID. (value is 1)
+     */
+    private static final long serialVersionUID = 1L;
 
-  /**
-   * Constructor for JoglPanel.
-   * @param argModel TestbedModel
-   */
-  public JoglPanel(TestbedModel argModel) {
-    super(new GLCapabilities(GLProfile.getDefault()));
-    model = argModel;
-    draw = new JoglDebugDraw(this);
-    setSize(600, 600);
-    setPreferredSize(new Dimension(600, 600));
-    setAutoSwapBufferMode(true);
-    addGLEventListener(this);
-    
-    addMouseWheelListener(new MouseWheelListener() {
+    /**
+     * Field ZOOM_OUT_SCALE. (value is 0.95)
+     */
+    private static final float ZOOM_OUT_SCALE = .95f;
+    /**
+     * Field ZOOM_IN_SCALE. (value is 1.05)
+     */
+    private static final float ZOOM_IN_SCALE = 1.05f;
 
-      private final Vec2 oldCenter = new Vec2();
-      private final Vec2 newCenter = new Vec2();
-      private final Mat22 upScale = Mat22.createScaleTransform(ZOOM_IN_SCALE);
-      private final Mat22 downScale = Mat22.createScaleTransform(ZOOM_OUT_SCALE);
+    /**
+     * Field draw.
+     */
+    private final JoglDebugDraw draw;
+    /**
+     * Field model.
+     */
+    private final TestbedModel model;
 
-      public void mouseWheelMoved(MouseWheelEvent e) {
-        DebugDraw d = draw;
-        int notches = e.getWheelRotation();
-        TestbedTest currTest = model.getCurrTest();
-        if (currTest == null) {
-          return;
-        }
-        OBBViewportTransform trans = (OBBViewportTransform) d.getViewportTranform();
-        oldCenter.set(model.getCurrTest().getWorldMouse());
-        // Change the zoom and clamp it to reasonable values - can't clamp now.
-        if (notches < 0) {
-          trans.mulByTransform(upScale);
-          currTest.setCachedCameraScale(currTest.getCachedCameraScale() * ZOOM_IN_SCALE);
-        } else if (notches > 0) {
-          trans.mulByTransform(downScale);
-          currTest.setCachedCameraScale(currTest.getCachedCameraScale() * ZOOM_OUT_SCALE);
-        }
+    /**
+     * Constructor for JoglPanel.
+     * 
+     * @param argModel
+     *            TestbedModel
+     */
+    public JoglPanel(TestbedModel argModel) {
+        super(new GLCapabilities(GLProfile.getDefault()));
+        model = argModel;
+        draw = new JoglDebugDraw(this);
+        setSize(600, 600);
+        setPreferredSize(new Dimension(600, 600));
+        setAutoSwapBufferMode(true);
+        addGLEventListener(this);
 
-        d.getScreenToWorldToOut(model.getMouse(), newCenter);
+        addMouseWheelListener(new MouseWheelListener() {
 
-        Vec2 transformedMove = oldCenter.subLocal(newCenter);
-        d.getViewportTranform().setCenter(
-            d.getViewportTranform().getCenter().addLocal(transformedMove));
+            private final Vec2 oldCenter = new Vec2();
+            private final Vec2 newCenter = new Vec2();
+            private final Mat22 upScale = Mat22
+                    .createScaleTransform(ZOOM_IN_SCALE);
+            private final Mat22 downScale = Mat22
+                    .createScaleTransform(ZOOM_OUT_SCALE);
 
-        currTest.setCachedCameraPos(d.getViewportTranform().getCenter());
-      }
-    });
-  }
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                DebugDraw d = draw;
+                int notches = e.getWheelRotation();
+                TestbedTest currTest = model.getCurrTest();
+                if (currTest == null) {
+                    return;
+                }
+                OBBViewportTransform trans = (OBBViewportTransform) d
+                        .getViewportTranform();
+                oldCenter.set(model.getCurrTest().getWorldMouse());
+                // Change the zoom and clamp it to reasonable values - can't
+                // clamp now.
+                if (notches < 0) {
+                    trans.mulByTransform(upScale);
+                    currTest.setCachedCameraScale(currTest
+                            .getCachedCameraScale() * ZOOM_IN_SCALE);
+                } else if (notches > 0) {
+                    trans.mulByTransform(downScale);
+                    currTest.setCachedCameraScale(currTest
+                            .getCachedCameraScale() * ZOOM_OUT_SCALE);
+                }
 
-  /** {@inheritDoc} * @return DebugDraw
-   */
-  @Override
-  public DebugDraw getDebugDraw() {
-    return draw;
-  }
+                d.getScreenToWorldToOut(model.getMouse(), newCenter);
 
-  /** {@inheritDoc} * @return boolean
-   */
-  @Override
-  public boolean render() {
-    return true;
-  }
+                Vec2 transformedMove = oldCenter.subLocal(newCenter);
+                d.getViewportTranform().setCenter(
+                        d.getViewportTranform().getCenter()
+                                .addLocal(transformedMove));
 
-  /** {@inheritDoc} */
-  @Override
-  public void paintScreen() {
-    display();
-  }
-
-  /** {@inheritDoc} * @param arg0 GLAutoDrawable
-   */
-  @Override
-  public void display(GLAutoDrawable arg0) {
-    getGL().getGL2().glClear(GL2.GL_COLOR_BUFFER_BIT);
-    
-    if (model.getCurrTest() != null) {
-      model.getRunningTest().update();
+                currTest.setCachedCameraPos(d.getViewportTranform().getCenter());
+            }
+        });
     }
-    
-    getGL().glFlush();
-  }
 
-  /** {@inheritDoc} * @param arg0 GLAutoDrawable
-   */
-  @Override
-  public void dispose(GLAutoDrawable arg0) {
-    // TODO Auto-generated method stub
+    /**
+     * {@inheritDoc} * @return DebugDraw
+     */
+    @Override
+    public DebugDraw getDebugDraw() {
+        return draw;
+    }
 
-  }
+    /**
+     * {@inheritDoc} * @return boolean
+     */
+    @Override
+    public boolean render() {
+        return true;
+    }
 
-  /** {@inheritDoc} * @param arg0 GLAutoDrawable
-   */
-  @Override
-  public void init(GLAutoDrawable arg0) {
-    getGL().getGL2().glLineWidth(1f);
-    getGL().getGL2().glEnable(GL2.GL_BLEND);
-    getGL().getGL2().glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
-  }
+    /** {@inheritDoc} */
+    @Override
+    public void paintScreen() {
+        display();
+    }
 
-  /** {@inheritDoc} * @param arg0 GLAutoDrawable
-   * @param arg1 int
-   * @param arg2 int
-   * @param arg3 int
-   * @param arg4 int
-   */
-  @Override
-  public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3, int arg4) {
-    GL2 gl2 = arg0.getGL().getGL2();
-    
-    gl2.glMatrixMode( GL2.GL_PROJECTION );
-    gl2.glLoadIdentity();
+    /**
+     * {@inheritDoc} * @param arg0 GLAutoDrawable
+     */
+    @Override
+    public void display(GLAutoDrawable arg0) {
+        getGL().getGL2().glClear(GL2.GL_COLOR_BUFFER_BIT);
 
-    // coordinate system origin at lower left with width and height same as the window
-    GLU glu = new GLU();
-    glu.gluOrtho2D( 0.0f, getWidth(), 0.0f, getHeight() );
+        if (model.getCurrTest() != null) {
+            model.getRunningTest().update();
+        }
 
-    gl2.glMatrixMode( GL2.GL_MODELVIEW );
-    gl2.glLoadIdentity();
+        getGL().glFlush();
+    }
 
-    gl2.glViewport( 0, 0, getWidth(), getHeight() );
+    /**
+     * {@inheritDoc} * @param arg0 GLAutoDrawable
+     */
+    @Override
+    public void dispose(GLAutoDrawable arg0) {
+        // TODO Auto-generated method stub
 
-    draw.getViewportTranform().setExtents(arg3 / 2, arg4 / 2);
-    
-    model.setPanelWidth(getWidth());
-  }
+    }
+
+    /**
+     * {@inheritDoc} * @param arg0 GLAutoDrawable
+     */
+    @Override
+    public void init(GLAutoDrawable arg0) {
+        getGL().getGL2().glLineWidth(1f);
+        getGL().getGL2().glEnable(GL2.GL_BLEND);
+        getGL().getGL2().glBlendFunc(GL2.GL_SRC_ALPHA,
+                GL2.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    /**
+     * {@inheritDoc} * @param arg0 GLAutoDrawable
+     * 
+     * @param arg1
+     *            int
+     * @param arg2
+     *            int
+     * @param arg3
+     *            int
+     * @param arg4
+     *            int
+     */
+    @Override
+    public void reshape(GLAutoDrawable arg0, int arg1, int arg2, int arg3,
+            int arg4) {
+        GL2 gl2 = arg0.getGL().getGL2();
+
+        gl2.glMatrixMode(GL2.GL_PROJECTION);
+        gl2.glLoadIdentity();
+
+        // coordinate system origin at lower left with width and height same as
+        // the window
+        GLU glu = new GLU();
+        glu.gluOrtho2D(0.0f, getWidth(), 0.0f, getHeight());
+
+        gl2.glMatrixMode(GL2.GL_MODELVIEW);
+        gl2.glLoadIdentity();
+
+        gl2.glViewport(0, 0, getWidth(), getHeight());
+
+        draw.getViewportTranform().setExtents(arg3 / 2, arg4 / 2);
+
+        model.setPanelWidth(getWidth());
+    }
 
 }

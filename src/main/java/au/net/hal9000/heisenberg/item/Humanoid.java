@@ -210,7 +210,8 @@ public abstract class Humanoid extends PcRace {
      *            the maximum volume that this item can hold.
      */
     public void setVolumeMax(float volumeMax) {
-        float corePercentage = 100;
+        final float corePercentageTotal = 100;
+        float corePercentage = corePercentageTotal;
         // head
         head.setVolumeMax(volumeMax * HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME);
         corePercentage -= HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME;

@@ -41,7 +41,7 @@ import au.net.hal9000.heisenberg.units.SkillDetail;
 public class Configuration {
 
     /** Singleton. Holder of the config */
-    private static Configuration LastConfig = null;
+    private static Configuration lastConfig = null;
     /** A list of genders. */
     private List<String> genders;
     /** A list of ItemClassConfiguration objects. */
@@ -81,7 +81,7 @@ public class Configuration {
      * @param config
      */
     private static void setLastConfig(Configuration config) {
-        Configuration.LastConfig = config;
+        Configuration.lastConfig = config;
     }
 
     /**
@@ -89,11 +89,11 @@ public class Configuration {
      * @return Return the last config that was read.
      */
     public static Configuration lastConfig() {
-        if (null == LastConfig) {
+        if (null == lastConfig) {
             throw new RuntimeException(
                     "Please fetch config before using Singleton");
         }
-        return LastConfig;
+        return lastConfig;
     }
 
     // Getters and Setters
