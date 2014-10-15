@@ -35,19 +35,19 @@ public class PlaneTest {
     /**
      * Field A_TEST. (value is 1.0)
      */
-    private static final double A_TEST = 1;
+    private static final double X_TEST = 1;
     /**
      * Field B_TEST. (value is 2.0)
      */
-    private static final double B_TEST = 2;
+    private static final double Y_TEST = 2;
     /**
      * Field C_TEST. (value is 3.0)
      */
-    private static final double C_TEST = 3;
+    private static final double Z_TEST = 3;
     /**
      * Field D_TEST. (value is 3.0)
      */
-    private static final double D_TEST = 4;
+    private static final double C_TEST = 4;
 
     /**
      * Method testPoint3d.
@@ -55,10 +55,10 @@ public class PlaneTest {
     @Test
     public void testPoint3d() {
         Plane plane = new Plane();
-        assertEquals("A", ZERO, plane.getA(), TEST_TOLERANCE);
-        assertEquals("B", ZERO, plane.getB(), TEST_TOLERANCE);
+        assertEquals("X", ZERO, plane.getX(), TEST_TOLERANCE);
+        assertEquals("Y", ZERO, plane.getY(), TEST_TOLERANCE);
+        assertEquals("Z", ZERO, plane.getZ(), TEST_TOLERANCE);
         assertEquals("C", ZERO, plane.getC(), TEST_TOLERANCE);
-        assertEquals("D", ZERO, plane.getD(), TEST_TOLERANCE);
     }
 
     /**
@@ -67,11 +67,11 @@ public class PlaneTest {
     @Test
     public void testPoint3dDoubleDoubleDouble() {
 
-        Plane plane = new Plane(A_TEST, B_TEST, C_TEST, D_TEST);
-        assertEquals("A", A_TEST, plane.getA(), TEST_TOLERANCE);
-        assertEquals("B", B_TEST, plane.getB(), TEST_TOLERANCE);
+        Plane plane = new Plane(X_TEST, Y_TEST, Z_TEST, C_TEST);
+        assertEquals("X", X_TEST, plane.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST, plane.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST, plane.getZ(), TEST_TOLERANCE);
         assertEquals("C", C_TEST, plane.getC(), TEST_TOLERANCE);
-        assertEquals("D", D_TEST, plane.getD(), TEST_TOLERANCE);
     }
 
     /**
@@ -82,22 +82,22 @@ public class PlaneTest {
     @Test
     public void testClonePoint3d() throws CloneNotSupportedException {
 
-        Plane plane = new Plane(A_TEST, B_TEST, C_TEST, D_TEST);
+        Plane plane = new Plane(X_TEST, Y_TEST, Z_TEST, C_TEST);
         Plane clone = plane.clone();
         assertTrue("differnt object", plane != clone);
         assertTrue("equals returns true", plane.equals(clone));
-        assertEquals("A", A_TEST, clone.getA(), TEST_TOLERANCE);
-        assertEquals("B", B_TEST, clone.getB(), TEST_TOLERANCE);
+        assertEquals("X", X_TEST, clone.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST, clone.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST, clone.getZ(), TEST_TOLERANCE);
         assertEquals("C", C_TEST, clone.getC(), TEST_TOLERANCE);
-        assertEquals("D", D_TEST, clone.getD(), TEST_TOLERANCE);
-}
+    }
 
     /**
      * Method testToString.
      */
     @Test
     public void testToString() {
-        Plane plane = new Plane(A_TEST, B_TEST, C_TEST, D_TEST);
+        Plane plane = new Plane(X_TEST, Y_TEST, Z_TEST, C_TEST);
         assertEquals("[1.00, 2.00, 3.00, 4.00]", plane.toString());
     }
 
@@ -106,33 +106,37 @@ public class PlaneTest {
      */
     @Test
     public void testEqualsDouble() {
-        Plane plane = new Plane(A_TEST, B_TEST, C_TEST, D_TEST);
-        Plane plane2 = new Plane(A_TEST, B_TEST, C_TEST, D_TEST);
+        Plane plane = new Plane(X_TEST, Y_TEST, Z_TEST, C_TEST);
+        Plane plane2 = new Plane(X_TEST, Y_TEST, Z_TEST, C_TEST);
         assertTrue("equals", plane.equals(plane2));
-        // a
-        plane.setA(A_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true a", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setA(A_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false a", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setA(A_TEST);
-        // b
-        plane.setB(B_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true b", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setB(B_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false b", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setB(B_TEST);
+        // x
+        plane.setX(X_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true x", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setX(X_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false x",
+                plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setX(X_TEST);
+        // y
+        plane.setY(Y_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true y", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setY(Y_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false y",
+                plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setY(Y_TEST);
+        // z
+        plane.setZ(Z_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true z", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setZ(Z_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false z",
+                plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        plane.setZ(Z_TEST);
         // c
         plane.setC(C_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
         assertTrue("true c", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
         plane.setC(C_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false c", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
+        assertFalse("false c",
+                plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
         plane.setC(C_TEST);
-        // d
-        plane.setD(D_TEST + WITHIN_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertTrue("true d", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setD(D_TEST + OUTSIDE_TOLERANCE * Plane.DEFAULT_AXIS_TOLERANCE);
-        assertFalse("false d", plane.equals(plane2, Plane.DEFAULT_AXIS_TOLERANCE));
-        plane.setD(D_TEST);
     }
 
     /**
@@ -150,7 +154,6 @@ public class PlaneTest {
         assertFalse(plane4.equals(plane3));
     }
 
-    
     /**
      * test distance.
      */
@@ -160,7 +163,7 @@ public class PlaneTest {
         Plane plane = new Plane(1, 2, 2, -11);
         Point3d point = new Point3d(2, 1, 1);
         double d = plane.distance(point);
-        assertEquals(5.00/3.00, d, TEST_TOLERANCE);
+        assertEquals(5.00 / 3.00, d, TEST_TOLERANCE);
     }
-    
+
 }

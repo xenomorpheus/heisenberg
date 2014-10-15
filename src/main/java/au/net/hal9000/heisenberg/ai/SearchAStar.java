@@ -32,12 +32,12 @@ public class SearchAStar extends SearchBase {
      * 
      * @param successorFunction the successor function.
      * @param modelStateEvaluator the model state evaluator.
-     * @param gFunction the function to estimate distance to gaol.
+     * @param goalEstCostFunction the function to estimate distance to gaol.
      */
     public SearchAStar(SuccessorFunction successorFunction,
-            ModelStateEvaluator modelStateEvaluator, GoalEstFunction gFunction) {
+            ModelStateEvaluator modelStateEvaluator, GoalEstFunction goalEstCostFunction) {
         this(successorFunction, modelStateEvaluator);
-        this.goalEstCostFunction = gFunction;
+        this.goalEstCostFunction = goalEstCostFunction;
     }
 
     /** constructor - Uniform Cost Search */

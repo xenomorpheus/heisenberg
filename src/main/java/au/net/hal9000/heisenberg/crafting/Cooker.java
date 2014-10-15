@@ -195,7 +195,7 @@ public class Cooker extends ItemContainer {
      * @return undef if requirements met, otherwise the reason.
      */
     private String requirementsMet() {
-        final StringBuilder string = new StringBuilder();
+        final StringBuilder string = new StringBuilder(40);
 
         // mana
         int manaRequired = recipe.getMana();

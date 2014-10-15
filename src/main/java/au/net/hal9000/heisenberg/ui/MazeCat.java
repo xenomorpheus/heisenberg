@@ -293,15 +293,15 @@ public class MazeCat extends TestbedTest {
         /**
          * Field m_points.
          */
-        private Vec2 m_points[] = new Vec2[E_MAX_COUNT];
+        private Vec2[] m_points = new Vec2[E_MAX_COUNT];
         /**
          * Field m_normals.
          */
-        private Vec2 m_normals[] = new Vec2[E_MAX_COUNT];
+        private Vec2[] m_normals = new Vec2[E_MAX_COUNT];
         /**
          * Field m_user_data.
          */
-        private Object m_user_data[] = new Object[E_MAX_COUNT];
+        private Object[] m_user_data = new Object[E_MAX_COUNT];
         /**
          * Field m_count.
          */

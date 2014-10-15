@@ -200,15 +200,15 @@ public class Point3d implements Serializable, Cloneable {
         if (null == other) {
             return false;
         }
-        return doubleEqualEnough(x, other.x, tolerance)
-                && doubleEqualEnough(y, other.y, tolerance)
-                && doubleEqualEnough(z, other.z, tolerance);
+        return isEqualEnough(x, other.x, tolerance)
+                && isEqualEnough(y, other.y, tolerance)
+                && isEqualEnough(z, other.z, tolerance);
     }
 
     // return true if, and only if, either:
     // 1) equal in terms of double (NaN / +0 / -0 etc.)
     // 2) within tolerance of each other.
-    private static boolean doubleEqualEnough(double a, double b,
+    private static boolean isEqualEnough(double a, double b,
             double tolerance) {
         return ((Double.doubleToLongBits(a) == Double.doubleToLongBits(b)) || (Math
                 .abs(a - b) < tolerance));

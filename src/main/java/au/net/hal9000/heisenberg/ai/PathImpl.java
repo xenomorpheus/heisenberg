@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * @version $Revision: 1.0 $
  * @author bruins
  */
-public class PathImpl implements Path, Cloneable{
+public class PathImpl implements Path, Cloneable {
 
     /** a list of actions. */
     private List<Action> actions = new ArrayList<Action>();
@@ -73,36 +73,39 @@ public class PathImpl implements Path, Cloneable{
             return false;
         }
         final PathImpl other = (PathImpl) obj;
-        if ( size() != other.size()){
+        if (size() != other.size()) {
             return false;
         }
         // Compare each element
         Iterator<Action> otherIterator = other.iterator();
-        for (Action action : this){
+        for (Action action : this) {
             Action otherAction = otherIterator.next();
-            if (! action.equals(otherAction)){
+            if (!action.equals(otherAction)) {
                 return false;
             }
         }
         return true;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see au.net.hal9000.heisenberg.ai.Path#size()
      */
-    private int size(){
+    private int size() {
         return actions.size();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see au.net.hal9000.heisenberg.ai.Path#iterator()
      */
     @Override
-    public Iterator<Action> iterator(){
+    public Iterator<Action> iterator() {
         return actions.iterator();
     }
-    
-    
+
     /**
      * Method toString.
      * 
@@ -110,7 +113,7 @@ public class PathImpl implements Path, Cloneable{
      */
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder();
+        StringBuilder string = new StringBuilder(actions.size() * 3 + 3);
         String join = "";
         for (Action action : actions) {
             string.append(join);
@@ -122,15 +125,14 @@ public class PathImpl implements Path, Cloneable{
 
     /** {@inheritDoc} */
     @Override
-    public PathImpl clone() throws CloneNotSupportedException{
+    public PathImpl clone() throws CloneNotSupportedException {
         PathImpl path = (PathImpl) super.clone();
         // TODO is this correct?
         path.actions = new ArrayList<Action>();
-        for(Action action: actions){
+        for (Action action : actions) {
             path.add(action);
         }
         return path;
     }
 
-    
 }
