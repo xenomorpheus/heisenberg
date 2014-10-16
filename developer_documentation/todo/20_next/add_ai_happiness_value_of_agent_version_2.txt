@@ -1,0 +1,44 @@
+Prerequisite(s):
+
+ability to calculate happiness value of agent.
+
+
+
+Ideas for units to measure state evaluation (f/g/h)
+=========================================================
+
+Energy:
+Energy expended (e.g. living plus any movement) is bad (positive ?)
+Energy gained (e.g. eating) is good (negative)
+What about coming up with a negative total ?
+Energy may not be a good measure.
+Is twice the energy, twice as good (happy) ?
+Money:  Double money doesn't give double happiness.
+
+
+
+Ideas for h(n)
+
+
+h(n)
+= a1 * "health / happiness" of agent.
++ a2 * "health / happiness" of "friends" ?
++ a2 * "health / happiness" of environment
+
+
+
+
+
+Detailed Plans
+=====================================
+
+Should cat be Born with racial memory?
+Tendency to hunt / drink / eat /sleep
+If so, how ?
+Perhaps the co-efficients on the metrics for state evaluation functions.
+
+h(n) 
+= a1 * distance_to_smaller_animal_when_hungry(n)
++ a2 * distance_to_water_when_thirsty(n)
+???
+

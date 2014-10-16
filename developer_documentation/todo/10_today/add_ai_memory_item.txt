@@ -1,0 +1,9 @@
+Aim
+* ability to remember a wall/item.
+
+Required by:
+* AI vision and other sensors.
+
+Actions:
+* Add memory decay and doco on why it is needed.
+* Add unit tests.

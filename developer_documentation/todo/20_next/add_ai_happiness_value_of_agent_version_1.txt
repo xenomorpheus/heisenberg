@@ -1,0 +1,33 @@
+Health and happiness of agent
+===============================
+h(n)
+= a1 * metric(hydration)
++ a2 * metric(nourishment)
+
+Future:
+rest, aeration etc.
+
+Idea:
+a1, a2, etc. should be computed via RL (Reinforcement Learning).
+
+
+Ideas for computing health metric coeffecients a1, a2.
+===========================================================
+a1, a2, etc. should be computed via RL (Reinforcement Learning).
+
+initial a1 based on time to die from lack of hydration.
+initial a1 based on time to die from lack of nourishment.
+
+Use RL to fine tune.
+
+Setup unit tests for sevaral situations to check reasonable values
+for overal health / happiness.
+
+
+Entity Properties:
+aeration                   ideal 100
+hydration                  ideal 100
+nourishment                ideal 100
+rest                       ideal 100
+entertainment              ideal 100
+

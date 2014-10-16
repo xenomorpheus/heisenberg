@@ -1,0 +1,6 @@
+Prerequisites:
+* Memory item - to store results of vision.
+* Spoke generation class.
+
+
+Use physics engine raycast to 'see' the wall/item.  Store the results in a MemoryItem object.

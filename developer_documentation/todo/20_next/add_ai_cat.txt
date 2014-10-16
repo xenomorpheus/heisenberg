@@ -1,0 +1,18 @@
+Requires:
+* Item - Model state evaluation for Entity (sub-class of Item).
+* Item - Actions
+* Item - Successor function
+
+
+
+
+AI Cat
+Agent - cat s/w
+
+
+
+f(n) = g(n) + h(n)
+
+f(n) = the evaluation (of a node) function.
+g(n) = the cost from the start node to the current node (n).
+h(n) = the estimated cost from the current node to the goal.

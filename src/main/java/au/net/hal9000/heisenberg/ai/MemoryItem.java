@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.unused;
+package au.net.hal9000.heisenberg.ai;
 
 import java.util.Date;
 

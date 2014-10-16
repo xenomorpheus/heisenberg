@@ -1,0 +1,19 @@
+Provides
+* Generate a set of evenly-distributed vectors from a common origin.
+* The following are specified
+** length
+** start and finish angle
+** count
+
+Package:
+heisenberg.util
+
+Required By:
+* Vision
+* Movement
+
+* Extract from SuccessorFunctionSpoke.
+* We may be able to greatly simplify or remove SuccessorFunctionNSEW.
+** Could be the default from of SuccessorFunctionSpoke, when no spoke generator function is supplied.
+* Add unit tests.
+

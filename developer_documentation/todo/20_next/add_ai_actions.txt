@@ -1,0 +1,7 @@
+
+Actions:
+Move/run
+Pounce
+Eat (recipe)
+Drink (recipe)
+(maybe) Breath - zero action points
