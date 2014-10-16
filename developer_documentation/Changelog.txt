@@ -1,3 +1,6 @@
+2014-10-01
+AI work - A* class.
+
 2014-07-06
 Adding Physics Engine - JBox2d.
 
