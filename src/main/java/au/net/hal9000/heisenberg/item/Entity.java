@@ -3,6 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import java.util.Set;
 import java.util.TreeSet;
 
+import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -16,7 +17,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @version $Revision: 1.0 $
  */
 
-public abstract class Entity extends Item {
+public abstract class Entity extends Item implements StateEvaluation {
 
     /** serial version. */
     private static final long serialVersionUID = 1L;
@@ -35,7 +36,8 @@ public abstract class Entity extends Item {
      */
     private int mana;
     /**
-     * This object has a list of {@link au.net.hal9000.heisenberg.util.AbilityScore} objects.<br>
+     * This object has a list of
+     * {@link au.net.hal9000.heisenberg.util.AbilityScore} objects.<br>
      * 
      * To set up, just work through the list on the {@link PcRace}.
      * 
@@ -48,7 +50,8 @@ public abstract class Entity extends Item {
      */
     private String gender;
     /**
-     * The {@link au.net.hal9000.heisenberg.crafting.Recipe} list that is known by this object.
+     * The {@link au.net.hal9000.heisenberg.crafting.Recipe} list that is known
+     * by this object.
      */
     private Set<String> recipes;
     /**
@@ -63,8 +66,11 @@ public abstract class Entity extends Item {
     // Constructor
     /**
      * Constructor for Entity.
-     * @param name String
-     * @param description String
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
      */
     protected Entity(String name, String description) {
         super(name, description);
@@ -79,7 +85,9 @@ public abstract class Entity extends Item {
 
     /**
      * Constructor for Entity.
-     * @param name String
+     * 
+     * @param name
+     *            String
      */
     protected Entity(String name) {
         this(name, "");
@@ -89,8 +97,9 @@ public abstract class Entity extends Item {
 
     // Getters and Setters
     /**
-    
-     * @return the actionPoints */
+     * 
+     * @return the actionPoints
+     */
     public final int getActionPoints() {
         return actionPoints;
     }
@@ -114,8 +123,9 @@ public abstract class Entity extends Item {
     }
 
     /**
-    
-     * @return the gender */
+     * 
+     * @return the gender
+     */
     public final String getGender() {
         return gender;
     }
@@ -129,8 +139,9 @@ public abstract class Entity extends Item {
     }
 
     /**
-    
-     * @return the mana */
+     * 
+     * @return the mana
+     */
     public final int getMana() {
         return mana;
     }
@@ -157,8 +168,9 @@ public abstract class Entity extends Item {
     /**
      * Get the Recipe objects this PcRace object knows.
      * 
-    
-     * @return the set of Recipe objects */
+     * 
+     * @return the set of Recipe objects
+     */
     public Set<String> getRecipes() {
         return recipes;
     }
@@ -199,8 +211,9 @@ public abstract class Entity extends Item {
     }
 
     /**
-    
-     * @return the size */
+     * 
+     * @return the size
+     */
     public final String getSize() {
         return size;
     }
@@ -217,8 +230,9 @@ public abstract class Entity extends Item {
     /**
      * Get the Skill objects.
      * 
-    
-     * @return a set of Skill objects */
+     * 
+     * @return a set of Skill objects
+     */
     public final Set<Skill> getSkills() {
         return skills;
     }
@@ -263,8 +277,9 @@ public abstract class Entity extends Item {
     /**
      * Return a detailed description of the object.
      * 
-    
-     * @return Plain text description of the object */
+     * 
+     * @return Plain text description of the object
+     */
     public String detailedDescription() {
         StringBuilder text = new StringBuilder();
 
@@ -317,14 +332,13 @@ public abstract class Entity extends Item {
      * 
      * @param recipeId
      *            The ID of the recipe we wish to use for cooking.
-    
-     * @return a new cooker object */
+     * 
+     * @return a new cooker object
+     */
     public Cooker getCooker(String recipeId) {
         Configuration configuration = Configuration.lastConfig();
         return configuration.getRecipe(recipeId).getNewCooker(this);
     }
-
-
 
     /**
      * Shallow copy properties from one object to another.
@@ -336,6 +350,34 @@ public abstract class Entity extends Item {
         super.setAllFrom(entity);
         setGender(entity.getGender());
         setSize(entity.getSize());
+    }
+
+    /**
+     * @return the value of this objects current state.
+     */
+    @Override
+    public double stateEvaluation() {
+        
+        // Very crude, but enough for testing.
+        return getHitPoints();
+
+        // TODO Consider more properties.
+        // Note: coefficients are tuned by Reinforcement Learning
+        // return coefficient00 * super.stateEvaluation;
+        // + coefficient01 * ItemProperty.getLiving(this);
+        // + coefficient02 * ItemProperty.getAeration(this);
+        // + coefficient03 * ItemProperty.getEntertainment(this);
+        // + coefficient04 * ItemProperty.getHydration(this);
+        // + coefficient05 * ItemProperty.getNourishment(this);
+        // + coefficient06 * ItemProperty.getRest(this);
+        // * energyReserve // e.g. Fat
+        // * emotionalWellbeing // concept of pain ?
+
+        // Get stateEvaluation() of contents.
+        // Perhaps use Visitor Pattern.
+        // How to combine results ?
+        // sum() seems too crude
+
     }
 
 }

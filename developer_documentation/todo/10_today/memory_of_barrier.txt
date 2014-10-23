@@ -1,0 +1,28 @@
+
+Notes for future development on Memory for Entity.
+Group memory by room, and potentially areas within rooms.
+
+
+Barrier Class
+
+Method - getRestrictionDetails  ( Vec2  movement)
+  returns null if won't block.
+  returns a scaled version of 'movement' vector that intersects with the barrier.
+  // TODO currently movement is a point mass so this approach may fail if barrier has a gap which is too small for entity to fit through.
+  // TODO in future consider movement of shapes through.
+  // Perhaps best left to the physics engine.
+  
+=================================================
+  
+  Done
+  
+Rename Memory to MemoryOf.
+Copy MemoryItem to MemoryOfBarrier
+Move MemoryItem to unused.
+
+
+
+MemoryOfBarrier
+Contains a Barrier object.
+
+  

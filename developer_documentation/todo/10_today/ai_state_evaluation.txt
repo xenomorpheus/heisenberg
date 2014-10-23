@@ -1,0 +1,47 @@
+
+
+Create an interface for supportsStateEvaluation.
+double stateEvaluation();
+
+Item implements supportsStateEvaluation
+double stateEvaluation(){
+   return getHitPoints(); 
+}
+
+Entity implements supportsStateEvaluation
+double stateEvaluation(){
+   return getHitPoints(); 
+
+
+   // TODO Consider more properties.
+   // Note: coefficients are tuned by Reinforcement Learning
+   // return coefficient00 * super.stateEvaluation; 
+   //  + coefficient01 * ItemProperty.getLiving(this);
+   //  + coefficient02 * ItemProperty.getAeration(this);
+   //  + coefficient03 * ItemProperty.getEntertainment(this);
+   //  + coefficient04 * ItemProperty.getHydration(this);
+   //  + coefficient05 * ItemProperty.getNourishment(this);
+   //  + coefficient06 * ItemProperty.getRest(this);
+   // * energyReserve // e.g. Fat
+   // * emotionalWellbeing // concept of pain ?
+
+   // Get stateEvaluation() of contents.
+   // Perhaps use Visitor Pattern.
+   // How to combine results ?  
+   // sum() seems too crude
+
+}
+
+
+
+
+Model states and Entities need to have a method 'stateValuation' that gives the value of the 'state' of the object.
+
+Animal . stateValuation
+
+
+
+
+
+Some reflex actions
+

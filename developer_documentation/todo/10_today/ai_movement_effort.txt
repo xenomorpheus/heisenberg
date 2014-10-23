@@ -1,0 +1,36 @@
+
+* Consider deprecate ActionMovement in favour of ActionImpulse.
+
+* Actions are typically paired with a cost.
+
+* Tune the cat and environment so that friction, momentum etc. are more realistic.
+
+* The applied force (on the cat) should be to correct desired direction and speed.
+
+* Increasing the amount of applied force could translate into geometrically increasing additional cost.
+   * e.g. faster speeds have more energy drain.
+
+* There should also be a 'living' cost.
+
+* No applied force should be a choice, but will still have the living cost.
+   * friction etc. will still be applied by physics engine.
+
+* Impulse should have multiple choices (not all valid)
+   a range impulses - Start planning with none, low, medium, high.  Consider fine tune in planning.
+   a range of desired directions - Start with 4, then consider fine tune in planning.
+
+* Extra energy reserves could be simplifed to fat reserves, which would have weight.
+
+* Impulse cost would raise with extra weight.
+
+* Entity Weight could be the sum of:
+  * base weight
+  * fat (energy reserves)
+  * water
+  * Carried items
+
+* Fat reserves could be simplifed into a measure of base weight (before energy, water, carried load).
+
+
+Interesting Test cases
+* Running vs. walking to water. 

@@ -171,6 +171,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * @param newLocation
      *            new location
      * @throws ItemNotPresentException
+     *             when trying to remove an Item that doesn't exist.
      * @return the relocated item
      */
     public Item getItem(Item item, ItemContainer newLocation)
@@ -233,8 +234,11 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * 
      * @throws InvalidTypeException
+     *             when ExtraDymensional Item added to bag.
      * @throws TooLargeException
+     *             when an overly large Item added to bag.
      * @throws TooHeavyException
+     *             when an overly heavy Item added to bag.
      */
     public void add(Item item) throws InvalidTypeException, TooHeavyException,
             TooLargeException {

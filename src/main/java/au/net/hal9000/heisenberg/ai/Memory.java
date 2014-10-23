@@ -3,8 +3,7 @@ package au.net.hal9000.heisenberg.ai;
 import java.util.Date;
 
 /**
- * Holds a memory for a period of time.
- * Try to consider immutable.
+ * Holds a memory for a period of time. Try to consider immutable.
  * 
  * @author bruins
  *
@@ -12,7 +11,8 @@ import java.util.Date;
 public abstract class Memory {
     /** when the memory was created. */
     private Date createdDate;
-    // TODO decay rate
+
+    // TODO decay rate.
     /** when the memory ceases to exist. */
     private Date expiryDate;
 

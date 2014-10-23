@@ -18,17 +18,17 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 
 public class FringeElementImpl implements FringeElement,
         Comparable<FringeElementImpl> {
-    /** the state of the model at this fringe element */
+    /** the state of the model at this fringe element. */
     private ModelState modelState;
-    /** the list of actions to reach this state of the model */
+    /** the list of actions to reach this state of the model. */
     private Path pathSoFar;
-    /** the total cost to reach this state of the model */
+    /** the total cost to reach this state of the model. */
     private double costSoFar;
-    /** the estimated total cost of following the path then on to the goal */
+    /** the estimated total cost of following the path then on to the goal. */
     private double estimatedTotalCost;
 
     /**
-     * Constructor
+     * Constructor.
      * 
      * @param modelState
      *            the state of the model at this fringe element.
@@ -68,6 +68,7 @@ public class FringeElementImpl implements FringeElement,
 
     /**
      * Method estimatedTotalCost.
+     * 
      * @return double
      * @see au.net.hal9000.heisenberg.ai.api.FringeElement#estimatedTotalCost()
      */

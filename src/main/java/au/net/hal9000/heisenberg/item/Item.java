@@ -727,9 +727,11 @@ public abstract class Item implements Serializable {
      *            the container that will hold this item.
      * @param requestedPosition
      *            the requested position within the container.
-     * @throws InvalidTypeException
+     * @throws InvalidTypeException wrong type of Item.
      * @throws TooLargeException
+     *             when an overly large Item added to bag.
      * @throws TooHeavyException
+     *             when an overly heavy Item added to bag.
      */
     public void move(ItemContainer container, Point3d requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
@@ -743,8 +745,11 @@ public abstract class Item implements Serializable {
      * @param container
      *            the container that will hold this item.
      * @throws InvalidTypeException
+     *             wrong type of Item.
      * @throws TooLargeException
+     *             when an overly large Item added to bag.
      * @throws TooHeavyException
+     *             when an overly heavy Item added to bag.
      */
     public void move(ItemContainer container) throws InvalidTypeException,
             TooHeavyException, TooLargeException {

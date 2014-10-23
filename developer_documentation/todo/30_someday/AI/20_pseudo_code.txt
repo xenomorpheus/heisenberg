@@ -11,8 +11,8 @@ Work out components, e.g.
       * initial accuracy estimate
       * time last refreshed
       * accuracy decay rate estimate : float, 0 to 1
-        * e.g. very low value - a wall is unlikely to change possition
-        * e.g. very high value - a running animal is very like to change possition
+        * e.g. very low value - a wall is unlikely to change position
+        * e.g. very high value - a running animal is very like to change position
 
     * memory (or is this just a synonym for model?)
   * state evaluation functions

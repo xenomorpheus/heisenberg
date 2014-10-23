@@ -1,0 +1,5 @@
+
+Create package item.api
+
+Move any item interfaces to api.
+Rename class Item to ItemImpl
