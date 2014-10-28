@@ -1,9 +1,15 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.unused;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.PathImpl;
+import au.net.hal9000.heisenberg.ai.SearchAStar;
+import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
 import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
@@ -11,7 +17,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Test that the entire process of AI, AKA Computational Search.
@@ -34,33 +40,32 @@ public class SearchUniformCostSpokeTest {
     /**
      * Test that the entire process of AI, AKA Computational Search.
      * 
-     * @throws CloneNotSupportedException
      */
-    private void testHelper(GoalEstFunction gFunction) throws CloneNotSupportedException  {
+    private void testHelper(GoalEstFunction gFunction) {
 
         // The expected Actions to reach the Goal.
         PathImpl expectedPath = new PathImpl();
-        
+
         // length is one unit.
-        Point3d point = new Point3d(X_POS / HYPOT, Y_POS / HYPOT, 0);
-        expectedPath.add(new ActionMoveImpl(point.clone()));
-        expectedPath.add(new ActionMoveImpl(point.clone()));
-        expectedPath.add(new ActionMoveImpl(point.clone()));
-        expectedPath.add(new ActionMoveImpl(point.clone()));
-        expectedPath.add(new ActionMoveImpl(point.clone()));
+        Position point = new Position(X_POS / HYPOT, Y_POS / HYPOT);
+        expectedPath.add(new ActionMoveImpl(new Position(point)));
+        expectedPath.add(new ActionMoveImpl(new Position(point)));
+        expectedPath.add(new ActionMoveImpl(new Position(point)));
+        expectedPath.add(new ActionMoveImpl(new Position(point)));
+        expectedPath.add(new ActionMoveImpl(new Position(point)));
 
         // Initial ModelState
-        Point3d agentPosition = new Point3d();
-        Point3d goalPosition = new Point3d(X_POS, Y_POS, 0);
+        Position agentPosition = new Position();
+        Position goalPosition = new Position(X_POS, Y_POS);
         ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
-        SuccessorFunction successorFunction = new SuccessorFunctionSpoke(
+        SuccessorFunction successorFunction = new SuccessorFunctionGoalSpoke(
                 transitionFunction);
-        Search search = new SearchAStar(successorFunction,
-                modelStateEvaluator,gFunction);
+        Search search = new SearchAStar(successorFunction, modelStateEvaluator,
+                gFunction);
 
         // Search
         Path gotPath = search.findPathToGoal(modelState);
@@ -69,7 +74,8 @@ public class SearchUniformCostSpokeTest {
 
     /**
      * Test that the entire process of AI, AKA Computational Search.
-     * @throws CloneNotSupportedException 
+     * 
+     * @throws CloneNotSupportedException
      */
     @Test
     public void testWithSearchAStar() throws CloneNotSupportedException {
@@ -80,14 +86,14 @@ public class SearchUniformCostSpokeTest {
                 return modelState.getAgentPosition().distance(
                         modelState.getGoalPosition());
             }
-
         };
         testHelper(gFunction);
     }
 
     /**
      * Test that the entire process of AI, AKA Computational Search.
-     * @throws CloneNotSupportedException 
+     * 
+     * @throws CloneNotSupportedException
      */
     @Test
     public void testWithSearchUniformCost() throws CloneNotSupportedException {

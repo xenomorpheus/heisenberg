@@ -1,7 +1,10 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Geometry utility.
@@ -16,7 +19,7 @@ public final class Geometry {
     }
 
     /**
-     * Return the intersection point.
+     * Return the intersection point.Warning: Only X,Y considered.
      * 
      * @param segment1
      *            first line segment.
@@ -25,14 +28,14 @@ public final class Geometry {
      * @return the intersection point of the two segments, or null if no
      *         intersection.
      */
-    public static Point2D getLineIntersection(Line2D segment1, Line2D segment2) {
+    public static Position getLineIntersection(Line2D segment1, Line2D segment2) {
         return getLineIntersection(segment1.getX1(), segment1.getY1(),
                 segment1.getX2(), segment1.getY2(), segment2.getX1(),
                 segment2.getY1(), segment2.getX2(), segment2.getY2());
     }
 
     /**
-     * Return the intersection point.
+     * Return the intersection point. Warning: Only X,Y considered.
      * 
      * @param p0X
      *            segment 1, point 1, x.
@@ -53,9 +56,10 @@ public final class Geometry {
      * @return the intersection point of the two segments, or null if no
      *         intersection.
      */
-    public static Point2D getLineIntersection(double p0X, double p0Y,
+    public static Position getLineIntersection(double p0X, double p0Y,
             double p1X, double p1Y, double p2X, double p2Y, double p3X,
             double p3Y) {
+        // TODO http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
         double s1X, s1Y, s2X, s2Y;
         double s, t, divisor;
 
@@ -70,10 +74,32 @@ public final class Geometry {
 
         if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
             // Collision detected
-            return new Point2D.Double(p0X + (t * s1X), p0Y + (t * s1Y));
+            return new Position(p0X + (t * s1X), p0Y + (t * s1Y));
         }
 
         return null; // No intersection
+    }
+
+    /**
+     * Generate a list of points like where the spokes. First
+     * 
+     * @param delta
+     *            the first spoke to be returned.
+     * @param spokeCount
+     *            number of spokes.
+     * @return a list of points around the centre.
+     */
+    public static List<Position> generateSpokesZ(Position delta, int spokeCount) {
+        List<Position> list = new ArrayList<>();
+
+        // full circle divided equally into directions.
+        double theta = Math.PI * 2 / spokeCount;
+        for (int directionIndex = 0; directionIndex < spokeCount; directionIndex++) {
+            list.add(delta);
+            delta = new Position(delta);
+            delta.rotateZ(theta);
+        }
+        return list;
     }
 
 }

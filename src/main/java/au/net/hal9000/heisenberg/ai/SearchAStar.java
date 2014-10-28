@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * A-Star Search & Uniform Cost Search.<br>
@@ -73,7 +73,7 @@ public class SearchAStar extends SearchBase {
          * places we have already searched. <br>
          * This is to break loops in graph searches
          */
-        List<Point3d> inFringe = new ArrayList<>();
+        List<Position> inFringe = new ArrayList<>();
 
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
@@ -139,13 +139,13 @@ public class SearchAStar extends SearchBase {
      *            how close to places to be considered visited.
      * @return true iff agent has visted this location.
      */
-    private boolean hasVisited(List<Point3d> visited, ModelState modelState,
+    private boolean hasVisited(List<Position> visited, ModelState modelState,
             double proximityThreshold) {
-        Point3d agentPos = modelState.getAgentPosition();
+        Position agentPos = modelState.getAgentPosition();
 
         // Check if we have been here.
         boolean hereBefore = false;
-        for (Point3d v : visited) {
+        for (Position v : visited) {
             if (agentPos.distance(v) <= proximityThreshold) {
                 hereBefore = true;
                 break;

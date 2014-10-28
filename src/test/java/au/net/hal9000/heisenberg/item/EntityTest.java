@@ -7,14 +7,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /**
  */
 public class EntityTest {
+    
+    @BeforeClass
+    public static void setupConfig() throws ConfigurationError{
+        new Configuration(
+                "src/test/resources/config.xml");
+    }
 
     /**
      * Method testActionPoints.

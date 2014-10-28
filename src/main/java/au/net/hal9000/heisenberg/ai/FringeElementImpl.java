@@ -8,8 +8,8 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * The fringe elements hold the state of the search at that point.
  * 
  * In particular:<br>
- * The current model state<br>
- * The path to get there<br>
+ * The current model state.<br>
+ * The path to get there.<br>
  * The cost so far.<br>
  * 
  * @author bruins

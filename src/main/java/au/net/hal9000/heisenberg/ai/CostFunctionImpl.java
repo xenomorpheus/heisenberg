@@ -19,7 +19,7 @@ public class CostFunctionImpl implements CostFunction {
         super();
     }
 
-    // TODO - this is just a fake version while testing.
+    // TODO - this is just a crude version while testing.
     /**
      * Standard AI cost function for the transition from state before to other
      * by performing the action.

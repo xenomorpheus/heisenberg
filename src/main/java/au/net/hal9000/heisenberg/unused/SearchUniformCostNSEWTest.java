@@ -1,9 +1,14 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.unused;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.SearchAStar;
+import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
@@ -12,7 +17,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Test that the entire process of AI, AKA Computational Search.
@@ -33,15 +38,15 @@ public class SearchUniformCostNSEWTest {
     private void testHelper(GoalEstFunction gFunction) {
 
         // Initial ModelState
-        Point3d agentPosition = new Point3d();
-        Point3d desiredGoalPosition = new Point3d(X_POS, Y_POS, 0);
+        Position agentPosition = new Position();
+        Position desiredGoalPosition = new Position(X_POS, Y_POS);
         ModelState initialModelState = new ModelStateImpl(agentPosition,
                 desiredGoalPosition);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
-        SuccessorFunction successorFunction = new SuccessorFunctionNSEW(
+        SuccessorFunction successorFunction = new SuccessorFunctionGoalNSEW(
                 transitionFunction);
         Search search = new SearchAStar(successorFunction, modelStateEvaluator,
                 gFunction);

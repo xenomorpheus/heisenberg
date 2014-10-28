@@ -2,9 +2,9 @@ package au.net.hal9000.heisenberg.ai;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.geom.Point2D;
-
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.units.Position;
 
 
 /**
@@ -20,7 +20,7 @@ public class PathBlockDetailsTest {
      */
     @Test
     public void test() {
-        final Point2D position = new Point2D.Double(1, 2);
+        final Position position = new Position(1, 2);
         final String string = "something";
         final PathBlockDetails blocker = new PathBlockDetails(position, string);
         assertTrue(position.equals(blocker.getBlockingPoint()));

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * 
@@ -24,8 +24,8 @@ public class PathImplTest {
         PathImpl p1 = new PathImpl();
         PathImpl p2 = new PathImpl();
 
-        Action action1 = new ActionMoveImpl("label", new Point3d(0, 0, 0));
-        Action action2 = new ActionMoveImpl("label", new Point3d(0, 0, 0));
+        Action action1 = new ActionMoveImpl("label", new Position(0, 0));
+        Action action2 = new ActionMoveImpl("label", new Position(0, 0));
         assertTrue(action1.equals(action2));
         p2.add(action2);
         p1.add(action1);
@@ -39,12 +39,12 @@ public class PathImplTest {
     @Test
     public void testEquals2() {
         PathImpl expectedPath1 = new PathImpl();
-        expectedPath1.add(new ActionMoveImpl(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath1.add(new ActionMoveImpl(null, new Point3d(0.6, 0.8, 0)));
+        expectedPath1.add(new ActionMoveImpl(null, new Position(0.6, 0.8)));
+        expectedPath1.add(new ActionMoveImpl(null, new Position(0.6, 0.8)));
 
         PathImpl expectedPath2 = new PathImpl();
-        expectedPath2.add(new ActionMoveImpl(null, new Point3d(0.6, 0.8, 0)));
-        expectedPath2.add(new ActionMoveImpl(null, new Point3d(0.6, 0.8, 0)));
+        expectedPath2.add(new ActionMoveImpl(null, new Position(0.6, 0.8)));
+        expectedPath2.add(new ActionMoveImpl(null, new Position(0.6, 0.8)));
         assertTrue(expectedPath1.equals(expectedPath2));
     }
 
@@ -58,12 +58,12 @@ public class PathImplTest {
     public void testClone() throws CloneNotSupportedException {
         PathImpl path = new PathImpl();
 
-        path.add(new ActionMoveImpl("label", new Point3d(1, 0, 0)));
-        path.add(new ActionMoveImpl("label", new Point3d(2, 0, 0)));
+        path.add(new ActionMoveImpl("label", new Position(1, 0)));
+        path.add(new ActionMoveImpl("label", new Position(2, 0)));
         PathImpl clone = path.clone();
         assertTrue(path.equals(clone));
         assertTrue(clone.equals(path));
-        path.add(new ActionMoveImpl("label", new Point3d(3, 0, 0)));
+        path.add(new ActionMoveImpl("label", new Position(3, 0)));
         assertFalse(path.equals(clone));
         assertFalse(clone.equals(path));
     }

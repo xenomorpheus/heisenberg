@@ -27,7 +27,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Base abstract class for all items in this world.
@@ -121,7 +121,7 @@ public abstract class Item implements Serializable {
     /** Who owns this item. null means no-one. */
     private Item owner = null;
     /** The position within the container. */
-    private Point3d position = null;
+    private Position position = null;
     /**
      * Misc properties about this item that don't deserve their own setters and
      * getters.
@@ -373,7 +373,7 @@ public abstract class Item implements Serializable {
      * 
      * @return return the position.
      */
-    public Point3d getPosition() {
+    public Position getPosition() {
         return position;
     }
 
@@ -383,7 +383,7 @@ public abstract class Item implements Serializable {
      * @param position
      *            the position object.
      */
-    public void setPosition(Point3d position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -733,10 +733,10 @@ public abstract class Item implements Serializable {
      * @throws TooHeavyException
      *             when an overly heavy Item added to bag.
      */
-    public void move(ItemContainer container, Point3d requestedPosition)
+    public void move(ItemContainer container, Position requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
-        moveToPoint3d(requestedPosition);
+        moveToPoint2d(requestedPosition);
     }
 
     /**
@@ -766,7 +766,7 @@ public abstract class Item implements Serializable {
      *            the requested position within the container.
      * 
      */
-    public void moveToPoint3d(Point3d requestedPosition) {
+    public void moveToPoint2d(Position requestedPosition) {
         if (null == container) {
             throw new UnsupportedOperationException(
                     "No ItemContainer - Can't move");
@@ -826,7 +826,7 @@ public abstract class Item implements Serializable {
             text.append("Container: " + container.getName());
             text.append(System.lineSeparator());
         }
-        Point3d position = this.getPosition();
+        Position position = this.getPosition();
         if (null != position) {
             text.append("Position: " + position);
             text.append(System.lineSeparator());
@@ -936,7 +936,7 @@ public abstract class Item implements Serializable {
         return ICON_OPEN_DEFAULT_FOR_CLASS.get(simpleClassName);
     }
 
-    // TODO consider refactoring out into a different class
+    // TODO consider re-factoring out into a different class
     /**
      * Clear the Icon to show in the UI when collection is opened.
      */
@@ -945,15 +945,11 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Return the distance to the other item.
-     * 
-     * @param other
-     *            other item.
-     * 
-     * @return the distance to the other object.
+     * Change the position by the supplied amount.
+     * @param delta
      */
-    public double distanceEuclidean(Item other) {
-        return position.distance(other.getPosition());
+    public void applyDelta(Position delta) {
+        position.add( delta );
     }
 
 }

@@ -16,13 +16,17 @@ public class TransitionFunctionImpl implements TransitionFunction {
     public TransitionFunctionImpl() {
         super();
     }
-    
+
     /**
      * Method transition.
-     * @param modelState ModelState
-     * @param action Action
+     * 
+     * @param modelState
+     *            ModelState
+     * @param action
+     *            Action
      * @return ModelState
-     * @see au.net.hal9000.heisenberg.ai.api.TransitionFunction#transition(ModelState, Action)
+     * @see au.net.hal9000.heisenberg.ai.api.TransitionFunction#transition(ModelState,
+     *      Action)
      */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
@@ -38,14 +42,10 @@ public class TransitionFunctionImpl implements TransitionFunction {
         ModelStateImpl modelStateImpl = (ModelStateImpl) modelState;
         ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
         // Clone the ModelState
-        ModelState newModelState;
-        try {
-            newModelState = modelStateImpl.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Trying to clone modelState", e);
-        }
+        ModelState newModelState = new ModelStateImpl(modelStateImpl);
+
         // Apply the action
-        newModelState.getAgentPosition().applyDelta(actionAgentMove.getDelta());
+        newModelState.agentPositionChange(actionAgentMove.getDelta());
         return newModelState;
     }
 

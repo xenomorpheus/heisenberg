@@ -8,9 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
+
 // Custom
 import au.net.hal9000.heisenberg.units.Currency;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
@@ -193,15 +194,15 @@ public class ItemTest {
         Cookie cookie = new Cookie();
 
         // No container - No Movement
-        Point3d expectedPosition = new Point3d(10, 20, 30);
+        Position expectedPosition = new Position(10, 20, 30);
         // Before test we place in a known position.
         cookie.setPosition(expectedPosition);
         try {
             // Try to move, but will fail as not in an ItemContainer.
-            cookie.moveToPoint3d(new Point3d(1, 2, 3));
+            cookie.moveToPoint2d(new Position(1, 2, 3));
         } catch (UnsupportedOperationException e) {
 
-            Point3d actualPosition = cookie.getPosition();
+            Position actualPosition = cookie.getPosition();
             assertTrue("No ItemContainer - final pos",
                     expectedPosition.equals(actualPosition));
             throw e;
@@ -215,9 +216,9 @@ public class ItemTest {
 
         Location container = new Location();
         cookie.setContainer(container);
-        Point3d expectedPosition = new Point3d(2, 4, 8);
-        cookie.moveToPoint3d(expectedPosition);
-        Point3d actualPosition = cookie.getPosition();
+        Position expectedPosition = new Position(2, 4, 8);
+        cookie.moveToPoint2d(expectedPosition);
+        Position actualPosition = cookie.getPosition();
         assertTrue("Has ItemContainer - final pos",
                 expectedPosition.equals(actualPosition));
 

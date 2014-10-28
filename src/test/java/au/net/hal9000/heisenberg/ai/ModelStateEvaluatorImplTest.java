@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Test the ModelStateEvaluatorV1 class.
@@ -29,10 +29,10 @@ public class ModelStateEvaluatorImplTest {
     @Test
     public void testEvaluate() {
         // goal
-        Point3d goalPosition = new Point3d();
+        Position goalPosition = new Position();
 
         // agent
-        Point3d agentPosition = new Point3d();
+        Position agentPosition = new Position();
 
         // state
         ModelState modelStateV1 = new ModelStateImpl(agentPosition,
@@ -71,7 +71,7 @@ public class ModelStateEvaluatorImplTest {
     @Test
     public void testEvaluateBadGoal() {
         ModelState modelStateV1 = new ModelStateImpl(null, null);
-        modelStateV1.setAgentPosition(new Point3d());
+        modelStateV1.setAgentPosition(new Position());
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         expectedEx.expect(IllegalArgumentException.class);
@@ -88,7 +88,7 @@ public class ModelStateEvaluatorImplTest {
     @Test
     public void testEvaluateBadAgent() {
         ModelState modelStateV1 = new ModelStateImpl(null, null);
-        modelStateV1.setGoalPosition(new Point3d());
+        modelStateV1.setGoalPosition(new Position());
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         expectedEx.expect(IllegalArgumentException.class);
@@ -105,10 +105,10 @@ public class ModelStateEvaluatorImplTest {
     @Test
     public void testIsAtGoal() {
         // goal
-        Point3d goalPosition = new Point3d();
+        Position goalPosition = new Position();
 
         // agent
-        Point3d agentPosition = new Point3d();
+        Position agentPosition = new Position();
 
         // state
         ModelState modelStateV1 = new ModelStateImpl(agentPosition,

@@ -25,7 +25,7 @@ public class MemoryOfBarrier extends Memory {
      * @param barrier
      *            the barrier this memory is about.
      */
-    MemoryOfBarrier(Date createdDate, Date expiryDate, Barrier barrier) {
+    public MemoryOfBarrier(Date createdDate, Date expiryDate, Barrier barrier) {
         super(createdDate, expiryDate);
         this.barrier = barrier;
     }

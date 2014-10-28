@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Very simple actions - Agent movement only.
@@ -13,21 +13,21 @@ public final class ActionMoveImpl implements ActionMove {
 
     /** move agent North. */
     public static final ActionMoveImpl NORTH = new ActionMoveImpl("North",
-            new Point3d(0, -1, 0));
+            new Position(0, -1));
     /** move agent South. */
     public static final ActionMoveImpl SOUTH = new ActionMoveImpl("South",
-            new Point3d(0, 1, 0));
+            new Position(0, 1));
     /** move agent East. */
     public static final ActionMoveImpl EAST = new ActionMoveImpl("East",
-            new Point3d(1, 0, 0));
+            new Position(1, 0));
     /** move agent West. */
     public static final ActionMoveImpl WEST = new ActionMoveImpl("West",
-            new Point3d(-1, 0, 0));
+            new Position(-1, 0));
 
     /** human understandable label. */
     private final String label;
     /** amount of movement. */
-    private final Point3d delta;
+    private final Position delta;
 
     /**
      * Constructor.
@@ -38,7 +38,7 @@ public final class ActionMoveImpl implements ActionMove {
      *            movement amount.
      */
 
-    public ActionMoveImpl(final String label, final Point3d delta) {
+    public ActionMoveImpl(final String label, final Position delta) {
         super();
         this.label = label;
         this.delta = delta;
@@ -51,7 +51,7 @@ public final class ActionMoveImpl implements ActionMove {
      *            movement amount.
      */
 
-    public ActionMoveImpl(final Point3d delta) {
+    public ActionMoveImpl(final Position delta) {
         this("custom", delta);
     }
 
@@ -61,7 +61,7 @@ public final class ActionMoveImpl implements ActionMove {
      * @return the amount of movement.
      */
     @Override
-    public Point3d getDelta() {
+    public Position getDelta() {
         return delta;
     }
 
@@ -117,7 +117,7 @@ public final class ActionMoveImpl implements ActionMove {
             if (null != other.delta) {
                 return false;
             }
-        } else if (!delta.equals(other.delta)) {
+        } else if (!delta.equals(other.delta,0.0001)) {
             return false;
         }
         if (null == label) {

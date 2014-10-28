@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.ai;
 
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 
 import au.net.hal9000.heisenberg.ai.api.Barrier;
+import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Geometry;
 
 /**
@@ -18,25 +18,23 @@ public class BarrierLine implements Barrier {
 
     /** A line that forms a barrier. */
     private Line2D barrierLine;
-    
+
     /** The object doing the blocking. */
     private Object blockerObject;
-
 
     /**
      * Constructor.
      * 
      * @param barrier
-     *            line segemnt.
+     *            line segment.
      * @param blocker
      *            the Object doing the blocking.
      */
-    BarrierLine(Line2D barrier, Object blocker) {
+    public BarrierLine(Line2D barrier, Object blocker) {
         super();
         this.barrierLine = barrier;
         this.blockerObject = blocker;
     }
-
 
     /**
      * Returns details of any barrier blocking the path.<br>
@@ -46,16 +44,16 @@ public class BarrierLine implements Barrier {
      *            the path traveled between two points.
      * @return null or any details of a barrier.
      */
-    PathBlockDetails getPathBlockDetailsDetails(Line2D movement) {
+    @Override
+    public PathBlockDetails getPathBlockDetailsDetails(Line2D movement) {
 
-        // http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
         // TODO Currently movement is a point mass so this approach may fail if
         // barrier has a gap which is too small for entity to fit through.
         // In future consider movement of shapes through.
         // Perhaps best left to the physics engine.
 
         PathBlockDetails blocker = null;
-        Point2D point = Geometry.getLineIntersection(movement, barrierLine);
+        Position point = Geometry.getLineIntersection(movement, barrierLine);
         if (null == point) {
             blocker = new PathBlockDetails(point, blockerObject);
         }

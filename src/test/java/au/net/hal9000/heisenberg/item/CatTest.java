@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  */
@@ -29,11 +29,11 @@ public class CatTest {
             TooLargeException {
         Location dungeon = new Location("Dungeon");
         Cat cat = new Cat("Fluffy", "Black cat");
-        cat.move(dungeon, new Point3d(0, 0, 0));
-        Point3d pos = new Point3d(0, 0, 0);
+        cat.move(dungeon, new Position());
+        Position pos = new Position();
         assertTrue(pos.equals(cat.getPosition()));
-        cat.moveToPoint3d(new Point3d(10, 10, 0));
-        pos = new Point3d(10, 10, 0);
+        cat.moveToPoint2d(new Position(10, 10));
+        pos = new Position(10, 10);
         assertTrue(pos.equals(cat.getPosition()));
     }
 

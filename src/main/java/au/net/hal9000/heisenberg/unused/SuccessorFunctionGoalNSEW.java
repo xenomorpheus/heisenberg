@@ -1,8 +1,10 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.unused;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
+import au.net.hal9000.heisenberg.ai.SuccessorImpl;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Successor;
@@ -19,7 +21,7 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public final class SuccessorFunctionNSEW implements SuccessorFunction {
+public final class SuccessorFunctionGoalNSEW implements SuccessorFunction {
 
     /** A list of directions that might be possible. */
     private static final ActionMove[] DIRECTIONS = {
@@ -35,7 +37,7 @@ public final class SuccessorFunctionNSEW implements SuccessorFunction {
      * @param transitionFunction
      *            a Transition Function.
      */
-    public SuccessorFunctionNSEW(TransitionFunction transitionFunction) {
+    public SuccessorFunctionGoalNSEW(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;
     }
 

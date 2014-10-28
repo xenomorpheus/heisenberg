@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
+
 
 /**
  * Very simple actions - Agent movement only.
@@ -17,6 +18,6 @@ public interface ActionMove extends Action {
      * 
      * @return the amount of movement.
      */
-    Point3d getDelta();
+    Position getDelta();
 
 }

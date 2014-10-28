@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
@@ -17,7 +19,7 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 // import org.apache.log4j.BasicConfigurator;
 /**
@@ -539,18 +541,18 @@ public class ItemContainer extends Item implements Serializable {
      * 
      * @param item
      *            the item to be moved.
-     * @param expectedPosition
+     * @param requestedPosition
      *            the new position.
      * 
      */
-    public void moveItemAbsolute(Item item, Point3d expectedPosition) {
+    public void moveItemAbsolute(Item item, Position requestedPosition) {
         ItemContainer container = item.getContainer();
         if (container != this) {
             throw new RuntimeException(
                     "attempting to move item not in container. item=" + item
                             + ", container=" + container);
         }
-        item.setPosition(expectedPosition);
+        item.setPosition(requestedPosition);
     }
 
     /**
@@ -565,14 +567,14 @@ public class ItemContainer extends Item implements Serializable {
      *            the amount to move.
      * 
      */
-    public void moveItemDelta(Item item, Point3d delta) {
+    public void moveItemDelta(Item item, Position delta) {
         ItemContainer container = item.getContainer();
         if (container != this) {
             throw new RuntimeException(
                     "attempting to move item not in container. item=" + item
                             + ", container=" + container);
         }
-        item.getPosition().applyDelta(delta);
+        item.applyDelta(delta);
     }
 
     /**

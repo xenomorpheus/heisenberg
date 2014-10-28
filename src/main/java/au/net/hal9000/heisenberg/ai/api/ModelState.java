@@ -1,39 +1,41 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import au.net.hal9000.heisenberg.units.Point3d;
+import au.net.hal9000.heisenberg.units.Position;
 
 public interface ModelState {
 
+    // Getters and Setters
     /**
      * 
      * @return get agent position.
      */
-    Point3d getAgentPosition();
+    Position getAgentPosition();
 
     /**
-     * @param position3d
+     * @param position
      *            set agent position.
      */
-    void setAgentPosition(Point3d position3d);
+    void setAgentPosition(Position position);
 
     /**
      * 
      * @return get goal position.
      */
-    Point3d getGoalPosition();
+    Position getGoalPosition();
 
     /**
-     * @param position3d
+     * @param position
      *            set goal position.
      */
-    void setGoalPosition(Point3d position3d);
+    void setGoalPosition(Position position);
 
+
+    // Misc
     /**
-     * Method clone.
-     * 
-     * @return ModelStateV1
-     * @throws CloneNotSupportedException
+     * @param delta
+     *            alter agent position.
      */
-    ModelState clone() throws CloneNotSupportedException;
+    void agentPositionChange(Position delta);
+
 
 }
