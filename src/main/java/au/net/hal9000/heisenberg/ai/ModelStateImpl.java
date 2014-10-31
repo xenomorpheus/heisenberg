@@ -128,7 +128,7 @@ public class ModelStateImpl implements ModelState, Cloneable {
 
     @Override
     public void agentPositionChange(Position delta) {
-        agentPosition.addLocal(delta);
+        agentPosition.applyDelta(delta);
     }
 
 }
