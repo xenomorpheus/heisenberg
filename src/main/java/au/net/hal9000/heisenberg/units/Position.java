@@ -145,8 +145,9 @@ public class Position {
     }
 
     /**
-     * Distance from other point.
-     * @return Distance from other point.
+     * The distance (AKA length, magnitude) of this position from other position.
+     * @param other the other position which we are using as a reference point.
+     * @return the distance to the other point.
      */
     public double distance(Position other) {
         return Math.sqrt(Math.pow(getX() - other.getX(), 2)
@@ -158,14 +159,8 @@ public class Position {
      * Resize the position to the new length, but retain the direction.
      * @param newLength the new length.
      */
-    /**
-     * Resize the position to the new length, but retain the direction.
-     * @param newLength the new length.
-     */
     public void setVectorLength(double newLength) {
-        double oldLength = length();
-        double factor = newLength / oldLength;
-        vectorMul(factor);
+        vectorMul(newLength / length());
     }
 
     /**
