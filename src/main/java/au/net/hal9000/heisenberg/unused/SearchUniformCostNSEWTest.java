@@ -41,7 +41,7 @@ public class SearchUniformCostNSEWTest {
         Position agentPosition = new Position();
         Position desiredGoalPosition = new Position(X_POS, Y_POS);
         ModelState initialModelState = new ModelStateImpl(agentPosition,
-                desiredGoalPosition);
+                desiredGoalPosition, null);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();

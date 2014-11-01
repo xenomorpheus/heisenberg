@@ -1,8 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import au.net.hal9000.heisenberg.ai.Memory;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -62,6 +65,11 @@ public abstract class Entity extends Item implements StateEvaluation {
      * Field size.
      */
     private String size;
+    
+    /**
+     * Memories.
+     */
+    private List<Memory> memories;
 
     // Constructor
     /**
@@ -166,7 +174,7 @@ public abstract class Entity extends Item implements StateEvaluation {
 
     // Recipe objects
     /**
-     * Get the Recipe objects this PcRace object knows.
+     * Get the Recipe objects this Entity object knows.
      * 
      * 
      * @return the set of Recipe objects
@@ -176,7 +184,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * Set the Recipe objects this PcRace object knows.
+     * Set the Recipe objects this Entity object knows.
      * 
      * @param recipes
      *            the set of Recipe objects
@@ -186,7 +194,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * Add to the of Recipe objects this PcRace object knows.
+     * Add to the of Recipe objects this Entity object knows.
      * 
      * @param recipeId
      *            a Recipe id
@@ -199,7 +207,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * The PcRace has learnt new Recipe(s).
+     * The Entity has learnt new Recipe(s).
      * 
      * @param newRecipes
      *            an array of Recipe IDs to add.
@@ -248,7 +256,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * The PcRace object has learnt a new Skill.
+     * The Entity object has learnt a new Skill.
      * 
      * @param skill
      *            The freshly learnt Skill.
@@ -272,6 +280,40 @@ public abstract class Entity extends Item implements StateEvaluation {
         }
     }
 
+    // Memories
+    /**
+     * Get the Memory objects.
+     * 
+     * 
+     * @return a list of Memory objects
+     */
+    public final List<Memory> getMemories() {
+        return memories;
+    }
+
+    /**
+     * Set the memories of this entity.
+     * 
+     * @param memories
+     *            memories to set.
+     */
+    public final void setMemories(final List<Memory> memories) {
+        this.memories = memories;
+    }
+
+    /**
+     * The Entity object has learnt a new Memory.
+     * 
+     * @param skill
+     *            The freshly learnt Memorie.
+     */
+    public final void memoriesAdd(final Memory memory) {
+        if (null == memories) {
+            memories = new ArrayList<Memory>();
+        }
+        memories.add(memory);
+    }
+    
     // Misc
 
     /**
@@ -321,6 +363,15 @@ public abstract class Entity extends Item implements StateEvaluation {
             text.append(System.lineSeparator());
             for (String recipeId : recipes) {
                 text.append("  " + recipeId);
+                text.append(System.lineSeparator());
+            }
+        }
+        List<Memory> memories = getMemories();
+        if (null != memories && !memories.isEmpty()) {
+            text.append("Memories:");
+            text.append(System.lineSeparator());
+            for (Memory memory : memories) {
+                text.append("  " + memory);
                 text.append(System.lineSeparator());
             }
         }
@@ -378,6 +429,11 @@ public abstract class Entity extends Item implements StateEvaluation {
         // How to combine results ?
         // sum() seems too crude
 
+    }
+
+    public void addMemory(Memory memory) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

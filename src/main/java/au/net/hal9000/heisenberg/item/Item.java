@@ -949,7 +949,7 @@ public abstract class Item implements Serializable {
      * @param delta
      */
     public void applyDelta(Position delta) {
-        position.add( delta );
+        position.applyDelta( delta );
     }
 
 }

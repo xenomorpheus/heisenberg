@@ -24,7 +24,8 @@ public class ModelStateImplTest {
     public void testGetAgentPosition() {
         Position agentPosition = new Position();
         Position goalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition,
+                null);
         Position gotAgentPosition = modelState.getAgentPosition();
         assertEquals(agentPosition, gotAgentPosition);
     }
@@ -35,7 +36,7 @@ public class ModelStateImplTest {
         Position agentPositionInitial = new Position();
         Position goalPosition = new Position();
         ModelState modelState = new ModelStateImpl(agentPositionInitial,
-                goalPosition);
+                goalPosition, null);
         Position agentPositionNew = new Position(0, 1);
         assertNotEquals("test integrity. Possitions must be different",
                 agentPositionInitial, agentPositionNew);
@@ -52,7 +53,8 @@ public class ModelStateImplTest {
     public void testGetGoalPosition() {
         Position agentPosition = new Position();
         Position goalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition,
+                null);
         Position goalPositionGot = modelState.getGoalPosition();
         assertEquals(goalPosition, goalPositionGot);
     }
@@ -63,7 +65,7 @@ public class ModelStateImplTest {
         Position agentPosition = new Position();
         Position initialGoalPosition = new Position();
         ModelState modelState = new ModelStateImpl(agentPosition,
-                initialGoalPosition);
+                initialGoalPosition, null);
         Position newGoalPosition = new Position(0, 1);
         assertNotEquals("test integrity. Possitions must be different",
                 initialGoalPosition, newGoalPosition);
@@ -82,7 +84,7 @@ public class ModelStateImplTest {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position(2, 1, 0);
         ModelStateImpl modelState = new ModelStateImpl(agentPosition,
-                goalPosition);
+                goalPosition, null);
         // ModelState
         ModelStateImpl newModelState = new ModelStateImpl(modelState);
         assertFalse("ensure a new ModelStateV1 is created",
@@ -109,12 +111,12 @@ public class ModelStateImplTest {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position();
         ModelStateImpl modelState = new ModelStateImpl(agentPosition,
-                goalPosition);
+                goalPosition, null);
 
         Position agentPosition2 = new Position(0, 1, 2);
         Position goalPosition2 = new Position();
         ModelStateImpl modelState2 = new ModelStateImpl(agentPosition2,
-                goalPosition2);
+                goalPosition2, null);
         assertEquals(modelState.hashCode(), modelState2.hashCode());
 
     }

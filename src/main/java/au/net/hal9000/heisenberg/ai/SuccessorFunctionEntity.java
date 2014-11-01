@@ -1,13 +1,13 @@
 package au.net.hal9000.heisenberg.ai;
 
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateImpl;
-import au.net.hal9000.heisenberg.ai.SuccessorImpl;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
@@ -34,10 +34,10 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
     private final double stepSize = 1.0;
     /** how many directions to consider. */
     private final int directionCount = 4;
-    
+
     /** a Transition Function. */
     private TransitionFunction transitionFunction;
-    
+
     /**
      * Constructor.
      * 
@@ -58,31 +58,70 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
      */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
-
-        Queue<Successor> list = new LinkedList<>();
+        Queue<Successor> successors = new LinkedList<>();
         if (modelState instanceof ModelStateImpl) {
             ModelState modelStateV1 = (ModelState) modelState;
-            Position agent = modelStateV1.getAgentPosition();
-            Position goal = modelStateV1.getGoalPosition();
-            Position delta = agent.add(goal);
-            double length = delta.length();
-            // Limit step size to what agent can achieve
-            if (length > stepSize) {
-                length = stepSize;
-                delta.setVectorLength(stepSize);
+            List<Action> actions = new ArrayList<>();
+            Position agentPos = modelStateV1.getAgentPosition();
+            Position goalPos = modelStateV1.getGoalPosition();
+            double deltaLength = stepSize;
+            Position delta = new Position(0, stepSize);
+            if (null != goalPos) {
+                delta = goalPos.subtract(agentPos);
+                deltaLength = delta.length();
+                // Limit step size to what agent can achieve
+                if (deltaLength > stepSize) {
+                    deltaLength = stepSize;
+                    delta.setVectorLength(stepSize);
+                }
             }
 
-            List<Position> spokes = Geometry.generateSpokesZ(delta, directionCount) ;
-            for (Position spoke: spokes) {
-                ActionMove action = new ActionMoveImpl(spoke);
-                ModelState newModelState = transitionFunction.transition(
+            // Add various movements to the list of actions.
+            // Build a list of spokes from this Position.
+            List<Position> spokes = Geometry.generateSpokesZ(delta,
+                    directionCount);
+            for (Position spoke : spokes) {
+                actions.add(new ActionMoveImpl(spoke));
+            }
+
+            // Get a list of Barriers from memories.
+            List<Memory> memories = modelStateV1.getMemories();
+            List<Barrier> barriers = new ArrayList<>();
+            for (Memory memory : memories) {
+                if (memory instanceof MemoryOfBarrier) {
+                    barriers.add(((MemoryOfBarrier) memory).getBarrier());
+                }
+            }
+
+            // For any actions, decide if likely valid action.
+            for (Action action : actions) {
+                ModelState modelStateNew = transitionFunction.transition(
                         modelState, action);
-                // TODO handle cases where action is not a legal move at
-                // this ModelState.
-                // Using length traveled as a crude value of cost.
-                list.add(new SuccessorImpl(newModelState, action, length));
+                // Plan if action is a legal move at this ModelState.
+                // Use memories of blockers.
+                Position agentNewPos = modelStateNew.getAgentPosition();
+                boolean legalMove = true;
+                for (Barrier barrier : barriers) {
+                    // Plan if we are blocked by this barrier.
+                    // Movement from old agent position to new agent position.
+                    Line2D movement = new Line2D.Double(agentPos.getX(),
+                            agentPos.getY(), agentNewPos.getX(),
+                            agentNewPos.getY());
+                    PathBlockDetails pathBlockDetails = barrier
+                            .getPathBlockDetailsDetails(movement);
+                    if (null != pathBlockDetails) {
+                        // We are blocked in this direction.
+                        legalMove = false;
+                        break;
+                    }
+                }
+                if (legalMove) {
+                    // Using length traveled as a crude value of cost.
+                    successors.add(new SuccessorImpl(modelStateNew, action,
+                            deltaLength));
+                }
             }
         }
-        return list;
+        return successors;
     }
 }

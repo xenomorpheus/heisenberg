@@ -18,10 +18,10 @@ public class TransitionFunctionImplTest {
         Position agentPos = new Position(1, 2);
         Position expectedAgentPos = new Position(agentPos);
         Position goalPos = new Position(3, 4);
-        ModelState modelState = new ModelStateImpl(agentPos, goalPos);
+        ModelState modelState = new ModelStateImpl(agentPos, goalPos, null);
         ActionMoveImpl action = ActionMoveImpl.NORTH;
         ModelState dest = transitionFunction.transition(modelState, action);
-        expectedAgentPos.addLocal(action.getDelta());
+        expectedAgentPos.applyDelta(action.getDelta());
         assertTrue(expectedAgentPos.equals(dest.getAgentPosition(), tolerance));
     }
 }

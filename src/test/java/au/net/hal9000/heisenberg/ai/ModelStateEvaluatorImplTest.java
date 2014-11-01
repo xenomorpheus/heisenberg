@@ -36,7 +36,7 @@ public class ModelStateEvaluatorImplTest {
 
         // state
         ModelState modelStateV1 = new ModelStateImpl(agentPosition,
-                goalPosition);
+                goalPosition, null);
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
         // Agent at goal - Return ZERO
@@ -70,7 +70,7 @@ public class ModelStateEvaluatorImplTest {
      */
     @Test
     public void testEvaluateBadGoal() {
-        ModelState modelStateV1 = new ModelStateImpl(null, null);
+        ModelState modelStateV1 = new ModelStateImpl(null, null, null);
         modelStateV1.setAgentPosition(new Position());
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
@@ -87,7 +87,7 @@ public class ModelStateEvaluatorImplTest {
      */
     @Test
     public void testEvaluateBadAgent() {
-        ModelState modelStateV1 = new ModelStateImpl(null, null);
+        ModelState modelStateV1 = new ModelStateImpl(null, null, null);
         modelStateV1.setGoalPosition(new Position());
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
 
@@ -112,7 +112,7 @@ public class ModelStateEvaluatorImplTest {
 
         // state
         ModelState modelStateV1 = new ModelStateImpl(agentPosition,
-                goalPosition);
+                goalPosition, null);
         ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
         assertTrue("At goal", modelStateEvaluatorV1.isAtGoal(modelStateV1));
         agentPosition.setX(1.0f);

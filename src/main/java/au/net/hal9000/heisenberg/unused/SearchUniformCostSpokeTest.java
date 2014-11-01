@@ -57,7 +57,7 @@ public class SearchUniformCostSpokeTest {
         // Initial ModelState
         Position agentPosition = new Position();
         Position goalPosition = new Position(X_POS, Y_POS);
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition);
+        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition, null);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();

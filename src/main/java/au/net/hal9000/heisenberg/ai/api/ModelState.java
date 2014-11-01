@@ -1,5 +1,8 @@
 package au.net.hal9000.heisenberg.ai.api;
 
+import java.util.List;
+
+import au.net.hal9000.heisenberg.ai.Memory;
 import au.net.hal9000.heisenberg.units.Position;
 
 public interface ModelState {
@@ -30,6 +33,11 @@ public interface ModelState {
     void setGoalPosition(Position position);
 
 
+    /**
+     * @return the memories e.g. walls
+     */
+    List<Memory> getMemories();
+    
     // Misc
     /**
      * @param delta
