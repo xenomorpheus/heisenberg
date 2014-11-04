@@ -59,67 +59,71 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         Queue<Successor> successors = new LinkedList<>();
-        if (modelState instanceof ModelStateGoal) {
-            ModelStateGoal modelStateV1 = (ModelStateGoal) modelState;
-            List<Action> actions = new ArrayList<>();
-            Position agentPos = modelStateV1.getAgentPosition();
-            Position goalPos = modelStateV1.getGoalPosition();
-            double deltaLength = stepSize;
-            Position delta = new Position(0, stepSize);
-            if (null != goalPos) {
-                delta = goalPos.subtract(agentPos);
-                deltaLength = delta.length();
-                // Limit step size to what agent can achieve
-                if (deltaLength > stepSize) {
-                    deltaLength = stepSize;
-                    delta.setVectorLength(stepSize);
-                }
-            }
+        Position agentPos = modelState.getAgentPosition();
+        List<Action> actions = new ArrayList<>();
+        List<Barrier> barriers = new ArrayList<>();
+        double agentStepSize = stepSize;
+        Position agentPositionDelta = new Position(0, agentStepSize);
 
-            // Add various movements to the list of actions.
-            // Build a list of spokes from this Position.
-            List<Position> spokes = Geometry.generateSpokesZ(delta,
-                    directionCount);
-            for (Position spoke : spokes) {
-                actions.add(new ActionMoveImpl(spoke));
-            }
-
-            // Get a list of Barriers from memories.
-            List<Memory> memories = modelStateV1.getMemories();
-            List<Barrier> barriers = new ArrayList<>();
+        // Get a list of Barriers from memories.
+        if (modelState instanceof ModelStateMemories) {
+            ModelStateMemories modelStateMemories = (ModelStateMemories) modelState;
+            List<Memory> memories = modelStateMemories.getMemories();
             for (Memory memory : memories) {
                 if (memory instanceof MemoryOfBarrier) {
                     barriers.add(((MemoryOfBarrier) memory).getBarrier());
                 }
             }
+        }
 
-            // For any actions, decide if likely valid action.
-            for (Action action : actions) {
-                ModelState modelStateNew = transitionFunction.transition(
-                        modelState, action);
-                // Plan if action is a legal move at this ModelState.
-                // Use memories of blockers.
-                Position agentNewPos = modelStateNew.getAgentPosition();
-                boolean legalMove = true;
-                for (Barrier barrier : barriers) {
-                    // Plan if we are blocked by this barrier.
-                    // Movement from old agent position to new agent position.
-                    Line2D movement = new Line2D.Double(agentPos.getX(),
-                            agentPos.getY(), agentNewPos.getX(),
-                            agentNewPos.getY());
-                    PathBlockDetails pathBlockDetails = barrier
-                            .getPathBlockDetailsDetails(movement);
-                    if (null != pathBlockDetails) {
-                        // We are blocked in this direction.
-                        legalMove = false;
-                        break;
-                    }
+        // If we know where the goal is, then the have a possible action in that direction.
+        if (modelState instanceof ModelStateGoal) {
+            ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
+            Position goalPos = modelStateGoal.getGoalPosition();
+            if (null != goalPos) {
+                agentPositionDelta = goalPos.subtract(agentPos);
+                agentStepSize = agentPositionDelta.length();
+                // Limit step size to what agent can achieve
+                if (agentStepSize > stepSize) {
+                    agentStepSize = stepSize;
+                    agentPositionDelta.setVectorLength(stepSize);
                 }
-                if (legalMove) {
-                    // Using length traveled as a crude value of cost.
-                    successors.add(new SuccessorImpl(modelStateNew, action,
-                            deltaLength));
+            }
+        }
+
+        // Add various movements to the list of actions.
+        // Build a list of spokes from this Position.
+        List<Position> spokes = Geometry.generateSpokesZ(agentPositionDelta, directionCount);
+        for (Position spoke : spokes) {
+            actions.add(new ActionMoveImpl(spoke));
+        }
+
+        // For any actions, plan if likely valid action.
+        // E.g. not walk into a barrier.
+        for (Action action : actions) {
+            ModelState modelStateNew = transitionFunction.transition(
+                    modelState, action);
+            // Plan if action is a legal move at this ModelState.
+            // Use memories of blockers.
+            Position agentNewPos = modelStateNew.getAgentPosition();
+            boolean legalMove = true;
+            for (Barrier barrier : barriers) {
+                // Plan if we are blocked by this barrier.
+                // Movement from old agent position to new agent position.
+                Line2D movement = new Line2D.Double(agentPos.getX(),
+                        agentPos.getY(), agentNewPos.getX(), agentNewPos.getY());
+                PathBlockDetails pathBlockDetails = barrier
+                        .getPathBlockDetailsDetails(movement);
+                if (null != pathBlockDetails) {
+                    // We are blocked in this direction.
+                    legalMove = false;
+                    break;
                 }
+            }
+            if (legalMove) {
+                // Using length traveled as a crude value of cost.
+                successors.add(new SuccessorImpl(modelStateNew, action,
+                        agentStepSize));
             }
         }
         return successors;
