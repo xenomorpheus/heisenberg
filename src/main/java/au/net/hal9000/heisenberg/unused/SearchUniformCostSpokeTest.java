@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateGoal;
 import au.net.hal9000.heisenberg.ai.PathImpl;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
@@ -57,7 +57,7 @@ public class SearchUniformCostSpokeTest {
         // Initial ModelState
         Position agentPosition = new Position();
         Position goalPosition = new Position(X_POS, Y_POS);
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition, null);
+        ModelState modelState = new ModelStateGoal(agentPosition, goalPosition);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
@@ -86,6 +86,7 @@ public class SearchUniformCostSpokeTest {
                 return modelState.getAgentPosition().distance(
                         modelState.getGoalPosition());
             }
+
         };
         testHelper(gFunction);
     }

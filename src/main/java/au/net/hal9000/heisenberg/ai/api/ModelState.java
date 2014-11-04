@@ -1,9 +1,13 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import java.util.List;
-
-import au.net.hal9000.heisenberg.ai.Memory;
 import au.net.hal9000.heisenberg.units.Position;
+
+/**
+ * A very simple model state. It holds agent position.
+ * 
+ * @author bruins
+ * @version $Revision: 1.0 $
+ */
 
 public interface ModelState {
 
@@ -20,30 +24,11 @@ public interface ModelState {
      */
     void setAgentPosition(Position position);
 
-    /**
-     * 
-     * @return get goal position.
-     */
-    Position getGoalPosition();
-
-    /**
-     * @param position
-     *            set goal position.
-     */
-    void setGoalPosition(Position position);
-
-
-    /**
-     * @return the memories e.g. walls
-     */
-    List<Memory> getMemories();
-    
     // Misc
     /**
      * @param delta
      *            alter agent position.
      */
     void agentPositionChange(Position delta);
-
 
 }

@@ -30,7 +30,7 @@ public class TransitionFunctionImpl implements TransitionFunction {
      */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
-        if (!(modelState instanceof ModelStateImpl)) {
+        if (!(modelState instanceof ModelStateGoal)) {
             throw new IllegalArgumentException("Expecting ModelStateV1 but got"
                     + modelState.getClass().getSimpleName());
         }
@@ -39,10 +39,10 @@ public class TransitionFunctionImpl implements TransitionFunction {
                     "Expecting ActionAgentMove but got"
                             + action.getClass().getSimpleName());
         }
-        ModelStateImpl modelStateImpl = (ModelStateImpl) modelState;
+        ModelStateGoal modelStateImpl = (ModelStateGoal) modelState;
         ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
         // Clone the ModelState
-        ModelState newModelState = new ModelStateImpl(modelStateImpl);
+        ModelState newModelState = new ModelStateGoal(modelStateImpl);
 
         // Apply the action
         newModelState.agentPositionChange(actionAgentMove.getDelta());

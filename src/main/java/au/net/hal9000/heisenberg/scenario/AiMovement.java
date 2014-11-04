@@ -9,11 +9,10 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.ai.BarrierLine;
 import au.net.hal9000.heisenberg.ai.Memory;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
-import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateMemories;
 import au.net.hal9000.heisenberg.ai.SuccessorFunctionEntity;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
-import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
@@ -49,7 +48,7 @@ public class AiMovement {
         agent.addMemory(memory);
 
         // Model state
-        ModelState modelState = new ModelStateImpl(agent.getPosition(), goalPosition, agent.getMemories());
+        ModelStateMemories modelState = new ModelStateMemories(agent.getPosition(), agent.getMemories());
 
         // Setup Transition and Successor Functions.
         TransitionFunction transitionFunction = new TransitionFunctionImpl();

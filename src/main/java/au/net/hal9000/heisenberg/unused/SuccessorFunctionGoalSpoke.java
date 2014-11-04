@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateGoal;
 import au.net.hal9000.heisenberg.ai.SuccessorImpl;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
@@ -60,7 +60,7 @@ public final class SuccessorFunctionGoalSpoke implements SuccessorFunction {
     public Queue<Successor> generateSuccessors(ModelState modelState) {
 
         Queue<Successor> list = new LinkedList<>();
-        if (modelState instanceof ModelStateImpl) {
+        if (modelState instanceof ModelStateGoal) {
             ModelState modelStateV1 = (ModelState) modelState;
             Position agent = modelStateV1.getAgentPosition();
             Position goal = modelStateV1.getGoalPosition();

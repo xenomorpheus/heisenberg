@@ -59,8 +59,8 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
         Queue<Successor> successors = new LinkedList<>();
-        if (modelState instanceof ModelStateImpl) {
-            ModelState modelStateV1 = (ModelState) modelState;
+        if (modelState instanceof ModelStateGoal) {
+            ModelStateGoal modelStateV1 = (ModelStateGoal) modelState;
             List<Action> actions = new ArrayList<>();
             Position agentPos = modelStateV1.getAgentPosition();
             Position goalPos = modelStateV1.getGoalPosition();

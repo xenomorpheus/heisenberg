@@ -11,11 +11,14 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
- * Test ModelStateV1.
- * 
+ * The class <code>ModelStateImplTest</code> contains tests for the class
+ * {@link <code>ModelStateImpl</code>}
+ *
+ * @pattern JUnit Test Case
+ *
  * @author bruins
- * 
- * @version $Revision: 1.0 $
+ *
+ * @version $Revision$
  */
 public class ModelStateImplTest {
 
@@ -23,9 +26,7 @@ public class ModelStateImplTest {
     @Test
     public void testGetAgentPosition() {
         Position agentPosition = new Position();
-        Position goalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition,
-                null);
+        ModelState modelState = new ModelStateImpl(agentPosition);
         Position gotAgentPosition = modelState.getAgentPosition();
         assertEquals(agentPosition, gotAgentPosition);
     }
@@ -34,46 +35,15 @@ public class ModelStateImplTest {
     @Test
     public void testSetAgentPosition() {
         Position agentPositionInitial = new Position();
-        Position goalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPositionInitial,
-                goalPosition, null);
+        ModelState modelState = new ModelStateImpl(agentPositionInitial);
         Position agentPositionNew = new Position(0, 1);
         assertNotEquals("test integrity. Possitions must be different",
                 agentPositionInitial, agentPositionNew);
         // Run test
-
         modelState.setAgentPosition(agentPositionNew);
         Position agentPositionGot = modelState.getAgentPosition();
         assertEquals("Position should be updated", agentPositionNew,
                 agentPositionGot);
-    }
-
-    /** test getGoalPosition. */
-    @Test
-    public void testGetGoalPosition() {
-        Position agentPosition = new Position();
-        Position goalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPosition, goalPosition,
-                null);
-        Position goalPositionGot = modelState.getGoalPosition();
-        assertEquals(goalPosition, goalPositionGot);
-    }
-
-    /** test setGoalPosition. */
-    @Test
-    public void testSetGoalPosition() {
-        Position agentPosition = new Position();
-        Position initialGoalPosition = new Position();
-        ModelState modelState = new ModelStateImpl(agentPosition,
-                initialGoalPosition, null);
-        Position newGoalPosition = new Position(0, 1);
-        assertNotEquals("test integrity. Possitions must be different",
-                initialGoalPosition, newGoalPosition);
-        // Run test
-        modelState.setGoalPosition(newGoalPosition);
-        Position gotGoalPosition = modelState.getGoalPosition();
-        assertEquals("Position should be updated", newGoalPosition,
-                gotGoalPosition);
     }
 
     /**
@@ -82,11 +52,9 @@ public class ModelStateImplTest {
     @Test
     public void testClone() {
         Position agentPosition = new Position(0, 1, 2);
-        Position goalPosition = new Position(2, 1, 0);
-        ModelStateImpl modelState = new ModelStateImpl(agentPosition,
-                goalPosition, null);
+        ModelState modelState = new ModelStateImpl(agentPosition);
         // ModelState
-        ModelStateImpl newModelState = new ModelStateImpl(modelState);
+        ModelState newModelState = new ModelStateImpl(modelState);
         assertFalse("ensure a new ModelStateV1 is created",
                 modelState == newModelState);
         assertTrue("ensure new ModelStateV1 equals() old",
@@ -97,26 +65,16 @@ public class ModelStateImplTest {
                 agentPosition == newAgentPosition);
         assertTrue("ensure a new agentPosition equals() old",
                 agentPosition.equals(newAgentPosition));
-        // gaol
-        Position newGoalPosition = newModelState.getGoalPosition();
-        assertFalse("ensure a new goalPosition is created",
-                goalPosition == newGoalPosition);
-        assertTrue("ensure a new goalPosition equals() old",
-                goalPosition.equals(newGoalPosition));
     }
 
     /** test hashCode. */
     @Test
     public void testHashCode() {
         Position agentPosition = new Position(0, 1, 2);
-        Position goalPosition = new Position();
-        ModelStateImpl modelState = new ModelStateImpl(agentPosition,
-                goalPosition, null);
+        ModelState modelState = new ModelStateImpl(agentPosition);
 
         Position agentPosition2 = new Position(0, 1, 2);
-        Position goalPosition2 = new Position();
-        ModelStateImpl modelState2 = new ModelStateImpl(agentPosition2,
-                goalPosition2, null);
+        ModelState modelState2 = new ModelStateImpl(agentPosition2);
         assertEquals(modelState.hashCode(), modelState2.hashCode());
 
     }

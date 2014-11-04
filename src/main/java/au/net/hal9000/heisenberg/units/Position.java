@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Position {
 
+    public static final double DEFAULT_AXIS_TOLERANCE = 0.00001;
     private double xPos;
     private double yPos;
     private double zPos;
@@ -12,9 +13,13 @@ public class Position {
     // Constructors
     /**
      * 3D Constructor.
-     * @param xPos x position.
-     * @param yPos y position.
-     * @param zPos y position.
+     * 
+     * @param xPos
+     *            x position.
+     * @param yPos
+     *            y position.
+     * @param zPos
+     *            y position.
      */
     public Position(double xPos, double yPos, double zPos) {
         this.xPos = xPos;
@@ -24,8 +29,11 @@ public class Position {
 
     /**
      * 2D Constructor.
-     * @param xPos x position.
-     * @param yPos y position.
+     * 
+     * @param xPos
+     *            x position.
+     * @param yPos
+     *            y position.
      */
     public Position(double xPos, double yPos) {
         this(xPos, yPos, 0);
@@ -33,24 +41,25 @@ public class Position {
 
     /**
      * Constructor.
-     * @param other position to copy.
+     * 
+     * @param other
+     *            position to copy.
      */
     public Position(Position other) {
         this(other.getX(), other.getY(), other.getZ());
     }
 
     /**
-     * Constructor.
-     * At origin.
+     * Constructor. At origin.
      */
     public Position() {
         this(0, 0, 0);
     }
 
-
     // Getters and Setters
     /**
      * get x position.
+     * 
      * @return x position
      */
     public double getX() {
@@ -59,14 +68,17 @@ public class Position {
 
     /**
      * Set x position.
-     * @param xPos new x position.
+     * 
+     * @param xPos
+     *            new x position.
      */
-    public void setX(float xPos) {
+    public void setX(double xPos) {
         this.xPos = xPos;
     }
 
     /**
      * get y position.
+     * 
      * @return y position
      */
     public double getY() {
@@ -75,14 +87,17 @@ public class Position {
 
     /**
      * Set y position.
-     * @param yPos new y position.
+     * 
+     * @param yPos
+     *            new y position.
      */
-    public void setY(float yPos) {
+    public void setY(double yPos) {
         this.yPos = yPos;
     }
 
     /**
      * get z position.
+     * 
      * @return z position
      */
     public double getZ() {
@@ -91,16 +106,20 @@ public class Position {
 
     /**
      * Set z position.
-     * @param zPos new z position.
+     * 
+     * @param zPos
+     *            new z position.
      */
-    public void setZ(float zPos) {
+    public void setZ(double zPos) {
         this.zPos = zPos;
     }
 
     // Misc
     /**
      * Change the position object by the delta.
-     * @param delta the amount to change the local position by.
+     * 
+     * @param delta
+     *            the amount to change the local position by.
      */
     public void applyDelta(Position delta) {
         xPos += delta.getX();
@@ -137,6 +156,7 @@ public class Position {
 
     /**
      * The length (AKA distance, magnitude) of this position from origin.
+     * 
      * @return the length.
      */
     public double length() {
@@ -145,8 +165,11 @@ public class Position {
     }
 
     /**
-     * The distance (AKA length, magnitude) of this position from other position.
-     * @param other the other position which we are using as a reference point.
+     * The distance (AKA length, magnitude) of this position from other
+     * position.
+     * 
+     * @param other
+     *            the other position which we are using as a reference point.
      * @return the distance to the other point.
      */
     public double distance(Position other) {
@@ -157,7 +180,9 @@ public class Position {
 
     /**
      * Resize the position to the new length, but retain the direction.
-     * @param newLength the new length.
+     * 
+     * @param newLength
+     *            the new length.
      */
     public void setVectorLength(double newLength) {
         vectorMul(newLength / length());
@@ -165,8 +190,11 @@ public class Position {
 
     /**
      * Like equals, but supply a tolerance for comparing.
-     * @param other position to compare to.
-     * @param tolerance error factor to allow when comparing.
+     * 
+     * @param other
+     *            position to compare to.
+     * @param tolerance
+     *            error factor to allow when comparing.
      * @return true iff equal.
      */
     public boolean equals(Position other, double tolerance) {
@@ -214,13 +242,13 @@ public class Position {
             return false;
         Position other = (Position) obj;
         if (Double.doubleToLongBits(xPos) != Double
-                .doubleToLongBits(other.xPos))
+                .doubleToLongBits(other.getX()))
             return false;
         if (Double.doubleToLongBits(yPos) != Double
-                .doubleToLongBits(other.yPos))
+                .doubleToLongBits(other.getY()))
             return false;
         if (Double.doubleToLongBits(zPos) != Double
-                .doubleToLongBits(other.zPos))
+                .doubleToLongBits(other.getZ()))
             return false;
         return true;
     }
@@ -276,4 +304,13 @@ public class Position {
         yPos = -xPos * Math.sin(theta) + yPos * Math.cos(theta);
         xPos = newX;
     }
+
+    /**
+     * Return string representation of this object.
+     */
+    @Override
+    public String toString() {
+        return  String.format("[%.2f, %.2f, %.2f]", getX(),getY(),getZ());
+    }
+
 }

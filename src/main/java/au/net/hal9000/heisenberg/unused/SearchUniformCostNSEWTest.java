@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateImpl;
+import au.net.hal9000.heisenberg.ai.ModelStateGoal;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
@@ -40,8 +40,8 @@ public class SearchUniformCostNSEWTest {
         // Initial ModelState
         Position agentPosition = new Position();
         Position desiredGoalPosition = new Position(X_POS, Y_POS);
-        ModelState initialModelState = new ModelStateImpl(agentPosition,
-                desiredGoalPosition, null);
+        ModelState initialModelState = new ModelStateGoal(agentPosition,
+                desiredGoalPosition);
 
         // Methods to evaluate, move, etc.
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();

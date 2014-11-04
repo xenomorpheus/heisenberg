@@ -38,13 +38,13 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
     @Override
     public double evaluate(ModelState modelState) {
         double result;
-        if (modelState instanceof ModelStateImpl) {
-            ModelState modelV1 = (ModelState) modelState;
-            Position agentPosition = modelV1.getAgentPosition();
+        if (modelState instanceof ModelStateGoal) {
+            ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
+            Position agentPosition = modelStateGoal.getAgentPosition();
             if (null == agentPosition) {
                 throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
             }
-            Position goalPosition = modelV1.getGoalPosition();
+            Position goalPosition = modelStateGoal.getGoalPosition();
             if (null == goalPosition) {
                 throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
             }
