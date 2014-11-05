@@ -58,21 +58,21 @@ public final class SuccessorFunctionGoalSpoke implements SuccessorFunction {
      */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
+        Position agentPosition = modelState.getAgentPosition();
 
         Queue<Successor> list = new LinkedList<>();
         if (modelState instanceof ModelStateGoal) {
-            ModelState modelStateV1 = (ModelState) modelState;
-            Position agent = modelStateV1.getAgentPosition();
-            Position goal = modelStateV1.getGoalPosition();
-            Position delta = agent.add(goal);
-            double length = delta.length();
+            ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
+            Position goal = modelStateGoal.getGoalPosition();
+            Position agentPositionDelta = goal.subtract(agentPosition);
+            double length = agentPositionDelta.length();
             // Limit step size to what agent can achieve
             if (length > stepSize) {
                 length = stepSize;
-                delta.setVectorLength(stepSize);
+                agentPositionDelta.setVectorLength(stepSize);
             }
 
-            List<Position> spokes = Geometry.generateSpokesZ(delta,
+            List<Position> spokes = Geometry.generateSpokesZ(agentPositionDelta,
                     directionCount);
             for (Position spoke : spokes) {
                 ActionMove action = new ActionMoveImpl(spoke);

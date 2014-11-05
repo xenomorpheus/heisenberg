@@ -200,7 +200,7 @@ public class Position {
     public boolean equals(Position other, double tolerance) {
         return (Math.abs(xPos - other.getX()) < tolerance)
                 && (Math.abs(yPos - other.getY()) < tolerance)
-                && (Math.abs(zPos - other.getY()) < tolerance);
+                && (Math.abs(zPos - other.getZ()) < tolerance);
     }
 
     /**

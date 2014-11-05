@@ -139,12 +139,10 @@ public class PositionTest {
      */
     @Test
     public void testEquals() {
-        Position point1 = new Position();
-        Position point2 = new Position(0, 0, 0);
-        Position point3 = new Position(0, 0, 1);
-        assertTrue(point1.equals(point2));
-        assertFalse(point1.equals(point3));
-        assertFalse(point2.equals(point3));
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
+        Position other = new Position(X_TEST, Y_TEST, Z_TEST);
+        assertTrue(point.equals(other));
+        assertTrue(other.equals(point));
     }
 
     @Test
@@ -170,21 +168,25 @@ public class PositionTest {
 
     @Test
     public void testAdd() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testLength() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testDistance() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testSetVectorLength() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
@@ -195,31 +197,37 @@ public class PositionTest {
 
     @Test
     public void testNormalise() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testEqualsObject() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testVectorMul() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testRotateX() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testRotateY() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
     @Test
     public void testRotateZ() {
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         fail("Not yet implemented");
     }
 
