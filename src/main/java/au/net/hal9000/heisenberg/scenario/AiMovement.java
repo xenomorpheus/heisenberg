@@ -31,7 +31,7 @@ import au.net.hal9000.heisenberg.units.Position;
 public class AiMovement {
 
     /**
-     * Try to simulate as much as possible an Entity seeking the gaol.
+     * Try to simulate as much as possible an Entity seeking the goal.
      */
     @Test
     public void testAiMovementWithGoal() {

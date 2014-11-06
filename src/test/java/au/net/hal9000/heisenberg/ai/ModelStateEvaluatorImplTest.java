@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
- * Test the ModelStateEvaluatorV1 class.
+ * Test the ModelStateEvaluatorImpl class.
  * 
  * @author bruins
  * 
@@ -73,15 +73,15 @@ public class ModelStateEvaluatorImplTest {
         // state
         ModelState modelState = new ModelStateGoal(agentPosition,
                 goalPosition);
-        ModelStateEvaluatorImpl modelStateEvaluatorV1 = new ModelStateEvaluatorImpl();
-        assertTrue("At goal", modelStateEvaluatorV1.isAtGoal(modelState));
+        ModelStateEvaluatorImpl modelStateEvaluator = new ModelStateEvaluatorImpl();
+        assertTrue("At goal", modelStateEvaluator.isAtGoal(modelState));
         agentPosition.setX(1.0f);
         assertFalse("Agent off by 1.0 in X",
-                modelStateEvaluatorV1.isAtGoal(modelState));
+                modelStateEvaluator.isAtGoal(modelState));
         agentPosition.setX(0.0f);
         agentPosition.setY(1.0f);
         assertFalse("Agent off by 1.0 in Y",
-                modelStateEvaluatorV1.isAtGoal(modelState));
+                modelStateEvaluator.isAtGoal(modelState));
     }
 
 }

@@ -55,9 +55,9 @@ public class ModelStateImplTest {
         ModelState modelState = new ModelStateImpl(agentPosition);
         // ModelState
         ModelState newModelState = new ModelStateImpl(modelState);
-        assertFalse("ensure a new ModelStateV1 is created",
+        assertFalse("ensure a new ModelStateImpl is created",
                 modelState == newModelState);
-        assertTrue("ensure new ModelStateV1 equals() old",
+        assertTrue("ensure new ModelStateImpl equals() old",
                 modelState.equals(newModelState));
         // agent
         Position newAgentPosition = newModelState.getAgentPosition();

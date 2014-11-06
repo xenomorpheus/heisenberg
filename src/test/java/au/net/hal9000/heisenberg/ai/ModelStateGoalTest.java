@@ -58,9 +58,9 @@ public class ModelStateGoalTest {
                 goalPosition);
         // ModelState
         ModelStateGoal newModelState = new ModelStateGoal(modelState);
-        assertFalse("ensure a new ModelStateV1 is created",
+        assertFalse("ensure a new ModelStateGoal is created",
                 modelState == newModelState);
-        assertTrue("ensure new ModelStateV1 equals() old",
+        assertTrue("ensure new ModelStateGoal equals() old",
                 modelState.equals(newModelState));
         // agent
         Position newAgentPosition = newModelState.getAgentPosition();

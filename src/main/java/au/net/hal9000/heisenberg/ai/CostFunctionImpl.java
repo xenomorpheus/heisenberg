@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 public class CostFunctionImpl implements CostFunction {
 
     /**
-     * Constructor for CostFunctionV1.
+     * Constructor.
      */
     public CostFunctionImpl() {
         super();

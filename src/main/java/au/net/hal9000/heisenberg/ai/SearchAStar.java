@@ -36,7 +36,7 @@ public class SearchAStar extends SearchBase {
      * @param modelStateEvaluator
      *            the model state evaluator.
      * @param goalEstCostFunction
-     *            the function to estimate distance to gaol.
+     *            the function to estimate distance to goal.
      */
     public SearchAStar(final SuccessorFunction successorFunction,
             final ModelStateEvaluator modelStateEvaluator,
