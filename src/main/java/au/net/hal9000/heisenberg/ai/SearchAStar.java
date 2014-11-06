@@ -115,9 +115,9 @@ public class SearchAStar extends SearchBase {
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
                 double distanceToGoal = 0;
-                if (goalEstCostFunction != null) {
+                if ((goalEstCostFunction != null) && (successorModelState instanceof ModelStateGoal)){
                     distanceToGoal = goalEstCostFunction
-                            .estimatedCostToGoal(successorModelState);
+                            .estimatedCostToGoal((ModelStateGoal)successorModelState);
                 }
                 fringe.add(new FringeElementImpl(successorModelState,
                         newPathSoFar, newCostSoFar, newCostSoFar
@@ -137,7 +137,7 @@ public class SearchAStar extends SearchBase {
      *            state of model.
      * @param proximityThreshold
      *            how close to places to be considered visited.
-     * @return true iff agent has visted this location.
+     * @return true iff agent has visited this location.
      */
     private boolean hasVisited(List<Position> visited, ModelState modelState,
             double proximityThreshold) {

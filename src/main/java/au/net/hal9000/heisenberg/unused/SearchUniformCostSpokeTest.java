@@ -82,13 +82,9 @@ public class SearchUniformCostSpokeTest {
         GoalEstFunction gFunction = new GoalEstFunction() {
 
             @Override
-            public double estimatedCostToGoal(ModelState modelState) {
-                if (!(modelState instanceof ModelStateGoal)){
-                    throw new IllegalArgumentException("modelState must implement ModelStateGoal");
-                }
-                ModelStateGoal modelStateGoal = (ModelStateGoal)modelState;
+            public double estimatedCostToGoal(ModelStateGoal modelState) {
                 return modelState.getAgentPosition().distance(
-                        modelStateGoal.getGoalPosition());
+                        modelState.getGoalPosition());
             }
 
         };

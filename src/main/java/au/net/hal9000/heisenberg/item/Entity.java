@@ -432,8 +432,10 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     public void addMemory(Memory memory) {
-        // TODO Auto-generated method stub
-        
+        if (null == memories){
+            memories = new ArrayList<>();
+        }
+        memories.add(memory); // TODO don't add duplicated memories.
     }
 
 }
