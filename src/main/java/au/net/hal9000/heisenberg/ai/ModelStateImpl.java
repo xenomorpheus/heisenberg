@@ -29,13 +29,10 @@ public class ModelStateImpl implements ModelState {
     }
 
     /**
-     * Constructor.
-     * 
-     * @param modelState
-     *            to copy.
+     * {@inheritDoc}
      */
-    public ModelStateImpl(ModelState modelState) {
-        this(new Position(modelState.getAgentPosition()));
+    public ModelState duplicate() {
+        return new ModelStateImpl(new Position(getAgentPosition()));
     }
 
     /** {@inheritDoc} */

@@ -9,7 +9,7 @@ import java.util.Queue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.BarrierLine;
-import au.net.hal9000.heisenberg.ai.Memory;
+import au.net.hal9000.heisenberg.ai.MemoryImpl;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
 import au.net.hal9000.heisenberg.ai.ModelStateGoal;
 import au.net.hal9000.heisenberg.ai.ModelStateMemories;
@@ -74,7 +74,7 @@ public class AiMovement {
         Point2D point2 = new Point2D.Double(2, 0);
         Line2D line = new Line2D.Double(point1, point2);
         Barrier barrier = new BarrierLine(line, blocker);
-        Memory memory = new MemoryOfBarrier(null, null, barrier);
+        MemoryImpl memory = new MemoryOfBarrier(null, null, barrier);
         agent.addMemory(memory);
 
         // Model state

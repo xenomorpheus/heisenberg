@@ -60,7 +60,7 @@ public class PathImplTest {
 
         path.add(new ActionMoveImpl("label", new Position(1, 0)));
         path.add(new ActionMoveImpl("label", new Position(2, 0)));
-        PathImpl clone = path.clone();
+        PathImpl clone = path.duplicate();
         assertTrue(path.equals(clone));
         assertTrue(clone.equals(path));
         path.add(new ActionMoveImpl("label", new Position(3, 0)));

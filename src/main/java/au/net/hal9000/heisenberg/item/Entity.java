@@ -1,11 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import au.net.hal9000.heisenberg.ai.Memory;
+import au.net.hal9000.heisenberg.ai.MemoryImpl;
+import au.net.hal9000.heisenberg.ai.MemorySetImpl;
+import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -69,7 +69,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     /**
      * Memories.
      */
-    private List<Memory> memories;
+    private MemorySet memorySet;
 
     // Constructor
     /**
@@ -287,18 +287,18 @@ public abstract class Entity extends Item implements StateEvaluation {
      * 
      * @return a list of Memory objects
      */
-    public final List<Memory> getMemories() {
-        return memories;
+    public final MemorySet getMemories() {
+        return memorySet;
     }
 
     /**
      * Set the memories of this entity.
      * 
-     * @param memories
+     * @param memorySet
      *            memories to set.
      */
-    public final void setMemories(final List<Memory> memories) {
-        this.memories = memories;
+    public final void setMemorySet(final MemorySet memorySet) {
+        this.memorySet = memorySet;
     }
 
     /**
@@ -307,11 +307,11 @@ public abstract class Entity extends Item implements StateEvaluation {
      * @param skill
      *            The freshly learnt Memorie.
      */
-    public final void memoriesAdd(final Memory memory) {
-        if (null == memories) {
-            memories = new ArrayList<Memory>();
+    public final void memoryAdd(final MemoryImpl memory) {
+        if (null == memorySet) {
+            memorySet = new MemorySetImpl();
         }
-        memories.add(memory);
+        memorySet.add(memory);
     }
     
     // Misc
@@ -366,11 +366,11 @@ public abstract class Entity extends Item implements StateEvaluation {
                 text.append(System.lineSeparator());
             }
         }
-        List<Memory> memories = getMemories();
-        if (null != memories && !memories.isEmpty()) {
+        MemorySet memorySet = getMemories();
+        if (null != memorySet && !memorySet.isEmpty()) {
             text.append("Memories:");
             text.append(System.lineSeparator());
-            for (Memory memory : memories) {
+            for (MemoryImpl memory : memorySet) {
                 text.append("  " + memory);
                 text.append(System.lineSeparator());
             }
@@ -431,11 +431,11 @@ public abstract class Entity extends Item implements StateEvaluation {
 
     }
 
-    public void addMemory(Memory memory) {
-        if (null == memories){
-            memories = new ArrayList<>();
+    public void addMemory(MemoryImpl memory) {
+        if (null == memorySet){
+            memorySet = new MemorySetImpl();
         }
-        memories.add(memory); // TODO don't add duplicated memories.
+        memorySet.add(memory);
     }
 
 }

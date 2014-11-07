@@ -27,14 +27,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
         super();
     }
 
-    /**
-     * Method evaluate. Crude as it just uses distance.
-     * 
-     * @param modelState
-     *            ModelState
-     * @return double
-     * @see au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator#evaluate(ModelState)
-     */
+    /** {@inheritDoc} */
     @Override
     public double evaluate(ModelState modelState) {
         double result;
@@ -55,14 +48,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
         return result;
     }
 
-    /**
-     * Method isAtGoal.
-     * 
-     * @param modelState
-     *            ModelState
-     * @return boolean
-     * @see au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator#isAtGoal(ModelState)
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAtGoal(ModelState modelState) {
         return evaluate(modelState) < GOAL_TOLERANCE;

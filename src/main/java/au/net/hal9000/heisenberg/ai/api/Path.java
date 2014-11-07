@@ -16,6 +16,6 @@ public interface Path extends Iterable<Action> {
      * @throws CloneNotSupportedException
      * @return new path.
      */
-    Path clone() throws CloneNotSupportedException;
+    Path duplicate() throws CloneNotSupportedException;
 
 }

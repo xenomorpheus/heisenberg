@@ -335,10 +335,10 @@ public class Currency implements Serializable, Cloneable {
     /**
      * Method clone.
      * @return Currency
-     * @throws CloneNotSupportedException
+     * @throws CloneNotSupportedException 
      */
     @Override
-    public Currency clone() throws CloneNotSupportedException {
+    public Currency clone() throws CloneNotSupportedException  {
         Currency clone = (Currency) super.clone();
 
         // Make sure the cloning is deep, not shallow.

@@ -18,6 +18,6 @@ public interface ActionMove extends Action {
      * 
      * @return the amount of movement.
      */
-    Position getDelta();
+    Position getPositionDelta();
 
 }

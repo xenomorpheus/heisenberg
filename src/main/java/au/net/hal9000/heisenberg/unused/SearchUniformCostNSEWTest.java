@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sun.tools.corba.se.idl.InvalidArgument;
-
 import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateGoal;

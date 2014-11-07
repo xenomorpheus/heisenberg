@@ -122,7 +122,7 @@ public class PathImpl implements Path, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public PathImpl clone() throws CloneNotSupportedException {
+    public PathImpl duplicate() throws CloneNotSupportedException {
         PathImpl path = (PathImpl) super.clone();
         // TODO is this correct?
         path.actions = new ArrayList<Action>();

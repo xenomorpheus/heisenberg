@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.ai.api.Barrier;
  *
  */
 
-public class MemoryOfBarrier extends Memory {
+public class MemoryOfBarrier extends MemoryImpl {
     /** the barrier this memory is about. */
     private Barrier barrier;
 

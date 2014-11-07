@@ -35,33 +35,36 @@ public class ModelStateGoal extends ModelStateImpl implements ModelState {
         this.goalPosition = goalPosition;
     }
 
-    /**
-     * Constructor.
-     * 
-     * @param modelState
-     *            to copy.
-     */
-    public ModelStateGoal(ModelStateGoal modelState) {
-        this(new Position(modelState.getAgentPosition()), new Position(
-                modelState.getGoalPosition()));
-    }
+    // getters and setters
 
+    /**
+     * @return get goal position.
+     */
     public Position getGoalPosition() {
         return goalPosition;
     }
 
+    /**
+     * @param position3d
+     *            goal position to set.
+     */
     public void setGoalPosition(Position position3d) {
         goalPosition = position3d;
     }
 
-    /**
-     * Method toString.
-     * 
-     * @return String
-     */
+    // overridden methods
+
+    /** {@inheritDoc} */
     @Override
-    public String toString() {
-        return "[agent=" + getAgentPosition() + ", goal=" + goalPosition + "]";
+    public ModelState duplicate() {
+        return new ModelStateGoal(new Position(getAgentPosition()),
+                new Position(getGoalPosition()));
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return "[agent=" + getAgentPosition() + ", goal=" + getGoalPosition()
+                + "]";
+    }
 }

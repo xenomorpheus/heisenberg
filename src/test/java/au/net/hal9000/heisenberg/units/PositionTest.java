@@ -175,7 +175,9 @@ public class PositionTest {
     @Test
     public void testLength() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        assertEquals(
+                Math.sqrt(X_TEST * X_TEST + Y_TEST * Y_TEST + Z_TEST * Z_TEST),
+                point.length(), TEST_TOLERANCE);
     }
 
     @Test
@@ -187,7 +189,10 @@ public class PositionTest {
     @Test
     public void testSetVectorLength() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        double lengthOld = point.length();
+        double factor = 1.23f; // Something strange
+        point.vectorMul(factor);
+        assertEquals(factor* lengthOld, point.length(), TEST_TOLERANCE);
     }
 
     @Test
@@ -198,7 +203,7 @@ public class PositionTest {
     @Test
     public void testNormalise() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        assertEquals(1, point.length(), TEST_TOLERANCE);
     }
 
     @Test

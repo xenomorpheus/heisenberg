@@ -8,7 +8,7 @@ import java.util.Date;
  * @author bruins
  *
  */
-public abstract class Memory {
+public abstract class MemoryImpl {
     /** when the memory was created. */
     private Date createdDate;
 
@@ -19,7 +19,7 @@ public abstract class Memory {
     /**
      * Constructor.
      */
-    Memory() {
+    MemoryImpl() {
         super();
         createdDate = new Date();
     }
@@ -30,7 +30,7 @@ public abstract class Memory {
      * @param createdDate
      *            date memory created.
      */
-    Memory(Date createdDate) {
+    MemoryImpl(Date createdDate) {
         super();
         this.createdDate = createdDate;
     }
@@ -43,7 +43,7 @@ public abstract class Memory {
      * @param expiryDate
      *            date memory expires.
      */
-    Memory(Date createdDate, Date expiryDate) {
+    MemoryImpl(Date createdDate, Date expiryDate) {
         this(createdDate);
         this.expiryDate = expiryDate;
     }

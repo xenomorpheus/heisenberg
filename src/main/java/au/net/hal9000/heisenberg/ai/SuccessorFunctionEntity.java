@@ -8,6 +8,7 @@ import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
+import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
@@ -68,8 +69,8 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
         // Get a list of Barriers from memories.
         if (modelState instanceof ModelStateMemories) {
             ModelStateMemories modelStateMemories = (ModelStateMemories) modelState;
-            List<Memory> memories = modelStateMemories.getMemories();
-            for (Memory memory : memories) {
+            MemorySet memorySet = modelStateMemories.getMemorySet();
+            for (MemoryImpl memory : memorySet) {
                 if (memory instanceof MemoryOfBarrier) {
                     barriers.add(((MemoryOfBarrier) memory).getBarrier());
                 }

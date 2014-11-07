@@ -420,7 +420,7 @@ public abstract class PcRace extends Entity {
      *            source
      */
     public void setAllFrom(PcRace pc) {
-        setAllFrom((Entity) pc);
+        super.setAllFrom(pc);
         setLevel(pc.getLevel());
         setPcClass(pc.getPcClass()); // TODO ensure results are not linked
         setCombatDice(pc.getCombatDice());

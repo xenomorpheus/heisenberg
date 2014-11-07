@@ -58,7 +58,7 @@ public final class SuccessorFunctionGoalNSEW implements SuccessorFunction {
                     modelState, action);
             // TODO handle cases where action is not a legal move at this
             // ModelState.
-            list.add(new SuccessorImpl(newModelState, action, action.getDelta().length()));
+            list.add(new SuccessorImpl(newModelState, action, action.getPositionDelta().length()));
         }
         return list;
     }

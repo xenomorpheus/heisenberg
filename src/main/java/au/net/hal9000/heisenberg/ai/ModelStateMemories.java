@@ -1,8 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;
 
@@ -16,7 +14,7 @@ import au.net.hal9000.heisenberg.units.Position;
 public class ModelStateMemories extends ModelStateImpl implements ModelState {
 
     /** Memories. e.g. Walls */
-    private List<Memory> memories;
+    private MemorySet memorySet;
 
     /**
      * Constructor.
@@ -26,7 +24,7 @@ public class ModelStateMemories extends ModelStateImpl implements ModelState {
      * @param memories
      *            memories e.g. walls.
      */
-    public ModelStateMemories(Position agentPosition, List<Memory> memories) {
+    public ModelStateMemories(Position agentPosition, MemorySet memories) {
         super(agentPosition);
         if (null == agentPosition) {
             throw new IllegalArgumentException("agentPosition may not be null");
@@ -34,7 +32,7 @@ public class ModelStateMemories extends ModelStateImpl implements ModelState {
         if (null == memories) {
             throw new IllegalArgumentException("memories may not be null");
         }
-        this.memories = memories;
+        this.memorySet = memories;
     }
 
     /**
@@ -44,35 +42,46 @@ public class ModelStateMemories extends ModelStateImpl implements ModelState {
      *            to copy.
      */
     public ModelStateMemories(ModelStateMemories modelState) {
-        this(new Position(modelState.getAgentPosition()),
-                new ArrayList<Memory>(modelState.getMemories()));
+        this(new Position(modelState.getAgentPosition()), modelState
+                .getMemorySet().duplicate());
+    }
+
+    // getters and setters
+
+    private void setMemorySet(MemorySet memorySet) {
+        this.memorySet = memorySet;
+    }
+
+    public MemorySet getMemorySet() {
+        return memorySet;
+    }
+
+    // overridden methods
+
+    /** {@inheritDoc} */
+    @Override
+    public ModelState duplicate() {
+        return new ModelStateMemories(new Position( getAgentPosition()), getMemorySet().duplicate());
     }
 
     /** {@inheritDoc} */
-    public List<Memory> getMemories() {
-        return memories;
-    }
-
-    /**
-     * Method toString.
-     * 
-     * @return String
-     */
     @Override
     public String toString() {
         return "[agent=" + getAgentPosition() + "]"; // TODO
                                                      // memories
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
         result = prime * result
-                + ((memories == null) ? 0 : memories.hashCode());
+                + ((memorySet == null) ? 0 : memorySet.hashCode());
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -82,10 +91,10 @@ public class ModelStateMemories extends ModelStateImpl implements ModelState {
         if (getClass() != obj.getClass())
             return false;
         ModelStateMemories other = (ModelStateMemories) obj;
-        if (memories == null) {
-            if (other.memories != null)
+        if (memorySet == null) {
+            if (other.memorySet != null)
                 return false;
-        } else if (!memories.equals(other.memories))
+        } else if (!memorySet.equals(other.memorySet))
             return false;
         return true;
     }

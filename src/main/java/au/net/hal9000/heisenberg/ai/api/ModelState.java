@@ -31,4 +31,9 @@ public interface ModelState {
      */
     void agentPositionChange(Position delta);
 
+    /**
+     * Similar to clone, but now exceptions.
+     */
+    ModelState duplicate();
+
 }

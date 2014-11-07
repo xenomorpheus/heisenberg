@@ -108,7 +108,7 @@ public class SearchAStar extends SearchBase {
                 // Add a new fringe element with extra action and cost.
                 Path newPathSoFar;
                 try {
-                    newPathSoFar = pathSoFar.clone();
+                    newPathSoFar = pathSoFar.duplicate();
                 } catch (CloneNotSupportedException e) {
                     throw new RuntimeException("Failed to clone path", e);
                 }

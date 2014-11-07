@@ -54,7 +54,7 @@ public class ModelStateImplTest {
         Position agentPosition = new Position(0, 1, 2);
         ModelState modelState = new ModelStateImpl(agentPosition);
         // ModelState
-        ModelState newModelState = new ModelStateImpl(modelState);
+        ModelState newModelState = modelState.duplicate();
         assertFalse("ensure a new ModelStateImpl is created",
                 modelState == newModelState);
         assertTrue("ensure new ModelStateImpl equals() old",

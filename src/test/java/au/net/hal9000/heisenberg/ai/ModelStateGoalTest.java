@@ -48,26 +48,21 @@ public class ModelStateGoalTest {
     }
 
     /**
-     * test cloning Constructor.
+     * test duplicate.
      */
     @Test
-    public void testClone() {
+    public void testDuplicate() {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position(2, 1, 0);
         ModelStateGoal modelState = new ModelStateGoal(agentPosition,
                 goalPosition);
         // ModelState
-        ModelStateGoal newModelState = new ModelStateGoal(modelState);
+        ModelStateGoal newModelState = (ModelStateGoal)modelState.duplicate();
         assertFalse("ensure a new ModelStateGoal is created",
                 modelState == newModelState);
         assertTrue("ensure new ModelStateGoal equals() old",
                 modelState.equals(newModelState));
-        // agent
-        Position newAgentPosition = newModelState.getAgentPosition();
-        assertFalse("ensure a new agentPosition is created",
-                agentPosition == newAgentPosition);
-        assertTrue("ensure a new agentPosition equals() old",
-                agentPosition.equals(newAgentPosition));
+
         // goal
         Position newGoalPosition = newModelState.getGoalPosition();
         assertFalse("ensure a new goalPosition is created",

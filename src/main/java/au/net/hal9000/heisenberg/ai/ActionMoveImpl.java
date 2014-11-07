@@ -61,7 +61,7 @@ public final class ActionMoveImpl implements ActionMove {
      * @return the amount of movement.
      */
     @Override
-    public Position getDelta() {
+    public Position getPositionDelta() {
         return delta;
     }
 
