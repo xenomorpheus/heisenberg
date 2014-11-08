@@ -7,26 +7,26 @@ import java.util.List;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 
 public class MemorySetImpl implements MemorySet {
-    List<MemoryImpl> memories = new ArrayList<MemoryImpl>();
+    List<MemoryImpl> memorySet = new ArrayList<MemoryImpl>();
 
     /** {@inheritDoc} */
     @Override
     public Iterator<MemoryImpl> iterator() {
-        return memories.iterator();
+        return memorySet.iterator();
     }
 
     /** {@inheritDoc} */
     @Override
     public void add(MemoryImpl memory) {
-        memories.add(memory);
-        // TODO don't add duplicated memories.
+        memorySet.add(memory);
+        // TODO don't add duplicated memory objects.
         
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean isEmpty() {
-        return memories.isEmpty();
+        return memorySet.isEmpty();
     }
 
     /** {@inheritDoc} */

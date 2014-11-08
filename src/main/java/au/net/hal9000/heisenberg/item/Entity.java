@@ -67,7 +67,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     private String size;
     
     /**
-     * Memories.
+     * Set of Memory objects.
      */
     private MemorySet memorySet;
 
@@ -280,14 +280,14 @@ public abstract class Entity extends Item implements StateEvaluation {
         }
     }
 
-    // Memories
+    // MemorySet
     /**
      * Get the Memory objects.
      * 
      * 
      * @return a list of Memory objects
      */
-    public final MemorySet getMemories() {
+    public final MemorySet getMemorySet() {
         return memorySet;
     }
 
@@ -313,7 +313,7 @@ public abstract class Entity extends Item implements StateEvaluation {
      * @return Plain text description of the object
      */
     public String detailedDescription() {
-        StringBuilder text = new StringBuilder();
+        StringBuilder text = new StringBuilder(60);
 
         // Inherit description from super first.
         text.append(super.detailedDescription());
@@ -356,9 +356,9 @@ public abstract class Entity extends Item implements StateEvaluation {
                 text.append(System.lineSeparator());
             }
         }
-        MemorySet memorySet = getMemories();
+        MemorySet memorySet = getMemorySet();
         if (null != memorySet && !memorySet.isEmpty()) {
-            text.append("Memories:");
+            text.append("MemorySet:");
             text.append(System.lineSeparator());
             for (MemoryImpl memory : memorySet) {
                 text.append("  " + memory);

@@ -21,8 +21,6 @@ public class ModelStateGoal extends ModelStateImpl implements ModelState {
      *            agent position.
      * @param goalPosition
      *            goal position.
-     * @param memories
-     *            memories e.g. walls.
      */
     public ModelStateGoal(Position agentPosition, Position goalPosition) {
         super(agentPosition);

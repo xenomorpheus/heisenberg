@@ -99,10 +99,10 @@ public class SearchAStar extends SearchBase {
 
                 // Don't add states to the fringe more than once.
                 ModelState successorModelState = successor.getModelState();
-                if (hasVisited(inFringe, successorModelState,
-                        DISTANCE_THRESHOLD)) {
-                    continue;
-                }
+                //if (hasVisited(inFringe, successorModelState,
+                //        DISTANCE_THRESHOLD)) {
+                //    continue;
+                //}
                 inFringe.add(successorModelState.getAgentPosition());
 
                 // Add a new fringe element with extra action and cost.

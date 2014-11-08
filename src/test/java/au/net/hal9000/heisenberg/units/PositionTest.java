@@ -132,6 +132,7 @@ public class PositionTest {
         assertFalse("false z",
                 point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
         point.setX(Z_TEST);
+        
     }
 
     /**

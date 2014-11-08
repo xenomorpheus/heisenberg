@@ -30,14 +30,12 @@ import au.net.hal9000.heisenberg.util.Geometry;
  */
 public final class SuccessorFunctionEntity implements SuccessorFunction {
 
-    // We may want to someday set these by the constructor
-    /** how far to move. */
-    private final double stepSize = 1.0;
-    /** how many directions to consider. */
-    private final int directionCount = 4;
-
-    /** a Transition Function. */
+    /** A Transition Function allows movement from one model state to another. */
     private TransitionFunction transitionFunction;
+    /** How far to move. */
+    private double stepSize = 1.0;
+    /** How many directions to consider. */
+    private int directionCount = 4;
 
     /**
      * Constructor.
@@ -47,6 +45,23 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
      */
     public SuccessorFunctionEntity(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;
+    }
+
+    /**
+     * Constructor.
+     * 
+     * @param transitionFunction
+     *            a Transition Function.
+     * @param stepSize
+     *            maximum distance to travel.
+     * @param directionCount
+     *            maximum directions to consider from any one state.
+     */
+    public SuccessorFunctionEntity(TransitionFunction transitionFunction,
+            double stepSize, int directionCount) {
+        this.transitionFunction = transitionFunction;
+        this.stepSize = stepSize;
+        this.directionCount = directionCount;
     }
 
     /**
@@ -66,10 +81,10 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
         double agentStepSize = stepSize;
         Position agentPositionDelta = new Position(0, agentStepSize);
 
-        // Get a list of Barriers from memories.
-        if (modelState instanceof ModelStateMemories) {
-            ModelStateMemories modelStateMemories = (ModelStateMemories) modelState;
-            MemorySet memorySet = modelStateMemories.getMemorySet();
+        // Get a list of Barriers from memorySet.
+        if (modelState instanceof ModelStateMemorySet) {
+            ModelStateMemorySet modelStateMemorySet = (ModelStateMemorySet) modelState;
+            MemorySet memorySet = modelStateMemorySet.getMemorySet();
             for (MemoryImpl memory : memorySet) {
                 if (memory instanceof MemoryOfBarrier) {
                     barriers.add(((MemoryOfBarrier) memory).getBarrier());
@@ -77,7 +92,8 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
             }
         }
 
-        // If we know where the goal is, then the have a possible action in that direction.
+        // If we know where the goal is, then the have a possible action in that
+        // direction.
         if (modelState instanceof ModelStateGoal) {
             ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
             Position goalPos = modelStateGoal.getGoalPosition();
@@ -94,7 +110,8 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
 
         // Add various movements to the list of actions.
         // Build a list of spokes from this Position.
-        List<Position> spokes = Geometry.generateSpokesZ(agentPositionDelta, directionCount);
+        List<Position> spokes = Geometry.generateSpokesZ(agentPositionDelta,
+                directionCount);
         for (Position spoke : spokes) {
             actions.add(new ActionMoveImpl(spoke));
         }
