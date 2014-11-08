@@ -64,7 +64,7 @@ public class ModelStateGoal extends ModelStateImpl implements ModelState {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "[agent=" + getAgentPosition() + ", goal=" + getGoalPosition()
+        return "[agentPos=" + getAgentPosition() + ", goalPos=" + getGoalPosition()
                 + "]";
     }
 }

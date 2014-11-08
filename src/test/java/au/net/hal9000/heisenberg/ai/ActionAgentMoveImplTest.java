@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -18,17 +17,10 @@ public class ActionAgentMoveImplTest {
     @Test
     public void testEquals() {
         // compare both label and xyz.
-        Action action1 = new ActionMoveImpl("label", new Position(0, 0));
-        Action action2 = new ActionMoveImpl("label", new Position(0, 0));
+        Action action1 = new ActionMoveImpl(new Position(1, 2));
+        Action action2 = new ActionMoveImpl(new Position(1, 2));
         assertTrue(action1.equals(action2));
 
-        // different label.
-        Action action3 = new ActionMoveImpl("label2", new Position(0, 0));
-        assertFalse(action1.equals(action3));
-    
-        // no label.
-        Action action4 = new ActionMoveImpl(null, new Position(0, 0));
-        assertFalse(action1.equals(action4));
     }
 
     

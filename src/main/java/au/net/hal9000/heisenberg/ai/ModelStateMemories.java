@@ -61,14 +61,16 @@ public class ModelStateMemories extends ModelStateImpl implements ModelState {
     /** {@inheritDoc} */
     @Override
     public ModelState duplicate() {
-        return new ModelStateMemories(new Position( getAgentPosition()), getMemorySet().duplicate());
+        return new ModelStateMemories(new Position(getAgentPosition()),
+                getMemorySet().duplicate());
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "[agent=" + getAgentPosition() + "]"; // TODO
-                                                     // memories
+        // TODO string buffer
+        return "[agentPos=" + getAgentPosition() + "memories="
+                + memorySet.toString() + "]";
     }
 
     /** {@inheritDoc} */

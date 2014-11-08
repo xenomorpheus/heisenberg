@@ -129,7 +129,7 @@ public class SearchAStar extends SearchBase {
     }
 
     /**
-     * has the agent been to the list of visited places.
+     * Has the agent been to the list of visited places?
      * 
      * @param visited
      *            list of places already visited.
@@ -137,7 +137,7 @@ public class SearchAStar extends SearchBase {
      *            state of model.
      * @param proximityThreshold
      *            how close to places to be considered visited.
-     * @return true iff agent has visited this location.
+     * @return true IFF agent has visited this location.
      */
     private boolean hasVisited(List<Position> visited, ModelState modelState,
             double proximityThreshold) {

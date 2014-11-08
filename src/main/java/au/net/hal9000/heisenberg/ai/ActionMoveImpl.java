@@ -12,47 +12,26 @@ import au.net.hal9000.heisenberg.units.Position;
 public final class ActionMoveImpl implements ActionMove {
 
     /** move agent North. */
-    public static final ActionMoveImpl NORTH = new ActionMoveImpl("North",
-            new Position(0, -1));
+    public static final ActionMoveImpl NORTH = new ActionMoveImpl(new Position(0, -1));
     /** move agent South. */
-    public static final ActionMoveImpl SOUTH = new ActionMoveImpl("South",
-            new Position(0, 1));
+    public static final ActionMoveImpl SOUTH = new ActionMoveImpl(new Position(0, 1));
     /** move agent East. */
-    public static final ActionMoveImpl EAST = new ActionMoveImpl("East",
-            new Position(1, 0));
+    public static final ActionMoveImpl EAST = new ActionMoveImpl(new Position(1, 0));
     /** move agent West. */
-    public static final ActionMoveImpl WEST = new ActionMoveImpl("West",
-            new Position(-1, 0));
+    public static final ActionMoveImpl WEST = new ActionMoveImpl(new Position(-1, 0));
 
-    /** human understandable label. */
-    private final String label;
-    /** amount of movement. */
+    /** Amount of movement. */
     private final Position delta;
 
     /**
      * Constructor.
-     * 
-     * @param label
-     *            a nick name for this action.
-     * @param delta
-     *            movement amount.
-     */
-
-    public ActionMoveImpl(final String label, final Position delta) {
-        super();
-        this.label = label;
-        this.delta = delta;
-    }
-
-    /**
-     * Constructor.
-     * 
      * @param delta
      *            movement amount.
      */
 
     public ActionMoveImpl(final Position delta) {
-        this("custom", delta);
+        super();
+        this.delta = delta;
     }
 
     /**
@@ -73,10 +52,11 @@ public final class ActionMoveImpl implements ActionMove {
      */
     @Override
     public String toString() {
-        if (null != label) {
-            return label;
-        }
-        return delta.toString();
+        StringBuilder sb = new StringBuilder(3);
+        sb.append("ActionMove=[delta=");
+        sb.append(delta);
+        sb.append("]");
+        return sb.toString();
     }
 
     /**
@@ -89,7 +69,6 @@ public final class ActionMoveImpl implements ActionMove {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((null == delta) ? 0 : delta.hashCode());
-        result = prime * result + ((null == label) ? 0 : label.hashCode());
         return result;
     }
 
@@ -118,13 +97,6 @@ public final class ActionMoveImpl implements ActionMove {
                 return false;
             }
         } else if (!delta.equals(other.delta,0.0001)) {
-            return false;
-        }
-        if (null == label) {
-            if (null != other.label) {
-                return false;
-            }
-        } else if (!label.equals(other.label)) {
             return false;
         }
         return true;

@@ -292,16 +292,6 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * Set the memories of this entity.
-     * 
-     * @param memorySet
-     *            memories to set.
-     */
-    public final void setMemorySet(final MemorySet memorySet) {
-        this.memorySet = memorySet;
-    }
-
-    /**
      * The Entity object has learnt a new Memory.
      * 
      * @param skill
