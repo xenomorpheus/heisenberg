@@ -51,7 +51,7 @@ public class AiMovement {
         agent.setPosition(new Position(startPosition));
 
         // Setup starting model state.
-        final ModelState modelState = new ModelStateGoal(new Position(
+        final ModelState modelStateStart = new ModelStateGoal(new Position(
                 agent.getPosition()), new Position(goalPosition));
 
         // Setup how to transition (move) to a new state.
@@ -75,12 +75,11 @@ public class AiMovement {
                 modelStateEvaluator, goalEstCostFunction);
 
         // Generate path of actions.
-        Path path = searchAStar.findPathToGoal(modelState);
+        Path path = searchAStar.findPathToGoal(modelStateStart);
 
         // Tests
         // Start at start model state.
-        ModelState currentModelState = new ModelStateGoal(new Position(
-                agent.getPosition()), new Position(goalPosition));
+        ModelState modelStateCurrent = modelStateStart.duplicate();
 
         // Apply all actions in path.
         for (Action action : path) {
@@ -91,12 +90,12 @@ public class AiMovement {
                         .length() <= stepSizeMax);
             }
 
-            currentModelState = transitionFunction.transition(
-                    currentModelState, action);
+            modelStateCurrent = transitionFunction.transition(
+                    modelStateCurrent, action);
         }
 
         // Check that we ended at goal.
-        assertTrue(goalPosition.equals(currentModelState.getAgentPosition(),
+        assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));
 
     }
@@ -123,7 +122,7 @@ public class AiMovement {
         agent.addMemory(memory);
 
         // Setup starting model state.
-        final ModelState modelState = new ModelStateGoalMemorySet(new Position(
+        final ModelState modelStateStart = new ModelStateGoalMemorySet(new Position(
                 agent.getPosition()), new Position(goalPosition), new MemorySetImpl(agent.getMemorySet()));
 
         // Setup how to transition (move) to a new state.
@@ -147,12 +146,11 @@ public class AiMovement {
                 modelStateEvaluator, goalEstCostFunction);
 
         // Generate path of actions.
-        Path path = searchAStar.findPathToGoal(modelState);
+        Path path = searchAStar.findPathToGoal(modelStateStart);
 
         // Tests
         // Start at start model state.
-        ModelState currentModelState = new ModelStateGoal(new Position(
-                agent.getPosition()), new Position(goalPosition));
+        ModelState modelStateCurrent = modelStateStart.duplicate();
 
         // Apply all actions in path.
         for (Action action : path) {
@@ -163,12 +161,12 @@ public class AiMovement {
                         .length() <= stepSizeMax);
             }
 
-            currentModelState = transitionFunction.transition(
-                    currentModelState, action);
+            modelStateCurrent = transitionFunction.transition(
+                    modelStateCurrent, action);
         }
 
         // Check that we ended at goal.
-        assertTrue(goalPosition.equals(currentModelState.getAgentPosition(),
+        assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));        
         fail("todo"); // TODO this
     }
