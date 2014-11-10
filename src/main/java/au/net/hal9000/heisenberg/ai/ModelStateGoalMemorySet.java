@@ -11,7 +11,8 @@ import au.net.hal9000.heisenberg.units.Position;
  * @version $Revision: 1.0 $
  */
 
-public class ModelStateMemorySet extends ModelStateImpl implements ModelState {
+public class ModelStateGoalMemorySet extends ModelStateGoal implements
+        ModelState {
 
     /** Memories. e.g. Walls */
     private MemorySet memorySet;
@@ -24,11 +25,9 @@ public class ModelStateMemorySet extends ModelStateImpl implements ModelState {
      * @param memorySet
      *            memories e.g. walls.
      */
-    public ModelStateMemorySet(Position agentPosition, MemorySet memorySet) {
-        super(agentPosition);
-        if (null == agentPosition) {
-            throw new IllegalArgumentException("agentPosition may not be null");
-        }
+    public ModelStateGoalMemorySet(Position agentPosition,
+            Position goalPosition, MemorySet memorySet) {
+        super(agentPosition, goalPosition);
         if (null == memorySet) {
             throw new IllegalArgumentException("memorySet may not be null");
         }
@@ -41,9 +40,10 @@ public class ModelStateMemorySet extends ModelStateImpl implements ModelState {
      * @param modelState
      *            to copy.
      */
-    public ModelStateMemorySet(ModelStateMemorySet modelState) {
-        this(new Position(modelState.getAgentPosition()), modelState
-                .getMemorySet().duplicate());
+    public ModelStateGoalMemorySet(ModelStateGoalMemorySet modelState) {
+        this(new Position(modelState.getAgentPosition()), new Position(
+                modelState.getGoalPosition()), new MemorySetImpl(
+                modelState.getMemorySet()));
     }
 
     // getters and setters
@@ -57,16 +57,17 @@ public class ModelStateMemorySet extends ModelStateImpl implements ModelState {
     /** {@inheritDoc} */
     @Override
     public ModelState duplicate() {
-        return new ModelStateMemorySet(new Position(getAgentPosition()),
-                getMemorySet().duplicate());
+        return new ModelStateGoalMemorySet(new Position(getAgentPosition()),
+                new Position(getGoalPosition()), new MemorySetImpl(getMemorySet()));
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
         // TODO string buffer
-        return "[agentPos=" + getAgentPosition() + "memorySet="
-                + memorySet.toString() + "]";
+        return "[agentPos=" + getAgentPosition() + ", goalPos="
+                + getGoalPosition() + ", memorySet=" + memorySet.toString()
+                + "]";
     }
 
     /** {@inheritDoc} */
@@ -88,7 +89,7 @@ public class ModelStateMemorySet extends ModelStateImpl implements ModelState {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ModelStateMemorySet other = (ModelStateMemorySet) obj;
+        ModelStateGoalMemorySet other = (ModelStateGoalMemorySet) obj;
         if (memorySet == null) {
             if (other.memorySet != null)
                 return false;

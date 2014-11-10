@@ -5,16 +5,16 @@ import static org.junit.Assert.fail;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.util.Queue;
 
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.BarrierLine;
 import au.net.hal9000.heisenberg.ai.MemoryImpl;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
+import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
 import au.net.hal9000.heisenberg.ai.ModelStateGoal;
-import au.net.hal9000.heisenberg.ai.ModelStateMemorySet;
+import au.net.hal9000.heisenberg.ai.ModelStateGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.SuccessorFunctionEntity;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
@@ -25,7 +25,6 @@ import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
-import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.Cat;
@@ -107,10 +106,11 @@ public class AiMovement {
      * trying to walk to avoid it.
      */
     @Test
-    public void testAiMovementWithMemorySet() {
+    public void testAiMovementWithGoalMemorySet() {
 
         Entity agent = new Cat();
         final Position startPosition = new Position(0, 2);
+        final Position goalPosition = new Position(0, -2);
         agent.setPosition(new Position(startPosition));
 
         // Simulate the results after seeing a wall.
@@ -119,19 +119,19 @@ public class AiMovement {
         Point2D point2 = new Point2D.Double(2, 0);
         Line2D line = new Line2D.Double(point1, point2);
         Barrier barrier = new BarrierLine(line, blocker);
-        MemoryImpl memory = new MemoryOfBarrier(null, null, barrier);
+        MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
         agent.addMemory(memory);
 
-        // Model state
-        ModelStateMemorySet modelState = new ModelStateMemorySet(
-                agent.getPosition(), agent.getMemorySet());
+        // Setup starting model state.
+        final ModelState modelState = new ModelStateGoalMemorySet(new Position(
+                agent.getPosition()), new Position(goalPosition), new MemorySetImpl(agent.getMemorySet()));
 
-        // Setup Transition and Successor Functions.
+        // Setup how to transition (move) to a new state.
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
 
-        // Setup Entity: position, successorFunction etc.
+        // Setup how to generate new successor states.
         SuccessorFunction successorFunction = new SuccessorFunctionEntity(
-                transitionFunction);
+                transitionFunction, stepSizeMax, successorCountMax);
 
         // Setup how we evaluate the worth of a new model state.
         final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
@@ -142,17 +142,17 @@ public class AiMovement {
                 return modelStateEvaluator.evaluate(modelState);
             }
         };
-        
+
         SearchAStar searchAStar = new SearchAStar(successorFunction,
-                modelStateEvaluator);
+                modelStateEvaluator, goalEstCostFunction);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelState);
 
         // Tests
         // Start at start model state.
-        ModelState currentModelState = new ModelStateMemorySet(new Position(
-                agent.getPosition()),agent.getMemorySet());
+        ModelState currentModelState = new ModelStateGoal(new Position(
+                agent.getPosition()), new Position(goalPosition));
 
         // Apply all actions in path.
         for (Action action : path) {
@@ -169,18 +169,7 @@ public class AiMovement {
 
         // Check that we ended at goal.
         assertTrue(goalPosition.equals(currentModelState.getAgentPosition(),
-                Position.DEFAULT_AXIS_TOLERANCE));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+                Position.DEFAULT_AXIS_TOLERANCE));        
         fail("todo"); // TODO this
     }
 

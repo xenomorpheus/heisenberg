@@ -5,6 +5,7 @@ import java.util.TreeSet;
 
 import au.net.hal9000.heisenberg.ai.MemoryImpl;
 import au.net.hal9000.heisenberg.ai.MemorySetImpl;
+import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
 import au.net.hal9000.heisenberg.crafting.Cooker;
@@ -360,7 +361,7 @@ public abstract class Entity extends Item implements StateEvaluation {
         if (null != memorySet && !memorySet.isEmpty()) {
             text.append("MemorySet:");
             text.append(System.lineSeparator());
-            for (MemoryImpl memory : memorySet) {
+            for (Memory memory : memorySet) {
                 text.append("  " + memory);
                 text.append(System.lineSeparator());
             }

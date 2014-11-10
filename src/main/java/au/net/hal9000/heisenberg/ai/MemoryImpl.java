@@ -2,19 +2,23 @@ package au.net.hal9000.heisenberg.ai;
 
 import java.util.Date;
 
+import au.net.hal9000.heisenberg.ai.api.Memory;
+
 /**
- * Holds a memory for a period of time. Try to consider immutable.
+ * Holds a memory for a period of time.
  * 
  * @author bruins
  *
  */
-public abstract class MemoryImpl {
-    /** when the memory was created. */
+public abstract class MemoryImpl implements Memory {
+    /** When the memory was created. */
     private Date createdDate;
 
-    // TODO decay rate.
-    /** when the memory ceases to exist. */
-    private Date expiryDate;
+    /**
+     * Memories fade over time. Walls fade slowly. Memory objects of transient
+     * objects fade quickly.
+     */
+    private double decayRate;
 
     /**
      * Constructor.
@@ -40,28 +44,24 @@ public abstract class MemoryImpl {
      * 
      * @param createdDate
      *            date memory created.
-     * @param expiryDate
+     * @param decayRate
      *            date memory expires.
      */
-    MemoryImpl(Date createdDate, Date expiryDate) {
+    MemoryImpl(Date createdDate, double decayRate) {
         this(createdDate);
-        this.expiryDate = expiryDate;
+        this.decayRate = decayRate;
     }
 
-    /**
-     * 
-     * @return created date.
-     */
+    /** {@inheritDoc} */
+    @Override
     public Date getCreatedDate() {
         return createdDate;
     }
 
-    /**
-     * 
-     * @return expiry date.
-     */
-    public Date getExpiryDate() {
-        return expiryDate;
+    /** {@inheritDoc} */
+    @Override
+    public double getDecayRate() {
+        return decayRate;
     }
 
 }

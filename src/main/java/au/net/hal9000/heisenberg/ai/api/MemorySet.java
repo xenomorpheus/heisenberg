@@ -1,14 +1,20 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import au.net.hal9000.heisenberg.ai.MemoryImpl;
+import java.util.List;
 
-public interface MemorySet extends Iterable<MemoryImpl> {
+import au.net.hal9000.heisenberg.ai.api.Memory;
 
-    void add(MemoryImpl memory);
+public interface MemorySet extends Iterable<Memory> {
+
+    // Getters and setters.
+    List<Memory> getMemorySet();
+
+    void setMemorySet(List<Memory> memorySet);
+
+    // Misc
+
+    void add(Memory memory);
 
     boolean isEmpty();
-
-    MemorySet duplicate();
-    
 
 }
