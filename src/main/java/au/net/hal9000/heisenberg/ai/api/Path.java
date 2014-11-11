@@ -13,9 +13,8 @@ public interface Path extends Iterable<Action> {
     /**
      * Shallow clone current path.
      * 
-     * @throws CloneNotSupportedException
      * @return new path.
      */
-    Path duplicate() throws CloneNotSupportedException;
+    Path duplicate();
 
 }

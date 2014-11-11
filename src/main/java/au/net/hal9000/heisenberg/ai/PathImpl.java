@@ -124,9 +124,8 @@ public class PathImpl implements Path, Cloneable {
 
     /** {@inheritDoc} */
     @Override
-    public PathImpl duplicate() throws CloneNotSupportedException {
-        PathImpl path = (PathImpl) super.clone();
-        // TODO is this correct?
+    public PathImpl duplicate() {
+        PathImpl path = new PathImpl();
         path.actions = new ArrayList<Action>();
         for (Action action : actions) {
             path.add(action);

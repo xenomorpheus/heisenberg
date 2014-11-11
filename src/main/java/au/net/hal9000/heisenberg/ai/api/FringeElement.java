@@ -3,31 +3,23 @@ package au.net.hal9000.heisenberg.ai.api;
 public interface FringeElement {
 
     /**
-     * get model state.
-     * 
-     * @return model state.
+     * @return get model state.
      */
     ModelState getModelState();
 
     /**
-     * get the path so far.
-     * 
-     * @return path so far.
+     * @return get path so far.
      */
     Path getPathSoFar();
 
     /**
-     * get cost so far.
-     * 
-     * @return cost so far.
+     * @return get cost so far.
      */
     double getCostSoFar();
 
     /**
-     * get order.
-     * 
-     * @return order.
+     * @return get estimate of total cost from start to goal.
      */
-    double estimatedTotalCost();
+    double getEstimatedTotalCost();
 
 }

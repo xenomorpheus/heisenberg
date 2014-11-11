@@ -70,21 +70,22 @@ public class SearchAStar extends SearchBase {
 
         Path resultPath;
         /**
-         * places we have already searched. <br>
-         * This is to break loops in graph searches
+         * Remember the places we have already added to the fringe. <br>
+         * This dramatically reduces the size of fringe.
          */
-        List<Position> inFringe = new ArrayList<>();
+        List<Position> fringeAdded = new ArrayList<>();
 
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
 
         fringe.add(new FringeElementImpl(modelState, new PathImpl(), 0f, 0));
-        inFringe.add(modelState.getAgentPosition());
+        fringeAdded.add(modelState.getAgentPosition());
 
         resultPath = null;
-        int limit = 300;
-        while (!fringe.isEmpty() && (limit-- > 0)) {
+        while (!fringe.isEmpty()) {
+
             FringeElement fringeElement = fringe.remove();
+            System.out.println("remove "+fringeElement );
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
             double costSoFar = fringeElement.getCostSoFar();
@@ -98,36 +99,29 @@ public class SearchAStar extends SearchBase {
                     .generateSuccessors(currentModelState);
             for (Successor successor : successors) {
 
-                // Don't add states to the fringe more than once.
                 ModelState successorModelState = successor.getModelState();
                 
-                // TODO remove this code.
-                // 1) not scalable for when there are many different types of model state.
-                // 2) We should be able to achieve the same result by removing fringe elements
-                // in order of estimated total cost.
-                if (hasVisited(inFringe, successorModelState,
-                        DISTANCE_THRESHOLD)) {  // TODO distance must be less than movement.
+                // Don't add state to the fringe more than once.
+                if (successorInFringeAdded(fringeAdded, successorModelState)) {
                     continue;
                 }
-                inFringe.add(successorModelState.getAgentPosition());
+                fringeAdded.add(successorModelState.getAgentPosition());
 
-                // Add a new fringe element with extra action and cost.
-                Path newPathSoFar;
-                try {
-                    newPathSoFar = pathSoFar.duplicate();
-                } catch (CloneNotSupportedException e) {
-                    throw new RuntimeException("Failed to clone path", e);
-                }
+                // Add a new fringe element, with the extra action and cost.
+                Path newPathSoFar = pathSoFar.duplicate();
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
                 double distanceToGoalEst = 0;
-                if ((goalEstCostFunction != null) && (successorModelState instanceof ModelStateGoal)){
+                if ((goalEstCostFunction != null)
+                        && (successorModelState instanceof ModelStateGoal)) {
                     distanceToGoalEst = goalEstCostFunction
-                            .estimatedCostToGoal((ModelStateGoal)successorModelState);
+                            .estimatedCostToGoal((ModelStateGoal) successorModelState);
                 }
-                fringe.add(new FringeElementImpl(successorModelState,
+                FringeElement fringeElementNew = new FringeElementImpl(successorModelState,
                         newPathSoFar, newCostSoFar, newCostSoFar
-                        + distanceToGoalEst));
+                        + distanceToGoalEst);
+                System.out.println("ADD "+fringeElementNew );
+                fringe.add(fringeElementNew);
             }
 
         }
@@ -141,13 +135,17 @@ public class SearchAStar extends SearchBase {
      *            list of places already visited.
      * @param modelState
      *            state of model.
-     * @param proximityThreshold
-     *            how close to places to be considered visited.
      * @return true IFF agent has visited this location.
      */
-    private boolean hasVisited(List<Position> visited, ModelState modelState,
-            double proximityThreshold) {
+    private boolean successorInFringeAdded(List<Position> visited, ModelState modelState) {
+
+        // TODO make this code generic giving ModelState the
+        // concept of similar states (within tolerance)
+
         Position agentPos = modelState.getAgentPosition();
+
+        // TODO distance must be less than movement.
+        double proximityThreshold = DISTANCE_THRESHOLD;
 
         // Check if we have been here.
         boolean hereBefore = false;

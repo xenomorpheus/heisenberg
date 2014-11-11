@@ -66,27 +66,25 @@ public class FringeElementImpl implements FringeElement,
         return costSoFar;
     }
 
-    /**
-     * Method estimatedTotalCost.
-     * 
-     * @return double
-     * @see au.net.hal9000.heisenberg.ai.api.FringeElement#estimatedTotalCost()
-     */
-    public double estimatedTotalCost() {
+    /** {@inheritDoc} */
+    @Override
+    public double getEstimatedTotalCost() {
         return estimatedTotalCost;
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "FrintElementImpl=[costSoFar=" + costSoFar + ", estimatedTotalCost="+ estimatedTotalCost+", pathSoFar=" + pathSoFar
-                + ", ModelState=" + modelState +  "]";
+        return "FringeElementImpl=[costSoFar=" + costSoFar
+                + ", estimatedTotalCost=" + estimatedTotalCost
+                + ", ModelState=" + modelState + ", pathSoFar=" + pathSoFar
+                + "]";
     }
 
     /** {@inheritDoc} */
     @Override
     public int compareTo(FringeElementImpl other) {
-        double oEstimatedTotalCost = other.estimatedTotalCost();
+        double oEstimatedTotalCost = other.getEstimatedTotalCost();
         return (estimatedTotalCost < oEstimatedTotalCost) ? -1
                 : ((estimatedTotalCost > oEstimatedTotalCost) ? 1 : 0);
     }
