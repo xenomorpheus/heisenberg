@@ -54,7 +54,7 @@ public class BarrierLine implements Barrier {
 
         PathBlockDetails blocker = null;
         Position point = Geometry.getLineIntersection(movement, barrierLine);
-        if (null == point) {
+        if (null != point) {
             blocker = new PathBlockDetails(point, blockerObject);
         }
 

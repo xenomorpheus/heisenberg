@@ -79,9 +79,8 @@ public class FringeElementImpl implements FringeElement,
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "[ModelState=" + modelState + ", pathSoFar=" + pathSoFar
-                + ", costSoFar=" + costSoFar + ", estimatedTotalCost="
-                + estimatedTotalCost + "]";
+        return "FrintElementImpl=[costSoFar=" + costSoFar + ", estimatedTotalCost="+ estimatedTotalCost+", pathSoFar=" + pathSoFar
+                + ", ModelState=" + modelState +  "]";
     }
 
     /** {@inheritDoc} */

@@ -23,7 +23,7 @@ import au.net.hal9000.heisenberg.units.Position;
  */
 public class SearchAStar extends SearchBase {
     /** how close do points need to be to be considered already visited. */
-    private static final double DISTANCE_THRESHOLD = 0.5;
+    private static final double DISTANCE_THRESHOLD = 0.1;
 
     /** estimated distance to goal. */
     private GoalEstFunction goalEstCostFunction = null;
@@ -82,7 +82,8 @@ public class SearchAStar extends SearchBase {
         inFringe.add(modelState.getAgentPosition());
 
         resultPath = null;
-        while (!fringe.isEmpty()) {
+        int limit = 300;
+        while (!fringe.isEmpty() && (limit-- > 0)) {
             FringeElement fringeElement = fringe.remove();
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
@@ -99,10 +100,15 @@ public class SearchAStar extends SearchBase {
 
                 // Don't add states to the fringe more than once.
                 ModelState successorModelState = successor.getModelState();
-                //if (hasVisited(inFringe, successorModelState,
-                //        DISTANCE_THRESHOLD)) {
-                //    continue;
-                //}
+                
+                // TODO remove this code.
+                // 1) not scalable for when there are many different types of model state.
+                // 2) We should be able to achieve the same result by removing fringe elements
+                // in order of estimated total cost.
+                if (hasVisited(inFringe, successorModelState,
+                        DISTANCE_THRESHOLD)) {  // TODO distance must be less than movement.
+                    continue;
+                }
                 inFringe.add(successorModelState.getAgentPosition());
 
                 // Add a new fringe element with extra action and cost.
@@ -114,14 +120,14 @@ public class SearchAStar extends SearchBase {
                 }
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
-                double distanceToGoal = 0;
+                double distanceToGoalEst = 0;
                 if ((goalEstCostFunction != null) && (successorModelState instanceof ModelStateGoal)){
-                    distanceToGoal = goalEstCostFunction
+                    distanceToGoalEst = goalEstCostFunction
                             .estimatedCostToGoal((ModelStateGoal)successorModelState);
                 }
                 fringe.add(new FringeElementImpl(successorModelState,
                         newPathSoFar, newCostSoFar, newCostSoFar
-                                + distanceToGoal));
+                        + distanceToGoalEst));
             }
 
         }

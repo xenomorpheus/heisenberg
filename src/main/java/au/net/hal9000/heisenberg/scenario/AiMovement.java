@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.scenario;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
@@ -63,6 +62,9 @@ public class AiMovement {
 
         // Setup how we evaluate the worth of a new model state.
         final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
+        
+        // TODO Should we change to total cost to goal, not remaining distance?
+        // We need to stop graph loops by deprioritising wasted effort to revisit states.
         GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
 
             @Override
@@ -134,6 +136,10 @@ public class AiMovement {
 
         // Setup how we evaluate the worth of a new model state.
         final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
+
+        // TODO Should we change to total cost to goal, not remaining distance?
+        // We need to stop graph loops by deprioritising wasted effort to revisit states.
+        
         GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
 
             @Override
@@ -158,7 +164,7 @@ public class AiMovement {
             if (action instanceof ActionMove) {
                 ActionMove actionMove = (ActionMove) action;
                 assertTrue("valid distance", actionMove.getPositionDelta()
-                        .length() <= stepSizeMax);
+                        .length() <= (stepSizeMax * 1.01));
             }
 
             modelStateCurrent = transitionFunction.transition(
@@ -168,7 +174,6 @@ public class AiMovement {
         // Check that we ended at goal.
         assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));        
-        fail("todo"); // TODO this
     }
 
 }
