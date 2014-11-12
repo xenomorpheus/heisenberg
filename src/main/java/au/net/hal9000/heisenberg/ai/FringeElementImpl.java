@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+import java.text.DecimalFormat;
+
 import au.net.hal9000.heisenberg.ai.api.FringeElement;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -75,8 +77,9 @@ public class FringeElementImpl implements FringeElement,
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "FringeElementImpl=[costSoFar=" + costSoFar
-                + ", estimatedTotalCost=" + estimatedTotalCost
+        DecimalFormat df = new DecimalFormat("#.###");
+        return "FringeElementImpl=[costSoFar=" + df.format(costSoFar)
+                + ", estimatedTotalCost=" + df.format(estimatedTotalCost)
                 + ", ModelState=" + modelState + ", pathSoFar=" + pathSoFar
                 + "]";
     }

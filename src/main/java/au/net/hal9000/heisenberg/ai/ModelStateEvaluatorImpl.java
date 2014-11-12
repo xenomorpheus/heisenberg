@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
+import java.util.List;
+
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Position;
@@ -20,7 +22,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
     /**
      * Field GOAL_TOLERANCE. (value is 0.01)
      */
-    public static final double GOAL_TOLERANCE = 0.01;
+    public static final double GOAL_TOLERANCE = 0.05;
 
     /** Constructor. */
     public ModelStateEvaluatorImpl() {
@@ -29,7 +31,7 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
 
     /** {@inheritDoc} */
     @Override
-    public double evaluate(ModelState modelState) {
+    public double costToGoalEstimate(ModelState modelState) {
         double result;
         if (modelState instanceof ModelStateGoal) {
             ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
@@ -51,6 +53,32 @@ public class ModelStateEvaluatorImpl implements ModelStateEvaluator {
     /** {@inheritDoc} */
     @Override
     public boolean isAtGoal(ModelState modelState) {
-        return evaluate(modelState) < GOAL_TOLERANCE;
+        return costToGoalEstimate(modelState) < GOAL_TOLERANCE;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean modelStateInAdded(List<ModelState> addedModelStates, ModelState modelState) {
+
+        // TODO make this code generic giving ModelState the
+        // concept of similar states (within tolerance)
+
+        Position agentPos = modelState.getAgentPosition();
+
+        // TODO distance must be less than movement.
+        double proximityThreshold = GOAL_TOLERANCE;  // TODO - check this
+
+        // Check if we have been here.
+        boolean hereBefore = false;
+        for (ModelState modelState1 : addedModelStates) {
+            Position v = modelState1.getAgentPosition(); // TODO check this
+            if (agentPos.distance(v) <= proximityThreshold) {
+                hereBefore = true;
+                break;
+            }
+        }
+        return hereBefore;
+    }
+
+
 }

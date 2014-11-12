@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.ai.api;
 
+import java.util.List;
+
 /**
  * Evaluate the state of the model and give an evaluation rating on how close we
  * are to the goal state.
@@ -16,9 +18,9 @@ public interface ModelStateEvaluator {
      * @param modelState
      *            the state of the model.
      * 
-     * @return How close to the goal?
+     * @return The estimated cost to reach the goal.
      */
-    double evaluate(ModelState modelState);
+    double costToGoalEstimate(ModelState modelState);
 
     /**
      * Are we at the goal?
@@ -30,4 +32,17 @@ public interface ModelStateEvaluator {
      */
 
     boolean isAtGoal(ModelState modelState);
+
+    /**
+     * Has the modelState been added to the list? This will be used to determine
+     * duplicates when adding model states to the search fringe.
+     * 
+     * @param addedModelStates
+     *            list of places already visited.
+     * @param modelState
+     *            state of model.
+     * @return true IFF agent has visited this location.
+     */
+    boolean modelStateInAdded(List<ModelState> addedModelStates,
+            ModelState modelState);
 }

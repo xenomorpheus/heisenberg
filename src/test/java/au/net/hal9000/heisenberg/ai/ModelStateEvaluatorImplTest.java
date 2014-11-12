@@ -37,14 +37,14 @@ public class ModelStateEvaluatorImplTest {
         ModelStateEvaluatorImpl modelStateEvaluator = new ModelStateEvaluatorImpl();
 
         // Agent at goal - Return ZERO
-        double valuationGoal = modelStateEvaluator.evaluate(modelState);
+        double valuationGoal = modelStateEvaluator.costToGoalEstimate(modelState);
         assertEquals("At goal", 0.0f, valuationGoal, DIFF);
         assertEquals("At goal - cross-check",
                 agentPosition.distance(goalPosition), valuationGoal, DIFF);
 
         // Agent off by 1.0 in X
         agentPosition.setX(1.0f);
-        double valuation1 = modelStateEvaluator.evaluate(modelState);
+        double valuation1 = modelStateEvaluator.costToGoalEstimate(modelState);
         assertEquals("Agent off by 1.0 in X", 1.0f, valuation1, DIFF);
         assertEquals("Agent off by 1.0 in X - cross-check",
                 agentPosition.distance(goalPosition), valuation1, DIFF);
@@ -52,7 +52,7 @@ public class ModelStateEvaluatorImplTest {
         // Agent off by 3.0 in X, 4.0 in Y
         agentPosition.setX(3.0f);
         agentPosition.setY(4.0f);
-        double valuation5 = modelStateEvaluator.evaluate(modelState);
+        double valuation5 = modelStateEvaluator.costToGoalEstimate(modelState);
         assertEquals("Agent off by 3.0 in X, 4.0 in Y", 5.0f, valuation5, DIFF);
         assertEquals("Agent off by 3.0 in X, 4.0 in Y - cross-check",
                 agentPosition.distance(goalPosition), valuation5, DIFF);

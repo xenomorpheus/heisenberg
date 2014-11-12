@@ -12,7 +12,6 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
-import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * A-Star Search & Uniform Cost Search.<br>
@@ -23,10 +22,12 @@ import au.net.hal9000.heisenberg.units.Position;
  */
 public class SearchAStar extends SearchBase {
     /** how close do points need to be to be considered already visited. */
-    private static final double DISTANCE_THRESHOLD = 0.1;
 
     /** estimated distance to goal. */
     private GoalEstFunction goalEstCostFunction = null;
+    
+    /** maximum fringe expansion. */
+    private int fringeExpansionMax = 0;
 
     /**
      * constructor - A-Star search.
@@ -56,6 +57,20 @@ public class SearchAStar extends SearchBase {
         super(successorFunction, modelStateEvaluator);
     }
 
+    // Setters and Getters.
+    public int getFringeExpansionMax() {
+        return fringeExpansionMax;
+    }
+
+    public void setFringeExpansionMax(int fringeExpansionMax) {
+        this.fringeExpansionMax = fringeExpansionMax;
+    }
+
+    public void setGoalEstCostFunction(GoalEstFunction goalEstCostFunction) {
+        this.goalEstCostFunction = goalEstCostFunction;
+    }
+
+    // Misc.
     /**
      * Return a list of actions to get from the current model state to reach the
      * goal model state.
@@ -68,28 +83,29 @@ public class SearchAStar extends SearchBase {
     @Override
     public final Path findPathToGoal(final ModelState modelState) {
 
-        Path resultPath;
+        Path resultPath = null;
+        int fringeExpansionCount = 0;
         /**
          * Remember the places we have already added to the fringe. <br>
          * This dramatically reduces the size of fringe.
          */
-        List<Position> fringeAdded = new ArrayList<>();
+        List<ModelState> fringeAdded = new ArrayList<>();
 
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
 
         fringe.add(new FringeElementImpl(modelState, new PathImpl(), 0f, 0));
-        fringeAdded.add(modelState.getAgentPosition());
+        fringeAdded.add(modelState);
 
         resultPath = null;
-        while (!fringe.isEmpty()) {
+        while (!fringe.isEmpty() && ((fringeExpansionMax == 0) || (fringeExpansionCount < fringeExpansionMax))) {
+            fringeExpansionCount++;
 
             FringeElement fringeElement = fringe.remove();
-            // TODO System.out.println("remove "+fringeElement );
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
             double costSoFar = fringeElement.getCostSoFar();
-
+            
             if (getModelStateEvaluator().isAtGoal(currentModelState)) {
                 resultPath = pathSoFar;
                 break;
@@ -102,25 +118,24 @@ public class SearchAStar extends SearchBase {
                 ModelState successorModelState = successor.getModelState();
                 
                 // Don't add state to the fringe more than once.
-                if (successorInFringeAdded(fringeAdded, successorModelState)) {
+                if (getModelStateEvaluator().modelStateInAdded(fringeAdded, successorModelState)) {
                     continue;
                 }
-                fringeAdded.add(successorModelState.getAgentPosition());
+                fringeAdded.add(successorModelState);
 
                 // Add a new fringe element, with the extra action and cost.
                 Path newPathSoFar = pathSoFar.duplicate();
                 newPathSoFar.add(successor.getAction());
                 double newCostSoFar = costSoFar + successor.getCost();
-                double distanceToGoalEst = 0;
+                double costToGoalEst = 0;
                 if ((goalEstCostFunction != null)
                         && (successorModelState instanceof ModelStateGoal)) {
-                    distanceToGoalEst = goalEstCostFunction
+                    costToGoalEst = goalEstCostFunction
                             .estimatedCostToGoal((ModelStateGoal) successorModelState);
                 }
                 FringeElement fringeElementNew = new FringeElementImpl(successorModelState,
                         newPathSoFar, newCostSoFar, newCostSoFar
-                        + distanceToGoalEst);
-                // TODO System.out.println("ADD "+fringeElementNew );
+                        + costToGoalEst);
                 fringe.add(fringeElementNew);
             }
 
@@ -128,34 +143,6 @@ public class SearchAStar extends SearchBase {
         return resultPath;
     }
 
-    /**
-     * Has the agent been to the list of visited places?
-     * 
-     * @param visited
-     *            list of places already visited.
-     * @param modelState
-     *            state of model.
-     * @return true IFF agent has visited this location.
-     */
-    private boolean successorInFringeAdded(List<Position> visited, ModelState modelState) {
 
-        // TODO make this code generic giving ModelState the
-        // concept of similar states (within tolerance)
-
-        Position agentPos = modelState.getAgentPosition();
-
-        // TODO distance must be less than movement.
-        double proximityThreshold = DISTANCE_THRESHOLD;
-
-        // Check if we have been here.
-        boolean hereBefore = false;
-        for (Position v : visited) {
-            if (agentPos.distance(v) <= proximityThreshold) {
-                hereBefore = true;
-                break;
-            }
-        }
-        return hereBefore;
-    }
 
 }

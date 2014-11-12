@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.scenario;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.geom.Line2D;
@@ -42,12 +43,13 @@ public class AiMovement {
      * This sub is used by tests. Straight line movement from start to goal.<br>
      * Try to simulate as much as possible an Entity seeking the goal.
      */
-    private void testAiMovementWithGoalBase(final int distanceTotal, final double stepSizeMax) {
+    private void testAiMovementWithGoalBase(final int distanceStraightLine,
+            final double stepSizeMax) {
 
         Entity agent = new Cat();
         final Position startPosition = new Position(0, 2);
         final Position goalPosition = new Position(0, startPosition.getY()
-                - distanceTotal);
+                - distanceStraightLine);
         agent.setPosition(new Position(startPosition));
 
         // Setup starting model state.
@@ -67,19 +69,22 @@ public class AiMovement {
 
             @Override
             public double estimatedCostToGoal(ModelStateGoal modelState) {
-                return modelStateEvaluator.evaluate(modelState);
+                return modelStateEvaluator.costToGoalEstimate(modelState);
             }
         };
 
         SearchAStar searchAStar = new SearchAStar(successorFunction,
                 modelStateEvaluator, goalEstCostFunction);
+        
+        searchAStar.setFringeExpansionMax(35);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
 
         // Tests
+        assertNotNull("path defined", path);
         assertEquals("path length",
-                (int) Math.ceil(distanceTotal / stepSizeMax), path.size());
+                (int) Math.ceil(distanceStraightLine / stepSizeMax), path.size());
 
         // Start at start model state.
         ModelState modelStateCurrent = modelStateStart.duplicate();
@@ -111,24 +116,25 @@ public class AiMovement {
      */
     @Test
     public void testAiMovementWithGoalTest1() {
-        final int distanceTotal = 4;
+        final int distanceStraightLine = 4;
         final double stepSizeMax = 1; // Max entity step size.
-        testAiMovementWithGoalBase(distanceTotal, stepSizeMax);
+        testAiMovementWithGoalBase(distanceStraightLine, stepSizeMax);
     }
 
     /**
      * Simple test.<br>
-     * Distance is a 4 units. Max 0.3 units per step. Last step is 0.1 units.<br>
+     * Distance is a 1 units. Max 0.3 units per step. Last step is 0.1 units.<br>
      * Straight line movement from start to goal.<br>
      * Try to simulate as much as possible an Entity seeking the goal.
      */
     @Test
     public void testAiMovementWithGoalTest2() {
-        final int distanceTotal = 4;
+        final int distanceStraightLine = 1;
         final double stepSizeMax = 0.3; // Max entity step size.
-        testAiMovementWithGoalBase(distanceTotal, stepSizeMax);
+        testAiMovementWithGoalBase(distanceStraightLine, stepSizeMax);
     }
-    
+
+
     /**
      * Try to simulate as much as possible an Entity looking at a wall and
      * trying to walk to avoid it.
@@ -138,8 +144,11 @@ public class AiMovement {
 
         final double stepSizeMax = 0.3; // Max entity step size.
         Entity agent = new Cat();
+
+        final int distanceStraightLine = 4;
         final Position startPosition = new Position(0, 2);
-        final Position goalPosition = new Position(0, -2);
+        final Position goalPosition = new Position(0, startPosition.getY()
+                - distanceStraightLine);
         agent.setPosition(new Position(startPosition));
 
         // Simulate the results after seeing a wall.
@@ -169,7 +178,7 @@ public class AiMovement {
 
             @Override
             public double estimatedCostToGoal(ModelStateGoal modelState) {
-                return modelStateEvaluator.evaluate(modelState);
+                return modelStateEvaluator.costToGoalEstimate(modelState);
             }
         };
 
@@ -180,6 +189,7 @@ public class AiMovement {
         Path path = searchAStar.findPathToGoal(modelStateStart);
 
         // Tests
+        assertNotNull("path defined", path);
         // Start at start model state.
         ModelState modelStateCurrent = modelStateStart.duplicate();
 
@@ -188,8 +198,8 @@ public class AiMovement {
             // No step greater than max step size.
             if (action instanceof ActionMove) {
                 ActionMove actionMove = (ActionMove) action;
-                assertTrue("assert each step size is within limits", actionMove.getPositionDelta()
-                        .length() <= (stepSizeMax * 1.0001));
+                assertTrue("assert each step size is within limits", actionMove
+                        .getPositionDelta().length() <= (stepSizeMax * 1.0001));
             }
 
             modelStateCurrent = transitionFunction.transition(
