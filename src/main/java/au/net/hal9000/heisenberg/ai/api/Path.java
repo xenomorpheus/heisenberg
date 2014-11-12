@@ -17,4 +17,9 @@ public interface Path extends Iterable<Action> {
      */
     Path duplicate();
 
+    /**
+     * @return number of actions in the path.
+     */
+    int size();
+
 }

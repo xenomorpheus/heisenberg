@@ -87,16 +87,13 @@ public class PathImpl implements Path, Cloneable {
         return true;
     }
 
-    /** 
-     * @see au.net.hal9000.heisenberg.ai.Path#size()
-     */
-    private int size() {
+    /** {@inheritDoc} */
+    @Override
+    public int size() {
         return actions.size();
     }
 
-    /** 
-     * @see au.net.hal9000.heisenberg.ai.Path#iterator()
-     */
+    /** {@inheritDoc} */
     @Override
     public Iterator<Action> iterator() {
         return actions.iterator();

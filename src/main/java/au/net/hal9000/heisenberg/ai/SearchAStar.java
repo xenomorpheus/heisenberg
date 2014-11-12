@@ -85,7 +85,7 @@ public class SearchAStar extends SearchBase {
         while (!fringe.isEmpty()) {
 
             FringeElement fringeElement = fringe.remove();
-            System.out.println("remove "+fringeElement );
+            // TODO System.out.println("remove "+fringeElement );
             ModelState currentModelState = fringeElement.getModelState();
             Path pathSoFar = fringeElement.getPathSoFar();
             double costSoFar = fringeElement.getCostSoFar();
@@ -120,7 +120,7 @@ public class SearchAStar extends SearchBase {
                 FringeElement fringeElementNew = new FringeElementImpl(successorModelState,
                         newPathSoFar, newCostSoFar, newCostSoFar
                         + distanceToGoalEst);
-                System.out.println("ADD "+fringeElementNew );
+                // TODO System.out.println("ADD "+fringeElementNew );
                 fringe.add(fringeElementNew);
             }
 

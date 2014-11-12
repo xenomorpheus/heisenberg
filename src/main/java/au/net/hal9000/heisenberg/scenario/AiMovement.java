@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.scenario;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.geom.Line2D;
@@ -35,18 +36,18 @@ import au.net.hal9000.heisenberg.units.Position;
  * @version $Revision: 1.0 $
  */
 public class AiMovement {
-    static final double stepSizeMax = 0.3; // Max entity step size.
     static final int successorCountMax = 4; // Max number of successors.
 
     /**
+     * This sub is used by tests. Straight line movement from start to goal.<br>
      * Try to simulate as much as possible an Entity seeking the goal.
      */
-    @Test
-    public void testAiMovementWithGoal() {
+    private void testAiMovementWithGoalBase(final int distanceTotal, final double stepSizeMax) {
 
         Entity agent = new Cat();
         final Position startPosition = new Position(0, 2);
-        final Position goalPosition = new Position(0, -2);
+        final Position goalPosition = new Position(0, startPosition.getY()
+                - distanceTotal);
         agent.setPosition(new Position(startPosition));
 
         // Setup starting model state.
@@ -62,9 +63,6 @@ public class AiMovement {
 
         // Setup how we evaluate the worth of a new model state.
         final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
-        
-        // TODO Should we change to total cost to goal, not remaining distance?
-        // We need to stop graph loops by deprioritising wasted effort to revisit states.
         GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
 
             @Override
@@ -80,6 +78,9 @@ public class AiMovement {
         Path path = searchAStar.findPathToGoal(modelStateStart);
 
         // Tests
+        assertEquals("path length",
+                (int) Math.ceil(distanceTotal / stepSizeMax), path.size());
+
         // Start at start model state.
         ModelState modelStateCurrent = modelStateStart.duplicate();
 
@@ -88,20 +89,46 @@ public class AiMovement {
             // No step greater than max step size.
             if (action instanceof ActionMove) {
                 ActionMove actionMove = (ActionMove) action;
-                assertTrue("valid distance", actionMove.getPositionDelta()
-                        .length() <= stepSizeMax);
+                assertTrue("assert each step size is within limits", actionMove
+                        .getPositionDelta().length() <= stepSizeMax);
             }
 
             modelStateCurrent = transitionFunction.transition(
                     modelStateCurrent, action);
         }
 
-        // Check that we ended at goal.
-        assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
+        assertTrue("assert path leads to goal", goalPosition.equals(
+                modelStateCurrent.getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));
 
     }
 
+    /**
+     * Very simple test.<br>
+     * Distance is 4 units, 4 steps of 1 unit each.<br>
+     * Straight line movement from start to goal.<br>
+     * Try to simulate as much as possible an Entity seeking the goal.
+     */
+    @Test
+    public void testAiMovementWithGoalTest1() {
+        final int distanceTotal = 4;
+        final double stepSizeMax = 1; // Max entity step size.
+        testAiMovementWithGoalBase(distanceTotal, stepSizeMax);
+    }
+
+    /**
+     * Simple test.<br>
+     * Distance is a 4 units. Max 0.3 units per step. Last step is 0.1 units.<br>
+     * Straight line movement from start to goal.<br>
+     * Try to simulate as much as possible an Entity seeking the goal.
+     */
+    @Test
+    public void testAiMovementWithGoalTest2() {
+        final int distanceTotal = 4;
+        final double stepSizeMax = 0.3; // Max entity step size.
+        testAiMovementWithGoalBase(distanceTotal, stepSizeMax);
+    }
+    
     /**
      * Try to simulate as much as possible an Entity looking at a wall and
      * trying to walk to avoid it.
@@ -109,6 +136,7 @@ public class AiMovement {
     @Test
     public void testAiMovementWithGoalMemorySet() {
 
+        final double stepSizeMax = 0.3; // Max entity step size.
         Entity agent = new Cat();
         final Position startPosition = new Position(0, 2);
         final Position goalPosition = new Position(0, -2);
@@ -124,8 +152,9 @@ public class AiMovement {
         agent.addMemory(memory);
 
         // Setup starting model state.
-        final ModelState modelStateStart = new ModelStateGoalMemorySet(new Position(
-                agent.getPosition()), new Position(goalPosition), new MemorySetImpl(agent.getMemorySet()));
+        final ModelState modelStateStart = new ModelStateGoalMemorySet(
+                new Position(agent.getPosition()), new Position(goalPosition),
+                new MemorySetImpl(agent.getMemorySet()));
 
         // Setup how to transition (move) to a new state.
         TransitionFunction transitionFunction = new TransitionFunctionImpl();
@@ -136,10 +165,6 @@ public class AiMovement {
 
         // Setup how we evaluate the worth of a new model state.
         final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
-
-        // TODO Should we change to total cost to goal, not remaining distance?
-        // We need to stop graph loops by deprioritising wasted effort to revisit states.
-        
         GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
 
             @Override
@@ -163,8 +188,8 @@ public class AiMovement {
             // No step greater than max step size.
             if (action instanceof ActionMove) {
                 ActionMove actionMove = (ActionMove) action;
-                assertTrue("valid distance", actionMove.getPositionDelta()
-                        .length() <= (stepSizeMax * 1.01));
+                assertTrue("assert each step size is within limits", actionMove.getPositionDelta()
+                        .length() <= (stepSizeMax * 1.0001));
             }
 
             modelStateCurrent = transitionFunction.transition(
@@ -173,7 +198,7 @@ public class AiMovement {
 
         // Check that we ended at goal.
         assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
-                Position.DEFAULT_AXIS_TOLERANCE));        
+                Position.DEFAULT_AXIS_TOLERANCE));
     }
 
 }
