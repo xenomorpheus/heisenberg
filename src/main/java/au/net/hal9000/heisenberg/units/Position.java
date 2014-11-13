@@ -189,21 +189,6 @@ public class Position {
     }
 
     /**
-     * Like equals, but supply a tolerance for comparing.
-     * 
-     * @param other
-     *            position to compare to.
-     * @param tolerance
-     *            error factor to allow when comparing.
-     * @return true iff equal.
-     */
-    public boolean equals(Position other, double tolerance) {
-        return (Math.abs(xPos - other.getX()) < tolerance)
-                && (Math.abs(yPos - other.getY()) < tolerance)
-                && (Math.abs(zPos - other.getZ()) < tolerance);
-    }
-
-    /**
      * Normalise a vector. Set length to 1 unit unless it has no length to start
      * with.
      */
@@ -241,16 +226,39 @@ public class Position {
         if (getClass() != obj.getClass())
             return false;
         Position other = (Position) obj;
-        if (Double.doubleToLongBits(xPos) != Double
-                .doubleToLongBits(other.getX()))
-            return false;
-        if (Double.doubleToLongBits(yPos) != Double
-                .doubleToLongBits(other.getY()))
-            return false;
-        if (Double.doubleToLongBits(zPos) != Double
-                .doubleToLongBits(other.getZ()))
+        if (equals(other))
             return false;
         return true;
+    }
+
+    /**
+     * Return true IFF each axis of the two positions are all within default
+     * tolerance.
+     * 
+     * @param other
+     *            position to compare to.
+     * @return true IFF each axis of the two positions are all within default
+     *         tolerance.
+     */
+    public boolean equals(Position other) {
+        return equals(other, DEFAULT_AXIS_TOLERANCE);
+    }
+
+    /**
+     * Return true IFF each axis of the two positions are all within the
+     * tolerance.
+     * 
+     * @param other
+     *            position to compare to.
+     * @param tolerance
+     *            error factor to allow when comparing.
+     * @return Return true IFF each axis of the two positions are all within the
+     *         tolerance.
+     */
+    public boolean equals(Position other, double tolerance) {
+        return (other != null) && (Math.abs(xPos - other.getX()) < tolerance)
+                && (Math.abs(yPos - other.getY()) < tolerance)
+                && (Math.abs(zPos - other.getZ()) < tolerance);
     }
 
     /**
@@ -310,7 +318,7 @@ public class Position {
      */
     @Override
     public String toString() {
-        return  String.format("[%.2f, %.2f, %.2f]", getX(),getY(),getZ());
+        return String.format("[%.2f, %.2f, %.2f]", getX(), getY(), getZ());
     }
 
 }

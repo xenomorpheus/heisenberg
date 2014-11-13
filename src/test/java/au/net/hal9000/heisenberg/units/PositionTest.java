@@ -101,10 +101,10 @@ public class PositionTest {
     }
 
     /**
-     * Test the equals that compares to within a supplied margin.
+     * Test the equals that compares to within a supplied tolerance.
      */
     @Test
-    public void testEqualsDouble() {
+    public void testEqualsPositionDouble() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
         assertTrue("equals", point.equals(point2));
@@ -132,23 +132,43 @@ public class PositionTest {
         assertFalse("false z",
                 point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
         point.setX(Z_TEST);
-        
+
     }
 
     /**
-     * test equals.
+     * Test the equals that compares to within the default tolerance.
      */
     @Test
     public void testEquals() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        Position other = new Position(X_TEST, Y_TEST, Z_TEST);
-        assertTrue(point.equals(other));
-        assertTrue(other.equals(point));
+        Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
+
+        // x
+        point.setX(X_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true x", point.equals(point2));
+        point.setX(X_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false x", point.equals(point2));
+        point.setX(X_TEST);
+        // y
+        point.setY(Y_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true y", point.equals(point2));
+        point.setY(Y_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false y", point.equals(point2));
+        point.setY(Y_TEST);
+        // z
+        point.setZ(Z_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertTrue("true z", point.equals(point2));
+        point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
+        assertFalse("false z", point.equals(point2));
+        point.setX(Z_TEST);
     }
 
     @Test
     public void testPositionDoubleDouble() {
-        fail("Not yet implemented");
+        Position point = new Position(X_TEST, Y_TEST);
+        assertEquals("X", X_TEST, point.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST, point.getY(), TEST_TOLERANCE);
+        assertEquals("Z", 0f, point.getZ(), TEST_TOLERANCE);
     }
 
     @Test
@@ -164,13 +184,28 @@ public class PositionTest {
 
     @Test
     public void testApplyDelta() {
-        fail("Not yet implemented");
+        double xOff = 1.1;
+        double yOff = 2.2;
+        double zOff = 3.3;
+        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
+        Position delta = new Position(xOff, yOff, zOff);
+        point.applyDelta(delta);
+        assertEquals("X", X_TEST + xOff, point.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST + yOff, point.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST + zOff, point.getZ(), TEST_TOLERANCE);
     }
 
     @Test
     public void testAdd() {
+        double xOff = 1.1;
+        double yOff = 2.2;
+        double zOff = 3.3;
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        Position delta = new Position(xOff, yOff, zOff);
+        Position total = point.add(delta);
+        assertEquals("X", X_TEST + xOff, total.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST + yOff, total.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST + zOff, total.getZ(), TEST_TOLERANCE);
     }
 
     @Test
@@ -183,8 +218,19 @@ public class PositionTest {
 
     @Test
     public void testDistance() {
+        double xOff = 1.1;
+        double yOff = 2.2;
+        double zOff = 3.3;
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        Position point2 = new Position(X_TEST + xOff, Y_TEST + yOff, Z_TEST
+                + zOff);
+        double distance = Math.sqrt(xOff * xOff + yOff * yOff + zOff * zOff);
+        // distance to same point should be zero
+        assertEquals(0f, point.distance(point), TEST_TOLERANCE);
+        assertEquals(0f, point2.distance(point2), TEST_TOLERANCE);
+        // distance between point and point2
+        assertEquals(distance, point.distance(point2), TEST_TOLERANCE);
+        assertEquals(distance, point2.distance(point), TEST_TOLERANCE);
     }
 
     @Test
@@ -193,30 +239,33 @@ public class PositionTest {
         double lengthOld = point.length();
         double factor = 1.23f; // Something strange
         point.vectorMul(factor);
-        assertEquals(factor* lengthOld, point.length(), TEST_TOLERANCE);
-    }
-
-    @Test
-    public void testEqualsPositionDouble() {
-        fail("Not yet implemented");
+        assertEquals(factor * lengthOld, point.length(), TEST_TOLERANCE);
     }
 
     @Test
     public void testNormalise() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
+        point.normalise();
         assertEquals(1, point.length(), TEST_TOLERANCE);
     }
 
     @Test
     public void testEqualsObject() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
+        assertTrue(point.equals(point2));
+        assertFalse(point.equals("foo"));
+        assertFalse(point.equals(null));
     }
 
     @Test
     public void testVectorMul() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        double factor = 3.3;
+        point.vectorMul(factor);
+        assertEquals("X", X_TEST * factor, point.getX(), TEST_TOLERANCE);
+        assertEquals("Y", Y_TEST * factor, point.getY(), TEST_TOLERANCE);
+        assertEquals("Z", Z_TEST * factor, point.getZ(), TEST_TOLERANCE);
     }
 
     @Test
