@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.scenario;
+package au.net.hal9000.heisenberg.ai;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -36,8 +36,9 @@ import au.net.hal9000.heisenberg.units.Position;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class AiMovement {
-    static final int successorCountMax = 4; // Max number of successors.
+public class SearchAStarTest {
+    /* Max number of successors. */
+    static final int successorCountMax = 4;
 
     /**
      * This sub is used by tests. Straight line movement from start to goal.<br>
@@ -76,7 +77,7 @@ public class AiMovement {
         SearchAStar searchAStar = new SearchAStar(successorFunction,
                 modelStateEvaluator, goalEstCostFunction);
         
-        searchAStar.setFringeExpansionMax(35);
+        searchAStar.setFringeExpansionMax(5);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
@@ -184,6 +185,7 @@ public class AiMovement {
 
         SearchAStar searchAStar = new SearchAStar(successorFunction,
                 modelStateEvaluator, goalEstCostFunction);
+        // TODO searchAStar.setFringeExpansionMax(5);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);

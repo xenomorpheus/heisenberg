@@ -18,6 +18,6 @@ public interface SuccessorFunction {
      * @param modelState
      *            current ModelState before performing an action.
     
-     * @return return a list of ModelState objects. */
+     * @return return a list of Successor objects. */
     Queue<Successor> generateSuccessors(ModelState modelState);
 }

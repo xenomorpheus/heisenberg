@@ -140,7 +140,7 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
                 }
             }
             if (legalMove) {
-                // Using length traveled as a crude value of cost.
+                // Using length travelled as a crude value of cost.
                 successors.add(new SuccessorImpl(modelStateNew, action,
                         agentStepSize));
             }
