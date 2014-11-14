@@ -58,16 +58,16 @@ public class ModelStateGoalMemorySet extends ModelStateGoal implements
     @Override
     public ModelState duplicate() {
         return new ModelStateGoalMemorySet(new Position(getAgentPosition()),
-                new Position(getGoalPosition()), new MemorySetImpl(getMemorySet()));
+                new Position(getGoalPosition()), new MemorySetImpl(
+                        getMemorySet()));
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
         // TODO string buffer
-        return "[agentPos=" + getAgentPosition() + ", goalPos="
-                + getGoalPosition() + ", memorySet=" + memorySet.toString()
-                + "]";
+        return getClass().getSimpleName() + "=[agent " + getAgentPosition()
+                + ", goal " + getGoalPosition() + ", " + memorySet + "]";
     }
 
     /** {@inheritDoc} */

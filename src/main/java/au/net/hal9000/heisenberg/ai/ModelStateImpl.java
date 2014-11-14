@@ -86,7 +86,7 @@ public class ModelStateImpl implements ModelState {
      */
     @Override
     public String toString() {
-        return "[agent=" + agentPosition + "]";
+        return getClass().getSimpleName()+"=[agent " + agentPosition + "]";
     }
 
 }

@@ -97,7 +97,7 @@ public class PositionTest {
     @Test
     public void testToString() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        assertEquals("[1.00, 2.00, 3.00]", point.toString());
+        assertEquals(point.getClass().getSimpleName()+"=[1.00, 2.00, 3.00]", point.toString());
     }
 
     /**

@@ -318,7 +318,7 @@ public class Position {
      */
     @Override
     public String toString() {
-        return String.format("[%.2f, %.2f, %.2f]", getX(), getY(), getZ());
+        return String.format(getClass().getSimpleName()+"=[%.2f, %.2f, %.2f]", getX(), getY(), getZ());
     }
 
 }

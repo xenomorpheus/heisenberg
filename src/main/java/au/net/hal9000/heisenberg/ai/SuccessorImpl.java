@@ -69,7 +69,7 @@ public class SuccessorImpl implements Successor {
      */
     @Override
     public String toString() {
-        return "[modelState=" + modelState + ", action=" + action + ", cost="
+        return getClass().getSimpleName()+"=[" + modelState + ", " + action + ", cost="
                 + cost + "]";
     }
 
