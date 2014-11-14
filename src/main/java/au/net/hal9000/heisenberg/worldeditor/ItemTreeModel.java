@@ -1,11 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import java.beans.PropertyChangeSupport;
-
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-
-import org.jdesktop.swingx.tree.TreeModelSupport;
 
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
@@ -22,12 +18,12 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     private Item root;
 
     /** Support for PropertyChange messaging. */
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    // TODO private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /**
      * instantiate the notification support
      */
-    private TreeModelSupport treeModelSupport;
+    // TODO private TreeModelSupport treeModelSupport;
 
     /**
      * Constructor for ItemTreeModel.
