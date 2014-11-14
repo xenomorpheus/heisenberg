@@ -12,19 +12,24 @@ import au.net.hal9000.heisenberg.units.Position;
 public final class ActionMoveImpl implements ActionMove {
 
     /** move agent North. */
-    public static final ActionMoveImpl NORTH = new ActionMoveImpl(new Position(0, -1));
+    public static final ActionMoveImpl NORTH = new ActionMoveImpl(new Position(
+            0, -1));
     /** move agent South. */
-    public static final ActionMoveImpl SOUTH = new ActionMoveImpl(new Position(0, 1));
+    public static final ActionMoveImpl SOUTH = new ActionMoveImpl(new Position(
+            0, 1));
     /** move agent East. */
-    public static final ActionMoveImpl EAST = new ActionMoveImpl(new Position(1, 0));
+    public static final ActionMoveImpl EAST = new ActionMoveImpl(new Position(
+            1, 0));
     /** move agent West. */
-    public static final ActionMoveImpl WEST = new ActionMoveImpl(new Position(-1, 0));
+    public static final ActionMoveImpl WEST = new ActionMoveImpl(new Position(
+            -1, 0));
 
     /** Amount of movement. */
-    private final Position delta;
+    private Position delta;
 
     /**
      * Constructor.
+     * 
      * @param delta
      *            movement amount.
      */
@@ -36,12 +41,19 @@ public final class ActionMoveImpl implements ActionMove {
 
     /**
      * {@inheritDoc}
-     * 
-     * @return the amount of movement.
      */
     @Override
     public Position getPositionDelta() {
         return delta;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPositionDelta(Position position) {
+        delta = position;
+
     }
 
     /**
@@ -96,7 +108,7 @@ public final class ActionMoveImpl implements ActionMove {
             if (null != other.delta) {
                 return false;
             }
-        } else if (!delta.equals(other.delta,0.0001)) {
+        } else if (!delta.equals(other.delta, 0.0001)) {
             return false;
         }
         return true;

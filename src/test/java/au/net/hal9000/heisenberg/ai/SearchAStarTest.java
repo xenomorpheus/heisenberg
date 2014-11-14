@@ -38,7 +38,7 @@ import au.net.hal9000.heisenberg.units.Position;
  */
 public class SearchAStarTest {
     /* Max number of successors. */
-    static final int successorCountMax = 4;
+    static final int successorCountMax = 8;
 
     /**
      * This sub is used by tests. Straight line movement from start to goal.<br>
@@ -77,7 +77,7 @@ public class SearchAStarTest {
         SearchAStar searchAStar = new SearchAStar(successorFunction,
                 modelStateEvaluator, goalEstCostFunction);
         
-        searchAStar.setFringeExpansionMax(5);
+        searchAStar.setFringeExpansionMax(15);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
@@ -185,7 +185,7 @@ public class SearchAStarTest {
 
         SearchAStar searchAStar = new SearchAStar(successorFunction,
                 modelStateEvaluator, goalEstCostFunction);
-        // TODO searchAStar.setFringeExpansionMax(5);
+        searchAStar.setFringeExpansionMax(219);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
