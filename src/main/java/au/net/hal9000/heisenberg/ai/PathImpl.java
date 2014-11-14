@@ -108,7 +108,7 @@ public class PathImpl implements Path, Cloneable {
     public String toString() {
         final int stringsPerAction = 3;
         StringBuilder string = new StringBuilder(actions.size() * stringsPerAction + 3);
-        string.append("path=[");
+        string.append(getClass().getSimpleName()+"=[");
         String join = "";
         for (Action action : actions) {
             string.append(join);

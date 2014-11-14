@@ -142,7 +142,7 @@ public class AiMovement {
     @Test
     public void testAiMovementWithGoalMemorySet() {
 
-        final double stepSizeMax = 0.3; // Max entity step size.
+        final double stepSizeMax = 1; // Max entity step size.
         Entity agent = new Cat();
 
         final int distanceStraightLine = 4;

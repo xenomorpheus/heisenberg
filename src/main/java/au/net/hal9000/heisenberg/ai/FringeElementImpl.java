@@ -78,10 +78,12 @@ public class FringeElementImpl implements FringeElement,
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.###");
-        return "FringeElementImpl=[costSoFar=" + df.format(costSoFar)
-                + ", estimatedTotalCost=" + df.format(estimatedTotalCost)
-                + ", ModelState=" + modelState + ", pathSoFar=" + pathSoFar
-                + "]";
+        StringBuilder string = new StringBuilder(11);
+        return string.append(getClass().getSimpleName()).append("=[costSoFar=")
+                .append(df.format(costSoFar)).append(", estimatedTotalCost=")
+                .append(df.format(estimatedTotalCost)).append(", ")
+                .append(modelState).append(", pathSoFar=").append(pathSoFar)
+                .append("]").toString();
     }
 
     /** {@inheritDoc} */

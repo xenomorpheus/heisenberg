@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
 import java.awt.geom.Line2D;
+import java.text.DecimalFormat;
 
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.units.Position;
@@ -61,4 +62,20 @@ public class BarrierLine implements Barrier {
         return blocker;
     }
 
+    /**
+     * Method toString.
+     * 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder(11);
+        DecimalFormat df = new DecimalFormat("#.###");
+        return string.append(getClass().getSimpleName()).append("=[ (")
+                .append(df.format(barrierLine.getX1())).append(",")
+                .append(df.format(barrierLine.getY1())).append(")=>(")
+                .append(df.format(barrierLine.getX2())).append(",")
+                .append(df.format(barrierLine.getY2())).append("), blocker ")
+                .append(blockerObject).append("]").toString();
+    }
 }

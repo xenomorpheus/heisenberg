@@ -37,4 +37,14 @@ public class MemoryOfBarrier extends MemoryImpl {
         return barrier;
     }
 
+    /**
+     * Method toString.
+     * 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder(11);
+        return string.append(getClass().getSimpleName()+"=[").append(barrier).append("]").toString();
+    }
 }
