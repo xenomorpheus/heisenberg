@@ -46,33 +46,34 @@ public class ScenarioSet01 {
     /**
      * Method swordIntoScabbard.
      * 
-    
-    
-    
-     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
+     * 
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             * @throws TooHeavyException * @throws TooLargeException
+     */
     @Test
-    public void swordIntoScabbard() throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void swordIntoScabbard() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A sword is placed in a scabbard.");
         Sword sword = new Sword();
         println("Sword created with name: " + sword);
         Scabbard scabbard = new Scabbard();
         println("Scabbard created with name: " + scabbard);
-        try {
-            scabbard.add(sword);
-            println("Sword now in scabbard.");
-        } catch (InvalidTypeException e) {
-            fail("Could not sheath the sword.");
-        }
+        scabbard.add(sword);
+        println("Sword now in scabbard.");
         println("Sword location: " + sword.getContainer());
     }
 
     /**
      * Method fullBackpackIntoBox.
      * 
-    
-    
-    
-     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
+     * 
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             * @throws TooHeavyException * @throws TooLargeException
+     */
     @Test
     public void fullBackpackIntoBox() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
@@ -128,12 +129,15 @@ public class ScenarioSet01 {
     /**
      * Method shieldAdd.
      * 
-    
-    
-    
-     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
+     * 
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             * @throws TooHeavyException * @throws TooLargeException
+     */
     @Test
-    public void shieldAdd() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void shieldAdd() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         println(System.lineSeparator() + "** A Shield is equipped.");
         Shield shield = new Shield();
         Human human = new Human();
@@ -145,12 +149,15 @@ public class ScenarioSet01 {
     /**
      * Method quiverIsFilled.
      * 
-    
-    
-    
-     * @throws InvalidTypeException * @throws TooHeavyException  * @throws TooLargeException  */
+     * 
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             * @throws TooHeavyException * @throws TooLargeException
+     */
     @Test
-    public void quiverIsFilled() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void quiverIsFilled() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         println(System.lineSeparator() + "** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");
@@ -188,8 +195,9 @@ public class ScenarioSet01 {
     /**
      * Method hobbitEatsACookie.
      * 
-    
-     * @throws InvalidTypeException */
+     * 
+     * @throws InvalidTypeException
+     */
     @Test
     public void hobbitEatsACookie() throws InvalidTypeException {
         println(System.lineSeparator() + "** A hobbit eats a cookie.");
