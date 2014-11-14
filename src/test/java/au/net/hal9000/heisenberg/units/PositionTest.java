@@ -271,19 +271,25 @@ public class PositionTest {
     @Test
     public void testRotateX() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        point.rotateX(Math.PI / 2);
+        Position expect = new Position(X_TEST, Z_TEST, -Y_TEST);
+        assertTrue(expect.equals(point));
     }
 
     @Test
     public void testRotateY() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        point.rotateY(Math.PI / 2);
+        Position expect = new Position(-Z_TEST, Y_TEST, X_TEST);
+        assertTrue(expect.equals(point));
     }
 
     @Test
     public void testRotateZ() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        fail("Not yet implemented");
+        point.rotateZ(Math.PI / 2);
+        Position expect = new Position(Y_TEST, -X_TEST, Z_TEST);
+        assertTrue(expect.equals(point));
     }
 
 }

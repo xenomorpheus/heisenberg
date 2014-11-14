@@ -38,8 +38,8 @@ public class ModelStateGoalTest {
         ModelStateGoal modelState = new ModelStateGoal(agentPosition,
                 initialGoalPosition);
         Position newGoalPosition = new Position(0, 1);
-        assertNotEquals("test integrity. Possitions must be different",
-                initialGoalPosition, newGoalPosition);
+        assertFalse("test integrity. Possitions must be different",
+                initialGoalPosition.equals(newGoalPosition));
         // Run test
         modelState.setGoalPosition(newGoalPosition);
         Position gotGoalPosition = modelState.getGoalPosition();

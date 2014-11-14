@@ -37,8 +37,8 @@ public class ModelStateImplTest {
         Position agentPositionInitial = new Position();
         ModelState modelState = new ModelStateImpl(agentPositionInitial);
         Position agentPositionNew = new Position(0, 1);
-        assertNotEquals("test integrity. Possitions must be different",
-                agentPositionInitial, agentPositionNew);
+        assertFalse("test integrity. Possitions must be different",
+                agentPositionInitial.equals(agentPositionNew));
         // Run test
         modelState.setAgentPosition(agentPositionNew);
         Position agentPositionGot = modelState.getAgentPosition();
