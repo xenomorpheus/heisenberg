@@ -1,0 +1,1 @@
+When class is changed the dice type don't change in the UI.
