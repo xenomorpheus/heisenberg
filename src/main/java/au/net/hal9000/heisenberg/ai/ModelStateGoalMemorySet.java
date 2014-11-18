@@ -34,18 +34,6 @@ public class ModelStateGoalMemorySet extends ModelStateGoal implements
         this.memorySet = memorySet;
     }
 
-    /**
-     * Constructor.
-     * 
-     * @param modelState
-     *            to copy.
-     */
-    public ModelStateGoalMemorySet(ModelStateGoalMemorySet modelState) {
-        this(new Position(modelState.getAgentPosition()), new Position(
-                modelState.getGoalPosition()), new MemorySetImpl(
-                modelState.getMemorySet()));
-    }
-
     // getters and setters
 
     public MemorySet getMemorySet() {
