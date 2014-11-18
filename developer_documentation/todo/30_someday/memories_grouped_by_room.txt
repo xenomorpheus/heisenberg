@@ -1,0 +1,3 @@
+Group memory by room, and potentially areas within rooms.
+
+This would allow quick location of memories.

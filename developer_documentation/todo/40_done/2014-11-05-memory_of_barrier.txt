@@ -1,6 +1,5 @@
 
 Notes for future development on Memory for Entity.
-Group memory by room, and potentially areas within rooms.
 
 
 Barrier Class
