@@ -1,16 +1,16 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.worldeditor.demo;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.worldeditor.RecipesTableTest;
 
-public class Main {
+public class RecipesTableMain {
+
     /**
-     * app to test the world editor.
      * 
      * @param args
-     *            not used
+     *            command line args, but not used.
      */
     public static void main(String[] args) {
 
@@ -20,12 +20,8 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    WorldEditor worldEditor = new WorldEditor();
-                    // Center
-                    worldEditor.setLocationRelativeTo(null);
-                    // Kill app
-                    worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    worldEditor.setVisible(true);
+                    RecipesTableTest recipesTableTest = new RecipesTableTest();
+                    recipesTableTest.doTest();
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
                 }
@@ -33,4 +29,5 @@ public class Main {
         });
 
     }
+
 }

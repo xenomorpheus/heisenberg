@@ -87,7 +87,7 @@ public final class Geometry {
      *            the first spoke to be returned.
      * @param spokeCount
      *            number of spokes.
-     * @return a list of points around the centre.
+     * @return a list of points around the center.
      */
     public static List<Position> generateSpokesZ(Position delta, int spokeCount) {
         List<Position> list = new ArrayList<>();

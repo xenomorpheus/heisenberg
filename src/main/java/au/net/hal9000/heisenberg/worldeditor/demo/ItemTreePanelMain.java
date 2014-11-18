@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.worldeditor.demo;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -10,6 +10,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 
 public class ItemTreePanelMain {
 
