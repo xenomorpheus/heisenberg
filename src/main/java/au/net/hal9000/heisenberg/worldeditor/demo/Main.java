@@ -26,6 +26,7 @@ public class Main {
                     worldEditor.setLocationRelativeTo(null);
                     // Kill app
                     worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    worldEditor.pack();
                     worldEditor.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

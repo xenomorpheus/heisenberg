@@ -70,6 +70,7 @@ public class RecipesTableTest {
 
         // add to JFrame
         guiFrame.add(basicPanel);
+        guiFrame.pack();
         guiFrame.setVisible(true);
 
     }

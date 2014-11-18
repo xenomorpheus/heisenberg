@@ -41,6 +41,7 @@ public class ItemTreePanelMain {
                     jFrame.setContentPane(itemTreePanel);
                     jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
                     jFrame.setLocationRelativeTo(null);
+                    jFrame.pack();
                     jFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     // TODO Auto-generated catch block

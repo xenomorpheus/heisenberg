@@ -44,6 +44,7 @@ public class SkillsTableMain {
 
                     // add to JFrame
                     guiFrame.add(skillsTable);
+                    guiFrame.pack();
                     guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
