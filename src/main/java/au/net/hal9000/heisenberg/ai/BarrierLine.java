@@ -72,10 +72,10 @@ public class BarrierLine implements Barrier {
         StringBuilder string = new StringBuilder(11);
         DecimalFormat df = new DecimalFormat("#.###");
         return string.append(getClass().getSimpleName()).append("=[ (")
-                .append(df.format(barrierLine.getX1())).append(",")
+                .append(df.format(barrierLine.getX1())).append(',')
                 .append(df.format(barrierLine.getY1())).append(")=>(")
-                .append(df.format(barrierLine.getX2())).append(",")
+                .append(df.format(barrierLine.getX2())).append(',')
                 .append(df.format(barrierLine.getY2())).append("), blocker ")
-                .append(blockerObject).append("]").toString();
+                .append(blockerObject).append(']').toString();
     }
 }

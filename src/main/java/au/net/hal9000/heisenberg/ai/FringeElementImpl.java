@@ -83,7 +83,7 @@ public class FringeElementImpl implements FringeElement,
                 .append(df.format(costSoFar)).append(", estimatedTotalCost=")
                 .append(df.format(estimatedTotalCost)).append(", ")
                 .append(modelState).append(", pathSoFar=").append(pathSoFar)
-                .append("]").toString();
+                .append(']').toString();
     }
 
     /** {@inheritDoc} */

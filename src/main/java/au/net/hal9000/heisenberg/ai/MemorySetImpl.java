@@ -109,7 +109,7 @@ public class MemorySetImpl implements MemorySet {
             stringB.append(join).append(memory);
             join = ", ";
         }
-        stringB.append("]");
+        stringB.append(']');
         return stringB.toString();
     }
 

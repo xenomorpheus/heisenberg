@@ -115,7 +115,7 @@ public class PathImpl implements Path, Cloneable {
             string.append(action.toString());
             join = ", ";
         }
-        string.append("]");
+        string.append(']');
         return string.toString();
     }
 

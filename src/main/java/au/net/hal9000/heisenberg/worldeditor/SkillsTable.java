@@ -30,7 +30,7 @@ public class SkillsTable extends JTable {
     /**
      * Constructor for SkillsTable.
      */
-    SkillsTable() {
+    public SkillsTable() {
         super();
     }
 

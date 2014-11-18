@@ -36,7 +36,7 @@ public class DescriptionPane extends JScrollPane {
     /**
      * Constructor for DescriptionPane.
      */
-    DescriptionPane() {
+    public DescriptionPane() {
         super();
 
         // Description Panel

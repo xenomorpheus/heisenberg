@@ -67,7 +67,7 @@ public final class ActionMoveImpl implements ActionMove {
         StringBuilder sb = new StringBuilder(3);
         sb.append("ActionMove=[delta=");
         sb.append(delta);
-        sb.append("]");
+        sb.append(']');
         return sb.toString();
     }
 

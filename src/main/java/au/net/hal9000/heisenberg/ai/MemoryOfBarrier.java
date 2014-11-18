@@ -45,6 +45,6 @@ public class MemoryOfBarrier extends MemoryImpl {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder(11);
-        return string.append(getClass().getSimpleName()+"=[").append(barrier).append("]").toString();
+        return string.append(getClass().getSimpleName()+"=[").append(barrier).append(']').toString();
     }
 }

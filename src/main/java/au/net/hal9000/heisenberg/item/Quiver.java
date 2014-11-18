@@ -48,27 +48,18 @@ public class Quiver extends ItemContainer {
     /**
      * Add arrows to the quiver.
      * 
-     * @param arrow
+     * @param item
      *            arrow Item to add to Quiver.
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public void add(final Arrow arrow) throws InvalidTypeException,
+    public void add(final Object item) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
-        super.add(arrow);
-    }
-
-    /**
-     * This method is required to override the parent class method.
-     * 
-     * 
-     * @param item
-     *            item to attempt (and fail) to add to quiver.
-     * @deprecated since <unknown>
-     */
-    @Override
-    public void add(final Item item) {
-        throw new IllegalArgumentException("Only Arrows accepted");
+        if (item instanceof Arrow) {
+            super.add((Arrow) item);
+        } else {
+            throw new InvalidTypeException("Only Arrows accepted");
+        }
     }
 }

@@ -9,16 +9,6 @@ import java.awt.geom.Point2D;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.ai.BarrierLine;
-import au.net.hal9000.heisenberg.ai.MemoryImpl;
-import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
-import au.net.hal9000.heisenberg.ai.MemorySetImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateGoal;
-import au.net.hal9000.heisenberg.ai.ModelStateGoalMemorySet;
-import au.net.hal9000.heisenberg.ai.SearchAStar;
-import au.net.hal9000.heisenberg.ai.SuccessorFunctionEntity;
-import au.net.hal9000.heisenberg.ai.TransitionFunctionImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
