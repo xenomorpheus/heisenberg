@@ -54,7 +54,7 @@ public class Quiver extends ItemContainer {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public void add(final Object item) throws InvalidTypeException,
+    public void add(final Item item) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         if (item instanceof Arrow) {
             super.add((Arrow) item);

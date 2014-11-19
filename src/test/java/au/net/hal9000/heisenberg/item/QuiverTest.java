@@ -37,10 +37,13 @@ public class QuiverTest {
 
     /**
      * Method quiverAddNonArrow.
+     * @throws InvalidTypeException 
+     * @throws TooLargeException 
+     * @throws TooHeavyException 
      */
     @SuppressWarnings("deprecation")
-    @Test(expected = RuntimeException.class)
-    public void quiverAddNonArrow() {
+    @Test(expected = InvalidTypeException.class)
+    public void quiverAddNonArrow() throws TooHeavyException, TooLargeException, InvalidTypeException {
         Quiver quiver = new Quiver();
         quiver.add(new Cookie());
     }

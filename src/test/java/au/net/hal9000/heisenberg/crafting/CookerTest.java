@@ -773,7 +773,7 @@ public class CookerTest {
      */
 
     @Test
-    public void TestCookItem1() throws InvalidTypeException, TooHeavyException,
+    public void testCookItem1() throws InvalidTypeException, TooHeavyException,
             TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
@@ -826,7 +826,7 @@ public class CookerTest {
      */
 
     @Test
-    public void TestCookItem1Catalyst() throws InvalidTypeException,
+    public void testCookItem1Catalyst() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
