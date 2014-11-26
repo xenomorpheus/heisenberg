@@ -34,12 +34,12 @@ public class WorldEditorTest {
     }
 
     /**
-     * Method testWorldEditor.
+     * test basic operations.
      * 
      * @throws ConfigurationError
      */
     @Test
-    public void testWorldEditor() throws ConfigurationError {
+    public void testBasicOperations() throws ConfigurationError {
         WorldEditor worldEditor = new WorldEditor();
         assertNotNull("Not null", worldEditor);
 

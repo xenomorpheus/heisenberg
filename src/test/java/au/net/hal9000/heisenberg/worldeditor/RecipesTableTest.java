@@ -25,15 +25,15 @@ public class RecipesTableTest {
     static final int FRAME_HEIGHT = 300;
 
     /**
+     * test basic operations.
      * 
-    
      * @throws ConfigurationError
-     *             if bad config. */
+     */
     @Test
-    public void testRecipesTable() throws ConfigurationError {
+    public void testBasicOperations() throws ConfigurationError {
         PcRace pc = DummyData.elf();
         RecipesTable basicPanel = new RecipesTable();
-        basicPanel.setItem(pc);
+        basicPanel.setPcRace(pc);
         assertNotNull("BasicPanel not null", basicPanel);
     }
 
@@ -48,10 +48,9 @@ public class RecipesTableTest {
     }
 
     /**
-     * 
-    
      * @throws ConfigurationError
-     *             if bad config. */
+     *             if bad config.
+     */
     public void doTest() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
@@ -62,15 +61,14 @@ public class RecipesTableTest {
         guiFrame.setTitle("Skills Table");
         guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-        // This will center the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-
         RecipesTable basicPanel = new RecipesTable();
-        basicPanel.setItem(pc);
+        basicPanel.setPcRace(pc);
 
         // add to JFrame
         guiFrame.add(basicPanel);
         guiFrame.pack();
+        // This will centre the JFrame in the middle of the screen
+        guiFrame.setLocationRelativeTo(null);
         guiFrame.setVisible(true);
 
     }

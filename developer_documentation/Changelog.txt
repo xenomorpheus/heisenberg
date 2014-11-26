@@ -1,3 +1,6 @@
+2014-11-26
+Fixed some bugs in the swing code of PC editor.
+
 2014-10-01
 AI work - A* class.
 

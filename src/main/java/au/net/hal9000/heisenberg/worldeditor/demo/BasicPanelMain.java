@@ -38,14 +38,14 @@ public class BasicPanelMain {
                     guiFrame.setTitle("Basic Panel");
                     guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-                    // This will center the JFrame in the middle of the screen
-                    guiFrame.setLocationRelativeTo(null);
-
                     BasicPanel basicPanel = new BasicPanel();
-                    basicPanel.setItem(pc);
+                    basicPanel.setPcRace(pc);
 
                     // add to JFrame
                     guiFrame.add(basicPanel);
+                    guiFrame.pack();
+                    // This will centre the JFrame in the middle of the screen
+                    guiFrame.setLocationRelativeTo(null);
                     guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

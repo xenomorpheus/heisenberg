@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -13,12 +15,14 @@ import au.net.hal9000.heisenberg.util.AbilityScore;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class AbilityScoresTable extends JTable {
+public class AbilityScoresTable extends JTable implements FocusListener {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
+
+    private MyTableModel myTableModel;
 
     /**
      * Constructor for AbilityScoresTable.
@@ -38,8 +42,20 @@ public class AbilityScoresTable extends JTable {
      *            changed by other tabs, and passing by pc allows a refresh of
      *            values.
      */
-    public void setItem(final PcRace pc) {
-        this.setModel(new MyTableModel(pc));
+    public void setPcRace(final PcRace pc) {
+        myTableModel = new MyTableModel(pc);
+        setModel(myTableModel);
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // PC's level may have changed so we need to refresh the values in the table
+        myTableModel.fireTableStructureChanged();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        // Nothing
     }
 
     /**
@@ -52,7 +68,7 @@ public class AbilityScoresTable extends JTable {
         private static final long serialVersionUID = 1L;
 
         /** column names. */
-        private String[] columnNames = {"Id", "Description" };
+        private String[] columnNames = { "Id", "Description" };
 
         /**
          * Field pcAbilityScores.
@@ -61,7 +77,9 @@ public class AbilityScoresTable extends JTable {
 
         /**
          * Constructor for MyTableModel.
-         * @param pc PcRace
+         * 
+         * @param pc
+         *            PcRace
          */
         private MyTableModel(PcRace pc) {
             Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
@@ -72,20 +90,25 @@ public class AbilityScoresTable extends JTable {
         }
 
         /**
-         * Method getColumnName.
-         * @param col int
-        
-        
-         * @return String * @see javax.swing.table.TableModel#getColumnName(int) */
+         * Get the column name.
+         * 
+         * @param col
+         *            column
+         * @return the column name
+         * @see javax.swing.table.TableModel#getColumnName(int)
+         */
+        @Override
         public String getColumnName(int col) {
             return columnNames[col];
         }
 
         /**
-         * Method getRowCount.
-        
-        
-         * @return int * @see javax.swing.table.TableModel#getRowCount() */
+         * get row count.
+         * 
+         * 
+         * @return int * @see javax.swing.table.TableModel#getRowCount()
+         */
+        @Override
         public int getRowCount() {
             int count = 0;
             if (null != pcAbilityScores) {
@@ -96,20 +119,28 @@ public class AbilityScoresTable extends JTable {
 
         /**
          * Method getColumnCount.
-        
-        
-         * @return int * @see javax.swing.table.TableModel#getColumnCount() */
+         * 
+         * 
+         * @return int * @see javax.swing.table.TableModel#getColumnCount()
+         */
+        @Override
         public int getColumnCount() {
             return 2;
         }
 
         /**
          * Method getValueAt.
-         * @param row int
-         * @param col int
-        
-        
-         * @return Object * @see javax.swing.table.TableModel#getValueAt(int, int) */
+         * 
+         * @param row
+         *            int
+         * @param col
+         *            int
+         * 
+         * 
+         * @return Object * @see javax.swing.table.TableModel#getValueAt(int,
+         *         int)
+         */
+        @Override
         public Object getValueAt(int row, int col) {
             AbilityScore abilityScore = pcAbilityScores.get(row);
             if (0 == col) {
@@ -121,22 +152,34 @@ public class AbilityScoresTable extends JTable {
 
         /**
          * Method isCellEditable.
-         * @param row int
-         * @param col int
-        
-        
-         * @return boolean * @see javax.swing.table.TableModel#isCellEditable(int, int) */
+         * 
+         * @param row
+         *            int
+         * @param col
+         *            int
+         * 
+         * 
+         * @return boolean * @see
+         *         javax.swing.table.TableModel#isCellEditable(int, int)
+         */
+        @Override
         public boolean isCellEditable(int row, int col) {
             return false;
         }
 
         /**
          * Method setValueAt.
-         * @param value Object
-         * @param row int
-         * @param col int
-        
-         * @see javax.swing.table.TableModel#setValueAt(Object, int, int) */
+         * 
+         * @param value
+         *            Object
+         * @param row
+         *            int
+         * @param col
+         *            int
+         * 
+         * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
+         */
+        @Override
         public void setValueAt(Object value, int row, int col) {
             // rowData[row][col] = value;
             fireTableCellUpdated(row, col);

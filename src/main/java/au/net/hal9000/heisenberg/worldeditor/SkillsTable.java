@@ -45,7 +45,7 @@ public class SkillsTable extends JTable {
      *            changed by other tabs, and passing by pc allows a refresh of
      *            values.
      */
-    public void setItem(final PcRace pc) {
+    public void setPcRace(final PcRace pc) {
         this.setModel(new MyTableModel(pc));
     }
 

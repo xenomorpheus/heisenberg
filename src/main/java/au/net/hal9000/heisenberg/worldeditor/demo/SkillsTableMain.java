@@ -40,7 +40,7 @@ public class SkillsTableMain {
                     guiFrame.setLocationRelativeTo(null);
 
                     SkillsTable skillsTable = new SkillsTable();
-                    skillsTable.setItem(pc);
+                    skillsTable.setPcRace(pc);
 
                     // add to JFrame
                     guiFrame.add(skillsTable);

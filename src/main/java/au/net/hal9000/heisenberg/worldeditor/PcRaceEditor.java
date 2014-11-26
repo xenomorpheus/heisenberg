@@ -103,11 +103,11 @@ public class PcRaceEditor extends JPanel {
      */
     public void setPcRace(PcRace pc) {
         pcRace = pc;
-        basicPanel.setItem(pc);
-        abilityScoresTable.setItem(pc);
-        skillsTable.setItem(pc);
-        recipesTable.setItem(pc);
-        descriptionPane.setItem(pc);
+        basicPanel.setPcRace(pc);
+        abilityScoresTable.setPcRace(pc);
+        skillsTable.setPcRace(pc);
+        recipesTable.setPcRace(pc);
+        descriptionPane.setPcRace(pc);
     }
 
 }

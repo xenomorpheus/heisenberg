@@ -16,15 +16,16 @@ import au.net.hal9000.heisenberg.util.DummyData;
 public class BasicPanelTest {
 
     /**
-     * Method doTest.
-    
-     * @throws ConfigurationError */
+     * test basic operations.
+     * 
+     * @throws ConfigurationError
+     */
     @Test
-    public void doTest() throws ConfigurationError {
+    public void testBasicOperations() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
         BasicPanel basicPanel = new BasicPanel();
         assertNotNull("not Null", basicPanel);
-        basicPanel.setItem(pc);
+        basicPanel.setPcRace(pc);
     }
 }

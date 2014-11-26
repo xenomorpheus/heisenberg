@@ -74,7 +74,7 @@ public class DescriptionPane extends JScrollPane {
      *            changed by other tabs, and passing by pc allows a refresh of
      *            values.
      */
-    public void setItem(final PcRace pc) {
+    public void setPcRace(final PcRace pc) {
         this.pc = pc;
         if (null == pc) {
             descriptionTextArea.setText("");

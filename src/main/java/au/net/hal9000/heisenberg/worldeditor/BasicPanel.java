@@ -133,7 +133,7 @@ public class BasicPanel extends JPanel {
         sizeComboBox.addItemListener(basicItemListener);
         genderComboBox.addItemListener(basicItemListener);
 
-        // Listen for changes to level
+        // Listen for changes to PC's level
         levelSpinner.addChangeListener(new ChangeListener() {
 
             public void stateChanged(ChangeEvent e) {
@@ -142,10 +142,6 @@ public class BasicPanel extends JPanel {
                     int newPcLevel = Integer
                             .parseInt(((SpinnerNumberModel) levelModel)
                                     .getValue().toString());
-                    // Don't call updateForm form as no basic attributes are
-                    // changed.
-                    // TODO abilities panel doens't update
-                    System.out.println("TODO abilities panel doens't update");
                     pc.setLevel(newPcLevel);
                 }
             }
@@ -164,7 +160,7 @@ public class BasicPanel extends JPanel {
      *            changed by other tabs, and passing by pc allows a refresh of
      *            values.
      */
-    public void setItem(final PcRace pc) {
+    public void setPcRace(final PcRace pc) {
         this.pc = pc;
         updateForm();
     }

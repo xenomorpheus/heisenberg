@@ -39,7 +39,7 @@ public class DescriptionPaneMain {
                     guiFrame.setLocationRelativeTo(null);
 
                     DescriptionPane window = new DescriptionPane();
-                    window.setItem(pc);
+                    window.setPcRace(pc);
                     
                     // add to JFrame
                     guiFrame.add(window);

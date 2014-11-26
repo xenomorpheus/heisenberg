@@ -41,7 +41,6 @@ public class QuiverTest {
      * @throws TooLargeException 
      * @throws TooHeavyException 
      */
-    @SuppressWarnings("deprecation")
     @Test(expected = InvalidTypeException.class)
     public void quiverAddNonArrow() throws TooHeavyException, TooLargeException, InvalidTypeException {
         Quiver quiver = new Quiver();

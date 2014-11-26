@@ -18,18 +18,18 @@ import au.net.hal9000.heisenberg.util.DummyData;
 public class SkillsTableTest {
 
     /**
-     * Method doTest.
+     * test basic operations.
      * 
      * @throws ConfigurationError
      */
     @Test
-    public void doTest() throws ConfigurationError {
+    public void testBasicOperations() throws ConfigurationError {
 
         PcRace pc = DummyData.elf();
 
         SkillsTable skillsTable = new SkillsTable();
         assertNotNull("not Null", skillsTable);
-        skillsTable.setItem(pc);
+        skillsTable.setPcRace(pc);
 
     }
 
