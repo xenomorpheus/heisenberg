@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 //Import log4j classes.
 import org.apache.log4j.Logger;
 
@@ -331,17 +329,12 @@ public class ItemContainer extends Item implements Serializable {
             float total = this.getContentsWeight();
             total += item.getWeight();
             if (total > weightMax) {
-                StringBuilder text = new StringBuilder();
-                text.append("TooHeavy - Adding ");
-                text.append(item.getName());
-                text.append(" weighing ");
-                text.append(item.getWeight());
-                text.append(" will total ");
-                text.append(total);
-                text.append(", which is too heavy for ");
-                text.append(this.getName());
-                text.append(", weightMax=");
-                text.append(weightMax);
+                StringBuilder text = new StringBuilder(11)
+                        .append("TooHeavy - Adding ").append(item.getName())
+                        .append(" weighing ").append(item.getWeight())
+                        .append(" will total ").append(total)
+                        .append(", which is too heavy for ").append(getName())
+                        .append(", weightMax=").append(weightMax);
                 throw new TooHeavyException(text.toString());
             }
         }
@@ -352,17 +345,12 @@ public class ItemContainer extends Item implements Serializable {
             float total = this.getContentsVolume();
             total += item.getVolume();
             if (total > volumeMax) {
-                StringBuilder text = new StringBuilder();
-                text.append("TooLarge - Adding ");
-                text.append(item.getName());
-                text.append(" weighing ");
-                text.append(item.getWeight());
-                text.append(" will total ");
-                text.append(total);
-                text.append(", which is too heavy for ");
-                text.append(this.getName());
-                text.append(", weightMax=");
-                text.append(weightMax);
+                StringBuilder text = new StringBuilder(11)
+                        .append("TooLarge - Adding ").append(item.getName())
+                        .append(" weighing ").append(item.getWeight())
+                        .append(" will total ").append(total)
+                        .append(", which is too heavy for ").append(getName())
+                        .append(", weightMax=").append(weightMax);
                 throw new TooLargeException(text.toString());
             }
         }
