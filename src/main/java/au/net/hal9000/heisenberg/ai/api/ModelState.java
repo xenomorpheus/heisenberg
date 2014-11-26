@@ -3,7 +3,9 @@ package au.net.hal9000.heisenberg.ai.api;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
- * A very simple model state. It holds agent position.
+ * A Model State is simplification of the real world holding only the relevant
+ * details to perform the search.<br>
+ * This is a very simple model state. It only holds the Agent position.
  * 
  * @author bruins
  * @version $Revision: 1.0 $

@@ -2,10 +2,8 @@ package au.net.hal9000.heisenberg.ai.api;
 
 import au.net.hal9000.heisenberg.units.Position;
 
-
 /**
  * Very simple actions - Agent movement only.
- * 
  * 
  * @author bruins
  * @version $Revision: 1.0 $
@@ -19,7 +17,8 @@ public interface ActionMove extends Action {
     Position getPositionDelta();
 
     /**
-     * @param position the amount of movement to set.
+     * @param position
+     *            the amount of movement to set.
      */
     void setPositionDelta(Position position);
 
