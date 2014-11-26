@@ -20,8 +20,8 @@ initial a1 based on time to die from lack of nourishment.
 
 Use RL to fine tune.
 
-Setup unit tests for sevaral situations to check reasonable values
-for overal health / happiness.
+Setup unit tests for several situations to check reasonable values
+for overall health / happiness.
 
 
 Entity Properties:

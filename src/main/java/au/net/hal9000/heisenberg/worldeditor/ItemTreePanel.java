@@ -62,7 +62,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      * @param location
      *            the location to display.
      */
-    public ItemTreePanel(Configuration config, Location location) {
+    public ItemTreePanel(Configuration config, final Location location) {
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane();
@@ -77,7 +77,6 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
 
         scrollpane.setViewportView(tree);
 
-
         // A JComboBox of Item types we can add
         List<String> classIds = config.getItemClassIds();
         String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
@@ -85,26 +84,30 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         addButtonPanel.add(itemClassesList);
 
         // The "Add" Button
-        JButton addButton = new JButton("Add");
+        final JButton addButton = new JButton("Add");
         // http://www.chka.de/swing/tree/DefaultTreeModel.html
 
         ActionListener buttonActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
 
-                // TODO get from event. How?
-                String eventName = event.getActionCommand();
-                if ("Add".equals(eventName)) {
+                Object source = event.getSource();
+                if (source == addButton) {
                     Object selNode = tree.getLastSelectedPathComponent();
                     if (selNode instanceof ItemContainer) {
                         ItemContainer selContainer = (ItemContainer) selNode;
-                        // Add the desired item.
-                        // A list of Items that could be added.
-
-                        // TODO get from event
+                        // Create an Item of the requested type.
                         String itemClass = itemClassesList.getSelectedItem()
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
+                        // Add the new Item to the selected container.
                         try {
+
+                            // TODO Bugfix the UI isn't being updated when new
+                            // Item objects added to container.
+                            // Is anything listening to the changes in the
+                            // container?
+                            // Perhaps the model?
+
                             selContainer.add(selContainer.getChildCount(),
                                     newNode);
                         } catch (TooHeavyException | TooLargeException e) {
@@ -159,15 +162,13 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      * 
      * @return a TreePath of nodes from root to the target node.
      */
-
     static TreePath getPathToRoot(Item node) {
         List<Item> itemList = new ArrayList<Item>();
         while ((null != node)) {
             itemList.add(node);
             node = node.getContainer();
         }
-        return new TreePath(
-                itemList.toArray(new Item[itemList.size()]));
+        return new TreePath(itemList.toArray(new Item[itemList.size()]));
     }
 
     /** {@inheritDoc} */
@@ -216,8 +217,8 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         // TODO Auto-generated method stub
         debug("propertyChange - Node Changed.");
     }
-    
-    private void debug(String string){
+
+    private void debug(String string) {
         System.out.println("DEBUG: " + string);
     }
 

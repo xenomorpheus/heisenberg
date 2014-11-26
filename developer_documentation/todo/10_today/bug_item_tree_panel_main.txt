@@ -1,4 +1,0 @@
-When items are added they aren't shown.
-  Are they really added or just an issue with the redraw?
-  
-  

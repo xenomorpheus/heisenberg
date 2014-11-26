@@ -1,4 +1,13 @@
 There looks to be problems in some cases when adding items to containers in tree view.
+
+Bug 1:
+No changes shown. Possibly JTree not being notified of change events.
+
+
+Bug 2:
+This is an old bug.  Verify once above bug is fixed.
+
+
 An attempt was made to add an item to location 3, when there were 0 items already in the container.
 Ideas:
 * Lots more testing.

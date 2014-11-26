@@ -40,8 +40,9 @@ public class ItemTreePanelMain {
                     JFrame jFrame = new JFrame("ItemTeePanel Test");
                     jFrame.setContentPane(itemTreePanel);
                     jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-                    jFrame.setLocationRelativeTo(null);
                     jFrame.pack();
+                    // Centre
+                    jFrame.setLocationRelativeTo(null);
                     jFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     // TODO Auto-generated catch block

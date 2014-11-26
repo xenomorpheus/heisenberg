@@ -67,7 +67,7 @@ public class WorldEditor extends JFrame {
         // Main Frame
         setSize(400, 600);
 
-        // This will center the JFrame in the middle of the screen
+        // This will centre the JFrame in the middle of the screen
         setLocationRelativeTo(null);
 
         setBounds(100, 100, 894, 634);
