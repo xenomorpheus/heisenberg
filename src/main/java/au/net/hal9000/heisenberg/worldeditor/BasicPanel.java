@@ -9,6 +9,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +19,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
@@ -137,11 +139,14 @@ public class BasicPanel extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 SpinnerModel levelModel = levelSpinner.getModel();
                 if (levelModel instanceof SpinnerNumberModel) {
-                    int pcLevel = Integer
+                    int newPcLevel = Integer
                             .parseInt(((SpinnerNumberModel) levelModel)
                                     .getValue().toString());
-                    pc.setLevel(pcLevel);
-                    updateForm();
+                    // Don't call updateForm form as no basic attributes are
+                    // changed.
+                    // TODO abilities panel doens't update
+                    System.out.println("TODO abilities panel doens't update");
+                    pc.setLevel(newPcLevel);
                 }
             }
         });
@@ -198,8 +203,11 @@ public class BasicPanel extends JPanel {
 
     /**
      * A row of the UI.
-     * @param gridBag the gridBag layout.
-     * @param cons cell constraints.
+     * 
+     * @param gridBag
+     *            the gridBag layout.
+     * @param cons
+     *            cell constraints.
      */
     private void row0(GridBagLayout gridBag, GridBagConstraints cons) {
         Collection<PcClass> pcClassesItr = config.getPcClasses().values();
@@ -250,8 +258,11 @@ public class BasicPanel extends JPanel {
 
     /**
      * A row of the UI.
-     * @param gridBag the gridBag layout.
-     * @param cons cell constraints.
+     * 
+     * @param gridBag
+     *            the gridBag layout.
+     * @param cons
+     *            cell constraints.
      */
     private void row1(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -302,8 +313,11 @@ public class BasicPanel extends JPanel {
 
     /**
      * A row of the UI.
-     * @param gridBag the gridBag layout.
-     * @param cons cell constraints.
+     * 
+     * @param gridBag
+     *            the gridBag layout.
+     * @param cons
+     *            cell constraints.
      */
     private void row2(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -383,8 +397,11 @@ public class BasicPanel extends JPanel {
 
     /**
      * A row of the UI.
-     * @param gridBag the gridBag layout.
-     * @param cons cell constraints.
+     * 
+     * @param gridBag
+     *            the gridBag layout.
+     * @param cons
+     *            cell constraints.
      */
     private void row3(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -467,8 +484,11 @@ public class BasicPanel extends JPanel {
 
     /**
      * A row of the UI.
-     * @param gridBag the gridBag layout.
-     * @param cons cell constraints.
+     * 
+     * @param gridBag
+     *            the gridBag layout.
+     * @param cons
+     *            cell constraints.
      */
     private void row4(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -535,9 +555,12 @@ public class BasicPanel extends JPanel {
 
         /**
          * Handle changes in text fields when user hits return.
-         * @param e ActionEvent
-        
-         * @see java.awt.event.ActionListener#actionPerformed(ActionEvent) */
+         * 
+         * @param e
+         *            ActionEvent
+         * 
+         * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == nameTextField) {
@@ -559,9 +582,12 @@ public class BasicPanel extends JPanel {
 
         /**
          * Method focusGained.
-         * @param arg0 FocusEvent
-        
-         * @see java.awt.event.FocusListener#focusGained(FocusEvent) */
+         * 
+         * @param arg0
+         *            FocusEvent
+         * 
+         * @see java.awt.event.FocusListener#focusGained(FocusEvent)
+         */
         @Override
         public void focusGained(FocusEvent arg0) {
             // No action
@@ -571,9 +597,12 @@ public class BasicPanel extends JPanel {
         /**
          * Handle changes in text fields. Changes are processed when field loses
          * focus. No need to updateForm as changes are already visible.
-         * @param e FocusEvent
-        
-         * @see java.awt.event.FocusListener#focusLost(FocusEvent) */
+         * 
+         * @param e
+         *            FocusEvent
+         * 
+         * @see java.awt.event.FocusListener#focusLost(FocusEvent)
+         */
         @Override
         public void focusLost(FocusEvent e) {
             Object component = e.getComponent();
@@ -588,32 +617,42 @@ public class BasicPanel extends JPanel {
         }
     }
 
-    /** Listens to multiple form elements. * @author bruins
+    /**
+     * Listens to multiple form elements. * @author bruins
+     * 
      * @author bruins
      */
     private class BasicItemListener implements ItemListener {
 
         /**
          * Method itemStateChanged.
-         * @param evt ItemEvent
-        
-         * @see java.awt.event.ItemListener#itemStateChanged(ItemEvent) */
+         * 
+         * @param evt
+         *            ItemEvent
+         * 
+         * @see java.awt.event.ItemListener#itemStateChanged(ItemEvent)
+         */
         @Override
         public void itemStateChanged(ItemEvent evt) {
+            boolean updateForm = false;
             Object source = evt.getSource();
             if (source instanceof JComboBox) {
-
                 if (evt.getStateChange() == ItemEvent.SELECTED) {
 
                     // Class
                     if (source == classComboBox) {
-                        PcClass pcClass = (PcClass)classComboBox.getSelectedItem();
-                        pc.setPcClass(pcClass);
+                        PcClass newPcClass = (PcClass) classComboBox
+                                .getSelectedItem();
+                        if (!newPcClass.equals(pc.getPcClass())) {
+                            pc.setPcClass(newPcClass);
+                            updateForm = true;
+                        }
                     }
 
                     // Size
                     else if (source == sizeComboBox) {
-                        String newSize = (String) sizeComboBox.getSelectedItem();
+                        String newSize = (String) sizeComboBox
+                                .getSelectedItem();
                         if (!newSize.equals(pc.getSize())) {
                             pc.setSize(newSize);
                         }
@@ -621,10 +660,17 @@ public class BasicPanel extends JPanel {
 
                     // Gender
                     else if (source == genderComboBox) {
-                        pc.setGender((String) genderComboBox.getSelectedItem());
+                        String newGender = (String) genderComboBox
+                                .getSelectedItem();
+                        if (!newGender.equals(pc.getGender())) {
+                            pc.setGender(newGender);
+                        }
                     }
 
                 }
+            }
+            if (updateForm) {
+                updateForm();
             }
         }
     }

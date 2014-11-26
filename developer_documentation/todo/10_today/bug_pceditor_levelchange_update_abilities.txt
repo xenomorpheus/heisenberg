@@ -1,0 +1,1 @@
+abilities panel not updated when level is changed.

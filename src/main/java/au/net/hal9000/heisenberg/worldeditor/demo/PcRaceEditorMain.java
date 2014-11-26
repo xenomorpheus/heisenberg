@@ -23,6 +23,7 @@ public class PcRaceEditorMain {
                     PcRaceEditor editor = new PcRaceEditor();
                     editor.setPcRace(pc);
                     JFrame window = new JFrame();
+                    window.setLocationRelativeTo(null); // Centre
                     window.add(editor);
                     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     window.pack();
