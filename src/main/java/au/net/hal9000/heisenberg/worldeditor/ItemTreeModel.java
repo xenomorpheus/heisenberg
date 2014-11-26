@@ -7,18 +7,20 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 
 /**
- * This class provides a model that allows JTree to traverse the contents of an
- * Item. Note to have contents the Item needs to be a subclass of ItemContainer.
+ * This class is an adapter that provides a model that for JTree to use to
+ * traverse the contents of an Item tree. Note to have contents the Item needs
+ * to be a subclass of ItemContainer.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  **/
 public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
-    /** We specify the root directory when we create the model. */
+    /** We specify the root node when we create the model. */
     private Item root;
 
     /** Support for PropertyChange messaging. */
-    // TODO private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    // TODO private final PropertyChangeSupport pcs = new
+    // PropertyChangeSupport(this);
 
     /**
      * instantiate the notification support
@@ -103,7 +105,7 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

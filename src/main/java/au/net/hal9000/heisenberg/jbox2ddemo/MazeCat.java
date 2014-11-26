@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ui;
+package au.net.hal9000.heisenberg.jbox2ddemo;
 
 import org.jbox2d.callbacks.RayCastCallback;
 import org.jbox2d.collision.shapes.ChainShape;

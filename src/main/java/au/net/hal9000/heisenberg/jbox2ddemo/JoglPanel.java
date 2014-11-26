@@ -21,7 +21,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
-package au.net.hal9000.heisenberg.ui;
+package au.net.hal9000.heisenberg.jbox2ddemo;
 
 import java.awt.Dimension;
 import java.awt.event.MouseWheelEvent;

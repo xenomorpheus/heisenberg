@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ui;
+package au.net.hal9000.heisenberg.jbox2ddemo;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
