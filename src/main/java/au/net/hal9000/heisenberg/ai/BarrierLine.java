@@ -42,7 +42,7 @@ public class BarrierLine implements Barrier {
      * Returns null if not blockedwon't block.<br>
      * 
      * @param movement
-     *            the path traveled between two points.
+     *            the path travelled between two points.
      * @return null or any details of a barrier.
      */
     @Override

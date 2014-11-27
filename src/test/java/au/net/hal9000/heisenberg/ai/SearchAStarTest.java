@@ -192,6 +192,8 @@ public class SearchAStarTest {
                 ActionMove actionMove = (ActionMove) action;
                 assertTrue("assert each step size is within limits", actionMove
                         .getPositionDelta().length() <= (stepSizeMax * 1.0001));
+
+                // TODO Did we walk through the barrier?
             }
 
             modelStateCurrent = transitionFunction.transition(
