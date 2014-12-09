@@ -63,7 +63,7 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         boolean isLeaf = true;
 
         if (node instanceof ItemContainer) {
-            isLeaf = true;
+            isLeaf = false;
         }
         // TODO System.out.println("isLeaf " + node + "= " + isLeaf);
         return isLeaf;
