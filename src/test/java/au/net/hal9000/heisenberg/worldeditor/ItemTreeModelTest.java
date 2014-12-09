@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 
 import org.junit.Test;
 
@@ -90,7 +91,17 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testValueForPathChanged() {
+    public void testValueForPathChanged() throws TooHeavyException,
+            TooLargeException, InvalidTypeException {
+        ItemContainer box = new Box();
+        Item cookie = new Cookie();
+        Item arrow = new Arrow();
+        box.add(cookie);
+        box.add(arrow);
+        TreeModel tm = new ItemTreeModel(box);
+        TreePath path = null; // TODO Get path from Root ?
+        Item newValue = null; // TODO New Item ?
+        tm.valueForPathChanged(path, newValue);
         fail("Not yet implemented");
     }
 

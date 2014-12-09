@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.worldeditor;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import org.apache.log4j.Logger;
+
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 
@@ -15,6 +17,11 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
  * @version $Revision: 1.0 $
  **/
 public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
+    /**
+     * Field LOGGER.
+     */
+    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
+            .getName());
     /** We specify the root node when we create the model. */
     private Item root;
 
@@ -46,7 +53,7 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
      */
     @Override
     public Object getRoot() {
-        // TODO System.out.println("getRoot " + root);
+        LOGGER.debug("getRoot " + root);
         return root;
     }
 
@@ -65,7 +72,7 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
         if (node instanceof ItemContainer) {
             isLeaf = false;
         }
-        // TODO System.out.println("isLeaf " + node + "= " + isLeaf);
+        LOGGER.debug("isLeaf " + node + "= " + isLeaf);
         return isLeaf;
     }
 
@@ -79,15 +86,16 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
      */
     @Override
     public int getChildCount(Object node) {
-        System.out.println("getChildCount " + node);
-        return ((ItemContainer) node).getChildCount();
+        int count = ((ItemContainer) node).getChildCount();
+        LOGGER.debug("getChildCount " + node + " is " + count);
+        return count;
     }
 
     /** {@inheritDoc} */
     @Override
     public Object getChild(Object parent, int index) {
         Item child = ((ItemContainer) parent).getChildAt(index);
-        System.out.println("getChild parent='" + parent + "', index=" + index
+        LOGGER.debug("getChild parent='" + parent + "', index=" + index
                 + ", child=" + child);
         return child;
     }
@@ -96,15 +104,15 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     @Override
     public int getIndexOfChild(Object parent, Object child) {
         int index = ((ItemContainer) parent).getIndexOfChild((Item) child);
-        System.out.println("getIndexOfChild " + parent + " " + child + "="
-                + index);
+        LOGGER.debug("getIndexOfChild " + parent + " " + child + "=" + index);
         return index;
     }
 
     /** {@inheritDoc} */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        // TODO Auto-generated method stub
+        // TODO The last element of the path must be updated with newValue (or just the properties?).
+        LOGGER.error("valueForPathChanged - not implemented");
 
     }
 
