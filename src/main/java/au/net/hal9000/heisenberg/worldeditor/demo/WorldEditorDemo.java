@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.worldeditor.WorldEditor;
+import au.net.hal9000.heisenberg.worldeditor.WorldEditorFrame;
 
-public class Main {
+public class WorldEditorDemo {
     /**
      * app to test the world editor.
      * 
@@ -21,7 +21,7 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    WorldEditor worldEditor = new WorldEditor();
+                    WorldEditorFrame worldEditor = new WorldEditorFrame();
                     // Kill app
                     worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     worldEditor.pack();

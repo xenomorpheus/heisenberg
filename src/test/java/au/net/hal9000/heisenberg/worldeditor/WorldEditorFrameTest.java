@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /**
  */
-public class WorldEditorTest {
+public class WorldEditorFrameTest {
 
     /**
      * Method testGetMenus.
@@ -29,7 +29,7 @@ public class WorldEditorTest {
             }
 
         };
-        JMenuBar jMenuBar = WorldEditor.getMenus(actionListener);
+        JMenuBar jMenuBar = WorldEditorFrame.getMenus(actionListener);
         assertNotNull("Not null", jMenuBar);
     }
 
@@ -40,7 +40,7 @@ public class WorldEditorTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
-        WorldEditor worldEditor = new WorldEditor();
+        WorldEditorFrame worldEditor = new WorldEditorFrame();
         assertNotNull("Not null", worldEditor);
 
     }

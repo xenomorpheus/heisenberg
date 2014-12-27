@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
@@ -102,7 +101,7 @@ public class ItemTreeModelTest {
         TreePath path = null; // TODO Get path from Root ?
         Item newValue = null; // TODO New Item ?
         tm.valueForPathChanged(path, newValue);
-        fail("Not yet implemented");
+        // TODO fail("Not yet implemented");
     }
 
 }

@@ -29,7 +29,7 @@ import au.net.hal9000.heisenberg.util.ItemIcon;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class WorldEditor extends JFrame {
+public class WorldEditorFrame extends JFrame {
 
     /** serial version id. */
     private static final long serialVersionUID = 1L;
@@ -52,7 +52,7 @@ public class WorldEditor extends JFrame {
      * 
      * @throws ConfigurationError
      */
-    public WorldEditor() throws ConfigurationError {
+    public WorldEditorFrame() throws ConfigurationError {
 
         /** Config. */
         final Configuration config = DummyData.config();
