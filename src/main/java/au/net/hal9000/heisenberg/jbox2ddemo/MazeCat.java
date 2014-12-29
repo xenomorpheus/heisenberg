@@ -15,10 +15,17 @@ import org.jbox2d.testbed.framework.TestbedSettings;
 import org.jbox2d.testbed.framework.TestbedTest;
 
 /**
+ * The start of a class to run in the JBox2D physics engine.<br>
+ * Currently must be run from within the JBox2D test bed frame.<br>
+ * TODO: <br>
+ * This class will eventually have a cat chase a mouse around walls.<br>
+ * The cat will us AI to plan the route.<br>
+ * The walls will be seen using a raycast for vision to see walls before hitting
+ * them.
  */
 public class MazeCat extends TestbedTest {
 
-    /** impule normally applied to make a cat move. */
+    /** impulse normally applied to make a cat move. */
     private static final float CAT_NORMAL_IMPULSE = 0.002f;
 
     /** Field CAT_TAG. (value is 100) */
@@ -40,7 +47,8 @@ public class MazeCat extends TestbedTest {
     private Body rat;
 
     /**
-     * Method step.
+     * Called by the JBox2D physics engine to allow the game objects to interact
+     * with the engine.
      * 
      * @param settings
      *            TestbedSettings
@@ -61,7 +69,7 @@ public class MazeCat extends TestbedTest {
     }
 
     /**
-     * Method initTest.
+     * Initial setup of the objects in the physics engine.
      * 
      * @param deserialized
      *            boolean
@@ -180,9 +188,7 @@ public class MazeCat extends TestbedTest {
     }
 
     /**
-     * Method getTestName.
-     * 
-     * @return String
+     * @return Return the name of this test.
      */
     @Override
     public String getTestName() {
@@ -190,9 +196,9 @@ public class MazeCat extends TestbedTest {
     }
 
     /**
-     * Method getDefaultCameraScale.
      * 
-     * @return float
+     * 
+     * @return Return the default camera scale.
      */
     @Override
     public float getDefaultCameraScale() {
@@ -200,11 +206,11 @@ public class MazeCat extends TestbedTest {
     }
 
     /**
-     * Method getTag.
+     * Return the numerical value for the supplied body.
      * 
      * @param body
-     *            Body
-     * @return Long
+     *            Body we want the numerical value for.
+     * @return numerical value
      * @see org.jbox2d.serialization.JbSerializer$ObjectSigner#getTag(Body)
      */
     @Override
@@ -322,7 +328,8 @@ public class MazeCat extends TestbedTest {
         }
 
         /**
-         * Method reportFixture.
+         * A callback for a raycast process. Method is called as the ray hits a
+         * fixture.
          * 
          * @param fixture
          *            Fixture

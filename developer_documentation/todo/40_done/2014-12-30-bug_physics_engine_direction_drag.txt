@@ -1,0 +1,12 @@
+This bug looks to be an incompatibility between the JBox2d JARs and the code running the JBox2d Test.
+
+Ensure the versions match of the JBox2D JARs and the Test framework.
+
+Key point:
+
+FORCE Y FLIP
+
+jbox2d-testbed-jogl/src/main/java/org/jbox2d/testbed/framework/jogl/JoglTestbedMain.java:     
+
+   new TestbedController(model, UpdateBehavior.UPDATE_IGNORED, MouseBehavior.FORCE_Y_FLIP,
+
