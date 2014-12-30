@@ -14,6 +14,8 @@ import org.jbox2d.dynamics.World;
 import org.jbox2d.testbed.framework.TestbedSettings;
 import org.jbox2d.testbed.framework.TestbedTest;
 
+import au.net.hal9000.heisenberg.util.FiringSolution;
+
 /**
  * The start of a class to run in the JBox2D physics engine.<br>
  * Currently must be run from within the JBox2D test bed frame.<br>
@@ -27,16 +29,15 @@ public class MazeCat extends TestbedTest {
 
     /** Perform vision update every Nth world step */
     private static final int CAT_VISION_RATE_BASE = 50;
-    // TODO change this to target speed and refactor
-    /** Impulse normally applied to make a cat move. */
+    /** Cat's speed. */
     private static final float CAT_NORMAL_SPEED = 1f;
-    /** Tag for Cat */
+    /** Cat's tag */
     private static final long CAT_TAG = 100L;
-    /** Tag for Rat */
+    /** Rat's tag */
     private static final long RAT_TAG = 101L;
-    /** Tag for Wall */
+    /** Other wall's tag */
     private static final long OUTER_WALL_TAG = 102L;
-    /** Tag for Barrier */
+    /** Barrier's tag */
     private static final long BARRIER_TAG = 103L;
     /** Cat world object. */
     private Body cat;
@@ -57,20 +58,30 @@ public class MazeCat extends TestbedTest {
 
         super.step(settings);
 
-        // Direct Cat Towards the Rat
-        // TODO head towards where Rat will be
-        Vec2 vel = rat.getPosition().sub(cat.getPosition());
-        if (vel.length() > CAT_NORMAL_SPEED) {
-            vel.normalize();
-            vel.mulLocal(CAT_NORMAL_SPEED);
-        }
-        cat.setLinearVelocity(vel);
-
         // TODO make use of vision
         if ((catVisionCounter++ % CAT_VISION_RATE_BASE) == 0) {
             // vision();
         }
-        
+
+        // If possible, Cat to intercept the Rat.
+        Vec2 catPos = cat.getPosition();
+        // Calculate an intercept point for Cat to target.
+        Vec2 catTarget = FiringSolution.calculate(catPos, rat.getPosition(),
+                rat.getLinearVelocity(), CAT_NORMAL_SPEED);
+
+        Vec2 catDirection = new Vec2();
+        // Null target means rat moving to quickly to intercept.
+        if (catTarget != null) {
+            // convert a target point into a direction.
+            catDirection = catTarget.sub(catPos);
+            // convert a direction into a velocity.
+            if (catDirection.length() > CAT_NORMAL_SPEED) {
+                catDirection.normalize();
+                catDirection.mulLocal(CAT_NORMAL_SPEED);
+            }
+        }
+        cat.setLinearVelocity(catDirection);
+
         // Centre the camera on the Cat
         setCamera(cat.getPosition());
     }
