@@ -25,25 +25,24 @@ import org.jbox2d.testbed.framework.TestbedTest;
  */
 public class MazeCat extends TestbedTest {
 
-    /** impulse normally applied to make a cat move. */
-    private static final float CAT_NORMAL_IMPULSE = 0.002f;
-
-    /** Field CAT_TAG. (value is 100) */
-
+    /** Perform vision update every Nth world step */
+    private static final int CAT_VISION_RATE_BASE = 50;
+    // TODO change this to target speed and refactor
+    /** Impulse normally applied to make a cat move. */
+    private static final float CAT_NORMAL_SPEED = 1f;
+    /** Tag for Cat */
     private static final long CAT_TAG = 100L;
-    /** Field RAT_TAG. (value is 101) */
+    /** Tag for Rat */
     private static final long RAT_TAG = 101L;
-
-    /** Field OUTER_WALL_TAG. (value is 102) */
+    /** Tag for Wall */
     private static final long OUTER_WALL_TAG = 102L;
-
-    /** Field BARRIER_TAG. (value is 103) */
+    /** Tag for Barrier */
     private static final long BARRIER_TAG = 103L;
-
-    /** Field cat. */
+    /** Cat world object. */
     private Body cat;
-
-    /** Field rat. */
+    /** Cat will do a vision update every Nth world step */
+    private int catVisionCounter = 0;
+    /** Rat world object. */
     private Body rat;
 
     /**
@@ -58,13 +57,21 @@ public class MazeCat extends TestbedTest {
 
         super.step(settings);
 
-        Vec2 impulse = rat.getPosition().sub(cat.getPosition());
-        if (impulse.length() > CAT_NORMAL_IMPULSE) {
-            impulse.normalize();
-            impulse.mulLocal(CAT_NORMAL_IMPULSE);
+        // Direct Cat Towards the Rat
+        // TODO head towards where Rat will be
+        Vec2 vel = rat.getPosition().sub(cat.getPosition());
+        if (vel.length() > CAT_NORMAL_SPEED) {
+            vel.normalize();
+            vel.mulLocal(CAT_NORMAL_SPEED);
         }
-        vision();
-        cat.applyLinearImpulse(impulse, cat.getPosition());
+        cat.setLinearVelocity(vel);
+
+        // TODO make use of vision
+        if ((catVisionCounter++ % CAT_VISION_RATE_BASE) == 0) {
+            // vision();
+        }
+        
+        // Centre the camera on the Cat
         setCamera(cat.getPosition());
     }
 
@@ -255,9 +262,8 @@ public class MazeCat extends TestbedTest {
         return true;
     }
 
-    // look for obstacles from Cat to Rat
     /**
-     * Method vision.
+     * Look for obstacles starting at Cat, ending at Rat.
      */
     private void vision() {
         RayCastMultipleCallback mcallback = new RayCastMultipleCallback();

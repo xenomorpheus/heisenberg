@@ -1,3 +1,8 @@
+
+2013-12-30
+Bugfix - JBox2D dragging objects was flipped in Y direction.
+Bugfix - Cat movement rate now sane. Was incorrectly moving by using impulses.
+
 2014-11-26
 Fixed some bugs in the swing code of PC editor.
 
