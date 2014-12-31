@@ -32,6 +32,8 @@ public class Main {
         model.addTest(new MazeCat());
         JFrame testbed = new TestbedFrame(model, panel,
                 UpdateBehavior.UPDATE_CALLED);
+        testbed.pack();
+        testbed.setLocationRelativeTo(null);
         testbed.setVisible(true);
         testbed.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
