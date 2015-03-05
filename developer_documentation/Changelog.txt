@@ -1,5 +1,9 @@
+2015-03-05
+A* now agnostic of implementation of AI classes.
+AI Interfaces cleaned up to be agnostic of implementation.
+Unit tests added from Grave - Grid and Graph test.
 
-2013-12-30
+2014-12-30
 Bugfix - JBox2D dragging objects was flipped in Y direction.
 Bugfix - Cat movement rate now sane. Was incorrectly moving by using impulses.
 In the JBox2D demo the can now calculates an intercept course.
