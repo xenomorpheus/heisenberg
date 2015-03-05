@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 
@@ -30,12 +31,12 @@ public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
      */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
-        if (!(action instanceof ActionMoveImpl)) {
+        if (!(action instanceof ActionMove)) {
             throw new IllegalArgumentException(
-                    "Expecting ActionMoveImpl but got "
+                    "Expecting ActionMove but got "
                             + action.getClass().getSimpleName());
         }
-        ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
+        ActionMove actionAgentMove = (ActionMove) action;
 
         if (!(modelState instanceof ModelStateAgentGoal)) {
             throw new IllegalArgumentException(
