@@ -12,7 +12,6 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
-import au.net.hal9000.heisenberg.ai.api.GoalEstFunction;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -23,10 +22,13 @@ import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
+ * 
+ * Testing A* Search in a grid based system using Position objects.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class SearchAStarTest {
+public class SearchAStarGridTest {
     /* Max number of successors. */
     static final int successorCountMax = 8;
 
@@ -44,30 +46,22 @@ public class SearchAStarTest {
         agent.setPosition(new Position(startPosition));
 
         // Setup starting model state.
-        final ModelState modelStateStart = new ModelStateGoal(new Position(
-                agent.getPosition()), new Position(goalPosition));
+        final ModelStateAgentGoal modelStateStart = new ModelStateAgentGoal(
+                new Position(agent.getPosition()), new Position(goalPosition));
 
         // Setup how to transition (move) to a new state.
-        TransitionFunction transitionFunction = new TransitionFunctionImpl();
+        TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
         // Setup how to generate new successor states.
         SuccessorFunction successorFunction = new SuccessorFunctionEntity(
                 transitionFunction, stepSizeMax, successorCountMax);
 
         // Setup how we evaluate the worth of a new model state.
-        final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
-        GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
-
-            @Override
-            public double estimatedCostToGoal(ModelStateGoal modelState) {
-                return modelStateEvaluator.costToGoalEstimate(modelState);
-            }
-        };
-
+        ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         SearchAStar searchAStar = new SearchAStar(successorFunction,
-                modelStateEvaluator, goalEstCostFunction);
-        
-        searchAStar.setFringeExpansionMax(15);
+                modelStateEvaluator);
+
+        searchAStar.setFringeExpansionMax(17);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
@@ -75,7 +69,8 @@ public class SearchAStarTest {
         // Tests
         assertNotNull("path defined", path);
         assertEquals("path length",
-                (int) Math.ceil(distanceStraightLine / stepSizeMax), path.size());
+                (int) Math.ceil(distanceStraightLine / stepSizeMax),
+                path.size());
 
         // Start at start model state.
         ModelState modelStateCurrent = modelStateStart.duplicate();
@@ -92,9 +87,10 @@ public class SearchAStarTest {
             modelStateCurrent = transitionFunction.transition(
                     modelStateCurrent, action);
         }
-
+        assertTrue("modelStateCurrent instanceof ModelStateAgentGoal",
+                modelStateCurrent instanceof ModelStateAgentGoal);
         assertTrue("assert path leads to goal", goalPosition.equals(
-                modelStateCurrent.getAgentPosition(),
+                ((ModelStateAgentGoal) modelStateCurrent).getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));
 
     }
@@ -125,7 +121,6 @@ public class SearchAStarTest {
         testAiMovementWithGoalBase(distanceStraightLine, stepSizeMax);
     }
 
-
     /**
      * Try to simulate as much as possible an Entity looking at a wall and
      * trying to walk to avoid it.
@@ -144,41 +139,34 @@ public class SearchAStarTest {
 
         // Simulate the results after seeing a wall.
         Object blocker = "this is the wall";
-        Point2D point1 = new Point2D.Double(-2, 0);
-        Point2D point2 = new Point2D.Double(2, 0);
+        Point2D point1 = new Point2D.Double(-2, 0.5);
+        Point2D point2 = new Point2D.Double(2, 0.5);
         Line2D line = new Line2D.Double(point1, point2);
         Barrier barrier = new BarrierLine(line, blocker);
         MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
         agent.addMemory(memory);
 
         // Setup starting model state.
-        final ModelState modelStateStart = new ModelStateGoalMemorySet(
+        final ModelStateAgentGoal modelStateStart = new ModelStateAgentGoalMemorySet(
                 new Position(agent.getPosition()), new Position(goalPosition),
                 new MemorySetImpl(agent.getMemorySet()));
 
         // Setup how to transition (move) to a new state.
-        TransitionFunction transitionFunction = new TransitionFunctionImpl();
+        TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
         // Setup how to generate new successor states.
         SuccessorFunction successorFunction = new SuccessorFunctionEntity(
                 transitionFunction, stepSizeMax, successorCountMax);
 
         // Setup how we evaluate the worth of a new model state.
-        final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorImpl();
-        GoalEstFunction goalEstCostFunction = new GoalEstFunction() {
-
-            @Override
-            public double estimatedCostToGoal(ModelStateGoal modelState) {
-                return modelStateEvaluator.costToGoalEstimate(modelState);
-            }
-        };
-
+        ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         SearchAStar searchAStar = new SearchAStar(successorFunction,
-                modelStateEvaluator, goalEstCostFunction);
-        searchAStar.setFringeExpansionMax(219);
+                modelStateEvaluator);
+        searchAStar.setFringeExpansionMax(519);
 
         // Generate path of actions.
         Path path = searchAStar.findPathToGoal(modelStateStart);
+        // System.out.println("FingeExpansionCount="+searchAStar.getFringeExpansionCount());
 
         // Tests
         assertNotNull("path defined", path);
@@ -201,8 +189,10 @@ public class SearchAStarTest {
         }
 
         // Check that we ended at goal.
-        assertTrue(goalPosition.equals(modelStateCurrent.getAgentPosition(),
+        assertTrue("modelStateCurrent instanceof ModelStateAgentGoal",
+                modelStateCurrent instanceof ModelStateAgentGoal);
+        assertTrue(goalPosition.equals(
+                ((ModelStateAgentGoal) modelStateCurrent).getAgentPosition(),
                 Position.DEFAULT_AXIS_TOLERANCE));
     }
-
 }

@@ -16,17 +16,6 @@ public interface Search {
     void setSuccessorFunction(SuccessorFunction successorFunction);
 
     /**
-     * @return the model state evaluator function.
-     */
-    ModelStateEvaluator getModelStateEvaluator();
-
-    /**
-     * @param modelStateEvaluator
-     *            the model state evaluator function.
-     */
-    void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator);
-
-    /**
      * Return a list of actions to get from the current model state to reach the
      * goal model state.
      * 
@@ -36,5 +25,17 @@ public interface Search {
      * @return list of actions.
      */
     Path findPathToGoal(ModelState modelState);
+
+    /**
+     * Get an object to evaluate cost from current ModelState to reach the Goal.
+     * @return model state evaluator object
+     */
+    ModelStateEvaluator getModelStateEvaluator();
+
+    /**
+     * Set an object to evaluate cost from current ModelState to reach the Goal.
+     * @param modelStateEvaluator
+     */
+    void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator);
 
 }

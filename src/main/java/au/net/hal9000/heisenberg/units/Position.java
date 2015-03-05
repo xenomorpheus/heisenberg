@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Position {
 
-    public static final double DEFAULT_AXIS_TOLERANCE = 0.00001;
+    public static final double DEFAULT_AXIS_TOLERANCE = 0.05;
     private double xPos;
     private double yPos;
     private double zPos;

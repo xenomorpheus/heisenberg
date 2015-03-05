@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.units.Position;
  * @version $Revision: 1.0 $
  */
 
-public class ModelStateGoalMemorySet extends ModelStateGoal implements
+public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
         ModelState {
 
     /** Memories. e.g. Walls */
@@ -25,7 +25,7 @@ public class ModelStateGoalMemorySet extends ModelStateGoal implements
      * @param memorySet
      *            memories e.g. walls.
      */
-    public ModelStateGoalMemorySet(Position agentPosition,
+    public ModelStateAgentGoalMemorySet(Position agentPosition,
             Position goalPosition, MemorySet memorySet) {
         super(agentPosition, goalPosition);
         if (null == memorySet) {
@@ -44,8 +44,9 @@ public class ModelStateGoalMemorySet extends ModelStateGoal implements
 
     /** {@inheritDoc} */
     @Override
-    public ModelState duplicate() {
-        return new ModelStateGoalMemorySet(new Position(getAgentPosition()),
+    public ModelStateAgentGoalMemorySet duplicate() {
+        // TODO for all duplicate() methods do something smarter with copying properties of super classes.
+        return new ModelStateAgentGoalMemorySet(new Position(getAgentPosition()),
                 new Position(getGoalPosition()), new MemorySetImpl(
                         getMemorySet()));
     }
@@ -77,7 +78,7 @@ public class ModelStateGoalMemorySet extends ModelStateGoal implements
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ModelStateGoalMemorySet other = (ModelStateGoalMemorySet) obj;
+        ModelStateAgentGoalMemorySet other = (ModelStateAgentGoalMemorySet) obj;
         if (memorySet == null) {
             if (other.memorySet != null)
                 return false;

@@ -6,25 +6,28 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
- * Test ModelStateGoal.
+ * Test ModelStateGoalMemorySet.
  * 
  * @author bruins
  * 
  * @version $Revision: 1.0 $
  */
-public class ModelStateGoalTest {
+public class ModelStateAgentGoalMemorySetTest {
 
+    // TODO add tests related to memory set
 
     /** test getGoalPosition. */
     @Test
     public void testGetGoalPosition() {
         Position agentPosition = new Position();
         Position goalPosition = new Position();
-        ModelStateGoal modelState = new ModelStateGoal(agentPosition,
-                goalPosition);
+        MemorySet memorySet = new MemorySetImpl();
+        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+                goalPosition,memorySet);
         Position goalPositionGot = modelState.getGoalPosition();
         assertEquals(goalPosition, goalPositionGot);
     }
@@ -34,8 +37,9 @@ public class ModelStateGoalTest {
     public void testSetGoalPosition() {
         Position agentPosition = new Position();
         Position initialGoalPosition = new Position();
-        ModelStateGoal modelState = new ModelStateGoal(agentPosition,
-                initialGoalPosition);
+        MemorySet memorySet = new MemorySetImpl();
+        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+                initialGoalPosition,memorySet);
         Position newGoalPosition = new Position(0, 1);
         assertFalse("test integrity. Possitions must be different",
                 initialGoalPosition.equals(newGoalPosition));
@@ -44,6 +48,7 @@ public class ModelStateGoalTest {
         Position gotGoalPosition = modelState.getGoalPosition();
         assertEquals("Position should be updated", newGoalPosition,
                 gotGoalPosition);
+        
     }
 
     /**
@@ -53,13 +58,14 @@ public class ModelStateGoalTest {
     public void testDuplicate() {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position(2, 1, 0);
-        ModelStateGoal modelState = new ModelStateGoal(agentPosition,
-                goalPosition);
+        MemorySet memorySet = new MemorySetImpl();
+        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+                goalPosition,memorySet);
         // ModelState
-        ModelStateGoal newModelState = (ModelStateGoal)modelState.duplicate();
-        assertFalse("ensure a new ModelStateGoal is created",
+        ModelStateAgentGoalMemorySet newModelState = (ModelStateAgentGoalMemorySet)modelState.duplicate();
+        assertFalse("ensure a new ModelStateGoalMemorySet is created",
                 modelState == newModelState);
-        assertTrue("ensure new ModelStateGoal equals() old",
+        assertTrue("ensure new ModelStateGoalMemorySet equals() old",
                 modelState.equals(newModelState));
 
         // goal
@@ -75,13 +81,14 @@ public class ModelStateGoalTest {
     public void testHashCode() {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position();
-        ModelStateGoal modelState = new ModelStateGoal(agentPosition,
-                goalPosition);
+        MemorySet memorySet = new MemorySetImpl();
+        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+                goalPosition,memorySet);
 
         Position agentPosition2 = new Position(0, 1, 2);
         Position goalPosition2 = new Position();
-        ModelStateGoal modelState2 = new ModelStateGoal(agentPosition2,
-                goalPosition2);
+        ModelStateAgentGoalMemorySet modelState2 = new ModelStateAgentGoalMemorySet(agentPosition2,
+                goalPosition2,memorySet);
         assertEquals(modelState.hashCode(), modelState2.hashCode());
 
     }

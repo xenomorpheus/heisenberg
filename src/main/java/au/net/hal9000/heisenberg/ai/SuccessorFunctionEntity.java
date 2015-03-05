@@ -67,30 +67,40 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
     }
 
     private List<Action> buildActions(ModelState modelState) {
-        Position agentPos = modelState.getAgentPosition();
         List<Action> actions = new ArrayList<>();
-        double agentStepSize = stepSize;
-        Position agentPositionDelta = new Position(0, agentStepSize);
+        Position agentPositionDelta = new Position(0, stepSize);
         List<Position> spokes;
 
-        // If we know where the goal is, then the have a possible action in that
+        if (stepSize < Position.DEFAULT_AXIS_TOLERANCE) {
+            throw new RuntimeException("Agent's default step size is below Position tollerance.");
+        }
+
+        // If we know where the goal is, then have a try an action in that
         // direction.
-        if (modelState instanceof ModelStateGoal) {
-            ModelStateGoal modelStateGoal = (ModelStateGoal) modelState;
-            Position goalPos = modelStateGoal.getGoalPosition();
+        if (modelState instanceof ModelStateAgentGoal) {
+            ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
+            Position agentPos = modelStateAgentGoal.getAgentPosition();
+            Position goalPos = modelStateAgentGoal.getGoalPosition();
             if (null != goalPos) {
                 agentPositionDelta = goalPos.subtract(agentPos);
-                agentStepSize = agentPositionDelta.length();
+                double goalDist = agentPositionDelta.length();
+                
                 // Limit step size to what agent can achieve
-                if (agentStepSize > stepSize) {
-                    agentStepSize = stepSize;
-                    agentPositionDelta.setVectorLength(stepSize);
+                if (goalDist > stepSize) {
+                    goalDist = stepSize;
+                    agentPositionDelta.setVectorLength(goalDist);
+                }
+                // This line is very important.  It is the short step at the end.
+                if (goalDist < stepSize) {
+                   actions.add(new ActionMoveImpl(new Position(agentPositionDelta)));
                 }
             }
         }
 
+
         // Add various movements to the list of actions.
         // Build a list of spokes from this Position.
+        agentPositionDelta.setVectorLength(stepSize);
         spokes = Geometry.generateSpokesZ(agentPositionDelta, directionCount);
         for (Position spoke : spokes) {
             actions.add(new ActionMoveImpl(spoke));
@@ -111,14 +121,18 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
      */
     @Override
     public Queue<Successor> generateSuccessors(ModelState modelState) {
+        if (!(modelState instanceof ModelStateAgentGoal)) {
+            throw new RuntimeException("Expecting ModelStateAgentGoal");
+        }
+        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
         Queue<Successor> successors = new LinkedList<>();
         List<Action> actions = buildActions(modelState);
-        Position agentPos = modelState.getAgentPosition();
+        Position agentPos = modelStateAgentGoal.getAgentPosition();
 
         // Get a list of Barriers from memorySet.
         List<Barrier> barriers = new ArrayList<>();
-        if (modelState instanceof ModelStateGoalMemorySet) {
-            ModelStateGoalMemorySet modelStateMemorySet = (ModelStateGoalMemorySet) modelState;
+        if (modelState instanceof ModelStateAgentGoalMemorySet) {
+            ModelStateAgentGoalMemorySet modelStateMemorySet = (ModelStateAgentGoalMemorySet) modelState;
             MemorySet memorySet = modelStateMemorySet.getMemorySet();
             for (Memory memory : memorySet) {
                 if (memory instanceof MemoryOfBarrier) {
@@ -129,10 +143,13 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
 
         // For any actions, plan if likely valid action.
         // E.g. not walk into a barrier.
-        for (Action action : actions) {
+        ActionLoop: for (Action action : actions) {
             ModelState modelStateNew = transitionFunction.transition(
                     modelState, action);
-            boolean legalMove = true;
+            if (!(modelStateNew instanceof ModelStateAgentGoal)) {
+                throw new RuntimeException("Expecting ModelStateAgentGoal");
+            }
+            ModelStateAgentGoal modelStateAgentGoalNew = (ModelStateAgentGoal) modelStateNew;
             /* Using length travelled as a crude value of cost. */
             double actionCost = stepSize;
 
@@ -140,7 +157,9 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
                 ActionMove actionMove = (ActionMove) action;
                 // Plan if action is a legal move at this ModelState.
                 // Use memories of blockers.
-                Position agentPosNew = modelStateNew.getAgentPosition();
+                Position agentPosNew = modelStateAgentGoalNew
+                        .getAgentPosition();
+
                 for (Barrier barrier : barriers) {
                     // Plan if we are blocked by this barrier.
                     // Movement from old agent position to new agent position.
@@ -153,25 +172,25 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
                     if (null != pathBlockDetails) {
                         Position movementPartial = pathBlockDetails
                                 .getBlockingPoint().subtract(agentPos);
+
                         // movement trimmed to just before block.
                         movementPartial.vectorMul(0.98);
-                        // If we can achieve some distance, do so.
-                        if (movementPartial.length() > Position.DEFAULT_AXIS_TOLERANCE) {
-                            actionCost = movementPartial.length();
-                            actionMove.setPositionDelta(new Position(
-                                    movementPartial));
-                            modelStateNew.setAgentPosition(agentPos
-                                    .add(movementPartial));
-                        } else {
-                            legalMove = false;
+
+                        // If movement too small, ignore this Action.
+                        if (movementPartial.length() < Position.DEFAULT_AXIS_TOLERANCE) {
+                            continue ActionLoop;
                         }
-                        break;
+                        actionCost = movementPartial.length();
+                        actionMove.setPositionDelta(new Position(
+                                movementPartial));
+                        
+                        modelStateAgentGoalNew.setAgentPosition(agentPos
+                                .add(movementPartial));
                     }
                 }
             }
-            if (legalMove) {
-                successors.add(new SuccessorImpl(modelStateNew, action, actionCost));
-            }
+            successors
+                    .add(new SuccessorImpl(modelStateNew, action, actionCost));
         }
         return successors;
     }

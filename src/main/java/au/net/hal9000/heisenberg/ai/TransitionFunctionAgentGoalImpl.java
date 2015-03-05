@@ -8,12 +8,12 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class TransitionFunctionImpl implements TransitionFunction {
+public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
 
     /**
      * Constructor.
      */
-    public TransitionFunctionImpl() {
+    public TransitionFunctionAgentGoalImpl() {
         super();
     }
 
@@ -36,8 +36,16 @@ public class TransitionFunctionImpl implements TransitionFunction {
                             + action.getClass().getSimpleName());
         }
         ActionMoveImpl actionAgentMove = (ActionMoveImpl) action;
+
+        if (!(modelState instanceof ModelStateAgentGoal)) {
+            throw new IllegalArgumentException(
+                    "Expecting ModelStateAgentGoal but got "
+                            + modelState.getClass().getSimpleName());
+        }
+        
+        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal)modelState;
         // Clone the ModelState
-        ModelState newModelState = modelState.duplicate();
+        ModelStateAgentGoal newModelState = modelStateAgentGoal.duplicate();
 
         // Apply the action
         newModelState.agentPositionChange(actionAgentMove.getPositionDelta());

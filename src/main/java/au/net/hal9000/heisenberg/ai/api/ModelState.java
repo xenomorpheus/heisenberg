@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * A Model State is simplification of the real world holding only the relevant
@@ -13,29 +12,17 @@ import au.net.hal9000.heisenberg.units.Position;
 
 public interface ModelState {
 
-    // Getters and Setters
     /**
-     * 
-     * @return get agent position.
-     */
-    Position getAgentPosition();
-
-    /**
-     * @param position
-     *            set agent position.
-     */
-    void setAgentPosition(Position position);
-
-    // Misc
-    /**
-     * @param delta
-     *            alter agent position.
-     */
-    void agentPositionChange(Position delta);
-
-    /**
-     * Similar to clone, but now exceptions.
+     * Similar to clone, but no exceptions.
      */
     ModelState duplicate();
+    
+    /**
+     * Method toString.
+     * 
+     * @return String
+     */
+    @Override
+    public String toString();
 
 }
