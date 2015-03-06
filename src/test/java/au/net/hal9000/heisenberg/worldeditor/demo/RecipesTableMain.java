@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.worldeditor.demo;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.worldeditor.RecipesTableTest;
+import au.net.hal9000.heisenberg.util.RecipesTableTest;
 
 public class RecipesTableMain {
 

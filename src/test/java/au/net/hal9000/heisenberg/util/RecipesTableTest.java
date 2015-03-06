@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -10,6 +10,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.worldeditor.RecipesTable;
 
 /**
  * Unit tests for RecipesTable.

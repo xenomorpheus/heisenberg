@@ -24,7 +24,7 @@ public class RecipesTable extends JTable {
     private static final String[] COLUMN_NAMES = { "Id", "Description" };
 
     /** Constructor. */
-    RecipesTable() {
+    public RecipesTable() {
         super();
     }
 
