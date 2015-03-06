@@ -12,11 +12,6 @@ import au.net.hal9000.heisenberg.units.Position;
 
 public class ModelStateAgentGoal implements ModelState {
 
-    /**
-     * Field GOAL_TOLERANCE. (value is 0.01)
-     */
-    public static final double GOAL_TOLERANCE = 0.05;
-
     /** The agent moving to goal. */
     private Position agentPosition;
 
@@ -31,7 +26,7 @@ public class ModelStateAgentGoal implements ModelState {
      * @param goalPosition
      *            goal position.
      */
-    public ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
+    ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
         super();
         if (null == agentPosition) {
             throw new IllegalArgumentException("agentPosition may not be null");

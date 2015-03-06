@@ -6,18 +6,18 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Position;
 
-public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
+class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
 
     /** error. */
-    final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
+    private final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
     /** error. */
-    final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
+    private final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
 
     /**
      * Field GOAL_TOLERANCE.
      */
     // Don't change this. isAtGoal uses Position.equals()
-    public static final double GOAL_TOLERANCE = Position.DEFAULT_AXIS_TOLERANCE;
+    static final double GOAL_TOLERANCE = Position.DEFAULT_AXIS_TOLERANCE;
 
     /** {@inheritDoc} */
     public ModelStateEvaluatorAgentGoal() {

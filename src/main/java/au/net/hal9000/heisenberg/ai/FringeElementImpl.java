@@ -18,7 +18,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * @version $Revision: 1.0 $
  */
 
-public class FringeElementImpl implements FringeElement,
+class FringeElementImpl implements FringeElement,
         Comparable<FringeElementImpl> {
     /** the state of the model at this fringe element. */
     private ModelState modelState;
@@ -42,7 +42,7 @@ public class FringeElementImpl implements FringeElement,
      *            the estimated total cost of following the path then on to the
      *            goal.
      */
-    public FringeElementImpl(ModelState modelState, Path pathSoFar,
+    FringeElementImpl(ModelState modelState, Path pathSoFar,
             double costSoFar, double estimatedTotalCost) {
         this.modelState = modelState;
         this.pathSoFar = pathSoFar;

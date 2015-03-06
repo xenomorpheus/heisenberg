@@ -19,7 +19,7 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class SearchAStar extends SearchBase {
+class SearchAStar extends SearchBase {
     /** maximum fringe expansion. */
     private int fringeExpansionMax = 0;
     private int fringeExpansionCount = 0;
@@ -32,7 +32,7 @@ public class SearchAStar extends SearchBase {
      * @param modelStateEvaluator
      *            the model state evaluator.
      */
-    public SearchAStar(final SuccessorFunction successorFunction,
+    SearchAStar(final SuccessorFunction successorFunction,
             final ModelStateEvaluator modelStateEvaluator) {
         super(successorFunction, modelStateEvaluator);
     }

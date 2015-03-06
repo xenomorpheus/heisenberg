@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.item;
 
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -6,6 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
+import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
+import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
+import au.net.hal9000.heisenberg.ai.PathBlockDetails;
+import au.net.hal9000.heisenberg.ai.SuccessorImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
@@ -30,7 +36,7 @@ import au.net.hal9000.heisenberg.util.Geometry;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public final class SuccessorFunctionEntity implements SuccessorFunction {
+public final class EntitySuccessorFunction implements SuccessorFunction {
 
     /** A Transition Function allows movement from one model state to another. */
     private TransitionFunction transitionFunction;
@@ -45,7 +51,7 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
      * @param transitionFunction
      *            a Transition Function.
      */
-    public SuccessorFunctionEntity(TransitionFunction transitionFunction) {
+    public EntitySuccessorFunction(TransitionFunction transitionFunction) {
         this.transitionFunction = transitionFunction;
     }
 
@@ -59,7 +65,7 @@ public final class SuccessorFunctionEntity implements SuccessorFunction {
      * @param directionCount
      *            maximum directions to consider from any one state.
      */
-    public SuccessorFunctionEntity(TransitionFunction transitionFunction,
+    public EntitySuccessorFunction(TransitionFunction transitionFunction,
             double stepSize, int directionCount) {
         this.transitionFunction = transitionFunction;
         this.stepSize = stepSize;

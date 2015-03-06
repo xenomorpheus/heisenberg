@@ -19,6 +19,7 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.EntitySuccessorFunction;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
@@ -53,7 +54,7 @@ public class SearchAStarGridTest {
         TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
         // Setup how to generate new successor states.
-        SuccessorFunction successorFunction = new SuccessorFunctionEntity(
+        SuccessorFunction successorFunction = new EntitySuccessorFunction(
                 transitionFunction, stepSizeMax, successorCountMax);
 
         // Setup how we evaluate the worth of a new model state.
@@ -155,7 +156,7 @@ public class SearchAStarGridTest {
         TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
         // Setup how to generate new successor states.
-        SuccessorFunction successorFunction = new SuccessorFunctionEntity(
+        SuccessorFunction successorFunction = new EntitySuccessorFunction(
                 transitionFunction, stepSizeMax, successorCountMax);
 
         // Setup how we evaluate the worth of a new model state.

@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
  * @version $Revision: 1.0 $
  * @author bruins
  */
-public class PathImpl implements Path {
+class PathImpl implements Path {
 
     /** a list of actions. */
     private List<Action> actions = new ArrayList<Action>();

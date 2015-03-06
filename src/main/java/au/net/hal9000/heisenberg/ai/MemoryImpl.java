@@ -26,7 +26,7 @@ public abstract class MemoryImpl implements Memory {
      * @param createdDate
      *            date memory created.
      */
-    MemoryImpl(Date createdDate) {
+    private MemoryImpl(Date createdDate) {
         super();
         this.createdDate = createdDate;
     }

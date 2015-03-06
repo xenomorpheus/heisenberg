@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 public class MemorySetImpl implements MemorySet {
 
     /** A collection of Memory objects. */
-    List<Memory> memorySet = new ArrayList<Memory>();
+    private List<Memory> memorySet = new ArrayList<Memory>();
 
     /** Constructor. */
     public MemorySetImpl() {
@@ -25,7 +25,7 @@ public class MemorySetImpl implements MemorySet {
     }
 
     /** Constructor. Similar to clone */
-    public MemorySetImpl(MemorySet memorySet) {
+    MemorySetImpl(MemorySet memorySet) {
         super();
         if (null == memorySet) {
             setMemorySet(null);
