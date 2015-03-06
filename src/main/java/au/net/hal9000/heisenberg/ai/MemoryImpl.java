@@ -22,14 +22,6 @@ public abstract class MemoryImpl implements Memory {
 
     /**
      * Constructor.
-     */
-    MemoryImpl() {
-        super();
-        createdDate = new Date();
-    }
-
-    /**
-     * Constructor.
      * 
      * @param createdDate
      *            date memory created.
@@ -64,4 +56,16 @@ public abstract class MemoryImpl implements Memory {
         return decayRate;
     }
 
+    /**
+     * Method toString.
+     * 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder(7);
+        return string.append(getClass().getSimpleName()).append("=[")
+                .append(createdDate).append(",").append(decayRate).append(']')
+                .toString();
+    }
 }

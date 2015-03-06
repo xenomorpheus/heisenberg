@@ -69,13 +69,19 @@ public class BarrierLine implements Barrier {
      */
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder(11);
+        StringBuilder stringBuilder = new StringBuilder(11);
         DecimalFormat df = new DecimalFormat("#.###");
-        return string.append(getClass().getSimpleName()).append("=[ (")
-                .append(df.format(barrierLine.getX1())).append(',')
-                .append(df.format(barrierLine.getY1())).append(")=>(")
-                .append(df.format(barrierLine.getX2())).append(',')
-                .append(df.format(barrierLine.getY2())).append("), blocker ")
-                .append(blockerObject).append(']').toString();
+        stringBuilder.append(getClass().getSimpleName()).append("=[ (");
+        if (null == barrierLine) {
+            stringBuilder.append("null");
+        }
+        else{
+            stringBuilder.append(df.format(barrierLine.getX1())).append(',')
+                    .append(df.format(barrierLine.getY1())).append(")=>(")
+                    .append(df.format(barrierLine.getX2())).append(',')
+                    .append(df.format(barrierLine.getY2()));
+        }
+        stringBuilder.append("), blocker ").append(blockerObject).append(']');
+        return stringBuilder.toString();
     }
 }
