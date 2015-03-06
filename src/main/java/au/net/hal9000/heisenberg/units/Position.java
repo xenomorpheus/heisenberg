@@ -188,21 +188,6 @@ public class Position {
         vectorMul(newLength / length());
     }
 
-    /**
-     * Normalise a vector. Set length to 1 unit unless it has no length to start
-     * with.
-     */
-    void normalise() {
-        double length = this.length();
-        if (length > 0) {
-            vectorMul(1 / length);
-        } else {
-            xPos = 0;
-            yPos = 0;
-            zPos = 0;
-        }
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;

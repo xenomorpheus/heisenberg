@@ -242,13 +242,6 @@ public class PositionTest {
     }
 
     @Test
-    public void testNormalise() {
-        Position point = new Position(X_TEST, Y_TEST, Z_TEST);
-        point.normalise();
-        assertEquals(1, point.length(), TEST_TOLERANCE);
-    }
-
-    @Test
     public void testEqualsObject() {
         Position point = new Position(X_TEST, Y_TEST, Z_TEST);
         Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
