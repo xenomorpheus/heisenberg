@@ -117,4 +117,9 @@ public class MemorySetImpl implements MemorySet {
         return stringB.toString();
     }
 
+    @Override
+    public MemorySet duplicate() {
+        return new MemorySetImpl(this);
+    }
+
 }

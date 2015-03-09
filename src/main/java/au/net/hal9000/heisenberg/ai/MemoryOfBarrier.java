@@ -25,7 +25,7 @@ public class MemoryOfBarrier extends MemoryImpl {
      * @param barrier
      *            the barrier this memory is about.
      */
-    MemoryOfBarrier(Date createdDate, double decayRate, Barrier barrier) {
+    public MemoryOfBarrier(Date createdDate, double decayRate, Barrier barrier) {
         super(createdDate, decayRate);
         this.barrier = barrier;
     }

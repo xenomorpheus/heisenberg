@@ -37,4 +37,9 @@ public interface MemorySet extends Iterable<Memory> {
      */
     boolean isEmpty();
 
+    /**
+     * @return a duplicate of this object.
+     */
+    MemorySet duplicate();
+
 }

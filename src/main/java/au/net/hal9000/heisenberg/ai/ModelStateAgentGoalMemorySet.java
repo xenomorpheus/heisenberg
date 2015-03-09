@@ -25,7 +25,7 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
      * @param memorySet
      *            memories e.g. walls.
      */
-    ModelStateAgentGoalMemorySet(Position agentPosition,
+    public ModelStateAgentGoalMemorySet(Position agentPosition,
             Position goalPosition, MemorySet memorySet) {
         super(agentPosition, goalPosition);
         if (null == memorySet) {

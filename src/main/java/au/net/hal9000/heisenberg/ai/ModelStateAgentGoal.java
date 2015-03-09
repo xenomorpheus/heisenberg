@@ -26,7 +26,7 @@ public class ModelStateAgentGoal implements ModelState {
      * @param goalPosition
      *            goal position.
      */
-    ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
+    public ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
         super();
         if (null == agentPosition) {
             throw new IllegalArgumentException("agentPosition may not be null");

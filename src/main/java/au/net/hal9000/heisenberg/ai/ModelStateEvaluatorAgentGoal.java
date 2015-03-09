@@ -6,7 +6,7 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Position;
 
-class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
+public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
 
     /** error. */
     private final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";

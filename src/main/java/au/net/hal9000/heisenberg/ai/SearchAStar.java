@@ -19,10 +19,13 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-class SearchAStar extends SearchBase {
+public class SearchAStar extends SearchBase {
     /** maximum fringe expansion. */
     private int fringeExpansionMax = 0;
+    /** how many fringe expansions so far */
     private int fringeExpansionCount = 0;
+    /** */
+    List<ModelState> fringeAdded;
 
     /**
      * constructor - A-Star search.
@@ -32,7 +35,7 @@ class SearchAStar extends SearchBase {
      * @param modelStateEvaluator
      *            the model state evaluator.
      */
-    SearchAStar(final SuccessorFunction successorFunction,
+    public SearchAStar(final SuccessorFunction successorFunction,
             final ModelStateEvaluator modelStateEvaluator) {
         super(successorFunction, modelStateEvaluator);
     }
@@ -68,7 +71,7 @@ class SearchAStar extends SearchBase {
          * Remember the places we have already added to the fringe. <br>
          * This dramatically reduces the size of fringe.
          */
-        List<ModelState> fringeAdded = new ArrayList<>();
+        fringeAdded = new ArrayList<>();
 
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
@@ -117,6 +120,14 @@ class SearchAStar extends SearchBase {
 
         }
         return resultPath;
+    }
+
+    /** 
+     * Used for debugging.
+     * @return the contents of FringeAdded.
+     */
+    public List<ModelState> getFringeAdded() {
+        return fringeAdded;
     }
 
 }

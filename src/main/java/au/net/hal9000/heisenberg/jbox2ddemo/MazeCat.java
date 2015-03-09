@@ -1,5 +1,11 @@
 package au.net.hal9000.heisenberg.jbox2ddemo;
 
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.callbacks.RayCastCallback;
 import org.jbox2d.collision.shapes.ChainShape;
 import org.jbox2d.collision.shapes.CircleShape;
@@ -14,6 +20,27 @@ import org.jbox2d.dynamics.World;
 import org.jbox2d.testbed.framework.TestbedSettings;
 import org.jbox2d.testbed.framework.TestbedTest;
 
+import au.net.hal9000.heisenberg.ai.BarrierLine;
+import au.net.hal9000.heisenberg.ai.MemoryImpl;
+import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
+import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
+import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorAgentGoal;
+import au.net.hal9000.heisenberg.ai.SearchAStar;
+import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
+import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.Barrier;
+import au.net.hal9000.heisenberg.ai.api.MemorySet;
+import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
+import au.net.hal9000.heisenberg.ai.api.Path;
+import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
+import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
+import au.net.hal9000.heisenberg.item.Cat;
+import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.EntitySuccessorFunction;
+import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.FiringSolution;
 
 /**
@@ -25,10 +52,10 @@ import au.net.hal9000.heisenberg.util.FiringSolution;
  * The walls will be seen using a raycast for vision to see walls before hitting
  * them.
  */
-public class MazeCat extends TestbedTest {
+class MazeCat extends TestbedTest {
 
     /** Perform vision update every Nth world step */
-    private static final int CAT_VISION_RATE_BASE = 50;
+    private static final int CAT_VISION_RATE_BASE = 3;
     /** Cat's speed. */
     private static final float CAT_NORMAL_SPEED = 1f;
     /** Cat's tag */
@@ -39,12 +66,31 @@ public class MazeCat extends TestbedTest {
     private static final long OUTER_WALL_TAG = 102L;
     /** Barrier's tag */
     private static final long BARRIER_TAG = 103L;
+
+    /** maze x factor */
+    private static final float mazeX = 5;
+    /** maze y factor */
+    private static final float mazeY = 5;
+    /** maze shape */
+    Vec2[] mazeShape = { new Vec2(-mazeX, -mazeY), new Vec2(-mazeX, 0),
+            new Vec2(+mazeX, 0), new Vec2(+mazeX, -mazeY) };
+
     /** Cat world object. */
     private Body cat;
     /** Cat will do a vision update every Nth world step */
     private int catVisionCounter = 0;
     /** Rat world object. */
     private Body rat;
+    /** AI - path search */
+    private SearchAStar search;
+
+    // Game Entity objects
+    /** Cat Game object. */
+    Entity catEntity;
+
+    public MazeCat() {
+        super();
+    }
 
     /**
      * Called by the JBox2D physics engine to allow the game objects to interact
@@ -58,32 +104,88 @@ public class MazeCat extends TestbedTest {
 
         super.step(settings);
 
+        // TODO how best to combine AI planning and a moving target?
+        // A* great for planning.
+        // FiringSolution great for moving object.
+
+        // If possible, Cat to intercept the Rat.
+        Vec2 catPosVec2 = cat.getPosition();
+
         // TODO make use of vision
         if ((catVisionCounter++ % CAT_VISION_RATE_BASE) == 0) {
+            // TODO update cat's memory of barriers
             // vision();
+            aiRun();
         }
 
         // If possible, Cat to intercept the Rat.
-        Vec2 catPos = cat.getPosition();
         // Calculate an intercept point for Cat to target.
-        Vec2 catTarget = FiringSolution.calculate(catPos, rat.getPosition(),
-                rat.getLinearVelocity(), CAT_NORMAL_SPEED);
+        Vec2 catTarget = FiringSolution.calculate(catPosVec2,
+                rat.getPosition(), rat.getLinearVelocity(), CAT_NORMAL_SPEED);
 
         Vec2 catDirection = new Vec2();
-        // Null target means rat moving to quickly to intercept.
+        // Null target means rat moving too quickly to intercept.
         if (catTarget != null) {
-            // convert a target point into a direction.
-            catDirection = catTarget.sub(catPos);
+            // convert a target point into a direction relative to cat.
+            catDirection = catTarget.sub(catPosVec2);
             // convert a direction into a velocity.
-            if (catDirection.length() > CAT_NORMAL_SPEED) {
+            if (catDirection.length() > 0.1f) {
                 catDirection.normalize();
                 catDirection.mulLocal(CAT_NORMAL_SPEED);
             }
         }
-        cat.setLinearVelocity(catDirection);
+        // cat.setLinearVelocity(catDirection);
+        cat.setLinearVelocity(new Vec2());
 
         // Centre the camera on the Cat
         setCamera(cat.getPosition());
+    }
+
+    /**
+     * Add to Entity memory a single barrier line.
+     * 
+     * @param entity
+     *            entity that can learn memories.
+     * @param point1
+     *            an end of barrier line.
+     * @param point2
+     *            other end of barrier line.
+     * @param body
+     *            the object that is the barrier.
+     */
+    private static void learnBarrier(Entity entity, Point2D point1,
+            Point2D point2, Object body) {
+
+        // Simulate the results after seeing a wall.
+        Line2D line = new Line2D.Double(point1, point2);
+        Barrier barrier = new BarrierLine(line, body);
+        MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
+        entity.addMemory(memory);
+    }
+
+    /**
+     * Add to Entity memory an array of barrier lines.
+     * 
+     * @param entity
+     *            entity.
+     * @param point
+     *            an array of Vec2 points.
+     * @param position
+     *            the position of this shape.
+     * @param body
+     *            the object that is the barrier.
+     */
+    private static void learnBarrierArray(Entity entity, Vec2[] point,
+            Vec2 position, Object body) {
+
+        for (int index = 1; index < point.length; index++) {
+            Point2D point1 = new Point2D.Double(
+                    point[index - 1].x + position.x, point[index - 1].y
+                            + position.y);
+            Point2D point2 = new Point2D.Double(point[index].x + position.x,
+                    point[index].y + position.y);
+            learnBarrier(entity, point1, point2, body);
+        }
     }
 
     /**
@@ -107,15 +209,10 @@ public class MazeCat extends TestbedTest {
 
             float x = 10;
             float y = 15;
-            Vec2[] vs = new Vec2[5];
-
-            vs[0] = new Vec2(-x, -y);
-            vs[1] = new Vec2(-x, +y);
-            vs[2] = new Vec2(+x, +y);
-            vs[3] = new Vec2(+x, -y);
-            vs[4] = new Vec2(-x, -y);
+            Vec2[] vs = { new Vec2(-x, -y), new Vec2(-x, +y), new Vec2(+x, +y),
+                    new Vec2(+x, -y), new Vec2(-x, -y) };
             ChainShape shape = new ChainShape();
-            shape.createChain(vs, 5);
+            shape.createChain(vs, vs.length);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = shape;
@@ -133,19 +230,11 @@ public class MazeCat extends TestbedTest {
             body.createFixture(fd);
         }
 
-        // Internal Wall
+        // Internal Wall - "n" shape - three lines.
         {
 
-            float x = 5;
-            float y = 5;
-            Vec2[] vs = new Vec2[4];
-
-            vs[0] = new Vec2(-x, -y);
-            vs[1] = new Vec2(-x, 0);
-            vs[2] = new Vec2(+x, 0);
-            vs[3] = new Vec2(+x, -y);
             ChainShape shape = new ChainShape();
-            shape.createChain(vs, 4);
+            shape.createChain(mazeShape, mazeShape.length);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = shape;
@@ -177,10 +266,11 @@ public class MazeCat extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(5.0f, -5.0f);
+            bd.position.set(5.0f, -3.0f);
             bd.userData = CAT_TAG;
             cat = world.createBody(bd);
             cat.createFixture(fd);
+            // TODO cat.setUserData(catEntity);
         }
 
         // Rat
@@ -198,11 +288,14 @@ public class MazeCat extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(5.0f, 5.0f);
+            bd.position.set(5.0f, 5.0f); // TODO y=5.5
             bd.userData = RAT_TAG;
             rat = world.createBody(bd);
             rat.createFixture(fd);
         }
+
+        // Initialise AI
+        aiInit();
     }
 
     /**
@@ -220,7 +313,7 @@ public class MazeCat extends TestbedTest {
      */
     @Override
     public float getDefaultCameraScale() {
-        return 35;
+        return 25;
     }
 
     /**
@@ -377,5 +470,90 @@ public class MazeCat extends TestbedTest {
             return RAYCAST_CONTINUE;
         };
 
+    }
+
+    private void aiInit() {
+        catEntity = new Cat();
+
+        // AI - Planning movement
+
+        // Setup how we evaluate the worth of a new model state.
+        final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
+
+        // Setup how to transition (move) to a new state.
+        final TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
+
+        // Setup how to generate new successor states.
+        final SuccessorFunction successorFunction = new EntitySuccessorFunction(
+                transitionFunction);
+
+        search = new SearchAStar(successorFunction, modelStateEvaluator);
+        // searchAStar.setDebugDraw(getDebugDraw());
+
+        // Learn barrier
+        // TODO remove cheat and use vision to see barriers.
+        // TODO learnBarrierArray(catEntity, vs, bd.position, body);
+        learnBarrierArray(catEntity, mazeShape, new Vec2(5, 5),
+                "some barrier");
+
+    }
+
+    private void aiRun() {
+
+        Vec2 catPosVec2 = cat.getPosition();
+        Vec2 ratPosVec2 = rat.getPosition(); // TODO y=5.5
+
+        // Build a model state.
+        Position catPos = new Position(catPosVec2.x, catPosVec2.y);
+        Position ratPos = new Position(ratPosVec2.x, ratPosVec2.y);
+        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(
+                catPos.duplicate(), ratPos.duplicate(), catEntity
+                        .getMemorySet().duplicate());
+
+        search.setFringeExpansionMax(300);
+        Path path = search.findPathToGoal(modelState);
+
+        DebugDraw debugDraw = getDebugDraw();
+        if (path == null) {
+            List<ModelState> fringeAdded = search.getFringeAdded();
+            List<MyCircle> myCircleList = fringeToCircles(fringeAdded);
+            for (MyCircle myCircle : myCircleList) {
+                debugDraw.drawSolidCircle(
+                        new Vec2((float) myCircle.position.getX(),
+                                (float) myCircle.position.getY()), 0.1f, null,
+                        myCircle.color);
+            }
+
+        } else {
+
+            // TODO Draw planned path
+            // DebugDraw debugDraw = getDebugDraw();
+            Color3f color = Color3f.RED;
+            Position catPosIteration = catPos.duplicate();
+            for (Action action : path) {
+                if (action instanceof ActionMove) {
+                    ActionMove actionMove = (ActionMove) action;
+                    Position lastPosition = catPosIteration.duplicate();
+                    Vec2 lastPosVec2 = new Vec2((float) lastPosition.getX(),
+                            (float) lastPosition.getY());
+                    catPosIteration.applyDelta(actionMove.getPositionDelta());
+                    debugDraw.drawSolidCircle(lastPosVec2, 0.15f, null, color);
+                    debugDraw.drawSegment(lastPosVec2, new Vec2(
+                            (float) catPosIteration.getX(),
+                            (float) catPosIteration.getY()), color);
+                }
+
+            }
+            System.out.println("size=" + path.size() + ", path=" + path);
+        }
+    }
+
+    private List<MyCircle> fringeToCircles(List<ModelState> fringeAdded) {
+        List<MyCircle> circleList = new ArrayList<>();
+        for (ModelState modelState: fringeAdded){
+            ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
+            circleList.add(new MyCircle(modelStateAgentGoal.getAgentPosition(), Color3f.RED));
+        }
+        return circleList;
     }
 };

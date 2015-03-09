@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-abstract class SearchBase implements Search {
+public abstract class SearchBase implements Search {
 
     /**
      * a function that supplies a list of possible actions from current model
