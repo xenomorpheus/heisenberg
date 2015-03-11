@@ -1,18 +1,27 @@
 Project Aims:
 ===================
-The aims of this project are somewhat unconventional.
+The aims of this project are somewhat unconventional:
+
+* To fulfil a long term goal of exploring AI programming in a MUD-like setting.
+* Develop my Java skills, in particular frameworks commonly used in the workplace.
+* To have fun.
+
+Background and Inspiration:
+============================
 
 * I was inspired by text based MUDs of the 1990s in which
 people's characters moved about in a text-based, DnD-styled
 environment.  I thought one day it would be an interesting project 
 to write an entity that could automatically move about the game 
-environment and have some interaction with the players. 
-I wanted something simple and maybe even fun. I settled on a cat.
+environment and have some degree interaction with the players. 
 
 * I wanted the interactions to be so much more than dumb 
 automated responses. When the game players interacted with
 the cat I wanted to impress, and perhaps entertain them.
 I wanted to see if I could give the cat some AI.
+
+* I wanted something simple and maybe even fun. I settled on a cat
+as being the entity to control in the game setting.
 
 * I also was looking for a vehicle to explore more aspects of Java.
 I expected the project would need a lot of refactoring as components
@@ -33,7 +42,7 @@ or I have identified solutions to the project's requirements.
   The aim is to as much as possible have transformations defined in data,
   not hard coded.
  
-* Physics engine - Using the off the shelf JBox2d to provide an environment
+* Physics Engine - Using the off the shelf JBox2d to provide an environment
   for game objects to move about in.
 
 * DnD styled game objects - A small number of items typically found in a DnD 
