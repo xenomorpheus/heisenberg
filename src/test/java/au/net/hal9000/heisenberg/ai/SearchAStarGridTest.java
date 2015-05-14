@@ -145,7 +145,7 @@ public class SearchAStarGridTest {
         Line2D line = new Line2D.Double(point1, point2);
         Barrier barrier = new BarrierLine(line, blocker);
         MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
-        agent.addMemory(memory);
+        agent.memoryAdd(memory);
 
         // Setup starting model state.
         final ModelStateAgentGoal modelStateStart = new ModelStateAgentGoalMemorySet(

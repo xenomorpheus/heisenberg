@@ -292,18 +292,6 @@ public abstract class Entity extends Item implements StateEvaluation {
         return memorySet;
     }
 
-    /**
-     * The Entity object has learnt a new Memory.
-     * 
-     * @param skill
-     *            The freshly learnt Memorie.
-     */
-    public final void memoryAdd(final MemoryImpl memory) {
-        if (null == memorySet) {
-            memorySet = new MemorySetImpl();
-        }
-        memorySet.add(memory);
-    }
     
     // Misc
 
@@ -422,11 +410,16 @@ public abstract class Entity extends Item implements StateEvaluation {
 
     }
 
-    public void addMemory(MemoryImpl memory) {
-        if (null == memorySet){
+    /**
+     * The Entity object has learnt a new Memory.
+     * 
+     * @param skill
+     *            The freshly learnt Memory.
+     */
+    public final void memoryAdd(final MemoryImpl memory) {
+        if (null == memorySet) {
             memorySet = new MemorySetImpl();
         }
         memorySet.add(memory);
     }
-
 }

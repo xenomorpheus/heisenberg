@@ -31,7 +31,6 @@ import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
-import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -72,8 +71,30 @@ class MazeCat extends TestbedTest {
     /** maze y factor */
     private static final float mazeY = 5;
     /** maze shape */
-    Vec2[] mazeShape = { new Vec2(-mazeX, -mazeY), new Vec2(-mazeX, 0),
-            new Vec2(+mazeX, 0), new Vec2(+mazeX, -mazeY) };
+    Vec2 bottomLeft = new Vec2(-mazeX, -mazeY);
+    Vec2 topLeft = new Vec2(-mazeX, 0);
+    Vec2 topRight = new Vec2(+mazeX, 0);
+    Vec2 bottomRight = new Vec2(+mazeX, -mazeY);
+    Vec2[] barrierShape = { bottomLeft, topLeft, topRight, bottomRight };
+    /** way points */
+    float wayVertDelta = 1;
+    float wayDelta = 0.5f; // (float) Math.sqrt(2 * wayVertDelta *
+                           // wayVertDelta);
+    private static float MAZE_OFFSET_X = 5.0f;
+    private static float MAZE_OFFSET_Y = 5.0f;
+    Vec2[] wayPoints = {
+            new Vec2(MAZE_OFFSET_X + bottomLeft.x - wayDelta, MAZE_OFFSET_Y
+                    + bottomLeft.y - wayDelta),
+            new Vec2(MAZE_OFFSET_X + bottomLeft.x + wayDelta, MAZE_OFFSET_Y
+                    + bottomLeft.y - wayDelta),
+            new Vec2(MAZE_OFFSET_X + topLeft.x - wayDelta, MAZE_OFFSET_Y
+                    + topLeft.y + wayDelta),
+            new Vec2(MAZE_OFFSET_X + topRight.x + wayDelta, MAZE_OFFSET_Y
+                    + topRight.y + wayDelta),
+            new Vec2(MAZE_OFFSET_X + bottomRight.x - wayDelta, MAZE_OFFSET_Y
+                    + bottomRight.y - wayDelta),
+            new Vec2(MAZE_OFFSET_X + bottomRight.x + wayDelta, MAZE_OFFSET_Y
+                    + bottomRight.y - wayDelta) };
 
     /** Cat world object. */
     private Body cat;
@@ -160,7 +181,7 @@ class MazeCat extends TestbedTest {
         Line2D line = new Line2D.Double(point1, point2);
         Barrier barrier = new BarrierLine(line, body);
         MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
-        entity.addMemory(memory);
+        entity.memoryAdd(memory);
     }
 
     /**
@@ -204,7 +225,7 @@ class MazeCat extends TestbedTest {
         // Cancel gravity because we are looking from above.
         world.setGravity(new Vec2(0, 0));
 
-        // Boundary Walls
+        // Outer Boundary Walls
         {
 
             float x = 10;
@@ -222,7 +243,7 @@ class MazeCat extends TestbedTest {
 
             // body definition
             BodyDef bd = new BodyDef();
-            bd.position.set(5, 5);
+            bd.position.set(MAZE_OFFSET_X, MAZE_OFFSET_Y);
             bd.type = BodyType.STATIC;
             bd.userData = OUTER_WALL_TAG;
             Body body = world.createBody(bd);
@@ -230,11 +251,11 @@ class MazeCat extends TestbedTest {
             body.createFixture(fd);
         }
 
-        // Internal Wall - "n" shape - three lines.
+        // Internal Barrier "n" shape - three lines.
         {
 
             ChainShape shape = new ChainShape();
-            shape.createChain(mazeShape, mazeShape.length);
+            shape.createChain(barrierShape, barrierShape.length);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = shape;
@@ -244,12 +265,13 @@ class MazeCat extends TestbedTest {
 
             // body definition
             BodyDef bd = new BodyDef();
-            bd.position.set(5, 5);
+            bd.position.set(MAZE_OFFSET_X, MAZE_OFFSET_Y);
             bd.type = BodyType.STATIC;
             bd.userData = BARRIER_TAG;
             Body body = world.createBody(bd);
 
             body.createFixture(fd);
+
         }
 
         // Cat
@@ -266,7 +288,7 @@ class MazeCat extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(5.0f, -3.0f);
+            bd.position.set(MAZE_OFFSET_X, MAZE_OFFSET_Y - 8.0f);
             bd.userData = CAT_TAG;
             cat = world.createBody(bd);
             cat.createFixture(fd);
@@ -288,7 +310,7 @@ class MazeCat extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(5.0f, 5.0f); // TODO y=5.5
+            bd.position.set(MAZE_OFFSET_X, MAZE_OFFSET_Y + 1.0f); // TODO y=5.5
             bd.userData = RAT_TAG;
             rat = world.createBody(bd);
             rat.createFixture(fd);
@@ -493,7 +515,7 @@ class MazeCat extends TestbedTest {
         // Learn barrier
         // TODO remove cheat and use vision to see barriers.
         // TODO learnBarrierArray(catEntity, vs, bd.position, body);
-        learnBarrierArray(catEntity, mazeShape, new Vec2(5, 5),
+        learnBarrierArray(catEntity, barrierShape, new Vec2(5, 5),
                 "some barrier");
 
     }
@@ -501,7 +523,7 @@ class MazeCat extends TestbedTest {
     private void aiRun() {
 
         Vec2 catPosVec2 = cat.getPosition();
-        Vec2 ratPosVec2 = rat.getPosition(); // TODO y=5.5
+        Vec2 ratPosVec2 = rat.getPosition();
 
         // Build a model state.
         Position catPos = new Position(catPosVec2.x, catPosVec2.y);
@@ -510,10 +532,16 @@ class MazeCat extends TestbedTest {
                 catPos.duplicate(), ratPos.duplicate(), catEntity
                         .getMemorySet().duplicate());
 
-        search.setFringeExpansionMax(300);
+        search.setFringeExpansionMax(30);
         Path path = search.findPathToGoal(modelState);
 
         DebugDraw debugDraw = getDebugDraw();
+
+        /* Draw way points */
+        for (Vec2 wayPoint : wayPoints) {
+            debugDraw.drawSolidCircle(wayPoint, 0.1f, null, Color3f.WHITE);
+        }
+
         if (path == null) {
             List<ModelState> fringeAdded = search.getFringeAdded();
             List<MyCircle> myCircleList = fringeToCircles(fringeAdded);
@@ -523,12 +551,11 @@ class MazeCat extends TestbedTest {
                                 (float) myCircle.position.getY()), 0.1f, null,
                         myCircle.color);
             }
-
         } else {
 
             // TODO Draw planned path
             // DebugDraw debugDraw = getDebugDraw();
-            Color3f color = Color3f.RED;
+            Color3f color = Color3f.BLUE;
             Position catPosIteration = catPos.duplicate();
             for (Action action : path) {
                 if (action instanceof ActionMove) {
@@ -544,15 +571,15 @@ class MazeCat extends TestbedTest {
                 }
 
             }
-            System.out.println("size=" + path.size() + ", path=" + path);
         }
     }
 
     private List<MyCircle> fringeToCircles(List<ModelState> fringeAdded) {
         List<MyCircle> circleList = new ArrayList<>();
-        for (ModelState modelState: fringeAdded){
+        for (ModelState modelState : fringeAdded) {
             ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-            circleList.add(new MyCircle(modelStateAgentGoal.getAgentPosition(), Color3f.RED));
+            circleList.add(new MyCircle(modelStateAgentGoal.getAgentPosition(),
+                    Color3f.GREEN));
         }
         return circleList;
     }
