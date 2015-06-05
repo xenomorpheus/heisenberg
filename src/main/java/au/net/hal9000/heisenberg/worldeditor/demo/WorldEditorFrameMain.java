@@ -6,7 +6,7 @@ import javax.swing.SwingUtilities;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.WorldEditorFrame;
 
-public class WorldEditorDemo {
+public class WorldEditorFrameMain {
     /**
      * app to test the world editor.
      * 

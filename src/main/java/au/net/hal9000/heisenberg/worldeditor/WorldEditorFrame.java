@@ -55,7 +55,7 @@ public class WorldEditorFrame extends JFrame {
     public WorldEditorFrame() throws ConfigurationError {
 
         /** Config. */
-        final Configuration config = DummyData.config();
+        final Configuration config = DummyData.getConfig();
         /** Persistence. */
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

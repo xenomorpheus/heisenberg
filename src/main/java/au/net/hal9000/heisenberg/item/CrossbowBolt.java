@@ -31,7 +31,7 @@ public class CrossbowBolt extends Item {
      * Constructor for CrossbowBolt.
      * @param pString String
      */
-    public CrossbowBolt(String pString) {
+    private CrossbowBolt(String pString) {
         super(pString);
     }
 

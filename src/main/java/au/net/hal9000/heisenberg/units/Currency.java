@@ -24,7 +24,7 @@ public class Currency implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     /** standard coin conversion ratio. */
-    private static final int COIN_CONVERSION = 10;
+    static final int COIN_CONVERSION = 10;
 
     /**
      * Coin conversion: 1PP = 10 GP.
@@ -285,25 +285,25 @@ public class Currency implements Serializable, Cloneable {
      */
     @Override
     public String toString() {
-        String str = "0 gp";
+        String str = "0 GP";
         if (0 != pp || 0 != gp || 0 != sp || 0 != cp) {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(13);
             String joiner = "";
             if (0 != pp) {
-                sb.append(pp + "pp" + joiner);
-                joiner = ",";
+                sb.append(joiner).append(pp).append("PP");
+                joiner = ", ";
             }
             if (0 != gp) {
-                sb.append(gp + "gp" + joiner);
-                joiner = ",";
+                sb.append(joiner).append(gp).append("GP");
+                joiner = ", ";
             }
             if (0 != sp) {
-                sb.append(sp + "sp" + joiner);
-                joiner = ",";
+                sb.append(joiner).append(sp).append("SP");
+                joiner = ", ";
             }
             if (0 != cp) {
-                sb.append(cp + "cp" + joiner);
-                joiner = ",";
+                sb.append(joiner).append(cp).append("CP");
+                joiner = ", ";
             }
             str = sb.toString();
         }

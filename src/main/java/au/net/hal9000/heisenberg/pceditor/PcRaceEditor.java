@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.pceditor;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

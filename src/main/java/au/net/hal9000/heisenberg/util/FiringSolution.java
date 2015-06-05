@@ -59,7 +59,7 @@ public class FiringSolution {
     /**
      * Return solutions for quadratic
      */
-    public static Vec2 quad(float a, float b, float c) {
+    static Vec2 quad(float a, float b, float c) {
         Vec2 sol = null;
         if (Math.abs(a) < 1e-6) {
             if (Math.abs(b) < 1e-6) {

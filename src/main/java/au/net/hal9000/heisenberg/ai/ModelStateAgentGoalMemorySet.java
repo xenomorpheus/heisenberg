@@ -46,9 +46,8 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
     @Override
     public ModelStateAgentGoalMemorySet duplicate() {
         // TODO for all duplicate() methods do something smarter with copying properties of super classes.
-        return new ModelStateAgentGoalMemorySet(new Position(getAgentPosition()),
-                new Position(getGoalPosition()), new MemorySetImpl(
-                        getMemorySet()));
+        return new ModelStateAgentGoalMemorySet(getAgentPosition().duplicate(),
+                getGoalPosition().duplicate(), getMemorySet().duplicate());
     }
 
     /** {@inheritDoc} */

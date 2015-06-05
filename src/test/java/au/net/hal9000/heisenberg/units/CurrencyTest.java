@@ -241,4 +241,29 @@ public class CurrencyTest {
         assertEquals("equals", c1.hashCode(), c2.hashCode());
 
     }
+
+    
+    /**
+     * Tests for normalise method.
+     */
+    @Test
+    public void testNormalise() {
+        // copper, silver and gold all push one coin up to the next coin type.
+        Currency c1 = new Currency(8, Currency.COIN_CONVERSION+4, Currency.COIN_CONVERSION+2, Currency.COIN_CONVERSION+1);
+        c1.normalise();
+        Currency c2 = new Currency(9, 5, 3, 1);
+        assertTrue("equals", c1.equals(c2));
+
+    }
+
+    /**
+     * Tests for toString method.
+     */
+    @Test
+    public void testToString() {
+        Currency c = new Currency(PP, GP, SP, CP);
+        assertEquals("equals", "1PP, 2GP, 4SP, 8CP", c.toString() );
+
+    }
+    
 }

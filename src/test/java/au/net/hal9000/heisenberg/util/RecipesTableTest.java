@@ -3,14 +3,10 @@ package au.net.hal9000.heisenberg.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import javax.swing.JFrame;
-
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
-import au.net.hal9000.heisenberg.worldeditor.RecipesTable;
+import au.net.hal9000.heisenberg.pceditor.RecipesTable;
 
 /**
  * Unit tests for RecipesTable.
@@ -32,7 +28,7 @@ public class RecipesTableTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
-        PcRace pc = DummyData.elf();
+        PcRace pc = DummyData.getPcRace();
         RecipesTable basicPanel = new RecipesTable();
         basicPanel.setPcRace(pc);
         assertNotNull("BasicPanel not null", basicPanel);
@@ -46,32 +42,6 @@ public class RecipesTableTest {
 
         RecipesTable recipesTable = new RecipesTable();
         assertEquals(0, recipesTable.getRowCount());
-    }
-
-    /**
-     * @throws ConfigurationError
-     *             if bad config.
-     */
-    public void doTest() throws ConfigurationError {
-
-        PcRace pc = DummyData.elf();
-        JFrame guiFrame = new JFrame();
-
-        // make sure the program exits when the frame closes
-        guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("Skills Table");
-        guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-
-        RecipesTable basicPanel = new RecipesTable();
-        basicPanel.setPcRace(pc);
-
-        // add to JFrame
-        guiFrame.add(basicPanel);
-        guiFrame.pack();
-        // This will centre the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-        guiFrame.setVisible(true);
-
     }
 
 }

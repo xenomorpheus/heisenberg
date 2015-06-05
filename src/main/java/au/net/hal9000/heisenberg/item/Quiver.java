@@ -39,7 +39,7 @@ public class Quiver extends ItemContainer {
      * @param name
      *            name to use.
      */
-    public Quiver(final String name) {
+    private Quiver(final String name) {
         super(name);
         this.setVolumeMax(VOLUME_MAX_DFT);
         ItemProperty.setClothing(this, true);

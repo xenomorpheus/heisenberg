@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class OrbOfLight extends Candle {
+class OrbOfLight extends Candle {
 
     /** serial id. */
     private static final long serialVersionUID = 1L;
@@ -27,20 +27,25 @@ public class OrbOfLight extends Candle {
         this("Orb Of Light");
     }
 
-    /** Constructor.
+    /**
+     * Constructor.
      * 
-     * @param name name of the orb.
+     * @param name
+     *            name of the orb.
      */
-    public OrbOfLight(String name) {
+    private OrbOfLight(String name) {
         this(name, "orb of light");
     }
 
     /**
      * Constructor.
-     * @param name name of the orb.
-     * @param description the description.
+     * 
+     * @param name
+     *            name of the orb.
+     * @param description
+     *            the description.
      */
-    public OrbOfLight(String name, String description) {
+    OrbOfLight(String name, String description) {
         super(name, description);
         ItemProperty.setMagical(this, true);
     }

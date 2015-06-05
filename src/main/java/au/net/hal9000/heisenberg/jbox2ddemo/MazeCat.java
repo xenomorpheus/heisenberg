@@ -65,36 +65,23 @@ class MazeCat extends TestbedTest {
     private static final long OUTER_WALL_TAG = 102L;
     /** Barrier's tag */
     private static final long BARRIER_TAG = 103L;
-
-    /** maze x factor */
-    private static final float mazeX = 5;
-    /** maze y factor */
-    private static final float mazeY = 5;
+    /** maze position */
+    private static final float MAZE_OFFSET_X = 5.0f;
+    /** maze position */
+    private static final float MAZE_OFFSET_Y = 5.0f;
+    /** maze x scale factor */
+    private static final float MAZE_FACTOR_X = 5.0f;
+    /** maze y scale factor */
+    private static final float MAZE_FACTOR_Y = 5.0f;
     /** maze shape */
-    Vec2 bottomLeft = new Vec2(-mazeX, -mazeY);
-    Vec2 topLeft = new Vec2(-mazeX, 0);
-    Vec2 topRight = new Vec2(+mazeX, 0);
-    Vec2 bottomRight = new Vec2(+mazeX, -mazeY);
-    Vec2[] barrierShape = { bottomLeft, topLeft, topRight, bottomRight };
-    /** way points */
-    float wayVertDelta = 1;
-    float wayDelta = 0.5f; // (float) Math.sqrt(2 * wayVertDelta *
-                           // wayVertDelta);
-    private static float MAZE_OFFSET_X = 5.0f;
-    private static float MAZE_OFFSET_Y = 5.0f;
-    Vec2[] wayPoints = {
-            new Vec2(MAZE_OFFSET_X + bottomLeft.x - wayDelta, MAZE_OFFSET_Y
-                    + bottomLeft.y - wayDelta),
-            new Vec2(MAZE_OFFSET_X + bottomLeft.x + wayDelta, MAZE_OFFSET_Y
-                    + bottomLeft.y - wayDelta),
-            new Vec2(MAZE_OFFSET_X + topLeft.x - wayDelta, MAZE_OFFSET_Y
-                    + topLeft.y + wayDelta),
-            new Vec2(MAZE_OFFSET_X + topRight.x + wayDelta, MAZE_OFFSET_Y
-                    + topRight.y + wayDelta),
-            new Vec2(MAZE_OFFSET_X + bottomRight.x - wayDelta, MAZE_OFFSET_Y
-                    + bottomRight.y - wayDelta),
-            new Vec2(MAZE_OFFSET_X + bottomRight.x + wayDelta, MAZE_OFFSET_Y
-                    + bottomRight.y - wayDelta) };
+    private static final Vec2 BOTTOM_LEFT = new Vec2(-MAZE_FACTOR_X,
+            -MAZE_FACTOR_Y);
+    private static final Vec2 TOP_LEFT = new Vec2(-MAZE_FACTOR_X, 0);
+    private static final Vec2 TOP_RIGHT = new Vec2(+MAZE_FACTOR_X, 0);
+    private static final Vec2 BOTTOM_RIGHT = new Vec2(+MAZE_FACTOR_X,
+            -MAZE_FACTOR_Y);
+    private static final Vec2[] BARRIER_SHAPE = { BOTTOM_LEFT, TOP_LEFT,
+            TOP_RIGHT, BOTTOM_RIGHT };
 
     /** Cat world object. */
     private Body cat;
@@ -255,7 +242,7 @@ class MazeCat extends TestbedTest {
         {
 
             ChainShape shape = new ChainShape();
-            shape.createChain(barrierShape, barrierShape.length);
+            shape.createChain(BARRIER_SHAPE, BARRIER_SHAPE.length);
 
             FixtureDef fd = new FixtureDef();
             fd.shape = shape;
@@ -515,12 +502,14 @@ class MazeCat extends TestbedTest {
         // Learn barrier
         // TODO remove cheat and use vision to see barriers.
         // TODO learnBarrierArray(catEntity, vs, bd.position, body);
-        learnBarrierArray(catEntity, barrierShape, new Vec2(5, 5),
+        learnBarrierArray(catEntity, BARRIER_SHAPE, new Vec2(5, 5),
                 "some barrier");
 
     }
 
     private void aiRun() {
+
+        DebugDraw debugDraw = getDebugDraw();
 
         Vec2 catPosVec2 = cat.getPosition();
         Vec2 ratPosVec2 = rat.getPosition();
@@ -534,13 +523,6 @@ class MazeCat extends TestbedTest {
 
         search.setFringeExpansionMax(30);
         Path path = search.findPathToGoal(modelState);
-
-        DebugDraw debugDraw = getDebugDraw();
-
-        /* Draw way points */
-        for (Vec2 wayPoint : wayPoints) {
-            debugDraw.drawSolidCircle(wayPoint, 0.1f, null, Color3f.WHITE);
-        }
 
         if (path == null) {
             List<ModelState> fringeAdded = search.getFringeAdded();
@@ -574,6 +556,7 @@ class MazeCat extends TestbedTest {
         }
     }
 
+    /** convert the fringe to a list of circles **/
     private List<MyCircle> fringeToCircles(List<ModelState> fringeAdded) {
         List<MyCircle> circleList = new ArrayList<>();
         for (ModelState modelState : fringeAdded) {

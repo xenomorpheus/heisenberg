@@ -12,5 +12,5 @@ public interface StateEvaluation {
      * @return return a numeric valuation of this object's state. Higher the
      *         better.
      */
-    double stateEvaluation();
+    double getStateEvaluation();
 }

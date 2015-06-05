@@ -33,7 +33,7 @@ public class Cloak extends Item {
      * Constructor for Cloak.
      * @param pString String
      */
-    public Cloak(String pString) {
+    private Cloak(String pString) {
         super(pString);
         ItemProperty.setClothing(this, true);
     }

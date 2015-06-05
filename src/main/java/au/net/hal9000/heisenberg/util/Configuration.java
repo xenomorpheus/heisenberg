@@ -321,7 +321,7 @@ public class Configuration {
      * 
      * @return Set of Skill Objects.
      */
-    public static Set<Skill> xmlToSkills(Elements entries) {
+    private static Set<Skill> xmlToSkills(Elements entries) {
         Set<Skill> skills = new TreeSet<Skill>();
 
         for (int current = 0; current < entries.size(); current++) {
@@ -340,7 +340,7 @@ public class Configuration {
      * 
      * @return A list of RequirementItem objects.
      */
-    public static List<RequirementItem> xmlToRecipeRequirementItems(
+    private static List<RequirementItem> xmlToRecipeRequirementItems(
             Elements entries) {
         List<RequirementItem> ingredients = new ArrayList<RequirementItem>();
         for (int current = 0; current < entries.size(); current++) {
@@ -379,7 +379,7 @@ public class Configuration {
      * 
      * @return A list of Recipe Product objects.
      */
-    public static List<Product> xmlToRecipeProductItems(Elements entries) {
+    private static List<Product> xmlToRecipeProductItems(Elements entries) {
         List<Product> products = new ArrayList<Product>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
@@ -407,7 +407,7 @@ public class Configuration {
      * 
      * @return A list of Recipe Product objects.
      */
-    public static List<Product> xmlToRecipeProductEntityProperties(
+    private static List<Product> xmlToRecipeProductEntityProperties(
             Elements entries) {
         List<Product> products = new ArrayList<Product>();
         for (int current = 0; current < entries.size(); current++) {
@@ -437,7 +437,7 @@ public class Configuration {
      *            an XML Recipe Product element.
      * @return List<Product>
      */
-    public static List<Product> xmlToRecipeProducts(Element entry) {
+    private static List<Product> xmlToRecipeProducts(Element entry) {
 
         List<Product> products = new ArrayList<Product>();
         if (null != entry) {
@@ -461,7 +461,7 @@ public class Configuration {
      *            an XML Requirement element.
      * @return List<Requirement>
      */
-    public static List<Requirement> xmlToRecipeRequirements(Element entry) {
+    private static List<Requirement> xmlToRecipeRequirements(Element entry) {
         List<Requirement> requirements = new ArrayList<Requirement>();
 
         Elements items = entry.getChildElements("item");
@@ -481,7 +481,7 @@ public class Configuration {
      * 
      * @return a Recipe object.
      */
-    public static Recipe xmlToRecipe(Element recipeElement) {
+    private static Recipe xmlToRecipe(Element recipeElement) {
         String id = recipeElement.getAttributeValue("id");
         String description = recipeElement.getAttributeValue("description");
 
@@ -536,7 +536,7 @@ public class Configuration {
      * @return A set of Recipe objects. * @throws ParsingException * @throws
      *         IOException
      */
-    public static Map<String, Recipe> xmlToRecipes(Element element) {
+    private static Map<String, Recipe> xmlToRecipes(Element element) {
 
         Elements recipeElementSet = element.getChildElements("recipe");
         Map<String, Recipe> recipes = new TreeMap<String, Recipe>();

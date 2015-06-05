@@ -44,7 +44,7 @@ public class Ring extends Item {
      * @param name
      *            name of Item.
      */
-    public Ring(final String name) {
+    Ring(final String name) {
         super(name);
         this.setDefaults();
     }

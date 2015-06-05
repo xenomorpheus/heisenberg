@@ -72,13 +72,21 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
         this.directionCount = directionCount;
     }
 
+    /**
+     * Generate a list of possible actions from this model state.
+     * 
+     * @param modelState
+     *            current model state
+     * @return a list of possible actions from this model state.
+     */
     private List<Action> buildActions(ModelState modelState) {
         List<Action> actions = new ArrayList<>();
         Position agentPositionDelta = new Position(0, stepSize);
         List<Position> spokes;
 
         if (stepSize < Position.DEFAULT_AXIS_TOLERANCE) {
-            throw new RuntimeException("Agent's default step size is below Position tollerance.");
+            throw new RuntimeException(
+                    "Agent's default step size is below Position tollerance.");
         }
 
         // If we know where the goal is, then have a try an action in that
@@ -90,19 +98,19 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
             if (null != goalPos) {
                 agentPositionDelta = goalPos.subtract(agentPos);
                 double goalDist = agentPositionDelta.length();
-                
+
                 // Limit step size to what agent can achieve
                 if (goalDist > stepSize) {
                     goalDist = stepSize;
                     agentPositionDelta.setVectorLength(goalDist);
                 }
-                // This line is very important.  It is the short step at the end.
+                // This line is very important. It is the short step at the end.
                 if (goalDist < stepSize) {
-                   actions.add(new ActionMoveImpl(new Position(agentPositionDelta)));
+                    actions.add(new ActionMoveImpl(new Position(
+                            agentPositionDelta)));
                 }
             }
         }
-
 
         // Add various movements to the list of actions.
         // Build a list of spokes from this Position.
@@ -156,7 +164,7 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
                 throw new RuntimeException("Expecting ModelStateAgentGoal");
             }
             ModelStateAgentGoal modelStateAgentGoalNew = (ModelStateAgentGoal) modelStateNew;
-            /* Using length travelled as a crude value of cost. */
+            // Using length travelled as a crude value of cost.
             double actionCost = stepSize;
 
             if (action instanceof ActionMove) {
@@ -189,7 +197,7 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
                         actionCost = movementPartial.length();
                         actionMove.setPositionDelta(new Position(
                                 movementPartial));
-                        
+
                         modelStateAgentGoalNew.setAgentPosition(agentPos
                                 .add(movementPartial));
                     }

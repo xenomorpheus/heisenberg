@@ -268,7 +268,7 @@ public abstract class PcRace extends Entity {
     /**
      * Method init.
      */
-    protected void init() {
+    private void init() {
         if (null == pcClass) {
             clearClassBaseFields();
         } else {

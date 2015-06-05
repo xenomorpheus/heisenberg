@@ -37,7 +37,7 @@ public class Crossbow extends Item {
      * Constructor for Crossbow.
      * @param pName String
      */
-    public Crossbow(final String pName) {
+    private Crossbow(final String pName) {
         super(pName);
     }
 

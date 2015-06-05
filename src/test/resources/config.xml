@@ -41,7 +41,8 @@
         <item id="Shield" iconOpenId="31" iconClosedId="31"
             iconLeafId="31" />
         <item id="SmallGroundFire" />
-        <item id="Sword" />
+        <item id="Sword" iconOpenId="3" iconClosedId="3"
+            iconLeafId="3" />
         <item id="Torch" />
         <item id="Water" />
         <item id="Wood" />

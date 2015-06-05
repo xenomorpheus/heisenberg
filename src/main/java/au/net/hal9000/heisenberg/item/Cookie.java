@@ -45,7 +45,7 @@ public class Cookie extends Item {
      * @param pName String
      * @param pDescription String
      */
-    public Cookie(String pName, String pDescription) {
+    Cookie(String pName, String pDescription) {
         super(pName, pDescription);
     }
 

@@ -22,7 +22,7 @@ public class DummyDataTest {
      */
     @Test
     public void testElf() throws ConfigurationError {
-        PcRace pc = DummyData.elf();
+        PcRace pc = DummyData.getPcRace();
         assertNotNull(pc);
     }
 

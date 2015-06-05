@@ -1,12 +1,12 @@
-package au.net.hal9000.heisenberg.worldeditor.demo;
+package au.net.hal9000.heisenberg.pceditor.demo;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.pceditor.PcRaceEditor;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
-import au.net.hal9000.heisenberg.worldeditor.PcRaceEditor;
 
 public class PcRaceEditorMain {
 
@@ -19,7 +19,7 @@ public class PcRaceEditorMain {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    PcRace pc = DummyData.elf();
+                    PcRace pc = DummyData.getPcRace();
                     PcRaceEditor editor = new PcRaceEditor();
                     editor.setPcRace(pc);
                     JFrame window = new JFrame();

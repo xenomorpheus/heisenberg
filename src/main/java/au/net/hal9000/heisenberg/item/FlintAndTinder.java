@@ -31,7 +31,7 @@ public class FlintAndTinder extends Item {
      * Constructor for FlintAndTinder.
      * @param pName String
      */
-    public FlintAndTinder(String pName) {
+    private FlintAndTinder(String pName) {
         this(pName, "some flint and tinder");
     }
 
@@ -40,7 +40,7 @@ public class FlintAndTinder extends Item {
      * @param pName String
      * @param pDescription String
      */
-    public FlintAndTinder(String pName, String pDescription) {
+    private FlintAndTinder(String pName, String pDescription) {
         super(pName, pDescription);
     }
 

@@ -36,7 +36,7 @@ public class ItemTreePanelTest {
     @Test
     public void testItemTreePanel() throws ConfigurationError,
             InvalidTypeException, TooHeavyException, TooLargeException {
-        Configuration config = DummyData.config();
+        Configuration config = DummyData.getConfig();
         Location location = DummyData.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
         assertNotNull("Not Null", itemTreePanel);

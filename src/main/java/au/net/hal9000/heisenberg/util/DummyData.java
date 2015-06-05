@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.Map;
-
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
 import au.net.hal9000.heisenberg.item.Bag;
@@ -12,6 +10,7 @@ import au.net.hal9000.heisenberg.item.Cloak;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
+import au.net.hal9000.heisenberg.item.Elf;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.Horse;
@@ -54,11 +53,12 @@ public final class DummyData {
     }
 
     /**
-     * return the config. * @return Configuration
+     * Get the test configuration object.
      * 
      * @throws ConfigurationError
+     * @return Configuration object.
      */
-    public static Configuration config() throws ConfigurationError {
+    public static Configuration getConfig() throws ConfigurationError {
         Configuration config = new Configuration(
                 "src/test/resources/config.xml");
         return config;
@@ -66,24 +66,30 @@ public final class DummyData {
     }
 
     /**
-     * Method elf.
+     * Get Demo PcRace object with a few simple properties.
      * 
      * @return PcRace
      * @throws ConfigurationError
      */
-    public static PcRace elf() throws ConfigurationError {
-        Configuration config = config();
-        Map<String, PcClass> pcClasses = config.getPcClasses();
-        PcRace pc = (PcRace) Factory.createItem("Elf");
-        pc.setName("Jane");
-        pc.setPcClass(pcClasses.get("Paladin"));
-        pc.setDescription("The Paladin");
-        pc.setGender("Female"); // TODO get from config
-        pc.setSize("Small");
-        pc.setLevel(TEST_LEVEL);
-        pc.skillsAddArray(TEST_SKILLS);
-        pc.recipesAdd(TEST_RECIPES);
-        return pc;
+    public static PcRace getPcRace() throws ConfigurationError {
+        Configuration config = getConfig();
+        Elf elf = (Elf) Factory.createItem("Elf");
+        elf.setName("Jane");
+        elf.setPcClass(config.getPcClasses().get("Paladin"));
+        elf.setDescription("The Paladin");
+        elf.setGender(config.getGenders().get(0));
+        elf.setSize("Small");
+        elf.setLevel(TEST_LEVEL);
+        elf.skillsAddArray(TEST_SKILLS);
+        elf.recipesAdd(TEST_RECIPES);
+        Backpack backpack = (Backpack) Factory.createItem("Backpack");
+        try {
+            elf.wear(backpack);
+        } catch (InvalidTypeException | TooHeavyException | TooLargeException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return elf;
     }
 
     /**

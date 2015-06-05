@@ -22,7 +22,7 @@ public class ConfigurationError extends Throwable {
      * @param pException
      *            the original exception
      */
-    public ConfigurationError(Exception pException) {
+    ConfigurationError(Exception pException) {
         exception = pException;
     }
 

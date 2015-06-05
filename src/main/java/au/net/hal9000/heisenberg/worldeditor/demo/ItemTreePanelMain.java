@@ -30,7 +30,7 @@ public class ItemTreePanelMain {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Configuration config = DummyData.config();
+                    Configuration config = DummyData.getConfig();
                     Location location = DummyData.getDemoWorld();
                     // location.setWeightMax(100000);
                     // location.setVolumeMax(100000);

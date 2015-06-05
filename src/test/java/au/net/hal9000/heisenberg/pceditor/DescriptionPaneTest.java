@@ -1,10 +1,11 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.pceditor;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
@@ -22,7 +23,7 @@ public class DescriptionPaneTest {
     @Test
     public void testBasicOperations() throws ConfigurationError {
 
-        PcRace pc = DummyData.elf();
+        PcRace pc = DummyData.getPcRace();
         DescriptionPane window = new DescriptionPane();
         assertNotNull("not Null", window);
         window.setPcRace(pc);

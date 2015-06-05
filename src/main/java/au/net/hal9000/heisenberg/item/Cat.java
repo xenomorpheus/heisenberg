@@ -30,7 +30,7 @@ public class Cat extends Animal {
      * Constructor for Cat.
      * @param name String
      */
-    public Cat(String name) {
+    Cat(String name) {
         this();
         setName(name);
     }
@@ -40,7 +40,7 @@ public class Cat extends Animal {
      * @param name String
      * @param description String
      */
-    public Cat(String name, String description) {
+    Cat(String name, String description) {
         this();
         setName(name);
         setDescription(description);

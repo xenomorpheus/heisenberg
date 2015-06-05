@@ -37,7 +37,7 @@ public class MagicRing extends Ring {
      * @param name
      *            name of ring.
      */
-    public MagicRing(String name) {
+    private MagicRing(String name) {
         super(name);
         ItemProperty.setMagical(this, true);
     }

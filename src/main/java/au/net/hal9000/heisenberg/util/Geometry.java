@@ -35,7 +35,8 @@ public final class Geometry {
     }
 
     /**
-     * Return the intersection point. Warning: Only X,Y considered.
+     * Return the intersection point, if any, between two lines. First line from 
+     * p0 to p1. Second line from p2 to p3.
      * 
      * @param p0X
      *            segment 1, point 1, x.
@@ -56,7 +57,7 @@ public final class Geometry {
      * @return the intersection point of the two segments, or null if no
      *         intersection.
      */
-    public static Position getLineIntersection(double p0X, double p0Y,
+    private static Position getLineIntersection(double p0X, double p0Y,
             double p1X, double p1Y, double p2X, double p2Y, double p3X,
             double p3Y) {
         // TODO http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect

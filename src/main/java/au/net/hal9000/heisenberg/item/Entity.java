@@ -386,7 +386,7 @@ public abstract class Entity extends Item implements StateEvaluation {
      * @return the value of this objects current state.
      */
     @Override
-    public double stateEvaluation() {
+    public double getStateEvaluation() {
         
         // Very crude, but enough for testing.
         return getHitPoints();

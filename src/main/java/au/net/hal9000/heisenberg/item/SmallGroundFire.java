@@ -32,7 +32,7 @@ public class SmallGroundFire extends Item {
      * Constructor for SmallGroundFire.
      * @param pName String
      */
-    public SmallGroundFire(String pName) {
+    private SmallGroundFire(String pName) {
         this(pName, "a small ground fire");
     }
 
@@ -41,7 +41,7 @@ public class SmallGroundFire extends Item {
      * @param pName String
      * @param pDescription String
      */
-    public SmallGroundFire(String pName, String pDescription) {
+    private SmallGroundFire(String pName, String pDescription) {
         super(pName, pDescription);
     }
 

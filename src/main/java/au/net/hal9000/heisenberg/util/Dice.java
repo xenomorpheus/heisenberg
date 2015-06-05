@@ -7,7 +7,7 @@ package au.net.hal9000.heisenberg.util;
  * 
  * @version $Revision: 1.0 $
  */
-public class Dice {
+class Dice {
 
     /** 6 sided die. */
     static final int D_SIX = 6;
@@ -25,7 +25,7 @@ public class Dice {
      * 
      * @return the value rolled on the dice.
      */
-    public int roll() {
+    int roll() {
         return roll(1, D_SIX);
     }
 
@@ -37,7 +37,7 @@ public class Dice {
      * 
      * @return the value rolled on the dice.
      */
-    public int roll(int sides) {
+    int roll(int sides) {
         return roll(1, sides);
     }
 

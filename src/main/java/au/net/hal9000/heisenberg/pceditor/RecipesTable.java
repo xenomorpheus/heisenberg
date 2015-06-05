@@ -1,33 +1,30 @@
-package au.net.hal9000.heisenberg.worldeditor;
+package au.net.hal9000.heisenberg.pceditor;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import org.apache.log4j.Logger;
+
+import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.util.AbilityScore;
+import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
- * @author bruins
- * @version $Revision: 1.0 $
  */
-public class AbilityScoresTable extends JTable implements FocusListener {
+public class RecipesTable extends JTable {
 
-    /**
-     * 
-     */
+    /** serial version id. */
     private static final long serialVersionUID = 1L;
+    /** column names. */
+    private static final String[] COLUMN_NAMES = { "Id", "Description" };
 
-    private MyTableModel myTableModel;
-
-    /**
-     * Constructor for AbilityScoresTable.
-     */
-    AbilityScoresTable() {
+    /** Constructor. */
+    public RecipesTable() {
         super();
     }
 
@@ -43,37 +40,34 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      *            values.
      */
     public void setPcRace(final PcRace pc) {
-        myTableModel = new MyTableModel(pc);
-        setModel(myTableModel);
-    }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        // PC's level may have changed so we need to refresh the values in the table
-        myTableModel.fireTableStructureChanged();
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        // Nothing
+        this.setModel(new MyTableModel(pc));
     }
 
     /**
-     * @author bruins
      */
     private class MyTableModel extends AbstractTableModel {
         /**
          * 
          */
         private static final long serialVersionUID = 1L;
-
-        /** column names. */
-        private String[] columnNames = { "Id", "Description" };
+        /**
+         * Field config.
+         */
+        private Configuration config = Configuration.lastConfig();
+        /**
+         * Field logger.
+         */
+        private final Logger logger = Logger.getLogger(RecipesTable.class
+                .getName());
 
         /**
-         * Field pcAbilityScores.
+         * Field recipeIds.
          */
-        private ArrayList<AbilityScore> pcAbilityScores;
+        private List<String> recipeIds;
+        /**
+         * Field recipes.
+         */
+        private Map<String, Recipe> recipes;
 
         /**
          * Constructor for MyTableModel.
@@ -82,37 +76,40 @@ public class AbilityScoresTable extends JTable implements FocusListener {
          *            PcRace
          */
         private MyTableModel(PcRace pc) {
-            Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
-            if (null != abilityScores) {
-                pcAbilityScores = new ArrayList<AbilityScore>(
-                        abilityScores.values());
+            recipes = config.getRecipes();
+            Set<String> pcRecipeIds = null;
+            if (null == pc) {
+                logger.error("PC is NULL");
+            } else {
+                pcRecipeIds = pc.getRecipes();
+            }
+            if (null != pcRecipeIds) {
+                recipeIds = new ArrayList<String>(pcRecipeIds);
             }
         }
 
         /**
-         * Get the column name.
+         * Method getColumnName.
          * 
          * @param col
-         *            column
-         * @return the column name
+         *            int
+         * @return String
          * @see javax.swing.table.TableModel#getColumnName(int)
          */
-        @Override
         public String getColumnName(int col) {
-            return columnNames[col];
+            return COLUMN_NAMES[col];
         }
 
         /**
-         * get row count.
+         * Method getRowCount.
          * 
-         * 
-         * @return int * @see javax.swing.table.TableModel#getRowCount()
+         * @return int
+         * @see javax.swing.table.TableModel#getRowCount()
          */
-        @Override
         public int getRowCount() {
             int count = 0;
-            if (null != pcAbilityScores) {
-                count = pcAbilityScores.size();
+            if (null != recipeIds) {
+                count = recipeIds.size();
             }
             return count;
         }
@@ -120,10 +117,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
         /**
          * Method getColumnCount.
          * 
-         * 
-         * @return int * @see javax.swing.table.TableModel#getColumnCount()
+         * @return int
+         * @see javax.swing.table.TableModel#getColumnCount()
          */
-        @Override
         public int getColumnCount() {
             return 2;
         }
@@ -135,19 +131,21 @@ public class AbilityScoresTable extends JTable implements FocusListener {
          *            int
          * @param col
          *            int
-         * 
-         * 
-         * @return Object * @see javax.swing.table.TableModel#getValueAt(int,
-         *         int)
+         * @return Object
+         * @see javax.swing.table.TableModel#getValueAt(int, int)
          */
-        @Override
         public Object getValueAt(int row, int col) {
-            AbilityScore abilityScore = pcAbilityScores.get(row);
+            String recipeId = recipeIds.get(row);
+            String result = null;
             if (0 == col) {
-                return abilityScore.getName();
+                result = recipeId;
             } else {
-                return abilityScore.valueOptionalMod();
+                Recipe recipe = recipes.get(recipeId);
+                if (null != recipe) {
+                    result = recipe.getDescription();
+                }
             }
+            return result;
         }
 
         /**
@@ -157,12 +155,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
          *            int
          * @param col
          *            int
-         * 
-         * 
-         * @return boolean * @see
-         *         javax.swing.table.TableModel#isCellEditable(int, int)
+         * @return boolean
+         * @see javax.swing.table.TableModel#isCellEditable(int, int)
          */
-        @Override
         public boolean isCellEditable(int row, int col) {
             return false;
         }
@@ -176,10 +171,8 @@ public class AbilityScoresTable extends JTable implements FocusListener {
          *            int
          * @param col
          *            int
-         * 
          * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
          */
-        @Override
         public void setValueAt(Object value, int row, int col) {
             // rowData[row][col] = value;
             fireTableCellUpdated(row, col);

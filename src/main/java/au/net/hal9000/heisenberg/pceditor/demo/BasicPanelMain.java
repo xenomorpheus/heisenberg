@@ -1,24 +1,28 @@
-package au.net.hal9000.heisenberg.worldeditor.demo;
+package au.net.hal9000.heisenberg.pceditor.demo;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.pceditor.BasicPanel;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
-import au.net.hal9000.heisenberg.worldeditor.SkillsTable;
 
-public class SkillsTableMain {
+
+
+/**
+ */
+public class BasicPanelMain {
     /** frame width. */
     static final int FRAME_WIDTH = 800;
     /** frame height. */
     static final int FRAME_HEIGHT = 300;
 
     /**
-     * app to test the skills table.
+     * for testing the config editor.
      * 
      * @param args
-     *            not used
+     *            command line args.
      */
     public static void main(String[] args) {
 
@@ -28,23 +32,22 @@ public class SkillsTableMain {
             @Override
             public void run() {
                 try {
-                    PcRace pc = DummyData.elf();
+                    PcRace pc = DummyData.getPcRace();
                     JFrame guiFrame = new JFrame();
 
                     // make sure the program exits when the frame closes
                     guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    guiFrame.setTitle("Skills Table");
+                    guiFrame.setTitle("Basic Panel");
                     guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-                    // This will center the JFrame in the middle of the screen
-                    guiFrame.setLocationRelativeTo(null);
-
-                    SkillsTable skillsTable = new SkillsTable();
-                    skillsTable.setPcRace(pc);
+                    BasicPanel basicPanel = new BasicPanel();
+                    basicPanel.setPcRace(pc);
 
                     // add to JFrame
-                    guiFrame.add(skillsTable);
+                    guiFrame.add(basicPanel);
                     guiFrame.pack();
+                    // This will centre the JFrame in the middle of the screen
+                    guiFrame.setLocationRelativeTo(null);
                     guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();

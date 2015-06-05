@@ -5,7 +5,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
-public abstract class Animal extends Entity {
+abstract class Animal extends Entity {
 
     // Constructor
     /**
@@ -16,7 +16,7 @@ public abstract class Animal extends Entity {
      * @param description
      *            String
      */
-    protected Animal(String name, String description) {
+    private Animal(String name, String description) {
         super(name, description);
     }
 
@@ -46,7 +46,7 @@ public abstract class Animal extends Entity {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public String drink(Water water) throws InvalidTypeException,
+    String drink(Water water) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         Cooker cooker = getCooker("drinkWater");
         String error = cooker.setItemsAvailable(0, water);
