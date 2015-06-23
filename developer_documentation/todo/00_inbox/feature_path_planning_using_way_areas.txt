@@ -1,0 +1,11 @@
+Idea:
+
+Firstly divide the land to be travelled into 'way areas'.
+  One way to do this may be to use the vision code to determine the edges of walls.
+  Use wall edges to create way points.
+  Use way points as the corners of polygons that are the way areas.
+
+Next use these way areas as points in the path finding problem.
+
+Using an ordered list of way areas, somehow construct a reasonably optimised path through these way areas.
+  Perhaps some kind of spline calculation.

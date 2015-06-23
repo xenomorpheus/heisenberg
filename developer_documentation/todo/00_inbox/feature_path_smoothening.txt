@@ -1,0 +1,6 @@
+When a path is proposed, try smoothening it before following it.
+
+Take a cursor at the first point in the path.
+Keep considering points along the path. 
+If a straight line can be reached (without hitting a barrier) then delete path points in between the two points being considered.
+

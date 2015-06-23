@@ -1,0 +1,4 @@
+There is a problem with the path planning such that the entity hits the wall and gets stuck.
+The likely cause is the size of the body is too large, not allowing the center of the entity to reach the target point very close to the wall.
+
+Idea: Ensure the wall back off is at minimum the radius of the entity.
