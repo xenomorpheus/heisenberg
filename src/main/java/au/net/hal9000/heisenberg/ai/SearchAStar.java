@@ -57,13 +57,13 @@ public class SearchAStar extends SearchBase {
      * Return a list of actions to get from the current model state to reach the
      * goal model state.
      * 
-     * @param modelState
-     *            current model state.
+     * @param initialModelState
+     *            initial model state.
      * 
      * @return list of actions.
      */
     @Override
-    public final Path findPathToGoal(final ModelState modelState) {
+    public final Path findPathToGoal(final ModelState initialModelState) {
 
         Path resultPath = null;
         fringeExpansionCount = 0;
@@ -76,8 +76,8 @@ public class SearchAStar extends SearchBase {
         /** fringe of states to expand */
         PriorityQueue<FringeElement> fringe = new PriorityQueue<>();
 
-        fringe.add(new FringeElementImpl(modelState, new PathImpl(), 0f, 0));
-        fringeAdded.add(modelState);
+        fringe.add(new FringeElementImpl(initialModelState, new PathImpl(), 0f, 0));
+        fringeAdded.add(initialModelState);
 
         while (!fringe.isEmpty()
                 && ((fringeExpansionMax == 0) || (fringeExpansionCount < fringeExpansionMax))) {
@@ -100,8 +100,9 @@ public class SearchAStar extends SearchBase {
                 ModelState successorModelState = successor.getModelState();
 
                 // Don't add state to the fringe more than once.
-                if (getModelStateEvaluator().modelStateInAdded(fringeAdded,
+                if (getModelStateEvaluator().isModelStateInAdded(fringeAdded,
                         successorModelState)) {
+                    // System.out.println("NOT Adding to Fringe: "+successorModelState);
                     continue;
                 }
                 fringeAdded.add(successorModelState);
@@ -116,6 +117,7 @@ public class SearchAStar extends SearchBase {
                         successorModelState, newPathSoFar, newCostSoFar,
                         newCostSoFar + costToGoalEst);
                 fringe.add(fringeElementNew);
+                // System.out.println("Fringe add="+fringeElementNew);
             }
 
         }

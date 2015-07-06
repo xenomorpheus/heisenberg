@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -140,10 +140,8 @@ public class SearchAStarGridTest {
 
         // Simulate the results after seeing a wall.
         Object blocker = "this is the wall";
-        Point2D point1 = new Point2D.Double(-2, 0.5);
-        Point2D point2 = new Point2D.Double(2, 0.5);
-        Line2D line = new Line2D.Double(point1, point2);
-        Barrier barrier = new BarrierLine(line, blocker);
+        Line2D.Double line = new Line2D.Double(-2, 0.5,2, 0.5);
+        Barrier barrier = new BarrierShape(Arrays.asList(line), blocker);
         MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
         agent.memoryAdd(memory);
 

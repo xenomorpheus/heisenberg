@@ -22,4 +22,12 @@ public interface Path extends Iterable<Action> {
      */
     int size();
 
+    /**
+     * return Action at point in path.
+     * 
+     * @param index
+     *            point in path.
+     */
+    Action get(int index);
+
 }

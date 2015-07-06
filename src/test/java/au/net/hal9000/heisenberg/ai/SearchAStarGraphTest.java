@@ -134,7 +134,7 @@ public class SearchAStarGraphTest {
         }
 
         @Override
-        public boolean modelStateInAdded(List<ModelState> addedModelStates,
+        public boolean isModelStateInAdded(List<ModelState> addedModelStates,
                 ModelState modelState) {
             for (ModelState modelStateOther : addedModelStates) {
                 if (modelState.equals(modelStateOther)) {

@@ -46,7 +46,8 @@ public class MemoryOfBarrier extends MemoryImpl {
     public String toString() {
         StringBuilder string = new StringBuilder(11);
         return string.append(getClass().getSimpleName() + "=[").append(barrier)
-                .append(getCreatedDate()).append(",").append(getDecayRate()).append(']')
+                .append(", created=").append(getCreatedDate())
+                .append(", decay=").append(getDecayRate()).append(']')
                 .append(']').toString();
     }
 }

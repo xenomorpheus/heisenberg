@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import java.awt.geom.Line2D;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.units.Position;
@@ -15,26 +16,26 @@ import au.net.hal9000.heisenberg.util.Geometry;
  *
  */
 
-public class BarrierLine implements Barrier {
+public class BarrierShape implements Barrier {
 
-    /** A line that forms a barrier. */
-    private Line2D barrierLine;
+    /** Lines that make up the barrier. Not required to be an enclosing shape. */
+    private List<Line2D.Double> barrierLines;
 
     /** The object doing the blocking. */
-    private Object blockerObject;
+    private Object blocker;
 
     /**
      * Constructor.
      * 
-     * @param barrier
+     * @param barrierShape
      *            line segment.
      * @param blocker
      *            the Object doing the blocking.
      */
-    public BarrierLine(Line2D barrier, Object blocker) {
+    public BarrierShape(List<Line2D.Double> barrierShape, Object blocker) {
         super();
-        this.barrierLine = barrier;
-        this.blockerObject = blocker;
+        this.barrierLines = barrierShape;
+        this.blocker = blocker;
     }
 
     /**
@@ -54,9 +55,12 @@ public class BarrierLine implements Barrier {
         // Perhaps best left to the physics engine.
 
         PathBlockDetails blocker = null;
-        Position point = Geometry.getLineIntersection(movement, barrierLine);
-        if (null != point) {
-            blocker = new PathBlockDetails(point, blockerObject);
+        for (Line2D line2D : barrierLines) {
+            Position point = Geometry.getLineIntersection(movement, line2D);
+            if (null != point) {
+                blocker = new PathBlockDetails(point, blocker);
+                break;
+            }
         }
 
         return blocker;
@@ -71,17 +75,20 @@ public class BarrierLine implements Barrier {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(11);
         DecimalFormat df = new DecimalFormat("#.###");
-        stringBuilder.append(getClass().getSimpleName()).append("=[ (");
-        if (null == barrierLine) {
-            stringBuilder.append("null");
+        stringBuilder.append(getClass().getSimpleName()).append("=[blocker=")
+                .append(blocker);
+        if (null == barrierLines) {
+            stringBuilder.append(", null");
+        } else {
+            for (Line2D barrierLine : barrierLines) {
+                stringBuilder.append(", [")
+                        .append(df.format(barrierLine.getX1())).append(',')
+                        .append(df.format(barrierLine.getY1())).append("]=>[")
+                        .append(df.format(barrierLine.getX2())).append(',')
+                        .append(df.format(barrierLine.getY2())).append("]");
+            }
         }
-        else{
-            stringBuilder.append(df.format(barrierLine.getX1())).append(',')
-                    .append(df.format(barrierLine.getY1())).append(")=>(")
-                    .append(df.format(barrierLine.getX2())).append(',')
-                    .append(df.format(barrierLine.getY2()));
-        }
-        stringBuilder.append("), blocker ").append(blockerObject).append(']');
+        stringBuilder.append("]");
         return stringBuilder.toString();
     }
 }

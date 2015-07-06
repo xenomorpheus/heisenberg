@@ -26,7 +26,7 @@ public class MemoryOfBarrierTest {
         Date createdDate = null;
         double decayRate = 0;
         String blocker = "foo";
-        Barrier barrier = new BarrierLine(null, blocker);
+        Barrier barrier = new BarrierShape(null, blocker);
         MemoryOfBarrier memory = new MemoryOfBarrier(createdDate, decayRate,
                 barrier);
         Barrier barrier2 = memory.getBarrier();
@@ -38,12 +38,12 @@ public class MemoryOfBarrierTest {
 
         Date createdDate = null;
         double decayRate = 0;
-        String blocker = "foo";
-        Barrier barrier = new BarrierLine(null, blocker);
+        Barrier barrier = new BarrierShape(null, "barrierObject");
         MemoryOfBarrier memoryOfBarrier = new MemoryOfBarrier(createdDate, decayRate,
                 barrier);
-        String string = memoryOfBarrier.toString();
-        assertTrue("MemoryOfBarrier=[BarrierLine=[ (null), blocker foo]null,0.0]]".equals(string));
+        String expect = "MemoryOfBarrier=["+barrier.toString()+", created=null, decay=0.0]]";
+        String got = memoryOfBarrier.toString();
+        assertTrue(expect.equals(got));
     }
 
 }

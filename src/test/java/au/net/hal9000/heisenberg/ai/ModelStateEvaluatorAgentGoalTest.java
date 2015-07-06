@@ -11,56 +11,22 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Position;
 
-class MyModelState implements ModelState {
-
-    private int id;
-
-    MyModelState(int id) {
-        super();
-        this.id = id;
-    }
-
-    @Override
-    public ModelState duplicate() {
-        return new MyModelState(id);
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        MyModelState other = (MyModelState) obj;
-        if (id != other.id)
-            return false;
-        return true;
-    }
-
-}
-
 public class ModelStateEvaluatorAgentGoalTest {
 
     @Test
     public void testModelStateInAddedTrue() {
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         List<ModelState> addedModelStates = new ArrayList<>();
-        addedModelStates.add(new MyModelState(1));
-        addedModelStates.add(new MyModelState(2));
-        addedModelStates.add(new MyModelState(3));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(1, 1),
+                new Position()));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(2, 2),
+                new Position()));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(3, 3),
+                new Position()));
 
-        ModelState modelState = new MyModelState(2);
-        assertTrue(modelStateEvaluator.modelStateInAdded(addedModelStates,
+        ModelState modelState = new ModelStateAgentGoal(new Position(2, 2),
+                new Position());
+        assertTrue(modelStateEvaluator.isModelStateInAdded(addedModelStates,
                 modelState));
     }
 
@@ -68,12 +34,16 @@ public class ModelStateEvaluatorAgentGoalTest {
     public void testModelStateInAddedFalse() {
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         List<ModelState> addedModelStates = new ArrayList<>();
-        addedModelStates.add(new MyModelState(1));
-        addedModelStates.add(new MyModelState(2));
-        addedModelStates.add(new MyModelState(3));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(1, 1),
+                new Position()));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(2, 2),
+                new Position()));
+        addedModelStates.add(new ModelStateAgentGoal(new Position(3, 3),
+                new Position()));
 
-        ModelState modelState = new MyModelState(4);
-        assertFalse(modelStateEvaluator.modelStateInAdded(addedModelStates,
+        ModelState modelState = new ModelStateAgentGoal(new Position(4, 4),
+                new Position());
+        assertFalse(modelStateEvaluator.isModelStateInAdded(addedModelStates,
                 modelState));
     }
 

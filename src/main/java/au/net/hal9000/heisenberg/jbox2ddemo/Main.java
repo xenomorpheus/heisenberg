@@ -29,7 +29,7 @@ public class Main {
         }
         TestbedModel model = new TestbedModel();
         TestbedPanel panel = new TestPanelJ2D(model);
-        model.addTest(new MazeCat());
+        model.addTest(new MazeCatTestBed());
         JFrame testbed = new TestbedFrame(model, panel,
                 UpdateBehavior.UPDATE_CALLED);
         testbed.pack();

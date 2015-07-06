@@ -38,6 +38,17 @@ class PathImpl implements Path {
     }
 
     /**
+     * return Action at point in path.
+     * 
+     * @param index
+     *            point in path.
+     */
+    @Override
+    public Action get(int index) {
+        return actions.get(index);
+    }
+
+    /**
      * Method hashCode.
      * 
      * @see java.lang.Object#hashCode()

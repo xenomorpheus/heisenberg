@@ -27,11 +27,6 @@ import au.net.hal9000.heisenberg.util.Geometry;
 /**
  * Generate new ModelState objects from current ModelState object and
  * transitionFunction.<br>
- * This version is particularly dumb. <br>
- * 1. It generates 4 Successors at 90 degrees to each other, with a step of 1.0
- * unit. <br>
- * 2. Doesn't know about walls.<br>
- * 3. Does know about goals.<br>
  * 
  * @author bruins
  * @version $Revision: 1.0 $
@@ -44,6 +39,9 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
     private double stepSize = 1.0;
     /** How many directions to consider. */
     private int directionCount = 4;
+
+    /** Maximum radius of Entity. Used to avoid barriers */
+    private float entityRadiusMax;
 
     /**
      * Constructor.
@@ -72,6 +70,17 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
         this.directionCount = directionCount;
     }
 
+    // Getters and Setters
+
+    public void setEntityRadiusMax(float entityRadiusMax) {
+        this.entityRadiusMax = entityRadiusMax;
+    }
+
+    public float getEntityRadiusMax() {
+        return entityRadiusMax;
+    }
+
+    // Misc
     /**
      * Generate a list of possible actions from this model state.
      * 
@@ -126,27 +135,26 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
     }
 
     /**
-     * Method generateSuccessors.
+     * Generate a list of possible successors from current model state.
      * 
-     * @param modelState
-     *            ModelState
-     * @return Queue<Successor>
-     * @see au.net.hal9000.heisenberg.ai.api.SuccessorFunction#generateSuccessors(ModelState)
+     * @param currentModelState
+     *            current ModelState
+     * @return A list of successors from current model state.
      */
     @Override
-    public Queue<Successor> generateSuccessors(ModelState modelState) {
-        if (!(modelState instanceof ModelStateAgentGoal)) {
+    public Queue<Successor> generateSuccessors(ModelState currentModelState) {
+        if (!(currentModelState instanceof ModelStateAgentGoal)) {
             throw new RuntimeException("Expecting ModelStateAgentGoal");
         }
-        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
+        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) currentModelState;
         Queue<Successor> successors = new LinkedList<>();
-        List<Action> actions = buildActions(modelState);
+        List<Action> actions = buildActions(currentModelState);
         Position agentPos = modelStateAgentGoal.getAgentPosition();
 
         // Get a list of Barriers from memorySet.
         List<Barrier> barriers = new ArrayList<>();
-        if (modelState instanceof ModelStateAgentGoalMemorySet) {
-            ModelStateAgentGoalMemorySet modelStateMemorySet = (ModelStateAgentGoalMemorySet) modelState;
+        if (currentModelState instanceof ModelStateAgentGoalMemorySet) {
+            ModelStateAgentGoalMemorySet modelStateMemorySet = (ModelStateAgentGoalMemorySet) currentModelState;
             MemorySet memorySet = modelStateMemorySet.getMemorySet();
             for (Memory memory : memorySet) {
                 if (memory instanceof MemoryOfBarrier) {
@@ -155,11 +163,11 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
             }
         }
 
-        // For any actions, plan if likely valid action.
-        // E.g. not walk into a barrier.
+        // For any actions, remove likely invalid actions.
+        // E.g. don't try to walk through a barrier.
         ActionLoop: for (Action action : actions) {
             ModelState modelStateNew = transitionFunction.transition(
-                    modelState, action);
+                    currentModelState, action);
             if (!(modelStateNew instanceof ModelStateAgentGoal)) {
                 throw new RuntimeException("Expecting ModelStateAgentGoal");
             }
@@ -187,8 +195,8 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
                         Position movementPartial = pathBlockDetails
                                 .getBlockingPoint().subtract(agentPos);
 
-                        // movement trimmed to just before block.
-                        movementPartial.vectorMul(0.98);
+                        // need to allow for body width.
+                        movementPartial.setVectorLength(Math.min(0 , movementPartial.length() - getEntityRadiusMax()));
 
                         // If movement too small, ignore this Action.
                         if (movementPartial.length() < Position.DEFAULT_AXIS_TOLERANCE) {
@@ -208,4 +216,5 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
         }
         return successors;
     }
+
 }

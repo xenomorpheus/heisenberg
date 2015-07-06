@@ -43,6 +43,6 @@ public interface ModelStateEvaluator {
      *            state of model.
      * @return true IFF agent has visited this location.
      */
-    boolean modelStateInAdded(List<ModelState> addedModelStates,
+    boolean isModelStateInAdded(List<ModelState> addedModelStates,
             ModelState modelState);
 }
