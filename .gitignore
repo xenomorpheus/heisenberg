@@ -1,6 +1,6 @@
 .project
 .classpath
-.settings
+/.settings/
 /target
 /JBox2d.log
 /derby.log
