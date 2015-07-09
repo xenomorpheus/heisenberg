@@ -1,7 +1,39 @@
+2015-07-07
+Ignore eclipse files
+Git ignore java binaries
+
+2015-07-06
+AI developments
+Pull jbox2d JARs from maven central
+
+2015-06-24
+Ideas for fixing path finding
+
+2015-06-05
+Mostly code cleanups.
+
+2015-04-14
+Fixed way points position and colour.
+
+2015-03-11
+Reworded parts of the readme.
+Added demonstration of A* search in JBox2d with cat chase mouse.
+
+2015-03-07
+Removed some unused code
+Moved entity class into item package. reduced scope of some classes.
+
+2015-03-06
+Added unit tests.
+Maven clean, test and package now work.
+Added some unit tests.
+
 2015-03-05
 A* now agnostic of implementation of AI classes.
 AI Interfaces cleaned up to be agnostic of implementation.
 Unit tests added from Grave - Grid and Graph test.
+Define in terms of interfaces, not implementation.
+Doco update - tests have been completed.
 
 2014-12-30
 Bugfix - JBox2D dragging objects was flipped in Y direction.

@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The entry point for the testbed application
  * 
- * @author Daniel Murphy
+ * @author Mike Bruins
  */
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
