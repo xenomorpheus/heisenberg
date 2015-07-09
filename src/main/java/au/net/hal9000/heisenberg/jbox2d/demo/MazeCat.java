@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.jbox2ddemo;
+package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class MazeCat {
     /** AI - path search */
     private SearchAStar search;
 
-    private List<Position> catPositionPath = null;
+    private List<Position> positionPath = null;
 
     MemorySet memorySet = new MemorySetImpl();
 
@@ -50,6 +50,13 @@ public class MazeCat {
         this.targetBody = targetBody;
         // Initialise AI
         aiInit();
+    }
+
+    /**
+     * @return the path to the goal.
+     */
+    List<Position> getPositionPath() {
+        return positionPath;
     }
 
     private void aiInit() {
@@ -104,7 +111,7 @@ public class MazeCat {
                     catPathTemp.add(catPosIteration.duplicate());
                 }
             }
-            catPositionPath = catPathTemp;
+            positionPath = catPathTemp;
         }
     }
 
@@ -114,9 +121,9 @@ public class MazeCat {
     void move() {
         // change to a while.
         Vec2 catPos = catBody.getPosition();
-        if (catPositionPath != null) {
+        if (positionPath != null) {
 
-            Position catTarget = catPositionPath.get(0);
+            Position catTarget = positionPath.get(0);
 
             // TODO check that we can reach that target point without hitting
             // barrier.
@@ -125,9 +132,8 @@ public class MazeCat {
                     (float) catTarget.getY() - catPos.y);
             // if we are at the first point in the path, remove it and move to
             // next.
-            while ((catDirection.length() < 0.5f)
-                    && (catPositionPath.size() > 1)) {
-                catPositionPath.remove(0);
+            while ((catDirection.length() < 0.5f) && (positionPath.size() > 1)) {
+                positionPath.remove(0);
                 catDirection.x = (float) catTarget.getX() - catPos.x;
                 catDirection.y = (float) catTarget.getY() - catPos.y;
             }
@@ -145,14 +151,14 @@ public class MazeCat {
         }
 
         // Draw the Cat's planned path
-        if (catPositionPath != null) {
+        if (positionPath != null) {
 
             // Start is Cat's position.
             Vec2 catPosLast = catBody.getPosition();
             Vec2 catPosNew = new Vec2();
             // Draw the planned path
 
-            for (Position position : catPositionPath) {
+            for (Position position : positionPath) {
                 catPosNew.x = (float) position.getX();
                 catPosNew.y = (float) position.getY();
                 System.out.println("From=" + catPosLast + " to " + catPosNew);
@@ -287,7 +293,7 @@ public class MazeCat {
     void aiPathDraw(DebugDraw debugDraw) {
 
         // Draw the Cat's planned path
-        if (catPositionPath != null) {
+        if (positionPath != null) {
 
             // Start is Cat's position.
             Vec2 catPosLast = catBody.getPosition();
@@ -295,7 +301,7 @@ public class MazeCat {
             // Draw the planned path
             Color3f color = Color3f.BLUE;
 
-            for (Position position : catPositionPath) {
+            for (Position position : positionPath) {
                 catPosNew.x = (float) position.getX();
                 catPosNew.y = (float) position.getY();
                 debugDraw.drawSolidCircle(catPosNew, 0.15f, null, color);
@@ -348,5 +354,4 @@ public class MazeCat {
         }
 
     }
-
 }

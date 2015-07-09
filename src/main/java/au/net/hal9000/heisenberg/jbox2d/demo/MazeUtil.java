@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.jbox2ddemo;
+package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import java.awt.geom.Line2D;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.jbox2ddemo;
+package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.collision.shapes.ChainShape;
