@@ -14,16 +14,30 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
     private final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
 
     /**
-     * Field GOAL_TOLERANCE.
+     * How close do we need to be to consider two states equal. Both
+     * consideration for isAtGoal, and if we have added a state to the fringe.
      */
-    // Don't change this. isAtGoal uses Position.equals()
-    static final double GOAL_TOLERANCE = Position.DEFAULT_AXIS_TOLERANCE;
+    double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
 
+    // Constructor(s)
     /** {@inheritDoc} */
     public ModelStateEvaluatorAgentGoal() {
         super();
     }
 
+    // Getters and Setters
+    public double getPositionTolerance() {
+        return positionTolerance;
+    }
+
+    public void setPositionTolerance(double positionDistance) {
+        if (positionDistance < Position.DEFAULT_AXIS_TOLERANCE) {
+            throw new RuntimeException("too low");
+        }
+        this.positionTolerance = positionDistance;
+    }
+
+    // Misc
     /** {@inheritDoc} */
     @Override
     public double costToGoalEstimate(ModelState modelState) {
@@ -41,7 +55,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
 
     @Override
     public boolean isAtGoal(ModelState modelState) {
-        return costToGoalEstimate(modelState) < GOAL_TOLERANCE;
+        return costToGoalEstimate(modelState) < positionTolerance;
     }
 
     public double costBetweenAgentsEstimate(ModelState modelState,
@@ -83,7 +97,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
             }
 
             double costEst = agentPosition.distance(agentOtherPosition);
-            if (costEst < GOAL_TOLERANCE) {
+            if (costEst < positionTolerance) {
                 hereBefore = true;
                 break;
             }

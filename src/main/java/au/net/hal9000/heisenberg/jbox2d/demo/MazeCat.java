@@ -21,16 +21,32 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.EntitySuccessorFunction;
 import au.net.hal9000.heisenberg.units.Position;
+import au.net.hal9000.heisenberg.util.FiringSolution;
 
 public class MazeCat {
 
     /** Cat's speed. */
     private static final float CAT_NORMAL_SPEED = 4f;
+    /** Cat's directions count. */
+    private static final int CAT_DIRECTION_COUNT = 6;
+    /** Cat radius. Used for distance from obstacles */
+    private static final float CAT_RADIUS = 0.2f;
+    /**
+     * Cat's step size.<br>
+     * Must be greater than POSITON_TOLERANCE
+     */
+    private static final float CAT_STEP_SIZE = 1f;
+    /**
+     * How close together two points are to be considered same.<br>
+     * Must be less than CAT_STEP_SIZE
+     */
+    private static final float POSITON_TOLERANCE = 0.5f;
+    /** Max number of points to consider when planning a path to goal. */
+    private static final int FRINGE_MAX = 1000;
 
     // Game Entity objects
     /** JBox2d game object - cat */
@@ -64,16 +80,17 @@ public class MazeCat {
         // AI - Planning movement
 
         // Setup how we evaluate the worth of a new model state.
-        final ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
+        final ModelStateEvaluatorAgentGoal modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
 
         // Setup how to transition (move) to a new state.
         final TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
         // Setup how to generate new successor states.
         final EntitySuccessorFunction successorFunction = new EntitySuccessorFunction(
-                transitionFunction);
+                transitionFunction, CAT_STEP_SIZE, CAT_DIRECTION_COUNT);
 
-        successorFunction.setEntityRadiusMax(0.2f);
+        modelStateEvaluator.setPositionTolerance(POSITON_TOLERANCE);
+        successorFunction.setEntityRadiusMax(CAT_RADIUS);
 
         search = new SearchAStar(successorFunction, modelStateEvaluator);
 
@@ -97,11 +114,18 @@ public class MazeCat {
                 catPos.duplicate(), ratPos.duplicate(), memorySet);
 
         // Find a path to the goal e.g. Rat position.
-        search.setFringeExpansionMax(3000);
+        search.setFringeExpansionMax(FRINGE_MAX);
+        // Work out the points to head for.
         Path path = search.findPathToGoal(modelState);
 
-        // Work out the points to head for.
-        if (path != null) {
+        // If AI planning succeeded then follow the path to goal.
+        if (path != null && path.size() > 0) {
+            // The path is relative to the state at which the actor performed
+            // the search.
+            // Since the actor has moved from that point, the relative path
+            // would be wrong.
+            // To solve this we convert the path to a list of absolute
+            // locations.
             Position catPosIteration = catPos.duplicate();
             List<Position> catPathTemp = new ArrayList<>();
             for (Action action : path) {
@@ -113,6 +137,25 @@ public class MazeCat {
             }
             positionPath = catPathTemp;
         }
+        // If AI planning failed,
+        else {
+
+            positionPath = new ArrayList<>();
+            // Try calculating a firing solution.
+            Vec2 solution = FiringSolution.calculate(catBody.getPosition(),
+                    targetBody.getPosition(), targetBody.getLinearVelocity(),
+                    CAT_NORMAL_SPEED);
+
+            // We have a firing solution, so use it.
+            if (solution != null) {
+                positionPath.add(new Position(solution.x, solution.y));
+            } else {
+                // All else failed, just then aim directly towards target and
+                // hope for the best.
+                positionPath.add(new Position(targetBody.getPosition().x,
+                        targetBody.getPosition().y));
+            }
+        }
     }
 
     /**
@@ -121,26 +164,27 @@ public class MazeCat {
     void move() {
         // change to a while.
         Vec2 catPos = catBody.getPosition();
-        if (positionPath != null) {
+        Vec2 directionToPathHead;
+
+        // Follow the Path the AI search produced.
+        if (positionPath != null && positionPath.size() > 0) {
 
             Position catTarget = positionPath.get(0);
-
-            // TODO check that we can reach that target point without hitting
-            // barrier.
-
-            Vec2 catDirection = new Vec2((float) catTarget.getX() - catPos.x,
+            directionToPathHead = new Vec2((float) catTarget.getX() - catPos.x,
                     (float) catTarget.getY() - catPos.y);
             // if we are at the first point in the path, remove it and move to
             // next.
-            while ((catDirection.length() < 0.5f) && (positionPath.size() > 1)) {
+            while ((directionToPathHead.length() < POSITON_TOLERANCE)
+                    && (positionPath.size() > 1)) {
                 positionPath.remove(0);
-                catDirection.x = (float) catTarget.getX() - catPos.x;
-                catDirection.y = (float) catTarget.getY() - catPos.y;
+                catTarget = positionPath.get(0);
+                directionToPathHead.x = (float) catTarget.getX() - catPos.x;
+                directionToPathHead.y = (float) catTarget.getY() - catPos.y;
             }
 
-            catDirection.normalize();
-            catDirection.mulLocal(CAT_NORMAL_SPEED);
-            catBody.setLinearVelocity(catDirection);
+            directionToPathHead.normalize();
+            directionToPathHead.mulLocal(CAT_NORMAL_SPEED);
+            catBody.setLinearVelocity(directionToPathHead);
         }
     }
 

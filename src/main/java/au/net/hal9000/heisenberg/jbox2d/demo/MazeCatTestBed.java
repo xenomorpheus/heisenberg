@@ -43,12 +43,14 @@ class MazeCatTestBed extends TestbedTest {
     private int catAiCounter = 0;
     /** Rat Jbox2d object. */
     private Body ratBody;
-
+    /** AI */
     private MazeCat mazeCat;
-
+    /** JBox Physics Engine world */
     private World world = null;
+    /** Debug Graphics object for drawing in JBox Physics Engine world */
     private DebugDraw debugDraw = null;
 
+    /** Constructor */
     public MazeCatTestBed() {
         super();
     }
@@ -78,7 +80,7 @@ class MazeCatTestBed extends TestbedTest {
             // mazeCat.aiPrint();
 
         }
-        //mazeCat.aiFringeDraw(debugDraw);
+        mazeCat.aiFringeDraw(debugDraw);
         mazeCat.aiPathDraw(debugDraw);
         mazeCat.move();
 

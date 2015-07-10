@@ -93,20 +93,20 @@ public class ModelStateEvaluatorAgentGoalTest {
         double valuationGoal = modelStateEvaluatorAgentGoal
                 .costToGoalEstimate(modelState);
         assertEquals("At goal", 0.0f, valuationGoal,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
         assertEquals("At goal - cross-check",
                 agentPosition.distance(goalPosition), valuationGoal,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
 
         // Agent off by 1.0 in X
         agentPosition.setX(1.0f);
         double valuation1 = modelStateEvaluatorAgentGoal
                 .costToGoalEstimate(modelState);
         assertEquals("Agent off by 1.0 in X", 1.0f, valuation1,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
         assertEquals("Agent off by 1.0 in X - cross-check",
                 agentPosition.distance(goalPosition), valuation1,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
 
         // Agent off by 3.0 in X, 4.0 in Y
         agentPosition.setX(3.0f);
@@ -114,10 +114,10 @@ public class ModelStateEvaluatorAgentGoalTest {
         double valuation5 = modelStateEvaluatorAgentGoal
                 .costToGoalEstimate(modelState);
         assertEquals("Agent off by 3.0 in X, 4.0 in Y", 5.0f, valuation5,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
         assertEquals("Agent off by 3.0 in X, 4.0 in Y - cross-check",
                 agentPosition.distance(goalPosition), valuation5,
-                ModelStateEvaluatorAgentGoal.GOAL_TOLERANCE);
+                modelStateEvaluatorAgentGoal.getPositionTolerance());
     }
 
 }
