@@ -5,3 +5,5 @@ Greatly simplifies UI Pc editor.
 Allows changing of race without removing and reinserting PC object.
 Currently no race based properties anyway.
 
+Alternatively PC Editor can now handle different classes. This may be good 
+as future classes may not be humanoid.

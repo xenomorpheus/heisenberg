@@ -19,7 +19,7 @@
    a range impulses - Start planning with none, low, medium, high.  Consider fine tune in planning.
    a range of desired directions - Start with 4, then consider fine tune in planning.
 
-* Extra energy reserves could be simplifed to fat reserves, which would have weight.
+* Extra energy reserves could be simplified to fat reserves, which would have weight.
 
 * Impulse cost would raise with extra weight.
 
@@ -29,7 +29,7 @@
   * water
   * Carried items
 
-* Fat reserves could be simplifed into a measure of base weight (before energy, water, carried load).
+* Fat reserves could be simplified into a measure of base weight (before energy, water, carried load).
 
 
 Interesting Test cases
