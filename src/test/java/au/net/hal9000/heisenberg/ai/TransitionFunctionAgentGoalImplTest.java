@@ -17,9 +17,12 @@ public class TransitionFunctionAgentGoalImplTest {
         Position agentPos = new Position(1, 2);
         Position expectedAgentPos = new Position(agentPos);
         Position goalPos = new Position(3, 4);
-        ModelStateAgentGoal modelState = new ModelStateAgentGoal(agentPos, goalPos);
-        ActionMoveImpl action = ActionMoveImpl.NORTH;
-        ModelStateAgentGoal dest = (ModelStateAgentGoal)transitionFunction.transition(modelState, action);
+        ModelStateAgentGoal modelState = new ModelStateAgentGoal(agentPos,
+                goalPos);
+        ActionAgentMoveRelativeImpl action = new ActionAgentMoveRelativeImpl(
+                Position.NORTH, Position.NORTH.length());
+        ModelStateAgentGoal dest = (ModelStateAgentGoal) transitionFunction
+                .transition(modelState, action);
         expectedAgentPos.applyDelta(action.getPositionDelta());
         assertTrue(expectedAgentPos.equals(dest.getAgentPosition(), tolerance));
     }

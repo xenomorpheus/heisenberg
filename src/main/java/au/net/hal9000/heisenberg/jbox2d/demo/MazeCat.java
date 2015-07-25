@@ -18,7 +18,8 @@ import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorAgentGoal;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
+import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -129,9 +130,14 @@ public class MazeCat {
             Position catPosIteration = catPos.duplicate();
             List<Position> catPathTemp = new ArrayList<>();
             for (Action action : path) {
-                if (action instanceof ActionMove) {
-                    ActionMove actionMove = (ActionMove) action;
+                if (action instanceof ActionAgentMoveRelative) {
+                    ActionAgentMoveRelative actionMove = (ActionAgentMoveRelative) action;
                     catPosIteration.applyDelta(actionMove.getPositionDelta());
+                    catPathTemp.add(catPosIteration.duplicate());
+                }
+                else if (action instanceof ActionAgentMoveAbsolute) {
+                    ActionAgentMoveAbsolute actionMove = (ActionAgentMoveAbsolute) action;
+                    catPosIteration.set(actionMove.getAgentTarget());
                     catPathTemp.add(catPosIteration.duplicate());
                 }
             }

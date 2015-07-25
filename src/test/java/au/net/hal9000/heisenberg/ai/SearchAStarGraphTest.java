@@ -66,9 +66,29 @@ public class SearchAStarGraphTest {
     private class MyAction implements Action {
         String nodeName;
 
+        // Constructor
         MyAction(String nodeName) {
             this.nodeName = nodeName;
         }
+
+        // Misc
+        @Override
+        public void apply(ModelState modelState) {
+            MyModelState myModelState = (MyModelState) modelState;
+            myModelState.setAgentPosition(nodeName);
+        }
+
+		@Override
+		public double getCost() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public void setCost(double cost) {
+			// TODO Auto-generated method stub
+			
+		}
     }
 
     private class MyTransitionSet {
@@ -121,7 +141,7 @@ public class SearchAStarGraphTest {
         @Override
         public double costToGoalEstimate(ModelState modelState) {
             MyModelState myModelState = (MyModelState) modelState;
-            if (isAtGoal(modelState)){
+            if (isAtGoal(modelState)) {
                 return 0;
             }
             return transitionSet.get(myModelState.agentPosition).heuristic;
@@ -150,6 +170,10 @@ public class SearchAStarGraphTest {
 
         MyModelState(String agentPosition) {
             super();
+            this.agentPosition = agentPosition;
+        }
+
+        void setAgentPosition(String agentPosition) {
             this.agentPosition = agentPosition;
         }
 

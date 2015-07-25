@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
+import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
@@ -79,8 +79,8 @@ public class SearchAStarGridTest {
         // Apply all actions in path.
         for (Action action : path) {
             // No step greater than max step size.
-            if (action instanceof ActionMove) {
-                ActionMove actionMove = (ActionMove) action;
+            if (action instanceof ActionAgentMoveRelative) {
+                ActionAgentMoveRelative actionMove = (ActionAgentMoveRelative) action;
                 assertTrue("assert each step size is within limits", actionMove
                         .getPositionDelta().length() <= stepSizeMax);
             }
@@ -175,8 +175,8 @@ public class SearchAStarGridTest {
         // Apply all actions in path.
         for (Action action : path) {
             // No step greater than max step size.
-            if (action instanceof ActionMove) {
-                ActionMove actionMove = (ActionMove) action;
+            if (action instanceof ActionAgentMoveRelative) {
+                ActionAgentMoveRelative actionMove = (ActionAgentMoveRelative) action;
                 assertTrue("assert each step size is within limits", actionMove
                         .getPositionDelta().length() <= (stepSizeMax * 1.0001));
 

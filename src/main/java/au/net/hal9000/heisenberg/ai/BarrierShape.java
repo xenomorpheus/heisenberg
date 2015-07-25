@@ -38,6 +38,7 @@ public class BarrierShape implements Barrier {
         this.blocker = blocker;
     }
 
+
     /**
      * Returns details of any barrier blocking the path.<br>
      * Returns null if not blockedwon't block.<br>
@@ -47,7 +48,23 @@ public class BarrierShape implements Barrier {
      * @return null or any details of a barrier.
      */
     @Override
-    public PathBlockDetails getPathBlockDetailsDetails(Line2D movement) {
+    public PathBlockDetails getPathBlockDetailsDetails(Position from, Position to) {
+        Line2D movement = new Line2D.Double(from.getX(),
+                from.getY(), to.getX(),
+                to.getY());
+
+        return getPathBlockDetailsDetails(movement);
+    }
+    
+    /**
+     * Returns details of any barrier blocking the path.<br>
+     * Returns null if not blockedwon't block.<br>
+     * 
+     * @param movement
+     *            the path travelled between two points.
+     * @return null or any details of a barrier.
+     */
+    private PathBlockDetails getPathBlockDetailsDetails(Line2D movement) {
 
         // TODO Currently movement is a point mass so this approach may fail if
         // barrier has a gap which is too small for entity to fit through.

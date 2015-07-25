@@ -5,6 +5,15 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Position {
 
+    /** move agent North. */
+    public static final Position NORTH = new Position(0, -1);
+    /** move agent South. */
+    public static final Position SOUTH = new Position(0, 1);
+    /** move agent East. */
+    public static final Position EAST = new Position(1, 0);
+    /** move agent West. */
+    public static final Position WEST = new Position(-1, 0);
+
     public static final double DEFAULT_AXIS_TOLERANCE = 0.05;
     private double xPos;
     private double yPos;
@@ -120,11 +129,13 @@ public class Position {
      * 
      * @param delta
      *            the amount to change the local position by.
+     * @return current Position object.
      */
-    public void applyDelta(Position delta) {
+    public Position applyDelta(Position delta) {
         xPos += delta.getX();
         yPos += delta.getY();
         zPos += delta.getZ();
+        return this;
     }
 
     /**
@@ -303,7 +314,9 @@ public class Position {
      */
     @Override
     public String toString() {
-        return String.format(getClass().getSimpleName()+"=[%.2f, %.2f, %.2f]", getX(), getY(), getZ());
+        return String.format(
+                getClass().getSimpleName() + "=[%.2f, %.2f, %.2f]", getX(),
+                getY(), getZ());
     }
 
     /**
@@ -311,6 +324,16 @@ public class Position {
      */
     public Position duplicate() {
         return new Position(this);
+    }
+
+    /**
+     * Set the current position to the same location as the other Postion.
+     * @param other Position
+     */
+    public void set(Position other) {
+        xPos = other.getX();
+        yPos = other.getY();
+        zPos = other.getZ();
     }
 
 }

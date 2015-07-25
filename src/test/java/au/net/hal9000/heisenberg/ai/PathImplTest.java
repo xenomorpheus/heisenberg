@@ -24,8 +24,8 @@ public class PathImplTest {
         PathImpl p1 = new PathImpl();
         PathImpl p2 = new PathImpl();
 
-        Action action1 = new ActionMoveImpl(new Position(0, 0));
-        Action action2 = new ActionMoveImpl(new Position(0, 0));
+        Action action1 = new ActionAgentMoveRelativeImpl(new Position(0, 0), 123);
+        Action action2 = new ActionAgentMoveRelativeImpl(new Position(0, 0), 123);
         assertTrue(action1.equals(action2));
         p2.add(action2);
         p1.add(action1);
@@ -39,12 +39,12 @@ public class PathImplTest {
     @Test
     public void testEquals2() {
         PathImpl expectedPath1 = new PathImpl();
-        expectedPath1.add(new ActionMoveImpl(new Position(0.6, 0.8)));
-        expectedPath1.add(new ActionMoveImpl(new Position(0.6, 0.8)));
+        expectedPath1.add(new ActionAgentMoveRelativeImpl(new Position(0.6, 0.8), 123));
+        expectedPath1.add(new ActionAgentMoveRelativeImpl(new Position(0.6, 0.8), 123));
 
         PathImpl expectedPath2 = new PathImpl();
-        expectedPath2.add(new ActionMoveImpl(new Position(0.6, 0.8)));
-        expectedPath2.add(new ActionMoveImpl(new Position(0.6, 0.8)));
+        expectedPath2.add(new ActionAgentMoveRelativeImpl(new Position(0.6, 0.8), 123));
+        expectedPath2.add(new ActionAgentMoveRelativeImpl(new Position(0.6, 0.8), 123));
         assertTrue(expectedPath1.equals(expectedPath2));
     }
 
@@ -58,12 +58,12 @@ public class PathImplTest {
     public void testClone() throws CloneNotSupportedException {
         PathImpl path = new PathImpl();
 
-        path.add(new ActionMoveImpl(new Position(1, 0)));
-        path.add(new ActionMoveImpl(new Position(2, 0)));
+        path.add(new ActionAgentMoveRelativeImpl(new Position(1, 0), 123));
+        path.add(new ActionAgentMoveRelativeImpl(new Position(2, 0), 123));
         PathImpl clone = path.duplicate();
         assertTrue(path.equals(clone));
         assertTrue(clone.equals(path));
-        path.add(new ActionMoveImpl(new Position(3, 0)));
+        path.add(new ActionAgentMoveRelativeImpl(new Position(3, 0), 123));
         assertFalse(path.equals(clone));
         assertFalse(clone.equals(path));
     }

@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 
@@ -19,7 +18,8 @@ public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
     }
 
     /**
-     * Method transition.
+     * Create a new ModelState by cloning the existing ModelState, then applying
+     * the Action to it.
      * 
      * @param modelState
      *            ModelState
@@ -31,25 +31,8 @@ public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
      */
     @Override
     public ModelState transition(ModelState modelState, Action action) {
-        if (!(action instanceof ActionMove)) {
-            throw new IllegalArgumentException(
-                    "Expecting ActionMove but got "
-                            + action.getClass().getSimpleName());
-        }
-        ActionMove actionAgentMove = (ActionMove) action;
-
-        if (!(modelState instanceof ModelStateAgentGoal)) {
-            throw new IllegalArgumentException(
-                    "Expecting ModelStateAgentGoal but got "
-                            + modelState.getClass().getSimpleName());
-        }
-        
-        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal)modelState;
-        // Clone the ModelState
-        ModelStateAgentGoal newModelState = modelStateAgentGoal.duplicate();
-
-        // Apply the action
-        newModelState.agentPositionChange(actionAgentMove.getPositionDelta());
+        ModelState newModelState = modelState.duplicate();
+        action.apply(newModelState);
         return newModelState;
     }
 

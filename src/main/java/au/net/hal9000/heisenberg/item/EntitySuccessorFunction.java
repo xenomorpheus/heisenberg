@@ -1,19 +1,17 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import au.net.hal9000.heisenberg.ai.ActionMoveImpl;
+import au.net.hal9000.heisenberg.ai.ActionAgentMoveAbsoluteImpl;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
 import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.PathBlockDetails;
 import au.net.hal9000.heisenberg.ai.SuccessorImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionMove;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
@@ -86,9 +84,12 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
      * 
      * @param modelState
      *            current model state
+     * @param barriers
+     *            a list of barriers.
      * @return a list of possible actions from this model state.
      */
-    private List<Action> buildActions(ModelState modelState) {
+    private List<Action> generateActionsMovement(ModelState modelState,
+            List<Barrier> barriers) {
         List<Action> actions = new ArrayList<>();
         Position agentPositionDelta = new Position(0, stepSize);
         List<Position> spokes;
@@ -115,18 +116,58 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
                 }
                 // This line is very important. It is the short step at the end.
                 if (goalDist < stepSize) {
-                    actions.add(new ActionMoveImpl(new Position(
-                            agentPositionDelta)));
+                    actions.add(new ActionAgentMoveAbsoluteImpl(goalPos
+                            .duplicate(), goalDist));
                 }
             }
-        }
 
-        // Add various movements to the list of actions.
-        // Build a list of spokes from this Position.
-        agentPositionDelta.setVectorLength(stepSize);
-        spokes = Geometry.generateSpokesZ(agentPositionDelta, directionCount);
-        for (Position spoke : spokes) {
-            actions.add(new ActionMoveImpl(spoke));
+            // Add various movements to the list of actions.
+            // Build a list of spokes from this Position.
+            agentPositionDelta.setVectorLength(stepSize);
+            spokes = Geometry.generateSpokesZ(agentPositionDelta,
+                    directionCount);
+            SpokeLoop: for (Position spoke : spokes) {
+
+                Position movementPartial = spoke.duplicate();
+                // For any actions, remove likely invalid actions.
+                // E.g. don't try to walk through a barrier.
+
+                // Plan if action is a legal move at this ModelState.
+                // Use memories of blockers.
+                Position agentPosNew = modelStateAgentGoal.getAgentPosition()
+                        .duplicate().add(spoke);
+
+                // Predict if we movement may be blocked by a barrier.
+                for (Barrier barrier : barriers) {
+                    PathBlockDetails pathBlockDetails = barrier
+                            .getPathBlockDetailsDetails(agentPos, agentPosNew);
+                    // Are we blocked in this direction?
+                    if (null != pathBlockDetails) {
+                        movementPartial = pathBlockDetails.getBlockingPoint()
+                                .subtract(agentPos);
+
+                        // Reduce movement to allow for body width.
+                        // This isn't very accurate as angle of incidence may
+                        // be very acute.
+                        movementPartial.setVectorLength(Math
+                                .min(0, movementPartial.length()
+                                        - getEntityRadiusMax()));
+
+                        // If movement too small, ignore this Action.
+                        if (movementPartial.length() < Position.DEFAULT_AXIS_TOLERANCE) {
+                            continue SpokeLoop;
+                        }
+                        // update agentPosNew
+                        agentPosNew = modelStateAgentGoal.getAgentPosition()
+                                .duplicate().add(movementPartial);
+                    }
+                }
+
+                // Using length travelled as a crude value of cost.
+                actions.add(new ActionAgentMoveAbsoluteImpl(agentPosNew,
+                        movementPartial.length()));
+            }
+
         }
 
         // TODO add other actions, e.g. attempt to eat prey if close enough.
@@ -146,10 +187,7 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
         if (!(currentModelState instanceof ModelStateAgentGoal)) {
             throw new RuntimeException("Expecting ModelStateAgentGoal");
         }
-        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) currentModelState;
         Queue<Successor> successors = new LinkedList<>();
-        List<Action> actions = buildActions(currentModelState);
-        Position agentPos = modelStateAgentGoal.getAgentPosition();
 
         // Get a list of Barriers from memorySet.
         List<Barrier> barriers = new ArrayList<>();
@@ -162,57 +200,14 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
                 }
             }
         }
+        List<Action> actions = generateActionsMovement(currentModelState,
+                barriers);
 
-        // For any actions, remove likely invalid actions.
-        // E.g. don't try to walk through a barrier.
-        ActionLoop: for (Action action : actions) {
+        for (Action action : actions) {
             ModelState modelStateNew = transitionFunction.transition(
                     currentModelState, action);
-            if (!(modelStateNew instanceof ModelStateAgentGoal)) {
-                throw new RuntimeException("Expecting ModelStateAgentGoal");
-            }
-            ModelStateAgentGoal modelStateAgentGoalNew = (ModelStateAgentGoal) modelStateNew;
-            // Using length travelled as a crude value of cost.
-            double actionCost = stepSize;
-
-            if (action instanceof ActionMove) {
-                ActionMove actionMove = (ActionMove) action;
-                // Plan if action is a legal move at this ModelState.
-                // Use memories of blockers.
-                Position agentPosNew = modelStateAgentGoalNew
-                        .getAgentPosition();
-
-                for (Barrier barrier : barriers) {
-                    // Plan if we are blocked by this barrier.
-                    // Movement from old agent position to new agent position.
-                    Line2D movement = new Line2D.Double(agentPos.getX(),
-                            agentPos.getY(), agentPosNew.getX(),
-                            agentPosNew.getY());
-                    PathBlockDetails pathBlockDetails = barrier
-                            .getPathBlockDetailsDetails(movement);
-                    // Are we blocked in this direction?
-                    if (null != pathBlockDetails) {
-                        Position movementPartial = pathBlockDetails
-                                .getBlockingPoint().subtract(agentPos);
-
-                        // need to allow for body width.
-                        movementPartial.setVectorLength(Math.min(0 , movementPartial.length() - getEntityRadiusMax()));
-
-                        // If movement too small, ignore this Action.
-                        if (movementPartial.length() < Position.DEFAULT_AXIS_TOLERANCE) {
-                            continue ActionLoop;
-                        }
-                        actionCost = movementPartial.length();
-                        actionMove.setPositionDelta(new Position(
-                                movementPartial));
-
-                        modelStateAgentGoalNew.setAgentPosition(agentPos
-                                .add(movementPartial));
-                    }
-                }
-            }
-            successors
-                    .add(new SuccessorImpl(modelStateNew, action, actionCost));
+            successors.add(new SuccessorImpl(modelStateNew, action, action
+                    .getCost()));
         }
         return successors;
     }

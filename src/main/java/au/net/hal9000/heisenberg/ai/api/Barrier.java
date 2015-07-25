@@ -1,8 +1,7 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import java.awt.geom.Line2D;
-
 import au.net.hal9000.heisenberg.ai.PathBlockDetails;
+import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Holds details about a barrier blocking the path of movement.
@@ -18,10 +17,11 @@ public interface Barrier {
      * Returns details of any barrier blocking the path.<br>
      * Returns null if not blocked.<br>
      * 
-     * @param movement
-     *            the desired path between two points.
+     * @param from the start position.
+     * @param to the end position.
      * @return null or any details of a barrier.
      */
-    PathBlockDetails getPathBlockDetailsDetails(Line2D movement);
+
+    PathBlockDetails getPathBlockDetailsDetails(Position from, Position to);
 
 }
