@@ -36,16 +36,4 @@ public class Arrow extends Item implements Sharp {
         super("Arrow");
         this.setVolumeBase(VOLUME_BASE);
     }
-
-    /**
-     * Constructor.
-     * 
-     * @param name
-     *            common name.
-     */
-    public Arrow(final String name) {
-        this();
-        this.setName(name);
-    }
-
 }

@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 
-public class MazeUtil {
+class MazeUtil {
 
     static Vec2[] getBoundaryShape() {
         /** half the width */

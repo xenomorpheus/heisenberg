@@ -2,9 +2,10 @@ package au.net.hal9000.heisenberg.crafting;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -120,13 +121,13 @@ public class Recipe {
      */
     private final String process;
     /**
+     * The items required for this recipe.
+     */
+    private final Map<String,Requirement> requirements;
+    /**
      * What the recipe produces.
      */
     private final List<Product> products;
-    /**
-     * The total items required for this recipe.
-     */
-    private final List<Requirement> requirements;
     /**
      * The {@link Skill} objects required.
      */
@@ -153,7 +154,7 @@ public class Recipe {
      */
     public Recipe(final String id, final String description,
             final String process, final int mana, final int actionPoints,
-            final List<Requirement> requirements, final Set<Skill> skills,
+            final Map<String, Requirement> requirements, final Set<Skill> skills,
             final List<Product> products) {
         super();
         this.id = id;
@@ -239,7 +240,7 @@ public class Recipe {
      * 
      * @return the list of Requirement objects.
      */
-    public final List<Requirement> getRequirements() {
+    public final Map<String,Requirement> getRequirements() {
         return requirements;
     }
 
@@ -251,7 +252,7 @@ public class Recipe {
      * 
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final int index) {
+    public final Requirement getRequirement(final String index) {
         return requirements.get(index);
     }
 
@@ -316,7 +317,7 @@ public class Recipe {
      * 
      * @return A Cooker object for this recipe.
      */
-    public final Cooker getNewCooker(Entity chef) {
+    public final Cooker getNewCooker(Item chef) {
         Cooker cooker = new Cooker(this);
         cooker.setChef(chef);
         return cooker;
@@ -334,7 +335,7 @@ public class Recipe {
      * 
      * @return a description
      */
-    public String details() {
+    String details() {
         StringBuilder string = new StringBuilder();
         string.append("Id: " + id);
         string.append(System.lineSeparator());
@@ -360,7 +361,7 @@ public class Recipe {
         if (null != requirements) {
             string.append("Requirement(s):");
             string.append(System.lineSeparator());
-            for (Requirement requirement : requirements) {
+            for (Requirement requirement : requirements.values()) {
                 string.append("  " + requirement.getId() + ": "
                         + requirement.getDescription());
                 string.append(System.lineSeparator());

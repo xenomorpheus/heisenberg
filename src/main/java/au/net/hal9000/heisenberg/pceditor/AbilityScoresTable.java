@@ -27,7 +27,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     /**
      * Constructor for AbilityScoresTable.
      */
-    AbilityScoresTable() {
+    public AbilityScoresTable() {
         super();
     }
 

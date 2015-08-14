@@ -5,7 +5,7 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 public abstract class ActionBase implements Action {
 
 	/** The cost of the Action */
-	double cost;
+	private double cost;
 
 	public ActionBase(double cost) {
 		super();

@@ -1,11 +1,12 @@
 package au.net.hal9000.heisenberg.item.property;
 
 /**
- * Is this item able to wear a ring?
+ * Marker class. <br>
+ * Is this food for Human, Hobbit, etc.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public interface RingWearer {
+public interface HumanoidFood {
 
 }

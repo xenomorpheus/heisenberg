@@ -90,13 +90,15 @@ public class ProductItem extends Product {
 
     /** {@inheritDoc} */
     @Override
-    public final String createProduct(final Cooker cooker)
-            throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public final void createProduct(final Cooker cooker) {
         ItemContainer newItemLocation = (ItemContainer) cooker
                 .findIngredientByName("Location");
         Item item = Factory.createItem(getType());
-        newItemLocation.add(item);
-        return null;
+        try {
+            newItemLocation.add(item);
+        } catch (TooHeavyException | TooLargeException | InvalidTypeException e) {
+            throw new RuntimeException("Failed to add to Location", e);
+        }
     }
 
 }

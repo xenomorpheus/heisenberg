@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
@@ -44,15 +44,15 @@ import au.net.hal9000.heisenberg.units.Skill;
 public class Cooker extends ItemContainer {
 
     /** error message. **/
-    public static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
+    static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
     /** error message. **/
-    public static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
+    static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
     /** error message. **/
-    public static final String NO_SUCH_REQUIREMENT = "no such requirement";
+    private static final String NO_SUCH_REQUIREMENT = "no such requirement";
     /** error message. **/
-    public static final String ALREADY_OCCUPIED = "already occupied";
+    static final String ALREADY_OCCUPIED = "already occupied";
     /** error message. **/
-    public static final String BAD_KEY = "bad key";
+    static final String FAILED_TO_ADD = "failed to add";
 
     /**
      * serial version.
@@ -65,12 +65,12 @@ public class Cooker extends ItemContainer {
     /**
      * The PcRace doing the cooking. Supplies any actionPoints and mana.
      */
-    private Entity chef = null;
+    private Item chef = null;
 
     /**
      * Ingredients we will cook with.
      */
-    private List<Item> ingredients = new ArrayList<Item>();
+    private Map<String, Item> ingredients = new TreeMap<>();
 
     /**
      * Constructor.
@@ -78,7 +78,7 @@ public class Cooker extends ItemContainer {
      * @param recipe
      *            the recipe we are cooking.
      */
-    public Cooker(final Recipe recipe) {
+    Cooker(final Recipe recipe) {
         super("Cooker");
         this.recipe = recipe;
         /**
@@ -102,7 +102,7 @@ public class Cooker extends ItemContainer {
      * @param chef
      *            the person doing the cooking.
      */
-    public void setChef(final Entity chef) {
+    public void setChef(final Item chef) {
         this.chef = chef;
     }
 
@@ -112,7 +112,7 @@ public class Cooker extends ItemContainer {
      * 
      * @return the person doing the cooking.
      */
-    public final Entity getChef() {
+    public final Item getChef() {
         return chef;
     }
 
@@ -121,61 +121,59 @@ public class Cooker extends ItemContainer {
     /**
      * Add an Item to a particular key in the list of itemsAvailable.
      * 
-     * @param index
+     * @param key
      *            where to add Item
      * @param item
      *            the Item we are making available.
      * 
-     * @return error message or null if it worked
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
-    public final String setItemsAvailable(final int index, final Item item)
-            throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public final void setItemsAvailable(final String key, final Item item) {
         // item exists
         if (null == item) {
-            return ITEM_MAY_NOT_BE_NULL;
+            throw new RuntimeException(ITEM_MAY_NOT_BE_NULL);
         }
 
         // spot is free?
-        if ((ingredients.size() > index) && (null != ingredients.get(index))) {
-            return ALREADY_OCCUPIED;
+        if (null != ingredients.get(key)) {
+            throw new RuntimeException(ALREADY_OCCUPIED);
         }
         // already in this container?
         if (this.contains(item)) {
-            return ALREADY_CONTAINS_THAT_ITEM;
+            throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM);
         }
-        // is there a requirement to fulfill ?
+        // is there a requirement to fulfil ?
         final RequirementItem requirementItem = (RequirementItem) recipe
-                .getRequirement(index);
+                .getRequirement(key);
         if (null == requirementItem) {
-            return NO_SUCH_REQUIREMENT;
+            throw new RuntimeException(NO_SUCH_REQUIREMENT);
         }
 
-        // Does the Item fulfill the Requirement?
+        // Does the Item fulfil the Requirement?
         final String rejectionReason = requirementItem.meetsRequirements(item);
         if (null != rejectionReason) {
-            return rejectionReason;
+            throw new RuntimeException(rejectionReason);
         }
 
         // success
-        this.add(item);
-        ingredients.add(index, item);
-        return null;
+        try {
+            this.add(item);
+        } catch (TooHeavyException | TooLargeException | InvalidTypeException e) {
+            throw new RuntimeException(FAILED_TO_ADD, e);
+        }
+        ingredients.put(key, item);
     }
 
     // requirements
     /**
      * Return the Requirement at the specified index.
      * 
-     * @param index
+     * @param key
      *            the index of the Requirement requested
      * 
      * @return the Requirement at this index.
      */
-    public final Requirement getRequirement(final int index) {
-        return recipe.getRequirement(index);
+    final Requirement getRequirement(final String key) {
+        return recipe.getRequirement(key);
     }
 
     /**
@@ -189,22 +187,33 @@ public class Cooker extends ItemContainer {
     }
 
     /**
-     * Used the check the requirements are met.
+     * Get the list of Requirement objects.
      * 
      * 
-     * @return undef if requirements met, otherwise the reason.
+     * @return the list of Requirement objects.
      */
-    private String requirementsMet() {
+    public final Map<String, Requirement> getRequirements() {
+        return recipe.getRequirements();
+    }
+
+    /**
+     * Used the check the requirements are met.<br>
+     * Throws runtime exception on failure.
+     */
+    private void requirementsMet() {
         final StringBuilder string = new StringBuilder(40);
 
         // mana
         int manaRequired = recipe.getMana();
         if (manaRequired > 0) {
-            if (null == chef) {
+            if (chef instanceof Entity) {
+                Entity entity = (Entity) chef;
+                if (manaRequired > entity.getMana()) {
+                    string.append("Not enough mana");
+                    string.append(System.lineSeparator());
+                }
+            } else {
                 string.append("No chef set to supply mana");
-                string.append(System.lineSeparator());
-            } else if (manaRequired > chef.getMana()) {
-                string.append("Not enough mana");
                 string.append(System.lineSeparator());
             }
         }
@@ -212,28 +221,31 @@ public class Cooker extends ItemContainer {
         // actionPoints
         int actionPointsRequired = recipe.getActionPoints();
         if (actionPointsRequired > 0) {
-            if (null == chef) {
+            if (chef instanceof Entity) {
+                Entity entity = (Entity) chef;
+                if (actionPointsRequired > entity.getActionPoints()) {
+                    string.append("Not enough action points");
+                    string.append(System.lineSeparator());
+                }
+            } else {
                 string.append("No chef set to supply action points");
                 string.append(System.lineSeparator());
-            } else if (actionPointsRequired > chef.getActionPoints()) {
-                string.append("Not enough action points");
-                string.append(System.lineSeparator());
-
             }
         }
 
         // skills
         final Set<Skill> required = recipe.getSkills();
         if ((null != required) && (required.size() > 0)) {
-            if (null == chef) {
-                string.append("No chef to supply skills");
-                string.append(System.lineSeparator());
-            } else {
-                final Set<Skill> chefSkills = chef.getSkills();
+            if (chef instanceof Entity) {
+                Entity entity = (Entity) chef;
+                final Set<Skill> chefSkills = entity.getSkills();
                 if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
                     string.append("Missing Skills");
                     string.append(System.lineSeparator());
                 }
+            } else {
+                string.append("No chef to supply skills");
+                string.append(System.lineSeparator());
             }
         }
 
@@ -253,19 +265,18 @@ public class Cooker extends ItemContainer {
             }
 
         }
-        if (0 == string.length()) {
-            return null;
+        if (0 != string.length()) {
+            throw new RuntimeException(string.toString());
         }
-        return string.toString();
     }
 
     /**
      * Check that every required Requirement is matched by an Item.
      * 
      * 
-     * @return null iff all requirements are met.
+     * @return null IFF all requirements are met.
      */
-    public final String requirementsItemMet() {
+    private final String requirementsItemMet() {
         StringBuilder errors = new StringBuilder();
         int requirementCount = getRequirementCount();
         // No requirements
@@ -280,21 +291,17 @@ public class Cooker extends ItemContainer {
             errors.append(ingredients.size());
             errors.append(System.lineSeparator());
         }
-        List<Requirement> requirements = recipe.getRequirements();
-        for (int index = 0; index < requirements.size(); index++) {
-            Requirement requirement = requirements.get(index);
+        Map<String, Requirement> requirements = recipe.getRequirements();
+        for (String key : requirements.keySet()) {
+            Requirement requirement = requirements.get(key);
             if (requirement instanceof RequirementItem) {
                 RequirementItem requirementItem = (RequirementItem) requirement;
-                if (ingredients.size() - 1 < index) {
-                    errors.append("Missing ingredient index " + index);
-                } else {
-                    Item item = ingredients.get(index);
-                    String reason = requirementItem.meetsRequirements(item);
-                    if (null != reason) {
-                        errors.append("Missing/bad ingredient index " + index
-                                + " because " + reason);
-                        errors.append(System.lineSeparator());
-                    }
+                Item item = ingredients.get(key);
+                String reason = requirementItem.meetsRequirements(item);
+                if (null != reason) {
+                    errors.append("Missing/bad ingredient for requirement "
+                            + key + " because " + reason);
+                    errors.append(System.lineSeparator());
                 }
             }
         }
@@ -313,25 +320,28 @@ public class Cooker extends ItemContainer {
         // mana
         int manaRequired = recipe.getMana();
         if (manaRequired > 0) {
-            chef.manaAdjust(-1 * manaRequired);
+            Entity entity = (Entity) chef;
+            entity.manaAdjust(-1 * manaRequired);
         }
         // actionPoints
         int actionPointsRequired = recipe.getActionPoints();
         if (actionPointsRequired > 0) {
-            chef.actionPointsAdjust(-1 * actionPointsRequired);
+            Entity entity = (Entity) chef;
+            entity.actionPointsAdjust(-1 * actionPointsRequired);
         }
 
         int requirementCount = recipe.getRequirementCount();
 
         if (requirementCount > 0) {
-            final List<Requirement> requirements = recipe.getRequirements();
-            for (int i = 0; i < requirements.size(); i++) {
-                Requirement requirement = requirements.get(i);
+            final Map<String, Requirement> requirements = recipe
+                    .getRequirements();
+            for (String key : requirements.keySet()) {
+                Requirement requirement = requirements.get(key);
                 if (requirement instanceof RequirementItem) {
                     RequirementItem requirementItem = (RequirementItem) requirement;
                     if (requirementItem.isConsumed()) {
                         // unlink from other objects
-                        Item item = ingredients.get(i);
+                        Item item = ingredients.get(key);
                         item.beNot();
                     }
                 }
@@ -340,53 +350,29 @@ public class Cooker extends ItemContainer {
     }
 
     /**
-     * Create all the products of the recipe.
+     * Create all the products of the recipe.<BR>
      * 
-     * 
-     * @return null if good, or error string.
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
+     * Throws RuntimeException on failure.
      */
-    private String createProducts() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
-        StringBuilder errors = new StringBuilder();
+    private void createProducts() {
         int productCount = recipe.getProductCount();
         if (productCount > 0) {
             for (Product product : recipe.getProducts()) {
-                String error = product.createProduct(this);
-                if (null != error) {
-                    errors.append(error);
-                }
+                product.createProduct(this);
             }
         }
-        if (0 == errors.length()) {
-            return null;
-        }
-        return errors.toString();
     }
 
     /**
      * We will start with a restriction that all cooking is done at once. e.g.
      * we wan't allow cooking over multiple rounds.
      * 
-     * @return String
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
+     * Throws RuntimeException on failure.
      */
-    public final String cook() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
-        String requirementsMetError = requirementsMet();
-        if (null != requirementsMetError) {
-            return requirementsMetError;
-        }
+    public final void cook() {
+        requirementsMet();
         requirementsConsume();
-        String createProductsError = createProducts();
-        if (null != createProductsError) {
-            return createProductsError;
-        }
-        return null;
+        createProducts();
     }
 
     /**
@@ -403,21 +389,21 @@ public class Cooker extends ItemContainer {
      * 
      * @param container
      *            destination ItemContainer.
-     * @param index
-     *            int
+     * @param key
+     *            the ID of the requirement.
      * @throws InvalidTypeException
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public final void clearItemsAvailable(final int index,
+    final void clearItemsAvailable(final String key,
             final ItemContainer container) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }
-        Item item = ingredients.get(index);
+        Item item = ingredients.get(key);
         item.move(container);
-        ingredients.remove(index);
+        ingredients.remove(key);
     }
 
     /**
@@ -427,14 +413,8 @@ public class Cooker extends ItemContainer {
      *            String
      * @return Item
      */
-    public Item findIngredientByName(final String name) {
-        for (int index = getRequirementCount() - 1; index >= 0; index--) {
-            Requirement requirement = getRequirement(index);
-            if (name.equals(requirement.getId())) {
-                return ingredients.get(index);
-            }
-        }
-        return null;
+    Item findIngredientByName(final String name) {
+        return ingredients.get(name);
     }
 
 }

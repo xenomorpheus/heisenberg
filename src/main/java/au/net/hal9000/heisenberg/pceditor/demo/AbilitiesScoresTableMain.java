@@ -4,22 +4,25 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.pceditor.RecipesTable;
+import au.net.hal9000.heisenberg.pceditor.AbilityScoresTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class RecipesTableMain { // NO_UCD (unused code)
 
+
+/**
+ */
+public class AbilitiesScoresTableMain { // NO_UCD (unused code)
     /** frame width. */
-    static final int FRAME_WIDTH = 2400;
+    static final int FRAME_WIDTH = 800;
     /** frame height. */
     static final int FRAME_HEIGHT = 300;
 
     /**
-     * app to test the world editor.
+     * for testing the config editor.
      * 
      * @param args
-     *            not used
+     *            command line args.
      */
     public static void main(String[] args) {
 
@@ -34,14 +37,14 @@ public class RecipesTableMain { // NO_UCD (unused code)
 
                     // make sure the program exits when the frame closes
                     guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    guiFrame.setTitle("Recipes Table");
+                    guiFrame.setTitle("Basic Panel");
                     guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-                    RecipesTable recipesTable = new RecipesTable();
-                    recipesTable.setPcRace(pc);
+                    AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+                    abilityScoresTable.setPcRace(pc);
 
                     // add to JFrame
-                    guiFrame.add(recipesTable);
+                    guiFrame.add(abilityScoresTable);
                     guiFrame.pack();
                     // This will centre the JFrame in the middle of the screen
                     guiFrame.setLocationRelativeTo(null);
@@ -53,4 +56,5 @@ public class RecipesTableMain { // NO_UCD (unused code)
         });
 
     }
+
 }

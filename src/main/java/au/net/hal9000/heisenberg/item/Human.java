@@ -5,6 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.mixin.Eat;
 import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
@@ -43,7 +44,7 @@ public class Human extends Humanoid {
      * @param string String
      * @param description String
      */
-    public Human(String string, String description) {
+    Human(String string, String description) {
         super(string, description);
     }
 
@@ -52,7 +53,7 @@ public class Human extends Humanoid {
      * @param name String
      * @param pcClass PcClass
      */
-    public Human(String name, PcClass pcClass) {
+    Human(String name, PcClass pcClass) {
         super(name, pcClass);
     }
 
@@ -62,8 +63,17 @@ public class Human extends Humanoid {
      * @param description String
      * @param pcClass PcClass
      */
-    public Human(String name, String description, PcClass pcClass) {
+    Human(String name, String description, PcClass pcClass) {
         super(name, description, pcClass);
     }
-
+    /**
+     * Eat.
+     * 
+     * @param food
+     *            food Item to eat.<br>
+     *            Throw RuntimeException on error.
+     */
+    public void eat(Animal food) {
+        Eat.eat(this, food);
+    }
 }

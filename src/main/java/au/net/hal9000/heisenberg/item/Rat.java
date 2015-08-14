@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Rat extends au.net.hal9000.heisenberg.item.Entity {
+public class Rat extends Animal {
 
     /**
      * Field serialVersionUID. (value is 1)
@@ -24,7 +24,7 @@ public class Rat extends au.net.hal9000.heisenberg.item.Entity {
      * Constructor for Rat.
      */
     public Rat() {
-        super("Rat");
+        this("Rat");
     }
 
     /**
@@ -34,8 +34,7 @@ public class Rat extends au.net.hal9000.heisenberg.item.Entity {
      *            String
      */
     public Rat(String name) {
-        this();
-        setName(name);
+        this(name,"A Rat");
     }
 
     /**
@@ -47,8 +46,6 @@ public class Rat extends au.net.hal9000.heisenberg.item.Entity {
      *            String
      */
     public Rat(String name, String description) {
-        this();
-        setName(name);
-        setDescription(description);
+        super(name, description);
     }
 }

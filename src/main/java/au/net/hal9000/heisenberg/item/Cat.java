@@ -5,6 +5,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.mixin.Eat;
+
 /**
  * @author bruins
  * @version $Revision: 1.0 $
@@ -23,26 +25,41 @@ public class Cat extends Animal {
      * Constructor for Cat.
      */
     public Cat() {
-        super("Cat");
+        this("Cat");
     }
 
     /**
      * Constructor for Cat.
-     * @param name String
+     * 
+     * @param name
+     *            String
      */
     Cat(String name) {
-        this();
-        setName(name);
+        this(name, "A cat");
     }
 
     /**
      * Constructor for Cat.
-     * @param name String
-     * @param description String
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
      */
     Cat(String name, String description) {
-        this();
-        setName(name);
-        setDescription(description);
+        super(name, description);
     }
+
+    /**
+     * Eat.
+     * 
+     * @param animal
+     *            animal to eat.<br>
+     *            Throw RuntimeException on error.
+     */
+    public void eat(Animal animal) {
+        Eat.eat(this, animal);
+    }
+
+
 }

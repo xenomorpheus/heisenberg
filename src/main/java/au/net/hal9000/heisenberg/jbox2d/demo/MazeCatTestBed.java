@@ -80,8 +80,8 @@ class MazeCatTestBed extends TestbedTest {
             // mazeCat.aiPrint();
 
         }
-        mazeCat.aiFringeDraw(debugDraw);
-        mazeCat.aiPathDraw(debugDraw);
+        // mazeCat.aiFringeDraw(debugDraw);
+        // mazeCat.aiPathDraw(debugDraw);
         mazeCat.move();
 
         // Centre the camera on the Cat

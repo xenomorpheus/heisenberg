@@ -12,7 +12,7 @@ import au.net.hal9000.heisenberg.util.DummyData;
 
 /**
  */
-public class BasicPanelMain {
+public class BasicPanelMain { // NO_UCD (unused code)
     /** frame width. */
     static final int FRAME_WIDTH = 800;
     /** frame height. */

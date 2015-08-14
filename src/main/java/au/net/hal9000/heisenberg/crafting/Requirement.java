@@ -34,7 +34,7 @@ public abstract class Requirement {
      * @param id
      *            String
      */
-    protected Requirement(String id) {
+    private Requirement(String id) {
         super();
         this.id = id;
     }

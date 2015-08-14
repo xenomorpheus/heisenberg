@@ -25,7 +25,7 @@ public class Fungus extends Item {
      * Constructor for Fungus.
      */
     public Fungus() {
-        super("Fungus");
+        this("Fungus");
     }
 
     /**
@@ -33,8 +33,7 @@ public class Fungus extends Item {
      * @param name String
      */
     public Fungus(String name) {
-        this();
-        setName(name);
+        this(name, "Some fugus");
     }
 
     /**
@@ -43,9 +42,7 @@ public class Fungus extends Item {
      * @param description String
      */
     public Fungus(String name, String description) {
-        this();
-        setName(name);
-        setDescription(description);
+        super(name, description);
     }
 
     // Methods

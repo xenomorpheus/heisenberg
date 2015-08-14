@@ -387,7 +387,7 @@ public class ItemContainer extends Item implements Serializable {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    public void addItems(List<Item> items) throws InvalidTypeException,
+    void addItems(List<Item> items) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         for (Item item : items) {
             this.add(item);
@@ -397,9 +397,7 @@ public class ItemContainer extends Item implements Serializable {
     /**
      * Take the top item out of the contents.
      * 
-     * 
-     * 
-     * @return the top item in the contents * @throws EmptyStackException
+     * @return the top item in the contents
      */
     public Item pop() {
         return contents.remove(contents.size() - 1);

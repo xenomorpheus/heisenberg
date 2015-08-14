@@ -25,7 +25,7 @@ public class SearchAStar extends SearchBase {
     /** how many fringe expansions so far */
     private int fringeExpansionCount = 0;
     /** */
-    List<ModelState> fringeAdded;
+    private List<ModelState> fringeAdded;
 
     /**
      * constructor - A-Star search.

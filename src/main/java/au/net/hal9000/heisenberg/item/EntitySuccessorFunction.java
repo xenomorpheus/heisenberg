@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import au.net.hal9000.heisenberg.ai.ActionAgentMoveAbsoluteImpl;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
 import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
@@ -19,6 +18,9 @@ import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
+import au.net.hal9000.heisenberg.item.action.ActionAgentMoveAbsoluteImpl;
+import au.net.hal9000.heisenberg.item.action.ActionEat;
+import au.net.hal9000.heisenberg.item.modelstate.ModelStateCatRat;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Geometry;
 
@@ -40,16 +42,6 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
 
     /** Maximum radius of Entity. Used to avoid barriers */
     private float entityRadiusMax;
-
-    /**
-     * Constructor.
-     * 
-     * @param transitionFunction
-     *            a Transition Function.
-     */
-    public EntitySuccessorFunction(TransitionFunction transitionFunction) {
-        this.transitionFunction = transitionFunction;
-    }
 
     /**
      * Constructor.
@@ -169,9 +161,20 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
             }
 
         }
-
         // TODO add other actions, e.g. attempt to eat prey if close enough.
-
+        if (modelState instanceof ModelStateCatRat) {
+            ModelStateCatRat modelStateCatRat = (ModelStateCatRat) modelState;
+            Cat cat = modelStateCatRat.getCat();
+            Position catPos = cat.getPosition();
+            Rat rat = modelStateCatRat.getRat();
+            Position ratPos = rat.getPosition();
+            Position delta = ratPos.subtract(catPos);
+            double goalDist = delta.length();
+            if (goalDist < 1.0f){
+                    actions.add(new ActionEat(cat, rat, 1f));
+            }
+        }
+        // TODO add other actions, e.g. looking - updates memory of barriers.
         return actions;
     }
 

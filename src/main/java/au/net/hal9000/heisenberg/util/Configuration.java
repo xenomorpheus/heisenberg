@@ -338,11 +338,11 @@ public class Configuration {
      * @param entries
      *            XML list of Item details.
      * 
-     * @return A list of RequirementItem objects.
+     * @return A map of RequirementItem objects, keyed by ID.
      */
-    private static List<RequirementItem> xmlToRecipeRequirementItems(
+    private static Map<String, Requirement> xmlToRecipeRequirementItems(
             Elements entries) {
-        List<RequirementItem> ingredients = new ArrayList<RequirementItem>();
+        Map<String, Requirement> ingredients = new TreeMap<>();
         for (int current = 0; current < entries.size(); current++) {
             Element entry = entries.get(current);
             String itemId = entry.getAttributeValue("id");
@@ -366,7 +366,7 @@ public class Configuration {
 
             RequirementItem requirement = new RequirementItem(itemId, itemType,
                     consumed, weightMin);
-            ingredients.add(requirement);
+            ingredients.put(itemId, requirement);
         }
         return ingredients;
     }
@@ -461,16 +461,12 @@ public class Configuration {
      *            an XML Requirement element.
      * @return List<Requirement>
      */
-    private static List<Requirement> xmlToRecipeRequirements(Element entry) {
-        List<Requirement> requirements = new ArrayList<Requirement>();
-
+    private static Map<String,Requirement> xmlToRecipeRequirements(Element entry) {
         Elements items = entry.getChildElements("item");
-        requirements.addAll(xmlToRecipeRequirementItems(items));
-
         // TODO Config Recipe locations e.g. <location id="ground" />
         // Elements locations = entry.getChildElements("location");
 
-        return requirements;
+        return xmlToRecipeRequirementItems(items);
     }
 
     /**
@@ -514,7 +510,7 @@ public class Configuration {
         // Requirement objects
         Element requirementsElement = recipeElement
                 .getFirstChildElement("requirements");
-        List<Requirement> requirements = xmlToRecipeRequirements(requirementsElement);
+        Map<String,Requirement> requirements = xmlToRecipeRequirements(requirementsElement);
 
         // Product objects.
         Element productElement = recipeElement.getFirstChildElement("products");
@@ -726,7 +722,7 @@ public class Configuration {
      * 
      * @return the sprite sheet details
      */
-    public SpriteSheetConfiguration getSpriteSheet(String name) {
+    SpriteSheetConfiguration getSpriteSheet(String name) {
         return spriteSheets.get(name);
     }
 

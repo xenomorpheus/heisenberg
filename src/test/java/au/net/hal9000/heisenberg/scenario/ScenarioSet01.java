@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Arrow;
@@ -25,12 +26,19 @@ import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /**
  * @author bruins
  * @version $Revision: 1.0 $
  */
 public class ScenarioSet01 {
+
+    @Before
+    public void initialize() throws ConfigurationError {
+        new Configuration("src/test/resources/config.xml");
+    }
 
     /**
      * Method println.
@@ -44,9 +52,6 @@ public class ScenarioSet01 {
 
     /**
      * Method swordIntoScabbard.
-     * 
-     * 
-     * 
      * 
      * @throws InvalidTypeException
      *             * @throws TooHeavyException * @throws TooLargeException
@@ -201,6 +206,7 @@ public class ScenarioSet01 {
     public void hobbitEatsACookie() throws InvalidTypeException {
         println(System.lineSeparator() + "** A hobbit eats a cookie.");
         Halfling halfling = new Halfling();
+        halfling.setActionPoints(3);
         Cookie cookie = new Cookie();
         halfling.eat(cookie);
         println("Halfling ate a cookie");

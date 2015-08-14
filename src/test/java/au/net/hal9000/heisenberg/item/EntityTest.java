@@ -18,11 +18,10 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 /**
  */
 public class EntityTest {
-    
+
     @BeforeClass
-    public static void setupConfig() throws ConfigurationError{
-        new Configuration(
-                "src/test/resources/config.xml");
+    public static void setupConfig() throws ConfigurationError {
+        new Configuration("src/test/resources/config.xml");
     }
 
     /**
@@ -98,6 +97,17 @@ public class EntityTest {
     }
 
     /**
+     * Method testGetCooker.
+     */
+    @Test
+    public void testEat() {
+        Cat cat = new Cat();
+        String recipeId = "testItem1";
+        Cooker cooker = cat.getCooker(recipeId);
+        assertNotNull("cooker not null", cooker);
+    }
+
+    /**
      * Method testInstanceof.
      */
     @Test
@@ -106,8 +116,6 @@ public class EntityTest {
         assertTrue("is Entity", cat instanceof Entity);
         assertTrue("is Living", ItemProperty.isLiving(cat));
     }
-
-
 
     // TODO testSetAllFrom - just test the fields at this level.
 

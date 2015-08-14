@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.util.PcClass;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class Humanoid extends PcRace {
+abstract class Humanoid extends PcRace {
 
     /**
      * Field serialVersionUID. (value is 1)
@@ -199,7 +199,7 @@ public abstract class Humanoid extends PcRace {
      * @return the maximum volume that this item can hold.
      */
     public float getVolumeMax() {
-        float volumeMax = 0;
+        float volumeMax = 0; // TODO
         return volumeMax;
     }
 
@@ -228,21 +228,6 @@ public abstract class Humanoid extends PcRace {
     }
 
     // Misc
-    /**
-     * Eat an item.
-     * 
-     * @param pFood
-     *            food Item to eat.
-     * 
-     * @throws InvalidTypeException
-     */
-    public void eat(Item pFood) throws InvalidTypeException {
-        if (!ItemProperty.isHumanoidFood(pFood)) {
-            throw new InvalidTypeException(this.getName() + " can't eat "
-                    + pFood.getName());
-        }
-        pFood.beNot();
-    }
 
     /**
      * add - Wear an item.

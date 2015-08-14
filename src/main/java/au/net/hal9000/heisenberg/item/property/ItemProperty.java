@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
 
 /**
@@ -14,47 +13,47 @@ public final class ItemProperty {
      * Field AERATION.
      * (value is ""aeration"")
      */
-    public static final String AERATION = "aeration";
+    static final String AERATION = "aeration";
     /**
      * Field ENTERTAINMENT.
      * (value is ""entertainment"")
      */
-    public static final String ENTERTAINMENT = "entertainment";
+    static final String ENTERTAINMENT = "entertainment";
     /**
      * Field HYDRATION.
      * (value is ""hydration"")
      */
-    public static final String HYDRATION = "hydration";
+    static final String HYDRATION = "hydration";
     /**
      * Field IS_CLOTHING.
      * (value is ""is clothing"")
      */
-    public static final String IS_CLOTHING = "is clothing";
+    private static final String IS_CLOTHING = "is clothing";
     /**
      * Field IS_HUMANOID_FOOD.
      * (value is ""is humanoid food"")
      */
-    public static final String IS_HUMANOID_FOOD = "is humanoid food";
+    private static final String IS_HUMANOID_FOOD = "is humanoid food";
     /**
      * Field IS_LIVING.
      * (value is ""is living"")
      */
-    public static final String IS_LIVING = "is living";
+    private static final String IS_LIVING = "is living";
     /**
      * Field IS_MAGICAL.
      * (value is ""is magical"")
      */
-    public static final String IS_MAGICAL = "is magical";
+    private static final String IS_MAGICAL = "is magical";
     /**
      * Field NOURISHMENT.
      * (value is ""nourishment"")
      */
-    public static final String NOURISHMENT = "nourishment";
+    static final String NOURISHMENT = "nourishment";
     /**
      * Field REST.
      * (value is ""rest"")
      */
-    public static final String REST = "rest";
+    static final String REST = "rest";
 
     /**
      * Utility Class constructor.
@@ -386,25 +385,25 @@ public final class ItemProperty {
     // misc
     /**
      * Method alterPropertyByName.
-     * @param entity Entity
+     * @param item Entity
      * @param propertyName String
      * @param propertyDelta float
      */
-    public static void alterPropertyByName(Entity entity, String propertyName,
+    public static void alterPropertyByName(Item item, String propertyName,
             float propertyDelta) {
 
         if (null == propertyName) {
             throw new RuntimeException("Missing property name");
         } else if (AERATION.equals(propertyName)) {
-            ItemProperty.alterAeration(entity, propertyDelta);
+            ItemProperty.alterAeration(item, propertyDelta);
         } else if (ENTERTAINMENT.equals(propertyName)) {
-            ItemProperty.alterEntertainment(entity, propertyDelta);
+            ItemProperty.alterEntertainment(item, propertyDelta);
         } else if (HYDRATION.equals(propertyName)) {
-            ItemProperty.alterHydration(entity, propertyDelta);
+            ItemProperty.alterHydration(item, propertyDelta);
         } else if (NOURISHMENT.equals(propertyName)) {
-            ItemProperty.alterNourishment(entity, propertyDelta);
+            ItemProperty.alterNourishment(item, propertyDelta);
         } else if (REST.equals(propertyName)) {
-            ItemProperty.alterRest(entity, propertyDelta);
+            ItemProperty.alterRest(item, propertyDelta);
         } else {
             throw new RuntimeException("Invalid property " + propertyName);
         }

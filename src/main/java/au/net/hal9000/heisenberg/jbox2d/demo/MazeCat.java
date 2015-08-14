@@ -59,7 +59,7 @@ public class MazeCat {
 
     private List<Position> positionPath = null;
 
-    MemorySet memorySet = new MemorySetImpl();
+    private MemorySet memorySet = new MemorySetImpl();
 
     MazeCat(Body catBody, Body targetBody) {
         super();
@@ -97,7 +97,7 @@ public class MazeCat {
 
     }
 
-    public void learnBarrierArray(Vec2[] boundary_shape, Vec2 position,
+    void learnBarrierArray(Vec2[] boundary_shape, Vec2 position,
             Object barrierObject) {
         MazeUtil.learnBarrierArray(memorySet, boundary_shape, position,
                 barrierObject);

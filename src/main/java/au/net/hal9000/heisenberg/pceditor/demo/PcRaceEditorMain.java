@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.pceditor.PcRaceEditor;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class PcRaceEditorMain {
+public class PcRaceEditorMain { // NO_UCD (unused code)
 
     /**
      * Launch the application.

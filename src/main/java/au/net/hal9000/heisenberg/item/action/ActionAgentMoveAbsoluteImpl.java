@@ -1,5 +1,7 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.item.action;
 
+import au.net.hal9000.heisenberg.ai.ActionBase;
+import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;
@@ -86,7 +88,7 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase implements
 		final int prime = 31;
 		int result = super.hashCode();
 		long temp;
-		temp = Double.doubleToLongBits(cost);
+		temp = Double.doubleToLongBits(getCost());
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime
 				* result

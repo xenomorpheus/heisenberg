@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -59,9 +58,8 @@ public class CatTest {
         dungeon.add(water);
         cat.setActionPoints(2);
         Cooker cooker = cat.getCooker("testDrinkWater");
-        assertEquals("setItemsAvaliable 0 water", null,
-                cooker.setItemsAvailable(0, water));
-        assertEquals("Cook", null, cooker.cook());
+        cooker.setItemsAvailable("Water", water);
+        cooker.cook();
         // Hydration increases after drinking water
         float hydrationAfter = ItemProperty.getHydration(cat);
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);
@@ -88,7 +86,7 @@ public class CatTest {
         water.setWeightBase(1);
         dungeon.add(water);
         cat.setActionPoints(2);
-        assertEquals("Drink should return null", null, cat.drink(water));
+        cat.drink(water);
         float hydrationAfter = ItemProperty.getHydration(cat);
         // Hydration increases after drinking water
         assertTrue("Hydration increase", hydrationBefore < hydrationAfter);

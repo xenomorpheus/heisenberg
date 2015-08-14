@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.junit.Before;
@@ -41,7 +43,7 @@ public class RecipeTest {
     /**
      * Field requirementsAll.
      */
-    private List<Requirement> requirementsAll;
+    private Map<String,Requirement> requirementsAll;
     /**
      * Field recipeAll.
      */
@@ -54,14 +56,14 @@ public class RecipeTest {
     public void setUp() {
         simple = new Recipe("recipe1", "the first recipe", null, REQUIRED_MANA,
                 REQUIRED_ACTION_POINTS, null, null, null);
-        requirementsAll = new ArrayList<Requirement>();
+        requirementsAll = new TreeMap<>();
 
         // RequirementItem
         RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
-        requirementsAll.add(flintAndTinder);
+        requirementsAll.put("FlintAndTinder",flintAndTinder);
 
         RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
-        requirementsAll.add(wood);
+        requirementsAll.put("Wood",wood);
 
         // Product(s)
         List<Product> products = new ArrayList<Product>();
@@ -85,15 +87,15 @@ public class RecipeTest {
     @Test
     public void testRecipeIngredients() {
 
-        List<Requirement> requirements = new ArrayList<Requirement>();
+        Map<String,Requirement> requirements = new TreeMap<>();
 
         // RequirementItem
         RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder",
                 "FlintAndTinder", false, 0);
-        requirements.add(flintAndTinder);
+        requirements.put("FlintAndTinder",flintAndTinder);
 
         RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
-        requirements.add(wood);
+        requirements.put("Wood",wood);
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
@@ -101,8 +103,8 @@ public class RecipeTest {
 
         assertEquals("ingredient count", requirements.size(),
                 recipe.getRequirementCount());
-        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement(0));
-        assertEquals("ingredient 1", wood, recipe.getRequirement(1));
+        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement("FlintAndTinder"));
+        assertEquals("ingredient 1", wood, recipe.getRequirement("Wood"));
     }
 
     /**

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -89,12 +89,9 @@ public class ProductEntityProperty extends Product {
 
     /** {@inheritDoc} */
     @Override
-    public final String createProduct(final Cooker cooker) {
-        Entity entity = cooker.getChef();
-
-        ItemProperty.alterPropertyByName(entity, propertyName, propertyDelta);
-
-        return null;
+    public final void createProduct(final Cooker cooker) {
+        Item item = cooker.getChef();
+        ItemProperty.alterPropertyByName(item, propertyName, propertyDelta);
     }
 
 }

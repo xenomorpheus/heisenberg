@@ -36,11 +36,23 @@ public class Scabbard extends Box {
     /**
      * Constructor for Scabbard.
      * 
-     * @param pString
+     * @param name
      *            String
      */
-    public Scabbard(String pString) {
-        super(pString);
+    public Scabbard(String name) {
+        this(name, "A scabbard");
+    }
+
+    /**
+     * Constructor for Scabbard.
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
+     */
+    public Scabbard(String name, String description) {
+        super(name, description);
         ItemProperty.setClothing(this, true);
         // TODO set max volume & weight to that of a sword.
     }

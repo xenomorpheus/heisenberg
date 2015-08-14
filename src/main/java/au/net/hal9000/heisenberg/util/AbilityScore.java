@@ -46,7 +46,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
      * @param name name of ability.
      * @param mixed combined value and modifier.
      */
-    public AbilityScore(String name, String mixed) {
+    AbilityScore(String name, String mixed) {
 
         this.name = name;
         // integer with optional "/" and second integer.

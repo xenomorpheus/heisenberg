@@ -19,8 +19,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 public class Cookie extends Item {
 
     /**
-     * Field serialVersionUID.
-     * (value is 1)
+     * Field serialVersionUID. (value is 1)
      */
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +32,9 @@ public class Cookie extends Item {
 
     /**
      * Constructor for Cookie.
-     * @param pName String
+     * 
+     * @param pName
+     *            String
      */
     public Cookie(String pName) {
         super(pName);
@@ -42,8 +43,11 @@ public class Cookie extends Item {
 
     /**
      * Constructor for Cookie.
-     * @param pName String
-     * @param pDescription String
+     * 
+     * @param pName
+     *            String
+     * @param pDescription
+     *            String
      */
     Cookie(String pName, String pDescription) {
         super(pName, pDescription);

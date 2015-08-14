@@ -34,7 +34,7 @@ public class Sword extends Item implements Sharp {
      * Constructor for Sword.
      * @param pString String
      */
-    public Sword(final String pString) {
+    private Sword(final String pString) {
         super(pString);
     }
 

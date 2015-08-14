@@ -33,8 +33,9 @@ public class ScenarioSet03 {
 
     /**
      * Method initialize.
-    
-     * @throws ConfigurationError */
+     * 
+     * @throws ConfigurationError
+     */
     @Before
     public void initialize() throws ConfigurationError {
         config = new Configuration("src/test/resources/config.xml");
@@ -50,22 +51,25 @@ public class ScenarioSet03 {
 
     /**
      * Method testFireGround1.
-    
-    
-    
-     * @throws InvalidTypeException  * @throws TooHeavyException  * @throws TooLargeException  */
+     * 
+     * 
+     * 
+     * @throws InvalidTypeException
+     *             * @throws TooHeavyException * @throws TooLargeException
+     */
     @Test
-    public void testFireGround1() throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void testFireGround1() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         // The recipe we are going to test
         Recipe recipe = config.getRecipe("testFireGround1");
 
         // Set up the location
         Location location = new Location();
-        
+
         // Wood
         Wood wood = new Wood();
         RequirementItem woodRequirement = (RequirementItem) recipe
-                .getRequirement(1);
+                .getRequirement("Wood");
         wood.setWeightBase(woodRequirement.getWeightMin() + 2);
 
         // Flint and Tinder
@@ -88,19 +92,16 @@ public class ScenarioSet03 {
         Cooker cooker = pc.getCooker("testFireGround1");
 
         // <item id="Location" type="ItemContainer" consumed="no" />
-        assertEquals("set Location", null,
-                cooker.setItemsAvailable(0, location));
+        cooker.setItemsAvailable("Location", location);
 
         // <item id="Wood" consumed="yes" weightMin="3" />
-        assertEquals("make Wood available", null,
-                cooker.setItemsAvailable(1, wood));
+        cooker.setItemsAvailable("Wood", wood);
 
         // TODO move pc to flintAndTinder
-        assertEquals("make FlintAndTinder available", null,
-                cooker.setItemsAvailable(2, flintAndTinder));
+        cooker.setItemsAvailable("FlintAndTinder", flintAndTinder);
 
         // Cook!
-        assertEquals("cook works", null, cooker.cook());
+        cooker.cook();
 
         // Check the item produced
         final int todo = 1; // TODO item number

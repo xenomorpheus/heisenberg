@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
+import au.net.hal9000.heisenberg.item.action.ActionAgentMoveRelativeImpl;
 import au.net.hal9000.heisenberg.units.Position;
 
 public class TransitionFunctionAgentGoalImplTest {

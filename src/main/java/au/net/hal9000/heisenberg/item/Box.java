@@ -29,11 +29,23 @@ public class Box extends ItemContainer {
     /**
      * Constructor with name.
      * 
-     * @param pName
+     * @param name
      *            name for item.
      */
-    public Box(final String pName) {
-        super(pName);
+    public Box(final String name) {
+        this(name, "A box");
+    }
+
+    /**
+     * Constructor with name.
+     * 
+     * @param name
+     *            name for item.
+     * @param description
+     *            description of item.
+     */
+    public Box(String name, String description) {
+        super(name, description);
     }
 
 }

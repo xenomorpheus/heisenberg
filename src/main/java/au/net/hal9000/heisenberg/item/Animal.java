@@ -1,11 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
-abstract class Animal extends Entity {
+public abstract class Animal extends Entity {
 
     // Constructor
     /**
@@ -16,7 +13,7 @@ abstract class Animal extends Entity {
      * @param description
      *            String
      */
-    private Animal(String name, String description) {
+    protected Animal(String name, String description) {
         super(name, description);
     }
 
@@ -36,24 +33,16 @@ abstract class Animal extends Entity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Try to drink some water.
+     * Drink.
      * 
      * @param water
-     *            Water (or sub-class)
-     * 
-     * @return Any error message, or null on success.
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
+     *            water to drink.<br>
+     *            Throw RuntimeException on error.
      */
-    String drink(Water water) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
-        Cooker cooker = getCooker("drinkWater");
-        String error = cooker.setItemsAvailable(0, water);
-        if (null != error) {
-            return error;
-        }
-        return cooker.cook();
+    public void drink(Item water) {
+        Cooker cooker = getCooker("animalDrinkWater");
+        cooker.setItemsAvailable("Water", water);
+        cooker.cook();
     }
 
 }

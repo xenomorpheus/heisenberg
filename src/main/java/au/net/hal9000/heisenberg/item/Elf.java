@@ -33,7 +33,7 @@ public class Elf extends Humanoid {
      * Constructor for Elf.
      * @param string String
      */
-    public Elf(String string) {
+    private Elf(String string) {
         super(string);
     }
 

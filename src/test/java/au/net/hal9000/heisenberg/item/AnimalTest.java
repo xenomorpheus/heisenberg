@@ -37,7 +37,9 @@ public class AnimalTest extends TestCase {
     public void testDrink() throws InvalidTypeException, TooHeavyException,
             TooLargeException {
         Cat cat = new Cat();// close enough
+        cat.setActionPoints(2);
         Water water = new Water();
+        water.setWeightBase(1.0f);
         cat.drink(water);
     }
 

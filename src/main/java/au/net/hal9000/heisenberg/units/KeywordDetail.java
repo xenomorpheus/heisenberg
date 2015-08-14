@@ -11,7 +11,7 @@ package au.net.hal9000.heisenberg.units;
  * @version $Revision: 1.0 $
  */
 
-public class KeywordDetail implements Comparable<KeywordDetail> {
+class KeywordDetail implements Comparable<KeywordDetail> {
     /**
      * the id.
      */
@@ -26,7 +26,7 @@ public class KeywordDetail implements Comparable<KeywordDetail> {
      * @param id String
      * @param description String
      */
-    public KeywordDetail(String id, String description) {
+    KeywordDetail(String id, String description) {
         super();
         this.id = id;
         this.description = description;

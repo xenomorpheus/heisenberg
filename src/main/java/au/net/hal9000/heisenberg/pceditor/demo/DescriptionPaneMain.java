@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class DescriptionPaneMain {
+public class DescriptionPaneMain { // NO_UCD (unused code)
 
     /** frame width. */
     static final int FRAME_WIDTH = 800;

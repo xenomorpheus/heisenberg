@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.pceditor.SkillsTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.DummyData;
 
-public class SkillsTableMain {
+public class SkillsTableMain { // NO_UCD (unused code)
     /** frame width. */
     static final int FRAME_WIDTH = 800;
     /** frame height. */

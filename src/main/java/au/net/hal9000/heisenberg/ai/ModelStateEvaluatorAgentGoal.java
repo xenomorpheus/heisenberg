@@ -17,7 +17,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
      * How close do we need to be to consider two states equal. Both
      * consideration for isAtGoal, and if we have added a state to the fringe.
      */
-    double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
+    private double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
 
     // Constructor(s)
     /** {@inheritDoc} */
@@ -56,23 +56,6 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
     @Override
     public boolean isAtGoal(ModelState modelState) {
         return costToGoalEstimate(modelState) < positionTolerance;
-    }
-
-    public double costBetweenAgentsEstimate(ModelState modelState,
-            ModelState modelStateOther) {
-        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-        Position agentPosition = modelStateAgentGoal.getAgentPosition();
-        if (null == agentPosition) {
-            throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
-        }
-
-        ModelStateAgentGoal modelStateOtherAgentGoal = (ModelStateAgentGoal) modelStateOther;
-        Position agentOtherPosition = modelStateOtherAgentGoal
-                .getAgentPosition();
-        if (null == agentOtherPosition) {
-            throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
-        }
-        return agentPosition.distance(agentOtherPosition);
     }
 
     @Override

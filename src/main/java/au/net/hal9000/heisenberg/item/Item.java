@@ -20,6 +20,8 @@ import javax.persistence.InheritanceType;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -28,6 +30,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
+import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
  * Base abstract class for all items in this world.
@@ -727,13 +730,14 @@ public abstract class Item implements Serializable {
      *            the container that will hold this item.
      * @param requestedPosition
      *            the requested position within the container.
-     * @throws InvalidTypeException wrong type of Item.
+     * @throws InvalidTypeException
+     *             wrong type of Item.
      * @throws TooLargeException
      *             when an overly large Item added to bag.
      * @throws TooHeavyException
      *             when an overly heavy Item added to bag.
      */
-    public void move(ItemContainer container, Position requestedPosition)
+    void move(ItemContainer container, Position requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
         moveToPoint2d(requestedPosition);
@@ -766,7 +770,7 @@ public abstract class Item implements Serializable {
      *            the requested position within the container.
      * 
      */
-    public void moveToPoint2d(Position requestedPosition) {
+    void moveToPoint2d(Position requestedPosition) {
         if (null == container) {
             throw new UnsupportedOperationException(
                     "No ItemContainer - Can't move");
@@ -946,10 +950,28 @@ public abstract class Item implements Serializable {
 
     /**
      * Change the position by the supplied amount.
+     * 
      * @param delta
      */
     public void applyDelta(Position delta) {
-        position.applyDelta( delta );
+        position.applyDelta(delta);
+    }
+
+    /**
+     * Create a new cooker.
+     * 
+     * @param recipeId
+     *            The ID of the recipe we wish to use for cooking.
+     * 
+     * @return a new cooker object
+     */
+    public Cooker getCooker(String recipeId) {
+        Configuration configuration = Configuration.lastConfig();
+        Recipe recipe = configuration.getRecipe(recipeId);
+        if (recipe == null) {
+            throw new RuntimeException("Failed to find recipe=" + recipeId);
+        }
+        return recipe.getNewCooker(this);
     }
 
 }

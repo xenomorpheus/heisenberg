@@ -17,8 +17,7 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 public class Crossbow extends Item {
 
     /**
-     * Field serialVersionUID.
-     * (value is 1)
+     * Field serialVersionUID. (value is 1)
      */
     private static final long serialVersionUID = 1L;
     /**
@@ -35,14 +34,29 @@ public class Crossbow extends Item {
 
     /**
      * Constructor for Crossbow.
-     * @param pName String
+     * 
+     * @param name
+     *            String
      */
-    private Crossbow(final String pName) {
-        super(pName);
+    private Crossbow(final String name) {
+        this(name, "A crossbow");
+    }
+
+    /**
+     * Constructor for Crossbow.
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
+     */
+    private Crossbow(final String name, String description) {
+        super(name, description);
     }
 
     /**
      * Method getLoadedBolt.
+     * 
      * @return CrossbowBolt
      */
     public CrossbowBolt getLoadedBolt() {
@@ -51,7 +65,9 @@ public class Crossbow extends Item {
 
     /**
      * Method setLoadedBolt.
-     * @param bolt CrossbowBolt
+     * 
+     * @param bolt
+     *            CrossbowBolt
      */
     public void setLoadedBolt(final CrossbowBolt bolt) {
         loadedBolt = bolt;
@@ -60,6 +76,7 @@ public class Crossbow extends Item {
     // bow plus bolt if present.
     /**
      * Method getWeight.
+     * 
      * @return float
      */
     public float getWeight() {
@@ -73,7 +90,9 @@ public class Crossbow extends Item {
     // Find items that match the criteria
     /**
      * Method visit.
-     * @param visitor ItemVisitor
+     * 
+     * @param visitor
+     *            ItemVisitor
      */
     public void visit(final ItemVisitor visitor) {
         // Search fields defined in this class.

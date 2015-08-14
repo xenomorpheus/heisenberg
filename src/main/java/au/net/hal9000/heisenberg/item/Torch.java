@@ -32,7 +32,7 @@ public class Torch extends Candle {
      * @param pName String
      * @param pDescription String
      */
-    public Torch(String pName, String pDescription) {
+    Torch(String pName, String pDescription) {
         super(pName, pDescription);
     }
 

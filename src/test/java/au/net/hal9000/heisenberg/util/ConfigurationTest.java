@@ -142,7 +142,7 @@ public class ConfigurationTest {
         Recipe recipe1 = config.getRecipe("testItem1");
         assertEquals("requirement count", 2, recipe1.getRequirementCount());
         RequirementItem requirementItem = (RequirementItem) recipe1
-                .getRequirement(0);
+                .getRequirement("Location");
         assertNotNull("requirement not null", requirementItem);
         assertEquals("requirement id", "Location", requirementItem.getId());
         assertEquals("requirement itemType", "Location",
@@ -212,7 +212,7 @@ public class ConfigurationTest {
         assertTrue("Skill 0 ID", skills.contains(new Skill("testSkill1")));
         assertEquals("Requirement count", 2, recipe.getRequirementCount());
         // Requirement 0
-        Requirement requirement = recipe.getRequirement(0);
+        Requirement requirement = recipe.getRequirement("Location");
         if (!(requirement instanceof RequirementItem)) {
             fail("Expecting 0 RequirementItem");
         }
@@ -225,7 +225,7 @@ public class ConfigurationTest {
         assertEquals("Requirement 0 weightMin", 0.0f,
                 requirementItem.getWeightMin(), 0.0001);
         // Requirement 1
-        Requirement requirement1 = recipe.getRequirement(1);
+        Requirement requirement1 = recipe.getRequirement("Water1");
         if (!(requirement1 instanceof RequirementItem)) {
             fail("Expecting 1 RequirementItem");
         }

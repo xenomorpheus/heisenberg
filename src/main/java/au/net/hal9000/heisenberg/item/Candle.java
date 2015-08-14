@@ -23,9 +23,9 @@ public class Candle extends Item implements LightSource {
     private static final long serialVersionUID = 1L;
 
     /** default weight. */
-    public static final float WEIGHT_DEFAULT = 0.02f;
+    static final float WEIGHT_DEFAULT = 0.02f;
     /** default volume. */
-    public static final float VOLUME_DEFAULT = 0.02f;
+    static final float VOLUME_DEFAULT = 0.02f;
 
     /** true if candle is lit. */
     private boolean lit = false;
@@ -47,7 +47,7 @@ public class Candle extends Item implements LightSource {
      * @param description
      *            description of item.
      */
-    public Candle(final String name, final String description) {
+    Candle(final String name, final String description) {
         super(name, description);
         this.setType(1);
     }
@@ -58,7 +58,7 @@ public class Candle extends Item implements LightSource {
      * @param name
      *            name to call the item.
      */
-    public Candle(final String name) {
+    Candle(final String name) {
         this(name, "a simple tallow candle");
     }
 

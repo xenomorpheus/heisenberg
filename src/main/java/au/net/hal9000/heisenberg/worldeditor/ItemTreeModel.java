@@ -16,7 +16,7 @@ import au.net.hal9000.heisenberg.item.ItemContainer;
  * @author bruins
  * @version $Revision: 1.0 $
  **/
-public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
+class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /**
      * Field LOGGER.
      */
@@ -40,7 +40,7 @@ public class ItemTreeModel extends AbstractTreeModel implements TreeModel {
      * @param root
      *            Item
      */
-    public ItemTreeModel(Item root) {
+    ItemTreeModel(Item root) {
         super();
         this.root = root;
     }

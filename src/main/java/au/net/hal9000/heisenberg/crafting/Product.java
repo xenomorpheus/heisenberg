@@ -1,8 +1,5 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * 
@@ -67,15 +64,9 @@ public abstract class Product {
     /**
      * Actually create the product.
      * 
-     * @param cooker
+     * @param cooker The container doing the cooking
      * 
-     * @return the reason why this coker can't crate this product. Null if the
-     *         cooker can build this product.
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
-    abstract String createProduct(Cooker cooker) throws InvalidTypeException,
-            TooHeavyException, TooLargeException;
+    abstract void createProduct(Cooker cooker);
 
 }

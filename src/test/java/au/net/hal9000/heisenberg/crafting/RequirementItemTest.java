@@ -92,7 +92,7 @@ public class RequirementItemTest {
                 requirementItem.meetsRequirements(cookie));
         assertEquals("incorrect type, meets weight", "item must be a Cookie",
                 requirementItem.meetsRequirements(arrow));
-        assertEquals("correct type, too lite", "item must weigh at least 3.0",
+        assertEquals("correct type, too lite", "item must weight at least 3.0",
                 requirementItem.meetsRequirements(cookieLite));
     }
 

@@ -29,17 +29,17 @@ public class Currency implements Serializable, Cloneable {
     /**
      * Coin conversion: 1PP = 10 GP.
      */
-    public static final Float PP_AS_GP = 10F;
+    private static final Float PP_AS_GP = 10F;
 
     /**
      * Coin conversion: 1GP = 10 SP.
      */
-    public static final Float SP_AS_GP = 0.1F;
+    private static final Float SP_AS_GP = 0.1F;
 
     /**
      * Coin conversion: 1 SP = 10 GP.
      */
-    public static final Float CP_AS_GP = 0.01F;
+    private static final Float CP_AS_GP = 0.01F;
 
     // coin count in this collection
     /** platinum pieces. */

@@ -54,7 +54,9 @@ public abstract class PcRace extends Entity {
 
     /**
      * Constructor for PcRace.
-     * @param pName String
+     * 
+     * @param pName
+     *            String
      */
     protected PcRace(String pName) {
         this(pName, "");
@@ -62,8 +64,11 @@ public abstract class PcRace extends Entity {
 
     /**
      * Constructor for PcRace.
-     * @param string String
-     * @param description String
+     * 
+     * @param string
+     *            String
+     * @param description
+     *            String
      */
     protected PcRace(String string, String description) {
         super(string, description);
@@ -71,8 +76,11 @@ public abstract class PcRace extends Entity {
 
     /**
      * Give me a PC that is a {@link PcClass} (e.g. Warrior).
-     * @param pName String
-     * @param pPcClass PcClass
+     * 
+     * @param pName
+     *            String
+     * @param pPcClass
+     *            PcClass
      */
     protected PcRace(String pName, PcClass pPcClass) {
         this(pName);
@@ -98,8 +106,9 @@ public abstract class PcRace extends Entity {
 
     // Getters and Setters
     /**
-    
-     * @return the level */
+     * 
+     * @return the level
+     */
     public final int getLevel() {
         return level;
     }
@@ -117,8 +126,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the pcClass */
+     * 
+     * @return the pcClass
+     */
     public final PcClass getPcClass() {
         return pcClass;
     }
@@ -137,8 +147,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the combatDice */
+     * 
+     * @return the combatDice
+     */
     public final int getCombatDice() {
         return combatDice;
     }
@@ -152,8 +163,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the magicDice */
+     * 
+     * @return the magicDice
+     */
     public final int getMagicDice() {
         return magicDice;
     }
@@ -167,8 +179,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the stealthDice */
+     * 
+     * @return the stealthDice
+     */
     public final int getStealthDice() {
         return stealthDice;
     }
@@ -182,8 +195,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the generalDice */
+     * 
+     * @return the generalDice
+     */
     public final int getGeneralDice() {
         return generalDice;
     }
@@ -197,8 +211,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the encumbrance */
+     * 
+     * @return the encumbrance
+     */
     public final int getEncumbrance() {
         return encumbrance;
     }
@@ -212,8 +227,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the health */
+     * 
+     * @return the health
+     */
     public final int getHealth() {
         return health;
     }
@@ -227,8 +243,9 @@ public abstract class PcRace extends Entity {
     }
 
     /**
-    
-     * @return the abilityScores */
+     * 
+     * @return the abilityScores
+     */
     public final Map<String, AbilityScore> getAbilityScores() {
         return abilityScores;
     }
@@ -237,16 +254,16 @@ public abstract class PcRace extends Entity {
      * @param abilityScores
      *            the abilityScores to set
      */
-    public final void setAbilityScores(
-            Map<String, AbilityScore> abilityScores) {
+    public final void setAbilityScores(Map<String, AbilityScore> abilityScores) {
         this.abilityScores = abilityScores;
     }
 
     /**
      * @param name
      *            name of AbilityScore
-    
-     * @return the AbilityScore object */
+     * 
+     * @return the AbilityScore object
+     */
     public AbilityScore getAbilityScore(String name) {
         return abilityScores.get(name);
     }
@@ -361,8 +378,9 @@ public abstract class PcRace extends Entity {
 
     /**
      * 
-    
-     * @return Plain text description of the object */
+     * 
+     * @return Plain text description of the object
+     */
     public String detailedDescription() {
         StringBuilder text = new StringBuilder();
 
@@ -409,8 +427,9 @@ public abstract class PcRace extends Entity {
     /**
      * Get the name of the race.
      * 
-    
-     * @return the name of the race. */
+     * 
+     * @return the name of the race.
+     */
     public abstract String getRace();
 
     /**

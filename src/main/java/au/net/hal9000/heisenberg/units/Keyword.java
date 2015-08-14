@@ -4,7 +4,7 @@ package au.net.hal9000.heisenberg.units;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class Keyword implements Comparable<Keyword> {
+class Keyword implements Comparable<Keyword> {
     /** Main Id. */
     private String id;
 
@@ -14,15 +14,16 @@ public class Keyword implements Comparable<Keyword> {
      * @param id
      *            the keyword id
      */
-    public Keyword(String id) {
+    Keyword(String id) {
         super();
         this.id = id;
     }
 
     /**
      * Method getId.
-    
-     * @return String */
+     * 
+     * @return String
+     */
     public final String getId() {
         return id;
     }
@@ -31,17 +32,21 @@ public class Keyword implements Comparable<Keyword> {
     // different?
     /**
      * Method compareTo.
-     * @param other Keyword
-    
-     * @return int */
+     * 
+     * @param other
+     *            Keyword
+     * 
+     * @return int
+     */
     public int compareTo(Keyword other) {
         return id.compareTo(other.getId());
     }
 
     /**
      * Method toString.
-    
-     * @return String */
+     * 
+     * @return String
+     */
     public String toString() {
         return id;
     }

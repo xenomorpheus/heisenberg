@@ -26,7 +26,7 @@ public class ModelStateAgentGoal implements ModelState {
      * @param goalPosition
      *            goal position.
      */
-    public ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
+    ModelStateAgentGoal(Position agentPosition, Position goalPosition) {
         super();
         if (null == agentPosition) {
             throw new IllegalArgumentException("agentPosition may not be null");
@@ -81,17 +81,6 @@ public class ModelStateAgentGoal implements ModelState {
     }
 
     // Misc
-    /**
-     * @param delta
-     *            alter agent position.
-     */
-    // void agentPositionChange(Position delta);
-
-
-    // Misc
-    public void agentPositionChange(Position delta) {
-        agentPosition.applyDelta(delta);
-    }
 
     @Override
     public int hashCode() {

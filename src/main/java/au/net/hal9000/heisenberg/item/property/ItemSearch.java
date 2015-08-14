@@ -29,7 +29,7 @@ public abstract class ItemSearch implements ItemVisitor {
      * Method addMatchingItems.
      * @param item Item
      */
-    public void addMatchingItems(Item item) {
+    void addMatchingItems(Item item) {
         matchingItems.add(item);
     }
 

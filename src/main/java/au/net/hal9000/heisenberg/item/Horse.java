@@ -23,7 +23,7 @@ public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
     /** serial version id. */
     private static final long serialVersionUID = 1L;
 
-    /** Consturctor. */
+    /** Constructor. */
     public Horse() {
         this("Horse");
     }
@@ -32,16 +32,9 @@ public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
      * 
      * @param name name of Item.
      */
-    public Horse(String name) {
+    private Horse(String name) {
         super(name);
         ItemProperty.setLiving(this, true);
     }
 
-    /**
-     * Method getRace.
-     * @return String
-     */
-    protected String getRace() {
-        return null;
-    }
 }

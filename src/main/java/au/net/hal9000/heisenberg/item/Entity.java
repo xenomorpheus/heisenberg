@@ -8,10 +8,8 @@ import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
-import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
-import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
  * Entity is the bases of conscious entities. <br>
@@ -66,7 +64,7 @@ public abstract class Entity extends Item implements StateEvaluation {
      * Field size.
      */
     private String size;
-    
+
     /**
      * Set of Memory objects.
      */
@@ -292,7 +290,6 @@ public abstract class Entity extends Item implements StateEvaluation {
         return memorySet;
     }
 
-    
     // Misc
 
     /**
@@ -358,19 +355,6 @@ public abstract class Entity extends Item implements StateEvaluation {
     }
 
     /**
-     * Create a new cooker.
-     * 
-     * @param recipeId
-     *            The ID of the recipe we wish to use for cooking.
-     * 
-     * @return a new cooker object
-     */
-    public Cooker getCooker(String recipeId) {
-        Configuration configuration = Configuration.lastConfig();
-        return configuration.getRecipe(recipeId).getNewCooker(this);
-    }
-
-    /**
      * Shallow copy properties from one object to another.
      * 
      * @param entity
@@ -387,7 +371,7 @@ public abstract class Entity extends Item implements StateEvaluation {
      */
     @Override
     public double getStateEvaluation() {
-        
+
         // Very crude, but enough for testing.
         return getHitPoints();
 
@@ -422,4 +406,5 @@ public abstract class Entity extends Item implements StateEvaluation {
         }
         memorySet.add(memory);
     }
+
 }

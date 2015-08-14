@@ -9,7 +9,7 @@ import au.net.hal9000.heisenberg.item.Item;
 
 /**
  */
-public class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
+class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
     /**
      * Set the Icon to be shown next to each Icon when in a JTree in the UI.
