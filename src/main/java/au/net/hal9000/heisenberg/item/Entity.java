@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import java.util.Set;
 import java.util.TreeSet;
 
-import au.net.hal9000.heisenberg.ai.MemoryImpl;
+import au.net.hal9000.heisenberg.ai.MemoryAbstract;
 import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
@@ -400,7 +400,7 @@ public abstract class Entity extends Item implements StateEvaluation {
      * @param skill
      *            The freshly learnt Memory.
      */
-    public final void memoryAdd(final MemoryImpl memory) {
+    public final void memoryAdd(final MemoryAbstract memory) {
         if (null == memorySet) {
             memorySet = new MemorySetImpl();
         }

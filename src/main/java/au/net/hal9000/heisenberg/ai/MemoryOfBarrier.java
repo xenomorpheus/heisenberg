@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.ai.api.Barrier;
  *
  */
 
-public class MemoryOfBarrier extends MemoryImpl {
+public class MemoryOfBarrier extends MemoryAbstract {
     /** the barrier this memory is about. */
     private Barrier barrier;
 
@@ -44,10 +44,11 @@ public class MemoryOfBarrier extends MemoryImpl {
      */
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder(11);
-        return string.append(getClass().getSimpleName() + "=[").append(barrier)
-                .append(", created=").append(getCreatedDate())
-                .append(", decay=").append(getDecayRate()).append(']')
-                .append(']').toString();
+        StringBuilder sb = new StringBuilder(11);
+        sb.append(super.toString());
+        if (barrier != null) {
+            sb.append(", ").append(barrier);
+        }
+        return sb.append("]").toString();
     }
 }

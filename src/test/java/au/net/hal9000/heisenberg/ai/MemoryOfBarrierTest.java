@@ -38,12 +38,11 @@ public class MemoryOfBarrierTest {
 
         Date createdDate = null;
         double decayRate = 0;
-        Barrier barrier = new BarrierShape(null, "barrierObject");
-        MemoryOfBarrier memoryOfBarrier = new MemoryOfBarrier(createdDate, decayRate,
-                barrier);
-        String expect = "MemoryOfBarrier=["+barrier.toString()+", created=null, decay=0.0]]";
+        Barrier barrierShape = new BarrierShape(null, "barrierObject");
+        MemoryOfBarrier memoryOfBarrier = new MemoryOfBarrier(createdDate,
+                decayRate, barrierShape);
+        String expect = ", " + barrierShape + "]";
         String got = memoryOfBarrier.toString();
-        assertTrue(expect.equals(got));
+        assertTrue(got.endsWith(expect));
     }
-
 }

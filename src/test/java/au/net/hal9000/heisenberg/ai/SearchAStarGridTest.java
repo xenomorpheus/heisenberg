@@ -142,7 +142,7 @@ public class SearchAStarGridTest {
         Object blocker = "this is the wall";
         Line2D.Double line = new Line2D.Double(-2, 0.5,2, 0.5);
         Barrier barrier = new BarrierShape(Arrays.asList(line), blocker);
-        MemoryImpl memory = new MemoryOfBarrier(null, 0, barrier);
+        MemoryAbstract memory = new MemoryOfBarrier(null, 0, barrier);
         agent.memoryAdd(memory);
 
         // Setup starting model state.

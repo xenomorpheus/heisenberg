@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.ai.api.Memory;
  * @author bruins
  *
  */
-public abstract class MemoryImpl implements Memory {
+public abstract class MemoryAbstract implements Memory {
     /** When the memory was created. */
     private Date createdDate;
 
@@ -26,7 +26,7 @@ public abstract class MemoryImpl implements Memory {
      * @param createdDate
      *            date memory created.
      */
-    private MemoryImpl(Date createdDate) {
+    private MemoryAbstract(Date createdDate) {
         super();
         this.createdDate = createdDate;
     }
@@ -39,7 +39,7 @@ public abstract class MemoryImpl implements Memory {
      * @param decayRate
      *            date memory expires.
      */
-    MemoryImpl(Date createdDate, double decayRate) {
+    public MemoryAbstract(Date createdDate, double decayRate) {
         this(createdDate);
         this.decayRate = decayRate;
     }
@@ -65,7 +65,7 @@ public abstract class MemoryImpl implements Memory {
     public String toString() {
         StringBuilder string = new StringBuilder(7);
         return string.append(getClass().getSimpleName()).append("=[")
-                .append(createdDate).append(",").append(decayRate).append(']')
+                .append(createdDate).append(",").append(decayRate).append("]")
                 .toString();
     }
 }

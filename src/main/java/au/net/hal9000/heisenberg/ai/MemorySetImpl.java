@@ -106,12 +106,9 @@ public class MemorySetImpl implements MemorySet {
         final int stringsPerMemory = 2;
         StringBuilder stringB = new StringBuilder(getMemorySet().size()
                 * stringsPerMemory + 3);
-        // TODO attributes of supper class.
-        stringB.append(getClass().getSimpleName()).append("=[");
-        String join = "";
+        stringB.append(super.toString());
         for (Memory memory : getMemorySet()) {
-            stringB.append(join).append(memory);
-            join = ", ";
+            stringB.append(", ").append(memory);
         }
         stringB.append(']');
         return stringB.toString();
