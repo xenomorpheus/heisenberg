@@ -33,6 +33,7 @@ public class SuccessorImpl implements Successor {
      *            the cost of performing this action
      */
     public SuccessorImpl(ModelState modelState, Action action, double cost) {
+        super();
         this.modelState = modelState;
         this.action = action;
         this.cost = cost;

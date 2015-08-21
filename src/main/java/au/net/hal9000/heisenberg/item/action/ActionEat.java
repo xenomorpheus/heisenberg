@@ -2,11 +2,8 @@ package au.net.hal9000.heisenberg.item.action;
 
 import au.net.hal9000.heisenberg.ai.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.Rat;
-import au.net.hal9000.heisenberg.item.modelstate.ModelStateCatRat;
 
 /**
  * Action to eat something
@@ -54,10 +51,11 @@ public final class ActionEat extends ActionBase {
     // Misc
     @Override
     public void apply(ModelState modelState) {
-        ModelStateCatRat modelStateCatRat = (ModelStateCatRat) modelState;
-        Cat cat = modelStateCatRat.getCat();
-        Rat rat = modelStateCatRat.getRat();
-        cat.eat(rat);
+        // TODO a real model state.
+        // ModelStateTODO modelStateCatRat = (ModelStateTODO) modelState;
+        // Cat cat = modelStateCatRat.getCat();
+        // Rat rat = modelStateCatRat.getRat();
+        // cat.eat(rat);
     }
 
     // Misc

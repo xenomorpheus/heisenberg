@@ -20,7 +20,7 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.action.ActionAgentMoveAbsoluteImpl;
 import au.net.hal9000.heisenberg.item.action.ActionEat;
-import au.net.hal9000.heisenberg.item.modelstate.ModelStateCatRat;
+import au.net.hal9000.heisenberg.jbox2d.demo.ModelStateCatRat;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Geometry;
 

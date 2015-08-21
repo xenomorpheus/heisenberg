@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 public class MemorySetImpl implements MemorySet {
 
     /** A collection of Memory objects. */
-    private List<Memory> memorySet = new ArrayList<Memory>();
+    private List<Memory> memorySet = new ArrayList<>();
 
     /** Constructor. */
     public MemorySetImpl() {
@@ -106,7 +106,7 @@ public class MemorySetImpl implements MemorySet {
         final int stringsPerMemory = 2;
         StringBuilder stringB = new StringBuilder(getMemorySet().size()
                 * stringsPerMemory + 3);
-        stringB.append(super.toString());
+        stringB.append(getClass().getSimpleName()).append("=[");
         for (Memory memory : getMemorySet()) {
             stringB.append(", ").append(memory);
         }

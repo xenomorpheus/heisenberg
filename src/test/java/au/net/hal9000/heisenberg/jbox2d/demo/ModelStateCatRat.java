@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.modelstate;
+package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import au.net.hal9000.heisenberg.item.Cat;
 import au.net.hal9000.heisenberg.item.Rat;
