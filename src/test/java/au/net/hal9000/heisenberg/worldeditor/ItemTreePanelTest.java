@@ -15,7 +15,7 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * Test the ItemPanel.
@@ -36,8 +36,8 @@ public class ItemTreePanelTest {
     @Test
     public void testItemTreePanel() throws ConfigurationError,
             InvalidTypeException, TooHeavyException, TooLargeException {
-        Configuration config = DummyData.getConfig();
-        Location location = DummyData.getDemoWorld();
+        Configuration config = Configuration.lastConfig();
+        Location location = TestEnvironment.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
         assertNotNull("Not Null", itemTreePanel);
     }

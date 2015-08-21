@@ -25,7 +25,7 @@ public abstract class Entity extends Item implements StateEvaluation {
     private static final long serialVersionUID = 1L;
 
     /** ideal value for health metric. */
-    private static final float HEALTH_METRIC_IDEAL = 100L;
+    public static final float HEALTH_METRIC_IDEAL = 100L;
 
     /**
      * A measure of the amount of things the entity can do in the current round.

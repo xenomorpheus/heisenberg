@@ -26,8 +26,7 @@ import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
-import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * @author bruins
@@ -36,8 +35,8 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 public class ScenarioSet01 {
 
     @Before
-    public void initialize() throws ConfigurationError {
-        new Configuration("src/test/resources/config.xml");
+    public void initialize() {
+        TestEnvironment.setup();
     }
 
     /**
@@ -197,14 +196,14 @@ public class ScenarioSet01 {
     }
 
     /**
-     * Method hobbitEatsACookie.
+     * Method halflingEatsACookie.
      * 
      * 
      * @throws InvalidTypeException
      */
     @Test
-    public void hobbitEatsACookie() throws InvalidTypeException {
-        println(System.lineSeparator() + "** A hobbit eats a cookie.");
+    public void halflingEatsACookie() throws InvalidTypeException {
+        println(System.lineSeparator() + "** A halfling eats a cookie.");
         Halfling halfling = new Halfling();
         halfling.setActionPoints(3);
         Cookie cookie = new Cookie();

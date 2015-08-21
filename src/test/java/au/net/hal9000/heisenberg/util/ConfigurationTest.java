@@ -33,12 +33,11 @@ public class ConfigurationTest {
 
     /**
      * Method setUp.
-     * 
-     * @throws ConfigurationError
      */
     @Before
-    public void setUp() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
+    public void setUp() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
     }
 
     /**

@@ -25,7 +25,7 @@ public class ItemIconTest {
      */
     @Test
     public void testSetIcon() throws ConfigurationError {
-        Configuration config = DummyData.getConfig();
+        Configuration config = Configuration.lastConfig();
         ItemIcon.setIcon(config);
         Human human = new Human();
         assertNotNull(human.getIconOpen());

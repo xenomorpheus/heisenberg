@@ -10,6 +10,7 @@ import au.net.hal9000.heisenberg.util.PcClass;
 
 /**
  * A common human.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -19,8 +20,7 @@ import au.net.hal9000.heisenberg.util.PcClass;
 public class Human extends Humanoid {
 
     /**
-     * Field serialVersionUID.
-     * (value is 1)
+     * Field serialVersionUID. (value is 1)
      */
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,9 @@ public class Human extends Humanoid {
 
     /**
      * Constructor for Human.
-     * @param string String
+     * 
+     * @param string
+     *            String
      */
     public Human(String string) {
         super(string);
@@ -41,8 +43,11 @@ public class Human extends Humanoid {
 
     /**
      * Constructor for Human.
-     * @param string String
-     * @param description String
+     * 
+     * @param string
+     *            String
+     * @param description
+     *            String
      */
     Human(String string, String description) {
         super(string, description);
@@ -50,8 +55,11 @@ public class Human extends Humanoid {
 
     /**
      * Constructor for Human.
-     * @param name String
-     * @param pcClass PcClass
+     * 
+     * @param name
+     *            String
+     * @param pcClass
+     *            PcClass
      */
     Human(String name, PcClass pcClass) {
         super(name, pcClass);
@@ -59,21 +67,37 @@ public class Human extends Humanoid {
 
     /**
      * Constructor for Human.
-     * @param name String
-     * @param description String
-     * @param pcClass PcClass
+     * 
+     * @param name
+     *            String
+     * @param description
+     *            String
+     * @param pcClass
+     *            PcClass
      */
     Human(String name, String description, PcClass pcClass) {
         super(name, description, pcClass);
     }
+
     /**
      * Eat.
      * 
-     * @param food
-     *            food Item to eat.<br>
+     * @param animal
+     *            animal to eat.<br>
      *            Throw RuntimeException on error.
      */
-    public void eat(Animal food) {
-        Eat.eat(this, food);
+    public void eat(Animal animal) {
+        Eat.eat(this, animal);
+    }
+
+    /**
+     * Eat.
+     * 
+     * @param cookie
+     *            animal to eat.<br>
+     *            Throw RuntimeException on error.
+     */
+    public void eat(Cookie cookie) {
+        Eat.eat(this, cookie);
     }
 }

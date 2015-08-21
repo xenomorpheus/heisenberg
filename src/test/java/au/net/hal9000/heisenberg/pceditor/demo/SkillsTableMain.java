@@ -4,19 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.pceditor.RecipesTable;
+import au.net.hal9000.heisenberg.pceditor.SkillsTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
-public class RecipesTableMain { // NO_UCD (unused code)
-
+public class SkillsTableMain { // NO_UCD (unused code)
     /** frame width. */
-    static final int FRAME_WIDTH = 2400;
+    static final int FRAME_WIDTH = 800;
     /** frame height. */
     static final int FRAME_HEIGHT = 300;
 
     /**
-     * app to test the world editor.
+     * app to test the skills table.
      * 
      * @param args
      *            not used
@@ -29,22 +28,23 @@ public class RecipesTableMain { // NO_UCD (unused code)
             @Override
             public void run() {
                 try {
-                    PcRace pc = DummyData.getPcRace();
+                    PcRace pc = TestEnvironment.getPcRace();
                     JFrame guiFrame = new JFrame();
 
                     // make sure the program exits when the frame closes
                     guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    guiFrame.setTitle("Recipes Table");
+                    guiFrame.setTitle("Skills Table");
                     guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-                    RecipesTable recipesTable = new RecipesTable();
-                    recipesTable.setPcRace(pc);
+                    // This will center the JFrame in the middle of the screen
+                    guiFrame.setLocationRelativeTo(null);
+
+                    SkillsTable skillsTable = new SkillsTable();
+                    skillsTable.setPcRace(pc);
 
                     // add to JFrame
-                    guiFrame.add(recipesTable);
+                    guiFrame.add(skillsTable);
                     guiFrame.pack();
-                    // This will centre the JFrame in the middle of the screen
-                    guiFrame.setLocationRelativeTo(null);
                     guiFrame.setVisible(true);
                 } catch (ConfigurationError e) {
                     e.printStackTrace();
@@ -53,4 +53,5 @@ public class RecipesTableMain { // NO_UCD (unused code)
         });
 
     }
+
 }

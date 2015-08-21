@@ -29,13 +29,15 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
- * Utility class for building test Item objects.
+ * Utility class for setting up test environment and building test Item objects.
  * 
  * @author bruins
  * 
  * @version $Revision: 1.0 $
  */
-public final class DummyData {
+public final class TestEnvironment {
+    /** file containing test configuration. */
+    static private String TEST_CONFIG_FILE = "src/test/resources/config.xml";
     /** test skills. */
     private static final String[] TEST_SKILLS = new String[] { "testSkill1",
             "testSkill2", "testSkill3" };
@@ -48,21 +50,16 @@ public final class DummyData {
     private static final int TEST_WEIGHT_VOLUME = 100000;
 
     /** Constructor. */
-    private DummyData() {
+    private TestEnvironment() {
         super();
     }
 
-    /**
-     * Get the test configuration object.
-     * 
-     * @throws ConfigurationError
-     * @return Configuration object.
-     */
-    public static Configuration getConfig() throws ConfigurationError {
-        Configuration config = new Configuration(
-                "src/test/resources/config.xml");
-        return config;
-
+    public static void setup() {
+        try {
+            new Configuration(TEST_CONFIG_FILE);
+        } catch (ConfigurationError e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -72,7 +69,7 @@ public final class DummyData {
      * @throws ConfigurationError
      */
     public static PcRace getPcRace() throws ConfigurationError {
-        Configuration config = getConfig();
+        Configuration config = Configuration.lastConfig();
         Elf elf = (Elf) Factory.createItem("Elf");
         elf.setName("Jane");
         elf.setPcClass(config.getPcClasses().get("Paladin"));

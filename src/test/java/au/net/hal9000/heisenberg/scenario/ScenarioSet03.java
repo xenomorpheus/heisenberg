@@ -19,7 +19,7 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * @author bruins
@@ -31,14 +31,10 @@ public class ScenarioSet03 {
      */
     private Configuration config = null;
 
-    /**
-     * Method initialize.
-     * 
-     * @throws ConfigurationError
-     */
     @Before
-    public void initialize() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
+    public void initialize() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
     }
 
     // Human collects various items (move and pick up)

@@ -28,7 +28,7 @@ public class RecipesTableTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
-        PcRace pc = DummyData.getPcRace();
+        PcRace pc = TestEnvironment.getPcRace();
         RecipesTable basicPanel = new RecipesTable();
         basicPanel.setPcRace(pc);
         assertNotNull("BasicPanel not null", basicPanel);

@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
-
 
 // Custom
 import au.net.hal9000.heisenberg.units.Currency;
@@ -15,6 +15,7 @@ import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
@@ -23,6 +24,14 @@ public class ItemTest {
      * Field WITHIN_MARGIN. (value is 9.0E-5)
      */
     private static final float WITHIN_MARGIN = 0.00009F;
+
+    private Configuration config = null;
+
+    @Before
+    public void initialize() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
+    }
 
     /**
      * Method testItem.
@@ -142,8 +151,6 @@ public class ItemTest {
     @Test
     public void testToString() throws ConfigurationError {
 
-        Configuration config = new Configuration(
-                "src/test/resources/config.xml");
         List<ItemClassConfiguration> itemClasses = config.getItemClasses();
 
         for (ItemClassConfiguration itemClassConfiguration : itemClasses) {

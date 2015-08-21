@@ -6,7 +6,7 @@ import javax.swing.SwingUtilities;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.pceditor.PcRaceEditor;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 public class PcRaceEditorMain { // NO_UCD (unused code)
 
@@ -19,7 +19,7 @@ public class PcRaceEditorMain { // NO_UCD (unused code)
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    PcRace pc = DummyData.getPcRace();
+                    PcRace pc = TestEnvironment.getPcRace();
                     PcRaceEditor editor = new PcRaceEditor();
                     editor.setPcRace(pc);
                     JFrame window = new JFrame();

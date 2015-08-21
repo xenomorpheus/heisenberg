@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
@@ -19,14 +19,10 @@ public class FactoryTest {
      */
     private Configuration config;
 
-    /**
-     * Method setUp.
-     * 
-     * @throws ConfigurationError
-     */
     @Before
-    public void setUp() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
+    public void initialize() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
     }
 
     /**

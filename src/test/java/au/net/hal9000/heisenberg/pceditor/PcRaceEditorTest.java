@@ -7,7 +7,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.pceditor.PcRaceEditor;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * @author bruins
@@ -22,7 +22,7 @@ public class PcRaceEditorTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
-        PcRace pc = DummyData.getPcRace();
+        PcRace pc = TestEnvironment.getPcRace();
         PcRaceEditor window = new PcRaceEditor();
         assertNotNull("not Null", window);
         window.setPcRace(pc);

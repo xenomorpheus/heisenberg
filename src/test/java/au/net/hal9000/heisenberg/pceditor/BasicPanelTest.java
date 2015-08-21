@@ -8,7 +8,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.pceditor.BasicPanel;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * @author bruins
@@ -24,7 +24,7 @@ public class BasicPanelTest {
     @Test
     public void testBasicOperations() throws ConfigurationError {
 
-        PcRace pc = DummyData.getPcRace();
+        PcRace pc = TestEnvironment.getPcRace();
         BasicPanel basicPanel = new BasicPanel();
         assertNotNull("not Null", basicPanel);
         basicPanel.setPcRace(pc);

@@ -26,7 +26,7 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
@@ -49,13 +49,12 @@ public class CookerTest {
     private Configuration config = null;
 
     /**
-     * Method initialize.
-     * 
-     * @throws ConfigurationError
+     * Method setUp.
      */
     @Before
-    public void initialize() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
+    public void setUp() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
     }
 
     /**

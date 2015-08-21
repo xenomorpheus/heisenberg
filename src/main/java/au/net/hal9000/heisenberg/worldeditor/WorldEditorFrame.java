@@ -20,7 +20,7 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 import au.net.hal9000.heisenberg.util.ItemIcon;
 
 /**
@@ -55,7 +55,7 @@ public class WorldEditorFrame extends JFrame {
     public WorldEditorFrame() throws ConfigurationError {
 
         /** Config. */
-        final Configuration config = DummyData.getConfig();
+        final Configuration config = Configuration.lastConfig();
         /** Persistence. */
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -97,7 +97,7 @@ public class WorldEditorFrame extends JFrame {
                 }
                 if ("Demo".equals(eventName)) {
                     try {
-                        setLocation(DummyData.getDemoWorld());
+                        setLocation(TestEnvironment.getDemoWorld());
                     } catch (InvalidTypeException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

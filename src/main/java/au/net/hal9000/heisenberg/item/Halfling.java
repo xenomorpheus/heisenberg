@@ -49,7 +49,7 @@ public class Halfling extends Humanoid {
     public Halfling(String string, String description) {
         super(string, description);
     }
-
+    
     /**
      * Eat.
      * 
@@ -71,5 +71,4 @@ public class Halfling extends Humanoid {
     public void eat(Cookie cookie) {
         Eat.eat(this, cookie);
     }
-
 }

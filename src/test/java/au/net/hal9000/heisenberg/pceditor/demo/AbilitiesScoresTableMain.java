@@ -4,15 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.PcRace;
-import au.net.hal9000.heisenberg.pceditor.BasicPanel;
+import au.net.hal9000.heisenberg.pceditor.AbilityScoresTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 
 
 /**
  */
-public class BasicPanelMain { // NO_UCD (unused code)
+public class AbilitiesScoresTableMain { // NO_UCD (unused code)
     /** frame width. */
     static final int FRAME_WIDTH = 800;
     /** frame height. */
@@ -32,7 +32,7 @@ public class BasicPanelMain { // NO_UCD (unused code)
             @Override
             public void run() {
                 try {
-                    PcRace pc = DummyData.getPcRace();
+                    PcRace pc = TestEnvironment.getPcRace();
                     JFrame guiFrame = new JFrame();
 
                     // make sure the program exits when the frame closes
@@ -40,11 +40,11 @@ public class BasicPanelMain { // NO_UCD (unused code)
                     guiFrame.setTitle("Basic Panel");
                     guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-                    BasicPanel basicPanel = new BasicPanel();
-                    basicPanel.setPcRace(pc);
+                    AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+                    abilityScoresTable.setPcRace(pc);
 
                     // add to JFrame
-                    guiFrame.add(basicPanel);
+                    guiFrame.add(abilityScoresTable);
                     guiFrame.pack();
                     // This will centre the JFrame in the middle of the screen
                     guiFrame.setLocationRelativeTo(null);

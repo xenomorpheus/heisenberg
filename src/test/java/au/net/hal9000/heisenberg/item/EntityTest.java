@@ -1,27 +1,26 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
 public class EntityTest {
 
-    @BeforeClass
-    public static void setupConfig() throws ConfigurationError {
-        new Configuration("src/test/resources/config.xml");
+    @Before
+    public void initialize() {
+        TestEnvironment.setup();
     }
 
     /**

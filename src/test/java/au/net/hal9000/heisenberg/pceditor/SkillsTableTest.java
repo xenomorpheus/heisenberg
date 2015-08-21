@@ -8,7 +8,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.pceditor.SkillsTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class SkillsTableTest {
     @Test
     public void testBasicOperations() throws ConfigurationError {
 
-        PcRace pc = DummyData.getPcRace();
+        PcRace pc = TestEnvironment.getPcRace();
 
         SkillsTable skillsTable = new SkillsTable();
         assertNotNull("not Null", skillsTable);

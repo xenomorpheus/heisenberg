@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.PcClass;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
@@ -27,13 +27,10 @@ public class PcRaceTest {
      * should be in the same order as the fields or methods.
      */
 
-    /**
-     * Method setUp.
-     * @throws ConfigurationError
-     */
     @Before
-    public void setUp() throws ConfigurationError {
-        config = new Configuration("src/test/resources/config.xml");
+    public void initialize() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
     }
 
     // Constructor
@@ -144,7 +141,9 @@ public class PcRaceTest {
 
     /**
      * Method checkBasicsAreZero.
-     * @param pc PcRace
+     * 
+     * @param pc
+     *            PcRace
      */
     public void checkBasicsAreZero(PcRace pc) {
         assertEquals("combatDice", 0, pc.getCombatDice());
@@ -289,7 +288,8 @@ public class PcRaceTest {
         PcClass warrior = config.getPcClass("testWarrior");
         human.setPcClass(warrior);
         human.setLevel(3);
-        human.skillsAddArray(new String[] { "testSkill1", "testSkill2", "testSkill3" });
+        human.skillsAddArray(new String[] { "testSkill1", "testSkill2",
+                "testSkill3" });
         human.recipesAdd(new String[] { "testItem1", "testFireGround1",
                 "testSpell1" });
 

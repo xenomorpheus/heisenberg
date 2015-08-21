@@ -22,7 +22,7 @@ public class DummyDataTest {
      */
     @Test
     public void testElf() throws ConfigurationError {
-        PcRace pc = DummyData.getPcRace();
+        PcRace pc = TestEnvironment.getPcRace();
         assertNotNull(pc);
     }
 
@@ -37,7 +37,7 @@ public class DummyDataTest {
     @Test
     public void testGetDemoWorld() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
-        Location loc = DummyData.getDemoWorld();
+        Location loc = TestEnvironment.getDemoWorld();
         assertNotNull(loc);
     }
 

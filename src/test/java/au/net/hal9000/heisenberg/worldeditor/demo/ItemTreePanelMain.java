@@ -8,8 +8,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.DummyData;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 
 public class ItemTreePanelMain {
@@ -30,8 +29,9 @@ public class ItemTreePanelMain {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Configuration config = DummyData.getConfig();
-                    Location location = DummyData.getDemoWorld();
+                    TestEnvironment.setup();
+                    Configuration config = Configuration.lastConfig();
+                    Location location = TestEnvironment.getDemoWorld();
                     // location.setWeightMax(100000);
                     // location.setVolumeMax(100000);
                     ItemTreePanel itemTreePanel = new ItemTreePanel(config,
@@ -44,9 +44,6 @@ public class ItemTreePanelMain {
                     // Centre
                     jFrame.setLocationRelativeTo(null);
                     jFrame.setVisible(true);
-                } catch (ConfigurationError e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 } catch (InvalidTypeException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
@@ -18,19 +19,27 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
+import au.net.hal9000.heisenberg.util.TestEnvironment;
 
 /**
  */
 public class PersistenceTest {
 
+    private Configuration config = null;
+
+    @Before
+    public void initialize() {
+        TestEnvironment.setup();
+        config = Configuration.lastConfig();
+    }
+
     /**
      * Method oneOfEachItem.
+     * 
      * @throws ConfigurationError
      */
     @Test
     public void oneOfEachItem() throws ConfigurationError {
-        Configuration config = new Configuration(
-                "src/test/resources/config.xml");
         List<ItemClassConfiguration> itemClasses = config.getItemClasses();
 
         final String persistenceUnitName = "items";
@@ -75,13 +84,14 @@ public class PersistenceTest {
 
     /**
      * Method testContainer.
- 
-     * @throws InvalidTypeException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
-    public void testContainer() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void testContainer() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
         Bag bag = new Bag();
         Cookie cookie1 = new Cookie();
         Cookie cookie2 = new Cookie();
@@ -111,13 +121,15 @@ public class PersistenceTest {
 
     /**
      * Method testGetWorld.
+     * 
      * @return Location
- 
-     * @throws InvalidTypeException 
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * 
+     * @throws InvalidTypeException
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
-    public static Location testGetWorld() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public static Location testGetWorld() throws InvalidTypeException,
+            TooHeavyException, TooLargeException {
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(100000);
@@ -187,14 +199,15 @@ public class PersistenceTest {
     /**
      * Method testLocation.
      * 
-
+     * 
      * @throws InvalidTypeException
-     * @throws TooLargeException 
-     * @throws TooHeavyException 
+     * @throws TooLargeException
+     * @throws TooHeavyException
      */
     @Test
     // world persistence
-    public void testLocation() throws InvalidTypeException,  TooHeavyException, TooLargeException {
+    public void testLocation() throws InvalidTypeException, TooHeavyException,
+            TooLargeException {
 
         Location loc = testGetWorld();
 
