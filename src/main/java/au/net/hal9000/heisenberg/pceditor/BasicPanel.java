@@ -20,7 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 

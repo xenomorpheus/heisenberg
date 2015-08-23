@@ -3,11 +3,10 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.TestEnvironment;
 
@@ -42,8 +41,7 @@ public class FactoryTest {
      */
     @Test
     public void createItemsAll() {
-        List<String> classes = config.getItemClassIds();
-        for (String type : classes) {
+        for (String type : config.getItemClassIds()) {
             Object item = Factory.createItem(type);
             assertTrue("instanceof Item", item instanceof Item);
             assertEquals("simple class", type, item.getClass().getSimpleName());

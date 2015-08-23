@@ -66,7 +66,7 @@ public class ItemContainer extends Item implements Serializable {
      * @param string
      *            String
      */
-    protected ItemContainer(String string) {
+    public ItemContainer(String string) {
         this(string, "");
     }
 

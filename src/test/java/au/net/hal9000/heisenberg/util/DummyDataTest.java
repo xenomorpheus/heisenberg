@@ -5,8 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.PcRace;
-
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;

@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.pceditor.demo;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.SkillsTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.TestEnvironment;

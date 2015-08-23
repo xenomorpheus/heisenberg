@@ -8,6 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -78,7 +79,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         scrollpane.setViewportView(tree);
 
         // A JComboBox of Item types we can add
-        List<String> classIds = config.getItemClassIds();
+        Set<String> classIds = config.getItemClassIds();
         String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
         itemClassesList = new JComboBox<String>(classIdStrings);
         addButtonPanel.add(itemClassesList);

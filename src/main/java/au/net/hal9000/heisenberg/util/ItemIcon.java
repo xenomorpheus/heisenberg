@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.util;
 
-import java.util.List;
-
 import javax.swing.ImageIcon;
 
 import au.net.hal9000.heisenberg.item.Item;
@@ -23,7 +21,8 @@ public final class ItemIcon {
     /**
      * Set the UI icons on the Item classes.
      * 
-     * @param config the config to use.
+     * @param config
+     *            the config to use.
      */
     public static void setIcon(Configuration config) {
         // Find the sprite sheet for the Item types.
@@ -36,9 +35,8 @@ public final class ItemIcon {
                 spritePackDetail.getRows(), spritePackDetail.getColumns());
 
         // For each type of Item, set the default Icon.
-        List<ItemClassConfiguration> itemClassConfigurations = config
-                .getItemClasses();
-        for (ItemClassConfiguration itemClassConfiguration : itemClassConfigurations) {
+        for (ItemClassConfiguration itemClassConfiguration : config
+                .getItemClasses().values()) {
             int iconOpenId = itemClassConfiguration.getIconOpenId();
             if (0 != iconOpenId) {
                 Item.setIconOpenDefaultForClass(itemClassConfiguration.getId(),

@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 /**

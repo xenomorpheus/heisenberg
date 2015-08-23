@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.util.Configuration;

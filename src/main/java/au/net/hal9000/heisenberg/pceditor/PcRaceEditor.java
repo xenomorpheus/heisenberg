@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 
 /**
  */

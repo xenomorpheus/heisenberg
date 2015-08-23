@@ -35,7 +35,7 @@ public class Hand extends ItemContainer {
      * Constructor for Hand.
      * @param string String
      */
-    Hand(String string) {
+    public Hand(String string) {
         super(string);
         ItemProperty.setLiving(this, true);
         this.setWeightMax(2); // TODO config

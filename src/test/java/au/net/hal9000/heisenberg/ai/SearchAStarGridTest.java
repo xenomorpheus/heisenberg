@@ -17,9 +17,9 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
-import au.net.hal9000.heisenberg.item.Cat;
-import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.EntitySuccessorFunction;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.Entity;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**

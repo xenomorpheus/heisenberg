@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import java.util.Map;
 import java.util.TreeMap;

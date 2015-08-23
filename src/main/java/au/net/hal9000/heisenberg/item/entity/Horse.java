@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Horse extends au.net.hal9000.heisenberg.item.Entity implements
+public class Horse extends au.net.hal9000.heisenberg.item.entity.Entity implements
         HumanoidMount {
 
     /** serial version id. */

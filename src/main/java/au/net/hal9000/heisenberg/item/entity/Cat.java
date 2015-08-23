@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -14,42 +14,42 @@ import au.net.hal9000.heisenberg.item.mixin.Eat;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Halfling extends Humanoid {
+public class Cat extends Animal {
 
     /**
-     * Field serialVersionUID. (value is 1)
+     * 
      */
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructor for Halfling.
+     * Constructor for Cat.
      */
-    public Halfling() {
-        this("Halfling");
+    public Cat() {
+        this("Cat");
     }
 
     /**
-     * Constructor for Halfling.
+     * Constructor for Cat.
      * 
      * @param name
      *            String
      */
-    public Halfling(String name) {
-        this(name, "A Halfling");
+    Cat(String name) {
+        this(name, "A cat");
     }
 
     /**
-     * Constructor for Halfling.
+     * Constructor for Cat.
      * 
      * @param name
      *            String
      * @param description
      *            String
      */
-    public Halfling(String string, String description) {
-        super(string, description);
+    Cat(String name, String description) {
+        super(name, description);
     }
-    
+
     /**
      * Eat.
      * 
@@ -61,14 +61,5 @@ public class Halfling extends Humanoid {
         Eat.eat(this, animal);
     }
 
-    /**
-     * Eat.
-     * 
-     * @param cookie
-     *            animal to eat.<br>
-     *            Throw RuntimeException on error.
-     */
-    public void eat(Cookie cookie) {
-        Eat.eat(this, cookie);
-    }
+
 }

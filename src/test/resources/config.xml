@@ -10,20 +10,21 @@
 		<item id="BagOfHolding" />
 		<item id="Box" />
 		<item id="Candle" />
-		<item id="Cat" />
+		<item id="Cat" javaClass="entity.Cat" />
 		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
 		<item id="Cookie" />
 		<item id="Crossbow" iconOpenId="280" iconClosedId="280"
 			iconLeafId="280" />
 		<item id="CrossbowBolt" iconOpenId="23" iconClosedId="23"
 			iconLeafId="23" />
-		<item id="Elf" />
+		<item id="Elf" javaClass="entity.Elf" />
 		<item id="FlintAndTinder" />
 		<item id="Fungus" />
-		<item id="Halfling" />
+		<item id="Halfling" javaClass="entity.Halfling" />
 		<item id="Hand" />
-		<item id="Horse" />
-		<item id="Human" iconOpenId="126" iconClosedId="126" iconLeafId="126" />
+		<item id="Horse" javaClass="entity.Horse" />
+		<item id="Human" iconOpenId="126" iconClosedId="126" iconLeafId="126"
+			javaClass="entity.Human" />
 		<item id="HumanoidHead" />
 		<item id="Location" />
 		<item id="MagicRing" iconOpenId="312" iconClosedId="312"
@@ -31,7 +32,7 @@
 		<item id="OrbOfLight" />
 		<item id="Purse" />
 		<item id="Quiver" />
-		<item id="Rat" />
+		<item id="Rat" javaClass="entity.Rat" />
 		<item id="Ring" iconOpenId="312" iconClosedId="312" iconLeafId="312" />
 		<item id="Scabbard" />
 		<item id="Shield" iconOpenId="31" iconClosedId="31" iconLeafId="31" />
@@ -500,7 +501,8 @@
 		<!-- 2. Most specific Ingredient before less-specific to help the matching 
 			process -->
 		<!-- Game Recipes -->
-		<recipe id="ItemEatAnimal" description="Eat an Animal" actionPoints="2">
+		<recipe id="ItemEatAnimal" description="Eat an Animal"
+			actionPoints="2">
 			<requirements>
 				<item id="Food" type="Animal" />
 			</requirements>
@@ -509,7 +511,8 @@
 					propertyDelta="15.0" />
 			</products>
 		</recipe>
-		<recipe id="ItemEatCookie" description="Eat a Cookie" actionPoints="2">
+		<recipe id="ItemEatCookie" description="Eat a Cookie"
+			actionPoints="2">
 			<requirements>
 				<item id="Food" type="Cookie" />
 			</requirements>
@@ -540,7 +543,8 @@
 			</products>
 		</recipe>
 		<!-- Animal Recipes -->
-		<recipe id="animalDrinkWater" description="drink water" actionPoints="2">
+		<recipe id="animalDrinkWater" description="drink water"
+			actionPoints="2">
 			<requirements>
 				<item id="Water" weightMin="1" />
 			</requirements>
@@ -550,7 +554,8 @@
 			</products>
 		</recipe>
 		<!-- Cat Recipes -->
-		<recipe id="catDrinkWater" description="Cat drinks Water" actionPoints="2">
+		<recipe id="catDrinkWater" description="Cat drinks Water"
+			actionPoints="2">
 			<requirements>
 				<item id="Water" weightMin="1" />
 			</requirements>

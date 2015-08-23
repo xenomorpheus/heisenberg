@@ -1,5 +1,9 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
+import au.net.hal9000.heisenberg.item.Hand;
+import au.net.hal9000.heisenberg.item.HumanoidHead;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;

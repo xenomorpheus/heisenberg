@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;

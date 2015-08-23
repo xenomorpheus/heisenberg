@@ -54,7 +54,7 @@ public class ConfigurationTest {
     @Test
     public void testItemClasses() {
         final int minClasses = 8;
-        List<ItemClassConfiguration> itemClasses = config.getItemClasses();
+        Map<String,ItemClassConfiguration> itemClasses = config.getItemClasses();
         assertTrue("count", itemClasses.size() >= minClasses);
     }
 
@@ -64,7 +64,7 @@ public class ConfigurationTest {
     @Test
     public void testGetItemClassIds() {
         final int minClasses = 8;
-        List<String> ids = config.getItemClassIds();
+        Set<String> ids = config.getItemClassIds();
         assertTrue("count", ids.size() >= minClasses);
     }
 

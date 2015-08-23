@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.item.mixin;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.entity.Animal;
 
 public class Eat {
 

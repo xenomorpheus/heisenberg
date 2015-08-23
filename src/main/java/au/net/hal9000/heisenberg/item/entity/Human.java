@@ -1,10 +1,11 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.mixin.Eat;
 import au.net.hal9000.heisenberg.util.PcClass;
 

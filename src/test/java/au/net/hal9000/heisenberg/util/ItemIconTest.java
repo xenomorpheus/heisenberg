@@ -9,8 +9,8 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Arrow;
-import au.net.hal9000.heisenberg.item.Human;
-import au.net.hal9000.heisenberg.item.Cat;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.Human;
 
 /**
  * @author bruins

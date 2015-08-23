@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -150,10 +148,7 @@ public class ItemTest {
      */
     @Test
     public void testToString() throws ConfigurationError {
-
-        List<ItemClassConfiguration> itemClasses = config.getItemClasses();
-
-        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
+        for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
             String itemClass = itemClassConfiguration.getId();
             String string = Factory.createItem(itemClass).toString();
             assertTrue(itemClass + ".toString not null", null != string);

@@ -13,6 +13,8 @@ import javax.persistence.Query;
 import org.junit.Before;
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.entity.Horse;
+import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -40,14 +42,12 @@ public class PersistenceTest {
      */
     @Test
     public void oneOfEachItem() throws ConfigurationError {
-        List<ItemClassConfiguration> itemClasses = config.getItemClasses();
-
         final String persistenceUnitName = "items";
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory(persistenceUnitName);
         EntityManager em = factory.createEntityManager();
 
-        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
+        for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
             String itemClass = itemClassConfiguration.getId();
 
             // Create a new Item

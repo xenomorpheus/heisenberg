@@ -44,8 +44,8 @@ public class Configuration {
     private static Configuration lastConfig = null;
     /** A list of genders. */
     private List<String> genders;
-    /** A list of ItemClassConfiguration objects. */
-    private List<ItemClassConfiguration> itemClasses;
+    /** A map of ItemClassConfiguration objects. */
+    private Map<String,ItemClassConfiguration> itemClasses;
     // TODO private TreeMap<String,PcClass> npcClasses;
     /** A map of possible pcClass details. */
     private Map<String, PcClass> pcClasses;
@@ -101,7 +101,7 @@ public class Configuration {
      * 
      * @return the itemClasses
      */
-    public final List<ItemClassConfiguration> getItemClasses() {
+    public final Map<String,ItemClassConfiguration> getItemClasses() {
         return itemClasses;
     }
 
@@ -247,11 +247,11 @@ public class Configuration {
      * 
      * @return a collection of information about each Item type.
      */
-    private List<ItemClassConfiguration> xmlToItemClasses(
+    private Map<String,ItemClassConfiguration> xmlToItemClasses(
             Element itemClassesElement) {
         Elements itemClassElements = itemClassesElement
                 .getChildElements("item");
-        List<ItemClassConfiguration> myItemClasses = new ArrayList<ItemClassConfiguration>();
+        Map<String,ItemClassConfiguration> myItemClasses = new TreeMap<>();
         for (int i = 0; i < itemClassElements.size(); i++) {
             Element element = itemClassElements.get(i);
             ItemClassConfiguration itemClassConfiguration = new ItemClassConfiguration();
@@ -275,7 +275,13 @@ public class Configuration {
                 itemClassConfiguration.setIconOpenId(Integer
                         .parseInt(iconOpenId));
             }
-            myItemClasses.add(itemClassConfiguration);
+            // javaClass
+            String javaClass = element.getAttributeValue("javaClass");
+            if (null != javaClass) {
+                itemClassConfiguration.setJavaClass(javaClass);
+            }
+            // Add item class to list
+            myItemClasses.put(id,itemClassConfiguration);
         }
         return myItemClasses;
     }
@@ -729,14 +735,14 @@ public class Configuration {
     /**
      * Method getItemClassIds.
      * 
-     * @return List<String>
+     * @return Item class names.
      */
-    public List<String> getItemClassIds() {
-        List<String> itemClassIds = new ArrayList<String>();
-        for (ItemClassConfiguration itemClassConfiguration : itemClasses) {
-            itemClassIds.add(itemClassConfiguration.getId());
-        }
-        return itemClassIds;
+    public Set<String> getItemClassIds() {
+        return itemClasses.keySet();
+    }
+
+    public ItemClassConfiguration getItemClassConfiguration(String type) {
+        return itemClasses.get(type);
     }
 
 }

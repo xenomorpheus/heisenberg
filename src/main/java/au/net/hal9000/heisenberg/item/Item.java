@@ -737,7 +737,7 @@ public abstract class Item implements Serializable {
      * @throws TooHeavyException
      *             when an overly heavy Item added to bag.
      */
-    void move(ItemContainer container, Position requestedPosition)
+    public void move(ItemContainer container, Position requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
         moveToPoint2d(requestedPosition);
@@ -770,7 +770,7 @@ public abstract class Item implements Serializable {
      *            the requested position within the container.
      * 
      */
-    void moveToPoint2d(Position requestedPosition) {
+    public void moveToPoint2d(Position requestedPosition) {
         if (null == container) {
             throw new UnsupportedOperationException(
                     "No ItemContainer - Can't move");

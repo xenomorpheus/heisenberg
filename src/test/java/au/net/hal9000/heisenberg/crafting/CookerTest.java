@@ -15,12 +15,12 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
-import au.net.hal9000.heisenberg.item.Human;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.PcRace;
 import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.Wood;
+import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;

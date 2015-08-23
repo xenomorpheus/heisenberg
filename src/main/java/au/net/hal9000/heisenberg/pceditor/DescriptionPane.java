@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-import au.net.hal9000.heisenberg.item.PcRace;
+import au.net.hal9000.heisenberg.item.entity.PcRace;
 
 /**
  * Description Pane.

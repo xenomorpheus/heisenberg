@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -8,6 +8,7 @@ import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
+import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 

@@ -111,9 +111,14 @@
 
 	<xs:complexType name="ctItemType">
 		<xs:attribute type="xs:string" name="id" />
-		<xs:attribute type="xs:int" name="iconOpenId" />
-		<xs:attribute type="xs:int" name="iconClosedId" />
-		<xs:attribute type="xs:int" name="iconLeafId" />
+		<xs:attribute type="xs:int" name="iconOpenId" minOccurs="0"
+			maxOccurs="1" />
+		<xs:attribute type="xs:int" name="iconClosedId"
+			minOccurs="0" maxOccurs="1" />
+		<xs:attribute type="xs:int" name="iconLeafId" minOccurs="0"
+			maxOccurs="1" />
+		<xs:attribute type="xs:string" name="javaClass"
+			minOccurs="0" maxOccurs="1" />
 	</xs:complexType>
 
 	<xs:complexType name="ctSpriteSheetType">
@@ -251,12 +256,13 @@
 
 	<xs:complexType name="ctProductItemType">
 		<xs:attribute name="id" type="xs:string" use="required" />
-        <xs:attribute name="weightBase" type="xs:float" use="optional" />
+		<xs:attribute name="weightBase" type="xs:float" use="optional" />
 	</xs:complexType>
 
 	<xs:complexType name="ctProductPropertyType">
 		<xs:attribute name="id" type="xs:string" use="required" />
-		<xs:attribute name="propertyName" type="ctEntityPropertyType" use="required" />
+		<xs:attribute name="propertyName" type="ctEntityPropertyType"
+			use="required" />
 		<xs:attribute name="propertyDelta" type="xs:float" use="required" />
 	</xs:complexType>
 

@@ -1,7 +1,12 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.property.HumanoidMount;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 

@@ -1,6 +1,7 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.Item;
 
 public abstract class Animal extends Entity {
 

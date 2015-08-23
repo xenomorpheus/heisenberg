@@ -1,10 +1,13 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.item.entity;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.Water;
+import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;

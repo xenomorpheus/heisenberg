@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.jbox2d.demo;
 
-import au.net.hal9000.heisenberg.item.Cat;
-import au.net.hal9000.heisenberg.item.Rat;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.Rat;
 
 public class ModelStateCatRat {
 

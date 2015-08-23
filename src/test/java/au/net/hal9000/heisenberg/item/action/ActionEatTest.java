@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Elf;
-import au.net.hal9000.heisenberg.item.Entity;
 import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.entity.Elf;
+import au.net.hal9000.heisenberg.item.entity.Entity;
 
 public class ActionEatTest {
     private static final Entity CONSUMER = new Elf();

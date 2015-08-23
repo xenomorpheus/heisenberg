@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.util;
 
 /**
  * Holds configuration information about each concrete Item subclass.
+ * 
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -27,9 +28,20 @@ public class ItemClassConfiguration {
      */
     private int iconLeafId;
 
+    /**
+     * The suffix of the java class name.<br>
+     * e.g. for Elf it is "entity.Elf".
+     */
+    private String javaClass;
+
+    ItemClassConfiguration() {
+        super();
+    }
+
     // Getters and Setters
     /**
      * Method getId.
+     * 
      * @return String
      */
     public String getId() {
@@ -38,7 +50,9 @@ public class ItemClassConfiguration {
 
     /**
      * Method setId.
-     * @param id String
+     * 
+     * @param id
+     *            String
      */
     public void setId(String id) {
         this.id = id;
@@ -46,6 +60,7 @@ public class ItemClassConfiguration {
 
     /**
      * Method getIconClosedId.
+     * 
      * @return int
      */
     public int getIconClosedId() {
@@ -54,7 +69,9 @@ public class ItemClassConfiguration {
 
     /**
      * Method setIconClosedId.
-     * @param iconClosedId int
+     * 
+     * @param iconClosedId
+     *            int
      */
     public void setIconClosedId(int iconClosedId) {
         this.iconClosedId = iconClosedId;
@@ -62,6 +79,7 @@ public class ItemClassConfiguration {
 
     /**
      * Method getIconOpenId.
+     * 
      * @return int
      */
     public int getIconOpenId() {
@@ -70,7 +88,9 @@ public class ItemClassConfiguration {
 
     /**
      * Method setIconOpenId.
-     * @param iconOpenId int
+     * 
+     * @param iconOpenId
+     *            int
      */
     public void setIconOpenId(int iconOpenId) {
         this.iconOpenId = iconOpenId;
@@ -78,6 +98,7 @@ public class ItemClassConfiguration {
 
     /**
      * Method getIconLeafId.
+     * 
      * @return int
      */
     public int getIconLeafId() {
@@ -86,10 +107,20 @@ public class ItemClassConfiguration {
 
     /**
      * Method setIconLeafId.
-     * @param iconLeafId int
+     * 
+     * @param iconLeafId
+     *            int
      */
     public void setIconLeafId(int iconLeafId) {
         this.iconLeafId = iconLeafId;
+    }
+
+    public String getJavaClass() {
+        return javaClass;
+    }
+
+    public void setJavaClass(String javaClass) {
+        this.javaClass = javaClass;
     }
 
 }

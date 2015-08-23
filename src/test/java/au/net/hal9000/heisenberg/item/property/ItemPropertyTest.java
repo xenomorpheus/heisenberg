@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.item.Cat;
-import au.net.hal9000.heisenberg.item.Entity;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.Entity;
 
 /**
  */
