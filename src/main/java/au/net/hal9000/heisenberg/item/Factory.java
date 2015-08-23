@@ -70,47 +70,26 @@ public final class Factory {
                 return (Item) ct.newInstance(arguments);
             }
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(ClassNotFoundException) bad type=" + type);
+                    "(ClassNotFoundException) bad type=" + type, e);
         } catch (InstantiationException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(InstantiationException) bad type=" + type);
+                    "(InstantiationException) bad type=" + type, e);
         } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(IllegalAccessException) bad type=" + type);
+                    "(IllegalAccessException) bad type=" + type, e);
         } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(IllegalArgumentException) bad type=" + type);
+                    "(IllegalArgumentException) bad type=" + type, e);
         } catch (InvocationTargetException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(InvocationTargetException) bad type=" + type);
+                    "(InvocationTargetException) bad type=" + type, e);
         } catch (SecurityException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException("(SecurityException) bad type="
-                    + type);
+                    + type, e);
         } catch (NoSuchMethodException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
             throw new IllegalArgumentException(
-                    "(NoSuchMethodException) bad type=" + type);
+                    "(NoSuchMethodException) bad type=" + type, e);
         }
     }
 
