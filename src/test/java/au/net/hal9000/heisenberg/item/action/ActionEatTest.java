@@ -14,11 +14,11 @@ public class ActionEatTest {
     private static final Entity CONSUMER = new Elf();
     private static final Item FOOD = new Cookie();
     private static final double COST = 1.67;
-    private ActionEat actionEat = null;
+    private ActionAnimalEat actionEat = null;
 
     @Before
     public void setUp() throws Exception {
-        actionEat = new ActionEat(CONSUMER, FOOD, COST);
+        actionEat = new ActionAnimalEat(CONSUMER, FOOD, COST);
     }
 
     @Test

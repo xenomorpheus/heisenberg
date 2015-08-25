@@ -5,6 +5,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.mixin.Drink;
+import au.net.hal9000.heisenberg.item.mixin.Eat;
+
 /**
  * A common rat.
  * @author bruins
@@ -13,7 +17,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Rat extends Animal {
+public class Rat extends au.net.hal9000.heisenberg.item.entity.Entity implements Animal {
 
     /**
      * Field serialVersionUID. (value is 1)
@@ -47,5 +51,15 @@ public class Rat extends Animal {
      */
     public Rat(String name, String description) {
         super(name, description);
+    }
+
+    @Override
+    public void eat(Item food) {
+        Eat.eat(this, food);
+    }
+
+    @Override
+    public void drink(Item liquid) {
+        Drink.drink(this, liquid);
     }
 }

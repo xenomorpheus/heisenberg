@@ -19,7 +19,7 @@ import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.action.ActionAgentMoveAbsoluteImpl;
-import au.net.hal9000.heisenberg.item.action.ActionEat;
+import au.net.hal9000.heisenberg.item.action.ActionAnimalEat;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Rat;
 import au.net.hal9000.heisenberg.jbox2d.demo.ModelStateCatRat;
@@ -173,7 +173,7 @@ public final class EntitySuccessorFunction implements SuccessorFunction {
             Position delta = ratPos.subtract(catPos);
             double goalDist = delta.length();
             if (goalDist < 1.0f){
-                    actions.add(new ActionEat(cat, rat, 1f));
+                    actions.add(new ActionAnimalEat(cat, rat, 1f));
             }
         }
         // TODO add other actions, e.g. looking - updates memory of barriers.

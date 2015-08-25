@@ -1,11 +1,11 @@
 package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.Animal;
 
 public interface ModelStateEat {
 
-    Entity getEntity();
-
     Item getFood();
+
+    Animal getAnimal();
 
 }

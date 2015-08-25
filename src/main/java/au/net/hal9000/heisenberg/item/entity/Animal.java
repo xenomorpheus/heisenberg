@@ -1,49 +1,22 @@
 package au.net.hal9000.heisenberg.item.entity;
 
-import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Item;
 
-public abstract class Animal extends Entity {
+public interface Animal {
 
-    // Constructor
     /**
-     * Constructor for Animal.
+     * eat.
      * 
-     * @param name
-     *            String
-     * @param description
-     *            String
+     * @param food
+     *            food to eat.<br>
      */
-    protected Animal(String name, String description) {
-        super(name, description);
-    }
-
-    /**
-     * Constructor for Animal.
-     * 
-     * @param name
-     *            String
-     */
-    protected Animal(String name) {
-        this(name, "");
-    }
-
-    /**
-     * serial version ID.
-     */
-    private static final long serialVersionUID = 1L;
+    public void eat(Item food);
 
     /**
      * Drink.
      * 
-     * @param water
-     *            water to drink.<br>
-     *            Throw RuntimeException on error.
+     * @param liquid
+     *            liquid to drink.<br>
      */
-    public void drink(Item water) {
-        Cooker cooker = getCooker("animalDrinkWater");
-        cooker.setItemsAvailable("Water", water);
-        cooker.cook();
-    }
-
+    public void drink(Item water);
 }

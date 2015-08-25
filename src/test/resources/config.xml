@@ -501,6 +501,16 @@
 		<!-- 2. Most specific Ingredient before less-specific to help the matching 
 			process -->
 		<!-- Game Recipes -->
+		<recipe id="ItemDrinkWater" description="drink water"
+			actionPoints="2">
+			<requirements>
+				<item id="Water" weightMin="1" />
+			</requirements>
+			<products>
+				<property id="HydrationId" propertyName="hydration"
+					propertyDelta="15.0" />
+			</products>
+		</recipe>
 		<recipe id="ItemEatAnimal" description="Eat an Animal"
 			actionPoints="2">
 			<requirements>
@@ -543,16 +553,6 @@
 			</products>
 		</recipe>
 		<!-- Animal Recipes -->
-		<recipe id="animalDrinkWater" description="drink water"
-			actionPoints="2">
-			<requirements>
-				<item id="Water" weightMin="1" />
-			</requirements>
-			<products>
-				<property id="HydrationId" propertyName="hydration"
-					propertyDelta="15.0" />
-			</products>
-		</recipe>
 		<!-- Cat Recipes -->
 		<recipe id="catDrinkWater" description="Cat drinks Water"
 			actionPoints="2">

@@ -5,7 +5,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.mixin.Drink;
 import au.net.hal9000.heisenberg.item.mixin.Eat;
 import au.net.hal9000.heisenberg.util.PcClass;
 
@@ -18,7 +21,7 @@ import au.net.hal9000.heisenberg.util.PcClass;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Human extends Humanoid {
+public class Human extends Humanoid implements Animal {
 
     /**
      * Field serialVersionUID. (value is 1)
@@ -80,25 +83,21 @@ public class Human extends Humanoid {
         super(name, description, pcClass);
     }
 
-    /**
-     * Eat.
-     * 
-     * @param animal
-     *            animal to eat.<br>
-     *            Throw RuntimeException on error.
-     */
-    public void eat(Animal animal) {
-        Eat.eat(this, animal);
+    @Override
+    public void eat(Item food) {
+        if (food instanceof Cookie) {
+            Cooker cooker = this.getCooker("ItemEatCookie");
+            cooker.setChef(this);
+            cooker.setItemsAvailable("Food", food);
+            cooker.cook();
+        } else{
+        Eat.eat(this, this);
+        }
     }
 
-    /**
-     * Eat.
-     * 
-     * @param cookie
-     *            animal to eat.<br>
-     *            Throw RuntimeException on error.
-     */
-    public void eat(Cookie cookie) {
-        Eat.eat(this, cookie);
+    @Override
+    public void drink(Item liquid) {
+        Drink.drink(this, liquid);
     }
+
 }

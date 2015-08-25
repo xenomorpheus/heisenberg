@@ -2,9 +2,9 @@ package au.net.hal9000.heisenberg.item.action;
 
 import au.net.hal9000.heisenberg.ai.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ModelStateEat;
+import au.net.hal9000.heisenberg.item.entity.Animal;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
 /**
@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.item.entity.Entity;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public final class ActionEat extends ActionBase {
+public final class ActionAnimalEat extends ActionBase {
 
     /** Entity to eat */
     private Entity consumer;
@@ -29,7 +29,7 @@ public final class ActionEat extends ActionBase {
      *            The cost of performing this action.
      */
 
-    public ActionEat(Entity consumer, Item food, double cost) {
+    public ActionAnimalEat(Entity consumer, Item food, double cost) {
         super(cost);
         this.consumer = consumer;
         this.food = food;
@@ -54,9 +54,9 @@ public final class ActionEat extends ActionBase {
     @Override
     public void apply(ModelState modelState) {
         ModelStateEat modelStateEat = (ModelStateEat) modelState;
-        Entity entity = modelStateEat.getEntity();
+        Animal animal = modelStateEat.getAnimal();
         Item food = modelStateEat.getFood();
-        entity.eat(food);
+        animal.eat(food);
     }
 
     // Misc
@@ -110,7 +110,7 @@ public final class ActionEat extends ActionBase {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ActionEat other = (ActionEat) obj;
+        ActionAnimalEat other = (ActionAnimalEat) obj;
         if (Double.doubleToLongBits(getCost()) != Double.doubleToLongBits(other
                 .getCost()))
             return false;

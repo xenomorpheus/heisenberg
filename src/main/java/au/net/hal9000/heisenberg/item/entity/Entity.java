@@ -407,5 +407,4 @@ public abstract class Entity extends Item implements StateEvaluation {
         }
         memorySet.add(memory);
     }
-
 }

@@ -5,6 +5,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.mixin.Drink;
 import au.net.hal9000.heisenberg.item.mixin.Eat;
 
 /**
@@ -14,7 +16,8 @@ import au.net.hal9000.heisenberg.item.mixin.Eat;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Cat extends Animal {
+public class Cat extends au.net.hal9000.heisenberg.item.entity.Entity implements
+        Animal {
 
     /**
      * 
@@ -50,16 +53,14 @@ public class Cat extends Animal {
         super(name, description);
     }
 
-    /**
-     * Eat.
-     * 
-     * @param animal
-     *            animal to eat.<br>
-     *            Throw RuntimeException on error.
-     */
-    public void eat(Animal animal) {
-        Eat.eat(this, animal);
+    @Override
+    public void eat(Item food) {
+        Eat.eat(this, food);
     }
 
+    @Override
+    public void drink(Item liquid) {
+        Drink.drink(this, liquid);
+    }
 
 }
