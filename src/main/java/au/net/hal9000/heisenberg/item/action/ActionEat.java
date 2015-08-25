@@ -2,7 +2,9 @@ package au.net.hal9000.heisenberg.item.action;
 
 import au.net.hal9000.heisenberg.ai.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ModelStateEat;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
 /**
@@ -51,11 +53,10 @@ public final class ActionEat extends ActionBase {
     // Misc
     @Override
     public void apply(ModelState modelState) {
-        // TODO a real model state.
-        // ModelStateTODO modelStateCatRat = (ModelStateTODO) modelState;
-        // Cat cat = modelStateCatRat.getCat();
-        // Rat rat = modelStateCatRat.getRat();
-        // cat.eat(rat);
+        ModelStateEat modelStateEat = (ModelStateEat) modelState;
+        Entity entity = modelStateEat.getEntity();
+        Item food = modelStateEat.getFood();
+        entity.eat(food);
     }
 
     // Misc

@@ -6,7 +6,8 @@ import javax.persistence.InheritanceType;
 
 // import javax.persistence.PrimaryKeyJoinColumn;
 
-import au.net.hal9000.heisenberg.item.property.Sharp;
+
+import au.net.hal9000.heisenberg.item.api.Sharp;
 
 /**
  * @author bruins

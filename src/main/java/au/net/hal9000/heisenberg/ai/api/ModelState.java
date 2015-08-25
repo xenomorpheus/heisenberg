@@ -13,7 +13,7 @@ package au.net.hal9000.heisenberg.ai.api;
 public interface ModelState {
 
     /**
-     * Similar to clone, but no exceptions.
+     * Similar to clone, but no exceptions thrown.
      */
     ModelState duplicate();
     

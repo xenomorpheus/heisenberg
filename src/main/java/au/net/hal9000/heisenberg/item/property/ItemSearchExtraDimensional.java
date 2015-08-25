@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.ExtraDimensional;
 
 /**
  * @author bruins

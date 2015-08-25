@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.Sword;
+import au.net.hal9000.heisenberg.item.api.Sharp;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.item.property.Sharp;
 
 /**
  * @author bruins

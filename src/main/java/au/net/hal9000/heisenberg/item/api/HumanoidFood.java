@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.property;
+package au.net.hal9000.heisenberg.item.api;
 
 /**
  * Marker class. <br>

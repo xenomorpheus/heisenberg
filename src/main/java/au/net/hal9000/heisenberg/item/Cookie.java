@@ -6,6 +6,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+
+import au.net.hal9000.heisenberg.item.api.HumanoidFood;
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
@@ -16,7 +18,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Cookie extends Item {
+public class Cookie extends Item implements HumanoidFood {
 
     /**
      * Field serialVersionUID. (value is 1)
