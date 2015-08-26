@@ -74,57 +74,36 @@ public final class ActionAnimalEat extends ActionBase {
         return sb.toString();
     }
 
-    /**
-     * Method hashCode.
-     * 
-     * @return int
-     */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((consumer == null) ? 0 : consumer.hashCode());
+		result = prime * result + ((food == null) ? 0 : food.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        long temp;
-        temp = Double.doubleToLongBits(getCost());
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result
-                + ((consumer == null) ? 0 : consumer.hashCode());
-        result = prime * result + ((food == null) ? 0 : food.hashCode());
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ActionAnimalEat other = (ActionAnimalEat) obj;
+		if (consumer == null) {
+			if (other.consumer != null)
+				return false;
+		} else if (!consumer.equals(other.consumer))
+			return false;
+		if (food == null) {
+			if (other.food != null)
+				return false;
+		} else if (!food.equals(other.food))
+			return false;
+		return true;
+	}
 
-    /**
-     * Method equals.
-     * 
-     * @param obj
-     *            Object
-     * 
-     * @return boolean
-     */
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        ActionAnimalEat other = (ActionAnimalEat) obj;
-        if (Double.doubleToLongBits(getCost()) != Double.doubleToLongBits(other
-                .getCost()))
-            return false;
-        if (food == null) {
-            if (other.getFood() != null)
-                return false;
-        } else if (!food.equals(other.getFood()))
-            return false;
-        if (consumer == null) {
-            if (other.getConsumer() != null)
-                return false;
-        } else if (!consumer.equals(other.getConsumer()))
-            return false;
-        return true;
-    }
 
 }

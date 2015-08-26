@@ -9,7 +9,12 @@ import au.net.hal9000.heisenberg.item.Item;
  * @version $Revision: 1.0 $
  */
 public final class ItemProperty {
-    /**
+
+
+    /** ideal value for health metric. */
+    public static final float HEALTH_METRIC_IDEAL = 100f;	
+	
+	/**
      * Field AERATION.
      * (value is ""aeration"")
      */

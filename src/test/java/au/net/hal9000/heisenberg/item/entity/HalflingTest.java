@@ -48,7 +48,7 @@ public class HalflingTest {
         // Setup
         Halfling halfling = new Halfling();
         halfling.setActionPoints(3);
-        ItemProperty.setNourishment(halfling, Entity.HEALTH_METRIC_IDEAL / 2);
+        ItemProperty.setNourishment(halfling, ItemProperty.HEALTH_METRIC_IDEAL / 2);
         float nourishment_before = ItemProperty.getNourishment(halfling);
         Cookie cookie = new Cookie();
         // Run

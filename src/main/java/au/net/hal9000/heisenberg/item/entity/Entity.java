@@ -25,9 +25,6 @@ public abstract class Entity extends Item implements StateEvaluation {
     /** serial version. */
     private static final long serialVersionUID = 1L;
 
-    /** ideal value for health metric. */
-    public static final float HEALTH_METRIC_IDEAL = 100L;
-
     /**
      * A measure of the amount of things the entity can do in the current round.
      * This is the remaining, not the maximum.
@@ -84,11 +81,11 @@ public abstract class Entity extends Item implements StateEvaluation {
         super(name, description);
         // By default PCs are living, but this may be changed at any time.
         ItemProperty.setLiving(this, true);
-        ItemProperty.setAeration(this, HEALTH_METRIC_IDEAL);
-        ItemProperty.setEntertainment(this, HEALTH_METRIC_IDEAL);
-        ItemProperty.setHydration(this, HEALTH_METRIC_IDEAL);
-        ItemProperty.setNourishment(this, HEALTH_METRIC_IDEAL);
-        ItemProperty.setRest(this, HEALTH_METRIC_IDEAL);
+        ItemProperty.setAeration(this, ItemProperty.HEALTH_METRIC_IDEAL);
+        ItemProperty.setEntertainment(this, ItemProperty.HEALTH_METRIC_IDEAL);
+        ItemProperty.setHydration(this, ItemProperty.HEALTH_METRIC_IDEAL);
+        ItemProperty.setNourishment(this, ItemProperty.HEALTH_METRIC_IDEAL);
+        ItemProperty.setRest(this, ItemProperty.HEALTH_METRIC_IDEAL);
     }
 
     /**
