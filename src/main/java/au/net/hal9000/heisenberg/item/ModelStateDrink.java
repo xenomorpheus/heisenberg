@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.item;
 
 
-public interface ModelStateEat {
+public interface ModelStateDrink {
 
-    Item getFood();
+    Item getLiquid();
 
     Animal getAnimal();
 

@@ -44,7 +44,7 @@ public class Box extends ItemContainer {
      * @param description
      *            description of item.
      */
-    public Box(String name, String description) {
+    Box(String name, String description) {
         super(name, description);
     }
 

@@ -6,6 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.mixin.Drink;
@@ -18,7 +19,7 @@ import au.net.hal9000.heisenberg.item.mixin.Eat;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Halfling extends Humanoid implements Animal{
+public class Halfling extends Humanoid implements Animal {
 
     /**
      * Field serialVersionUID. (value is 1)
@@ -53,7 +54,7 @@ public class Halfling extends Humanoid implements Animal{
     public Halfling(String string, String description) {
         super(string, description);
     }
-    
+
     @Override
     public void eat(Item food) {
         if (food instanceof Cookie) {
@@ -61,8 +62,8 @@ public class Halfling extends Humanoid implements Animal{
             cooker.setChef(this);
             cooker.setItemsAvailable("Food", food);
             cooker.cook();
-        } else{
-        Eat.eat(this, this);
+        } else {
+            Eat.eat(this, this);
         }
     }
 

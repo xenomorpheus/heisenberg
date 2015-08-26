@@ -5,6 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.mixin.Drink;
 import au.net.hal9000.heisenberg.item.mixin.Eat;

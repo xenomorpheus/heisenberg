@@ -1,6 +1,5 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.Item;
 
 public interface Animal {
 

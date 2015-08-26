@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item;
 
 import org.junit.Before;
 import org.junit.Test;

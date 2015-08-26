@@ -3,8 +3,6 @@ package au.net.hal9000.heisenberg.item;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import au.net.hal9000.heisenberg.util.Configuration;
-
 /**
  * Factory Design Pattern. Create different type of Item objects.
  * 
@@ -12,10 +10,6 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @version $Revision: 1.0 $
  */
 public final class Factory {
-
-    /** The name of this package. */
-    private static final String PACKAGE_NAME = Factory.class.getPackage()
-            .getName();
 
     /**
      * Constructor.
@@ -48,15 +42,8 @@ public final class Factory {
      * @return the new Item.
      */
     public static Item createItem(String type, Object[] arguments) {
-        String javaClassSuffix = Configuration.lastConfig()
-                .getItemClassConfiguration(type).getJavaClass();
-        // Assume no subclass.
-        if (javaClassSuffix == null) {
-            javaClassSuffix = type;
-        }
         try {
-            Class<?> itemClass = Class.forName(PACKAGE_NAME + "."
-                    + javaClassSuffix);
+            Class<?> itemClass = Class.forName(Item.getClassForType(type));
             if (null == arguments) {
                 return (Item) itemClass.newInstance();
             } else {

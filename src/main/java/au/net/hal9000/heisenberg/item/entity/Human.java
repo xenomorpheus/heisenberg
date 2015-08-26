@@ -6,6 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.mixin.Drink;
@@ -90,8 +91,8 @@ public class Human extends Humanoid implements Animal {
             cooker.setChef(this);
             cooker.setItemsAvailable("Food", food);
             cooker.cook();
-        } else{
-        Eat.eat(this, this);
+        } else {
+            Eat.eat(this, this);
         }
     }
 

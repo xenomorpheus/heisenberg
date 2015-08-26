@@ -97,7 +97,7 @@ public class Candle extends Item implements LightSource {
 
     /** {@inheritDoc} */
     @Override
-    public boolean lightWith(Object ignighter) {
+    public boolean lightWith(Object ignighter) { // NO_UCD (test only)
         if (ignighter instanceof FlintAndTinder) {
             this.setLit(true);
         }

@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.ai.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Item;
-import au.net.hal9000.heisenberg.item.ModelStateEat;
+import au.net.hal9000.heisenberg.item.ModelStateDrink;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
 /**
@@ -13,36 +13,36 @@ import au.net.hal9000.heisenberg.item.entity.Entity;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public final class ActionAnimalEat extends ActionBase {
+public final class ActionAnimalDrink extends ActionBase {
 
     /** Entity to eat */
     private Entity consumer;
-    /** Item to be eaten */
-    private Item food;
+    /** Item to be drunk */
+    private Item liquid;
 
     /**
      * Constructor.
      * 
-     * @param food
-     *            That to be eaten.
+     * @param liquid
+     *            That to be drunk.
      * @param cost
      *            The cost of performing this action.
      */
 
-    public ActionAnimalEat(Entity consumer, Item food, double cost) {
+    public ActionAnimalDrink(Entity consumer, Item liquid, double cost) {
         super(cost);
         this.consumer = consumer;
-        this.food = food;
+        this.liquid = liquid;
     }
 
     // Getters and Setters
 
     public Item getFood() {
-        return food;
+        return liquid;
     }
 
-    public void setFood(Item food) {
-        this.food = food;
+    public void setFood(Item liquid) {
+        this.liquid = liquid;
 
     }
 
@@ -53,10 +53,10 @@ public final class ActionAnimalEat extends ActionBase {
     // Misc
     @Override
     public void apply(ModelState modelState) {
-        ModelStateEat modelStateEat = (ModelStateEat) modelState;
-        Animal animal = modelStateEat.getAnimal();
-        Item food = modelStateEat.getFood();
-        animal.eat(food);
+        ModelStateDrink modelStateDrink = (ModelStateDrink) modelState;
+        Animal animal = modelStateDrink.getAnimal();
+        Item liquid = modelStateDrink.getLiquid();
+        animal.eat(liquid);
     }
 
     // Misc
@@ -69,8 +69,8 @@ public final class ActionAnimalEat extends ActionBase {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(12);
-        sb.append("ActionAnimalEat=[entity=").append(consumer).append(",food=")
-                .append(food).append(']');
+        sb.append("ActionAnimalDrink=[entity=").append(consumer).append(",liquid=")
+                .append(liquid).append(']');
         return sb.toString();
     }
 
@@ -79,7 +79,7 @@ public final class ActionAnimalEat extends ActionBase {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((consumer == null) ? 0 : consumer.hashCode());
-		result = prime * result + ((food == null) ? 0 : food.hashCode());
+		result = prime * result + ((liquid == null) ? 0 : liquid.hashCode());
 		return result;
 	}
 
@@ -91,16 +91,16 @@ public final class ActionAnimalEat extends ActionBase {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ActionAnimalEat other = (ActionAnimalEat) obj;
+		ActionAnimalDrink other = (ActionAnimalDrink) obj;
 		if (consumer == null) {
 			if (other.consumer != null)
 				return false;
 		} else if (!consumer.equals(other.consumer))
 			return false;
-		if (food == null) {
-			if (other.food != null)
+		if (liquid == null) {
+			if (other.liquid != null)
 				return false;
-		} else if (!food.equals(other.food))
+		} else if (!liquid.equals(other.liquid))
 			return false;
 		return true;
 	}

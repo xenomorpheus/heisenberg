@@ -31,6 +31,7 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 
 /**
  * Base abstract class for all items in this world.
@@ -885,7 +886,7 @@ public abstract class Item implements Serializable {
     public final boolean instanceOf(String type) {
         boolean isInstance;
         try {
-            Class<?> itemClass = Class.forName(PACKAGE_NAME + "." + type);
+            Class<?> itemClass = Class.forName(getClassForType(type));
             isInstance = itemClass.isInstance(this);
         } catch (ClassNotFoundException e) {
             isInstance = false; // NOP
@@ -974,4 +975,22 @@ public abstract class Item implements Serializable {
         return recipe.getNewCooker(this);
     }
 
+    /**
+     * return the class name and package for this Item type.
+     * 
+     * @param type
+     * @return
+     */
+    public static String getClassForType(String type) {
+        ItemClassConfiguration itemTypeConfig = Configuration.lastConfig()
+                .getItemClassConfiguration(type);
+        String javaClassSuffix = null;
+        if (itemTypeConfig != null) {
+            javaClassSuffix = itemTypeConfig.getJavaClass();
+        }
+        if (javaClassSuffix == null) {
+            javaClassSuffix = type; // Assume no subclass.
+        }
+        return PACKAGE_NAME + "." + javaClassSuffix;
+    }
 }
