@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
-public class ActionEatTest {
+public class ActionAnimalEatTest {
     private static final Entity CONSUMER = new Elf();
     private static final Item FOOD = new Cookie();
     private static final double COST = 1.67;
@@ -48,7 +48,7 @@ public class ActionEatTest {
 
     @Test
     public void testToString() {
-        String expect = "ActionEat=[entity=" + CONSUMER + ",food=" + FOOD + ']';
+        String expect = "ActionAnimalEat=[entity=" + CONSUMER + ",food=" + FOOD + ']';
         assertEquals(expect, actionEat.toString());
     }
 
