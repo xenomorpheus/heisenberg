@@ -9,7 +9,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.AbilityScoresTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -17,7 +17,7 @@ public class AbilityScoresTableTest {
 
 	@Before
 	public void initialize() {
-		TestEnvironment.setup();
+		DemoEnvironment.setup();
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class AbilityScoresTableTest {
 	 */
 	@Test
 	public void testBasicOperations() throws ConfigurationError {
-		PcRace pc = TestEnvironment.getPcRace();
+		PcRace pc = DemoEnvironment.getPcRace();
 		AbilityScoresTable basicPanel = new AbilityScoresTable();
 		basicPanel.setPcRace(pc);
 		assertNotNull("BasicPanel not null", basicPanel);

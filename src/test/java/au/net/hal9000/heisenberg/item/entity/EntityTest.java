@@ -15,7 +15,7 @@ import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -23,7 +23,7 @@ public class EntityTest {
 
     @Before
     public void initialize() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
     }
 
     /**

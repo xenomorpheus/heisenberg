@@ -6,7 +6,7 @@ import javax.swing.SwingUtilities;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 public class DescriptionPaneMain { // NO_UCD (unused code)
 
@@ -27,7 +27,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
             public void run() {
                 try {
 
-                    PcRace pc = TestEnvironment.getPcRace();
+                    PcRace pc = DemoEnvironment.getPcRace();
                     JFrame guiFrame = new JFrame();
 
                     // make sure the program exits when the frame closes

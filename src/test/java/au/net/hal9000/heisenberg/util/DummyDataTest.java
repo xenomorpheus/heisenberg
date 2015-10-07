@@ -9,6 +9,7 @@ import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -21,7 +22,7 @@ public class DummyDataTest {
      */
     @Test
     public void testElf() throws ConfigurationError {
-        PcRace pc = TestEnvironment.getPcRace();
+        PcRace pc = DemoEnvironment.getPcRace();
         assertNotNull(pc);
     }
 
@@ -36,7 +37,7 @@ public class DummyDataTest {
     @Test
     public void testGetDemoWorld() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
-        Location loc = TestEnvironment.getDemoWorld();
+        Location loc = DemoEnvironment.getDemoWorld();
         assertNotNull(loc);
     }
 

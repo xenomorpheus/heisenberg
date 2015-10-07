@@ -21,7 +21,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -31,7 +31,7 @@ public class PersistenceTest {
 
     @Before
     public void initialize() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
         config = Configuration.lastConfig();
     }
 

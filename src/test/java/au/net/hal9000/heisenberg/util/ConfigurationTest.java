@@ -20,6 +20,7 @@ import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -36,7 +37,7 @@ public class ConfigurationTest {
      */
     @Before
     public void setUp() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
         config = Configuration.lastConfig();
     }
 

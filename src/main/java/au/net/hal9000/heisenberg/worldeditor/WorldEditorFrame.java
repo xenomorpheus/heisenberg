@@ -20,8 +20,8 @@ import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
 import au.net.hal9000.heisenberg.util.ItemIcon;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * The main application window. Shows a tree of the items in this world.
@@ -97,7 +97,7 @@ public class WorldEditorFrame extends JFrame {
                 }
                 if ("Demo".equals(eventName)) {
                     try {
-                        setLocation(TestEnvironment.getDemoWorld());
+                        setLocation(DemoEnvironment.getDemoWorld());
                     } catch (InvalidTypeException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

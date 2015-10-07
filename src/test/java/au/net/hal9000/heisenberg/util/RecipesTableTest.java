@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * Unit tests for RecipesTable.
@@ -28,7 +29,7 @@ public class RecipesTableTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
-        PcRace pc = TestEnvironment.getPcRace();
+        PcRace pc = DemoEnvironment.getPcRace();
         RecipesTable basicPanel = new RecipesTable();
         basicPanel.setPcRace(pc);
         assertNotNull("BasicPanel not null", basicPanel);

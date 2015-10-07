@@ -15,7 +15,7 @@ import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -32,7 +32,7 @@ public class PcRaceTest {
 
     @Before
     public void initialize() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
         config = Configuration.lastConfig();
     }
 

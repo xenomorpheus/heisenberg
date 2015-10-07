@@ -124,7 +124,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                         tree.startEditingAtPath(path);
                     } else {
                         toolkit.beep();
-                        debug("Not a container");
+                        debug(selNode+" is not a container");
                     }
                 }
             }

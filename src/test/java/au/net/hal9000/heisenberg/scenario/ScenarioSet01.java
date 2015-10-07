@@ -26,7 +26,7 @@ import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * @author bruins
@@ -36,7 +36,7 @@ public class ScenarioSet01 {
 
     @Before
     public void initialize() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
     }
 
     /**

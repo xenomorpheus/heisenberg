@@ -21,6 +21,7 @@ public class WorldEditorFrameMain {
             @Override
             public void run() {
                 try {
+                    DemoEnvironment.setup();
                     WorldEditorFrame worldEditor = new WorldEditorFrame();
                     // Kill app
                     worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

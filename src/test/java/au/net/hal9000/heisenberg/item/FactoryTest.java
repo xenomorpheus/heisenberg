@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -20,7 +20,7 @@ public class FactoryTest {
 
     @Before
     public void initialize() {
-        TestEnvironment.setup();
+        DemoEnvironment.setup();
         config = Configuration.lastConfig();
     }
 

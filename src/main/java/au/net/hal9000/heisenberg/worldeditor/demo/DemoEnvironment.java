@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.util;
+package au.net.hal9000.heisenberg.worldeditor.demo;
 
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
@@ -27,6 +27,8 @@ import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /**
  * Utility class for setting up test environment and building test Item objects.
@@ -35,7 +37,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
  * 
  * @version $Revision: 1.0 $
  */
-public final class TestEnvironment {
+public final class DemoEnvironment {
     /** file containing test configuration. */
     static private String TEST_CONFIG_FILE = "src/test/resources/config.xml";
     /** test skills. */
@@ -50,7 +52,7 @@ public final class TestEnvironment {
     private static final int TEST_WEIGHT_VOLUME = 100000;
 
     /** Constructor. */
-    private TestEnvironment() {
+    private DemoEnvironment() {
         super();
     }
 

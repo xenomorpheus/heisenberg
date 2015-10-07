@@ -7,7 +7,7 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.TestEnvironment;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * @author bruins
@@ -23,7 +23,7 @@ public class DescriptionPaneTest {
     @Test
     public void testBasicOperations() throws ConfigurationError {
 
-        PcRace pc = TestEnvironment.getPcRace();
+        PcRace pc = DemoEnvironment.getPcRace();
         DescriptionPane window = new DescriptionPane();
         assertNotNull("not Null", window);
         window.setPcRace(pc);
