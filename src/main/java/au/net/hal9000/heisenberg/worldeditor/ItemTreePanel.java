@@ -20,6 +20,8 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import org.apache.log4j.Logger;
+
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
@@ -38,7 +40,11 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         PropertyChangeListener {
     /** serial version id. */
     private static final long serialVersionUID = 1L;
-
+    /**
+     * Field LOGGER.
+     */
+    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
+            .getName());
     // Create a TreeModel object to represent our tree of Item objects
     // at the specified location.
     /**
@@ -115,16 +121,16 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                        debug("newNode is " + newNode);
+                        LOGGER.debug("newNode is " + newNode);
 
                         TreePath path = getPathToRoot(newNode);
-                        debug("path is " + path);
+                        LOGGER.debug("path is " + path);
                         tree.scrollPathToVisible(path);
                         tree.setSelectionPath(path);
                         tree.startEditingAtPath(path);
                     } else {
                         toolkit.beep();
-                        debug(selNode+" is not a container");
+                        LOGGER.debug(selNode+" is not a container");
                     }
                 }
             }
@@ -187,40 +193,35 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         int index = e.getChildIndices()[0];
         node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-        debug("The user has finished editing the node.");
-        debug("New value: " + node.getUserObject());
+        LOGGER.debug("The user has finished editing the node.");
+        LOGGER.debug("New value: " + node.getUserObject());
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
         // TODO finish
-        debug("Node Inserted.");
+        LOGGER.debug("Node Inserted.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeNodesRemoved(TreeModelEvent e) {
         // TODO finish
-        debug("treeNodesRemoved - Node Removed.");
+        LOGGER.debug("treeNodesRemoved - Node Removed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeStructureChanged(TreeModelEvent e) {
         // TODO finish
-        debug("treeStructureChanged - Node Changed.");
+        LOGGER.debug("treeStructureChanged - Node Changed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // TODO Auto-generated method stub
-        debug("propertyChange - Node Changed.");
+        LOGGER.debug("propertyChange - Node Changed.");
     }
-
-    private void debug(String string) {
-        System.out.println("DEBUG: " + string);
-    }
-
 }
