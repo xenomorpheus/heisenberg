@@ -1,0 +1,7 @@
+
+In UI the Human's items aren't shown.
+
+        human.wear(new Shield());
+        human.wear(scabbard2);
+        human.wear(quiver);
+        human.wear(backpack);
