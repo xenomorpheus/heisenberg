@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**

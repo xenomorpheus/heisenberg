@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemImpl;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 
@@ -20,7 +20,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * @version $Revision: 1.0 $
  */
 
-public abstract class Entity extends Item implements StateEvaluation {
+public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /** serial version. */
     private static final long serialVersionUID = 1L;

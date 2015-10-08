@@ -17,7 +17,7 @@ import au.net.hal9000.heisenberg.item.api.LightSource;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Candle extends Item implements LightSource {
+public class Candle extends ItemImpl implements LightSource {
 
     /** serialisation version. */
     private static final long serialVersionUID = 1L;

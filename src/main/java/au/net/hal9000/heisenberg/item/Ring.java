@@ -19,7 +19,7 @@ import au.net.hal9000.heisenberg.units.Currency;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Ring extends Item {
+public class Ring extends ItemImpl {
 
     /** serial id. */
     private static final long serialVersionUID = 1L;

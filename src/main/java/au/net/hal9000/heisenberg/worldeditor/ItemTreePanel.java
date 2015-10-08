@@ -23,7 +23,7 @@ import javax.swing.tree.TreePath;
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;

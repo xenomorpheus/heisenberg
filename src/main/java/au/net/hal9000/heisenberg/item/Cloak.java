@@ -14,7 +14,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Cloak extends Item {
+public class Cloak extends ItemImpl {
 
     /**
      * Field serialVersionUID.

@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor.demo;
 
+import org.apache.log4j.Logger;
+
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
 import au.net.hal9000.heisenberg.item.Bag;
@@ -38,6 +40,11 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
  * @version $Revision: 1.0 $
  */
 public final class DemoEnvironment {
+    /**
+     * Field LOGGER.
+     */
+    private static final Logger LOGGER = Logger.getLogger(DemoEnvironment.class
+            .getName());
     /** file containing test configuration. */
     static private String TEST_CONFIG_FILE = "src/test/resources/config.xml";
     /** test skills. */
@@ -57,6 +64,7 @@ public final class DemoEnvironment {
     }
 
     public static void setup() {
+        LOGGER.info("Demo Env setup");
         try {
             new Configuration(TEST_CONFIG_FILE);
         } catch (ConfigurationError e) {

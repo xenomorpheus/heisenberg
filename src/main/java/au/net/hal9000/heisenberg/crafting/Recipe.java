@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**

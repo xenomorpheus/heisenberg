@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.mixin.Drink;
 import au.net.hal9000.heisenberg.item.mixin.Eat;
 import au.net.hal9000.heisenberg.util.PcClass;

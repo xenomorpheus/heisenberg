@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item.property;
 import java.util.ArrayList;
 import java.util.List;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 
 
 /**

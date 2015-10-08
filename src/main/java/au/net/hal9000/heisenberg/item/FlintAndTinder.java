@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class FlintAndTinder extends Item {
+public class FlintAndTinder extends ItemImpl {
 
     /**
      * Field serialVersionUID.

@@ -10,6 +10,7 @@ import javax.swing.JMenuBar;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
@@ -40,6 +41,7 @@ public class WorldEditorFrameTest {
      */
     @Test
     public void testBasicOperations() throws ConfigurationError {
+        DemoEnvironment.setup();
         WorldEditorFrame worldEditor = new WorldEditorFrame();
         assertNotNull("Not null", worldEditor);
 

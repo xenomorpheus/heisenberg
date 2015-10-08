@@ -5,7 +5,8 @@ import java.awt.Component;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.ItemImpl;
+import au.net.hal9000.heisenberg.item.api.Item;
 
 /**
  */
@@ -18,15 +19,24 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
     /**
      * Method getTreeCellRendererComponent.
-     * @param tree JTree
-     * @param value Object
-     * @param sel boolean
-     * @param exp boolean
-     * @param leaf boolean
-     * @param row int
-     * @param hasFocus boolean
+     * 
+     * @param tree
+     *            JTree
+     * @param value
+     *            Object
+     * @param sel
+     *            boolean
+     * @param exp
+     *            boolean
+     * @param leaf
+     *            boolean
+     * @param row
+     *            int
+     * @param hasFocus
+     *            boolean
      * @return Component
-     * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(JTree, Object, boolean, boolean, boolean, int, boolean)
+     * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(JTree,
+     *      Object, boolean, boolean, boolean, int, boolean)
      */
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value,
@@ -37,9 +47,9 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
         if (value instanceof Item) {
             Item item = (Item) value;
-            setOpenIcon(item.getIconOpen());
-            setClosedIcon(item.getIconClosed());
-            setLeafIcon(item.getIconLeaf());
+            setOpenIcon(item.getItemIcon().getIconOpen());
+            setClosedIcon(item.getItemIcon().getIconClosed());
+            setLeafIcon(item.getItemIcon().getIconLeaf());
         } else {
             setOpenIcon(getDefaultOpenIcon());
             setClosedIcon(getDefaultClosedIcon());

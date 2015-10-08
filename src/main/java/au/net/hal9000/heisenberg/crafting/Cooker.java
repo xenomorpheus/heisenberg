@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
@@ -141,14 +141,14 @@ public class Cooker extends ItemContainer {
         if (this.contains(item)) {
             throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM);
         }
-        // is there a requirement to fulfil ?
+        // is there a requirement to fulfill ?
         final RequirementItem requirementItem = (RequirementItem) recipe
                 .getRequirement(key);
         if (null == requirementItem) {
             throw new RuntimeException(NO_SUCH_REQUIREMENT);
         }
 
-        // Does the Item fulfil the Requirement?
+        // Does the Item fulfill the Requirement?
         final String rejectionReason = requirementItem.meetsRequirements(item);
         if (null != rejectionReason) {
             throw new RuntimeException(rejectionReason);

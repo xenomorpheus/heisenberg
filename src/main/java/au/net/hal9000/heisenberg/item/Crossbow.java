@@ -14,7 +14,7 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Crossbow extends Item {
+public class Crossbow extends ItemImpl {
 
     /**
      * Field serialVersionUID. (value is 1)

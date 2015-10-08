@@ -28,11 +28,11 @@ public class ItemIconTest {
         Configuration config = Configuration.lastConfig();
         ItemIcon.setIcon(config);
         Human human = new Human();
-        assertNotNull(human.getIconOpen());
+        assertNotNull(human.getItemIcon().getIconOpen());
         Arrow arrow = new Arrow();
-        assertNotNull(arrow.getIconOpen());
+        assertNotNull(arrow.getItemIcon().getIconOpen());
         Cat cat = new Cat();
-        assertNull(cat.getIconOpen());
+        assertNull(cat.getItemIcon().getIconOpen());
     }
 
 }

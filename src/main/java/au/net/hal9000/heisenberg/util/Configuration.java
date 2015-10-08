@@ -728,7 +728,7 @@ public class Configuration {
      * 
      * @return the sprite sheet details
      */
-    SpriteSheetConfiguration getSpriteSheet(String name) {
+    public SpriteSheetConfiguration getSpriteSheet(String name) {
         return spriteSheets.get(name);
     }
 

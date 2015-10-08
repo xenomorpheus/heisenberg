@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.property;
 
-import au.net.hal9000.heisenberg.item.Item;
+import au.net.hal9000.heisenberg.item.api.Item;
 
 /**
  * Can this item be split into smaller items? e.g water, flour, sand, pile of

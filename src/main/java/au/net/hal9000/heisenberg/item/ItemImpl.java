@@ -4,24 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import javax.persistence.Column;
-// Persistence
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.persistence.MappedSuperclass;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -31,7 +25,7 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
+import au.net.hal9000.heisenberg.util.ItemIcon;
 
 /**
  * Base abstract class for all items in this world.
@@ -64,9 +58,8 @@ import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
  * @version $Revision: 1.0 $
  */
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Item implements Serializable {
+@MappedSuperclass
+public abstract class ItemImpl implements Serializable, Item {
 
     /** serial version id. */
     private static final long serialVersionUID = 1L;
@@ -75,22 +68,14 @@ public abstract class Item implements Serializable {
     // private static final Logger LOGGER =
     // Logger.getLogger(Item.class.getName());
 
-    /** name of this package. */
-    private static final String PACKAGE_NAME = Factory.class.getPackage()
-            .getName();
-
-    /** For each class of Item, the icon to show when open. */
-    // TODO Consider moving out into own class.
-    private static final Map<String, Icon> ICON_OPEN_DEFAULT_FOR_CLASS = new TreeMap<String, Icon>();
-
     // Initialise as many values as possible.
     /**
      * The ID of the object. JPA doesn't care if we change this.
      */
     // Note: Id is required so UI getIndexOfChild() will work
     // when two objects have the same properties.
-    @Column(name = "id")
-    private UUID id = UUID.randomUUID();
+    @Column(name = "ID")
+    protected UUID id = UUID.randomUUID();
 
     /**
      * Use by JPA.
@@ -105,21 +90,6 @@ public abstract class Item implements Serializable {
     private String description = null;
     /** The remaining structural integrity of this item. */
     private float hitPoints = 0F;
-    /**
-     * If this item is a container and shown in the UI in tree view, then this
-     * is the icon to show when open.
-     **/
-    private Icon iconClosed = null;
-    /**
-     * If this item is a container and shown in the UI in tree view, then this
-     * is the icon to show when closed.
-     **/
-    private Icon iconOpen = null;
-    /**
-     * If this item is NOT a container and shown in the UI in tree view, then
-     * this is the icon to show.
-     **/
-    private Icon iconLeaf = null;
     /** The name of this item. */
     private String name = null;
     /** Who owns this item. null means no-one. */
@@ -137,21 +107,18 @@ public abstract class Item implements Serializable {
     private float volumeBase = 0;
     /** The weight, excludes contents if this is a container. */
     private float weightBase = 0;
+    /** Icon to show in swing */
+    private ItemIcon itemIcon = null;
 
     // Constructors
     /** Constructor. */
-    protected Item() {
+    protected ItemImpl() {
         super();
         ItemProperty.setMagical(this, false);
         ItemProperty.setClothing(this, false);
         ItemProperty.setLiving(this, false);
         ItemProperty.setHumanoidFood(this, false);
-
-        // TODO add separate Icons for Closed and Leaf
-        Icon icon = getIconOpenDefault();
-        setIconOpen(icon);
-        setIconClosed(icon);
-        setIconLeaf(icon);
+        itemIcon = new ItemIcon(this);
     }
 
     /**
@@ -160,7 +127,7 @@ public abstract class Item implements Serializable {
      * @param name
      *            the name of this Item.
      */
-    protected Item(final String name) {
+    protected ItemImpl(final String name) {
         this();
         this.name = name;
     }
@@ -173,7 +140,7 @@ public abstract class Item implements Serializable {
      * @param description
      *            the description of this Item.
      */
-    protected Item(final String name, final String description) {
+    protected ItemImpl(final String name, final String description) {
         this(name);
         this.description = description;
     }
@@ -223,495 +190,412 @@ public abstract class Item implements Serializable {
         id = pId;
     }
 
-    /**
-     * Get the current container.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the current container {@link ItemContainer}.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getContainer()
      */
+    @Override
     public ItemContainer getContainer() {
         return container;
     }
 
-    /**
-     * Set the current container.
+    /*
+     * (non-Javadoc)
      * 
-     * @param container
-     *            the new container {@link ItemContainer}.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setContainer(au.net.hal9000.heisenberg
+     * .item.ItemContainer)
      */
+    @Override
     public void setContainer(ItemContainer container) {
         this.container = container;
     }
 
-    /**
-     * Get the description.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the description
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getDescription()
      */
+    @Override
     public String getDescription() {
         return description;
     }
 
-    /**
-     * Set the description.
+    /*
+     * (non-Javadoc)
      * 
-     * @param description
-     *            the description
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setDescription(java.lang.String)
      */
+    @Override
     public void setDescription(final String description) {
         this.description = description;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * @return the structural integrity / health.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getHitPoints()
      */
+    @Override
     public float getHitPoints() {
         return hitPoints;
     }
 
-    /**
-     * @param hitPoints
-     *            the structural integrity / health.
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setHitPoints(float)
      */
+    @Override
     public void setHitPoints(float hitPoints) {
         this.hitPoints = hitPoints;
     }
 
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the Icon.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getName()
      */
-    public Icon getIconClosed() {
-        return iconClosed;
-    }
-
-    /**
-     * Set the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @param iconClosed
-     *            the Icon to show when the container is closed.
-     */
-    public void setIconClosed(Icon iconClosed) {
-        this.iconClosed = iconClosed;
-    }
-
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
-     * 
-     * 
-     * @return the Icon.
-     */
-    public Icon getIconOpen() {
-        return iconOpen;
-    }
-
-    /**
-     * Set the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @param iconOpen
-     *            the Icon to show when the container is open.
-     */
-    public void setIconOpen(Icon iconOpen) {
-        this.iconOpen = iconOpen;
-    }
-
-    /**
-     * Return the Icon to draw when displaying this Item in the tree view.
-     * 
-     * 
-     * @return the Icon.
-     */
-    public Icon getIconLeaf() {
-        return iconLeaf;
-    }
-
-    /**
-     * Set the Icon to draw when displaying this Item in the tree view.
-     * 
-     * @param iconLeaf
-     *            the Icon to show when the non-container item is displayed.
-     */
-    public void setIconLeaf(Icon iconLeaf) {
-        this.iconLeaf = iconLeaf;
-    }
-
-    /**
-     * get the name of the item.
-     * 
-     * 
-     * @return the name
-     */
+    @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * Set the name.
+    /*
+     * (non-Javadoc)
      * 
-     * @param name
-     *            the name to set
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setName(java.lang.String)
      */
+    @Override
     public void setName(final String name) {
         this.name = name;
     }
 
-    /** @return The owner of this item */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getOwner()
+     */
+    @Override
     public Item getOwner() {
         return owner;
     }
 
-    /**
-     * @param owner
-     *            set the owner of this item
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setOwner(au.net.hal9000.heisenberg
+     * .item.ItemInt)
      */
+    @Override
     public void setOwner(Item owner) {
         this.owner = owner;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return return the position.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getPosition()
      */
+    @Override
     public Position getPosition() {
         return position;
     }
 
-    /**
-     * set the position of the item.
+    /*
+     * (non-Javadoc)
      * 
-     * @param position
-     *            the position object.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setPosition(au.net.hal9000.heisenberg
+     * .units.Position)
      */
+    @Override
     public void setPosition(Position position) {
         this.position = position;
     }
 
     // property related
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * @return the properties - A set of key/value pairs that don't warrant real
-     *         setters and getters.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getProperties()
      */
+    @Override
     public Properties getProperties() {
         return properties;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * @param properties
-     *            set the properties object. A set of key/value pairs that don't
-     *            warrant real setters and getters.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setProperties(java.util.Properties
+     * )
      */
+    @Override
     public void setProperties(Properties properties) {
         this.properties = properties;
     }
 
-    /**
-     * Get a property.
+    /*
+     * (non-Javadoc)
      * 
-     * @param key
-     *            key name
-     * 
-     * @return the value
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getProperty(java.lang.String)
      */
+    @Override
     public Object getProperty(String key) {
         return properties.get(key);
     }
 
-    /**
-     * Set a property.
+    /*
+     * (non-Javadoc)
      * 
-     * @param key
-     *            key name
-     * @param value
-     *            the value to set
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setProperty(java.lang.String,
+     * java.lang.Object)
      */
+    @Override
     public void setProperty(String key, Object value) {
         properties.put(key, value);
     }
 
-    /**
-     * Remove a property.
+    /*
+     * (non-Javadoc)
      * 
-     * @param key
-     *            key name
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#removeProperty(java.lang.String)
      */
+    @Override
     public void removeProperty(String key) {
         properties.remove(key);
     }
 
     // value related
-    /**
-     * value before addition of other items such as those carried.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return The value before any contained items.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getValueBase()
      */
+    @Override
     public Currency getValueBase() {
         return valueBase;
     }
 
-    /**
-     * For simple items the value is the valueBase. Will be overridden by
-     * collections
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the total value including contained items.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getValue()
      */
+    @Override
     public Currency getValue() {
         return valueBase;
     }
 
-    /**
-     * value before addition of other items such as those carried.
+    /*
+     * (non-Javadoc)
      * 
-     * @param valueBase
-     *            The value before any contained items.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#setValueBase(au.net.hal9000.heisenberg
+     * .units.Currency)
      */
+    @Override
     public void setValueBase(final Currency valueBase) {
         this.valueBase = valueBase;
     }
 
     // volume related
 
-    /**
-     * For simple items the weight is the weightBase. Will be overridden by
-     * collections
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the amount of 3D space that this item occupies.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getVolume()
      */
 
+    @Override
     public float getVolume() {
         return volumeBase;
     }
 
-    /**
-     * volume before addition of other items such as those carried.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the volume that this item occupies without any contained items.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getVolumeBase()
      */
+    @Override
     public float getVolumeBase() {
         return volumeBase;
     }
 
-    /**
-     * Set the volume before addition of other items such as those carried.
+    /*
+     * (non-Javadoc)
      * 
-     * @param volumeBase
-     *            the new volume.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setVolumeBase(float)
      */
+    @Override
     public void setVolumeBase(float volumeBase) {
         this.volumeBase = volumeBase;
     }
 
     // weight related
 
-    /**
-     * Set the total weight. For simple items the weight is the weightBase. May
-     * be overridden by collections.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return the total weight
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getWeight()
      */
+    @Override
     public float getWeight() {
         return weightBase;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * @return weight before addition of other items such as those carried
+     * @see au.net.hal9000.heisenberg.item.ItemInt#getWeightBase()
      */
+    @Override
     public float getWeightBase() {
         return weightBase;
     }
 
-    /**
-     * @param weightBase
-     *            weight before addition of other items such as those carried.
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setWeightBase(float)
      */
+    @Override
     public void setWeightBase(final float weightBase) {
         this.weightBase = weightBase;
+    }
+
+    @Override
+    public ItemIcon getItemIcon() {
+        return itemIcon;
+    }
+
+    @Override
+    public void setItemIcon(ItemIcon itemIcon) {
+        this.itemIcon = itemIcon;
     }
 
     /* End of Setters and Getters */
     // misc methods
 
     /**
-     * Mostly Auto generated. Note: container not considered to break loops.
+     * Shallow copy properties from one object to another.
      * 
-     * 
-     * @return hash code.
+     * @param other
+     *            Item to copy attributes from.
      */
+    public void setAllFrom(Item other) {
+        setContainer(other.getContainer());
+        setDescription(other.getDescription());
+        setHitPoints(other.getHitPoints());
+        setItemIcon(other.getItemIcon().dupicate());
+        setName(other.getName());
+        setOwner(other.getOwner());
+        setPosition(other.getPosition());
+        setProperties(other.getProperties());
+        setValueBase(other.getValueBase());
+        setVolumeBase(other.getVolumeBase());
+        setWeightBase(other.getWeightBase());
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((null == description) ? 0 : description.hashCode());
+                + ((description == null) ? 0 : description.hashCode());
         result = prime * result + Float.floatToIntBits(hitPoints);
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result
-                + ((null == iconClosed) ? 0 : iconClosed.hashCode());
+                + ((itemIcon == null) ? 0 : itemIcon.hashCode());
+        result = prime * result + (int) (jpaId ^ (jpaId >>> 32));
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         result = prime * result
-                + ((null == iconLeaf) ? 0 : iconLeaf.hashCode());
+                + ((position == null) ? 0 : position.hashCode());
         result = prime * result
-                + ((null == iconOpen) ? 0 : iconOpen.hashCode());
-        result = prime * result + ((null == id) ? 0 : id.hashCode());
-        result = prime * result + (int) (jpaId ^ (jpaId >>> (prime + 1)));
-        result = prime * result + ((null == name) ? 0 : name.hashCode());
-        result = prime * result + ((null == owner) ? 0 : owner.hashCode());
+                + ((properties == null) ? 0 : properties.hashCode());
         result = prime * result
-                + ((null == position) ? 0 : position.hashCode());
-        result = prime * result
-                + ((null == properties) ? 0 : properties.hashCode());
-        result = prime * result
-                + ((null == valueBase) ? 0 : valueBase.hashCode());
+                + ((valueBase == null) ? 0 : valueBase.hashCode());
         result = prime * result + Float.floatToIntBits(volumeBase);
         result = prime * result + Float.floatToIntBits(weightBase);
         return result;
     }
 
-    /**
-     * Note field container deliberately not used to break loops. Mostly
-     * auto-generated.
-     * 
-     * @param obj
-     *            object under comparison
-     * 
-     * @return true if equals.
-     */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (null == obj) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
-        Item other = (Item) obj;
-        if (null == description) {
-            if (null != other.description) {
+        ItemImpl other = (ItemImpl) obj;
+        if (description == null) {
+            if (other.description != null)
                 return false;
-            }
-        } else if (!description.equals(other.description)) {
+        } else if (!description.equals(other.description))
             return false;
-        }
         if (Float.floatToIntBits(hitPoints) != Float
-                .floatToIntBits(other.hitPoints)) {
+                .floatToIntBits(other.hitPoints))
             return false;
-        }
-        if (null == iconClosed) {
-            if (null != other.iconClosed) {
+        if (id == null) {
+            if (other.id != null)
                 return false;
-            }
-        } else if (!iconClosed.equals(other.iconClosed)) {
+        } else if (!id.equals(other.id))
             return false;
-        }
-        if (null == iconLeaf) {
-            if (null != other.iconLeaf) {
+        if (itemIcon == null) {
+            if (other.itemIcon != null)
                 return false;
-            }
-        } else if (!iconLeaf.equals(other.iconLeaf)) {
+        } else if (!itemIcon.equals(other.itemIcon))
             return false;
-        }
-        if (null == iconOpen) {
-            if (null != other.iconOpen) {
+        if (jpaId != other.jpaId)
+            return false;
+        if (name == null) {
+            if (other.name != null)
                 return false;
-            }
-        } else if (!iconOpen.equals(other.iconOpen)) {
+        } else if (!name.equals(other.name))
             return false;
-        }
-        if (null == id) {
-            if (null != other.id) {
+        if (owner == null) {
+            if (other.owner != null)
                 return false;
-            }
-        } else if (!id.equals(other.id)) {
+        } else if (!owner.equals(other.owner))
             return false;
-        }
-        if (jpaId != other.jpaId) {
-            return false;
-        }
-        if (null == name) {
-            if (null != other.name) {
+        if (position == null) {
+            if (other.position != null)
                 return false;
-            }
-        } else if (!name.equals(other.name)) {
+        } else if (!position.equals(other.position))
             return false;
-        }
-        if (null == owner) {
-            if (null != other.owner) {
+        if (properties == null) {
+            if (other.properties != null)
                 return false;
-            }
-        } else if (!owner.equals(other.owner)) {
+        } else if (!properties.equals(other.properties))
             return false;
-        }
-        if (null == position) {
-            if (null != other.position) {
+        if (valueBase == null) {
+            if (other.valueBase != null)
                 return false;
-            }
-        } else if (!position.equals(other.position)) {
+        } else if (!valueBase.equals(other.valueBase))
             return false;
-        }
-        if (null == properties) {
-            if (null != other.properties) {
-                return false;
-            }
-        } else if (!properties.equals(other.properties)) {
-            return false;
-        }
-        if (null == valueBase) {
-            if (null != other.valueBase) {
-                return false;
-            }
-        } else if (!valueBase.equals(other.valueBase)) {
-            return false;
-        }
         if (Float.floatToIntBits(volumeBase) != Float
-                .floatToIntBits(other.volumeBase)) {
+                .floatToIntBits(other.volumeBase))
             return false;
-        }
         if (Float.floatToIntBits(weightBase) != Float
-                .floatToIntBits(other.weightBase)) {
+                .floatToIntBits(other.weightBase))
             return false;
-        }
         return true;
     }
 
-    /**
-     * Shallow copy properties from one object to another.
+    /*
+     * (non-Javadoc)
      * 
-     * @param item
-     *            Item to copy attributes from.
+     * @see au.net.hal9000.heisenberg.item.ItemInt#beNot()
      */
-    public void setAllFrom(Item item) {
-        setContainer(item.getContainer());
-        setDescription(item.getDescription());
-        setHitPoints(item.getHitPoints());
-        setIconOpen(item.getIconOpen());
-        setIconClosed(item.getIconClosed());
-        setIconLeaf(item.getIconLeaf());
-        setName(item.getName());
-        setOwner(item.getOwner());
-        setPosition(item.getPosition());
-        setProperties(item.getProperties());
-        setValueBase(item.getValueBase());
-        setVolumeBase(item.getVolumeBase());
-        setWeightBase(item.getWeightBase());
-    }
-
-    /**
-     * Attempt to unlink the item from everything so that it can be garbage
-     * collected. Won't work if anything is referencing this item.
-     */
+    @Override
     public void beNot() {
         // TODO - Help Required - How do I delete an object that
         // may be referenced by other objects?
@@ -722,40 +606,28 @@ public abstract class Item implements Serializable {
         }
     }
 
-    /**
-     * Move the item into the ItemContainer. Note: The request can fail or
-     * partially complete.<br>
-     * E.g Can't pass through walls.
+    /*
+     * (non-Javadoc)
      * 
-     * @param container
-     *            the container that will hold this item.
-     * @param requestedPosition
-     *            the requested position within the container.
-     * @throws InvalidTypeException
-     *             wrong type of Item.
-     * @throws TooLargeException
-     *             when an overly large Item added to bag.
-     * @throws TooHeavyException
-     *             when an overly heavy Item added to bag.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#move(au.net.hal9000.heisenberg
+     * .item.ItemContainer, au.net.hal9000.heisenberg.units.Position)
      */
+    @Override
     public void move(ItemContainer container, Position requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
         moveToPoint2d(requestedPosition);
     }
 
-    /**
-     * Move the item into the ItemContainer.
+    /*
+     * (non-Javadoc)
      * 
-     * @param container
-     *            the container that will hold this item.
-     * @throws InvalidTypeException
-     *             wrong type of Item.
-     * @throws TooLargeException
-     *             when an overly large Item added to bag.
-     * @throws TooHeavyException
-     *             when an overly heavy Item added to bag.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#move(au.net.hal9000.heisenberg
+     * .item.ItemContainer)
      */
+    @Override
     public void move(ItemContainer container) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         container.add(this);
@@ -780,10 +652,10 @@ public abstract class Item implements Serializable {
         }
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return A short identifying string. e.g. 'Cookie', 'John Smith'
+     * @see au.net.hal9000.heisenberg.item.ItemInt#toString()
      */
     @Override
     public String toString() {
@@ -794,10 +666,12 @@ public abstract class Item implements Serializable {
         return string;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
      * 
-     * @return A description. e.g. 'A lit candle'
+     * @see au.net.hal9000.heisenberg.item.ItemInt#detailedDescription()
      */
+    @Override
     public String detailedDescription() {
         StringBuilder text = new StringBuilder();
         String temp;
@@ -847,12 +721,14 @@ public abstract class Item implements Serializable {
         return text.toString();
     }
 
-    /**
-     * Visitor Design Pattern.
+    /*
+     * (non-Javadoc)
      * 
-     * @param visitor
-     *            Item visitor.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#accept(au.net.hal9000.heisenberg
+     * .item.property.ItemVisitor)
      */
+    @Override
     public void accept(ItemVisitor visitor) {
         visitor.visit(this);
     }
@@ -873,8 +749,6 @@ public abstract class Item implements Serializable {
         fos.close();
     }
 
-    // TODO thawFormFile
-
     /**
      * Create a new Item of the specified type.
      * 
@@ -886,7 +760,7 @@ public abstract class Item implements Serializable {
     public final boolean instanceOf(String type) {
         boolean isInstance;
         try {
-            Class<?> itemClass = Class.forName(getClassForType(type));
+            Class<?> itemClass = Class.forName(Item.getClassForType(type));
             isInstance = itemClass.isInstance(this);
         } catch (ClassNotFoundException e) {
             isInstance = false; // NOP
@@ -900,60 +774,19 @@ public abstract class Item implements Serializable {
      * 
      * @return the simple type of this item e.g. Cookie, Arrow, etc.
      */
+    @Override
     public String getSimpleClassName() {
         return getClass().getSimpleName();
     }
 
-    /**
-     * For this Item type, get the default Icon to show when this item is open.
+    /*
+     * (non-Javadoc)
      * 
-     * 
-     * @return The Icon.
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemInt#applyDelta(au.net.hal9000.heisenberg
+     * .units.Position)
      */
-    public Icon getIconOpenDefault() {
-        return getIconOpenDefaultForClass(getSimpleClassName());
-    }
-
-    // TODO consider refactoring out into a different class
-    /**
-     * Set the Icon to show in the UI when collection is opened.
-     * 
-     * @param simpleClassName
-     *            Simple Item name e.g. Cookie.
-     * @param imageIcon
-     *            Icon to show.
-     */
-    public static void setIconOpenDefaultForClass(String simpleClassName,
-            ImageIcon imageIcon) {
-        ICON_OPEN_DEFAULT_FOR_CLASS.put(simpleClassName, imageIcon);
-    }
-
-    // TODO consider refactoring out into a different class
-    /**
-     * Get the Icon to show in the UI when collection is opened.
-     * 
-     * @param simpleClassName
-     *            Simple Item name e.g. Cookie.
-     * 
-     * @return Icon to show.
-     */
-    public static Icon getIconOpenDefaultForClass(String simpleClassName) {
-        return ICON_OPEN_DEFAULT_FOR_CLASS.get(simpleClassName);
-    }
-
-    // TODO consider re-factoring out into a different class
-    /**
-     * Clear the Icon to show in the UI when collection is opened.
-     */
-    public static void clearIconOpenDefaultForClass() {
-        ICON_OPEN_DEFAULT_FOR_CLASS.clear();
-    }
-
-    /**
-     * Change the position by the supplied amount.
-     * 
-     * @param delta
-     */
+    @Override
     public void applyDelta(Position delta) {
         position.applyDelta(delta);
     }
@@ -973,24 +806,5 @@ public abstract class Item implements Serializable {
             throw new RuntimeException("Failed to find recipe=" + recipeId);
         }
         return recipe.getNewCooker(this);
-    }
-
-    /**
-     * return the class name and package for this Item type.
-     * 
-     * @param type
-     * @return
-     */
-    public static String getClassForType(String type) {
-        ItemClassConfiguration itemTypeConfig = Configuration.lastConfig()
-                .getItemClassConfiguration(type);
-        String javaClassSuffix = null;
-        if (itemTypeConfig != null) {
-            javaClassSuffix = itemTypeConfig.getJavaClass();
-        }
-        if (javaClassSuffix == null) {
-            javaClassSuffix = type; // Assume no subclass.
-        }
-        return PACKAGE_NAME + "." + javaClassSuffix;
     }
 }

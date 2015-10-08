@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class SmallGroundFire extends Item {
+public class SmallGroundFire extends ItemImpl {
 
     /**
      * Field serialVersionUID.

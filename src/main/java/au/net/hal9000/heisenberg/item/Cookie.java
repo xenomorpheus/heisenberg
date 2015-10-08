@@ -18,7 +18,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Cookie extends Item implements HumanoidFood {
+public class Cookie extends ItemImpl implements HumanoidFood {
 
     /**
      * Field serialVersionUID. (value is 1)

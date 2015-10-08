@@ -5,6 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 
@@ -16,7 +17,7 @@ import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Wood extends Item implements SplitByWeight {
+public class Wood extends ItemImpl implements SplitByWeight {
 
     /**
      * Field serialVersionUID. (value is 1)

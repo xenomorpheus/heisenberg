@@ -16,7 +16,7 @@ import au.net.hal9000.heisenberg.item.api.Sharp;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 // @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
-public class Arrow extends Item implements Sharp {
+public class Arrow extends ItemImpl implements Sharp {
 
     /**
      * Field serialVersionUID.

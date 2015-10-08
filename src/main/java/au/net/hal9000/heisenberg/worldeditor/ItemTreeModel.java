@@ -5,8 +5,8 @@ import javax.swing.tree.TreePath;
 
 import org.apache.log4j.Logger;
 
-import au.net.hal9000.heisenberg.item.Item;
 import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.Item;
 
 /**
  * This class is an adapter that provides a model that for JTree to use to
@@ -20,7 +20,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /**
      * Field LOGGER.
      */
-    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
+    private static final Logger LOGGER = Logger.getLogger(ItemTreeModel.class
             .getName());
     /** We specify the root node when we create the model. */
     private Item root;
