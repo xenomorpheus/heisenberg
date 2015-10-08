@@ -86,7 +86,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
      */
     @Override
     public int getChildCount(Object node) {
-        int count = ((ItemContainer) node).getChildCount();
+        int count = ((ItemContainer) node).size();
         LOGGER.debug("getChildCount " + node + " is " + count);
         return count;
     }
@@ -94,7 +94,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** {@inheritDoc} */
     @Override
     public Object getChild(Object parent, int index) {
-        Item child = ((ItemContainer) parent).getChildAt(index);
+        Item child = ((ItemContainer) parent).get(index);
         LOGGER.debug("getChild parent='" + parent + "', index=" + index
                 + ", child=" + child);
         return child;
@@ -103,7 +103,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** {@inheritDoc} */
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        int index = ((ItemContainer) parent).getIndexOfChild((Item) child);
+        int index = ((ItemContainer) parent).indexOf((Item) child);
         LOGGER.debug("getIndexOfChild " + parent + " " + child + "=" + index);
         return index;
     }

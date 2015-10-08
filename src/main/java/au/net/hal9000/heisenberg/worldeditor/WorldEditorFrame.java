@@ -73,7 +73,13 @@ public class WorldEditorFrame extends JFrame {
         setBounds(100, 100, 894, 634);
 
         // Main container
-        location = new Location("The world");
+        try {
+            location = DemoEnvironment.getDemoWorld();
+        } catch (InvalidTypeException | TooHeavyException | TooLargeException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+            location = new Location("The world");
+        }
         location.setWeightMax(1000000);
         location.setVolumeMax(1000000);
 

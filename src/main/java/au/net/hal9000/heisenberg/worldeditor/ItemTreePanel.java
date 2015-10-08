@@ -115,7 +115,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                             // container?
                             // Perhaps the model?
 
-                            selContainer.add(selContainer.getChildCount(),
+                            selContainer.add(selContainer.size(),
                                     newNode);
                         } catch (TooHeavyException | TooLargeException e) {
                             // TODO Auto-generated catch block

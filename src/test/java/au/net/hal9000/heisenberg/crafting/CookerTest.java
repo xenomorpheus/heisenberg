@@ -89,8 +89,8 @@ public class CookerTest {
 
         // Check the item produced
         assertEquals("location has new item", 1,
-                newItemLocation.getChildCount());
-        Item item = newItemLocation.getChildAt(0);
+                newItemLocation.size());
+        Item item = newItemLocation.get(0);
         assertEquals("item type", "Cookie", item.getClass().getSimpleName());
 
         // Check the chef has paid in Mana and ActionPoints
@@ -200,8 +200,8 @@ public class CookerTest {
         cooker.cook();
 
         // Does the location now contain a Cookie?
-        assertEquals("1 item", 1, newItemLocation.getChildCount());
-        Item newItem = newItemLocation.getChildAt(0);
+        assertEquals("1 item", 1, newItemLocation.size());
+        Item newItem = newItemLocation.get(0);
         assertEquals("item type", "Cookie", newItem.getClass().getSimpleName());
         assertEquals("new item location", newItemLocation,
                 newItem.getContainer());
@@ -337,12 +337,12 @@ public class CookerTest {
         cooker.setItemsAvailable("Wood2", wood2);
 
         // misc
-        assertEquals("item count", 3, cooker.getContentsCount());
+        assertEquals("item count", 3, cooker.size());
         // Only the FlintAndTinder2
-        assertEquals("world count before", 1, world.getChildCount());
+        assertEquals("world count before", 1, world.size());
         cooker.empty(world);
-        assertEquals("item count", 0, cooker.getContentsCount());
-        assertEquals("world count after", 4, world.getContentsCount());
+        assertEquals("item count", 0, cooker.size());
+        assertEquals("world count after", 4, world.size());
 
     }
 
@@ -814,7 +814,7 @@ public class CookerTest {
         assertEquals("actionPoints", 0, chef.getActionPoints());
 
         // Check the cooker has no items left.
-        assertEquals("cooker item count", 0, cooker.getContentsCount());
+        assertEquals("cooker item count", 0, cooker.size());
 
         // TODO Assistance required - test for destroyed object
     }
@@ -866,7 +866,7 @@ public class CookerTest {
         assertEquals("actionPoints", 0, chef.getActionPoints());
 
         // Check the cooker has one items left.
-        assertEquals("cooker item count", 1, cooker.getContentsCount());
+        assertEquals("cooker item count", 1, cooker.size());
     }
     // TODO Implement Test
     /**

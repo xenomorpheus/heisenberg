@@ -101,7 +101,7 @@ public class ScenarioSet03 {
 
         // Check the item produced
         final int todo = 1; // TODO item number
-        Item item = location.getChildAt(todo);
+        Item item = location.get(todo);
         assertEquals("item type", "SmallGroundFire", item.getClass()
                 .getSimpleName());
 

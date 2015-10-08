@@ -71,11 +71,11 @@ public class LocationTest {
         items.add(c2);
         items.add(c3);
         location.addItems(items);
-        assertEquals("add multi size", 3, location.getContentsCount());
+        assertEquals("add multi size", 3, location.size());
         location.empty(newLocation);
         assertEquals("location size after empty", 0,
-                location.getContentsCount());
-        assertEquals("newLocation size", 3, newLocation.getContentsCount());
+                location.size());
+        assertEquals("newLocation size", 3, newLocation.size());
     }
 
     /**
@@ -94,9 +94,9 @@ public class LocationTest {
         location.add(c1);
         location.add(c2);
         location.add(c3);
-        assertEquals("add multi size", 3, location.getContentsCount());
+        assertEquals("add multi size", 3, location.size());
         location.beNot();
-        assertEquals("empty size", 0, location.getContentsCount());
+        assertEquals("empty size", 0, location.size());
     }
 
 }

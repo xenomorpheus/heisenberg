@@ -73,9 +73,9 @@ public class ScabbardTest {
             TooHeavyException, TooLargeException {
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
-        assertEquals("empty", -1, scabbard.getIndexOfChild(sword));
+        assertEquals("empty", -1, scabbard.indexOf(sword));
         scabbard.add(sword);
-        assertEquals("has sword", 0, scabbard.getIndexOfChild(sword));
+        assertEquals("has sword", 0, scabbard.indexOf(sword));
     }
 
 }

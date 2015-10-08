@@ -145,14 +145,15 @@ public class ItemContainer extends ItemImpl implements Serializable {
     // Misc
 
     /**
-     * Used for tree display.
-     * 
-     * Return the number of first-level items this in this container.
+     * Get the number of items in the container.
      * 
      * 
-     * @return the number of children.
+     * @return the number of items directly inside the container. Items with
+     *         other items don't add to the count as they are *NOT* directly
+     *         contained.
      */
-    public int getChildCount() {
+
+    public int size() {
         int count = 0;
         if (null != contents) {
             count = contents.size();
@@ -168,7 +169,7 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * 
      * @return the item requested.
      */
-    public Item getChildAt(final int index) {
+    public Item get(final int index) {
         return contents.get(index);
     }
 
@@ -181,17 +182,8 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * 
      * @return the index of the child item.
      */
-    public int getIndexOfChild(final Item child) {
+    public int indexOf(final Item child) {
         return contents.indexOf(child);
-    }
-
-    /**
-     * 
-     * 
-     * @return get all the first level contents
-     */
-    public List<Item> getChildren() {
-        return contents;
     }
 
     /**
@@ -396,15 +388,6 @@ public class ItemContainer extends ItemImpl implements Serializable {
     }
 
     /**
-     * Take the top item out of the contents.
-     * 
-     * @return the top item in the contents
-     */
-    public Item pop() {
-        return contents.remove(contents.size() - 1);
-    }
-
-    /**
      * Empty the bag into this location.
      * 
      * @param newLocation
@@ -419,18 +402,6 @@ public class ItemContainer extends ItemImpl implements Serializable {
             Item item = contents.remove(0);
             newLocation.add(item);
         }
-    }
-
-    /**
-     * Get the number of items in the container.
-     * 
-     * 
-     * @return the number of items directly inside the container. Items with
-     *         other items don't add to the count as they are *NOT* directly
-     *         contained.
-     */
-    public int getContentsCount() {
-        return contents.size();
     }
 
     /**

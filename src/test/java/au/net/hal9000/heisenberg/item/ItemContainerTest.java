@@ -84,9 +84,9 @@ public class ItemContainerTest {
         Bag bagFinal = new Bag("Final");
         Cookie cookie = new Cookie();
         assertEquals("Setup - bagStart count setup ", 0,
-                bagStart.getChildCount());
+                bagStart.size());
         assertEquals("Setup - bagFinal count setup ", 0,
-                bagFinal.getChildCount());
+                bagFinal.size());
         assertNull("Setup - cookie's container", cookie.getContainer());
         assertFalse("Setup - bagStart contains cookie",
                 bagStart.contains(cookie));
@@ -95,9 +95,9 @@ public class ItemContainerTest {
         // add cookie to one bag
         bagStart.add(cookie);
         assertEquals("Start - bagStart count setup ", 1,
-                bagStart.getChildCount());
+                bagStart.size());
         assertEquals("Start - bagFinal count setup ", 0,
-                bagFinal.getChildCount());
+                bagFinal.size());
         assertEquals("Start - cookie's container", bagStart,
                 cookie.getContainer());
         assertTrue("Start - bagStart contains cookie",
@@ -107,9 +107,9 @@ public class ItemContainerTest {
         // transfer cookie to other bag
         bagFinal.add(cookie);
         assertEquals("Final - bagStart count setup ", 0,
-                bagStart.getChildCount());
+                bagStart.size());
         assertEquals("Final - bagFinal count setup ", 1,
-                bagFinal.getChildCount());
+                bagFinal.size());
         assertEquals("Final - cookie's container", bagFinal,
                 cookie.getContainer());
         assertFalse("Final - bagStart contains cookie",
@@ -140,14 +140,14 @@ public class ItemContainerTest {
         items.add(c2);
         items.add(c3);
         bag.addItems(items);
-        assertEquals("add multi size", size, bag.getContentsCount());
+        assertEquals("add multi size", size, bag.size());
         bag.empty(newBag);
-        assertEquals("bag empty size", 0, bag.getContentsCount());
-        assertEquals("New Bag size", size, newBag.getContentsCount());
+        assertEquals("bag empty size", 0, bag.size());
+        assertEquals("New Bag size", size, newBag.size());
     }
 
     /**
-     * Method testGetContentsCount.
+     * Method testSize.
      * 
      * 
      * @throws InvalidTypeException
@@ -155,7 +155,7 @@ public class ItemContainerTest {
      * @throws TooHeavyException
      */
     @Test
-    public void testGetContentsCount() throws InvalidTypeException,
+    public void testSize() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         final Bag bag = new Bag();
         final Cookie c1 = new Cookie();
@@ -164,7 +164,7 @@ public class ItemContainerTest {
         bag.add(c1);
         bag.add(c2);
         bag.add(c3);
-        assertEquals("count", 3, bag.getContentsCount());
+        assertEquals("count", 3, bag.size());
     }
 
     /**
@@ -260,9 +260,9 @@ public class ItemContainerTest {
         bag.add(c1);
         bag.add(c2);
         bag.add(c3);
-        assertEquals("add multi size", 3, bag.getContentsCount());
+        assertEquals("add multi size", 3, bag.size());
         bag.beNot();
-        assertEquals("empty size", 0, bag.getContentsCount());
+        assertEquals("empty size", 0, bag.size());
     }
 
     /**
@@ -277,9 +277,9 @@ public class ItemContainerTest {
     public void testGetChildCount() throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         Bag bag = new Bag();
-        assertEquals("getChildCount", 0, bag.getChildCount());
+        assertEquals("getChildCount", 0, bag.size());
         bag.add(new Cookie());
-        assertEquals("getChildCount", 1, bag.getChildCount());
+        assertEquals("getChildCount", 1, bag.size());
     }
 
     /**
@@ -297,10 +297,10 @@ public class ItemContainerTest {
         Cookie cookie = new Cookie();
         Scabbard scabbard = new Scabbard();
         bag.add(cookie);
-        assertEquals("getChildCount", cookie, bag.getChildAt(0));
+        assertEquals("getChildCount", cookie, bag.get(0));
         bag.add(scabbard);
-        assertEquals("getChildCount", cookie, bag.getChildAt(0));
-        assertEquals("getChildCount", scabbard, bag.getChildAt(1));
+        assertEquals("getChildCount", cookie, bag.get(0));
+        assertEquals("getChildCount", scabbard, bag.get(1));
     }
 
     /**
@@ -320,20 +320,20 @@ public class ItemContainerTest {
         Cookie cookie2 = new Cookie("Cookie2");
         Cookie cookie3 = new Cookie();
         assertEquals("getIndexOfChild - empty", -1,
-                bag.getIndexOfChild(cookie1));
+                bag.indexOf(cookie1));
         bag.add(cookie1);
         assertEquals("getIndexOfChild - only child", 0,
-                bag.getIndexOfChild(cookie1));
+                bag.indexOf(cookie1));
         bag.add(scabbard);
         assertEquals("getIndexOfChild - first child", 0,
-                bag.getIndexOfChild(cookie1));
+                bag.indexOf(cookie1));
         assertEquals("getIndexOfChild - second child", 1,
-                bag.getIndexOfChild(scabbard));
+                bag.indexOf(scabbard));
         assertEquals("getIndexOfChild - not present", -1,
-                bag.getIndexOfChild(cookie2));
+                bag.indexOf(cookie2));
         assertEquals(
                 "getIndexOfChild - not present but cookie3 equal to cookie1",
-                -1, bag.getIndexOfChild(cookie3));
+                -1, bag.indexOf(cookie3));
     }
 
     /**

@@ -76,7 +76,7 @@ public class Scabbard extends Box {
         if (!(item instanceof Sword)) {
             throw new InvalidTypeException("non sword");
         }
-        if (getChildCount() > 0) {
+        if (size() > 0) {
             throw new TooLargeException("scabbard full");
         }
         super.add(item);

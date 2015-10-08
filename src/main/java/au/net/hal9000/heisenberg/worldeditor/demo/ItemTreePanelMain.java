@@ -8,6 +8,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 
 public class ItemTreePanelMain {
@@ -30,6 +31,8 @@ public class ItemTreePanelMain {
                 try {
                     DemoEnvironment.setup();
                     Configuration config = Configuration.lastConfig();
+                    // Add Icons to Items
+                    ItemIcon.setIcon(config);
                     Location location = DemoEnvironment.getDemoWorld();
                     // location.setWeightMax(100000);
                     // location.setVolumeMax(100000);
