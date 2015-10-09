@@ -38,7 +38,7 @@ public class CatTest {
 		cat.move(dungeon, new Position());
 		Position pos = new Position();
 		assertTrue(pos.equals(cat.getPosition()));
-		cat.moveToPoint2d(new Position(10, 10));
+		cat.moveWithinContainer(new Position(10, 10));
 		pos = new Position(10, 10);
 		assertTrue(pos.equals(cat.getPosition()));
 	}

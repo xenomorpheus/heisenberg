@@ -16,6 +16,7 @@ import javax.persistence.MappedSuperclass;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -617,7 +618,7 @@ public abstract class ItemImpl implements Serializable, Item {
     public void move(ItemContainer container, Position requestedPosition)
             throws InvalidTypeException, TooHeavyException, TooLargeException {
         container.add(this);
-        moveToPoint2d(requestedPosition);
+        moveWithinContainer(requestedPosition);
     }
 
     /*
@@ -643,7 +644,7 @@ public abstract class ItemImpl implements Serializable, Item {
      *            the requested position within the container.
      * 
      */
-    public void moveToPoint2d(Position requestedPosition) {
+    public void moveWithinContainer(Position requestedPosition) {
         if (null == container) {
             throw new UnsupportedOperationException(
                     "No ItemContainer - Can't move");

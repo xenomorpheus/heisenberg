@@ -5,8 +5,8 @@ import javax.swing.tree.TreePath;
 
 import org.apache.log4j.Logger;
 
-import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 
 /**
  * This class is an adapter that provides a model that for JTree to use to

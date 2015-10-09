@@ -14,7 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Box extends ItemContainer {
+public class Box extends ItemContainerImpl {
 
     /** serial version id. */
     private static final long serialVersionUID = 1L;

@@ -203,7 +203,7 @@ public class ItemTest {
         cookie.setPosition(expectedPosition);
         try {
             // Try to move, but will fail as not in an ItemContainer.
-            cookie.moveToPoint2d(new Position(1, 2, 3));
+            cookie.moveWithinContainer(new Position(1, 2, 3));
         } catch (UnsupportedOperationException e) {
 
             Position actualPosition = cookie.getPosition();
@@ -221,7 +221,7 @@ public class ItemTest {
         Location container = new Location();
         cookie.setContainer(container);
         Position expectedPosition = new Position(2, 4, 8);
-        cookie.moveToPoint2d(expectedPosition);
+        cookie.moveWithinContainer(expectedPosition);
         Position actualPosition = cookie.getPosition();
         assertTrue("Has ItemContainer - final pos",
                 expectedPosition.equals(actualPosition));

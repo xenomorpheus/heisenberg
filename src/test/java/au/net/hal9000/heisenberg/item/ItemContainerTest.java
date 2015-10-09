@@ -119,7 +119,7 @@ public class ItemContainerTest {
     }
 
     /**
-     * Method testAddMulti.
+     * Method testAddAll.
      * 
      * @throws InvalidTypeException
      * 
@@ -127,7 +127,7 @@ public class ItemContainerTest {
      * @throws TooHeavyException
      */
     @Test
-    public void testAddMulti() throws InvalidTypeException, TooHeavyException,
+    public void testAddAll() throws InvalidTypeException, TooHeavyException,
             TooLargeException {
         final int size = 3;
         Bag bag = new Bag();
@@ -139,7 +139,7 @@ public class ItemContainerTest {
         items.add(c1);
         items.add(c2);
         items.add(c3);
-        bag.addItems(items);
+        bag.addAll(items);
         assertEquals("add multi size", size, bag.size());
         bag.empty(newBag);
         assertEquals("bag empty size", 0, bag.size());

@@ -4,8 +4,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.ItemContainerImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
@@ -41,7 +42,7 @@ import au.net.hal9000.heisenberg.units.Skill;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class Cooker extends ItemContainer {
+public class Cooker extends ItemContainerImpl {
 
     /** error message. **/
     static final String ITEM_MAY_NOT_BE_NULL = "item must exist";

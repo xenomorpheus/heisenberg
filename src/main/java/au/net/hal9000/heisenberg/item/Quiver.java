@@ -20,7 +20,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Quiver extends ItemContainer {
+public class Quiver extends ItemContainerImpl {
 
     /** serial version. */
     private static final long serialVersionUID = 1L;

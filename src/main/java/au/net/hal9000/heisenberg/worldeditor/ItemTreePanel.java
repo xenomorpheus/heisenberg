@@ -23,9 +23,9 @@ import javax.swing.tree.TreePath;
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.ItemContainer;
 import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -43,7 +43,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
     /**
      * Field LOGGER.
      */
-    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
+    private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class
             .getName());
     // Create a TreeModel object to represent our tree of Item objects
     // at the specified location.

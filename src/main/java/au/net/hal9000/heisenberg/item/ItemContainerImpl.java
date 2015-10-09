@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -25,7 +26,7 @@ import au.net.hal9000.heisenberg.units.Position;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemContainer extends ItemImpl implements Serializable {
+public class ItemContainerImpl extends ItemImpl implements Serializable, ItemContainer {
     /**
      * 
      */
@@ -33,7 +34,7 @@ public class ItemContainer extends ItemImpl implements Serializable {
     /**
      * Field LOGGER.
      */
-    private static final Logger LOGGER = Logger.getLogger(ItemContainer.class
+    private static final Logger LOGGER = Logger.getLogger(ItemContainerImpl.class
             .getName());
     /**
      * Field weightMax.
@@ -57,7 +58,7 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * @param description
      *            String
      */
-    protected ItemContainer(String string, String description) {
+    protected ItemContainerImpl(String string, String description) {
         super(string, description);
     }
 
@@ -67,93 +68,75 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * @param string
      *            String
      */
-    public ItemContainer(String string) {
+    public ItemContainerImpl(String string) {
         this(string, "");
     }
 
     // Getters and Setters
-    /**
-     * Get the contents.
-     * 
-     * 
-     * @return the contents
-     */
-    public List<Item> getContents() {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getContents()
+	 */
+    @Override
+	public List<Item> getContents() {
         return contents;
     }
 
-    /**
-     * Set the contents.
-     * 
-     * @param contents
-     *            the new contents of this container.
-     */
-    public void setContents(List<Item> contents) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setContents(java.util.List)
+	 */
+    @Override
+	public void setContents(List<Item> contents) {
         this.contents = contents;
     }
 
-    /**
-     * 
-     * @return The max weight that can be carried.
-     */
-    public float getWeightMax() {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getWeightMax()
+	 */
+    @Override
+	public float getWeightMax() {
         return weightMax;
     }
 
-    /**
-     * Set the max weight that may be carried.
-     * 
-     * @param weightMax
-     *            The max weight that can be carried.
-     */
-    public void setWeightMax(float weightMax) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setWeightMax(float)
+	 */
+    @Override
+	public void setWeightMax(float weightMax) {
         this.weightMax = weightMax;
     }
 
-    /**
-     * get the maximum volume that this item can hold.
-     * 
-     * 
-     * @return the maximum volume that this item can hold.
-     */
-    public float getVolumeMax() {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getVolumeMax()
+	 */
+    @Override
+	public float getVolumeMax() {
         return volumeMax;
     }
 
-    /**
-     * Set the maximum volume that this item can hold.
-     * 
-     * @param volumeMax
-     *            the maximum volume that this item can hold.
-     */
-    public void setVolumeMax(float volumeMax) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setVolumeMax(float)
+	 */
+    @Override
+	public void setVolumeMax(float volumeMax) {
         this.volumeMax = volumeMax;
     }
 
-    /**
-     * Does the Item exist in the ItemContainer ?
-     * 
-     * @param item
-     *            Item looking for
-     * 
-     * @return true iff found
-     */
-    public boolean contains(Item item) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#contains(au.net.hal9000.heisenberg.item.api.Item)
+	 */
+    @Override
+	public boolean contains(Item item) {
         return contents.contains(item);
     }
 
     // Misc
 
-    /**
-     * Get the number of items in the container.
-     * 
-     * 
-     * @return the number of items directly inside the container. Items with
-     *         other items don't add to the count as they are *NOT* directly
-     *         contained.
-     */
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#size()
+	 */
 
-    public int size() {
+    @Override
+	public int size() {
         int count = 0;
         if (null != contents) {
             count = contents.size();
@@ -161,15 +144,11 @@ public class ItemContainer extends ItemImpl implements Serializable {
         return count;
     }
 
-    /**
-     * Used for tree display.
-     * 
-     * @param index
-     *            get child with with this index in list of items.
-     * 
-     * @return the item requested.
-     */
-    public Item get(final int index) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#get(int)
+	 */
+    @Override
+	public Item get(final int index) {
         return contents.get(index);
     }
 
@@ -257,10 +236,10 @@ public class ItemContainer extends ItemImpl implements Serializable {
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof ItemContainer)) {
+        if (!(obj instanceof ItemContainerImpl)) {
             return false;
         }
-        ItemContainer other = (ItemContainer) obj;
+        ItemContainerImpl other = (ItemContainerImpl) obj;
         if (null == contents) {
             if (null != other.contents) {
                 return false;
@@ -279,31 +258,20 @@ public class ItemContainer extends ItemImpl implements Serializable {
         return true;
     }
 
-    /**
-     * Add the Item to the contents.
-     * 
-     * @param item
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     * @throws InvalidTypeException
-     * 
-     */
-    public void add(Item item) throws TooHeavyException, TooLargeException,
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(au.net.hal9000.heisenberg.item.api.Item)
+	 */
+    @Override
+	public void add(Item item) throws TooHeavyException, TooLargeException,
             InvalidTypeException {
         add(contents.size(), item);
     }
 
-    /**
-     * Add the Item to the contents.
-     * 
-     * @param index
-     *            index position to add at.
-     * @param item
-     *            item to add.
-     * @throws TooHeavyException
-     * @throws TooLargeException
-     */
-    public void add(int index, Item item) throws TooHeavyException,
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(int, au.net.hal9000.heisenberg.item.api.Item)
+	 */
+    @Override
+	public void add(int index, Item item) throws TooHeavyException,
             TooLargeException {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
@@ -380,23 +348,19 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * @throws TooLargeException
      * @throws TooHeavyException
      */
-    void addItems(List<Item> items) throws InvalidTypeException,
+    @Override
+    public void addAll(List<Item> items) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         for (Item item : items) {
             this.add(item);
         }
     }
 
-    /**
-     * Empty the bag into this location.
-     * 
-     * @param newLocation
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     */
-    public void empty(ItemContainer newLocation) throws InvalidTypeException,
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#empty(au.net.hal9000.heisenberg.item.ItemContainer)
+	 */
+    @Override
+	public void empty(ItemContainer newLocation) throws InvalidTypeException,
             TooHeavyException, TooLargeException {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
@@ -451,13 +415,11 @@ public class ItemContainer extends ItemImpl implements Serializable {
 
     // TODO rename Visitor Pattern style
     // Find contents that match the criteria
-    /**
-     * Method accept.
-     * 
-     * @param visitor
-     *            ItemVisitor
-     */
-    public void accept(ItemVisitor visitor) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#accept(au.net.hal9000.heisenberg.item.property.ItemVisitor)
+	 */
+    @Override
+	public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
         for (Item item : getContents()) {
             visitor.visit(item);
@@ -479,13 +441,11 @@ public class ItemContainer extends ItemImpl implements Serializable {
         super.beNot();
     }
 
-    /**
-     * Remove the Item from the container.
-     * 
-     * @param item
-     *            the time to remove.
-     */
-    public void remove(Item item) {
+    /* (non-Javadoc)
+	 * @see au.net.hal9000.heisenberg.item.ItemContainer#remove(au.net.hal9000.heisenberg.item.api.Item)
+	 */
+    @Override
+	public void remove(Item item) {
         contents.remove(item);
         item.setContainer(null);
     }
@@ -503,6 +463,7 @@ public class ItemContainer extends ItemImpl implements Serializable {
      *            the new position.
      * 
      */
+    @Override
     public void moveItemAbsolute(Item item, Position requestedPosition) {
         ItemContainer container = item.getContainer();
         if (container != this) {
@@ -522,9 +483,10 @@ public class ItemContainer extends ItemImpl implements Serializable {
      * @param item
      *            the item to be moved.
      * @param delta
-     *            the amount to move.
+     *            the amount to move within the container.
      * 
      */
+    @Override
     public void moveItemDelta(Item item, Position delta) {
         ItemContainer container = item.getContainer();
         if (container != this) {

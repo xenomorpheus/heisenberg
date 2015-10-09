@@ -2,8 +2,9 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.HumanoidHead;
+import au.net.hal9000.heisenberg.item.ItemContainerImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -55,7 +56,7 @@ abstract class Humanoid extends PcRace {
     /**
      * Field core.
      */
-    private ItemContainer core = new ItemContainer("core");
+    private ItemContainer core = new ItemContainerImpl("core");
 
     // Constructors
     /**

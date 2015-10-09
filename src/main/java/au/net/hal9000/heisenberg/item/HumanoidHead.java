@@ -15,7 +15,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public
-class HumanoidHead extends ItemContainer {
+class HumanoidHead extends ItemContainerImpl {
 
     /**
      * Field serialVersionUID. (value is 1)
