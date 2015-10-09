@@ -1,3 +1,64 @@
+
+2015-10-09
+Bugfix - Show in Swing Item objects that contain other Item objects.
+ItemContainer refactored and simplified.
+ItemList interface created to signify Item can hold other Item objects.
+   This is used in the Swing UI for non-leaf nodes.
+   ItemContainer and Entity implement this.
+Entity now backed by a list to implement ItemList interface.
+
+2015-10-7
+Simplify ItemContainer class.
+Refactor of Item base class
+fixed debug logging in ItemTreePanel
+Found bug when displaying demo items. Human's contents not shown.
+Refactored demo code so that it isn't part of the test suite.
+
+2015-08-28
+Fix unit test
+Java8
+
+2015-08-27
+Moved Animal back to Item as problems with instanceof based on item type
+
+2015-08-26
+Development of unit tests for eating and drinking
+Development of eating and drinking.
+
+2015-08-25
+checkpoint
+
+2015-08-23
+minor cleanup
+Refactored Entity subclasses into item.Entity
+
+2015-08-21
+@xenomorpheus
+Adding unit tests
+Cleanup of fetching config. Moved demo packages to test dir.
+
+2015-08-19
+clean up of memories.
+
+2015-08-14
+Eating improvements. A form of Crafting
+
+2015-07-25
+Movement actions simplified. Action will predict if hitting barrier.
+
+2015-07-11
+Grooming backlog
+Groomed the backlog
+Update software improvement ideas.
+
+2015-07-10
+MazeCat doing an okay job of negotiating the maze.
+Added unit test for MazeCat. Renamed jbox2ddemo package.
+
+2015-07-9
+AI refactoring and improvements
+removed log4j12-api to avoid conflict
+
 2015-07-07
 Ignore eclipse files
 Git ignore java binaries

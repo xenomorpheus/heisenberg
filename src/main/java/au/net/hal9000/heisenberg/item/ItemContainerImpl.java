@@ -277,7 +277,7 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
-                LOGGER.error("Already in container");
+                LOGGER.error("Item "+this+" was already in container "+itemCurrentContainer);
                 // Nothing to do.
                 return;
             }

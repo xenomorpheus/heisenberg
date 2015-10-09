@@ -63,7 +63,7 @@ abstract class Humanoid extends PcRace implements ItemList {
 	 * Field core.
 	 */
 	private ItemContainer core = new ItemContainerImpl("core");
-	
+
 	/** We are implementing ItemList. */
 	private List<Item> itemList;
 
@@ -257,20 +257,22 @@ abstract class Humanoid extends PcRace implements ItemList {
 	 * @throws TooLargeException
 	 * @throws TooHeavyException
 	 */
+	// TODO consider wear could fail, e.g. spot occupied.
 	public void wear(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
-		if ((rightHand != null) && (item instanceof HumanoidArmClothing)){
+		if ((rightHand != null) && (item instanceof HumanoidArmClothing)) {
+			// TODO consider implementing wear on hands.
+			// TODO consider wear could fail, e.g. spot occupied.
 			rightHand.add(item);
-		}
-		else if ((leftHand != null) && (item instanceof HumanoidArmClothing)){
+		} else if ((leftHand != null) && (item instanceof HumanoidArmClothing)) {
 			leftHand.add(item);
-		}
-		else if (item instanceof HumanoidCoreClothing){
+		} else if (item instanceof HumanoidCoreClothing) {
+			core.add(item);
+		} else {
+			if (!ItemProperty.isClothing(item)) {
+				throw new InvalidTypeException(this.getName() + " can't wear " + item.getName());
+			}
 			core.add(item);
 		}
-		if (!ItemProperty.isClothing(item)) {
-			throw new InvalidTypeException(this.getName() + " can't wear " + item.getName());
-		}
-		core.add(item);
 	}
 
 	/**
@@ -279,7 +281,7 @@ abstract class Humanoid extends PcRace implements ItemList {
 	@Override
 	public float getWeight() {
 		float total = 0;
-		for (Item item : itemList){
+		for (Item item : itemList) {
 			total += item.getWeight();
 		}
 		return total;
@@ -291,7 +293,7 @@ abstract class Humanoid extends PcRace implements ItemList {
 	@Override
 	public float getVolume() {
 		float total = 0;
-		for (Item item : itemList){
+		for (Item item : itemList) {
 			total += item.getVolume();
 		}
 		return total;

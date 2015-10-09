@@ -145,7 +145,7 @@ public final class DemoEnvironment {
         quiver.add(new Arrow());
         quiver.add(new Arrow());
 
-        Bag bag2 = new Bag("Bag2");
+        Bag bag2 = new Bag("Bag of Cookies");
         bag2.add(new Cookie("Cookie6"));
         bag2.add(new Cookie("Cookie7"));
         bag2.add(new Cookie("Cookie8"));
@@ -156,6 +156,7 @@ public final class DemoEnvironment {
         human.setWeightMax(TEST_WEIGHT_VOLUME);
         human.setVolumeMax(TEST_WEIGHT_VOLUME);
 
+        // Automatic placement
         human.wear(new Shield());
         human.wear(scabbard2);
         human.wear(quiver);
@@ -169,7 +170,7 @@ public final class DemoEnvironment {
         world.add(new Horse());
 
         // bag3
-        Bag bag3 = new Bag("Bag3");
+        Bag bag3 = new Bag("Bag of Cookies");
         bag3.add(new Cookie("Cookie9"));
         bag3.add(new Cookie("Cookie10"));
         bag3.add(new Cookie("Cookie11"));
