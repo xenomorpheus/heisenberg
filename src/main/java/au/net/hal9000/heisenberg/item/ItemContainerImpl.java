@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
@@ -26,7 +27,7 @@ import au.net.hal9000.heisenberg.units.Position;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemContainerImpl extends ItemImpl implements Serializable, ItemContainer {
+public class ItemContainerImpl extends ItemImpl implements Serializable, ItemContainer, ItemList {
     /**
      * 
      */

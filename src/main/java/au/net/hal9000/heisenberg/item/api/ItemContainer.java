@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Position;
 
-public interface ItemContainer extends Item {
+public interface ItemContainer extends Item, ItemList {
 
 	// Getters and Setters
 	/**

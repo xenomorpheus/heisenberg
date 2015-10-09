@@ -6,6 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.item.api.HumanoidCoreClothing;
 
 /**
  * @author bruins
@@ -14,7 +15,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-public class Backpack extends Bag {
+public class Backpack extends Bag implements HumanoidCoreClothing {
 
     /**
      * Field serialVersionUID.

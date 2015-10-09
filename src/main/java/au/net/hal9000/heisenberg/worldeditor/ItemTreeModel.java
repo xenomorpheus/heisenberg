@@ -6,12 +6,12 @@ import javax.swing.tree.TreePath;
 import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 
 /**
  * This class is an adapter that provides a model that for JTree to use to
  * traverse the contents of an Item tree. Note to have contents the Item needs
- * to be a subclass of ItemContainer.
+ * to implement ItemList.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
@@ -69,7 +69,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     public boolean isLeaf(Object node) {
         boolean isLeaf = true;
 
-        if (node instanceof ItemContainer) {
+        if (node instanceof ItemList) {
             isLeaf = false;
         }
         LOGGER.debug("isLeaf " + node + "= " + isLeaf);
@@ -86,7 +86,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
      */
     @Override
     public int getChildCount(Object node) {
-        int count = ((ItemContainer) node).size();
+        int count = ((ItemList) node).size();
         LOGGER.debug("getChildCount " + node + " is " + count);
         return count;
     }
@@ -94,7 +94,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** {@inheritDoc} */
     @Override
     public Object getChild(Object parent, int index) {
-        Item child = ((ItemContainer) parent).get(index);
+        Item child = ((ItemList) parent).get(index);
         LOGGER.debug("getChild parent='" + parent + "', index=" + index
                 + ", child=" + child);
         return child;
@@ -103,7 +103,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** {@inheritDoc} */
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        int index = ((ItemContainer) parent).indexOf((Item) child);
+        int index = ((ItemList) parent).indexOf((Item) child);
         LOGGER.debug("getIndexOfChild " + parent + " " + child + "=" + index);
         return index;
     }
