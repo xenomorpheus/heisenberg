@@ -86,7 +86,7 @@ public class ScenarioSet01 {
         println("Backpack created with name: " + backpack);
         Box box = new Box();
         println("Box created with name: " + box);
-        // TODO fill it
+        // TODO fail("TEST not yet implemented");
         box.add(backpack);
         println("Full backpack placed into box.");
         println("Backpack location: " + backpack.getContainer());

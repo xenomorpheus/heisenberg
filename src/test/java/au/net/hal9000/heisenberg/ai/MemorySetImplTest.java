@@ -16,22 +16,22 @@ public class MemorySetImplTest {
 
     @Test
     public void testGetMemorySet() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testSetMemorySet() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testAdd() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testIsEmpty() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
@@ -42,7 +42,7 @@ public class MemorySetImplTest {
 
     @Test
     public void testDuplicate() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
 }

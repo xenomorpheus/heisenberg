@@ -33,7 +33,7 @@ public class TorchTest {
     }
 
     // TODO test light from Torch / Candle
-    // TODO test *NOT* lit from OrbOfLight
+    // TODO test NOT lit from OrbOfLight
 
     /**
      * Method testSetType.

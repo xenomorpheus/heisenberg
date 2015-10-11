@@ -360,7 +360,7 @@ public class PcRaceTest {
      */
     @Test
     public void testSetBasicsFromClass() {
-        // TODO fail("todo");
+        // TODO fail("TEST not yet implemented");
     }
 
 }

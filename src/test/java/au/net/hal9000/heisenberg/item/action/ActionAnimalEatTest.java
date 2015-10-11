@@ -23,27 +23,27 @@ public class ActionAnimalEatTest {
 
     @Test
     public void testEqualsObject() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testActionEat() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testGetFood() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testSetFood() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test
     public void testApply() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     @Test

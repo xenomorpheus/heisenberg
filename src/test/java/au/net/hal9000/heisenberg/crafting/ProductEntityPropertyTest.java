@@ -52,7 +52,7 @@ public class ProductEntityPropertyTest {
      */
     @Test
     public void testMeetsRequirements() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
     /**
@@ -60,7 +60,7 @@ public class ProductEntityPropertyTest {
      */
     @Test
     public void testCreateProduct() {
-        // TODO fail("Not yet implemented");
+        // TODO fail("TEST not yet implemented");
     }
 
 }

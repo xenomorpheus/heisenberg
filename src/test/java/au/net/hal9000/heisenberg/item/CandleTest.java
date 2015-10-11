@@ -101,7 +101,7 @@ public class CandleTest {
         candle2.lightWith(torch);
         assertTrue("candle2 lit from lit Torch", candle2.isLit());
 
-        // TODO test *NOT* lit from OrbOfLight
+        // TODO test NOT lit from OrbOfLight
         candle2.extinguish();
         OrbOfLight ool = new OrbOfLight();
         OrbOfLight unlitOrbOfLight = new OrbOfLight();
