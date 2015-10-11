@@ -113,7 +113,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                         selContainer.add(selContainer.size(), newNode);
                         LOGGER.debug("newNode is " + newNode);
 
-                        TreePath path = getPathToRoot(newNode);
+                        TreePath path = getPathToNode(newNode);
                         LOGGER.debug("path is " + path);
                         tree.scrollPathToVisible(path);
                         tree.setSelectionPath(path);
@@ -161,10 +161,10 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      * 
      * @return a TreePath of nodes from root to the target node.
      */
-    static TreePath getPathToRoot(Item node) {
+    static TreePath getPathToNode(Item node) {
         List<Item> itemList = new ArrayList<Item>();
         while ((null != node)) {
-            itemList.add(node);
+            itemList.add(0,node);
             node = node.getContainer();
         }
         return new TreePath(itemList.toArray(new Item[itemList.size()]));

@@ -7,6 +7,7 @@ import javax.swing.tree.TreePath;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.item.Bag;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
@@ -29,6 +30,7 @@ public class ItemTreePanelTest {
      */
     @Test
     public void testItemTreePanel() throws ConfigurationError{
+        DemoEnvironment.setup();
         Configuration config = Configuration.lastConfig();
         Location location = DemoEnvironment.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
@@ -36,12 +38,14 @@ public class ItemTreePanelTest {
     }
 
     @Test
-    public void testGetPathToRoot(){
+    public void testGetPathToNode(){
         Location world = new Location("World");
+        Bag bag = new Bag("bag");
         Cookie cookie = new Cookie();
-        world.add(cookie);
-        TreePath expected = new TreePath(new Item[] { cookie, world });
-        TreePath got = ItemTreePanel.getPathToRoot(cookie);
+        world.add(bag);
+        bag.add(cookie);
+        TreePath expected = new TreePath(new Item[] { world, bag, cookie });
+        TreePath got = ItemTreePanel.getPathToNode(cookie);
         assertEquals("path", expected, got);
     }
 }
