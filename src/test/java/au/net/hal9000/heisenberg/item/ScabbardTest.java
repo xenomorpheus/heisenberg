@@ -6,9 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -26,15 +23,9 @@ public class ScabbardTest {
 
     /**
      * Method testIsWearable.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testIsWearable() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testIsWearable(){
         Human human = new Human();
         Scabbard scabbard = new Scabbard();
         human.wear(scabbard);
@@ -42,15 +33,9 @@ public class ScabbardTest {
 
     /**
      * Method testAddSword.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAddSword() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testAddSword(){
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
         scabbard.add(sword);
@@ -62,15 +47,9 @@ public class ScabbardTest {
 
     /**
      * Method testGetIndexOfChild.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testGetIndexOfChild() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testGetIndexOfChild(){
         Scabbard scabbard = new Scabbard();
         Sword sword = new Sword();
         assertEquals("empty", -1, scabbard.indexOf(sword));

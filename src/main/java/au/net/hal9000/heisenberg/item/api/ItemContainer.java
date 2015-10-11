@@ -2,9 +2,6 @@ package au.net.hal9000.heisenberg.item.api;
 
 import java.util.List;
 
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Position;
 
@@ -92,12 +89,8 @@ public interface ItemContainer extends Item, ItemList {
 	 * Add the Item to the contents.
 	 * 
 	 * @param item
-	 * @throws TooLargeException
-	 * @throws TooHeavyException
-	 * @throws InvalidTypeException
-	 * 
 	 */
-	void add(Item item) throws TooHeavyException, TooLargeException, InvalidTypeException;
+	void add(Item item);
 
 	/**
 	 * Add the Item to the contents.
@@ -106,21 +99,16 @@ public interface ItemContainer extends Item, ItemList {
 	 *            index position to add at.
 	 * @param item
 	 *            item to add.
-	 * @throws TooHeavyException
-	 * @throws TooLargeException
 	 */
-	void add(int index, Item item) throws TooHeavyException, TooLargeException;
+	void add(int index, Item item);
 
 	/**
 	 * Empty the bag into this location.
 	 * 
 	 * @param newLocation
 	 * 
-	 * @throws InvalidTypeException
-	 * @throws TooLargeException
-	 * @throws TooHeavyException
 	 */
-	void empty(ItemContainer newLocation) throws InvalidTypeException, TooHeavyException, TooLargeException;
+	void empty(ItemContainer newLocation);
 
 	// TODO rename Visitor Pattern style
 	// Find contents that match the criteria
@@ -163,7 +151,7 @@ public interface ItemContainer extends Item, ItemList {
      * @param items
      *            the items to add.
      */
-	void addAll(List<Item> items) throws InvalidTypeException, TooHeavyException, TooLargeException;
+	void addAll(List<Item> items);
 
     /**
      * Attempt to move Item's position within the ItemContainer by this amount.

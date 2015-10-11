@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
@@ -28,15 +25,9 @@ public class DummyDataTest {
 
     /**
      * Method testGetDemoWorld.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testGetDemoWorld() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testGetDemoWorld(){
         Location loc = DemoEnvironment.getDemoWorld();
         assertNotNull(loc);
     }

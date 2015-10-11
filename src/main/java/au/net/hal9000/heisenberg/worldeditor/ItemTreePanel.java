@@ -18,6 +18,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import org.apache.log4j.Logger;
@@ -25,9 +26,7 @@ import org.apache.log4j.Logger;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
@@ -38,27 +37,24 @@ import au.net.hal9000.heisenberg.util.Configuration;
  */
 public class ItemTreePanel extends JPanel implements TreeModelListener,
         PropertyChangeListener {
-    /** serial version id. */
+
+    /** Class serial version id. */
     private static final long serialVersionUID = 1L;
-    /**
-     * Field LOGGER.
-     */
+
+    /** LOGGER */
     private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class
             .getName());
-    // Create a TreeModel object to represent our tree of Item objects
-    // at the specified location.
-    /**
-     * Field treeModel.
-     */
-    private ItemTreeModel treeModel = null;
-    /**
-     * Field tree.
-     */
+
+    /** The TreeModel will translate our custom structure into Swing paths etc.. */
+    private TreeModel treeModel = null;
+
+    /** A tree structure of Item objects. */
     private JTree tree = new JTree();
-    /** Choose the character class. */
+
+    /** A list of Item types to choose when we want to add Item to a container. */
     private JComboBox<String> itemClassesList = null;
 
-    /** toolkit. */
+    /** Swing toolkit. */
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
     /**
@@ -70,6 +66,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
      *            the location to display.
      */
     public ItemTreePanel(Configuration config, final Location location) {
+        super();
 
         // The JTree can get big, so allow it to scroll.
         JScrollPane scrollpane = new JScrollPane();
@@ -77,7 +74,6 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
         // The "Add" Button Panel
         JPanel addButtonPanel = new JPanel();
 
-        setRoot(location);
         setLayout(new BorderLayout());
 
         tree.setCellRenderer(new ItemTreeCellRenderer());
@@ -100,27 +96,21 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                 Object source = event.getSource();
                 if (source == addButton) {
                     Object selNode = tree.getLastSelectedPathComponent();
-                    if (selNode instanceof ItemContainer) {
-                        ItemContainer selContainer = (ItemContainer) selNode;
+                    if (selNode instanceof ItemList) {
+                        ItemList selContainer = (ItemList) selNode;
                         // Create an Item of the requested type.
                         String itemClass = itemClassesList.getSelectedItem()
                                 .toString();
                         Item newNode = Factory.createItem(itemClass);
                         // Add the new Item to the selected container.
-                        try {
 
-                            // TODO Bugfix the UI isn't being updated when new
-                            // Item objects added to container.
-                            // Is anything listening to the changes in the
-                            // container?
-                            // Perhaps the model?
+                        // TODO Bugfix the UI isn't being updated when new
+                        // Item objects added to container.
+                        // Is anything listening to the changes in the
+                        // container?
+                        // Perhaps the model?
 
-                            selContainer.add(selContainer.size(),
-                                    newNode);
-                        } catch (TooHeavyException | TooLargeException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                        selContainer.add(selContainer.size(), newNode);
                         LOGGER.debug("newNode is " + newNode);
 
                         TreePath path = getPathToRoot(newNode);
@@ -130,7 +120,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
                         tree.startEditingAtPath(path);
                     } else {
                         toolkit.beep();
-                        LOGGER.debug(selNode+" is not a container");
+                        LOGGER.warn(selNode + " is not a container");
                     }
                 }
             }
@@ -140,6 +130,8 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
 
         add(scrollpane, BorderLayout.NORTH);
         add(addButtonPanel, BorderLayout.SOUTH);
+        setRoot(location);
+
     }
 
     /**
@@ -201,27 +193,27 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
         // TODO finish
-        LOGGER.debug("Node Inserted.");
+        throw new RuntimeException("Node Inserted.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeNodesRemoved(TreeModelEvent e) {
         // TODO finish
-        LOGGER.debug("treeNodesRemoved - Node Removed.");
+        throw new RuntimeException("treeNodesRemoved - Node Removed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeStructureChanged(TreeModelEvent e) {
         // TODO finish
-        LOGGER.debug("treeStructureChanged - Node Changed.");
+        throw new RuntimeException("treeStructureChanged - Node Changed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // TODO Auto-generated method stub
-        LOGGER.debug("propertyChange - Node Changed.");
+        throw new RuntimeException("propertyChange - Node Changed.");
     }
 }

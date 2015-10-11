@@ -12,8 +12,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.PcClass;
@@ -253,12 +251,9 @@ abstract class Humanoid extends PcRace implements ItemList {
 	 * @param item
 	 *            clothing Item to wear.
 	 * 
-	 * @throws InvalidTypeException
-	 * @throws TooLargeException
-	 * @throws TooHeavyException
 	 */
 	// TODO consider wear could fail, e.g. spot occupied.
-	public void wear(Item item) throws InvalidTypeException, TooHeavyException, TooLargeException {
+	public void wear(Item item){
 		if ((rightHand != null) && (item instanceof HumanoidArmClothing)) {
 			// TODO consider implementing wear on hands.
 			// TODO consider wear could fail, e.g. spot occupied.
@@ -355,6 +350,16 @@ abstract class Humanoid extends PcRace implements ItemList {
 		return itemList.get(index);
 	}
 
+    /**
+     * {@inheritDoc}
+     * @param index where to add
+     * @param item what to add
+     */
+    @Override
+    public void add(int index, Item item) {
+        itemList.add(index,item);
+    }
+	
 	/**
 	 * {@inheritDoc} * @return int
 	 */

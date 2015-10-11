@@ -8,8 +8,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * A common Bog for holding multiple Item objects.
@@ -67,14 +65,9 @@ public class Bag extends Box {
      * @param item
      *            Item
      * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Override
-    public void add(final Item item) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void add(final Item item){
         // Look for sharp items. Wrapped sharp items are safe.
         if (item instanceof Sharp) {
             this.rupture();

@@ -8,9 +8,6 @@ import au.net.hal9000.heisenberg.item.ItemContainerImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.entity.Entity;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 
 /**
@@ -156,11 +153,7 @@ public class Cooker extends ItemContainerImpl {
         }
 
         // success
-        try {
-            this.add(item);
-        } catch (TooHeavyException | TooLargeException | InvalidTypeException e) {
-            throw new RuntimeException(FAILED_TO_ADD, e);
-        }
+        this.add(item);
         ingredients.put(key, item);
     }
 
@@ -392,13 +385,9 @@ public class Cooker extends ItemContainerImpl {
      *            destination ItemContainer.
      * @param key
      *            the ID of the requirement.
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     final void clearItemsAvailable(final String key,
-            final ItemContainer container) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+            final ItemContainer container){
         if (null == container) {
             throw new IllegalArgumentException("container may not be null");
         }

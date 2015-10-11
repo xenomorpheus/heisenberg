@@ -24,8 +24,6 @@ import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.entity.Halfling;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
@@ -51,13 +49,9 @@ public class ScenarioSet01 {
 
     /**
      * Method swordIntoScabbard.
-     * 
-     * @throws InvalidTypeException
-     *             * @throws TooHeavyException * @throws TooLargeException
      */
     @Test
-    public void swordIntoScabbard() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void swordIntoScabbard(){
         println(System.lineSeparator() + "** A sword is placed in a scabbard.");
         Sword sword = new Sword();
         println("Sword created with name: " + sword);
@@ -70,16 +64,9 @@ public class ScenarioSet01 {
 
     /**
      * Method fullBackpackIntoBox.
-     * 
-     * 
-     * 
-     * 
-     * @throws InvalidTypeException
-     *             * @throws TooHeavyException * @throws TooLargeException
      */
     @Test
-    public void fullBackpackIntoBox() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void fullBackpackIntoBox(){
         println(System.lineSeparator()
                 + "** A full backpack is placed in a box.");
         Backpack backpack = new Backpack();
@@ -131,16 +118,9 @@ public class ScenarioSet01 {
 
     /**
      * Method shieldAdd.
-     * 
-     * 
-     * 
-     * 
-     * @throws InvalidTypeException
-     *             * @throws TooHeavyException * @throws TooLargeException
      */
     @Test
-    public void shieldAdd() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void shieldAdd(){
         println(System.lineSeparator() + "** A Shield is equipped.");
         Shield shield = new Shield();
         Human human = new Human();
@@ -151,16 +131,9 @@ public class ScenarioSet01 {
 
     /**
      * Method quiverIsFilled.
-     * 
-     * 
-     * 
-     * 
-     * @throws InvalidTypeException
-     *             * @throws TooHeavyException * @throws TooLargeException
      */
     @Test
-    public void quiverIsFilled() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void quiverIsFilled(){
         println(System.lineSeparator() + "** A quiver is filled.");
         Quiver quiver = new Quiver();
         println("Quiver created.");

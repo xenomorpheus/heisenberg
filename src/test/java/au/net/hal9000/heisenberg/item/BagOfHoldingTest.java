@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 
@@ -23,15 +21,9 @@ public class BagOfHoldingTest {
 
     /**
      * test the properties for each type of bag.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void typeTest() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void typeTest() {
         Bag ordinaryBag = new Bag();
         for (int type = BagOfHolding.TYPE_I; type <= BagOfHolding.TYPE_IV; type++) {
             float expectedWeightBase = 0F;
@@ -105,15 +97,9 @@ public class BagOfHoldingTest {
 
     /**
      * testing that an ordinary Item may be added to the bag.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAdd() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testAdd(){
         Cookie cookie = new Cookie();
         cookie.setContainer(new Box());
         BagOfHolding bagOfHolding = new BagOfHolding(1);
@@ -123,15 +109,9 @@ public class BagOfHoldingTest {
 
     /**
      * an exposed sharp object causes rupture.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharp() throws InvalidTypeException, 
-            TooHeavyException, TooLargeException {
+    public void testAddSharp(){
         Sword sword = new Sword();
         Box box = new Box();
         sword.setContainer(box);
@@ -147,15 +127,9 @@ public class BagOfHoldingTest {
 
     /**
      * a covered sharp object may be added.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAddWrappedSharp() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+    public void testAddWrappedSharp(){
         Box box = new Box();
         Sword sword = new Sword();
         sword.setContainer(box);
@@ -177,15 +151,9 @@ public class BagOfHoldingTest {
 
     /**
      * an extra-dimensional object causes rupture.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddMultidimensional() throws InvalidTypeException,
-             TooHeavyException, TooLargeException {
+    public void testAddMultidimensional(){
         Box box = new Box();
         BagOfHolding bagInner = new BagOfHolding(1);
         bagInner.setContainer(box);

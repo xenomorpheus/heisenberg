@@ -1,3 +1,12 @@
+2015-10-11
+Some work on adding ability for swing tree view to accept new items.
+
+For swing support the ItemList needs to support add() of Item objects.
+add() needed to be stripped of checked exceptions as checked exceptions 
+should be used sparingly, apparently.
+
+Changed checked exceptions to runtime exceptions for the following
+  InvalidTypeException, ItemNotPresentException, TooHeavyException, TooLargeException
 
 2015-10-09
 Bugfix - Show in Swing Item objects that contain other Item objects.

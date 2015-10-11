@@ -4,9 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
@@ -28,34 +25,23 @@ public class ItemTreePanelMain {
     public static void main(String[] arg) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    DemoEnvironment.setup();
-                    Configuration config = Configuration.lastConfig();
-                    // Add Icons to Items
-                    ItemIcon.setIcon(config);
-                    Location location = DemoEnvironment.getDemoWorld();
-                    // location.setWeightMax(100000);
-                    // location.setVolumeMax(100000);
-                    ItemTreePanel itemTreePanel = new ItemTreePanel(config,
-                            location);
-                    itemTreePanel.setVisible(true);
-                    JFrame jFrame = new JFrame("ItemTeePanel Test");
-                    jFrame.setContentPane(itemTreePanel);
-                    jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-                    jFrame.pack();
-                    // Centre
-                    jFrame.setLocationRelativeTo(null);
-                    jFrame.setVisible(true);
-                } catch (InvalidTypeException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (TooHeavyException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (TooLargeException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                DemoEnvironment.setup();
+                Configuration config = Configuration.lastConfig();
+                // Add Icons to Items
+                ItemIcon.setIcon(config);
+                Location location = DemoEnvironment.getDemoWorld();
+                // location.setWeightMax(100000);
+                // location.setVolumeMax(100000);
+                ItemTreePanel itemTreePanel = new ItemTreePanel(config,
+                        location);
+                itemTreePanel.setVisible(true);
+                JFrame jFrame = new JFrame("ItemTeePanel Test");
+                jFrame.setContentPane(itemTreePanel);
+                jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
+                jFrame.pack();
+                // Centre
+                jFrame.setLocationRelativeTo(null);
+                jFrame.setVisible(true);
             }
         });
     }

@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * @author bruins
@@ -16,15 +14,9 @@ public class BagTest {
 
     /**
      * Normal item into bag.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAddOrdinary() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testAddOrdinary() {
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         // set the location so we can see that it changes
@@ -37,15 +29,9 @@ public class BagTest {
 
     /**
      * Sharp items throw ExceptionInvalidType.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddSharpRupture() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testAddSharpRupture() {
         Sword sword = new Sword();
         Location world = new Location("World");
         sword.setContainer(world);

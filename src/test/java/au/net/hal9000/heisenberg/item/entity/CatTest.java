@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Water;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -25,14 +22,9 @@ public class CatTest {
 
 	/**
 	 * Method CatMove.
-	 * 
-	 * 
-	 * @throws InvalidTypeException
-	 * @throws TooLargeException
-	 * @throws TooHeavyException
 	 */
 	@Test
-	public void testCatMove() throws InvalidTypeException, TooHeavyException, TooLargeException {
+	public void testCatMove(){
 		Location dungeon = new Location("Dungeon");
 		Cat cat = new Cat("Fluffy", "Black cat");
 		cat.move(dungeon, new Position());
@@ -44,7 +36,7 @@ public class CatTest {
 	}
 
 	@Test
-	public void testDrink() throws InvalidTypeException, TooHeavyException, TooLargeException {
+	public void testDrink(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);
@@ -61,7 +53,7 @@ public class CatTest {
 	}
 
 	@Test
-	public void testEat() throws InvalidTypeException, TooHeavyException, TooLargeException {
+	public void testEat(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);

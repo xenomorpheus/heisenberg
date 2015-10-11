@@ -12,8 +12,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.ItemNotPresentException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemSearch;
 import au.net.hal9000.heisenberg.item.property.ItemSearchExtraDimensional;
@@ -172,12 +170,9 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      *            the item to relocate
      * @param newLocation
      *            new location
-     * @throws ItemNotPresentException
-     *             when trying to remove an Item that doesn't exist.
      * @return the relocated item
      */
-    public Item getItem(Item item, ItemContainer newLocation)
-            throws ItemNotPresentException {
+    public Item getItem(Item item, ItemContainer newLocation){
         List<Item> items = this.getContents();
         if (!items.remove(item)) {
             throw new ItemNotPresentException("remove failed");
@@ -233,17 +228,8 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
      * 
      * @param item
      *            item to add.
-     * 
-     * 
-     * @throws InvalidTypeException
-     *             when ExtraDymensional Item added to bag.
-     * @throws TooLargeException
-     *             when an overly large Item added to bag.
-     * @throws TooHeavyException
-     *             when an overly heavy Item added to bag.
      */
-    public void add(Item item) throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void add(Item item) {
 
         // Recursively check for ExtraDimensional items.
         ItemSearch search = new ItemSearchExtraDimensional();

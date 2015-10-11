@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.api.ItemList;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
@@ -263,8 +262,7 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
 	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(au.net.hal9000.heisenberg.item.api.Item)
 	 */
     @Override
-	public void add(Item item) throws TooHeavyException, TooLargeException,
-            InvalidTypeException {
+	public void add(Item item){
         add(contents.size(), item);
     }
 
@@ -272,8 +270,7 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
 	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(int, au.net.hal9000.heisenberg.item.api.Item)
 	 */
     @Override
-	public void add(int index, Item item) throws TooHeavyException,
-            TooLargeException {
+	public void add(int index, Item item) {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
@@ -344,14 +341,9 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
      * 
      * @param items
      *            the items to add.
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Override
-    public void addAll(List<Item> items) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void addAll(List<Item> items){
         for (Item item : items) {
             this.add(item);
         }
@@ -361,8 +353,7 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
 	 * @see au.net.hal9000.heisenberg.item.ItemContainer#empty(au.net.hal9000.heisenberg.item.ItemContainer)
 	 */
     @Override
-	public void empty(ItemContainer newLocation) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+	public void empty(ItemContainer newLocation){
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);

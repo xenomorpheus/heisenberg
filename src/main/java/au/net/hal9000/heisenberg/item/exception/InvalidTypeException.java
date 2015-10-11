@@ -4,7 +4,7 @@ package au.net.hal9000.heisenberg.item.exception;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class InvalidTypeException extends Exception {
+public class InvalidTypeException extends RuntimeException {
 
     /**
      * serial version id.

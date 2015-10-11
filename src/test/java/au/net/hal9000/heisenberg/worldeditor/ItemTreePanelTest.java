@@ -10,9 +10,6 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -29,13 +26,9 @@ public class ItemTreePanelTest {
      * Test testItemTreePanel.
      * 
      * @throws ConfigurationError
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testItemTreePanel() throws ConfigurationError,
-            InvalidTypeException, TooHeavyException, TooLargeException {
+    public void testItemTreePanel() throws ConfigurationError{
         Configuration config = Configuration.lastConfig();
         Location location = DemoEnvironment.getDemoWorld();
         ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
@@ -43,8 +36,7 @@ public class ItemTreePanelTest {
     }
 
     @Test
-    public void testGetPathToRoot() throws TooHeavyException,
-            TooLargeException, InvalidTypeException {
+    public void testGetPathToRoot(){
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);

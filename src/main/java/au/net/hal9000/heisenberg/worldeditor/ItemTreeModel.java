@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
@@ -16,7 +17,7 @@ import au.net.hal9000.heisenberg.item.api.ItemList;
  * @author bruins
  * @version $Revision: 1.0 $
  **/
-class ItemTreeModel extends AbstractTreeModel implements TreeModel {
+class ItemTreeModel implements TreeModel {
     /**
      * Field LOGGER.
      */
@@ -24,6 +25,9 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
             .getName());
     /** We specify the root node when we create the model. */
     private Item root;
+
+    /** Provide support for listeners to tree changes */
+    TreeModelSupport treeModelSupport;
 
     /** Support for PropertyChange messaging. */
     // TODO private final PropertyChangeSupport pcs = new
@@ -43,6 +47,7 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     ItemTreeModel(Item root) {
         super();
         this.root = root;
+        this.treeModelSupport = new TreeModelSupport();
     }
 
     /**
@@ -111,9 +116,22 @@ class ItemTreeModel extends AbstractTreeModel implements TreeModel {
     /** {@inheritDoc} */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        // TODO The last element of the path must be updated with newValue (or just the properties?).
-        LOGGER.error("valueForPathChanged - not implemented");
+        // TODO The last element of the path must be updated with newValue (or
+        // just the properties?).
+        throw new RuntimeException("valueForPathChanged - not implemented");
 
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void addTreeModelListener(TreeModelListener l) {
+        treeModelSupport.addTreeModelListener(l);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void removeTreeModelListener(TreeModelListener l) {
+        treeModelSupport.addTreeModelListener(l);
     }
 
 }

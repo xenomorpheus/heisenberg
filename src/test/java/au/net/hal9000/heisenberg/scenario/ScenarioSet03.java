@@ -14,9 +14,6 @@ import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -47,15 +44,9 @@ public class ScenarioSet03 {
 
     /**
      * Method testFireGround1.
-     * 
-     * 
-     * 
-     * @throws InvalidTypeException
-     *             * @throws TooHeavyException * @throws TooLargeException
      */
     @Test
-    public void testFireGround1() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testFireGround1(){
         // The recipe we are going to test
         Recipe recipe = config.getRecipe("testFireGround1");
 

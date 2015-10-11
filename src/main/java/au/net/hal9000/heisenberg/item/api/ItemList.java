@@ -13,4 +13,6 @@ public interface ItemList {
 
 	public int indexOf(Item child);
 
+    public void add(int size, Item newNode);
+
 }

@@ -26,9 +26,6 @@ import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 
@@ -90,12 +87,7 @@ public final class DemoEnvironment {
         elf.skillsAddArray(TEST_SKILLS);
         elf.recipesAdd(TEST_RECIPES);
         Backpack backpack = (Backpack) Factory.createItem("Backpack");
-        try {
-            elf.wear(backpack);
-        } catch (InvalidTypeException | TooHeavyException | TooLargeException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        elf.wear(backpack);
         return elf;
     }
 
@@ -104,12 +96,8 @@ public final class DemoEnvironment {
      * 
      * 
      * @return a demo world of Item objects.
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
-    public static Location getDemoWorld() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public static Location getDemoWorld(){
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(TEST_WEIGHT_VOLUME);

@@ -2,9 +2,6 @@ package au.net.hal9000.heisenberg.item.api;
 
 import java.util.Properties;
 
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
@@ -232,30 +229,16 @@ public interface Item {
      *            the container that will hold this item.
      * @param requestedPosition
      *            the requested position within the container.
-     * @throws InvalidTypeException
-     *             wrong type of Item.
-     * @throws TooLargeException
-     *             when an overly large Item added to bag.
-     * @throws TooHeavyException
-     *             when an overly heavy Item added to bag.
      */
-    void move(ItemContainer container, Position requestedPosition)
-            throws InvalidTypeException, TooHeavyException, TooLargeException;
+    void move(ItemContainer container, Position requestedPosition);
 
     /**
      * Move the item into the ItemContainer.
      * 
      * @param container
      *            the container that will hold this item.
-     * @throws InvalidTypeException
-     *             wrong type of Item.
-     * @throws TooLargeException
-     *             when an overly large Item added to bag.
-     * @throws TooHeavyException
-     *             when an overly heavy Item added to bag.
      */
-    void move(ItemContainer container) throws InvalidTypeException,
-            TooHeavyException, TooLargeException;
+    void move(ItemContainer container);
 
     /**
      * 

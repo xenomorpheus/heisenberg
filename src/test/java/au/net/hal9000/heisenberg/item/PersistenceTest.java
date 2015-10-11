@@ -13,9 +13,6 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
@@ -83,14 +80,9 @@ public class PersistenceTest {
 
     /**
      * Method testContainer.
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testContainer() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testContainer(){
         Bag bag = new Bag();
         Cookie cookie1 = new Cookie();
         Cookie cookie2 = new Cookie();
@@ -122,13 +114,8 @@ public class PersistenceTest {
      * Method testGetWorld.
      * 
      * @return Location
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
-    public static Location testGetWorld() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public static Location testGetWorld(){
         // Ad-hoc test world
         Location world = new Location("World");
         world.setWeightMax(100000);
@@ -197,16 +184,10 @@ public class PersistenceTest {
 
     /**
      * Method testLocation.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
     // world persistence
-    public void testLocation() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testLocation(){
 
         Location loc = testGetWorld();
 

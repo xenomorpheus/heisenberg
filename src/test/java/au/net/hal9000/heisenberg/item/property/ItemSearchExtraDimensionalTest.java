@@ -11,9 +11,6 @@ import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -55,15 +52,9 @@ public class ItemSearchExtraDimensionalTest {
     // Ordinary container with ED inside
     /**
      * Method testAccept.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAccept4() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testAccept4(){
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());
@@ -77,15 +68,9 @@ public class ItemSearchExtraDimensionalTest {
     // Ordinary container with non-ED inside
     /**
      * Method testAccept.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testAccept5() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testAccept5(){
         Box box = new Box();
         BagOfHolding boh = new BagOfHolding(1);
         box.setWeightMax(boh.getWeight());

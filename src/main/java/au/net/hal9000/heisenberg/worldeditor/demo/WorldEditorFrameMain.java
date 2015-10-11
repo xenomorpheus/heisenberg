@@ -15,13 +15,17 @@ public class WorldEditorFrameMain {
      * @param args
      *            not used
      */
+    /**
+     * Field LOGGER.
+     */
+    static final Logger LOGGER = Logger.getLogger(WorldEditorFrameMain.class
+            .getName());
+
     public static void main(String[] args) {
-        /**
-         * Field LOGGER.
-         */
-        final Logger LOGGER = Logger.getLogger(
-                WorldEditorFrameMain.class.getName());
-        LOGGER.error("WorldEditorFrameMain");
+
+        LOGGER.error("ERROR WorldEditorFrameMain");
+        LOGGER.warn("WARN WorldEditorFrameMain");
+        LOGGER.info("INFO WorldEditorFrameMain");
 
         // Use the event dispatch thread for Swing components
         SwingUtilities.invokeLater(new Runnable() {

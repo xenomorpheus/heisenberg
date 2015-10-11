@@ -17,9 +17,6 @@ import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 // Custom
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
@@ -615,8 +612,7 @@ public abstract class ItemImpl implements Serializable, Item {
      * .item.ItemContainer, au.net.hal9000.heisenberg.units.Position)
      */
     @Override
-    public void move(ItemContainer container, Position requestedPosition)
-            throws InvalidTypeException, TooHeavyException, TooLargeException {
+    public void move(ItemContainer container, Position requestedPosition){
         container.add(this);
         moveWithinContainer(requestedPosition);
     }
@@ -629,8 +625,7 @@ public abstract class ItemImpl implements Serializable, Item {
      * .item.ItemContainer)
      */
     @Override
-    public void move(ItemContainer container) throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void move(ItemContainer container) {
         container.add(this);
     }
 

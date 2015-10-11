@@ -13,11 +13,8 @@ import org.junit.Test;
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 
 public class ItemTreeModelTest {
 
@@ -42,8 +39,7 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testIsLeaf() throws TooHeavyException, TooLargeException,
-            InvalidTypeException {
+    public void testIsLeaf(){
         ItemContainer box = new Box();
         Item cookie = new Cookie();
         box.add(cookie);
@@ -53,8 +49,7 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testGetChildCount() throws TooHeavyException,
-            TooLargeException, InvalidTypeException {
+    public void testGetChildCount(){
         ItemContainer box = new Box();
         Item cookie = new Cookie();
         TreeModel tm = new ItemTreeModel(box);
@@ -64,8 +59,7 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testGetChild() throws TooHeavyException, TooLargeException,
-            InvalidTypeException {
+    public void testGetChild(){
         ItemContainer box = new Box();
         Item cookie = new Cookie();
         Item arrow = new Arrow();
@@ -77,8 +71,7 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testGetIndexOfChild() throws TooHeavyException,
-            TooLargeException, InvalidTypeException {
+    public void testGetIndexOfChild(){
         ItemContainer box = new Box();
         Item cookie = new Cookie();
         Item arrow = new Arrow();
@@ -90,8 +83,7 @@ public class ItemTreeModelTest {
     }
 
     @Test
-    public void testValueForPathChanged() throws TooHeavyException,
-            TooLargeException, InvalidTypeException {
+    public void testValueForPathChanged(){
         ItemContainer box = new Box();
         Item cookie = new Cookie();
         Item arrow = new Arrow();
@@ -100,7 +92,7 @@ public class ItemTreeModelTest {
         TreeModel tm = new ItemTreeModel(box);
         TreePath path = null; // TODO Get path from Root ?
         Item newValue = null; // TODO New Item ?
-        tm.valueForPathChanged(path, newValue);
+        // TODO tm.valueForPathChanged(path, newValue);
         // TODO fail("TEST not yet implemented");
     }
 

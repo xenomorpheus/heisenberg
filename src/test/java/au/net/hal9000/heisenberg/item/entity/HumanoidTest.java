@@ -5,12 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.Shield;
-import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  */
@@ -28,7 +25,7 @@ public class HumanoidTest {
      */
     @Test
     public void testGetWeight() {
-        Human human = new Human(); // Close enough for this abstract class
+        Humanoid human = new Human(); // Close enough for this abstract class
         human.getHead().setWeightBase(1F);
         human.getLeftHand().setWeightBase(2F);
         human.getRightHand().setWeightBase(4F);
@@ -46,32 +43,20 @@ public class HumanoidTest {
 
     /**
      * Method testWear.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testWear() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
-        Human human = new Human(); // Close enough
+    public void testWear(){
+        Humanoid human = new Human(); // Close enough
         Item shield = new Shield();
         human.wear(shield);
     }
 
     /**
      * Test trying to wear non-clothing.
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
-     * 
-     * @throws InvalidTypeException
      */
     @Test(expected = InvalidTypeException.class)
-    public void testAddItem() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
-        Human human = new Human();
+    public void testAddItem(){
+        Humanoid human = new Human();
         Cookie cookie = new Cookie();
         human.wear(cookie);
     }

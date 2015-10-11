@@ -5,9 +5,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
@@ -25,15 +22,9 @@ public class CloakTest {
 
     /**
      * Method testIsWearable.
-     * 
-     * @throws InvalidTypeException
-     * 
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testIsWearable() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testIsWearable(){
         Human human = new Human();
         Cloak cloak = new Cloak();
         human.wear(cloak);

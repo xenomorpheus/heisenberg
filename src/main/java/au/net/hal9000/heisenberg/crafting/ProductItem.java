@@ -3,9 +3,6 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 
 /**
  * The results of the crafting process. e.g. Item objects.
@@ -94,11 +91,7 @@ public class ProductItem extends Product {
         ItemContainer newItemLocation = (ItemContainer) cooker
                 .findIngredientByName("Location");
         Item item = Factory.createItem(getType());
-        try {
-            newItemLocation.add(item);
-        } catch (TooHeavyException | TooLargeException | InvalidTypeException e) {
-            throw new RuntimeException("Failed to add to Location", e);
-        }
+        newItemLocation.add(item);
     }
 
 }

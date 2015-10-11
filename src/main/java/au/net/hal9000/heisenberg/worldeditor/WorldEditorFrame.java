@@ -15,9 +15,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import au.net.hal9000.heisenberg.item.Location;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemIcon;
@@ -73,13 +70,7 @@ public class WorldEditorFrame extends JFrame {
         setBounds(100, 100, 894, 634);
 
         // Main container
-        try {
-            location = DemoEnvironment.getDemoWorld();
-        } catch (InvalidTypeException | TooHeavyException | TooLargeException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-            location = new Location("The world");
-        }
+        location = DemoEnvironment.getDemoWorld();
         location.setWeightMax(1000000);
         location.setVolumeMax(1000000);
 
@@ -102,18 +93,7 @@ public class WorldEditorFrame extends JFrame {
                     setLocation(location);
                 }
                 if ("Demo".equals(eventName)) {
-                    try {
-                        setLocation(DemoEnvironment.getDemoWorld());
-                    } catch (InvalidTypeException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (TooHeavyException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (TooLargeException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    setLocation(DemoEnvironment.getDemoWorld());
                 }
                 if ("Open".equals(eventName)) {
                     // TODO load.

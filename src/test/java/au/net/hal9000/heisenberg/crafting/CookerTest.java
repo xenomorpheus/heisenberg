@@ -21,9 +21,6 @@ import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.entity.PcRace;
-import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
-import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -155,8 +152,7 @@ public class CookerTest {
      * 
      */
     @Test
-    public void testFullProcess() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testFullProcess(){
 
         Location world = new Location("World");
         Cookie cookie = new Cookie();
@@ -247,15 +243,9 @@ public class CookerTest {
 
     /**
      * Method testRecipeItemsAvailable.
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testRecipeItemsAvailable() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testRecipeItemsAvailable(){
 
         Location world = new Location("world");
         world.setVolumeMax(-1);
@@ -354,15 +344,9 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: no change <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testCookGeneralNull() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookGeneralNull(){
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-general-null",
@@ -398,15 +382,9 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: mana=0 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testCookGeneralMana1() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookGeneralMana1(){
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-mana-1", "Mana test, just enough.",
@@ -436,11 +414,6 @@ public class CookerTest {
      * Input: mana 2 <BR>
      * overall: fail <BR>
      * output: mana 2 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
@@ -478,11 +451,6 @@ public class CookerTest {
      * Input: mana 4 <BR>
      * overall: pass <BR>
      * output: mana 1 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
@@ -516,15 +484,9 @@ public class CookerTest {
      * Result: <BR>
      * overall : pass <BR>
      * output: actionPoints=0 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Test
-    public void testCookGeneralActionPoints1() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookGeneralActionPoints1(){
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-1",
@@ -555,11 +517,6 @@ public class CookerTest {
      * Input: actionPoints 2 <BR>
      * overall: fail <BR>
      * output: actionPoints 2 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
@@ -596,16 +553,10 @@ public class CookerTest {
      * Input: actionPoints 4 <BR>
      * overall: pass <BR>
      * output: actionPoints 1 <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookGeneralActionPoints3() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookGeneralActionPoints3(){
 
         // Build a recipe with the list of required ingredients
         Recipe recipe = new Recipe("test-actionPoints-3",
@@ -633,16 +584,10 @@ public class CookerTest {
      * Equal skills to requirements <BR>
      * overall: true <BR>
      * output: no other change <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookSkills1() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookSkills1(){
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -676,16 +621,10 @@ public class CookerTest {
      * Desc: Less skills than required <BR>
      * overall: fail <BR>
      * output: no other change <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookSkills2() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookSkills2(){
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -727,16 +666,10 @@ public class CookerTest {
      * Desc: More skills than required <BR>
      * overall: true <BR>
      * output: no other change <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookSkills3() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookSkills3(){
 
         // Skills
         Set<Skill> skillsRequired = new TreeSet<Skill>();
@@ -774,16 +707,10 @@ public class CookerTest {
      * Input: Cookie <BR>
      * overall: true <BR>
      * output: The Cookie is consumed. <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookItem1() throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void testCookItem1(){
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);
@@ -827,16 +754,10 @@ public class CookerTest {
      * Input: Cookie <BR>
      * overall: true <BR>
      * output: The Cookie is NOT consumed. <BR>
-     * 
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
 
     @Test
-    public void testCookItem1Catalyst() throws InvalidTypeException,
-            TooHeavyException, TooLargeException {
+    public void testCookItem1Catalyst(){
         Location world = new Location("World");
         Cookie cookie = new Cookie();
         world.add(cookie);

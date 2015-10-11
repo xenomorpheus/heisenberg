@@ -5,7 +5,6 @@ import java.awt.Component;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import au.net.hal9000.heisenberg.item.ItemImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
 
 /**

@@ -7,7 +7,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
@@ -60,14 +59,9 @@ public class Scabbard extends Box {
 
     /**
      * {@inheritDoc} * @param item Item
-     * 
-     * @throws InvalidTypeException
-     * @throws TooLargeException
-     * @throws TooHeavyException
      */
     @Override
-    public void add(Item item) throws InvalidTypeException, TooHeavyException,
-            TooLargeException {
+    public void add(Item item){
         // We need to accept all Items, not just swords,
         // otherwise our super will accept them for us
         // which is bad.

@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.exception;
 
 /**
  */
-public final class TooLargeException extends Exception {
+public final class TooLargeException extends RuntimeException {
 
     /**
      * serial version id.
