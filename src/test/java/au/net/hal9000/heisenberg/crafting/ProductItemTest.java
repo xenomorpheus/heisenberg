@@ -68,7 +68,7 @@ public class ProductItemTest {
      */
     @Test
     public void meetsRequirementsTest() {
-        // TODO complete
+        // TODO complete unit test
         // ProductItem productItem = new ProductItem("SomeId");
         // Cooker cooker = new Cooker();
         // String string = productItem.meetsRequirements(cooker);
@@ -79,6 +79,6 @@ public class ProductItemTest {
      */
     @Test
     public void createProductTest() {
-        // TODO complete
+        // TODO complete unit test
     }
 }

@@ -38,8 +38,8 @@ public class Hand extends ItemContainerImpl {
     public Hand(String string) {
         super(string);
         ItemProperty.setLiving(this, true);
-        this.setWeightMax(2); // TODO config
-        this.setVolumeMax(2); // TODO config
+        this.setWeightMax(2); // TODO move to config
+        this.setVolumeMax(2); // TODO move to config
     }
 
 

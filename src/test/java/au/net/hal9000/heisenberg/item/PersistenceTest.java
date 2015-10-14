@@ -55,7 +55,7 @@ public class PersistenceTest {
             // Persist it
             em.persist(item);
             em.getTransaction().commit();
-            /** TODO 
+            /** TODO PersistanceTest
             long jpaId = item.getJpaId();
             assertNotEquals(0L, jpaId);
 

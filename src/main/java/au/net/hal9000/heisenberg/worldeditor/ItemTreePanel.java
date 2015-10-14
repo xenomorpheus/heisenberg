@@ -192,28 +192,28 @@ public class ItemTreePanel extends JPanel implements TreeModelListener,
     /** {@inheritDoc} */
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
-        // TODO finish
+        // TODO finish treeNodesInserted
         throw new RuntimeException("Node Inserted.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeNodesRemoved(TreeModelEvent e) {
-        // TODO finish
+        // TODO finish treeNodesRemoved
         throw new RuntimeException("treeNodesRemoved - Node Removed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void treeStructureChanged(TreeModelEvent e) {
-        // TODO finish
+        // TODO finish treeStructureChanged
         throw new RuntimeException("treeStructureChanged - Node Changed.");
     }
 
     /** {@inheritDoc} */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub propertyChange
         throw new RuntimeException("propertyChange - Node Changed.");
     }
 }

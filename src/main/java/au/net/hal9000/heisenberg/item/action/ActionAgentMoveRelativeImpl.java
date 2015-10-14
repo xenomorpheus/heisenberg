@@ -24,7 +24,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
      * 
      * @param agentPostionDelta
      *            Agent's movement relative to current position.
-     * @param cost TODO
+     * @param cost the effort / cost of performing the action
      */
 
     public ActionAgentMoveRelativeImpl(final Position agentPostionDelta, double cost) {

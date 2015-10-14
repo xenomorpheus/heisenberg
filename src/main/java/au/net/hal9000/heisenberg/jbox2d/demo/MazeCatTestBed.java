@@ -141,8 +141,8 @@ class MazeCatTestBed extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f); // TODO
-                                                                        // y=5.5
+            bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f); 
+            // TODO y=5.5
             bd.userData = RAT_TAG;
             ratBody = world.createBody(bd);
             ratBody.createFixture(fd);

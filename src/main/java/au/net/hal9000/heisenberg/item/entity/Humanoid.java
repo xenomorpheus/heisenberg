@@ -217,7 +217,7 @@ abstract class Humanoid extends PcRace implements ItemList {
 	 * @return the maximum volume that this item can hold.
 	 */
 	public float getVolumeMax() {
-		float volumeMax = 0; // TODO
+		float volumeMax = 0; // TODO set a real Humanoid volumeMax
 		return volumeMax;
 	}
 

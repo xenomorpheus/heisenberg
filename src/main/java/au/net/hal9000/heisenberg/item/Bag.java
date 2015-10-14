@@ -24,10 +24,10 @@ public class Bag extends Box {
     private static final long serialVersionUID = 1L;
 
     /** maximum default weight this bag can hold. */
-    private static final float WEIGHT_MAX_DEFAULT = 100; // TODO config
+    private static final float WEIGHT_MAX_DEFAULT = 100; // TODO move to config
 
     /** maximum default volume this bag can hold. */
-    private static final float VOLUME_MAX_DEFAULT = 100; // TODO config
+    private static final float VOLUME_MAX_DEFAULT = 100; // TODO move to config
 
     /**
      * Constructor.
