@@ -1,19 +1,9 @@
 package au.net.hal9000.heisenberg.jbox2d.demo;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
-import org.junit.Test;
-
-import au.net.hal9000.heisenberg.jbox2d.demo.MazeCat;
-import au.net.hal9000.heisenberg.jbox2d.demo.MazeUtil;
-import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * The start of a class to run in the JBox2D physics engine.<br>
@@ -24,7 +14,7 @@ import au.net.hal9000.heisenberg.units.Position;
  * The walls will be seen using a raycast for vision to see walls before hitting
  * them.
  */
-public class MazeCatTest {
+public class HunterPreyAiTest {
 
     /** maze position */
     private static final float BARRIER_OFFSET_X = 5.0f;
@@ -32,25 +22,11 @@ public class MazeCatTest {
     private static final float BARRIER_OFFSET_Y = 5.0f;
     /** update Cat AI Plan only every nth step */
     /** Cat Jbox2d object. */
-    private Body catBody;
+    private Body hunterBody;
     /** Rat Jbox2d object. */
-    private Body ratBody;
+    private Body preyBody;
 
-    private MazeCat mazeCat;
-
-    /**
-     * Called by the JBox2D physics engine to allow the game objects to interact
-     * with the engine.
-     * 
-     */
-    @Test
-    public void testAiPlan() {
-        initTest();
-        mazeCat.aiPlan();
-        List<Position> catPositionPath = mazeCat.getPositionPath();
-        assertNotNull("path not null", catPositionPath );
-        assertTrue("path size",catPositionPath.size() > 0);
-    }
+    private HunterPreyAi hunterPrey;
 
     /**
      * Initial setup of the objects in the physics engine.
@@ -65,7 +41,7 @@ public class MazeCatTest {
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
             bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y - 8.0f);
-            catBody = new Body(bd, null);
+            hunterBody = new Body(bd, null);
         }
 
         // Rat
@@ -76,16 +52,16 @@ public class MazeCatTest {
             bd.type = BodyType.DYNAMIC;
             bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f); // TODO
                                                                         // y=5.5
-            ratBody = new Body(bd, null);
+            preyBody = new Body(bd, null);
         }
 
-        mazeCat = new MazeCat(catBody, ratBody);
+        hunterPrey = new HunterPreyAi(hunterBody, preyBody);
 
         // Outer Boundary Walls
         {
 
             Vec2[] boundary_shape = MazeUtil.getBoundaryShape();
-            mazeCat.learnBarrierArray(boundary_shape, new Vec2(
+            hunterPrey.learnBarrierArray(boundary_shape, new Vec2(
                     BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "boundary");
 
         }
@@ -94,7 +70,7 @@ public class MazeCatTest {
         {
 
             Vec2[] barrier_shape = MazeUtil.getBarrierShape();
-            mazeCat.learnBarrierArray(barrier_shape, new Vec2(BARRIER_OFFSET_X,
+            hunterPrey.learnBarrierArray(barrier_shape, new Vec2(BARRIER_OFFSET_X,
                     BARRIER_OFFSET_Y), "barrier");
 
         }

@@ -9,17 +9,12 @@ public abstract class ActionBase implements Action {
 
 	public ActionBase(double cost) {
 		super();
-		this.setCost(cost);
+		this.cost = cost;
 	}
 
 	@Override
 	public double getCost() {
 		return cost;
-	}
-
-	@Override
-	public void setCost(double cost) {
-		this.cost = cost;
 	}
 
 	@Override

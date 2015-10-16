@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 
@@ -12,14 +11,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
  * @version $Revision: 1.0 $
  */
 public final class Factory {
-
-    /**
-     * Constructor.
-     */
-    private Factory() {
-        super();
-
-    }
 
     /**
      * Create a new Item of the specified type.
@@ -58,28 +49,10 @@ public final class Factory {
                 final Constructor<?> ct = itemClass.getConstructor(partypes);
                 return (Item) ct.newInstance(arguments);
             }
-        } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException(
-                    "(ClassNotFoundException) bad type=" + type, e);
-        } catch (InstantiationException e) {
-            throw new IllegalArgumentException(
-                    "(InstantiationException) bad type=" + type, e);
-        } catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(
-                    "(IllegalAccessException) bad type=" + type, e);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(
-                    "(IllegalArgumentException) bad type=" + type, e);
-        } catch (InvocationTargetException e) {
-            throw new IllegalArgumentException(
-                    "(InvocationTargetException) bad type=" + type, e);
-        } catch (SecurityException e) {
-            throw new IllegalArgumentException("(SecurityException) bad type="
-                    + type, e);
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(
-                    "(NoSuchMethodException) bad type=" + type, e);
+        }
+        catch (Exception e ){
+        	throw new IllegalArgumentException(
+                    "Bad Item type=" + type, e);
         }
     }
-
 }

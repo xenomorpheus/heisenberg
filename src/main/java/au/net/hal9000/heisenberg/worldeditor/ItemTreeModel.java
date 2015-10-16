@@ -27,16 +27,11 @@ class ItemTreeModel implements TreeModel {
     private Item root;
 
     /** Provide support for listeners to tree changes */
-    TreeModelSupport treeModelSupport;
+    private TreeModelSupport treeModelSupport;
 
     /** Support for PropertyChange messaging. */
     // TODO private final PropertyChangeSupport pcs = new
     // PropertyChangeSupport(this);
-
-    /**
-     * instantiate the notification support
-     */
-    // TODO private TreeModelSupport treeModelSupport;
 
     /**
      * Constructor for ItemTreeModel.
@@ -118,6 +113,7 @@ class ItemTreeModel implements TreeModel {
     public void valueForPathChanged(TreePath path, Object newValue) {
         // TODO The last element of the path must be updated with newValue (or
         // just the properties?).
+        LOGGER.error("valueForPathChanged");
         throw new RuntimeException("valueForPathChanged - not implemented");
 
     }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.FringeElement;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
@@ -20,6 +22,8 @@ import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
  * @version $Revision: 1.0 $
  */
 public class SearchAStar extends SearchBase {
+	/** generates possible Action objects from current ModelState */
+    private ActionGenerator actionGenerator;
     /** maximum fringe expansion. */
     private int fringeExpansionMax = 0;
     /** how many fringe expansions so far */
@@ -34,10 +38,12 @@ public class SearchAStar extends SearchBase {
      *            the successor function.
      * @param modelStateEvaluator
      *            the model state evaluator.
+     * @param actionGenerator TODO
      */
     public SearchAStar(final SuccessorFunction successorFunction,
-            final ModelStateEvaluator modelStateEvaluator) {
+            final ModelStateEvaluator modelStateEvaluator, ActionGenerator actionGenerator) {
         super(successorFunction, modelStateEvaluator);
+        this.actionGenerator = actionGenerator;
     }
 
     // Setters and Getters.
@@ -92,9 +98,13 @@ public class SearchAStar extends SearchBase {
                 resultPath = pathSoFar;
                 break;
             }
+            // Action objects that may be performed at this ModelState
+            List<Action> actions = actionGenerator.generateActions(currentModelState);
 
+            // ModelState Successor objects from the current ModelState.
             Queue<Successor> successors = getSuccessorFunction()
-                    .generateSuccessors(currentModelState);
+                    .generateSuccessors(currentModelState, actions);
+
             for (Successor successor : successors) {
 
                 ModelState successorModelState = successor.getModelState();

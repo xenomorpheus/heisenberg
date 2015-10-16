@@ -21,7 +21,7 @@ import org.jbox2d.testbed.framework.TestbedTest;
  * The walls will be seen using a raycast for vision to see walls before hitting
  * them.
  */
-class MazeCatTestBed extends TestbedTest {
+class HunterPreyTestBed extends TestbedTest {
 
     /** Perform vision update every Nth world step */
     private static final int CAT_AI_UPDATE = 30;
@@ -44,14 +44,14 @@ class MazeCatTestBed extends TestbedTest {
     /** Rat Jbox2d object. */
     private Body ratBody;
     /** AI */
-    private MazeCat mazeCat;
+    private HunterPreyAi mazeCat;
     /** JBox Physics Engine world */
     private World world = null;
     /** Debug Graphics object for drawing in JBox Physics Engine world */
     private DebugDraw debugDraw = null;
 
     /** Constructor */
-    public MazeCatTestBed() {
+    public HunterPreyTestBed() {
         super();
     }
 
@@ -148,7 +148,7 @@ class MazeCatTestBed extends TestbedTest {
             ratBody.createFixture(fd);
         }
 
-        mazeCat = new MazeCat(catBody, ratBody);
+        mazeCat = new HunterPreyAi(catBody, ratBody);
 
         // TODO remove cheat and use vision to see boundary and barriers.
         // Outer Boundary Walls

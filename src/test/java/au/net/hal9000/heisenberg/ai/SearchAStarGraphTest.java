@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.TreeMap;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.ai.api.Path;
@@ -30,267 +32,250 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
  */
 public class SearchAStarGraphTest {
 
-    static final String START = "S";
-    static final String GOAL = "G";
+	static final String START = "S";
+	static final String GOAL = "G";
 
-    /** an edge leading away from a node */
-    private class NodeTransition {
-        /** the next node */
-        String nextNodeName;
-        /* the cost to reach the next node. */
-        float cost;
+	/** Graph details about a node. */
+	private class MyNodeDataSet {
 
-        /** constructor */
-        NodeTransition(String nextNodeName, float cost) {
-            this.nextNodeName = nextNodeName;
-            this.cost = cost;
-        }
-    }
+		/** estimated cost to goal. */
+		float heuristic;
 
-    /** Graph details about a node. */
-    private class NodeDataSet {
+		/** possible actions AKA edges from this node */
+		Map<String, Float> transitionMap;
 
-        /** estimated cost to goal. */
-        float heuristic;
+		/** constructor */
+		MyNodeDataSet(float heuristic, Map<String, Float> transitionMap) {
+			this.heuristic = heuristic;
+			this.transitionMap = transitionMap;
+		}
+	}
 
-        /** possible actions AKA edges from this node */
-        List<NodeTransition> transitionSet;
+	private class MyAction extends ActionBase implements Action {
+		String nodeName;
 
-        /** constructor */
-        NodeDataSet(float heuristic, List<NodeTransition> transitionSet) {
-            this.heuristic = heuristic;
-            this.transitionSet = transitionSet;
-        }
-    }
+		// Constructor
+		MyAction(String nodeName, Float cost) {
+			super(cost);
+			this.nodeName = nodeName;
+		}
 
-    private class MyAction implements Action {
-        String nodeName;
-
-        // Constructor
-        MyAction(String nodeName) {
-            this.nodeName = nodeName;
-        }
-
-        // Misc
-        @Override
-        public void apply(ModelState modelState) {
-            MyModelState myModelState = (MyModelState) modelState;
-            myModelState.setAgentPosition(nodeName);
-        }
-
+		// Misc
 		@Override
-		public double getCost() {
-			// TODO Auto-generated method stub
-			return 0;
+		public void apply(ModelState modelState) {
+			MyModelState myModelState = (MyModelState) modelState;
+			myModelState.setAgentPosition(nodeName);
+		}
+
+	}
+
+	private class MyTransitionMap {
+
+		Map<String, MyNodeDataSet> getTransitionMap() {
+			Map<String, Float> sTransition = new HashMap<>();
+			sTransition.put("A", 2.f);
+			sTransition.put("B", 1.f);
+
+			Map<String, Float> aTransition = new HashMap<>();
+			aTransition.put("D", 1.f);
+			aTransition.put("C", 3.f);
+			aTransition.put("B", 1.f);
+
+			Map<String, Float> bTransition = new HashMap<>();
+			bTransition.put("D", 5.f);
+			bTransition.put(GOAL, 10.f);
+
+			Map<String, Float> cTransition = new HashMap<>();
+			cTransition.put(GOAL, 7.f);
+
+			Map<String, Float> dTransition = new HashMap<>();
+			dTransition.put(GOAL, 4.f);
+
+			Map<String, MyNodeDataSet> transitionMap = new TreeMap<>();
+			transitionMap.put(START, new MyNodeDataSet(0.0f, sTransition));
+			transitionMap.put("A", new MyNodeDataSet(3.0f, aTransition));
+			transitionMap.put("B", new MyNodeDataSet(3.0f, bTransition));
+			transitionMap.put("C", new MyNodeDataSet(1.0f, cTransition));
+			transitionMap.put("D", new MyNodeDataSet(2.0f, dTransition));
+			return transitionMap;
+		}
+	}
+
+	private class MyModelStateEvaluator implements ModelStateEvaluator {
+		private Map<String, MyNodeDataSet> transitionMap = null;
+
+		MyModelStateEvaluator(Map<String, MyNodeDataSet> transitionMap) {
+			super();
+			this.transitionMap = transitionMap;
 		}
 
 		@Override
-		public void setCost(double cost) {
-			// TODO Auto-generated method stub
-			
+		public double costToGoalEstimate(ModelState modelState) {
+			MyModelState myModelState = (MyModelState) modelState;
+			if (isAtGoal(modelState)) {
+				return 0;
+			}
+			return transitionMap.get(myModelState.agentPosition).heuristic;
 		}
-    }
 
-    private class MyTransitionSet {
-        private Map<String, NodeDataSet> transitionSet = null;
+		@Override
+		public boolean isAtGoal(ModelState modelState) {
+			MyModelState myModelState = (MyModelState) modelState;
+			return GOAL.equals(myModelState.agentPosition);
+		}
 
-        MyTransitionSet() {
-            super();
-        }
+		@Override
+		public boolean isModelStateInAdded(List<ModelState> addedModelStates, ModelState modelState) {
+			for (ModelState modelStateOther : addedModelStates) {
+				if (modelState.equals(modelStateOther)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	};
 
-        Map<String, NodeDataSet> getTransitionSet() {
-            if (transitionSet == null) {
-                List<NodeTransition> sTransition = new ArrayList<>();
-                sTransition.add(new NodeTransition("A", 2.f));
-                sTransition.add(new NodeTransition("B", 1.f));
+	private class MyModelState implements ModelState {
+		String agentPosition;
 
-                List<NodeTransition> aTransition = new ArrayList<>();
-                aTransition.add(new NodeTransition("D", 1.f));
-                aTransition.add(new NodeTransition("C", 3.f));
-                aTransition.add(new NodeTransition("B", 1.f));
+		MyModelState(String agentPosition) {
+			super();
+			this.agentPosition = agentPosition;
+		}
 
-                List<NodeTransition> bTransition = new ArrayList<>();
-                bTransition.add(new NodeTransition("D", 5.f));
-                bTransition.add(new NodeTransition(GOAL, 10.f));
+		void setAgentPosition(String agentPosition) {
+			this.agentPosition = agentPosition;
+		}
 
-                List<NodeTransition> cTransition = new ArrayList<>();
-                cTransition.add(new NodeTransition(GOAL, 7.f));
+		@Override
+		public MyModelState duplicate() {
+			return new MyModelState(agentPosition);
+		}
 
-                List<NodeTransition> dTransition = new ArrayList<>();
-                dTransition.add(new NodeTransition(GOAL, 4.f));
+		private SearchAStarGraphTest getOuterType() {
+			return SearchAStarGraphTest.this;
+		}
 
-                transitionSet = new TreeMap<>();
-                transitionSet.put(START, new NodeDataSet(0.0f, sTransition));
-                transitionSet.put("A", new NodeDataSet(3.0f, aTransition));
-                transitionSet.put("B", new NodeDataSet(3.0f, bTransition));
-                transitionSet.put("C", new NodeDataSet(1.0f, cTransition));
-                transitionSet.put("D", new NodeDataSet(2.0f, dTransition));
-            }
-            return transitionSet;
-        }
-    }
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((agentPosition == null) ? 0 : agentPosition.hashCode());
+			return result;
+		}
 
-    private class MyModelStateEvaluator implements ModelStateEvaluator {
-        private Map<String, NodeDataSet> transitionSet = null;
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			MyModelState other = (MyModelState) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (agentPosition == null) {
+				if (other.agentPosition != null)
+					return false;
+			} else if (!agentPosition.equals(other.agentPosition))
+				return false;
+			return true;
+		}
 
-        MyModelStateEvaluator(Map<String, NodeDataSet> transitionSet) {
-            super();
-            this.transitionSet = transitionSet;
-        }
+	}
 
-        @Override
-        public double costToGoalEstimate(ModelState modelState) {
-            MyModelState myModelState = (MyModelState) modelState;
-            if (isAtGoal(modelState)) {
-                return 0;
-            }
-            return transitionSet.get(myModelState.agentPosition).heuristic;
-        }
+	private class MyActionGenerator implements ActionGenerator {
 
-        @Override
-        public boolean isAtGoal(ModelState modelState) {
-            MyModelState myModelState = (MyModelState) modelState;
-            return GOAL.equals(myModelState.agentPosition);
-        }
+		private Map<String, MyNodeDataSet> transitionMap;
 
-        @Override
-        public boolean isModelStateInAdded(List<ModelState> addedModelStates,
-                ModelState modelState) {
-            for (ModelState modelStateOther : addedModelStates) {
-                if (modelState.equals(modelStateOther)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    };
+		MyActionGenerator(Map<String, MyNodeDataSet> transitionMap) {
+			super();
+			this.transitionMap = transitionMap;
+		}
 
-    private class MyModelState implements ModelState {
-        String agentPosition;
+		@Override
+		public List<Action> generateActions(ModelState modelState) {
+			List<Action> list = new ArrayList<>();
+			MyModelState myModelState = (MyModelState) modelState;
+			String agentPositionNow = myModelState.agentPosition;
+			MyNodeDataSet nodeDataSet = transitionMap.get(agentPositionNow);
+			for (String agentPositionNext : nodeDataSet.transitionMap.keySet()) {
+				Float cost = nodeDataSet.transitionMap.get(agentPositionNext);
+				list.add(new MyAction(agentPositionNext, cost));
+			}
+			return list;
+		}
 
-        MyModelState(String agentPosition) {
-            super();
-            this.agentPosition = agentPosition;
-        }
+	}
 
-        void setAgentPosition(String agentPosition) {
-            this.agentPosition = agentPosition;
-        }
+	private class MyTransitionFunction implements TransitionFunction {
 
-        @Override
-        public MyModelState duplicate() {
-            return new MyModelState(agentPosition);
-        }
+		@Override
+		public ModelState transition(ModelState modelState, Action action) {
+			MyAction myAction = (MyAction) action;
+			return new MyModelState(myAction.nodeName);
+		}
+	};
 
-        private SearchAStarGraphTest getOuterType() {
-            return SearchAStarGraphTest.this;
-        }
+	/**
+	 * Test moving within a graph set of notes.
+	 */
+	@Test
+	public void testAiMovementWithGoalBase() {
 
-        @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + getOuterType().hashCode();
-            result = prime * result
-                    + ((agentPosition == null) ? 0 : agentPosition.hashCode());
-            return result;
-        }
+		// Setup starting model state.
+		final ModelState modelStateStart = new MyModelState(START);
 
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
-                return true;
-            if (obj == null)
-                return false;
-            if (getClass() != obj.getClass())
-                return false;
-            MyModelState other = (MyModelState) obj;
-            if (!getOuterType().equals(other.getOuterType()))
-                return false;
-            if (agentPosition == null) {
-                if (other.agentPosition != null)
-                    return false;
-            } else if (!agentPosition.equals(other.agentPosition))
-                return false;
-            return true;
-        }
+		Map<String, MyNodeDataSet> transitionMap = new MyTransitionMap().getTransitionMap();
 
-    }
+		// Setup how to transition (move) to a new state.
+		final TransitionFunction transitionFunction = new MyTransitionFunction();
 
-    // Setup how to transition (move) to a new state.
-    TransitionFunction transitionFunction = new TransitionFunction() {
+		final ActionGenerator actionGenerator = new MyActionGenerator(transitionMap);
 
-        @Override
-        public ModelState transition(ModelState modelState, Action action) {
-            MyAction myAction = (MyAction) action;
-            return new MyModelState(myAction.nodeName);
-        }
-    };
+		// Setup how to generate new successor states.
+		SuccessorFunction successorFunction = new SuccessorFunction() {
 
-    /**
-     * Test moving within a graph set of notes.
-     */
-    @Test
-    public void testAiMovementWithGoalBase() {
+			@Override
+			public Queue<Successor> generateSuccessors(ModelState modelState, List<Action> actions) {
+				Queue<Successor> successors = new LinkedList<>();
 
-        // Setup starting model state.
-        final ModelState modelStateStart = new MyModelState(START);
+				for (Action action : actions) {
+					ModelState nextModelState = transitionFunction.transition(modelState, action);
+					successors.add(new SuccessorImpl(nextModelState, action, action.getCost()));
+				}
+				return successors;
+			}
 
-        // Setup how to generate new successor states.
-        SuccessorFunction successorFunction = new SuccessorFunction() {
+		};
 
-            Map<String, NodeDataSet> transitionSet = new MyTransitionSet()
-                    .getTransitionSet();
+		// Create an object to evaluate each Model State.
+		final ModelStateEvaluator modelStateEvaluator = new MyModelStateEvaluator(
+				new MyTransitionMap().getTransitionMap());
 
-            @Override
-            public Queue<Successor> generateSuccessors(ModelState modelState) {
-                Queue<Successor> successors = new LinkedList<>();
+		SearchAStar searchAStar = new SearchAStar(successorFunction, modelStateEvaluator, actionGenerator);
 
-                MyModelState myModelState = (MyModelState) modelState;
-                String agentPostion = myModelState.agentPosition;
-                List<NodeTransition> transitionList = transitionSet
-                        .get(agentPostion).transitionSet;
-                for (NodeTransition nodeTransition : transitionList) {
-                    MyAction myAction = new MyAction(
-                            nodeTransition.nextNodeName);
-                    ModelState nextModelState = transitionFunction.transition(
-                            modelState, myAction);
-                    successors.add(new SuccessorImpl(nextModelState, myAction,
-                            nodeTransition.cost));
-                }
-                return successors;
-            }
-        };
+		searchAStar.setFringeExpansionMax(15);
 
-        // Create an object to evaluate each Model State.
-        final ModelStateEvaluator modelStateEvaluator = new MyModelStateEvaluator(
-                new MyTransitionSet().getTransitionSet());
+		// Generate path of actions.
+		Path path = searchAStar.findPathToGoal(modelStateStart);
 
-        SearchAStar searchAStar = new SearchAStar(successorFunction,
-                modelStateEvaluator);
+		// Tests
+		assertNotNull("path defined", path);
 
-        searchAStar.setFringeExpansionMax(15);
+		// Verify the Start ... Goal by following the path.
+		// Begin at the Start model state.
+		ModelState modelStateCurrent = modelStateStart.duplicate();
 
-        // Generate path of actions.
-        Path path = searchAStar.findPathToGoal(modelStateStart);
+		// Apply each Action in turn from the Path.
+		for (Action action : path) {
+			modelStateCurrent = transitionFunction.transition(modelStateCurrent, action);
+		}
 
-        // Tests
-        assertNotNull("path defined", path);
-
-        // Verify the Start ... Goal by following the path.
-        // Begin at the Start model state.
-        ModelState modelStateCurrent = modelStateStart.duplicate();
-
-        // Apply each Action in turn from the Path.
-        for (Action action : path) {
-            modelStateCurrent = transitionFunction.transition(
-                    modelStateCurrent, action);
-        }
-
-        // Check we reached a Goal.
-        assertTrue("modelStateCurrent instanceof ModelStateAgentGoal",
-                modelStateCurrent instanceof MyModelState);
-        assertTrue("Agent at goal",
-                modelStateEvaluator.isAtGoal(modelStateCurrent));
-    }
+		// Check we reached a Goal.
+		assertTrue("modelStateCurrent instanceof ModelStateAgentGoal", modelStateCurrent instanceof MyModelState);
+		assertTrue("Agent at goal", modelStateEvaluator.isAtGoal(modelStateCurrent));
+	}
 }

@@ -14,11 +14,7 @@ public interface Action {
 	 * @return
 	 */
     double getCost();
-    /**
-     * Set the cost of this acion.
-     * @param cost
-     */
-    void setCost(double cost);
+
 	
     /**
      * Apply the action to the modelState.

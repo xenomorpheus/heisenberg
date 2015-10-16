@@ -16,63 +16,63 @@ import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorAgentGoal;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
+import au.net.hal9000.heisenberg.ai.SuccessorFunctionImpl;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
+import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
-import au.net.hal9000.heisenberg.item.EntitySuccessorFunction;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.FiringSolution;
 
-public class MazeCat {
+public class HunterPreyAi {
 
     /** Cat's speed. */
-    private static final float CAT_NORMAL_SPEED = 4f;
+    private static final float HUNTER_NORMAL_SPEED = 4f;
     /** Cat's directions count. */
-    private static final int CAT_DIRECTION_COUNT = 6;
+    private static final int HUNTER_DIRECTION_COUNT = 6;
     /** Cat radius. Used for distance from obstacles */
-    private static final float CAT_RADIUS = 0.2f;
+    private static final float HUNTER_RADIUS = 0.2f;
     /**
      * Cat's step size.<br>
      * Must be greater than POSITON_TOLERANCE
      */
-    private static final float CAT_STEP_SIZE = 1f;
+    private static final float HUNTER_STEP_SIZE = 1f;
     /**
      * How close together two points are to be considered same.<br>
-     * Must be less than CAT_STEP_SIZE
+     * Must be less than HUNTER_STEP_SIZE
      */
     private static final float POSITON_TOLERANCE = 0.5f;
     /** Max number of points to consider when planning a path to goal. */
     private static final int FRINGE_MAX = 1000;
 
     // Game Entity objects
-    /** JBox2d game object - cat */
-    private Body catBody;
-    /** JBox2d game object - target e.g. rat */
-    private Body targetBody;
+    /** JBox2d game object - hunter */
+    private Body hunterBody;
+    /** JBox2d game object - target e.g. prey */
+    private Body preyBody;
     /** AI - path search */
     private SearchAStar search;
-
+    /** The path the Hunter plans to get to the Prey */
     private List<Position> positionPath = null;
-
+    /** Memories. e.g. walls */
     private MemorySet memorySet = new MemorySetImpl();
 
-    MazeCat(Body catBody, Body targetBody) {
+    HunterPreyAi(Body hunterBody, Body targetBody) {
         super();
-        this.catBody = catBody;
-        this.targetBody = targetBody;
+        this.hunterBody = hunterBody;
+        this.preyBody = targetBody;
         // Initialise AI
         aiInit();
     }
 
-    /**
-     * @return the path to the goal.
-     */
-    List<Position> getPositionPath() {
+    // Getters and Setters
+
+    public List<Position> getPositionPath() {
         return positionPath;
     }
 
@@ -86,17 +86,19 @@ public class MazeCat {
         // Setup how to transition (move) to a new state.
         final TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
+        ActionGenerator actionGenerator = new HunterPreyActionGenerator(
+                HUNTER_STEP_SIZE, HUNTER_DIRECTION_COUNT, HUNTER_RADIUS);
         // Setup how to generate new successor states.
-        final EntitySuccessorFunction successorFunction = new EntitySuccessorFunction(
-                transitionFunction, CAT_STEP_SIZE, CAT_DIRECTION_COUNT);
+        final SuccessorFunctionImpl successorFunction = new SuccessorFunctionImpl(
+                transitionFunction);
 
         modelStateEvaluator.setPositionTolerance(POSITON_TOLERANCE);
-        successorFunction.setEntityRadiusMax(CAT_RADIUS);
 
-        search = new SearchAStar(successorFunction, modelStateEvaluator);
+        search = new SearchAStar(successorFunction, modelStateEvaluator, actionGenerator);
 
     }
 
+    /** learn where walls are */
     void learnBarrierArray(Vec2[] boundary_shape, Vec2 position,
             Object barrierObject) {
         MazeUtil.learnBarrierArray(memorySet, boundary_shape, position,
@@ -104,15 +106,15 @@ public class MazeCat {
     }
 
     void aiPlan() {
-        Vec2 catPosVec2 = catBody.getPosition();
-        Vec2 ratPosVec2 = targetBody.getPosition();
+        Vec2 hunterPosVec2 = hunterBody.getPosition();
+        Vec2 preyPosVec2 = preyBody.getPosition();
 
         // Build a model state.
         // Start is Cat's position. Goal is the Rat's position.
-        Position catPos = new Position(catPosVec2.x, catPosVec2.y);
-        Position ratPos = new Position(ratPosVec2.x, ratPosVec2.y);
+        Position hunterPos = new Position(hunterPosVec2.x, hunterPosVec2.y);
+        Position preyPos = new Position(preyPosVec2.x, preyPosVec2.y);
         ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(
-                catPos.duplicate(), ratPos.duplicate(), memorySet);
+                hunterPos.duplicate(), preyPos.duplicate(), memorySet);
 
         // Find a path to the goal e.g. Rat position.
         search.setFringeExpansionMax(FRINGE_MAX);
@@ -127,30 +129,30 @@ public class MazeCat {
             // would be wrong.
             // To solve this we convert the path to a list of absolute
             // locations.
-            Position catPosIteration = catPos.duplicate();
-            List<Position> catPathTemp = new ArrayList<>();
+            Position hunterPosIteration = hunterPos.duplicate();
+            List<Position> hunterPathTemp = new ArrayList<>();
             for (Action action : path) {
                 if (action instanceof ActionAgentMoveRelative) {
                     ActionAgentMoveRelative actionMove = (ActionAgentMoveRelative) action;
-                    catPosIteration.applyDelta(actionMove.getPositionDelta());
-                    catPathTemp.add(catPosIteration.duplicate());
-                }
-                else if (action instanceof ActionAgentMoveAbsolute) {
+                    hunterPosIteration
+                            .applyDelta(actionMove.getPositionDelta());
+                    hunterPathTemp.add(hunterPosIteration.duplicate());
+                } else if (action instanceof ActionAgentMoveAbsolute) {
                     ActionAgentMoveAbsolute actionMove = (ActionAgentMoveAbsolute) action;
-                    catPosIteration.set(actionMove.getAgentTarget());
-                    catPathTemp.add(catPosIteration.duplicate());
+                    hunterPosIteration.set(actionMove.getAgentTarget());
+                    hunterPathTemp.add(hunterPosIteration.duplicate());
                 }
             }
-            positionPath = catPathTemp;
+            positionPath = hunterPathTemp;
         }
         // If AI planning failed,
         else {
 
             positionPath = new ArrayList<>();
             // Try calculating a firing solution.
-            Vec2 solution = FiringSolution.calculate(catBody.getPosition(),
-                    targetBody.getPosition(), targetBody.getLinearVelocity(),
-                    CAT_NORMAL_SPEED);
+            Vec2 solution = FiringSolution.calculate(hunterBody.getPosition(),
+                    preyBody.getPosition(), preyBody.getLinearVelocity(),
+                    HUNTER_NORMAL_SPEED);
 
             // We have a firing solution, so use it.
             if (solution != null) {
@@ -158,39 +160,41 @@ public class MazeCat {
             } else {
                 // All else failed, just then aim directly towards target and
                 // hope for the best.
-                positionPath.add(new Position(targetBody.getPosition().x,
-                        targetBody.getPosition().y));
+                positionPath.add(new Position(preyBody.getPosition().x,
+                        preyBody.getPosition().y));
             }
         }
     }
 
     /**
-     * Move the cat by following the path planned by the AI.
+     * Move the hunter by following the path planned by the AI.
      */
     void move() {
         // change to a while.
-        Vec2 catPos = catBody.getPosition();
+        Vec2 hunterPos = hunterBody.getPosition();
         Vec2 directionToPathHead;
 
         // Follow the Path the AI search produced.
         if (positionPath != null && positionPath.size() > 0) {
 
-            Position catTarget = positionPath.get(0);
-            directionToPathHead = new Vec2((float) catTarget.getX() - catPos.x,
-                    (float) catTarget.getY() - catPos.y);
+            Position hunterTarget = positionPath.get(0);
+            directionToPathHead = new Vec2((float) hunterTarget.getX()
+                    - hunterPos.x, (float) hunterTarget.getY() - hunterPos.y);
             // if we are at the first point in the path, remove it and move to
             // next.
             while ((directionToPathHead.length() < POSITON_TOLERANCE)
                     && (positionPath.size() > 1)) {
                 positionPath.remove(0);
-                catTarget = positionPath.get(0);
-                directionToPathHead.x = (float) catTarget.getX() - catPos.x;
-                directionToPathHead.y = (float) catTarget.getY() - catPos.y;
+                hunterTarget = positionPath.get(0);
+                directionToPathHead.x = (float) hunterTarget.getX()
+                        - hunterPos.x;
+                directionToPathHead.y = (float) hunterTarget.getY()
+                        - hunterPos.y;
             }
 
             directionToPathHead.normalize();
-            directionToPathHead.mulLocal(CAT_NORMAL_SPEED);
-            catBody.setLinearVelocity(directionToPathHead);
+            directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED);
+            hunterBody.setLinearVelocity(directionToPathHead);
         }
     }
 
@@ -204,15 +208,16 @@ public class MazeCat {
         if (positionPath != null) {
 
             // Start is Cat's position.
-            Vec2 catPosLast = catBody.getPosition();
-            Vec2 catPosNew = new Vec2();
+            Vec2 hunterPosLast = hunterBody.getPosition();
+            Vec2 hunterPosNew = new Vec2();
             // Draw the planned path
 
             for (Position position : positionPath) {
-                catPosNew.x = (float) position.getX();
-                catPosNew.y = (float) position.getY();
-                System.out.println("From=" + catPosLast + " to " + catPosNew);
-                catPosLast = catPosNew;
+                hunterPosNew.x = (float) position.getX();
+                hunterPosNew.y = (float) position.getY();
+                System.out.println("From=" + hunterPosLast + " to "
+                        + hunterPosNew);
+                hunterPosLast = hunterPosNew;
             }
         }
 
@@ -220,7 +225,7 @@ public class MazeCat {
 
     /**
      * Look for obstacles starting at Cat, ending at Rat.<br>
-     * TODO update cat's memory of barriers.
+     * TODO update hunter's memory of barriers.
      * 
      * @param world
      *            JBox2d world
@@ -229,12 +234,13 @@ public class MazeCat {
     void vision(World world, DebugDraw debugDraw) {
         RayCastMultipleCallback mcallback = new RayCastMultipleCallback();
         mcallback.init();
-        Vec2 catPos = catBody.getPosition();
-        Vec2 targetPos = targetBody.getPosition();
+        Vec2 hunterPos = hunterBody.getPosition();
+        Vec2 targetPos = preyBody.getPosition();
 
-        world.raycast(mcallback, catPos, targetPos);
+        world.raycast(mcallback, hunterPos, targetPos);
 
-        debugDraw.drawSegment(catPos, targetPos, new Color3f(0.8f, 0.8f, 0.8f));
+        debugDraw.drawSegment(hunterPos, targetPos, new Color3f(0.8f, 0.8f,
+                0.8f));
 
         for (int i = 0; i < mcallback.m_count; ++i) {
             Vec2 point = mcallback.m_points[i];
@@ -346,17 +352,17 @@ public class MazeCat {
         if (positionPath != null) {
 
             // Start is Cat's position.
-            Vec2 catPosLast = catBody.getPosition();
-            Vec2 catPosNew = new Vec2();
+            Vec2 hunterPosLast = hunterBody.getPosition();
+            Vec2 hunterPosNew = new Vec2();
             // Draw the planned path
             Color3f color = Color3f.BLUE;
 
             for (Position position : positionPath) {
-                catPosNew.x = (float) position.getX();
-                catPosNew.y = (float) position.getY();
-                debugDraw.drawSolidCircle(catPosNew, 0.15f, null, color);
-                debugDraw.drawSegment(catPosLast, catPosNew, color);
-                catPosLast = catPosNew;
+                hunterPosNew.x = (float) position.getX();
+                hunterPosNew.y = (float) position.getY();
+                debugDraw.drawSolidCircle(hunterPosNew, 0.15f, null, color);
+                debugDraw.drawSegment(hunterPosLast, hunterPosNew, color);
+                hunterPosLast = hunterPosNew;
             }
         }
 
