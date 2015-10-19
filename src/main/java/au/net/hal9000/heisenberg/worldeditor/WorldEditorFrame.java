@@ -50,6 +50,11 @@ public class WorldEditorFrame extends JFrame {
      * @throws ConfigurationError
      */
     public WorldEditorFrame() throws ConfigurationError {
+        super();
+        init();
+    }
+    
+    private void init(){
 
         /** Config. */
         final Configuration config = Configuration.lastConfig();
