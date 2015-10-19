@@ -8,7 +8,8 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
 /**
- * Action to eat something
+ * Action to eat something.<br>
+ * Check super classes but this class is likely to be immutable.
  * 
  * @author bruins
  * @version $Revision: 1.0 $
@@ -36,19 +37,6 @@ public final class ActionAnimalEat extends ActionBase {
     }
 
     // Getters and Setters
-
-    public Item getFood() {
-        return food;
-    }
-
-    public void setFood(Item food) {
-        this.food = food;
-
-    }
-
-   public Item getConsumer() {
-        return consumer;
-    }
 
     // Misc
     @Override

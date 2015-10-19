@@ -26,7 +26,8 @@ import au.net.hal9000.heisenberg.units.Position;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemContainerImpl extends ItemImpl implements Serializable, ItemContainer, ItemList {
+public class ItemContainerImpl extends ItemImpl
+        implements Serializable, ItemContainer, ItemList {
     /**
      * 
      */
@@ -34,8 +35,8 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
     /**
      * Field LOGGER.
      */
-    private static final Logger LOGGER = Logger.getLogger(ItemContainerImpl.class
-            .getName());
+    private static final Logger LOGGER = Logger
+            .getLogger(ItemContainerImpl.class.getName());
     /**
      * Field weightMax.
      */
@@ -73,70 +74,78 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
     }
 
     // Getters and Setters
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getContents()
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#getContents()
+     */
     @Override
-	public List<Item> getContents() {
+    public List<Item> getContents() {
         return contents;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setContents(java.util.List)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#getWeightMax()
+     */
     @Override
-	public void setContents(List<Item> contents) {
-        this.contents = contents;
-    }
-
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getWeightMax()
-	 */
-    @Override
-	public float getWeightMax() {
+    public float getWeightMax() {
         return weightMax;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setWeightMax(float)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#setWeightMax(float)
+     */
     @Override
-	public void setWeightMax(float weightMax) {
+    public void setWeightMax(float weightMax) {
         this.weightMax = weightMax;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#getVolumeMax()
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#getVolumeMax()
+     */
     @Override
-	public float getVolumeMax() {
+    public float getVolumeMax() {
         return volumeMax;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#setVolumeMax(float)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#setVolumeMax(float)
+     */
     @Override
-	public void setVolumeMax(float volumeMax) {
+    public void setVolumeMax(float volumeMax) {
         this.volumeMax = volumeMax;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#contains(au.net.hal9000.heisenberg.item.api.Item)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * au.net.hal9000.heisenberg.item.ItemContainer#contains(au.net.hal9000.
+     * heisenberg.item.api.Item)
+     */
     @Override
-	public boolean contains(Item item) {
+    public boolean contains(Item item) {
         return contents.contains(item);
     }
 
     // Misc
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#size()
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#size()
+     */
 
     @Override
-	public int size() {
+    public int size() {
         int count = 0;
         if (null != contents) {
             count = contents.size();
@@ -144,11 +153,13 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
         return count;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#get(int)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#get(int)
+     */
     @Override
-	public Item get(final int index) {
+    public Item get(final int index) {
         return contents.get(index);
     }
 
@@ -236,6 +247,8 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
         if (!super.equals(obj)) {
             return false;
         }
+        // Code almost certainly won't reach here as Item id values are random
+        // and very likely to be different.
         if (!(obj instanceof ItemContainerImpl)) {
             return false;
         }
@@ -258,23 +271,30 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
         return true;
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(au.net.hal9000.heisenberg.item.api.Item)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#add(au.net.hal9000.
+     * heisenberg.item.api.Item)
+     */
     @Override
-	public void add(Item item){
+    public void add(Item item) {
         add(contents.size(), item);
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#add(int, au.net.hal9000.heisenberg.item.api.Item)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#add(int,
+     * au.net.hal9000.heisenberg.item.api.Item)
+     */
     @Override
-	public void add(int index, Item item) {
+    public void add(int index, Item item) {
         ItemContainer itemCurrentContainer = item.getContainer();
         if (null != itemCurrentContainer) {
             if (this.equals(itemCurrentContainer)) {
-                LOGGER.error("Item "+this+" was already in container "+itemCurrentContainer);
+                LOGGER.error("Item " + this + " was already in container "
+                        + itemCurrentContainer);
                 // Nothing to do.
                 return;
             }
@@ -343,17 +363,20 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
      *            the items to add.
      */
     @Override
-    public void addAll(List<Item> items){
+    public void addAll(List<Item> items) {
         for (Item item : items) {
             this.add(item);
         }
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#empty(au.net.hal9000.heisenberg.item.ItemContainer)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#empty(au.net.hal9000.
+     * heisenberg.item.ItemContainer)
+     */
     @Override
-	public void empty(ItemContainer newLocation){
+    public void empty(ItemContainer newLocation) {
         while (!contents.isEmpty()) {
             Item item = contents.remove(0);
             newLocation.add(item);
@@ -407,11 +430,14 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
 
     // TODO rename Visitor Pattern style
     // Find contents that match the criteria
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#accept(au.net.hal9000.heisenberg.item.property.ItemVisitor)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#accept(au.net.hal9000.
+     * heisenberg.item.property.ItemVisitor)
+     */
     @Override
-	public void accept(ItemVisitor visitor) {
+    public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
         for (Item item : getContents()) {
             visitor.visit(item);
@@ -433,11 +459,14 @@ public class ItemContainerImpl extends ItemImpl implements Serializable, ItemCon
         super.beNot();
     }
 
-    /* (non-Javadoc)
-	 * @see au.net.hal9000.heisenberg.item.ItemContainer#remove(au.net.hal9000.heisenberg.item.api.Item)
-	 */
+    /*
+     * (non-Javadoc)
+     * 
+     * @see au.net.hal9000.heisenberg.item.ItemContainer#remove(au.net.hal9000.
+     * heisenberg.item.api.Item)
+     */
     @Override
-	public void remove(Item item) {
+    public void remove(Item item) {
         contents.remove(item);
         item.setContainer(null);
     }

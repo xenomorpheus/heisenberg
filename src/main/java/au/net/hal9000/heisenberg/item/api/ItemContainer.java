@@ -17,14 +17,6 @@ public interface ItemContainer extends Item, ItemList {
 	List<Item> getContents();
 
 	/**
-	 * Set the contents.
-	 * 
-	 * @param contents
-	 *            the new contents of this container.
-	 */
-	void setContents(List<Item> contents);
-
-	/**
 	 * 
 	 * @return The max weight that can be carried.
 	 */

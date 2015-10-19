@@ -1,8 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -13,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import au.net.hal9000.heisenberg.crafting.Cooker;
-import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 // Custom
@@ -22,7 +17,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
-import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ItemIcon;
 
 /**
@@ -42,7 +36,8 @@ import au.net.hal9000.heisenberg.util.ItemIcon;
  * An item has a location (e.g. ground, a bag, an arm)<br>
  * (discuss) An item has a condition (0-100) 100=new, 0=worn away. Or hit
  * points? An item may have any number of defences.<br>
- * An item by default does not offer protection (e.g armour, magic resistance)<br>
+ * An item by default does not offer protection (e.g armour, magic resistance)
+ * <br>
  * An item may offer any number of protections.<br>
  * 
  * Actions<br>
@@ -68,12 +63,14 @@ public abstract class ItemImpl implements Serializable, Item {
 
     // Initialise as many values as possible.
     /**
-     * The ID of the object. JPA doesn't care if we change this.
+     * The ID of the object. <BR>
+     * This field is unique for all Item objects, so no two Item objects can be
+     * equals. JPA doesn't care if we change this.
      */
     // Note: Id is required so UI getIndexOfChild() will work
     // when two objects have the same properties.
     @Column(name = "ID")
-    protected UUID id = UUID.randomUUID();
+    protected UUID id;
 
     /**
      * Use by JPA.
@@ -90,8 +87,6 @@ public abstract class ItemImpl implements Serializable, Item {
     private float hitPoints = 0F;
     /** The name of this item. */
     private String name = null;
-    /** Who owns this item. null means no-one. */
-    private Item owner = null;
     /** The position within the container. */
     private Position position = null;
     /**
@@ -112,6 +107,7 @@ public abstract class ItemImpl implements Serializable, Item {
     /** Constructor. */
     protected ItemImpl() {
         super();
+        id = UUID.randomUUID();
         ItemProperty.setMagical(this, false);
         ItemProperty.setClothing(this, false);
         ItemProperty.setLiving(this, false);
@@ -144,48 +140,23 @@ public abstract class ItemImpl implements Serializable, Item {
     }
 
     // Getters and Setters - Instance
-    /**
-     * get the Table ID of the item.<br>
-     * JPA requires a primary key.
-     * 
-     * 
-     * @return the Id
-     */
+
+    @Override
     public long getJpaId() {
         return jpaId;
     }
 
     /**
-     * Set the Table Id. <br>
-     * JPA requires a primary key.
-     * 
-     * @param jpaId
-     *            the Id to set
-     */
-    public void setJpaId(final long jpaId) {
-        this.jpaId = jpaId;
-    }
-
-    /**
-     * get the ID of the item. We need to be ale to tell the difference between<br>
+     * get the ID of the item. We need to be ale to tell the difference between
+     * <br>
      * two items with the same properties.
      * 
      * 
      * @return the Id
      */
+    @Override
     public UUID getId() {
         return id;
-    }
-
-    /**
-     * Set the Id We need to be ale to tell the difference between<br>
-     * two items with the same properties.<br>
-     * 
-     * @param pId
-     *            the Id to set
-     */
-    public void setId(final UUID pId) {
-        id = pId;
     }
 
     /*
@@ -201,9 +172,8 @@ public abstract class ItemImpl implements Serializable, Item {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setContainer(au.net.hal9000.heisenberg
-     * .item.ItemContainer)
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setContainer(au.net.hal9000.
+     * heisenberg .item.ItemContainer)
      */
     @Override
     public void setContainer(ItemContainer container) {
@@ -274,28 +244,6 @@ public abstract class ItemImpl implements Serializable, Item {
     /*
      * (non-Javadoc)
      * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getOwner()
-     */
-    @Override
-    public Item getOwner() {
-        return owner;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setOwner(au.net.hal9000.heisenberg
-     * .item.ItemInt)
-     */
-    @Override
-    public void setOwner(Item owner) {
-        this.owner = owner;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
      * @see au.net.hal9000.heisenberg.item.ItemInt#getPosition()
      */
     @Override
@@ -306,9 +254,8 @@ public abstract class ItemImpl implements Serializable, Item {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setPosition(au.net.hal9000.heisenberg
-     * .units.Position)
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setPosition(au.net.hal9000.
+     * heisenberg .units.Position)
      */
     @Override
     public void setPosition(Position position) {
@@ -394,9 +341,8 @@ public abstract class ItemImpl implements Serializable, Item {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setValueBase(au.net.hal9000.heisenberg
-     * .units.Currency)
+     * @see au.net.hal9000.heisenberg.item.ItemInt#setValueBase(au.net.hal9000.
+     * heisenberg .units.Currency)
      */
     @Override
     public void setValueBase(final Currency valueBase) {
@@ -481,19 +427,13 @@ public abstract class ItemImpl implements Serializable, Item {
     /* End of Setters and Getters */
     // misc methods
 
-    /**
-     * Shallow copy properties from one object to another.
-     * 
-     * @param other
-     *            Item to copy attributes from.
-     */
+    @Override
     public void setAllFrom(Item other) {
         setContainer(other.getContainer());
         setDescription(other.getDescription());
         setHitPoints(other.getHitPoints());
         setItemIcon(other.getItemIcon().dupicate());
         setName(other.getName());
-        setOwner(other.getOwner());
         setPosition(other.getPosition());
         setProperties(other.getProperties());
         setValueBase(other.getValueBase());
@@ -513,7 +453,6 @@ public abstract class ItemImpl implements Serializable, Item {
                 + ((itemIcon == null) ? 0 : itemIcon.hashCode());
         result = prime * result + (int) (jpaId ^ (jpaId >>> 32));
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((owner == null) ? 0 : owner.hashCode());
         result = prime * result
                 + ((position == null) ? 0 : position.hashCode());
         result = prime * result
@@ -534,6 +473,12 @@ public abstract class ItemImpl implements Serializable, Item {
         if (getClass() != obj.getClass())
             return false;
         ItemImpl other = (ItemImpl) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        // Code almost certainly won't reach here as id values are random and very likely to be different.
         if (description == null) {
             if (other.description != null)
                 return false;
@@ -541,11 +486,6 @@ public abstract class ItemImpl implements Serializable, Item {
             return false;
         if (Float.floatToIntBits(hitPoints) != Float
                 .floatToIntBits(other.hitPoints))
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
             return false;
         if (itemIcon == null) {
             if (other.itemIcon != null)
@@ -558,11 +498,6 @@ public abstract class ItemImpl implements Serializable, Item {
             if (other.name != null)
                 return false;
         } else if (!name.equals(other.name))
-            return false;
-        if (owner == null) {
-            if (other.owner != null)
-                return false;
-        } else if (!owner.equals(other.owner))
             return false;
         if (position == null) {
             if (other.position != null)
@@ -612,7 +547,7 @@ public abstract class ItemImpl implements Serializable, Item {
      * .item.ItemContainer, au.net.hal9000.heisenberg.units.Position)
      */
     @Override
-    public void move(ItemContainer container, Position requestedPosition){
+    public void move(ItemContainer container, Position requestedPosition) {
         container.add(this);
         moveWithinContainer(requestedPosition);
     }
@@ -629,16 +564,7 @@ public abstract class ItemImpl implements Serializable, Item {
         container.add(this);
     }
 
-    /**
-     * Change the position of the item within the ItemContainer.
-     * 
-     * Note: The request can fail or partially complete.<br>
-     * E.g Can't pass through walls.
-     * 
-     * @param requestedPosition
-     *            the requested position within the container.
-     * 
-     */
+    @Override
     public void moveWithinContainer(Position requestedPosition) {
         if (null == container) {
             throw new UnsupportedOperationException(
@@ -730,22 +656,6 @@ public abstract class ItemImpl implements Serializable, Item {
     }
 
     /**
-     * Store the object in a file.
-     * 
-     * @param filename
-     *            output file.
-     * 
-     * @throws IOException
-     */
-    public void freezeToFile(String filename) throws IOException {
-        FileOutputStream fos = new FileOutputStream(filename);
-        ObjectOutputStream out = new ObjectOutputStream(fos);
-        out.writeObject(this);
-        out.close();
-        fos.close();
-    }
-
-    /**
      * Create a new Item of the specified type.
      * 
      * @param type
@@ -778,29 +688,16 @@ public abstract class ItemImpl implements Serializable, Item {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#applyDelta(au.net.hal9000.heisenberg
-     * .units.Position)
+     * @see au.net.hal9000.heisenberg.item.ItemInt#applyDelta(au.net.hal9000.
+     * heisenberg .units.Position)
      */
     @Override
     public void applyDelta(Position delta) {
+        Position positionInContainer = getPosition();
+        if (null == positionInContainer){
+            position = new Position();
+        }
         position.applyDelta(delta);
     }
 
-    /**
-     * Create a new cooker.
-     * 
-     * @param recipeId
-     *            The ID of the recipe we wish to use for cooking.
-     * 
-     * @return a new cooker object
-     */
-    public Cooker getCooker(String recipeId) {
-        Configuration configuration = Configuration.lastConfig();
-        Recipe recipe = configuration.getRecipe(recipeId);
-        if (recipe == null) {
-            throw new RuntimeException("Failed to find recipe=" + recipeId);
-        }
-        return recipe.getNewCooker(this);
-    }
 }

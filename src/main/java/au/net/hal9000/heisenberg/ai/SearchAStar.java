@@ -38,7 +38,7 @@ public class SearchAStar extends SearchBase {
      *            the successor function.
      * @param modelStateEvaluator
      *            the model state evaluator.
-     * @param actionGenerator TODO
+     * @param actionGenerator service to generate possible actions from a given ModelState object.
      */
     public SearchAStar(final SuccessorFunction successorFunction,
             final ModelStateEvaluator modelStateEvaluator, ActionGenerator actionGenerator) {

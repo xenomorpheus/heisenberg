@@ -6,11 +6,13 @@ package au.net.hal9000.heisenberg.util;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * @author bruins
@@ -19,6 +21,13 @@ import au.net.hal9000.heisenberg.item.entity.Human;
  */
 public class ItemIconTest {
 
+    /**
+     * Method setUp.
+     */
+    @Before
+    public void setUp() {
+        DemoEnvironment.setup();
+    }
     /**
      * Method testSetIcon.
      * @throws ConfigurationError

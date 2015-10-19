@@ -14,31 +14,12 @@ public class ActionAnimalEatTest {
     private static final Entity CONSUMER = new Elf();
     private static final Item FOOD = new Cookie();
     private static final double COST = 1.67;
-    private ActionAnimalEat actionEat = null;
+
+    // immutable so we can reuse.
+    private ActionAnimalEat actionEat = new ActionAnimalEat(CONSUMER, FOOD, COST);
 
     @Before
     public void setUp() throws Exception {
-        actionEat = new ActionAnimalEat(CONSUMER, FOOD, COST);
-    }
-
-    @Test
-    public void testEqualsObject() {
-        // TODO fail("TEST not yet implemented");
-    }
-
-    @Test
-    public void testActionEat() {
-        // TODO fail("TEST not yet implemented");
-    }
-
-    @Test
-    public void testGetFood() {
-        // TODO fail("TEST not yet implemented");
-    }
-
-    @Test
-    public void testSetFood() {
-        // TODO fail("TEST not yet implemented");
     }
 
     @Test

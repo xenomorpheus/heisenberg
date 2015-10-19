@@ -8,9 +8,12 @@ import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
+import au.net.hal9000.heisenberg.crafting.Cooker;
+import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.item.ItemImpl;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
  * Entity is the bases of conscious entities. <br>
@@ -403,5 +406,15 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
             memorySet = new MemorySetImpl();
         }
         memorySet.add(memory);
+    }
+    
+
+    public Cooker getCooker(String recipeId) {
+        Configuration configuration = Configuration.lastConfig();
+        Recipe recipe = configuration.getRecipe(recipeId);
+        if (recipe == null) {
+            throw new RuntimeException("Failed to find recipe=" + recipeId);
+        }
+        return recipe.getNewCooker(this);
     }
 }

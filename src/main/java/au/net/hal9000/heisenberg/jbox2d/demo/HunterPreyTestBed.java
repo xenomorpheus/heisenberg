@@ -214,7 +214,7 @@ class HunterPreyTestBed extends TestbedTest {
      */
     @Override
     public String getTestName() {
-        return "Maze Cat";
+        return "Hunter Prey";
     }
 
     /**
