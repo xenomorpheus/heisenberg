@@ -1,3 +1,19 @@
+2015-10-19
+More unit tests and removal of unwanted code.
+
+2015-10-16
+Refactored to extract ActionGenerator code into their own classes.
+
+    Renamed CatRat classes into generic HunterPrey classes.
+    Refactored to extraact new class MovmentAbsoluteBarriers.
+
+2015-10-16
+Cleaned up some notes on TODOs.
+
+2015-10-12
+Bugfix JTree path from Root node.
+
+
 2015-10-11
 Some work on adding ability for swing tree view to accept new items.
 
