@@ -3,14 +3,11 @@ package au.net.hal9000.heisenberg.jbox2d.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import au.net.hal9000.heisenberg.ai.action.EatActionGenerator;
 import au.net.hal9000.heisenberg.ai.action.MovementAbsoluteBarriers;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.item.action.ActionAnimalEat;
-import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Entity;
-import au.net.hal9000.heisenberg.units.Position;
 
 public class HunterPreyActionGenerator implements ActionGenerator {
 
@@ -18,6 +15,7 @@ public class HunterPreyActionGenerator implements ActionGenerator {
 	private float bodyRadiusMax;
 
 	private ActionGenerator movementAbsoluteBarriers;
+	private ActionGenerator eat;
 
 	/**
 	 * Constructor.
@@ -30,6 +28,7 @@ public class HunterPreyActionGenerator implements ActionGenerator {
 	public HunterPreyActionGenerator(double stepSize, int directionCount, float entityRadiusMax) {
 		this.bodyRadiusMax = entityRadiusMax;
 		movementAbsoluteBarriers = new MovementAbsoluteBarriers(stepSize, directionCount, bodyRadiusMax);
+		eat = new EatActionGenerator();
 	}
 
 	// Misc
@@ -39,20 +38,7 @@ public class HunterPreyActionGenerator implements ActionGenerator {
 		List<Action> actions = new ArrayList<>();
 
 		actions.addAll(movementAbsoluteBarriers.generateActions(modelState));
-
-		// Attempt to eat prey if close enough.
-		if (modelState instanceof HunterPreyModelState) {
-			HunterPreyModelState modelStateHunterPrey = (HunterPreyModelState) modelState;
-			Entity hunter = modelStateHunterPrey.getHunter();
-			Position hunterPos = hunter.getPosition();
-			Item prey = modelStateHunterPrey.getPrey();
-			Position preyPos = prey.getPosition();
-			Position delta = preyPos.subtract(hunterPos);
-			double goalDist = delta.length();
-			if (goalDist < 1.0f) {
-				actions.add(new ActionAnimalEat(hunter, prey, 1f));
-			}
-		}
+		actions.addAll(eat.generateActions(modelState));
 
 		// TODO add other actions, e.g. looking - updates memory of barriers.
 		return actions;
