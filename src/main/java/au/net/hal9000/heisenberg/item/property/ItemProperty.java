@@ -4,17 +4,16 @@ import au.net.hal9000.heisenberg.item.api.Item;
 
 /**
  * Miscellaneous properties of an Item that don't deserve their own field.
- * 
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
 public final class ItemProperty {
 
-
     /** ideal value for health metric. */
-    public static final float HEALTH_METRIC_IDEAL = 100f;	
-	
-	/**
+    public static final float HEALTH_METRIC_IDEAL = 100f;
+
+    /**
      * Field AERATION.
      * (value is ""aeration"")
      */
@@ -70,7 +69,7 @@ public final class ItemProperty {
     // Aeration
     /**
      * A measure of how well breathed the entity is. Ideal is 100.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param amount
@@ -92,7 +91,7 @@ public final class ItemProperty {
 
     /**
      * Alter the property by the delta amount.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param delta
@@ -121,7 +120,6 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-    
      * @return clothing the status */
 
     public static boolean isClothing(Item item) {
@@ -140,7 +138,7 @@ public final class ItemProperty {
     // Entertainment
     /**
      * A measure of how well breathed the entity is. Ideal is 100.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param amount
@@ -162,7 +160,7 @@ public final class ItemProperty {
 
     /**
      * Alter the property by the delta amount.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param delta
@@ -191,7 +189,6 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-    
      * @return isHumanoidFood the status */
 
     public static boolean isHumanoidFood(Item item) {
@@ -210,7 +207,7 @@ public final class ItemProperty {
     // Hydration
     /**
      * A measure of how well breathed the entity is. Ideal is 100.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param amount
@@ -232,7 +229,7 @@ public final class ItemProperty {
 
     /**
      * Alter the property by the delta amount.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param delta
@@ -261,7 +258,6 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-    
      * @return living the status */
 
     public static boolean isLiving(Item item) {
@@ -291,7 +287,6 @@ public final class ItemProperty {
     /**
      * @param item
      *            the item we are changing the property of.
-    
      * @return magical the status */
 
     public static boolean isMagical(Item item) {
@@ -310,7 +305,7 @@ public final class ItemProperty {
     // Nourishment
     /**
      * A measure of how well breathed the entity is. Ideal is 100.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param amount
@@ -332,7 +327,7 @@ public final class ItemProperty {
 
     /**
      * Alter the property by the delta amount.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param delta
@@ -350,7 +345,7 @@ public final class ItemProperty {
     // Rest
     /**
      * A measure of how well breathed the entity is. Ideal is 100.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param amount
@@ -372,7 +367,7 @@ public final class ItemProperty {
 
     /**
      * Alter the property by the delta amount.
-     * 
+     *
      * @param item
      *            the item we are changing the property of.
      * @param delta

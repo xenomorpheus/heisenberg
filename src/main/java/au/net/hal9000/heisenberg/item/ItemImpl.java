@@ -159,191 +159,101 @@ public abstract class ItemImpl implements Serializable, Item {
         return id;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getContainer()
-     */
     @Override
     public ItemContainer getContainer() {
         return container;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setContainer(au.net.hal9000.
-     * heisenberg .item.ItemContainer)
-     */
     @Override
     public void setContainer(ItemContainer container) {
         this.container = container;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getDescription()
-     */
     @Override
     public String getDescription() {
         return description;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setDescription(java.lang.String)
-     */
     @Override
     public void setDescription(final String description) {
         this.description = description;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getHitPoints()
-     */
     @Override
     public float getHitPoints() {
         return hitPoints;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setHitPoints(float)
-     */
     @Override
     public void setHitPoints(float hitPoints) {
         this.hitPoints = hitPoints;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getName()
-     */
     @Override
     public String getName() {
         return name;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setName(java.lang.String)
-     */
     @Override
     public void setName(final String name) {
         this.name = name;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getPosition()
-     */
     @Override
     public Position getPosition() {
         return position;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setPosition(au.net.hal9000.
-     * heisenberg .units.Position)
-     */
+    @Override
+    public Position getPositionValid() {
+        if (position == null){
+            position = new Position();
+        }
+        return position;
+    }
+
     @Override
     public void setPosition(Position position) {
         this.position = position;
     }
 
     // property related
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getProperties()
-     */
     @Override
     public Properties getProperties() {
         return properties;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#setProperties(java.util.Properties
-     * )
-     */
     @Override
     public void setProperties(Properties properties) {
         this.properties = properties;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getProperty(java.lang.String)
-     */
     @Override
     public Object getProperty(String key) {
         return properties.get(key);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setProperty(java.lang.String,
-     * java.lang.Object)
-     */
     @Override
     public void setProperty(String key, Object value) {
         properties.put(key, value);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * au.net.hal9000.heisenberg.item.ItemInt#removeProperty(java.lang.String)
-     */
     @Override
     public void removeProperty(String key) {
         properties.remove(key);
     }
 
     // value related
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getValueBase()
-     */
     @Override
     public Currency getValueBase() {
         return valueBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getValue()
-     */
     @Override
     public Currency getValue() {
         return valueBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setValueBase(au.net.hal9000.
-     * heisenberg .units.Currency)
-     */
     @Override
     public void setValueBase(final Currency valueBase) {
         this.valueBase = valueBase;
@@ -351,32 +261,16 @@ public abstract class ItemImpl implements Serializable, Item {
 
     // volume related
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getVolume()
-     */
-
     @Override
     public float getVolume() {
         return volumeBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getVolumeBase()
-     */
     @Override
     public float getVolumeBase() {
         return volumeBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setVolumeBase(float)
-     */
     @Override
     public void setVolumeBase(float volumeBase) {
         this.volumeBase = volumeBase;
@@ -384,31 +278,16 @@ public abstract class ItemImpl implements Serializable, Item {
 
     // weight related
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getWeight()
-     */
     @Override
     public float getWeight() {
         return weightBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#getWeightBase()
-     */
     @Override
     public float getWeightBase() {
         return weightBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemInt#setWeightBase(float)
-     */
     @Override
     public void setWeightBase(final float weightBase) {
         this.weightBase = weightBase;

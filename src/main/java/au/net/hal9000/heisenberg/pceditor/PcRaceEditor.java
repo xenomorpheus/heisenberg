@@ -87,8 +87,7 @@ public class PcRaceEditor extends JPanel {
 
     /**
      * Get the PcClass object we are editing.
-     * 
-    
+     *
      * @return the PcClass object we are editing. */
 
     public PcRace getPcRace() {
@@ -97,7 +96,7 @@ public class PcRaceEditor extends JPanel {
 
     /**
      * Set the PcClass object we are editing.
-     * 
+     *
      * @param pc
      *            the PcClass object we are editing.
      */

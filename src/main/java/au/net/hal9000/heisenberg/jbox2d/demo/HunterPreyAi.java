@@ -11,9 +11,6 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
-import au.net.hal9000.heisenberg.ai.MemorySetImpl;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorAgentGoal;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.SuccessorFunctionImpl;
@@ -22,10 +19,15 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
-import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.Rat;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.FiringSolution;
 
@@ -59,8 +61,11 @@ public class HunterPreyAi {
     private SearchAStar search;
     /** The path the Hunter plans to get to the Prey */
     private List<Position> positionPath = null;
-    /** Memories. e.g. walls */
-    private MemorySet memorySet = new MemorySetImpl();
+    /** hunter */
+    private Entity hunter;
+    /** prey */
+    private Item prey;
+    private Location world;
 
     HunterPreyAi(Body hunterBody, Body targetBody) {
         super();
@@ -86,7 +91,7 @@ public class HunterPreyAi {
         // Setup how to transition (move) to a new state.
         final TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();
 
-        ActionGenerator actionGenerator = new HunterPreyActionGenerator(
+        ActionGenerator actionGenerator = new ActionGeneratorHunterPrey(
                 HUNTER_STEP_SIZE, HUNTER_DIRECTION_COUNT, HUNTER_RADIUS);
         // Setup how to generate new successor states.
         final SuccessorFunctionImpl successorFunction = new SuccessorFunctionImpl(
@@ -94,15 +99,20 @@ public class HunterPreyAi {
 
         modelStateEvaluator.setPositionTolerance(POSITON_TOLERANCE);
 
-        search = new SearchAStar(successorFunction, modelStateEvaluator, actionGenerator);
+        search = new SearchAStar(successorFunction, modelStateEvaluator,
+                actionGenerator);
 
+        hunter = new Cat();
+        prey = new Rat();
+        world = new Location();
+        world.add(hunter);
+        world.add(prey);
     }
 
-    /** learn where walls are */
-    void learnBarrierArray(Vec2[] boundary_shape, Vec2 position,
+    public void learnBarrierArray(Vec2[] boundary_shape, Vec2 position,
             Object barrierObject) {
-        MazeUtil.learnBarrierArray(memorySet, boundary_shape, position,
-                barrierObject);
+        MazeUtil.learnBarrierArray(hunter.getMemorySetValid(), boundary_shape,
+                position, barrierObject);
     }
 
     void aiPlan() {
@@ -112,9 +122,12 @@ public class HunterPreyAi {
         // Build a model state.
         // Start is Cat's position. Goal is the Rat's position.
         Position hunterPos = new Position(hunterPosVec2.x, hunterPosVec2.y);
-        Position preyPos = new Position(preyPosVec2.x, preyPosVec2.y);
-        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(
-                hunterPos.duplicate(), preyPos.duplicate(), memorySet);
+
+        ModelState modelState = new ModelStateHunterPreyAgentGoalMemorySet(
+                hunter, prey,
+                hunterPos.duplicate(),
+                new Position(preyPosVec2.x, preyPosVec2.y),
+                hunter.getMemorySetValid().duplicate(), false);
 
         // Find a path to the goal e.g. Rat position.
         search.setFringeExpansionMax(FRINGE_MAX);
@@ -129,7 +142,7 @@ public class HunterPreyAi {
             // would be wrong.
             // To solve this we convert the path to a list of absolute
             // locations.
-            Position hunterPosIteration = hunterPos.duplicate();
+            Position hunterPosIteration = hunterPos;
             List<Position> hunterPathTemp = new ArrayList<>();
             for (Action action : path) {
                 if (action instanceof ActionAgentMoveRelative) {
@@ -141,6 +154,8 @@ public class HunterPreyAi {
                     ActionAgentMoveAbsolute actionMove = (ActionAgentMoveAbsolute) action;
                     hunterPosIteration.set(actionMove.getAgentTarget());
                     hunterPathTemp.add(hunterPosIteration.duplicate());
+                } else {
+                    throw new RuntimeException("Unknown Action " + action);
                 }
             }
             positionPath = hunterPathTemp;
@@ -178,8 +193,9 @@ public class HunterPreyAi {
         if (positionPath != null && positionPath.size() > 0) {
 
             Position hunterTarget = positionPath.get(0);
-            directionToPathHead = new Vec2((float) hunterTarget.getX()
-                    - hunterPos.x, (float) hunterTarget.getY() - hunterPos.y);
+            directionToPathHead = new Vec2(
+                    (float) hunterTarget.getX() - hunterPos.x,
+                    (float) hunterTarget.getY() - hunterPos.y);
             // if we are at the first point in the path, remove it and move to
             // next.
             while ((directionToPathHead.length() < POSITON_TOLERANCE)
@@ -215,8 +231,8 @@ public class HunterPreyAi {
             for (Position position : positionPath) {
                 hunterPosNew.x = (float) position.getX();
                 hunterPosNew.y = (float) position.getY();
-                System.out.println("From=" + hunterPosLast + " to "
-                        + hunterPosNew);
+                System.out.println(
+                        "From=" + hunterPosLast + " to " + hunterPosNew);
                 hunterPosLast = hunterPosNew;
             }
         }
@@ -239,8 +255,8 @@ public class HunterPreyAi {
 
         world.raycast(mcallback, hunterPos, targetPos);
 
-        debugDraw.drawSegment(hunterPos, targetPos, new Color3f(0.8f, 0.8f,
-                0.8f));
+        debugDraw.drawSegment(hunterPos, targetPos,
+                new Color3f(0.8f, 0.8f, 0.8f));
 
         for (int i = 0; i < mcallback.m_count; ++i) {
             Vec2 point = mcallback.m_points[i];
@@ -378,9 +394,9 @@ public class HunterPreyAi {
             for (ModelState modelState : fringeAdded) {
                 colour -= colourDiff;
                 ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-                circleList.add(new MyCircle(modelStateAgentGoal
-                        .getAgentPosition(),
-                        new Color3f(colour, colour, colour)));
+                circleList.add(
+                        new MyCircle(modelStateAgentGoal.getAgentPosition(),
+                                new Color3f(colour, colour, colour)));
             }
         }
         return circleList;
@@ -410,4 +426,5 @@ public class HunterPreyAi {
         }
 
     }
+
 }

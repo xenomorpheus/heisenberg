@@ -1,8 +1,9 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.action;
 
+import au.net.hal9000.heisenberg.ai.action.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.ai.ActionBase;
+
 import static org.junit.Assert.*;
 
 import java.util.HashSet;

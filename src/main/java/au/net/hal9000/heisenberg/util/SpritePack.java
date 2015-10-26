@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 
 /**
  * Read sprites from a packed sprites file.
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision: 1.0 $
  */
 public class SpritePack {
@@ -26,7 +26,7 @@ public class SpritePack {
 
     /**
      * Load sprites from spritepack file.
-     * 
+     *
      * @param spritePackFilename
      *            filename of sprite pack
      * @param width
@@ -59,11 +59,10 @@ public class SpritePack {
 
     /**
      * get one buffered image from the sprite pack.
-     * 
+     *
      * @param number
      *            the position in the sprite pack, starting at zero for top
      *            left.
-    
      * @return the buffered image at that position */
     public BufferedImage getSprite(int number) {
         return sprites[number];

@@ -1,6 +1,6 @@
 /**
 
-The item package contains the classes for game objects e.g. People, equipment, 
+The item package contains the classes for game objects e.g. People, equipment,
 locations, etc.
 
 See the base abstract class Item for more details.

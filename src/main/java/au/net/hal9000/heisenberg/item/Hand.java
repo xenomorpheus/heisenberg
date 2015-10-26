@@ -23,7 +23,7 @@ public class Hand extends ItemContainerImpl {
      * (value is 1)
      */
     private static final long serialVersionUID = 1L;
-    
+ 
     /**
      * Constructor for Hand.
      */

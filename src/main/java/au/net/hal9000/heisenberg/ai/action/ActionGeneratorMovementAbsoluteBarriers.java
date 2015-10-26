@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.PathBlockDetails;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
@@ -14,7 +12,8 @@ import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
-import au.net.hal9000.heisenberg.item.action.ActionAgentMoveAbsoluteImpl;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Geometry;
 
@@ -23,7 +22,7 @@ import au.net.hal9000.heisenberg.util.Geometry;
  * position as centre.<br>
  * This class also knows about Barriers, that which blocks movement.
  */
-public class MovementAbsoluteBarriers implements ActionGenerator {
+public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator {
 	private double stepSizeMax;
 	private int directionCount;
 	private double bodyRadiusMax;
@@ -34,7 +33,7 @@ public class MovementAbsoluteBarriers implements ActionGenerator {
 	 * @param directionCount
 	 * @param bodyRadiusMax
 	 */
-	public MovementAbsoluteBarriers(double stepSizeMax, int directionCount,double bodyRadiusMax) {
+	public ActionGeneratorMovementAbsoluteBarriers(double stepSizeMax, int directionCount, double bodyRadiusMax) {
 		this.stepSizeMax = stepSizeMax;
 		this.directionCount = directionCount;
 		this.bodyRadiusMax = bodyRadiusMax;
@@ -76,9 +75,11 @@ public class MovementAbsoluteBarriers implements ActionGenerator {
 			if (modelState instanceof ModelStateAgentGoalMemorySet) {
 				ModelStateAgentGoalMemorySet modelStateMemorySet = (ModelStateAgentGoalMemorySet) modelState;
 				MemorySet memorySet = modelStateMemorySet.getMemorySet();
-				for (Memory memory : memorySet) {
-					if (memory instanceof MemoryOfBarrier) {
-						barriers.add(((MemoryOfBarrier) memory).getBarrier());
+				if (memorySet != null) {
+					for (Memory memory : memorySet) {
+						if (memory instanceof MemoryOfBarrier) {
+							barriers.add(((MemoryOfBarrier) memory).getBarrier());
+						}
 					}
 				}
 			}

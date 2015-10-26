@@ -8,15 +8,15 @@ import java.io.Serializable;
 // This is NOT an Item
 /**
  * A representation of currency, value, wealth.
- * 
+ *
  * Currency contains a whole number of pieces (coins) of each of the following:
  * copper, silver, gold and platinum. These are abbreviated as CP, SP, GP and PP
  * respectively.
- * 
+ *
  * Objects are mutable.
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision: 1.0 $
  */
 public class Currency implements Serializable, Cloneable {
@@ -54,7 +54,7 @@ public class Currency implements Serializable, Cloneable {
     // Constructors
     /**
      * Creates a zero value Currency object that can be modified later.
-     * 
+     *
      */
     public Currency() {
         super();
@@ -62,7 +62,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Creates a Currency object that can be modified later.
-     * 
+     *
      * @param pp
      *            Number of Platinum Pieces in this object.
      * @param gp
@@ -83,7 +83,7 @@ public class Currency implements Serializable, Cloneable {
     /**
      * Clones an exiting Currency object. Each can be independently modified
      * later.
-     * 
+     *
      * @param otherCollection
      *            The Currency object being cloned.
      */
@@ -111,7 +111,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Set the number of platinum pieces.
-     * 
+     *
      * @param pp
      *            The number of platinum pieces.
      */
@@ -132,7 +132,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Set the number of gold pieces.
-     * 
+     *
      * @param gp
      *            The number of gold pieces.
      */
@@ -153,7 +153,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Set the number of silver pieces.
-     * 
+     *
      * @param sp
      *            The number of silver pieces.
      */
@@ -174,7 +174,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * Set the number of coper pieces.
-     * 
+     *
      * @param cp
      *            The number of coper pieces.
      */
@@ -200,7 +200,7 @@ public class Currency implements Serializable, Cloneable {
 
     /**
      * transfer all the value of the passed currency object.
-     * 
+     *
      * @param fromCollection
      *            losing collection.
      */
@@ -335,7 +335,7 @@ public class Currency implements Serializable, Cloneable {
     /**
      * Method clone.
      * @return Currency
-     * @throws CloneNotSupportedException 
+     * @throws CloneNotSupportedException
      */
     @Override
     public Currency clone() throws CloneNotSupportedException  {

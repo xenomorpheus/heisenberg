@@ -1,9 +1,9 @@
 package au.net.hal9000.heisenberg.util;
 
 /**
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision$
  */
 public class ConfigurationError extends Throwable {
@@ -18,7 +18,7 @@ public class ConfigurationError extends Throwable {
 
     /**
      * Constructor.
-     * 
+     *
      * @param pException
      *            the original exception
      */
@@ -28,8 +28,7 @@ public class ConfigurationError extends Throwable {
 
     /**
      * Get the original exception.
-     * 
-    
+     *
      * @return the original exception. */
     public Exception getException() {
         return exception;

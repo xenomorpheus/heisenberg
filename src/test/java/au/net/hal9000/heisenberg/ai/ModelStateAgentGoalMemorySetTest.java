@@ -26,29 +26,10 @@ public class ModelStateAgentGoalMemorySetTest {
         Position agentPosition = new Position();
         Position goalPosition = new Position();
         MemorySet memorySet = new MemorySetImpl();
-        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+        ModelStateAgentGoalMemorySetImpl modelState = new ModelStateAgentGoalMemorySetImpl(agentPosition,
                 goalPosition,memorySet);
         Position goalPositionGot = modelState.getGoalPosition();
         assertEquals(goalPosition, goalPositionGot);
-    }
-
-    /** test setGoalPosition. */
-    @Test
-    public void testSetGoalPosition() {
-        Position agentPosition = new Position();
-        Position initialGoalPosition = new Position();
-        MemorySet memorySet = new MemorySetImpl();
-        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
-                initialGoalPosition,memorySet);
-        Position newGoalPosition = new Position(0, 1);
-        assertFalse("test integrity. Possitions must be different",
-                initialGoalPosition.equals(newGoalPosition));
-        // Run test
-        modelState.setGoalPosition(newGoalPosition);
-        Position gotGoalPosition = modelState.getGoalPosition();
-        assertEquals("Position should be updated", newGoalPosition,
-                gotGoalPosition);
-        
     }
 
     /**
@@ -59,10 +40,10 @@ public class ModelStateAgentGoalMemorySetTest {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position(2, 1, 0);
         MemorySet memorySet = new MemorySetImpl();
-        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+        ModelStateAgentGoalMemorySetImpl modelState = new ModelStateAgentGoalMemorySetImpl(agentPosition,
                 goalPosition,memorySet);
         // ModelState
-        ModelStateAgentGoalMemorySet newModelState = (ModelStateAgentGoalMemorySet)modelState.duplicate();
+        ModelStateAgentGoalMemorySetImpl newModelState = (ModelStateAgentGoalMemorySetImpl)modelState.duplicate();
         assertFalse("ensure a new ModelStateGoalMemorySet is created",
                 modelState == newModelState);
         assertTrue("ensure new ModelStateGoalMemorySet equals() old",
@@ -82,12 +63,12 @@ public class ModelStateAgentGoalMemorySetTest {
         Position agentPosition = new Position(0, 1, 2);
         Position goalPosition = new Position();
         MemorySet memorySet = new MemorySetImpl();
-        ModelStateAgentGoalMemorySet modelState = new ModelStateAgentGoalMemorySet(agentPosition,
+        ModelStateAgentGoalMemorySetImpl modelState = new ModelStateAgentGoalMemorySetImpl(agentPosition,
                 goalPosition,memorySet);
 
         Position agentPosition2 = new Position(0, 1, 2);
         Position goalPosition2 = new Position();
-        ModelStateAgentGoalMemorySet modelState2 = new ModelStateAgentGoalMemorySet(agentPosition2,
+        ModelStateAgentGoalMemorySetImpl modelState2 = new ModelStateAgentGoalMemorySetImpl(agentPosition2,
                 goalPosition2,memorySet);
         assertEquals(modelState.hashCode(), modelState2.hashCode());
 

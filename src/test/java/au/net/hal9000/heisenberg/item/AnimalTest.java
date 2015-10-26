@@ -1,13 +1,12 @@
 package au.net.hal9000.heisenberg.item;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import junit.framework.TestCase;
 
 /**
  * The class <code>AnimalTest</code> contains tests for the class {@link
@@ -25,7 +24,7 @@ public class AnimalTest extends TestCase {
 	}
 
 	@Test
-	public void testDrink(){
+	public void testConsume(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);
@@ -35,7 +34,7 @@ public class AnimalTest extends TestCase {
 		ItemProperty.setHydration(cat, ItemProperty.HEALTH_METRIC_IDEAL / 2.0f);
 		float hydrationBefore = ItemProperty.getHydration(cat);
 		// Run
-		cat.drink(water);
+		cat.consume(water);
 		// Test
 		float hydrationAfter = ItemProperty.getHydration(cat);
 		assertTrue("Hydration increases", hydrationAfter > hydrationBefore);

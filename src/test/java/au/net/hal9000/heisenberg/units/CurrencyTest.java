@@ -16,9 +16,9 @@ import org.junit.Test;
 
 /**
  * Test for Currentcy class.
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision: 1.0 $
  */
 public class CurrencyTest {
@@ -242,7 +242,6 @@ public class CurrencyTest {
 
     }
 
-    
     /**
      * Tests for normalise method.
      */
@@ -265,5 +264,4 @@ public class CurrencyTest {
         assertEquals("equals", "1PP, 2GP, 4SP, 8CP", c.toString() );
 
     }
-    
 }

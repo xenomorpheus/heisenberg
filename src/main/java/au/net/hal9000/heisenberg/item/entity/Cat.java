@@ -7,8 +7,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.mixin.Drink;
-import au.net.hal9000.heisenberg.item.mixin.Eat;
+import au.net.hal9000.heisenberg.item.mixin.EntityConsumeSustenance;
 
 /**
  * @author bruins
@@ -55,13 +54,8 @@ public class Cat extends au.net.hal9000.heisenberg.item.entity.Entity implements
     }
 
     @Override
-    public void eat(Item food) {
-        Eat.eat(this, food);
-    }
-
-    @Override
-    public void drink(Item liquid) {
-        Drink.drink(this, liquid);
+    public void consume(Item sustenance) {
+        EntityConsumeSustenance.consume(this, sustenance);
     }
 
 }

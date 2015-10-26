@@ -13,6 +13,7 @@ import java.util.TreeMap;
 
 import org.junit.Test;
 
+import au.net.hal9000.heisenberg.ai.action.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.ModelState;

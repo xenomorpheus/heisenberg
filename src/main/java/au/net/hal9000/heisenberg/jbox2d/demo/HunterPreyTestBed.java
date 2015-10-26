@@ -44,7 +44,7 @@ class HunterPreyTestBed extends TestbedTest {
     /** Rat Jbox2d object. */
     private Body ratBody;
     /** AI */
-    private HunterPreyAi mazeCat;
+    private HunterPreyAi hunterPreyAi;
     /** JBox Physics Engine world */
     private World world = null;
     /** Debug Graphics object for drawing in JBox Physics Engine world */
@@ -58,7 +58,7 @@ class HunterPreyTestBed extends TestbedTest {
     /**
      * Called by the JBox2D physics engine to allow the game objects to interact
      * with the engine.
-     * 
+     *
      * @param settings
      *            TestbedSettings
      */
@@ -76,13 +76,13 @@ class HunterPreyTestBed extends TestbedTest {
             // mazeCat.vision(world, debugDraw);
             // TODO update cat's memory of barriers
             // TODO planning in a different thread
-            mazeCat.aiPlan();
+            hunterPreyAi.aiPlan();
             // mazeCat.aiPrint();
 
         }
-        mazeCat.aiFringeDraw(debugDraw);
-        mazeCat.aiPathDraw(debugDraw);
-        mazeCat.move();
+        hunterPreyAi.aiFringeDraw(debugDraw);
+        hunterPreyAi.aiPathDraw(debugDraw);
+        hunterPreyAi.move();
 
         // Centre the camera on the Cat
         setCamera(catBody.getPosition());
@@ -90,7 +90,7 @@ class HunterPreyTestBed extends TestbedTest {
 
     /**
      * Initial setup of the objects in the physics engine.
-     * 
+     *
      * @param deserialized
      *            boolean
      */
@@ -141,14 +141,14 @@ class HunterPreyTestBed extends TestbedTest {
             // body definition
             BodyDef bd = new BodyDef();
             bd.type = BodyType.DYNAMIC;
-            bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f); 
+            bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f);
             // TODO y=5.5
             bd.userData = RAT_TAG;
             ratBody = world.createBody(bd);
             ratBody.createFixture(fd);
         }
 
-        mazeCat = new HunterPreyAi(catBody, ratBody);
+        hunterPreyAi = new HunterPreyAi(catBody, ratBody);
 
         // TODO remove cheat and use vision to see boundary and barriers.
         // Outer Boundary Walls
@@ -175,7 +175,7 @@ class HunterPreyTestBed extends TestbedTest {
             body.createFixture(fd);
 
             // Learn boundary.
-            mazeCat.learnBarrierArray(boundary_shape, new Vec2(
+            hunterPreyAi.learnBarrierArray(boundary_shape, new Vec2(
                     BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "boundary");
 
         }
@@ -203,7 +203,7 @@ class HunterPreyTestBed extends TestbedTest {
             body.createFixture(fd);
 
             // Learn internal barrier.
-            mazeCat.learnBarrierArray(barrier_shape, new Vec2(BARRIER_OFFSET_X,
+            hunterPreyAi.learnBarrierArray(barrier_shape, new Vec2(BARRIER_OFFSET_X,
                     BARRIER_OFFSET_Y), "barrier");
 
         }
@@ -218,8 +218,8 @@ class HunterPreyTestBed extends TestbedTest {
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @return Return the default camera scale.
      */
     @Override
@@ -229,7 +229,7 @@ class HunterPreyTestBed extends TestbedTest {
 
     /**
      * Return the numerical value for the supplied body.
-     * 
+     *
      * @param body
      *            Body we want the numerical value for.
      * @return numerical value
@@ -248,7 +248,7 @@ class HunterPreyTestBed extends TestbedTest {
 
     /**
      * Method processBody.
-     * 
+     *
      * @param body
      *            Body
      * @param tag
@@ -269,7 +269,7 @@ class HunterPreyTestBed extends TestbedTest {
 
     /**
      * Method isSaveLoadEnabled.
-     * 
+     *
      * @return boolean
      */
     @Override

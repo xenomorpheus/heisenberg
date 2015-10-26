@@ -52,7 +52,7 @@ public class HalflingTest {
         float nourishment_before = ItemProperty.getNourishment(halfling);
         Cookie cookie = new Cookie();
         // Run
-        halfling.eat(cookie);
+        halfling.consume(cookie);
         // Test
         float nourishment_after = ItemProperty.getNourishment(halfling);
         assertTrue("Eating increases nouritshment",

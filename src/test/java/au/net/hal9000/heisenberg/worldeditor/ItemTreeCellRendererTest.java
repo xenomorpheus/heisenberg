@@ -31,7 +31,6 @@ public class ItemTreeCellRendererTest extends TestCase {
 		super(name);
 	}
 
-	
     /**
      * Run the Component getTreeCellRendererComponent(JTree, Object, boolean,
      * boolean, boolean, int, boolean) method test
@@ -55,8 +54,8 @@ public class ItemTreeCellRendererTest extends TestCase {
             row,
             hasFocus);
         assertNotNull(result);
-    }	
-	
+    }
+
 	/**
 	 * Run the Component getTreeCellRendererComponent(JTree, Object, boolean,
 	 * boolean, boolean, int, boolean) method test

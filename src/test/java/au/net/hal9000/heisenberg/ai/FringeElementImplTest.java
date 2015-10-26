@@ -22,7 +22,7 @@ public class FringeElementImplTest {
 
     @Test
     public void testToString() {
-        ModelState modelState = new ModelStateAgentGoal(new Position(),
+        ModelState modelState = new ModelStateAgentGoalImpl(new Position(),
                 new Position());
         Path pathSoFar = new PathImpl();
         double costSoFar = 1.23;

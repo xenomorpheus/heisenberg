@@ -10,14 +10,14 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
  * Shield.
- * 
+ *
  * 1) Reduces the chance that a attack will land.<br>
  * 2) Reduces the effect of an attack.<br>
  * 3) How can a shield get damaged?<br>
  * 4) Will there be armour types ?  Brace, shield, body, magical ...<br>
  *
  *  TODO perhaps create a protection Interface.
- *  
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

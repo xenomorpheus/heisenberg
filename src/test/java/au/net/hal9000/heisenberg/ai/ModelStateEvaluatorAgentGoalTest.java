@@ -17,14 +17,14 @@ public class ModelStateEvaluatorAgentGoalTest {
     public void testModelStateInAddedTrue() {
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         List<ModelState> addedModelStates = new ArrayList<>();
-        addedModelStates.add(new ModelStateAgentGoal(new Position(1, 1),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(1, 1),
                 new Position()));
-        addedModelStates.add(new ModelStateAgentGoal(new Position(2, 2),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(2, 2),
                 new Position()));
-        addedModelStates.add(new ModelStateAgentGoal(new Position(3, 3),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(3, 3),
                 new Position()));
 
-        ModelState modelState = new ModelStateAgentGoal(new Position(2, 2),
+        ModelState modelState = new ModelStateAgentGoalImpl(new Position(2, 2),
                 new Position());
         assertTrue(modelStateEvaluator.isModelStateInAdded(addedModelStates,
                 modelState));
@@ -34,14 +34,14 @@ public class ModelStateEvaluatorAgentGoalTest {
     public void testModelStateInAddedFalse() {
         ModelStateEvaluator modelStateEvaluator = new ModelStateEvaluatorAgentGoal();
         List<ModelState> addedModelStates = new ArrayList<>();
-        addedModelStates.add(new ModelStateAgentGoal(new Position(1, 1),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(1, 1),
                 new Position()));
-        addedModelStates.add(new ModelStateAgentGoal(new Position(2, 2),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(2, 2),
                 new Position()));
-        addedModelStates.add(new ModelStateAgentGoal(new Position(3, 3),
+        addedModelStates.add(new ModelStateAgentGoalImpl(new Position(3, 3),
                 new Position()));
 
-        ModelState modelState = new ModelStateAgentGoal(new Position(4, 4),
+        ModelState modelState = new ModelStateAgentGoalImpl(new Position(4, 4),
                 new Position());
         assertFalse(modelStateEvaluator.isModelStateInAdded(addedModelStates,
                 modelState));
@@ -61,7 +61,7 @@ public class ModelStateEvaluatorAgentGoalTest {
         Position agentPosition = new Position();
 
         // state
-        ModelStateAgentGoal modelState = new ModelStateAgentGoal(agentPosition,
+        ModelStateAgentGoalImpl modelState = new ModelStateAgentGoalImpl(agentPosition,
                 goalPosition);
         assertTrue("At goal", modelStateEvaluatorAgentGoal.isAtGoal(modelState));
         agentPosition.setX(1.0f);
@@ -86,7 +86,7 @@ public class ModelStateEvaluatorAgentGoalTest {
         Position agentPosition = new Position();
 
         // state
-        ModelStateAgentGoal modelState = new ModelStateAgentGoal(agentPosition,
+        ModelStateAgentGoalImpl modelState = new ModelStateAgentGoalImpl(agentPosition,
                 goalPosition);
 
         // Agent at goal - Return ZERO

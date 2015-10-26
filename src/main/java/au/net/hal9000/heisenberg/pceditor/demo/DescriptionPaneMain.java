@@ -15,8 +15,6 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
     /** frame height. */
     static final int FRAME_HEIGHT = 600;
 
-
-    
     /**
      * Launch the application.
      * @param args line args.
@@ -40,7 +38,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
 
                     DescriptionPane window = new DescriptionPane();
                     window.setPcRace(pc);
-                    
+
                     // add to JFrame
                     guiFrame.add(window);
                     guiFrame.setVisible(true);

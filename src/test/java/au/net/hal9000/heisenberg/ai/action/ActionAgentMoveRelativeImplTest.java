@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.action;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.item.action.ActionAgentMoveRelativeImpl;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**

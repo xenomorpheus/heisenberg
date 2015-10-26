@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.util.Geometry;
 /**
  * Used by MemoryOfBarrier class to remember barriers seen in physics engine.
  * Proof of concept. A very simple Barrier. Just a straight line.
- * 
+ *
  * @author bruins
  *
  */
@@ -26,7 +26,7 @@ public class BarrierShape implements Barrier {
 
     /**
      * Constructor.
-     * 
+     *
      * @param barrierShape
      *            line segment.
      * @param blocker
@@ -42,7 +42,7 @@ public class BarrierShape implements Barrier {
     /**
      * Returns details of any barrier blocking the path.<br>
      * Returns null if not blockedwon't block.<br>
-     * 
+     *
      * @param movement
      *            the path travelled between two points.
      * @return null or any details of a barrier.
@@ -55,11 +55,11 @@ public class BarrierShape implements Barrier {
 
         return getPathBlockDetailsDetails(movement);
     }
-    
+
     /**
      * Returns details of any barrier blocking the path.<br>
      * Returns null if not blockedwon't block.<br>
-     * 
+     *
      * @param movement
      *            the path travelled between two points.
      * @return null or any details of a barrier.
@@ -85,7 +85,7 @@ public class BarrierShape implements Barrier {
 
     /**
      * Method toString.
-     * 
+     *
      * @return String
      */
     @Override

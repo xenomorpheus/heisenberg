@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
  * @version $Revision: 1.0 $
  */
 public interface ItemVisitor {
-    
+
     /**
      * Visit this item.
      * @param item item to visit.

@@ -5,19 +5,19 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * 
+ *
  * TODO Refactor this into two classes:<br>
  * 1) Holder of configuration of a PC Class<br>
  * 2) The actual character sheet class.
- * 
+ *
  * Ideas: New class CharacterSheet will hold a PC's stats and maybe items.<br>
  * CharacterSheet will hold the following for each ability score:<br>
  * 1) (no extension) - The current value Equals:<br>
  * CharacterClass ability base + (level * CharacterClass ability inc) + Mod <br>
  * 2) "Mod" - Any modifiers the character has chosen.
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision: 1.0 $
  */
 
@@ -78,7 +78,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the id */
     public final String getId() {
         return id;
@@ -93,7 +92,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the combatDice */
     public final int getCombatDice() {
         return combatDice;
@@ -108,7 +106,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the magicDice */
     public final int getMagicDice() {
         return magicDice;
@@ -123,7 +120,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the stealthDice */
     public final int getStealthDice() {
         return stealthDice;
@@ -138,7 +134,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the generalDice */
     public final int getGeneralDice() {
         return generalDice;
@@ -153,7 +148,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the actionPoints */
     public final int getActionPoints() {
         return actionPoints;
@@ -168,7 +162,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the health */
     public final int getHealth() {
         return health;
@@ -183,7 +176,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the mana */
     public final int getMana() {
         return mana;
@@ -198,7 +190,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the raceAllow */
     public final String getRaceAllow() {
         return raceAllow;
@@ -213,7 +204,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the genderAllow */
     public final String getGenderAllow() {
         return genderAllow;
@@ -228,7 +218,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the sizeAllow */
     public final String getSizeAllow() {
         return sizeAllow;
@@ -243,7 +232,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the encumbrance */
     public final int getEncumbrance() {
         return encumbrance;
@@ -258,7 +246,6 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the abilityScores */
     public final Map<String, AbilityScore> getAbilityScores() {
         return abilityScores;
@@ -278,7 +265,6 @@ public class PcClass implements Comparable<PcClass> {
     /**
      * @param name
      *            name of AbilityScore
-    
      * @return the AbilityScore object */
     public AbilityScore getAbilityScore(String name) {
         return abilityScores.get(name);
@@ -294,14 +280,12 @@ public class PcClass implements Comparable<PcClass> {
     }
 
     /**
-    
      * @return the short string. */
     public String toString() {
         return id;
     }
 
     /**
-    
      * @return Plain text description of the object */
     public String getDetailedDescription() {
         StringBuilder text = new StringBuilder("Id: ");

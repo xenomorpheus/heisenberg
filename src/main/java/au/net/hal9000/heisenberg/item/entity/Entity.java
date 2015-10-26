@@ -18,7 +18,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 /**
  * Entity is the bases of conscious entities. <br>
  * May living or undead.
- * 
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -41,12 +41,12 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     /**
      * This object has a list of
      * {@link au.net.hal9000.heisenberg.util.AbilityScore} objects.<br>
-     * 
+     *
      * To set up, just work through the list on the {@link PcRace}.
-     * 
+     *
      * Create a new AbilityScore object for each one on PC. Set the modifier to
      * 0. Set the name = pcClassAbility.getName()
-     * 
+     *
      * Call the reCalculateAllAbilityScores() function<br>
      * Set the value = pcClassAbility.getValue() + (level *
      * pcClassAbility.getModifier()) + modifier;
@@ -74,7 +74,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     // Constructor
     /**
      * Constructor for Entity.
-     * 
+     *
      * @param name
      *            String
      * @param description
@@ -93,7 +93,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Constructor for Entity.
-     * 
+     *
      * @param name
      *            String
      */
@@ -105,7 +105,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     // Getters and Setters
     /**
-     * 
+     *
      * @return the actionPoints
      */
     public final int getActionPoints() {
@@ -122,7 +122,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Adjust the amount of action points of this item.
-     * 
+     *
      * @param adjust
      *            amount to adjust by.
      */
@@ -131,7 +131,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     }
 
     /**
-     * 
+     *
      * @return the gender
      */
     public final String getGender() {
@@ -147,7 +147,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     }
 
     /**
-     * 
+     *
      * @return the mana
      */
     public final int getMana() {
@@ -164,7 +164,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Adjust the amount of mana.
-     * 
+     *
      * @param adjust
      *            amount to adjust by.
      */
@@ -175,8 +175,8 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     // Recipe objects
     /**
      * Get the Recipe objects this Entity object knows.
-     * 
-     * 
+     *
+     *
      * @return the set of Recipe objects
      */
     public Set<String> getRecipes() {
@@ -185,7 +185,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Set the Recipe objects this Entity object knows.
-     * 
+     *
      * @param recipes
      *            the set of Recipe objects
      */
@@ -195,7 +195,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Add to the of Recipe objects this Entity object knows.
-     * 
+     *
      * @param recipeId
      *            a Recipe id
      */
@@ -208,7 +208,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * The Entity has learnt new Recipe(s).
-     * 
+     *
      * @param newRecipes
      *            an array of Recipe IDs to add.
      */
@@ -219,7 +219,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     }
 
     /**
-     * 
+     *
      * @return the size
      */
     public final String getSize() {
@@ -237,8 +237,8 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     // Skills
     /**
      * Get the Skill objects.
-     * 
-     * 
+     *
+     *
      * @return a set of Skill objects
      */
     public final Set<Skill> getSkills() {
@@ -247,7 +247,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Set the skills of this entity.
-     * 
+     *
      * @param skills
      *            skills to set.
      */
@@ -257,7 +257,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * The Entity object has learnt a new Skill.
-     * 
+     *
      * @param skill
      *            The freshly learnt Skill.
      */
@@ -270,7 +270,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Add extra Skills to the list of required ingredients.
-     * 
+     *
      * @param newSkills
      *            additional skills to set on Entity.
      */
@@ -283,11 +283,21 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     // MemorySet
     /**
      * Get the Memory objects.
-     * 
-     * 
+     *
+     *
      * @return a list of Memory objects
      */
     public final MemorySet getMemorySet() {
+        return memorySet;
+    }
+    /**
+     * Ensure a non-null MemorySet
+     * @return
+     */
+    public final MemorySet getMemorySetValid() {
+        if (memorySet == null){
+            memorySet = new MemorySetImpl();
+        }
         return memorySet;
     }
 
@@ -295,8 +305,8 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Return a detailed description of the object.
-     * 
-     * 
+     *
+     *
      * @return Plain text description of the object
      */
     public String detailedDescription() {
@@ -357,7 +367,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * Shallow copy properties from one object to another.
-     * 
+     *
      * @param entity
      *            source
      */
@@ -397,7 +407,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
 
     /**
      * The Entity object has learnt a new Memory.
-     * 
+     *
      * @param skill
      *            The freshly learnt Memory.
      */
@@ -407,7 +417,6 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
         }
         memorySet.add(memory);
     }
-    
 
     public Cooker getCooker(String recipeId) {
         Configuration configuration = Configuration.lastConfig();

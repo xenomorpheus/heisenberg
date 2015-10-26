@@ -9,7 +9,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 /**
  * A Location is the base type for an area that Items can interact. e.g. a
  * clearing.
- * 
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -30,12 +30,12 @@ public class Location extends ItemContainerImpl implements Serializable {
 
     /**
      * Constructor.
-     * 
+     *
      * @param name
      *            name of location.
      */
     public Location(final String name) {
         super(name);
     }
-    
+ 
 }

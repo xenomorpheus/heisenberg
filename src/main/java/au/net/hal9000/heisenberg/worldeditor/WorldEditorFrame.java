@@ -22,7 +22,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  * The main application window. Shows a tree of the items in this world.
- * 
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -45,15 +45,15 @@ public class WorldEditorFrame extends JFrame {
 
     /**
      * Constructor.
-     * 
-     * 
+     *
+     *
      * @throws ConfigurationError
      */
     public WorldEditorFrame() throws ConfigurationError {
         super();
         init();
     }
-    
+
     private void init(){
 
         /** Config. */
@@ -148,7 +148,7 @@ public class WorldEditorFrame extends JFrame {
 
     /**
      * set the location.
-     * 
+     *
      * @param newLocation
      *            new location.
      */
@@ -173,10 +173,10 @@ public class WorldEditorFrame extends JFrame {
 
     /**
      * Construct UI menu bar.
-     * 
+     *
      * @param actionListener
      *            the listener for the menu events.
-     * 
+     *
      * @return a menu bar.
      */
     public static JMenuBar getMenus(ActionListener actionListener) {

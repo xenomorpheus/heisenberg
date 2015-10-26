@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
-import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
@@ -11,8 +11,8 @@ import au.net.hal9000.heisenberg.units.Position;
  * @version $Revision: 1.0 $
  */
 
-public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
-        ModelState {
+public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl implements
+ModelStateAgentGoalMemorySet {
 
     /** Memories. e.g. Walls */
     private MemorySet memorySet;
@@ -25,7 +25,7 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
      * @param memorySet
      *            memories e.g. walls.
      */
-    public ModelStateAgentGoalMemorySet(Position agentPosition,
+    public ModelStateAgentGoalMemorySetImpl(Position agentPosition,
             Position goalPosition, MemorySet memorySet) {
         super(agentPosition, goalPosition);
         if (null == memorySet) {
@@ -36,6 +36,7 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
 
     // getters and setters
 
+    @Override
     public MemorySet getMemorySet() {
         return memorySet;
     }
@@ -44,9 +45,9 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
 
     /** {@inheritDoc} */
     @Override
-    public ModelStateAgentGoalMemorySet duplicate() {
+    public ModelStateAgentGoalMemorySetImpl duplicate() {
         // TODO for all duplicate() methods do something smarter with copying properties of super classes.
-        return new ModelStateAgentGoalMemorySet(getAgentPosition().duplicate(),
+        return new ModelStateAgentGoalMemorySetImpl(getAgentPosition().duplicate(),
                 getGoalPosition().duplicate(), getMemorySet().duplicate());
     }
 
@@ -77,7 +78,7 @@ public class ModelStateAgentGoalMemorySet extends ModelStateAgentGoal implements
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ModelStateAgentGoalMemorySet other = (ModelStateAgentGoalMemorySet) obj;
+        ModelStateAgentGoalMemorySetImpl other = (ModelStateAgentGoalMemorySetImpl) obj;
         if (memorySet == null) {
             if (other.memorySet != null)
                 return false;

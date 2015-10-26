@@ -494,11 +494,11 @@
 		<!-- powerWord entries are mentioned by id only. -->
 		<!-- requirements entries are mentioned by id only. -->
 		<!-- Rules for requirements in Precedence Order -->
-		<!-- (This will aid auto-allocation of Item objects if this process is 
+		<!-- (This will aid auto-allocation of Item objects if this process is
 			added) -->
-		<!-- 1. Consumed Ingredient objects before non-consumed so non-consumed 
+		<!-- 1. Consumed Ingredient objects before non-consumed so non-consumed
 			aren't counted twice. -->
-		<!-- 2. Most specific Ingredient before less-specific to help the matching 
+		<!-- 2. Most specific Ingredient before less-specific to help the matching
 			process -->
 		<!-- Game Recipes -->
 		<recipe id="ItemDrinkWater" description="drink water"

@@ -1,7 +1,6 @@
-package au.net.hal9000.heisenberg.item.action;
+package au.net.hal9000.heisenberg.ai.action;
 
-import au.net.hal9000.heisenberg.ai.ActionBase;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;

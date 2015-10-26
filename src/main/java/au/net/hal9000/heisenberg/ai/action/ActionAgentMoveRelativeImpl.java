@@ -1,7 +1,6 @@
-package au.net.hal9000.heisenberg.item.action;
+package au.net.hal9000.heisenberg.ai.action;
 
-import au.net.hal9000.heisenberg.ai.ActionBase;
-import au.net.hal9000.heisenberg.ai.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.units.Position;
@@ -9,7 +8,7 @@ import au.net.hal9000.heisenberg.units.Position;
 /**
  * Very simple actions - Agent movement only.<br>
  * Position is the change in position.<br>
- * 
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -21,7 +20,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
 
     /**
      * Constructor.
-     * 
+     *
      * @param agentPostionDelta
      *            Agent's movement relative to current position.
      * @param cost the effort / cost of performing the action
@@ -64,7 +63,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
     // Misc
     /**
      * Method toString.
-     * 
+     *
      * @see au.net.hal9000.heisenberg.ai.api.Action#toString()
      * @return String
      */
@@ -79,7 +78,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
 
     /**
      * Method hashCode.
-     * 
+     *
      * @return int
      */
 
@@ -95,13 +94,12 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
 	}
     /**
      * Method equals.
-     * 
+     *
      * @param obj
      *            Object
-     * 
+     *
      * @return boolean
      */
-    
 
 	@Override
 	public boolean equals(Object obj) {
@@ -122,5 +120,4 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase implements
 			return false;
 		return true;
 	}
-    
 }

@@ -50,7 +50,7 @@ public class Purse extends ItemImpl {
 
     /**
      * Constructor.
-     * 
+     *
      * @param coins
      *            coin object to place in the Purse.
      */
@@ -60,7 +60,7 @@ public class Purse extends ItemImpl {
 
     /**
      * Constructor.
-     * 
+     *
      * @param pString
      */
     public Purse(final String pString) {
@@ -69,8 +69,7 @@ public class Purse extends ItemImpl {
 
     /**
      * Number of coins in purse.
-     * 
-    
+     *
      * @return number of coins */
     public int getCoinCount() {
         return coins.getCp() + coins.getSp() + coins.getGp() + coins.getPp();
@@ -103,7 +102,7 @@ public class Purse extends ItemImpl {
 
     /**
      * The coins passed in are transfered to the purse.
-     * 
+     *
      * @param fromCoins
      *            coins passed in.
      */

@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.units.Position;
 
 /**
  * Geometry utility.
- * 
+ *
  * @author bruins
  *
  */
@@ -20,7 +20,7 @@ public final class Geometry {
 
     /**
      * Return the intersection point.Warning: Only X,Y considered.
-     * 
+     *
      * @param segment1
      *            first line segment.
      * @param segment2
@@ -35,9 +35,9 @@ public final class Geometry {
     }
 
     /**
-     * Return the intersection point, if any, between two lines. First line from 
+     * Return the intersection point, if any, between two lines. First line from
      * p0 to p1. Second line from p2 to p3.
-     * 
+     *
      * @param p0X
      *            segment 1, point 1, x.
      * @param p0Y
@@ -83,7 +83,7 @@ public final class Geometry {
 
     /**
      * Generate a list of points like where the spokes. First
-     * 
+     *
      * @param delta
      *            the first spoke to be returned.
      * @param spokeCount

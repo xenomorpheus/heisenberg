@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.ai;
+package au.net.hal9000.heisenberg.ai.action;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
 /**

@@ -15,7 +15,7 @@ Cost - A measure of the effort in performing the action. e.g. the distance of a 
 
 Goal (State) - The desired State of the Model e.g. Agent at the desired destination.<br>
 
-(Intelligent) Agent (IA) is an autonomous entity which observes through sensors and acts upon an environment 
+(Intelligent) Agent (IA) is an autonomous entity which observes through sensors and acts upon an environment
      using actuators and directs its activity towards achieving goals.<br>
 
 Model - Agents think a simplified version of the world called the Model. Model should only contain the charateristics of the world that are relevant to the search.<br>
@@ -24,7 +24,7 @@ Model - Agents think a simplified version of the world called the Model. Model s
 Model State - A instantaneous snap-shot of the Model. <br>
     A ModelState should probably be immutable.<br>
 
-(Model State) Evaluator - A function to evaluate the State of the Model and give a value on how good the model is e.g. the effort to get from the current state to reach the Goal State. 
+(Model State) Evaluator - A function to evaluate the State of the Model and give a value on how good the model is e.g. the effort to get from the current state to reach the Goal State.
 Evaluator function return zero at Goal State.<br>
 
 Path - an ordered list of Action objects.

@@ -7,16 +7,9 @@ public interface Animal {
     /**
      * eat.
      * 
-     * @param food
-     *            food to eat.<br>
+     * @param sustenance
+     *            sustenance to consume.<br>
      */
-    public void eat(Item food);
+    public void consume(Item sustenance);
 
-    /**
-     * Drink.
-     * 
-     * @param liquid
-     *            liquid to drink.<br>
-     */
-    public void drink(Item water);
 }

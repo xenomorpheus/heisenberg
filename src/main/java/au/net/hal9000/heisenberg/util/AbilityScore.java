@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 /**
  * AbilityScore properties.<br>
  * Int: value (including modifier)<br>
- * 
+ *
  * @author bruins
- * 
+ *
  * @version $Revision: 1.0 $
  */
 public class AbilityScore implements Comparable<AbilityScore> {
@@ -29,7 +29,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     /**
      * Constructor.
-     * 
+     *
      * @param name name of ability.
      * @param value value of ability.
      * @param mod modifier.
@@ -42,7 +42,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     /**
      * Constructor.
-     * 
+     *
      * @param name name of ability.
      * @param mixed combined value and modifier.
      */
@@ -78,7 +78,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-    
      * @return the name */
     public final String getName() {
         return name;
@@ -93,7 +92,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-    
      * @return the value */
     public final int getValue() {
         return value;
@@ -108,7 +106,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
     }
 
     /**
-    
      * @return the mod */
     public final int getMod() {
         return mod;
@@ -124,7 +121,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     // misc
     /**
-    
      * @return Value with optional mod. e.g. 3/1 or 3 */
     public String valueOptionalMod() {
         String string = "" + value;
@@ -138,7 +134,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
         return string;
     }
 
-    
     /**
      * {@inheritDoc}
      * @return String

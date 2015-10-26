@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.ai.action.MovementAbsoluteBarriers;
+import au.net.hal9000.heisenberg.ai.action.ActionGeneratorMovementAbsoluteBarriers;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveRelative;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
@@ -45,7 +45,7 @@ public class SearchAStarGridTest {
 		agent.setPosition(new Position(startPosition));
 
 		// Setup starting model state. No barriers
-		final ModelStateAgentGoal modelStateStart = new ModelStateAgentGoal(new Position(agent.getPosition()),
+		final ModelStateAgentGoalImpl modelStateStart = new ModelStateAgentGoalImpl(new Position(agent.getPosition()),
 				new Position(goalPosition));
 
 		// Setup how to transition (move) to a new state.
@@ -55,7 +55,7 @@ public class SearchAStarGridTest {
 		final SuccessorFunction successorFunction = new SuccessorFunctionImpl(transitionFunction);
 
 		// Service to provide movement Action objects.
-		final ActionGenerator movementAbsoluteBarriers = new MovementAbsoluteBarriers(stepSizeMax, successorCountMax,
+		final ActionGenerator movementAbsoluteBarriers = new ActionGeneratorMovementAbsoluteBarriers(stepSizeMax, successorCountMax,
 				0f);
 
 		// Setup how we evaluate the worth of a new model state.
@@ -86,9 +86,9 @@ public class SearchAStarGridTest {
 			modelStateCurrent = transitionFunction.transition(modelStateCurrent, action);
 		}
 		assertTrue("modelStateCurrent instanceof ModelStateAgentGoal",
-				modelStateCurrent instanceof ModelStateAgentGoal);
+				modelStateCurrent instanceof ModelStateAgentGoalImpl);
 		assertTrue("assert path leads to goal", goalPosition
-				.equals(((ModelStateAgentGoal) modelStateCurrent).getAgentPosition(), Position.DEFAULT_AXIS_TOLERANCE));
+				.equals(((ModelStateAgentGoalImpl) modelStateCurrent).getAgentPosition(), Position.DEFAULT_AXIS_TOLERANCE));
 
 	}
 
@@ -143,7 +143,7 @@ public class SearchAStarGridTest {
 		agent.memoryAdd(memory);
 
 		// Setup starting model state.
-		final ModelStateAgentGoal modelStateStart = new ModelStateAgentGoalMemorySet(new Position(agent.getPosition()),
+		final ModelStateAgentGoalImpl modelStateStart = new ModelStateAgentGoalMemorySetImpl(new Position(agent.getPosition()),
 				new Position(goalPosition), new MemorySetImpl(agent.getMemorySet()));
 
 		// Service to transition (move) to a new ModelState.
@@ -153,7 +153,7 @@ public class SearchAStarGridTest {
 		SuccessorFunction successorFunction = new SuccessorFunctionImpl(transitionFunction);
 
 		// Service to provide movement Action objects.
-		final ActionGenerator movementAbsoluteBarriers = new MovementAbsoluteBarriers(stepSizeMax, successorCountMax,
+		final ActionGenerator movementAbsoluteBarriers = new ActionGeneratorMovementAbsoluteBarriers(stepSizeMax, successorCountMax,
 				0f);
 
 		// Setup how we evaluate the worth of a new model state.
@@ -186,8 +186,8 @@ public class SearchAStarGridTest {
 
 		// Check that we ended at goal.
 		assertTrue("modelStateCurrent instanceof ModelStateAgentGoal",
-				modelStateCurrent instanceof ModelStateAgentGoal);
-		assertTrue(goalPosition.equals(((ModelStateAgentGoal) modelStateCurrent).getAgentPosition(),
+				modelStateCurrent instanceof ModelStateAgentGoalImpl);
+		assertTrue(goalPosition.equals(((ModelStateAgentGoalImpl) modelStateCurrent).getAgentPosition(),
 				Position.DEFAULT_AXIS_TOLERANCE));
 	}
 }
