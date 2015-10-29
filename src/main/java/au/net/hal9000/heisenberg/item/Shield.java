@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.api.HumanoidArmClothing;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -23,7 +22,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Shield extends ItemImpl implements HumanoidArmClothing {
 
     // ToHitModifier toHitModifier = new ToHitModifier();

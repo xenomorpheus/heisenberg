@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.api.Sharp;
 
@@ -14,7 +13,6 @@ import au.net.hal9000.heisenberg.item.api.Sharp;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Sword extends ItemImpl implements Sharp {
 
     /**

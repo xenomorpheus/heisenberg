@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item.entity;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
@@ -18,7 +17,6 @@ import au.net.hal9000.heisenberg.util.PcClass;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Human extends Humanoid implements Animal {
 
     /**

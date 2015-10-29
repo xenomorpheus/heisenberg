@@ -4,20 +4,11 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * This class is like a Singleton.  It stores the Icons needed for swing when
- * showing Item objects in tree view.
- *
- * @author bruins
- *
- */
-import javax.persistence.Embeddable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 
-@Embeddable
 public class ItemIcon implements Serializable {
     /** serialisation version. */
     private static final long serialVersionUID = 1L;

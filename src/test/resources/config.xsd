@@ -110,24 +110,22 @@
 	<!-- complex types -->
 
 	<xs:complexType name="ctItemType">
-		<xs:attribute type="xs:string" name="id" />
-		<xs:attribute type="xs:int" name="iconOpenId" minOccurs="0"
-			maxOccurs="1" />
-		<xs:attribute type="xs:int" name="iconClosedId"
-			minOccurs="0" maxOccurs="1" />
-		<xs:attribute type="xs:int" name="iconLeafId" minOccurs="0"
-			maxOccurs="1" />
-		<xs:attribute type="xs:string" name="javaClass"
-			minOccurs="0" maxOccurs="1" />
+	<xs:sequence>
+	</xs:sequence>
+		<xs:attribute type="xs:string" name="id" use="required"/>
+		<xs:attribute type="xs:int" name="iconOpenId"/>
+		<xs:attribute type="xs:int" name="iconClosedId"/>
+		<xs:attribute type="xs:int" name="iconLeafId"/>
+		<xs:attribute type="xs:string" name="javaClass"/>
 	</xs:complexType>
 
 	<xs:complexType name="ctSpriteSheetType">
-		<xs:attribute type="xs:string" name="id" />
-		<xs:attribute type="xs:string" name="filename" />
-		<xs:attribute type="xs:byte" name="width" />
-		<xs:attribute type="xs:byte" name="height" />
-		<xs:attribute type="xs:byte" name="rows" />
-		<xs:attribute type="xs:byte" name="columns" />
+		<xs:attribute type="xs:string" name="id" use="required"/>
+		<xs:attribute type="xs:string" name="filename" use="required"/>
+		<xs:attribute type="xs:byte" name="width" use="required"/>
+		<xs:attribute type="xs:byte" name="height" use="required"/>
+		<xs:attribute type="xs:byte" name="rows" use="required"/>
+		<xs:attribute type="xs:byte" name="columns" use="required"/>
 	</xs:complexType>
 
 	<xs:complexType name="ctPcClassType">
