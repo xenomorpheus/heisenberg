@@ -34,7 +34,7 @@ public class AnimalTest extends TestCase {
 		ItemProperty.setHydration(cat, ItemProperty.HEALTH_METRIC_IDEAL / 2.0f);
 		float hydrationBefore = ItemProperty.getHydration(cat);
 		// Run
-		cat.consume(water);
+		cat.drink(water);
 		// Test
 		float hydrationAfter = ItemProperty.getHydration(cat);
 		assertTrue("Hydration increases", hydrationAfter > hydrationBefore);

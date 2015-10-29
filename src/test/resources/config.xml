@@ -501,17 +501,17 @@
 		<!-- 2. Most specific Ingredient before less-specific to help the matching
 			process -->
 		<!-- Game Recipes -->
-		<recipe id="ItemDrinkWater" description="drink water"
+		<recipe id="AnimalDrink" description="Dnimal drink"
 			actionPoints="2">
 			<requirements>
-				<item id="Water" weightMin="1" />
+				<item id="Drink" type="Water" weightMin="1" />
 			</requirements>
 			<products>
 				<property id="HydrationId" propertyName="hydration"
 					propertyDelta="15.0" />
 			</products>
 		</recipe>
-		<recipe id="ItemEatAnimal" description="Eat an Animal"
+		<recipe id="AnimalEat" description="Animal Eat"
 			actionPoints="2">
 			<requirements>
 				<item id="Food" type="Animal" />

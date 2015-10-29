@@ -6,7 +6,7 @@ import javax.persistence.InheritanceType;
 
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.mixin.EntityConsumeSustenance;
+import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 
 /**
  * @author bruins
@@ -52,8 +52,13 @@ public class Cat extends au.net.hal9000.heisenberg.item.entity.Entity implements
     }
 
     @Override
-    public void consume(Item sustenance) {
-        EntityConsumeSustenance.consume(this, sustenance);
+    public void eat(Item food) {
+        AnimalConsumeSustenance.eat(this, food);
+    }
+
+    @Override
+    public void drink(Item food) {
+        AnimalConsumeSustenance.drink(this, food);
     }
 
 }

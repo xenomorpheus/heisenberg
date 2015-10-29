@@ -180,7 +180,7 @@ public class ScenarioSet01 {
         Halfling halfling = new Halfling();
         halfling.setActionPoints(3);
         Cookie cookie = new Cookie();
-        halfling.consume(cookie);
+        halfling.eat(cookie);
         println("Halfling ate a cookie");
     }
 

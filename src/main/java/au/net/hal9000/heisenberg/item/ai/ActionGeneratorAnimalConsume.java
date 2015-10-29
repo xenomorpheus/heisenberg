@@ -38,7 +38,7 @@ public class ActionGeneratorAnimalConsume implements ActionGenerator {
             double goalDist = delta.length();
             if (goalDist < distanceMax) {
                 // TODO cost increase by effort to eat.
-                actions.add(new ActionAnimalConsume(
+                actions.add(new ActionEntityEat(
                         modelStateHunterPrey.getHunter(),
                         modelStateHunterPrey.getPrey(), goalDist));
             }

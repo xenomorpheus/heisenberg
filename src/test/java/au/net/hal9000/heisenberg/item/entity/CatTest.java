@@ -46,7 +46,7 @@ public class CatTest {
 		ItemProperty.setHydration(cat, ItemProperty.HEALTH_METRIC_IDEAL / 2.0f);
 		float hydrationBefore = ItemProperty.getHydration(cat);
 		// Run
-		cat.consume(water);
+		cat.drink(water);
 		// Test
 		float hydrationAfter = ItemProperty.getHydration(cat);
 		assertTrue("Hydration increases", hydrationAfter > hydrationBefore);
@@ -59,11 +59,11 @@ public class CatTest {
 		cat.setActionPoints(2);
 		Rat rat = new Rat();
 		rat.setWeightBase(1.0f);
-		// Set hydration to half of ideal.
+		// Set nourishment to half of ideal.
 		ItemProperty.setNourishment(cat, ItemProperty.HEALTH_METRIC_IDEAL / 2.0f);
 		float nourishmentBefore = ItemProperty.getNourishment(cat);
 		// Run
-		cat.consume(rat);
+		cat.eat(rat);
 		// Test
 		float nourishmentAfter = ItemProperty.getNourishment(cat);
 		assertTrue("Nourishment increases", nourishmentAfter > nourishmentBefore);

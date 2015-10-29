@@ -137,13 +137,13 @@ public class Cooker extends ItemContainerImpl {
         }
         // already in this container?
         if (this.contains(item)) {
-            throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM);
+            throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM+ ": "+item);
         }
         // is there a requirement to fulfill ?
         final RequirementItem requirementItem = (RequirementItem) recipe
                 .getRequirement(key);
         if (null == requirementItem) {
-            throw new RuntimeException(NO_SUCH_REQUIREMENT);
+            throw new RuntimeException(NO_SUCH_REQUIREMENT+ ": "+key);
         }
 
         // Does the Item fulfill the Requirement?

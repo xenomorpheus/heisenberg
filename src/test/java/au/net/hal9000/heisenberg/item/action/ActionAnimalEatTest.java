@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.ai.ActionAnimalConsume;
+import au.net.hal9000.heisenberg.item.ai.ActionEntityEat;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Entity;
@@ -17,7 +17,7 @@ public class ActionAnimalEatTest {
     private static final double COST = 1.67;
 
     // immutable so we can reuse.
-    private ActionAnimalConsume actionEat = new ActionAnimalConsume(CONSUMER, FOOD, COST);
+    private ActionEntityEat actionEat = new ActionEntityEat(CONSUMER, FOOD, COST);
 
     @Before
     public void setUp() throws Exception {
