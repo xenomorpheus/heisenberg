@@ -535,25 +535,6 @@ public abstract class ItemImpl implements Serializable, Item {
     }
 
     /**
-     * Create a new Item of the specified type.
-     * 
-     * @param type
-     *            the type of Item to create.
-     * 
-     * @return the new Item.
-     */
-    public final boolean instanceOf(String type) {
-        boolean isInstance;
-        try {
-            Class<?> itemClass = Class.forName(Item.getClassForType(type));
-            isInstance = itemClass.isInstance(this);
-        } catch (ClassNotFoundException e) {
-            isInstance = false; // NOP
-        }
-        return isInstance;
-    }
-
-    /**
      * Returns the simple type of this item e.g. Cookie, Arrow, etc.
      * 
      * 

@@ -501,6 +501,8 @@
 		<!-- 2. Most specific Ingredient before less-specific to help the matching
 			process -->
 		<!-- Game Recipes -->
+		<!-- Unit Test Recipes -->
+		<!-- Animal Recipes -->
 		<recipe id="AnimalDrink" description="Dnimal drink"
 			actionPoints="2">
 			<requirements>
@@ -514,21 +516,11 @@
 		<recipe id="AnimalEat" description="Animal Eat"
 			actionPoints="2">
 			<requirements>
-				<item id="Food" type="Animal" />
+				<item id="Food" type="Item" />
 			</requirements>
 			<products>
 				<property id="NourishmentId" propertyName="nourishment"
 					propertyDelta="15.0" />
-			</products>
-		</recipe>
-		<recipe id="ItemEatCookie" description="Eat a Cookie"
-			actionPoints="2">
-			<requirements>
-				<item id="Food" type="Cookie" />
-			</requirements>
-			<products>
-				<property id="NourishmentId" propertyName="nourishment"
-					propertyDelta="1.0" />
 			</products>
 		</recipe>
 		<recipe id="FireGround1" description="small open ground fire"
@@ -552,19 +544,8 @@
 				<item id="OrbOfLight" />
 			</products>
 		</recipe>
-		<!-- Animal Recipes -->
-		<!-- Cat Recipes -->
-		<recipe id="catDrinkWater" description="Cat drinks Water"
-			actionPoints="2">
-			<requirements>
-				<item id="Water" weightMin="1" />
-			</requirements>
-			<products>
-				<property id="HydrationId" propertyName="hydration"
-					propertyDelta="15.0" />
-			</products>
-		</recipe>
 		<!-- Unit Test Recipes -->
+		<!-- Animal Recipes -->
 		<recipe id="testItem1" description="item test 1" mana="2"
 			actionPoints="10" process="createItem1">
 			<skill id="testSkill1" />

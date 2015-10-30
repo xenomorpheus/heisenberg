@@ -24,7 +24,7 @@ public class AnimalTest extends TestCase {
 	}
 
 	@Test
-	public void testConsume(){
+	public void testDrink(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);

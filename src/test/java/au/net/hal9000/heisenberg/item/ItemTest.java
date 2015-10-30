@@ -278,15 +278,6 @@ public class ItemTest {
 
     }
 
-    /** check the instanceof results. */
-    @Test
-    public void testInstanceOf() {
-        Item item = new Cookie();
-        assertTrue("item", item.instanceOf("Cookie"));
-        assertFalse("Sword", item.instanceOf("Sword"));
-        assertFalse("Unknown", item.instanceOf("Unknown"));
-    }
-
     @Test
     public void testApplyDelta() {
         Item item = new Cookie();

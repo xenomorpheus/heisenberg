@@ -18,6 +18,8 @@ import au.net.hal9000.heisenberg.item.api.Item;
  * @author bruins
  * @version $Revision: 1.0 $
  */
+
+// TODO consider changing to RequirementBuilder style
 public class RequirementItem extends Requirement {
     /**
      * The simple class name of the Item object.
@@ -103,6 +105,26 @@ public class RequirementItem extends Requirement {
     }
 
     /**
+     * Determine if Item is of the specified type.
+     * 
+     * @param Item.
+     * @param type
+     *            the type of Item to create.
+     * 
+     */
+    private boolean isType(Item item, String type) {
+        boolean isType;
+        try {
+            Class<?> itemClass = Class.forName(Item.getClassForType(type));
+            isType = itemClass.isInstance(item);
+        } catch (ClassNotFoundException e) {
+        	isType = false; // NOP
+        }
+        return isType;
+    }    
+    
+    
+    /**
      * Does the Item meet the requirements?
      * 
      * @param item
@@ -113,9 +135,10 @@ public class RequirementItem extends Requirement {
     public final String meetsRequirements(final Item item) {
 
         // Correct Class
-        if (!item.instanceOf(itemType)) {
+        if (!isType(item,itemType)) {
             return "item must be a " + itemType;
         }
+
         // Correct Weight
         if (item.getWeight() < weightMin) {
             return "item must weight at least " + weightMin;

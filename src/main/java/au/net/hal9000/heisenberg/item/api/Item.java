@@ -265,16 +265,6 @@ public interface Item {
     void applyDelta(Position delta);
 
     /**
-     * Create a new Item of the specified type.
-     * 
-     * @param type
-     *            the type of Item to create.
-     * 
-     * @return the new Item.
-     */
-    boolean instanceOf(String itemType);
-
-    /**
      * get the ID of the item. We need to be ale to tell the difference between
      * <br>
      * two items with the same properties.
@@ -304,7 +294,12 @@ public interface Item {
             javaClassSuffix = itemTypeConfig.getJavaClass();
         }
         if (javaClassSuffix == null) {
-            javaClassSuffix = type; // Assume no subclass.
+        	if (type.equals("Item")){
+        		javaClassSuffix = "ItemImpl";
+        	}
+        	else {
+        		javaClassSuffix = type; // Assume no subclass.
+        	}
         }
         return PACKAGE_NAME + "." + javaClassSuffix;
     }

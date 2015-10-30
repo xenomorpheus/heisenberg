@@ -321,7 +321,7 @@ public class CookerTest {
             cooker.setItemsAvailable("Wood2", wood);
         } catch (RuntimeException e) {
             assertEquals("item 2 - already in Cooker",
-                    Cooker.ALREADY_CONTAINS_THAT_ITEM, e.getMessage());
+                    Cooker.ALREADY_CONTAINS_THAT_ITEM + ": "+wood, e.getMessage());
         }
 
         cooker.setItemsAvailable("Wood2", wood2);

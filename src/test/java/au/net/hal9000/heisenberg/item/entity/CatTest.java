@@ -36,7 +36,7 @@ public class CatTest {
 	}
 
 	@Test
-	public void testConsumeWater(){
+	public void testDrinkWater(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);
@@ -53,7 +53,7 @@ public class CatTest {
 	}
 
 	@Test
-	public void testConsumeRat(){
+	public void testEatRat(){
 		// Setup
 		Cat cat = new Cat();
 		cat.setActionPoints(2);
