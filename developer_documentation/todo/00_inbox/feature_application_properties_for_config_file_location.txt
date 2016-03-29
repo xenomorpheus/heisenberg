@@ -1,0 +1,12 @@
+Option 1:
+Use spring for Config.
+Option 1a) No-arg constructor that defaults to config file name in application properties.
+Option 1b) 1-arg constructor that is passed the filename from applicationProperties (??) xml
+
+
+
+Option 2:
+replace getLastConfig with getConfig()
+getConfig() will use cached config or load config first if not present.
+load config will use the config filename in the application properties.
+Also for test application properties.

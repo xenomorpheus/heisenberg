@@ -1,0 +1,13 @@
+
+Consider Debugging a log statement.
+
+Will need to attach source code first.
+
+Consider compiling into JAR
+
+Consider log4j example in dropbox.
+Incorporate fixes from example, 1 by 1 until it works.  Take note of the change that fixes the issue.
+
+Failing the above, remove logging from pom and log4j properties, then copy from example.
+
+http://saltnlight5.blogspot.com.au/2013/08/how-to-configure-slf4j-with-different.html

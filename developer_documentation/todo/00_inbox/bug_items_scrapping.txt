@@ -1,0 +1,3 @@
+Idea - Have complex items that can be scrapped into smaller items.
+
+E.g. a Radio could be scrapped for screws, wires, plastic, etc.

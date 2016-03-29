@@ -1,0 +1,9 @@
+Rename eat/drink recipe.
+Change food/drink params Sustenance.
+Fix resulting errors.
+
+java.lang.RuntimeException: Failed to find recipe=ItemConsumeSustenance
+	at au.net.hal9000.heisenberg.item.entity.Entity.getCooker(Entity.java:425)
+	at au.net.hal9000.heisenberg.item.mixin.EntityConsumeSustenance.consume(EntityConsumeSustenance.java:16)
+	at au.net.hal9000.heisenberg.item.entity.Halfling.consume(Halfling.java:57)
+	at au.net.hal9000.heisenberg.item.entity.HalflingTest.halflingEatsACookie(HalflingTest.java:55)
