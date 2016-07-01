@@ -214,29 +214,28 @@ public class HunterPreyAi {
         }
     }
 
-    public void aiPrint() {
-        List<ModelState> modelStateList = search.getFringeAdded();
-        for (ModelState modelState : modelStateList) {
-            System.out.println("fringe=" + modelState);
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+        for (ModelState modelState : search.getFringeAdded()) {
+            sb.append("fringe=").append(modelState).append(System.lineSeparator());
         }
 
-        // Draw the Cat's planned path
+        // The Hunter's planned path
         if (positionPath != null) {
 
-            // Start is Cat's position.
+            // Start is Hunter's position.
             Vec2 hunterPosLast = hunterBody.getPosition();
             Vec2 hunterPosNew = new Vec2();
-            // Draw the planned path
+            // The planned path
 
             for (Position position : positionPath) {
                 hunterPosNew.x = (float) position.getX();
                 hunterPosNew.y = (float) position.getY();
-                System.out.println(
-                        "From=" + hunterPosLast + " to " + hunterPosNew);
+                sb.append("From=").append(hunterPosLast).append(" to ").append(hunterPosNew).append(System.lineSeparator());
                 hunterPosLast = hunterPosNew;
             }
         }
-
+        return sb.toString();
     }
 
     /**
