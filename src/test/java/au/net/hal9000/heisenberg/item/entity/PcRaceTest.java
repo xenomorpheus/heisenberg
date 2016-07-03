@@ -314,7 +314,7 @@ public class PcRaceTest {
         checkBasicsAreZero(elf);
 
         // Make some changes
-        // TODO - add more fields.
+        // TODO add more fields.
         // pcClass - ensure results are not linked
         // abilityScores - ensure results are not linked
         // recipes - ensure results are not linked

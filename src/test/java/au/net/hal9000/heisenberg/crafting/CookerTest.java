@@ -138,8 +138,7 @@ public class CookerTest {
         Cooker cooker = chef.getCooker("testSpell1");
         cooker.cook();
 
-        // TODO - check the spell method was run.
-
+        // TODO check the spell method was run.
         // Check the chef has paid in Mana and ActionPoints
         assertEquals("mana", manaRemaining, chef.getMana());
         assertEquals("actionPoints", actionPointsRemaining,

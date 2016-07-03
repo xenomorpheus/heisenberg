@@ -29,7 +29,7 @@ public class PurseTest {
                 purse.getWeight(), MARGIN_OF_ERROR);
         assertEquals("getVolume - empty purse", purse.getVolumeBase(),
                 purse.getVolume(), MARGIN_OF_ERROR);
-        // TODO add more
+        // TODO add more tests
     }
 
     /**

@@ -409,7 +409,7 @@ public abstract class ItemImpl implements Serializable, Item {
      */
     @Override
     public void beNot() {
-        // TODO - Help Required - How do I delete an object that
+        // TODO Help Required - How do I delete an object that
         // may be referenced by other objects?
         // Perhaps listeners on the containers?
         ItemContainer container = this.getContainer();

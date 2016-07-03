@@ -52,8 +52,8 @@ public class HunterPreyAiTest {
 			// body definition
 			BodyDef bd = new BodyDef();
 			bd.type = BodyType.DYNAMIC;
-			bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f); // TODO
-																		// y=5.5
+			// TODO set offset y=5.5
+			bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f);
 			preyBody = new Body(bd, null);
 		}
 
