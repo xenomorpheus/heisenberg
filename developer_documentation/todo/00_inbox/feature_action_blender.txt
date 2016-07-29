@@ -1,0 +1,14 @@
+
+New Concept - Action 'Blender', similar to 'Blender' for animations.
+
+* Take a list of possible actions and blend them.
+
+** Actions to have a ranking system.
+
+* Consider if it would be better if these were simple functions rather than a fixed value.
+
+** possibly the following are useful
+
+** gain - to be e.g. nutrients
+
+** cost - to be e.g. effort 
