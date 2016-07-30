@@ -116,11 +116,19 @@ public interface ItemContainer extends Item, ItemList {
 	 * Remove the Item from the container.
 	 * 
 	 * @param item
-	 *            the time to remove.
+	 *            the item to remove.
 	 */
 	void remove(Item item);
 
-    /**
+	/**
+	 * Remove the Item at position index from the container.
+	 * 
+	 * @param index
+	 *            the position to remove.
+	 */
+	void remove(int index);
+	
+	/**
      * Change the position of the item within the ItemContainer.
      * 
      * Note: The request can fail or partially complete.<br>

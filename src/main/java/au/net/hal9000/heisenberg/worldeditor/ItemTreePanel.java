@@ -17,8 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.apache.log4j.Logger;
@@ -26,7 +28,6 @@ import org.apache.log4j.Logger;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
@@ -35,185 +36,193 @@ import au.net.hal9000.heisenberg.util.Configuration;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class ItemTreePanel extends JPanel implements TreeModelListener,
-        PropertyChangeListener {
+public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
 
-    /** Class serial version id. */
-    private static final long serialVersionUID = 1L;
+	/** Class serial version id. */
+	private static final long serialVersionUID = 1L;
 
-    /** LOGGER */
-    private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class
-            .getName());
+	/** LOGGER */
+	private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class.getName());
 
-    /** The TreeModel will translate our custom structure into Swing paths etc.. */
-    private TreeModel treeModel = null;
+	/**
+	 * The TreeModel will translate our custom structure into Swing paths etc..
+	 */
+	private TreeModel treeModel = null;
 
-    /** A tree structure of Item objects. */
-    private JTree tree = new JTree();
+	/** A tree structure of Item objects. */
+	private JTree tree = new JTree();
 
-    /** A list of Item types to choose when we want to add Item to a container. */
-    private JComboBox<String> itemClassesList = null;
+	/**
+	 * A list of Item types to choose when we want to add Item to a container.
+	 */
+	private JComboBox<String> itemClassesList = null;
 
-    /** Swing toolkit. */
-    private Toolkit toolkit = Toolkit.getDefaultToolkit();
+	/** Swing toolkit. */
+	private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-    /**
-     * Constructor.
-     * 
-     * @param config
-     *            configuration to use for building the selection boxes.
-     * @param location
-     *            the location to display.
-     */
-    public ItemTreePanel(Configuration config, final Location location) {
-        super();
+	/**
+	 * Constructor.
+	 * 
+	 * @param config
+	 *            configuration to use for building the selection boxes.
+	 * @param location
+	 *            the location to display.
+	 */
+	public ItemTreePanel(Configuration config, final Location location) {
+		super();
 
-        // The JTree can get big, so allow it to scroll.
-        JScrollPane scrollpane = new JScrollPane();
+		// The JTree can get big, so allow it to scroll.
+		JScrollPane scrollpane = new JScrollPane();
 
-        // The "Add" Button Panel
-        JPanel addButtonPanel = new JPanel();
+		// The "Add" Button Panel
+		JPanel addButtonPanel = new JPanel();
 
-        setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 
-        tree.setCellRenderer(new ItemTreeCellRenderer());
+		tree.setCellRenderer(new ItemTreeCellRenderer());
 
-        scrollpane.setViewportView(tree);
+		scrollpane.setViewportView(tree);
 
-        // A JComboBox of Item types we can add
-        Set<String> classIds = config.getItemClassIds();
-        String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
-        itemClassesList = new JComboBox<String>(classIdStrings);
-        addButtonPanel.add(itemClassesList);
+		// A JComboBox of Item types we can add
+		Set<String> classIds = config.getItemClassIds();
+		String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
+		itemClassesList = new JComboBox<String>(classIdStrings);
+		addButtonPanel.add(itemClassesList);
 
-        // The "Add" Button
-        final JButton addButton = new JButton("Add");
-        // http://www.chka.de/swing/tree/DefaultTreeModel.html
+		// The "Add" Button
+		final JButton addButton = new JButton("Add");
+		// http://www.chka.de/swing/tree/DefaultTreeModel.html
 
-        ActionListener buttonActionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
+		ActionListener buttonActionListener = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
 
-                Object source = event.getSource();
-                if (source == addButton) {
-                    Object selNode = tree.getLastSelectedPathComponent();
-                    if (selNode instanceof ItemList) {
-                        ItemList selContainer = (ItemList) selNode;
-                        // Create an Item of the requested type.
-                        String itemClass = itemClassesList.getSelectedItem()
-                                .toString();
-                        Item newNode = Factory.createItem(itemClass);
-                        // Add the new Item to the selected container.
+				Object source = event.getSource();
+				if (source == addButton) {
+					Object selectedObject = tree.getLastSelectedPathComponent();
+					if (selectedObject instanceof MutableTreeNode) {
+						MutableTreeNode treeNode = (MutableTreeNode) selectedObject;
+						if (treeNode.getAllowsChildren()) {
+							// Create an Item of the requested type.
+							String itemClass = itemClassesList.getSelectedItem().toString();
+							Item childItem = Factory.createItem(itemClass);
+							MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
+							// Add the new Item to the selected container.
 
-                        // TODO Bugfix the UI isn't being updated when new
-                        // Item objects added to container.
-                        // Is anything listening to the changes in the
-                        // container?
-                        // Perhaps the model?
+							// TODO Bugfix the UI isn't being updated when new
+							// Item objects added to container.
+							// Is anything listening to the changes in the
+							// container?
+							// Perhaps the model?
 
-                        selContainer.add(selContainer.size(), newNode);
-                        LOGGER.debug("newNode is " + newNode);
+							treeNode.insert(childTreeNode, 0); // TODO add to end
+							LOGGER.debug("newTreeNode is " + childTreeNode);
 
-                        TreePath path = getPathToNode(newNode);
-                        LOGGER.debug("path is " + path);
-                        tree.scrollPathToVisible(path);
-                        tree.setSelectionPath(path);
-                        tree.startEditingAtPath(path);
-                    } else {
-                        toolkit.beep();
-                        LOGGER.warn(selNode + " is not a container");
-                    }
-                }
-            }
-        };
-        addButton.addActionListener(buttonActionListener);
-        addButtonPanel.add(addButton);
+							TreePath path = getPathToNode(childTreeNode);
+							LOGGER.debug("path is " + path);
+							tree.scrollPathToVisible(path);
+							tree.setSelectionPath(path);
+							tree.startEditingAtPath(path);
+						} else {
+							LOGGER.warn(treeNode + " does not allow children");
+						}
+					} else {
+						toolkit.beep();
+						LOGGER.warn(selectedObject + " is not a MutableTreeNode");
+					}
+				}
+			}
+		};
+		addButton.addActionListener(buttonActionListener);
+		addButtonPanel.add(addButton);
 
-        add(scrollpane, BorderLayout.NORTH);
-        add(addButtonPanel, BorderLayout.SOUTH);
-        setRoot(location);
+		add(scrollpane, BorderLayout.NORTH);
+		add(addButtonPanel, BorderLayout.SOUTH);
+		setRoot(location);
 
-    }
+	}
 
-    /**
-     * Set the root object in this tree.
-     * 
-     * @param root
-     *            the root object of the tree.
-     */
-    public void setRoot(Location root) {
-        // Create a TreeModel object to represent our m_tree of files
-        treeModel = new ItemTreeModel(root);
+	/**
+	 * Set the root object in this tree.
+	 * 
+	 * @param root
+	 *            the root object of the tree.
+	 */
+	public void setRoot(Location root) {
+		// Create a TreeModel object to represent our m_tree of files
+		TreeNode rootTreeNode = new ItemTreeNode(root);
+		treeModel = new DefaultTreeModel(rootTreeNode);
 
-        // This class will listen to changes in the TreeModel.
-        treeModel.addTreeModelListener(this);
+		// This class will listen to changes in the TreeModel.
+		treeModel.addTreeModelListener(this);
 
-        // Create a JTree and tell it to display our model
-        tree.setModel(treeModel);
-        tree.setEditable(true);
-        tree.setSelectionRow(0);
-    }
+		// Create a JTree and tell it to display our model
+		tree.setModel(treeModel);
+		tree.setEditable(true);
+		tree.setSelectionRow(0);
+	}
 
-    /**
-     * Get path from root to the target node.
-     * 
-     * @param node
-     *            target node
-     * 
-     * @return a TreePath of nodes from root to the target node.
-     */
-    static TreePath getPathToNode(Item node) {
-        List<Item> itemList = new ArrayList<Item>();
-        while ((null != node)) {
-            itemList.add(0,node);
-            node = node.getContainer();
-        }
-        return new TreePath(itemList.toArray(new Item[itemList.size()]));
-    }
+	/**
+	 * Get path from root to the target node.
+	 * 
+	 * @param node
+	 *            target node
+	 * 
+	 * @return a TreePath of nodes from root to the target node.
+	 */
+	static TreePath getPathToNode(TreeNode node) {
+		TreeNode currentNode = node;
+		List<TreeNode> itemList = new ArrayList<>();
+		while ((null != currentNode)) {
+			itemList.add(0, currentNode);
+			currentNode = currentNode.getParent();
+		}
+		return new TreePath(itemList.toArray(new TreeNode[itemList.size()]));
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void treeNodesChanged(TreeModelEvent e) {
-        DefaultMutableTreeNode node;
-        node = (DefaultMutableTreeNode) (e.getTreePath().getLastPathComponent());
+	/** {@inheritDoc} */
+	@Override
+	public void treeNodesChanged(TreeModelEvent e) {
+		Object o  = e.getTreePath().getLastPathComponent();
+		LOGGER.error("treeNodesChanged - code not finished");
 
-        /*
-         * If the event lists children, then the changed node is the child of
-         * the node we've already gotten. Otherwise, the changed node and the
-         * specified node are the same.
-         */
+		/*
+		 * If the event lists children, then the changed node is the child of
+		 * the node we've already gotten. Otherwise, the changed node and the
+		 * specified node are the same.
+		 */
 
-        int index = e.getChildIndices()[0];
-        node = (DefaultMutableTreeNode) (node.getChildAt(index));
+//		int index = e.getChildIndices()[0];
+//		node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-        LOGGER.debug("The user has finished editing the node.");
-        LOGGER.debug("New value: " + node.getUserObject());
-    }
+		LOGGER.warn("The user has finished editing the node "+o+", "+o.getClass());
+//		LOGGER.debug("New value: " + node.getUserObject());
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void treeNodesInserted(TreeModelEvent e) {
-        // TODO finish treeNodesInserted
-        throw new RuntimeException("Node Inserted.");
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void treeNodesInserted(TreeModelEvent e) {
+		// TODO finish treeNodesInserted
+		throw new RuntimeException("Node Inserted.");
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void treeNodesRemoved(TreeModelEvent e) {
-        // TODO finish treeNodesRemoved
-        throw new RuntimeException("treeNodesRemoved - Node Removed.");
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void treeNodesRemoved(TreeModelEvent e) {
+		// TODO finish treeNodesRemoved
+		throw new RuntimeException("treeNodesRemoved - Node Removed.");
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void treeStructureChanged(TreeModelEvent e) {
-        // TODO finish treeStructureChanged
-        throw new RuntimeException("treeStructureChanged - Node Changed.");
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void treeStructureChanged(TreeModelEvent e) {
+		// TODO finish treeStructureChanged
+		throw new RuntimeException("treeStructureChanged - Node Changed.");
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        // TODO Auto-generated method stub propertyChange
-        throw new RuntimeException("propertyChange - Node Changed.");
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub propertyChange
+		throw new RuntimeException("propertyChange - Node Changed.");
+	}
 }

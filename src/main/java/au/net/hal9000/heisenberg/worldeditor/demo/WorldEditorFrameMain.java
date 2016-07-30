@@ -23,10 +23,6 @@ public class WorldEditorFrameMain {
 
     public static void main(String[] args) {
 
-        LOGGER.error("ERROR WorldEditorFrameMain");
-        LOGGER.warn("WARN WorldEditorFrameMain");
-        LOGGER.info("INFO WorldEditorFrameMain");
-
         // Use the event dispatch thread for Swing components
         SwingUtilities.invokeLater(new Runnable() {
 

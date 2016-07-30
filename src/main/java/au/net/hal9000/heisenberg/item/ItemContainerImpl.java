@@ -471,6 +471,12 @@ public class ItemContainerImpl extends ItemImpl
         item.setContainer(null);
     }
 
+	@Override
+	public void remove(int index) {
+		remove(contents.get(index));
+		
+	}
+    
     /**
      * Attempt to move Item's position within the ItemContainer to this new
      * position.
