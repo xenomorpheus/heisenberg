@@ -316,14 +316,15 @@ abstract class Humanoid extends PcRace implements ItemList {
 	 */
 	@Override
 	public void accept(ItemVisitor visitor) {
-		visitor.visit(head);
+		head.accept(visitor);
 		if (null != leftHand) {
-			visitor.visit(leftHand);
+			leftHand.accept(visitor);
 		}
 		if (null != rightHand) {
-			visitor.visit(rightHand);
+			rightHand.accept(visitor);
 		}
-		visitor.visit(core);
+		core.accept(visitor);
+		visitor.visit(this);
 	}
 
 	/**

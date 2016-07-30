@@ -9,12 +9,16 @@ import javax.swing.tree.TreeNode;
 
 import org.apache.log4j.Logger;
 
-import au.net.hal9000.heisenberg.item.ItemContainerImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 
 /**
  * An adapter/wrapper around a Item object to make it look like a ItemTreeNode.
+ *
+ * This class contains major design flaw(s).
+ *
+ * TODO To detected items containing other items, it should ItemList not ItemContainer.
+ * Or alternatively all items that contain items should be ItemContainer subclasses.
  *
  * @author bruins
  *
@@ -23,7 +27,7 @@ public class ItemTreeNode implements MutableTreeNode {
 	/**
 	 * Field LOGGER.
 	 */
-	private static final Logger LOGGER = Logger.getLogger(ItemContainerImpl.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ItemTreeNode.class.getName());
 
 	private Item item;
 
@@ -69,9 +73,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
 	@Override
 	public int getIndex(TreeNode node) {
-		// TODO this is probably very wrong.
-		LOGGER.warn("INFO getIndex - item " + item);
-		LOGGER.warn("INFO getIndex - node " + node + " of " + node.getClass());
+		LOGGER.info("getIndex - item " + item);
+		LOGGER.info("getIndex - node " + node + " of " + node.getClass());
 		int index = -1;
 		if (node instanceof ItemTreeNode) {
 			ItemTreeNode itn = (ItemTreeNode) node;
@@ -80,16 +83,14 @@ public class ItemTreeNode implements MutableTreeNode {
 			if (item instanceof ItemContainer) {
 				ItemContainer itemContainer = (ItemContainer) item;
 				index = itemContainer.indexOf(nodeItem);
-
 			} else {
 				LOGGER.error("getIndex failed as container is null. node " + node + " of " + node.getClass());
 			}
-
 		} else {
 			LOGGER.error("getIndex failed item as not of type ItemContainer. item " + item + ", node " + node + " of "
 					+ node.getClass());
 		}
-		LOGGER.warn("INFO getIndex - index " + index);
+		LOGGER.info("getIndex - index " + index);
 		return index;
 	}
 

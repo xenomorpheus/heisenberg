@@ -440,10 +440,10 @@ public class ItemContainerImpl extends ItemImpl
     public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
         for (Item item : getContents()) {
-            visitor.visit(item);
+            item.accept(visitor);
         }
         // Get super to do the rest.
-        super.accept(visitor);
+        visitor.visit(this);
     }
 
     /**
