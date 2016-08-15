@@ -104,10 +104,7 @@ public class WorldEditorFrame extends JFrame {
 		// Menus
 		ActionListener menuActionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-
-				// TODO get from event. How?
 				String eventName = event.getActionCommand();
-
 				if (MENU_NEW.equals(eventName)) {
 					location = new Location("The world");
 					location.setWeightMax(1000000);

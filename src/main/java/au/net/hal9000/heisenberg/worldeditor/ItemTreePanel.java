@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.util.Configuration;
 
 /**
@@ -93,46 +94,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 		final JButton addButton = new JButton("Add");
 		// http://www.chka.de/swing/tree/DefaultTreeModel.html
 
-		ActionListener buttonActionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-
-				Object source = event.getSource();
-				if (source == addButton) {
-					Object selectedObject = tree.getLastSelectedPathComponent();
-					if (selectedObject instanceof MutableTreeNode) {
-						MutableTreeNode treeNode = (MutableTreeNode) selectedObject;
-						if (treeNode.getAllowsChildren()) {
-							// Create an Item of the requested type.
-							String itemClass = itemClassesList.getSelectedItem().toString();
-							Item childItem = Factory.createItem(itemClass);
-							MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
-							// Add the new Item to the selected container.
-
-							// TODO Bugfix the UI isn't being updated when new
-							// Item objects added to container.
-							// Is anything listening to the changes in the
-							// container?
-							// Perhaps the model?
-
-							treeNode.insert(childTreeNode, 0); // TODO add to end
-							LOGGER.debug("newTreeNode is " + childTreeNode);
-
-							TreePath path = getPathToNode(childTreeNode);
-							LOGGER.debug("path is " + path);
-							tree.scrollPathToVisible(path);
-							tree.setSelectionPath(path);
-							tree.startEditingAtPath(path);
-						} else {
-							LOGGER.warn(treeNode + " does not allow children");
-						}
-					} else {
-						toolkit.beep();
-						LOGGER.warn(selectedObject + " is not a MutableTreeNode");
-					}
-				}
-			}
-		};
-		addButton.addActionListener(buttonActionListener);
+		addButton.addActionListener(new ButtonActionListener());
 		addButtonPanel.add(addButton);
 
 		add(scrollpane, BorderLayout.NORTH);
@@ -182,7 +144,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 	/** {@inheritDoc} */
 	@Override
 	public void treeNodesChanged(TreeModelEvent e) {
-		Object o  = e.getTreePath().getLastPathComponent();
+		Object o = e.getTreePath().getLastPathComponent();
 		LOGGER.error("treeNodesChanged - code not finished");
 
 		/*
@@ -191,11 +153,11 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 		 * specified node are the same.
 		 */
 
-//		int index = e.getChildIndices()[0];
-//		node = (DefaultMutableTreeNode) (node.getChildAt(index));
+		// int index = e.getChildIndices()[0];
+		// node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-		LOGGER.warn("The user has finished editing the node "+o+", "+o.getClass());
-//		LOGGER.debug("New value: " + node.getUserObject());
+		LOGGER.warn("The user has finished editing the node " + o + ", " + o.getClass());
+		// LOGGER.debug("New value: " + node.getUserObject());
 	}
 
 	/** {@inheritDoc} */
@@ -224,5 +186,57 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub propertyChange
 		throw new RuntimeException("propertyChange - Node Changed.");
+	}
+
+	private class ButtonActionListener implements ActionListener {
+		ButtonActionListener() {
+			super();
+		}
+
+		public void actionPerformed(ActionEvent event) {
+
+			Object selectedObject = tree.getLastSelectedPathComponent();
+			if (selectedObject instanceof MutableTreeNode) {
+				MutableTreeNode treeNode = (MutableTreeNode) selectedObject;
+				if (treeNode.getAllowsChildren()) {
+					// Create an Item of the requested type.
+					String itemClass = itemClassesList.getSelectedItem().toString();
+					Item childItem = Factory.createItem(itemClass);
+					MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
+					// Add the new Item to the selected container.
+
+					// TODO Bugfix the UI isn't being updated when new
+					// Item objects added to container.
+					// Is anything listening to the changes in the
+					// container?
+					// Perhaps the model?
+					int insertIndex = 0;
+					if (treeNode instanceof ItemTreeNode) { // Add to end
+						ItemTreeNode itemTreeNode = (ItemTreeNode) treeNode;
+						ItemContainer container = (ItemContainer) itemTreeNode.getItem();
+
+						insertIndex = container.size();
+						itemTreeNode.insert(childTreeNode, insertIndex);
+						LOGGER.warn("newTreeNode is " + childTreeNode);
+
+						TreePath path = getPathToNode(treeNode);
+						LOGGER.warn("path is " + path);
+
+						// fireTreeNodesInserted
+						treeModel.valueForPathChanged(path, childItem);
+					}
+
+					// tree.scrollPathToVisible(path);
+					// tree.setSelectionPath(path);
+					// tree.startEditingAtPath(path);
+				} else {
+					LOGGER.warn(treeNode + " does not allow addition of items");
+					toolkit.beep();
+				}
+			} else {
+				toolkit.beep();
+				LOGGER.warn(selectedObject + " is not a MutableTreeNode");
+			}
+		}
 	}
 }

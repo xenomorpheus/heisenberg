@@ -2,9 +2,9 @@ Project Aims:
 ===================
 The aims of this project are somewhat unconventional:
 
-* To fulfil a long term goal of exploring AI programming in a MUD-like setting.
-* Develop my Java skills, in particular frameworks commonly used in the workplace.
-* To have fun.
+1) To fulfil a long term goal of exploring AI programming in a MUD-like setting.
+2) To have fun.
+3) Develop my Java skills, in particular frameworks commonly used in the workplace.
 
 Background and Inspiration:
 ============================
