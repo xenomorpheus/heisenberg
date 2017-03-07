@@ -29,7 +29,7 @@ public class ActionConsumeTest {
 
     @Test
     public void testToString() {
-        String expect = "ActionAnimalEat=[consumer=" + ENTITY + ",consumable=" + CONSUMABLE + ']';
+        String expect = "ActionConsume=[consumer=" + ENTITY + ",consumable=" + CONSUMABLE + ']';
         assertEquals(expect, actionEat.toString());
     }
 

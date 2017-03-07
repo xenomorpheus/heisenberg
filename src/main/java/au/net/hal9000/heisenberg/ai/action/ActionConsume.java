@@ -53,7 +53,7 @@ public final class ActionConsume extends ActionBase {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(12);
-		sb.append("ActionAnimalEat=[consumer=").append(consumer).append(",consumable=").append(consumable).append(']');
+		sb.append("ActionConsume=[consumer=").append(consumer).append(",consumable=").append(consumable).append(']');
 		return sb.toString();
 	}
 
