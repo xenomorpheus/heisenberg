@@ -16,6 +16,7 @@ import au.net.hal9000.heisenberg.ai.ModelStateHunterPreyAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.SuccessorFunctionImpl;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
+import au.net.hal9000.heisenberg.ai.action.ActionConsume;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
@@ -151,6 +152,9 @@ public class HunterPreyAi {
 				directionToPathHead.normalize();
 				directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED); // TODO cut speed when we reach goal
 				hunterBody.setLinearVelocity(directionToPathHead);
+			}
+			else if (action instanceof ActionConsume){
+				hunter.consume(prey);
 			}
 			else{
 				// effortRemaining -= cost;
@@ -293,7 +297,8 @@ public class HunterPreyAi {
 			Vec2 hunterPosLast = hunterBody.getPosition();
 			Vec2 hunterPosNew = new Vec2();
 			// Draw the planned path
-			Color3f color = Color3f.BLUE;
+			Color3f movementColour = Color3f.BLUE;
+			Color3f consumeColour = Color3f.RED;
 
 			for (Action action : hunterPath) {
 				if (action instanceof ActionAgentMoveAbsolute) {
@@ -301,11 +306,15 @@ public class HunterPreyAi {
 					Position position = absol.getAgentTarget();
 					hunterPosNew.x = (float) position.getX();
 					hunterPosNew.y = (float) position.getY();
-					debugDraw.drawSolidCircle(hunterPosNew, 0.15f, null, color);
-					debugDraw.drawSegment(hunterPosLast, hunterPosNew, color);
+					debugDraw.drawSolidCircle(hunterPosNew, 0.15f, null, movementColour);
+					debugDraw.drawSegment(hunterPosLast, hunterPosNew, movementColour);
 					hunterPosLast = hunterPosNew;
+				}
+				else if (action instanceof ActionConsume){
+					debugDraw.drawSolidCircle(hunterPosNew, 0.3f, null, consumeColour);
+					System.out.println("consume action " + action);
 				} else {
-					System.out.println("Skipping action " + action);
+					// System.out.println("Skipping action " + action);
 				}
 			}
 		}

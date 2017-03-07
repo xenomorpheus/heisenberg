@@ -13,11 +13,14 @@ import au.net.hal9000.heisenberg.units.Position;
 public class ActionGeneratorConsumer implements ActionGenerator {
 
     private double consumeDistanceMax;
+	private double consumeCost;
 	/**
+	 * @param consumeCost TODO
      * 
      */
-    public ActionGeneratorConsumer(double distanceMax) {
+    public ActionGeneratorConsumer(double distanceMax, double consumeCost) {
     	this.consumeDistanceMax = distanceMax;
+    	this.consumeCost = consumeCost;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class ActionGeneratorConsumer implements ActionGenerator {
             if (goalDist < consumeDistanceMax) {
                 actions.add(new ActionConsume(
                         modelStateConsumerConsumable.getConsumer(),
-                        modelStateConsumerConsumable.getConsumable(), goalDist));
+                        modelStateConsumerConsumable.getConsumable(), goalDist+consumeCost));
             }
         }
         return actions;

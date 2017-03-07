@@ -27,8 +27,9 @@ public class ActionGeneratorHunterPrey implements ActionGenerator {
     public ActionGeneratorHunterPrey(double stepSize, int directionCount,
             float hunterRadius, float preyRadius) {
         actionGenerators = new ArrayList<>();
-        // As a rough metric, a body can attack/eat prey at a distance 
-        actionGenerators.add(new ActionGeneratorConsumer(preyRadius + 3 * hunterRadius));
+        // As a rough metric, a body can attack/eat prey at a distance.
+        // TODO calculate worth of eating. currently just a big number.
+        actionGenerators.add(new ActionGeneratorConsumer(preyRadius + 3 * hunterRadius, -500f));
 
         actionGenerators.add(new ActionGeneratorMovementAbsoluteBarriers(
                 stepSize, directionCount, hunterRadius));
