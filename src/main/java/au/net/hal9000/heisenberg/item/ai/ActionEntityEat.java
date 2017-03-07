@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item.ai;
 
 import au.net.hal9000.heisenberg.ai.action.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.ModelStateHunterPrey;
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Entity;
@@ -15,51 +16,61 @@ import au.net.hal9000.heisenberg.item.entity.Entity;
  */
 public final class ActionEntityEat extends ActionBase {
 
-    /** Entity to eat */
-    private Entity consumer;
-    /** Item to be eaten */
-    private Item sustenance;
+	/** Entity to eat */
+	private Entity consumer;
+	/** Item to be eaten */
+	private Item sustenance;
 
-    /**
-     * Constructor.
-     * 
-     * @param sustenance
-     *            That to be eaten or drunk.
-     * @param cost
-     *            The cost of performing this action.
-     */
+	/**
+	 * Constructor.
+	 * 
+	 * @param sustenance
+	 *            That to be eaten or drunk.
+	 * @param cost
+	 *            The cost of performing this action.
+	 */
 
-    public ActionEntityEat(Entity consumer, Item sustenance, double cost) {
-        super(cost);
-        this.consumer = consumer;
-        this.sustenance = sustenance;
-    }
+	public ActionEntityEat(Entity consumer, Item sustenance, double cost) {
+		super(cost);
+		this.consumer = consumer;
+		this.sustenance = sustenance;
+	}
 
-    // Getters and Setters
+	// Getters and Setters
 
-    // Misc
-    @Override
-    public void apply(ModelState modelState) {
-        ModelStateAnimalEat modelStateEat = (ModelStateAnimalEat) modelState;
-        Animal animal = modelStateEat.getAnimal();
-        Item sustenance = modelStateEat.getFood();
-        animal.eat(sustenance);
-    }
+	// Misc
+	@Override
+	public void apply(ModelState modelState) {
+		// TODO alter the model, don't perform the action
+		if (modelState instanceof ModelStateAnimalEat) {
+			ModelStateAnimalEat modelStateEat = (ModelStateAnimalEat) modelState;
+			Animal animal = modelStateEat.getAnimal();
+			Item sustenance = modelStateEat.getFood();
+			// animal.eat(sustenance);
+		} else if (modelState instanceof ModelStateHunterPrey) {
+			ModelStateHunterPrey modelStateHunterPrey = (ModelStateHunterPrey) modelState;
+			Entity hunter = modelStateHunterPrey.getHunter();
+			Item prey = modelStateHunterPrey.getPrey();
+			// hunter.consume(prey);
+		} else {
+			throw new RuntimeException("Bad type of model state " + modelState);
+		}
+		throw new RuntimeException("Not implemented");
+	}
 
-    // Misc
-    /**
-     * Method toString.
-     * 
-     * @see au.net.hal9000.heisenberg.ai.api.Action#toString()
-     * @return String
-     */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(12);
-        sb.append("ActionAnimalEat=[entity=").append(consumer).append(",food=")
-                .append(sustenance).append(']');
-        return sb.toString();
-    }
+	// Misc
+	/**
+	 * Method toString.
+	 * 
+	 * @see au.net.hal9000.heisenberg.ai.api.Action#toString()
+	 * @return String
+	 */
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(12);
+		sb.append("ActionAnimalEat=[entity=").append(consumer).append(",food=").append(sustenance).append(']');
+		return sb.toString();
+	}
 
 	@Override
 	public int hashCode() {
@@ -91,6 +102,5 @@ public final class ActionEntityEat extends ActionBase {
 			return false;
 		return true;
 	}
-
 
 }

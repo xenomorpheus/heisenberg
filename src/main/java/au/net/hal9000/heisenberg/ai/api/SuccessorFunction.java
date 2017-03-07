@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -20,5 +19,5 @@ public interface SuccessorFunction {
      * @return A list of successors from current model state.
      */
     Queue<Successor> generateSuccessors(ModelState modelState,
-            List<Action> actions);
+            Path actions);
 }

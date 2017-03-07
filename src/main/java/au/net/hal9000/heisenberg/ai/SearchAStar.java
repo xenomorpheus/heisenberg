@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.FringeElement;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
@@ -99,7 +98,7 @@ public class SearchAStar extends SearchBase {
                 break;
             }
             // Action objects that may be performed at this ModelState
-            List<Action> actions = actionGenerator.generateActions(currentModelState);
+            Path actions = actionGenerator.generateActions(currentModelState);
 
             // ModelState Successor objects from the current ModelState.
             Queue<Successor> successors = getSuccessorFunction()

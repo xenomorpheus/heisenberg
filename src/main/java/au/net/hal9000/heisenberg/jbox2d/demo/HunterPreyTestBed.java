@@ -82,7 +82,7 @@ class HunterPreyTestBed extends TestbedTest {
         }
         hunterPreyAi.aiFringeDraw(debugDraw);
         hunterPreyAi.aiPathDraw(debugDraw);
-        hunterPreyAi.move();
+        hunterPreyAi.hunterPerformAction();
 
         // Centre the camera on the Cat
         setCamera(catBody.getPosition());

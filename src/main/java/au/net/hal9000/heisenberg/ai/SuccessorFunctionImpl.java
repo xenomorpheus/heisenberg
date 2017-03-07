@@ -1,11 +1,11 @@
 package au.net.hal9000.heisenberg.ai;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Successor;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
@@ -33,7 +33,7 @@ public final class SuccessorFunctionImpl implements SuccessorFunction {
     }
 
     @Override
-    public Queue<Successor> generateSuccessors(ModelState currentModelState, List<Action> actions) {
+    public Queue<Successor> generateSuccessors(ModelState currentModelState, Path actions) {
         Queue<Successor> successors = new LinkedList<>();
 
         for (Action action : actions) {

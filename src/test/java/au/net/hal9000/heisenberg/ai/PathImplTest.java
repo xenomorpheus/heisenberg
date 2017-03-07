@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.ai.action.ActionAgentMoveRelativeImpl;
 import au.net.hal9000.heisenberg.ai.api.Action;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
@@ -61,7 +62,7 @@ public class PathImplTest {
 
         path.add(new ActionAgentMoveRelativeImpl(new Position(1, 0), 123));
         path.add(new ActionAgentMoveRelativeImpl(new Position(2, 0), 123));
-        PathImpl clone = path.duplicate();
+        Path clone = path.duplicate();
         assertTrue(path.equals(clone));
         assertTrue(clone.equals(path));
         path.add(new ActionAgentMoveRelativeImpl(new Position(3, 0), 123));

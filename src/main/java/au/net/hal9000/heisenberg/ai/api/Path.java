@@ -1,25 +1,19 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-public interface Path extends Iterable<Action> {
+import java.util.List;
 
-    /**
-     * add action to path.
-     * 
-     * @param action
-     *            action to add.
-     */
-    void add(Action action);
+public interface Path extends List<Action> {
 
-    /**
-     * Shallow clone current path.
-     * 
-     * @return new path.
-     */
-    Path duplicate();
+	/**
+	 * Shallow clone current path.
+	 * 
+	 * @return new path.
+	 */
+	Path duplicate();
 
-    /**
-     * @return number of actions in the path.
-     */
-    int size();
+	/**
+	 * @return number of actions in the path.
+	 */
+	int size();
 
 }

@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.ai;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -197,8 +196,8 @@ public class SearchAStarGraphTest {
 		}
 
 		@Override
-		public List<Action> generateActions(ModelState modelState) {
-			List<Action> list = new ArrayList<>();
+		public Path generateActions(ModelState modelState) {
+			Path list = new PathImpl();
 			MyModelState myModelState = (MyModelState) modelState;
 			String agentPositionNow = myModelState.agentPosition;
 			MyNodeDataSet nodeDataSet = transitionMap.get(agentPositionNow);
@@ -240,7 +239,7 @@ public class SearchAStarGraphTest {
 		SuccessorFunction successorFunction = new SuccessorFunction() {
 
 			@Override
-			public Queue<Successor> generateSuccessors(ModelState modelState, List<Action> actions) {
+			public Queue<Successor> generateSuccessors(ModelState modelState, Path actions) {
 				Queue<Successor> successors = new LinkedList<>();
 
 				for (Action action : actions) {

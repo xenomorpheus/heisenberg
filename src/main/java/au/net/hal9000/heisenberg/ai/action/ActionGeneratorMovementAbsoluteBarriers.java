@@ -5,8 +5,7 @@ import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
 import au.net.hal9000.heisenberg.ai.PathBlockDetails;
-import au.net.hal9000.heisenberg.ai.api.Action;
-import au.net.hal9000.heisenberg.ai.api.ActionAgentMoveAbsolute;
+import au.net.hal9000.heisenberg.ai.PathImpl;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import au.net.hal9000.heisenberg.ai.api.Memory;
@@ -14,6 +13,7 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoalMemorySet;
+import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Geometry;
 
@@ -41,11 +41,11 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
 	// TODO unit tests MovementAbsoluteBarriers
 
 	@Override
-	public List<Action> generateActions(ModelState modelState) {
+	public Path generateActions(ModelState modelState) {
 		if (stepSizeMax < Position.DEFAULT_AXIS_TOLERANCE) {
 			throw new RuntimeException("Agent's default step size is below Position tollerance.");
 		}
-		List<Action> actions = new ArrayList<>();
+		Path actions = new PathImpl();
 
 		// If we know where the goal is, then have a try an action in that
 		// direction.
@@ -105,9 +105,9 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
 	 * @param barriers
 	 * @return
 	 */
-	private List<ActionAgentMoveAbsolute> generate(Position position, Position positionDelta, int directionCount,
+	private Path generate(Position position, Position positionDelta, int directionCount,
 			double bodyRadiusMax, List<Barrier> barriers) {
-		List<ActionAgentMoveAbsolute> actions = new ArrayList<>();
+		Path actions = new PathImpl();
 		// Build a list of spokes from this Position.
 		List<Position> spokes = Geometry.generateSpokesZ(positionDelta, directionCount);
 		SpokeLoop: for (Position spoke : spokes) {
