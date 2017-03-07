@@ -10,8 +10,10 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.StateEvaluation;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.ItemImpl;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -429,8 +431,6 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
     }
 
 	public void consume(Item consumable) {
-		throw new RuntimeException("TODO - locate and run recipe to consume item");
-		// TODO Auto-generated method stub
-		
+		AnimalConsumeSustenance.eat((Animal) this, consumable); //TODO fix cast to Animal
 	}
 }

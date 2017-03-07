@@ -66,18 +66,29 @@ public class HunterPreyAi {
 	private Item prey;
 	/** world */
 	private Location world;
+	/** is the test finished */
+	private boolean complete;
 
 	HunterPreyAi(Body hunterBody, Body preyBody) {
 		super();
 		this.hunterBody = hunterBody;
-		this.preyBody = preyBody;		
-		
+		this.preyBody = preyBody;
+
 		// Initialise AI
 		aiInit();
 	}
 
 	// Getters and Setters
 
+	public boolean isComplete() {
+		return complete;
+	}
+
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
+
+	// Misc
 	private void aiInit() {
 
 		// AI - Planning movement
@@ -99,6 +110,7 @@ public class HunterPreyAi {
 		search.setFringeExpansionMax(FRINGE_MAX);
 
 		hunter = new Cat();
+		hunter.setActionPoints(100); // Enough to perform eating
 		prey = new Rat();
 		world = new Location();
 		world.add(hunter);
@@ -130,11 +142,11 @@ public class HunterPreyAi {
 	void hunterPerformAction() {
 		float effortRemaining = HUNTER_NORMAL_SPEED;
 
-		//System.out.println(hunterPath.toString());
+		// System.out.println(hunterPath.toString());
 
 		// Follow the Path the AI search produced.
-		while (hunterPath != null && hunterPath.size() > 0 && effortRemaining >0 ) {
-            Action action = hunterPath.get(0);
+		while (hunterPath != null && hunterPath.size() > 0 && effortRemaining > 0 && ! complete) {
+			Action action = hunterPath.get(0);
 			if (action instanceof ActionAgentMoveAbsolute) {
 				ActionAgentMoveAbsolute absol = (ActionAgentMoveAbsolute) action;
 				Position hunterTarget = absol.getAgentTarget();
@@ -144,21 +156,24 @@ public class HunterPreyAi {
 				// if we are at the first point in the path, remove it and move
 				// to next.
 				float cost = directionToPathHead.length();
-				if ((cost < POSITON_TOLERANCE) ) {
+				if (cost < POSITON_TOLERANCE) {
 					hunterPath.remove(0);
 				}
 				effortRemaining -= cost;
 
 				directionToPathHead.normalize();
-				directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED); // TODO cut speed when we reach goal
+				directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED); // TODO cut
+																	// speed
+																	// when we
+																	// reach
+																	// goal
 				hunterBody.setLinearVelocity(directionToPathHead);
-			}
-			else if (action instanceof ActionConsume){
+			} else if (action instanceof ActionConsume) {
 				hunter.consume(prey);
-			}
-			else{
+				setComplete(true);
+			} else {
 				// effortRemaining -= cost;
-				throw new RuntimeException("Unknown action to perform ="+action.toString());
+				throw new RuntimeException("Unknown action to perform =" + action.toString());
 			}
 		}
 	}
@@ -191,7 +206,6 @@ public class HunterPreyAi {
 			Long tag = (Long) mcallback.m_user_data[i];
 			System.out.println("Saw tag=" + tag + ", at pos=" + point);
 		}
-
 	}
 
 	// This ray cast collects multiple hits along the ray. Polygon 0 is
@@ -309,10 +323,8 @@ public class HunterPreyAi {
 					debugDraw.drawSolidCircle(hunterPosNew, 0.15f, null, movementColour);
 					debugDraw.drawSegment(hunterPosLast, hunterPosNew, movementColour);
 					hunterPosLast = hunterPosNew;
-				}
-				else if (action instanceof ActionConsume){
-					debugDraw.drawSolidCircle(hunterPosNew, 0.3f, null, consumeColour);
-					System.out.println("consume action " + action);
+				} else if (action instanceof ActionConsume) {
+					debugDraw.drawSolidCircle(hunterPosNew, 0.15f, null, consumeColour);
 				} else {
 					// System.out.println("Skipping action " + action);
 				}

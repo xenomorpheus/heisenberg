@@ -11,6 +11,8 @@ import org.jbox2d.testbed.framework.j2d.TestPanelJ2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+
 /**
  * The entry point for the testbed application
  * 
@@ -36,5 +38,6 @@ public class Main {
         testbed.setLocationRelativeTo(null);
         testbed.setVisible(true);
         testbed.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        DemoEnvironment.setup();
     }
 }
