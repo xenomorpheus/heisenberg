@@ -4,89 +4,106 @@ import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
+import au.net.hal9000.heisenberg.ai.api.ModelStateConsumerConsumable;
 import au.net.hal9000.heisenberg.ai.api.ModelStateEvaluator;
 import au.net.hal9000.heisenberg.units.Position;
 
 public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
 
-    /** error. */
-    private final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
-    /** error. */
-    private final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
+	/** error. */
+	private final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
+	/** error. */
+	private final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
 
-    /**
-     * How close do we need to be to consider two states equal. Both
-     * consideration for isAtGoal, and if we have added a state to the fringe.
-     */
-    private double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
+	/**
+	 * How close do we need to be to consider two states equal. Both
+	 * consideration for isAtGoal, and if we have added a state to the fringe.
+	 */
+	private double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
 
-    // Constructor(s)
-    /** {@inheritDoc} */
-    public ModelStateEvaluatorAgentGoal() {
-        super();
-    }
+	// Constructor(s)
+	/** {@inheritDoc} */
+	public ModelStateEvaluatorAgentGoal() {
+		super();
+	}
 
-    // Getters and Setters
-    public double getPositionTolerance() {
-        return positionTolerance;
-    }
+	// Getters and Setters
+	public double getPositionTolerance() {
+		return positionTolerance;
+	}
 
-    public void setPositionTolerance(double positionDistance) {
-        if (positionDistance < Position.DEFAULT_AXIS_TOLERANCE) {
-            throw new RuntimeException("too low");
-        }
-        this.positionTolerance = positionDistance;
-    }
+	public void setPositionTolerance(double positionDistance) {
+		if (positionDistance < Position.DEFAULT_AXIS_TOLERANCE) {
+			throw new RuntimeException("too low");
+		}
+		this.positionTolerance = positionDistance;
+	}
 
-    // Misc
-    /** {@inheritDoc} */
-    @Override
-    public double costToGoalEstimate(ModelState modelState) {
-        ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-        Position agentPosition = modelStateAgentGoal.getAgentPosition();
-        if (null == agentPosition) {
-            throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
-        }
-        Position goalPosition = modelStateAgentGoal.getGoalPosition();
-        if (null == goalPosition) {
-            throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
-        }
-        return agentPosition.distance(goalPosition);
-    }
+	// Misc
+	/** {@inheritDoc} */
+	@Override
+	public double costToGoalEstimate(ModelState modelState) {
+		ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
+		Position agentPosition = modelStateAgentGoal.getAgentPosition();
+		if (null == agentPosition) {
+			throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
+		}
+		Position goalPosition = modelStateAgentGoal.getGoalPosition();
+		if (null == goalPosition) {
+			throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
+		}
+		return agentPosition.distance(goalPosition);
+	}
 
-    @Override
-    public boolean isAtGoal(ModelState modelState) {
-        return costToGoalEstimate(modelState) < positionTolerance;
-    }
+	@Override
+	public boolean isAtGoal(ModelState modelState) {
+		return costToGoalEstimate(modelState) < positionTolerance;
+	}
 
-    @Override
-    public boolean isModelStateInAdded(List<ModelState> addedModelStates,
-            ModelState modelState) {
+	@Override
+	public boolean isModelStateInAdded(List<ModelState> addedModelStates, ModelState modelState) {
 
-        // Check if we have been here.
-        boolean hereBefore = false;
-        for (ModelState modelStateOther : addedModelStates) {
+		// Check if we have been here.
+		boolean hereBefore = false;
+		for (ModelState modelStateOther : addedModelStates) {
 
-            ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-            Position agentPosition = modelStateAgentGoal.getAgentPosition();
-            if (null == agentPosition) {
-                throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
-            }
+			if (modelState.getClass() != modelStateOther.getClass()) {
+				continue;
+			}
 
-            ModelStateAgentGoal modelStateOtherAgentGoal = (ModelStateAgentGoal) modelStateOther;
-            Position agentOtherPosition = modelStateOtherAgentGoal
-                    .getAgentPosition();
-            if (null == agentOtherPosition) {
-                throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
-            }
+			// ModelStateAgentGoal
+			if (modelState instanceof ModelStateAgentGoal) {
+				ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
+				Position agentPosition = modelStateAgentGoal.getAgentPosition();
+				if (null == agentPosition) {
+					throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
+				}
 
-            double costEst = agentPosition.distance(agentOtherPosition);
-            if (costEst < positionTolerance) {
-                hereBefore = true;
-                break;
-            }
-        }
-        return hereBefore;
-    }
+				ModelStateAgentGoal modelStateOtherAgentGoal = (ModelStateAgentGoal) modelStateOther;
+				Position agentOtherPosition = modelStateOtherAgentGoal.getAgentPosition();
+				if (null == agentOtherPosition) {
+					throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
+				}
+
+				double costEst = agentPosition.distance(agentOtherPosition);
+				if (costEst > positionTolerance) {
+					continue;
+				}
+			}
+
+			// ModelStateConsumerConsumable
+			if (modelState instanceof ModelStateConsumerConsumable) {
+				ModelStateConsumerConsumable modelStateConsumerConsumable = (ModelStateConsumerConsumable) modelState;
+				ModelStateConsumerConsumable modelStateConsumerConsumableOther = (ModelStateConsumerConsumable) modelStateOther;
+				if (modelStateConsumerConsumable.getConsumed() != modelStateConsumerConsumableOther.getConsumed()) {
+					continue;
+				}
+			}
+
+			hereBefore = true;
+			break;
+		}
+		return hereBefore;
+	}
 
 }

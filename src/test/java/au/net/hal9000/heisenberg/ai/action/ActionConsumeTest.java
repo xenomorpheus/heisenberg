@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.action;
+package au.net.hal9000.heisenberg.ai.action;
 
 import static org.junit.Assert.*;
 
@@ -6,18 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
-import au.net.hal9000.heisenberg.item.ai.ActionEntityEat;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Entity;
 
-public class ActionAnimalEatTest {
-    private static final Entity CONSUMER = new Elf();
-    private static final Item FOOD = new Cookie();
+public class ActionConsumeTest {
+    private static final Entity ENTITY = new Elf();
+    private static final Item CONSUMABLE = new Cookie();
     private static final double COST = 1.67;
 
     // immutable so we can reuse.
-    private ActionEntityEat actionEat = new ActionEntityEat(CONSUMER, FOOD, COST);
+    private ActionConsume actionEat = new ActionConsume(ENTITY, CONSUMABLE, COST);
 
     @Before
     public void setUp() throws Exception {
@@ -30,7 +29,7 @@ public class ActionAnimalEatTest {
 
     @Test
     public void testToString() {
-        String expect = "ActionAnimalEat=[entity=" + CONSUMER + ",food=" + FOOD + ']';
+        String expect = "ActionAnimalEat=[consumer=" + ENTITY + ",consumable=" + CONSUMABLE + ']';
         assertEquals(expect, actionEat.toString());
     }
 

@@ -2,10 +2,13 @@ package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,28 +38,49 @@ public class HunterPreyAiTest {
 
 	@Before
 	public void setup() {
+		// Cancel gravity because we are looking from above.
+		World world = new World(new Vec2(0, 0));
 
 		// Cat
 		{
+			CircleShape shape = new CircleShape();
+			shape.m_radius = 0.2f;
+
+			FixtureDef fd = new FixtureDef();
+			fd.shape = shape;
+			fd.density = 0.5f;
+			fd.friction = 0.3f;
+			fd.restitution = 0.2f;
 
 			// body definition
 			BodyDef bd = new BodyDef();
 			bd.type = BodyType.DYNAMIC;
 			bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y - 8.0f);
-			hunterBody = new Body(bd, null);
+			hunterBody = world.createBody(bd);
+			hunterBody.createFixture(fd);
 		}
 
 		// Rat
 		{
 
+			CircleShape shape = new CircleShape();
+			shape.m_radius = 0.1f;
+
+			FixtureDef fd = new FixtureDef();
+			fd.shape = shape;
+			fd.density = 0.5f;
+			fd.friction = 0.3f;
+			fd.restitution = 0.2f;
+
 			// body definition
 			BodyDef bd = new BodyDef();
 			bd.type = BodyType.DYNAMIC;
-			// TODO set offset y=5.5
 			bd.position.set(BARRIER_OFFSET_X, BARRIER_OFFSET_Y + 1.0f);
-			preyBody = new Body(bd, null);
-		}
 
+			preyBody = world.createBody(bd);
+			preyBody.createFixture(fd);
+		}
+		hunterPrey = new HunterPreyAi(hunterBody, preyBody);
 	}
 
 	/**
@@ -64,7 +88,6 @@ public class HunterPreyAiTest {
 	 */
 	@Test
 	public void ConstructorTest() {
-		hunterPrey = new HunterPreyAi(hunterBody, preyBody);
 		assertNotNull(hunterPrey);
 	}
 
@@ -102,11 +125,8 @@ public class HunterPreyAiTest {
 	 */
 	@Test
 	public void toStringTest() {
-		// Setup and AI object to test with.
-		aiPlanTest();
 		String string = hunterPrey.toString();
-		assertNotNull(string);  // TODO add tests
+		assertNotNull(string);
 	}
-
 
 };

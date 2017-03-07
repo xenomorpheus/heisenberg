@@ -12,6 +12,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
 import au.net.hal9000.heisenberg.ai.ModelStateEvaluatorAgentGoal;
+import au.net.hal9000.heisenberg.ai.ModelStateHunterPreyAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.ai.SearchAStar;
 import au.net.hal9000.heisenberg.ai.SuccessorFunctionImpl;
 import au.net.hal9000.heisenberg.ai.TransitionFunctionAgentGoalImpl;
@@ -128,7 +129,7 @@ public class HunterPreyAi {
 	void hunterPerformAction() {
 		float effortRemaining = HUNTER_NORMAL_SPEED;
 
-		// System.out.println(hunterPath.toString());
+		//System.out.println(hunterPath.toString());
 
 		// Follow the Path the AI search produced.
 		while (hunterPath != null && hunterPath.size() > 0 && effortRemaining >0 ) {

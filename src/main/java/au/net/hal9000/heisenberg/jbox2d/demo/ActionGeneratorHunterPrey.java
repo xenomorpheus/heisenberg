@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import au.net.hal9000.heisenberg.ai.PathImpl;
+import au.net.hal9000.heisenberg.ai.action.ActionGeneratorConsumer;
 import au.net.hal9000.heisenberg.ai.action.ActionGeneratorMovementAbsoluteBarriers;
 import au.net.hal9000.heisenberg.ai.api.ActionGenerator;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
-import au.net.hal9000.heisenberg.item.ai.ActionGeneratorAnimalConsume;
 
 public class ActionGeneratorHunterPrey implements ActionGenerator {
 
@@ -28,7 +28,7 @@ public class ActionGeneratorHunterPrey implements ActionGenerator {
             float hunterRadius, float preyRadius) {
         actionGenerators = new ArrayList<>();
         // As a rough metric, a body can attack/eat prey at a distance 
-        actionGenerators.add(new ActionGeneratorAnimalConsume(preyRadius + 3 * hunterRadius));
+        actionGenerators.add(new ActionGeneratorConsumer(preyRadius + 3 * hunterRadius));
 
         actionGenerators.add(new ActionGeneratorMovementAbsoluteBarriers(
                 stepSize, directionCount, hunterRadius));

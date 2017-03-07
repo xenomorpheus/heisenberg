@@ -1,11 +1,9 @@
-package au.net.hal9000.heisenberg.jbox2d.demo;
+package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoalMemorySet;
-import au.net.hal9000.heisenberg.ai.api.ModelStateHunterPrey;
-import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.ai.api.ModelStateConsumerConsumable;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
@@ -19,12 +17,12 @@ import au.net.hal9000.heisenberg.units.Position;
  *
  */
 public class ModelStateHunterPreyAgentGoalMemorySet
-        implements ModelStateHunterPrey, ModelStateAgentGoalMemorySet {
+        implements ModelStateConsumerConsumable, ModelStateAgentGoalMemorySet {
 
     /** consider immutable */
-    private Entity hunter;
+    private Object hunter;
     /** consider immutable */
-    private Item prey;
+    private Object prey;
     /** consider mutable */
     private Position agentPosition;
     /** consider mutable */
@@ -32,26 +30,26 @@ public class ModelStateHunterPreyAgentGoalMemorySet
     /** consider mutable */
     private MemorySet memorySet;
     /** consider mutable */
-    private boolean preyEaten;
+    private boolean preyConsumed;
 
-    public ModelStateHunterPreyAgentGoalMemorySet(Entity hunter, Item prey,
+    public ModelStateHunterPreyAgentGoalMemorySet(Object hunter, Object prey,
             Position agentPosition, Position goalPosition, MemorySet memorySet,
-            boolean preyEaten) {
+            boolean preyConsume) {
         this.hunter = hunter;
         this.prey = prey;
         this.agentPosition = agentPosition;
         this.goalPosition = goalPosition;
         this.memorySet = memorySet;
-        this.preyEaten = preyEaten;
+        this.preyConsumed = preyConsume;
     }
 
     @Override
-    public Entity getHunter() {
+    public Object getConsumer() {
         return hunter;
     }
 
     @Override
-    public Item getPrey() {
+    public Object getConsumable() {
         return prey;
     }
 
@@ -59,7 +57,7 @@ public class ModelStateHunterPreyAgentGoalMemorySet
     public ModelState duplicate() {
         return new ModelStateHunterPreyAgentGoalMemorySet(hunter, prey,
                 agentPosition.duplicate(), goalPosition.duplicate(),
-                memorySet.duplicate(), preyEaten);
+                memorySet.duplicate(), preyConsumed);
     }
 
     @Override
@@ -83,13 +81,23 @@ public class ModelStateHunterPreyAgentGoalMemorySet
     }
 
     @Override
-    public Position getHunterPosition() {
+    public Position getEntityPosition() {
         return agentPosition;
     }
 
     @Override
-    public Position getPreyPosition() {
+    public Position getConsumablePosition() {
         return goalPosition;
     }
+
+	@Override
+	public void setConsumed() {
+		preyConsumed = true;	
+	}
+
+	@Override
+	public boolean getConsumed() {
+		return preyConsumed;
+	}
 
 }
