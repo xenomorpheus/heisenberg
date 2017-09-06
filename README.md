@@ -1,3 +1,10 @@
+
+Heisenberg:
+===================
+
+  [![Build Status](https://travis-ci.org/xenomorpheus/heisenberg.svg?branch=master)](https://travis-ci.org/xenomorpheus/heisenberg)
+
+
 Project Aims:
 ===================
 The aims of this project are somewhat unconventional:
