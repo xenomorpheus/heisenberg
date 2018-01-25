@@ -428,14 +428,6 @@ public class ItemContainerImpl extends ItemImpl
         return total;
     }
 
-    // TODO rename Visitor Pattern style
-    // Find contents that match the criteria
-    /*
-     * (non-Javadoc)
-     * 
-     * @see au.net.hal9000.heisenberg.item.ItemContainer#accept(au.net.hal9000.
-     * heisenberg.item.property.ItemVisitor)
-     */
     @Override
     public void accept(ItemVisitor visitor) {
         // Search the Items directly declared in this class.
