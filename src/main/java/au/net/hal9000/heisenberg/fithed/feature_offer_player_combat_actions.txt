@@ -1,0 +1,70 @@
+Date requested: 2018-01-25
+Requested by: Adam Gray
+
+One line Scope:
+In a game combat, offer the PC good quality choices based on PC abilities, enemy type, enemy location (range), obstacles, etc.
+
+Thoughts:
+
+Will need to work out an effectiveness ranking.
+
+Fight/Flight/Defend ?
+
+
+PC/NPC
+  Class Action List
+  Race Action List
+
+Action:
+   Requirement List
+   Time/effort
+   Probable Effect List
+      Chance / Dice roll required
+      Effect
+
+Requirement Distance Interval
+   Min / Max
+
+Requirement Line of Site
+
+
+Location
+   Position X,Y,Z
+   Action Modifier List
+
+
+Action Modifier Silence
+
+Action Modifier Rough Terrain
+
+Action Modifier Darkness
+
+
+
+
+Opponent
+    Location
+    Protection List
+
+
+Companions List
+
+Action Duration Round:
+
+1 Full-round action OR
+
+1 Standard action plus 1 Move action (in any order) OR
+
+2 Move actions (effectively trading your Standard action for a Move action)
+
+Plus a combination of :
+
+1 Swift or Immediate Action AND
+
+Any number of Free Actions
+
+A few special cases
+The 5 ft. step
+Provided you don't take any other action that actually involves using a move speed (walking/running/flying...) 
+during the same round, you can take a 5' step as a free action that does not provoke attacks of opportunity once per round.
+
