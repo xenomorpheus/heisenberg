@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fithed;
+package au.net.hal9000.heisenberg.fifthed;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,70 +39,50 @@ public class TimerRound {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Set<Action> getAvailableActionSet() {
-		Set<Action> actions = new HashSet<Action>();
-		if (action instanceof ActionFree) {
-			return;
-		}
-		if (action instanceof ActionFullRound) {
-			if (this.isFullRoundActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-			} else {
-				this.isFullRoundActionTaken = true;
-			}
-		}
-		if (action instanceof ActionStandard) {
-			if (this.isStandardActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-			} else {
-				this.isStandardActionTaken = true;
-			}
-		}
-		if ((action instanceof ActionSwift) || (action instanceof ActionImmediate)) {
-			if (this.isSwiftOrImmediateActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-			} else {
-				this.isSwiftOrImmediateActionTaken = true;
-			}
-		}
+	/**
+	 * A set of avaialble actions. Only one may be taken at a time.
+	 * @return
+	 */
+	public Set<ActionDuration> getAvailableActionSet() {
+		Set<ActionDuration> actions = new HashSet<ActionDuration>();
 
-		if (action instanceof ActionMove) {
-			if (this.isMoveActionTaken()) {
-
-				// Can we take StandardAction as MoveAction?
-				if (this.isStandardActionTaken()) {
-					throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-				} else {
-					this.isStandardActionTaken = true;
-				}
-			} else {
-				this.isMoveActionTaken = true;
-			}
+		if (!this.isFullRoundActionTaken()) {
+			actions.add(ActionDuration.FULLROUND);
 		}
-		actions.add(new 
+		if (!this.isStandardActionTaken()) {
+			actions.add(ActionDuration.STANDARD);
+		}
+		if (!this.isSwiftOrImmediateActionTaken()) {
+			actions.add(ActionDuration.SWIFT);
+			actions.add(ActionDuration.IMMEDIATE);
+		}
+		if (!this.isMoveActionTaken()) {
+			actions.add(ActionDuration.FREE);
+		}
+		actions.add(ActionDuration.FREE);
 		return actions;
 
 	}
 
-	public void takeAction(Action action) {
-		if (action instanceof ActionFree) {
+	public void takeAction(ActionDuration action) {
+		if (action == ActionDuration.FREE) {
 			return;
 		}
-		if (action instanceof ActionFullRound) {
+		if (action == ActionDuration.FULLROUND) {
 			if (this.isFullRoundActionTaken()) {
 				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
 			} else {
 				this.isFullRoundActionTaken = true;
 			}
 		}
-		if (action instanceof ActionStandard) {
+		if (action == ActionDuration.STANDARD) {
 			if (this.isStandardActionTaken()) {
 				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
 			} else {
 				this.isStandardActionTaken = true;
 			}
 		}
-		if ((action instanceof ActionSwift) || (action instanceof ActionImmediate)) {
+		if ((action == ActionDuration.SWIFT) || (action == ActionDuration.IMMEDIATE)) {
 			if (this.isSwiftOrImmediateActionTaken()) {
 				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
 			} else {
@@ -110,7 +90,7 @@ public class TimerRound {
 			}
 		}
 
-		if (action instanceof ActionMove) {
+		if (action == ActionDuration.MOVE) {
 			if (this.isMoveActionTaken()) {
 
 				// Can we take StandardAction as MoveAction?
