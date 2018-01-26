@@ -27,8 +27,9 @@ public abstract class Race {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name) {
+	public Race setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	// Misc

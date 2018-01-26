@@ -14,7 +14,8 @@ public class PlayerCharacter {
 	private Race race = null;
 	private List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
 	private Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();
-	// TODO Position reference object from which the location is measured. Eg. Room or, Combat area.
+	// TODO Position reference object from which the location is measured. Eg. Room
+	// or, Combat area.
 	private Position location = new Position();
 
 	// TODO assign specific slots for Item instances.
@@ -134,30 +135,41 @@ public class PlayerCharacter {
 	public String toString() {
 		return getName();
 	}
+
 	/**
 	 * A detailed description.
+	 * 
 	 * @return
 	 */
 	public String details() {
+		return details("");
+	}
+
+	/**
+	 * A detailed description.
+	 * 
+	 * @return
+	 */
+	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder(10);
-		sb.append(String.format("Name: %s%n", name));
-		sb.append(String.format("Race: %s%n", race));
-		sb.append(String.format("Level: %d%n", getLevel()));
+		sb.append(String.format("%sName: %s%n", prefix, name));
+		sb.append(String.format("%sRace: %s%n", prefix, race.getName()));
+		sb.append(String.format("%sLevel: %d%n", prefix, getLevel()));
 		if ((characterClasses != null) && (!characterClasses.isEmpty())) {
 			for (CharacterClass characterClass : characterClasses) {
-				sb.append(characterClass.toString());
+				sb.append(characterClass.details(prefix + "  "));
 			}
 		}
 		if ((conditions != null) && (!conditions.isEmpty())) {
 			for (PlayerCharacterCondition playerCondition : conditions) {
-				sb.append(String.format("Condition: %s%n", playerCondition.toString()));
+				sb.append(String.format("%sCondition: %s%n", prefix, playerCondition.toString()));
 			}
 		}
-		sb.append(String.format("Location: %s%n", location.toString()));
+		sb.append(String.format("%sLocation (relative): %s%n", prefix, location.toString()));
 		if ((equipped != null) && (!equipped.isEmpty())) {
-			sb.append(String.format("Equipment:%n"));
+			sb.append(String.format("%sEquipment:%n", prefix));
 			for (Item item : equipped) {
-				sb.append(String.format("   %s%n", item.getName()));
+				sb.append(String.format("%s  %s%n", prefix, item.getName()));
 			}
 		}
 		return sb.toString();

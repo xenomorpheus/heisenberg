@@ -17,6 +17,9 @@ import au.net.hal9000.heisenberg.fifthed.item.BowLong;
 import au.net.hal9000.heisenberg.fifthed.item.Dagger;
 import au.net.hal9000.heisenberg.fifthed.item.Item;
 import au.net.hal9000.heisenberg.fifthed.race.Human;
+import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
+import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
+import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 import au.net.hal9000.heisenberg.units.Position;
 
 /**
@@ -35,8 +38,13 @@ public class PlayerCharacterTest {
 		PlayerCharacter character = new PlayerCharacter().setName("Test Character Name").setRace(new Human());
 		// Classes
 		List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
-		CharacterClass characterClass = new Magus().setLevel(2);
-		characterClasses.add(characterClass);
+		Magus magus = new Magus();
+		magus.setLevel(2);
+		Set<Spell> spells = new HashSet<Spell>();
+		spells.add(new Fireball());
+		spells.add(new BladeLash());
+		magus.setSpells(spells);
+		characterClasses.add(magus);
 		character.setCharacterClasses(characterClasses);
 		// Conditions
 		Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();

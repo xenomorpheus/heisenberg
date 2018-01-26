@@ -4,7 +4,7 @@ public class BladeLash extends Spell{
 
 	public BladeLash()  {
 		super();
-		setRangeTouch(true);
+		setName("Blade Lash").setRangeTouch(true);
 		// TODO Auto-generated constructor stub
 	}
 
