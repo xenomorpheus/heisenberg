@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.CharacterClass;
+import au.net.hal9000.heisenberg.fifthed.CharacterClass.CombatFeat;
+import au.net.hal9000.heisenberg.fifthed.CharacterClass.Fighter;
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.Magus;
 import au.net.hal9000.heisenberg.fifthed.item.BowLong;
 import au.net.hal9000.heisenberg.fifthed.item.Dagger;
@@ -33,17 +35,26 @@ public class PlayerCharacterTest {
 	public void setUp() {
 
 	}
-	@Test
-	public void testPlayerCharacter() {
-		PlayerCharacter character = new PlayerCharacter().setName("Test Character Name").setRace(new Human());
+
+	private PlayerCharacter _build_magus() {
+		PlayerCharacter character = new PlayerCharacter().setName("Test Character Magus").setRace(new Human());
+
 		// Classes
 		List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
 		Magus magus = new Magus();
 		magus.setLevel(2);
+
+		// Spells
 		Set<Spell> spells = new HashSet<Spell>();
 		spells.add(new Fireball());
 		spells.add(new BladeLash());
 		magus.setSpells(spells);
+
+		// Combat Feats
+		Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
+		combatFeats.add(CombatFeat.ARTFULL_DODGE);
+		magus.setCombatFeats(combatFeats);
+
 		characterClasses.add(magus);
 		character.setCharacterClasses(characterClasses);
 		// Conditions
@@ -55,9 +66,45 @@ public class PlayerCharacterTest {
 		equipped.add(new Dagger());
 		equipped.add(new BowLong());
 		character.setEquipped(equipped);
-		// Misc
-		System.out.println(character.details());
+		return character;
 	}
+
+	private PlayerCharacter _build_fighter() {
+		PlayerCharacter character = new PlayerCharacter().setName("Test Character Fighter").setRace(new Human());
+
+		// Classes
+		List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
+		Fighter magus = new Fighter();
+		magus.setLevel(2);
+
+		// Combat Feats
+		Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
+		combatFeats.add(CombatFeat.ARTFULL_DODGE);
+		magus.setCombatFeats(combatFeats);
+
+		characterClasses.add(magus);
+		character.setCharacterClasses(characterClasses);
+		// Conditions
+		Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();
+		conditions.add(PlayerCharacterCondition.MUTE);
+		character.setConditions(conditions);
+		// Equipment
+		Set<Item> equipped = new HashSet<Item>();
+		equipped.add(new Dagger());
+		equipped.add(new BowLong());
+		character.setEquipped(equipped);
+		return character;
+	}
+
+	@Test
+	public void testPlayerCharacter() {
+
+		// Misc
+		PlayerCharacter character = _build_magus();
+		String details = character.details();
+		System.out.println(details);
+	}
+
 	/**
 	 * Test distance to other character.
 	 */

@@ -7,9 +7,10 @@ public abstract class Item {
 	String name = null;
 	String url = null;
 	Currency cost = null;
+	float weight = 0f;
 
 	public Item() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	// Getters and Setters
@@ -25,8 +26,9 @@ public abstract class Item {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name) {
+	public Item setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	/**
@@ -40,8 +42,9 @@ public abstract class Item {
 	 * @param url
 	 *            the url to set
 	 */
-	public void setUrl(String url) {
+	public Item setUrl(String url) {
 		this.url = url;
+		return this;
 	}
 
 	/**
@@ -55,9 +58,29 @@ public abstract class Item {
 	 * @param cost
 	 *            the cost to set
 	 */
-	public void setCost(Currency cost) {
+	public Item setCost(Currency cost) {
 		this.cost = cost;
+		return this;
 	}
 
+	/**
+	 * @return the weight
+	 */
+	public float getWeight() {
+		return weight;
+	}
+
+	/**
+	 * @param weight
+	 *            the weight to set
+	 */
+	public Item setWeight(float weight) {
+		this.weight = weight;
+		return this;
+	}
+
+	public String getSummary() {
+		return getName();
+	}
 
 }

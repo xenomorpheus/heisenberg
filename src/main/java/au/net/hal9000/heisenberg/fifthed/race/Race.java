@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.fifthed.race;
 
-import java.util.Set;
+import java.util.List;
 
 import au.net.hal9000.heisenberg.fifthed.Action;
-import au.net.hal9000.heisenberg.fifthed.ActionDuration;
-import au.net.hal9000.heisenberg.fifthed.CharacterClass.CharacterClass;
+import au.net.hal9000.heisenberg.fifthed.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.TimerRound;
 
 public abstract class Race {
 
@@ -37,7 +37,6 @@ public abstract class Race {
 		return getName();
 	}
 
-	Set<Action> getActions(CharacterClass characterClass, ActionDuration actionDuration) {
-		return null;
-	}
+	/** work out what actions may be performed in this amount of time */
+	public abstract List<Action> getActions(CombatArena arena, TimerRound timer);
 }

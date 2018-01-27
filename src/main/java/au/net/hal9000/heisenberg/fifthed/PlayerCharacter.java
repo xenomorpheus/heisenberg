@@ -169,7 +169,7 @@ public class PlayerCharacter {
 		if ((equipped != null) && (!equipped.isEmpty())) {
 			sb.append(String.format("%sEquipment:%n", prefix));
 			for (Item item : equipped) {
-				sb.append(String.format("%s  %s%n", prefix, item.getName()));
+				sb.append(String.format("%s  %s%n", prefix, item.getSummary()));
 			}
 		}
 		return sb.toString();
@@ -187,5 +187,21 @@ public class PlayerCharacter {
 			}
 		}
 		return level;
+	}
+
+	/**
+	 * get a list of actions the character may perform. Only one action may be chosen.
+	 * @param timer
+	 * @return
+	 */
+	public List<Action> getActions(CombatArena arena, TimerRound timer){
+		List<Action> actions = new ArrayList<Action>();
+		actions.addAll( race.getActions(arena, timer));
+		if ((characterClasses != null) && (!characterClasses.isEmpty())) {
+			for (CharacterClass characterClass : characterClasses) {
+				actions.addAll( characterClass.getActions(arena, timer));
+			}
+		}
+		return actions;
 	}
 }

@@ -22,6 +22,7 @@ public class BowLong extends WeaponRanged {
 		setDamageVsMedium("d8");
 		setDamageCritical("x3");
 		setRangeMax(100.0f);
+		setWeight(3f);
 		setDamageTypes("P");
 	}
 

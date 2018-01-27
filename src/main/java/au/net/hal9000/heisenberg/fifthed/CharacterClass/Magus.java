@@ -1,13 +1,18 @@
 package au.net.hal9000.heisenberg.fifthed.CharacterClass;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import au.net.hal9000.heisenberg.fifthed.Action;
+import au.net.hal9000.heisenberg.fifthed.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 
-public class Magus extends CharacterClass {
+public class Magus extends Fighter {
 
 	private Set<Spell> spells = new HashSet<Spell>();
+	private Set<MagusArcana> magusArcana = new HashSet<MagusArcana>();
 
 	public Magus() {
 		super();
@@ -27,19 +32,23 @@ public class Magus extends CharacterClass {
 		return spells;
 	}
 
-	// Misc
-	public String toString() {
-		return getName();
-	}
+	
 	/**
-	 * A detailed description.
-	 * 
-	 * @return
+	 * @return the magusArcana
 	 */
-	public String details() {
-		return details("");
+	public Set<MagusArcana> getMagusArcana() {
+		return magusArcana;
 	}
 
+	/**
+	 * @param magusArcana the magusArcana to set
+	 */
+	public Magus setMagusArcana(Set<MagusArcana> magusArcana) {
+		this.magusArcana = magusArcana;
+		return this;
+	}
+
+	// Misc
 	/**
 	 * A detailed description.
 	 * 
@@ -57,6 +66,12 @@ public class Magus extends CharacterClass {
 			}
 		}
 		return sb.toString();
+	}
+
+	@Override
+	public List<Action> getActions(CombatArena arena, TimerRound timer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

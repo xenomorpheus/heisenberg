@@ -101,4 +101,13 @@ public abstract class Weapon extends Item {
 	public boolean validAttack(PlayerCharacter attacker, PlayerCharacter opponent) {
 		return withinRange(attacker, opponent);
 	}
+	/* Dagger  2gp	1d3	1d4	19-20/x2	10 ft.  1lb.  P or S */
+
+	public String getSummary() {
+		StringBuilder sb = new StringBuilder(10);
+		sb.append(getName()).append(": ").append(getCost()).append(", S: ").append(getDamageVsSmall());
+		sb.append(", M: ").append(getDamageVsMedium()).append(", ").append(getDamageCritical());
+		sb.append(", ").append(getWeight()).append("lb, ").append(getDamageTypes());		
+		return sb.toString();
+	}
 }
