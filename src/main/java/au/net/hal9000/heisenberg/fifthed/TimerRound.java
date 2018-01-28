@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * https://rpg.stackexchange.com/questions/16726/what-can-i-do-in-one-round
  * 
  * Action Duration Round:
  * 
@@ -78,7 +79,8 @@ public class TimerRound {
 			} else {
 				// Can we take StandardAction as MoveAction?
 				// Double move action.
-				if (this.isStandardActionAvailable) {
+				// But not if 5ft step taken
+				if (this.isStandardActionAvailable && this.isFiveFootStepActionAvailable) {
 					if (takeActionDuration) {
 						this.isStandardActionAvailable = false;
 						this.isFullRoundActionAvailable = false;

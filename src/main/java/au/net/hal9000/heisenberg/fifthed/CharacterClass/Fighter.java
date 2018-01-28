@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.CharacterClass;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,9 +71,10 @@ public class Fighter extends CharacterClass {
 	}
 
 	@Override
+	/** work out what actions may be performed in this amount of time */
 	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Action> actions = new ArrayList<Action>();
+		return actions;
 	}
 
 }
