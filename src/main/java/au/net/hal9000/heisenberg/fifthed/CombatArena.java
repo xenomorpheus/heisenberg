@@ -4,9 +4,9 @@ import java.util.List;
 
 public class CombatArena {
 	private PlayerCharacter self = null;
-	private List<PlayerCharacter> alies = null;
+	private List<PlayerCharacter> allies = null;
 	private List<PlayerCharacter> enemies = null;
-	
+
 	public CombatArena() {
 		super();
 	}
@@ -19,7 +19,8 @@ public class CombatArena {
 	}
 
 	/**
-	 * @param self the self to set
+	 * @param self
+	 *            the self to set
 	 */
 	public CombatArena setSelf(PlayerCharacter self) {
 		this.self = self;
@@ -29,15 +30,16 @@ public class CombatArena {
 	/**
 	 * @return the alies
 	 */
-	public List<PlayerCharacter> getAlies() {
-		return alies;
+	public List<PlayerCharacter> getAllies() {
+		return allies;
 	}
 
 	/**
-	 * @param alies the alies to set
+	 * @param alies
+	 *            the alies to set
 	 */
-	public CombatArena setAlies(List<PlayerCharacter> alies) {
-		this.alies = alies;
+	public CombatArena setAllies(List<PlayerCharacter> alies) {
+		this.allies = alies;
 		return this;
 	}
 
@@ -49,13 +51,12 @@ public class CombatArena {
 	}
 
 	/**
-	 * @param enemies the enemies to set
+	 * @param enemies
+	 *            the enemies to set
 	 */
 	public CombatArena setEnemies(List<PlayerCharacter> enemies) {
 		this.enemies = enemies;
 		return this;
 	}
-
-
 
 }

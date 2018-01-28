@@ -69,5 +69,5 @@ public abstract class CharacterClass {
 		return sb.toString();
 	}
 
-	public abstract List<Action> getActions(CombatArena arena, TimerRound timer);
+	public abstract List<Action> getActionsCombat(CombatArena arena, TimerRound timer);
 }

@@ -38,5 +38,5 @@ public abstract class Race {
 	}
 
 	/** work out what actions may be performed in this amount of time */
-	public abstract List<Action> getActions(CombatArena arena, TimerRound timer);
+	public abstract List<Action> getActionsCombat(CombatArena arena, TimerRound timer);
 }

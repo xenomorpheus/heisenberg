@@ -1,10 +1,13 @@
 package au.net.hal9000.heisenberg.fifthed.CharacterClass;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import au.net.hal9000.heisenberg.fifthed.Action;
+import au.net.hal9000.heisenberg.fifthed.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.ActionSpellCast;
 import au.net.hal9000.heisenberg.fifthed.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
@@ -32,7 +35,6 @@ public class Magus extends Fighter {
 		return spells;
 	}
 
-	
 	/**
 	 * @return the magusArcana
 	 */
@@ -41,7 +43,8 @@ public class Magus extends Fighter {
 	}
 
 	/**
-	 * @param magusArcana the magusArcana to set
+	 * @param magusArcana
+	 *            the magusArcana to set
 	 */
 	public Magus setMagusArcana(Set<MagusArcana> magusArcana) {
 		this.magusArcana = magusArcana;
@@ -69,9 +72,23 @@ public class Magus extends Fighter {
 	}
 
 	@Override
-	public List<Action> getActions(CombatArena arena, TimerRound timer) {
-		// TODO Auto-generated method stub
-		return null;
+	/** work out what actions may be performed in this amount of time */
+	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
+		List<Action> actions = new ArrayList<Action>();
+		for (Spell spell : spells) {
+			ActionDuration actionDuration = spell.getActionDuration();
+			if (timer.isActionDurationAvailable(actionDuration)) {
+				actions.add(new ActionSpellCast(spell));
+			}
+		}
+
+		if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
+			// TODO actions.add(new ActionFree());
+		}
+		// TODO Free Actions, etc.
+
+		actions.addAll(super.getActionsCombat(arena, timer));
+		return actions;
 	}
 
 }

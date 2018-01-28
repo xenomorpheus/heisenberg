@@ -132,6 +132,7 @@ public class PlayerCharacter {
 	}
 
 	// Misc
+	@Override
 	public String toString() {
 		return getName();
 	}
@@ -190,16 +191,20 @@ public class PlayerCharacter {
 	}
 
 	/**
-	 * get a list of actions the character may perform. Only one action may be chosen.
+	 * get a list of actions the character may perform. Only one action may be
+	 * chosen.
+	 * 
 	 * @param timer
 	 * @return
 	 */
-	public List<Action> getActions(CombatArena arena, TimerRound timer){
+	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
 		List<Action> actions = new ArrayList<Action>();
-		actions.addAll( race.getActions(arena, timer));
+		if (race != null) {
+			actions.addAll(race.getActionsCombat(arena, timer));
+		}
 		if ((characterClasses != null) && (!characterClasses.isEmpty())) {
 			for (CharacterClass characterClass : characterClasses) {
-				actions.addAll( characterClass.getActions(arena, timer));
+				actions.addAll(characterClass.getActionsCombat(arena, timer));
 			}
 		}
 		return actions;

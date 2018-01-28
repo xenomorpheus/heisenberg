@@ -35,6 +35,7 @@ public class Fighter extends CharacterClass {
 	}
 
 	// Misc
+	@Override
 	public String toString() {
 		return getName();
 	}
@@ -43,6 +44,7 @@ public class Fighter extends CharacterClass {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String details() {
 		return details("");
 	}
@@ -52,6 +54,7 @@ public class Fighter extends CharacterClass {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder(10);
 		sb.append(super.details(prefix));
@@ -67,7 +70,7 @@ public class Fighter extends CharacterClass {
 	}
 
 	@Override
-	public List<Action> getActions(CombatArena arena, TimerRound timer) {
+	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
 		// TODO Auto-generated method stub
 		return null;
 	}

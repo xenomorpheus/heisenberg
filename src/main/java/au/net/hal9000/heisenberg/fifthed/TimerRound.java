@@ -28,117 +28,123 @@ import java.util.Set;
  *
  */
 public class TimerRound {
-	private boolean isFullRoundActionTaken = false;
-	private boolean isStandardActionTaken = false;
-	private boolean isSwiftOrImmediateActionTaken = false;
-	private boolean isMoveActionTaken = false;
-	private boolean isFiveFootStepActionTaken = false;
+	private boolean isFullRoundActionAvailable = true;
+	private boolean isStandardActionAvailable = true;
+	private boolean isSwiftOrImmediateActionAvailable = true;
+	private boolean isMoveActionAvailable = true;
+	private boolean isFiveFootStepActionAvailable = true;
 
 	public TimerRound() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * A set of avaialble actions. Only one may be taken at a time.
-	 * @return
-	 */
-	public Set<ActionDuration> getAvailableActionSet() {
-		Set<ActionDuration> actions = new HashSet<ActionDuration>();
-
-		if (!this.isFullRoundActionTaken()) {
-			actions.add(ActionDuration.FULLROUND);
-		}
-		if (!this.isStandardActionTaken()) {
-			actions.add(ActionDuration.STANDARD);
-		}
-		if (!this.isSwiftOrImmediateActionTaken()) {
-			actions.add(ActionDuration.SWIFT);
-			actions.add(ActionDuration.IMMEDIATE);
-		}
-		if (!this.isMoveActionTaken()) {
-			actions.add(ActionDuration.FREE);
-		}
-		actions.add(ActionDuration.FREE);
-		return actions;
-
-	}
-
-	public void takeAction(ActionDuration action) {
+	private boolean actionAvailableHelper(ActionDuration action, boolean takeActionDuration) {
+		boolean retVal = false;
 		if (action == ActionDuration.FREE) {
-			return;
+			retVal =  true;
 		}
 		if (action == ActionDuration.FULLROUND) {
-			if (this.isFullRoundActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
+			if (this.isFullRoundActionAvailable) {
+				if (takeActionDuration) {
+					this.isFullRoundActionAvailable = false;
+					this.isStandardActionAvailable = false;
+					this.isMoveActionAvailable = false;
+				}
+				retVal =  true;
 			} else {
-				this.isFullRoundActionTaken = true;
+				retVal =  false;
 			}
 		}
 		if (action == ActionDuration.STANDARD) {
-			if (this.isStandardActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
+			if (this.isStandardActionAvailable) {
+				if (takeActionDuration) {
+					this.isStandardActionAvailable = false;
+					this.isFullRoundActionAvailable = false;
+				}
+				retVal =  true;
 			} else {
-				this.isStandardActionTaken = true;
+				retVal =  false;
+			}
+		}
+		if (action == ActionDuration.MOVE) {
+			if (this.isMoveActionAvailable) {
+				if (takeActionDuration) {
+					this.isMoveActionAvailable = false;
+					this.isFullRoundActionAvailable = false;
+					this.isFiveFootStepActionAvailable = false;
+				}
+				retVal =  true;
+
+			} else {
+				// Can we take StandardAction as MoveAction?
+				// Double move action.
+				if (this.isStandardActionAvailable) {
+					if (takeActionDuration) {
+						this.isStandardActionAvailable = false;
+						this.isFullRoundActionAvailable = false;
+					}
+					retVal =  true;
+				} else {
+					retVal =  false;
+				}
 			}
 		}
 		if ((action == ActionDuration.SWIFT) || (action == ActionDuration.IMMEDIATE)) {
-			if (this.isSwiftOrImmediateActionTaken()) {
-				throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-			} else {
-				this.isSwiftOrImmediateActionTaken = true;
-			}
-		}
-
-		if (action == ActionDuration.MOVE) {
-			if (this.isMoveActionTaken()) {
-
-				// Can we take StandardAction as MoveAction?
-				if (this.isStandardActionTaken()) {
-					throw new RuntimeException("Action Not Permitted" + action.getClass().getName());
-				} else {
-					this.isStandardActionTaken = true;
+			if (this.isSwiftOrImmediateActionAvailable) {
+				if (takeActionDuration) {
+					this.isSwiftOrImmediateActionAvailable = false;
 				}
+				retVal =  true;
 			} else {
-				this.isMoveActionTaken = true;
+				retVal =  false;
 			}
 		}
-
+		if (action == ActionDuration.FIVEFOOTSTEP) {
+			if (this.isFiveFootStepActionAvailable) {
+				if (takeActionDuration) {
+					this.isMoveActionAvailable = false;
+					this.isFiveFootStepActionAvailable = false;
+				}
+				retVal =  true;
+			} else {
+				retVal =  false;
+			}
+		}
+		return retVal;
 	}
 
 	/**
-	 * @return the isFullRoundActionTaken
+	 * @return a list of valid ActionDuration objects.
 	 */
-	public boolean isFullRoundActionTaken() {
-		return isFullRoundActionTaken;
+	public Set<ActionDuration> getAvailableActionDurationSet() {
+		Set<ActionDuration> actionDurations = new HashSet<ActionDuration>();
+		for (ActionDuration actionDuration : ActionDuration.values()) {
+			if (actionAvailableHelper(actionDuration, false)) {
+				actionDurations.add(actionDuration);
+			}
+		}
+		return actionDurations;
 	}
 
 	/**
-	 * @return the isStandardActionTaken
+	 * @param actionDuration
+	 * @return true iff actionDuration is permitted.
 	 */
-	public boolean isStandardActionTaken() {
-		return isStandardActionTaken;
+	public boolean isActionDurationAvailable(ActionDuration actionDuration) {
+		return actionAvailableHelper(actionDuration, false);
 	}
 
 	/**
-	 * @return the isMovementActionTaken
+	 * Take the actionDuration out of the timer. Will be used by an Action that
+	 * takes this duration.
+	 * 
+	 * @param actionDuration
+	 *            to be removed from the timer.
 	 */
-	public boolean isMoveActionTaken() {
-		return isMoveActionTaken;
-	}
-
-	/**
-	 * @return the isFiveFootStepActionTaken
-	 */
-	public boolean isSwiftOrImmediateActionTaken() {
-		return isSwiftOrImmediateActionTaken;
-	}
-
-	/**
-	 * @return the isFiveFootStepActionTaken
-	 */
-	public boolean isFiveFootStepActionTaken() {
-		return isFiveFootStepActionTaken;
+	public void takeActionDuration(ActionDuration actionDuration) {
+		if (!actionAvailableHelper(actionDuration, true)) {
+			throw new RuntimeException("Action Not Permitted" + actionDuration.getClass().getSimpleName());
+		}
 	}
 
 }

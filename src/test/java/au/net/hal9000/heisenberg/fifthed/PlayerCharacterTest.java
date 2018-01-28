@@ -118,4 +118,27 @@ public class PlayerCharacterTest {
 		assertEquals("distance ", root2, distance, 0.001f);
 	}
 
+	/**
+	 * Test distance to other character.
+	 */
+
+	@Test
+	public void testGetActionsCombat() {
+		TimerRound timer = new TimerRound();
+		CombatArena arena = new CombatArena();
+		PlayerCharacter magus = _build_magus();
+		PlayerCharacter fighter = _build_fighter();
+		arena.setSelf(magus);
+		List<PlayerCharacter> enemies = new ArrayList<PlayerCharacter>();
+		enemies.add(fighter);
+		arena.setEnemies(enemies);
+		List<Action> actions = magus.getActionsCombat(arena,timer);
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("Actions%n"));
+		for(Action action: actions) {
+			sb.append(String.format("  %s%n", action));
+		}
+		System.out.println(sb.toString());
+	}
+
 }
