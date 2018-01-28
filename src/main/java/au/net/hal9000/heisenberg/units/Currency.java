@@ -74,10 +74,7 @@ public class Currency implements Serializable, Cloneable {
      */
     public Currency(int pp, int gp, int sp, int cp) {
         super();
-        setPp(pp);
-        setGp(gp);
-        setSp(sp);
-        setCp(cp);
+        setPp(pp).setGp(gp).setSp(sp).setCp(cp);
     }
 
     /**
@@ -115,11 +112,12 @@ public class Currency implements Serializable, Cloneable {
      * @param pp
      *            The number of platinum pieces.
      */
-    public void setPp(final int pp) {
+    public Currency setPp(final int pp) {
         if (pp < 0) {
             throw new RuntimeException("Invalid amount");
         }
         this.pp = pp;
+        return this;
     }
 
     /**
@@ -136,11 +134,12 @@ public class Currency implements Serializable, Cloneable {
      * @param gp
      *            The number of gold pieces.
      */
-    public void setGp(final int gp) {
+    public Currency setGp(final int gp) {
         if (gp < 0) {
             throw new RuntimeException("Invalid amount");
         }
         this.gp = gp;
+        return this;
     }
 
     /**
@@ -157,11 +156,12 @@ public class Currency implements Serializable, Cloneable {
      * @param sp
      *            The number of silver pieces.
      */
-    public void setSp(final int sp) {
+    public Currency setSp(final int sp) {
         if (sp < 0) {
             throw new RuntimeException("Invalid amount");
         }
         this.sp = sp;
+        return this;
     }
 
     /**
@@ -178,11 +178,12 @@ public class Currency implements Serializable, Cloneable {
      * @param cp
      *            The number of coper pieces.
      */
-    public void setCp(final int cp) {
+    public Currency setCp(final int cp) {
         if (cp < 0) {
             throw new RuntimeException("Invalid amount");
         }
         this.cp = cp;
+        return this;
     }
 
     /**
