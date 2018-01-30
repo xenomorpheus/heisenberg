@@ -168,7 +168,7 @@ public class PlayerCharacter {
 		}
 		sb.append(String.format("%sLocation (relative): %s%n", prefix, location.toString()));
 		if ((equipped != null) && (!equipped.isEmpty())) {
-			sb.append(String.format("%sEquipment:%n", prefix));
+			sb.append(String.format("%sEquiped:%n", prefix));
 			for (Item item : equipped) {
 				sb.append(String.format("%s  %s%n", prefix, item.getSummary()));
 			}

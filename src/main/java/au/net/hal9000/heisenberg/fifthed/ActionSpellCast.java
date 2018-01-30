@@ -19,10 +19,15 @@ public class ActionSpellCast extends Action {
 	}
 
 	/**
-	 * @param spell the spell to set
+	 * @param spell
+	 *            the spell to set
 	 */
 	public void setSpell(Spell spell) {
 		this.spell = spell;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s - %s", super.toString(), spell.getName());
+	}
 }

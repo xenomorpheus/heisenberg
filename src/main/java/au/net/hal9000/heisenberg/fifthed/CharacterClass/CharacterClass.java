@@ -64,8 +64,7 @@ public abstract class CharacterClass {
 	 */
 	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%sClass: %s%n", prefix, getName()));
-		sb.append(String.format("%sLevel: %d%n", prefix, getLevel()));
+		sb.append(String.format("%sClass: %s (%d)%n", prefix, getName(), getLevel()));
 		return sb.toString();
 	}
 

@@ -30,7 +30,7 @@ public class Fireball extends Spell {
 		setEffectAreaFeet(20);
 		setEffectDuration(0);
 		setEffectSavingThrowsAdd(SpellSavingThrows.REFLEX_HALF);
-		setEffectSavingThrowsAdd(SpellSavingThrows.SPELL_RESISTANCE);
+		setEffectSpellResistance(true);
 	}
 
 }

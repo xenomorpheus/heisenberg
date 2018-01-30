@@ -72,14 +72,20 @@ public class Magus extends Fighter {
 	}
 
 	@Override
-	/** work out what actions may be performed in this amount of time */
+	/** Work out what actions may be performed in this amount of time.
+	 * Explicitly get Magus. Get Fighter from super. */
 	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
 		List<Action> actions = new ArrayList<Action>();
 		for (Spell spell : spells) {
+			// Check ActionDuration
 			ActionDuration actionDuration = spell.getActionDuration();
-			if (timer.isActionDurationAvailable(actionDuration)) {
-				actions.add(new ActionSpellCast(spell));
+			if (!timer.isActionDurationAvailable(actionDuration)) {
+				continue;
 			}
+			// TODO check range
+			// TODO check spell components
+			// TODO set target of spell, either person or location
+			actions.add(new ActionSpellCast(spell));
 		}
 
 		if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
@@ -87,6 +93,7 @@ public class Magus extends Fighter {
 		}
 		// TODO Free Actions, etc.
 
+		// Add
 		actions.addAll(super.getActionsCombat(arena, timer));
 		return actions;
 	}

@@ -16,6 +16,7 @@ public abstract class Spell {
 	private int effectAreaFeet = 0;
 	private int effectRangeBase = 0;
 	private int effectRangeLevelMultiplier = 0;
+	private boolean effectSpellResistance = false;
 	private String description;
 	private String Url;
 
@@ -210,6 +211,20 @@ public abstract class Spell {
 	}
 
 	// Misc
+
+	/**
+	 * @return the effectSpellResistance
+	 */
+	public boolean isEffectSpellResistance() {
+		return effectSpellResistance;
+	}
+
+	/**
+	 * @param effectSpellResistance the effectSpellResistance to set
+	 */
+	public void setEffectSpellResistance(boolean effectSpellResistance) {
+		this.effectSpellResistance = effectSpellResistance;
+	}
 
 	public Spell componentsAdd(SpellComponent spellComponent) {
 		this.spellComponents.add(spellComponent);
