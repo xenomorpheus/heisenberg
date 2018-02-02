@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed;
+package au.net.hal9000.heisenberg.fifthed.combat;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,18 +1,18 @@
-package au.net.hal9000.heisenberg.fifthed;
+package au.net.hal9000.heisenberg.fifthed.playerCharacter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import au.net.hal9000.heisenberg.fifthed.CharacterClass.CharacterClass;
+import au.net.hal9000.heisenberg.fifthed.characterClass.CharacterClass;
+import au.net.hal9000.heisenberg.fifthed.combat.Action;
+import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.Item;
-import au.net.hal9000.heisenberg.fifthed.race.Race;
 import au.net.hal9000.heisenberg.units.Position;
 
-public class PlayerCharacter {
+public abstract class PlayerCharacter {
 	private String name = null;
-	private Race race = null;
 	private List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
 	private Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();
 	// TODO Position reference object from which the location is measured. Eg. Room
@@ -25,13 +25,14 @@ public class PlayerCharacter {
 
 	// Inventory other than equipped Item instances.
 	// private List<Item> unEquipped = new ArrayList<Item>();
+	private CreatureSize creatureSize;
 
-	public PlayerCharacter() {
+	public PlayerCharacter(String name) {
 		super();
+		setName(name);
 	}
 
 	// Getters and Setters
-
 	/**
 	 * @return the name
 	 */
@@ -45,22 +46,6 @@ public class PlayerCharacter {
 	 */
 	public PlayerCharacter setName(String name) {
 		this.name = name;
-		return this;
-	}
-
-	/**
-	 * @return the race
-	 */
-	public Race getRace() {
-		return race;
-	}
-
-	/**
-	 * @param race
-	 *            the race to set
-	 */
-	public PlayerCharacter setRace(Race race) {
-		this.race = race;
 		return this;
 	}
 
@@ -132,6 +117,21 @@ public class PlayerCharacter {
 		return this;
 	}
 
+	/**
+	 * @return the creatureSize
+	 */
+	public CreatureSize getCreatureSize() {
+		return creatureSize;
+	}
+
+	/**
+	 * @param creatureSize
+	 *            the creatureSize to set
+	 */
+	public void setCreatureSize(CreatureSize creatureSize) {
+		this.creatureSize = creatureSize;
+	}
+
 	// Misc
 	@Override
 	public String toString() {
@@ -155,7 +155,7 @@ public class PlayerCharacter {
 	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder(10);
 		sb.append(String.format("%sName: %s%n", prefix, name));
-		sb.append(String.format("%sRace: %s%n", prefix, race.getName()));
+		sb.append(String.format("%sRace: %s%n", prefix, getRaceName()));
 		sb.append(String.format("%sLevel: %d%n", prefix, getLevel()));
 		if ((characterClasses != null) && (!characterClasses.isEmpty())) {
 			for (CharacterClass characterClass : characterClasses) {
@@ -177,6 +177,8 @@ public class PlayerCharacter {
 		return sb.toString();
 	}
 
+	public abstract String getRaceName();
+
 	public double distance(PlayerCharacter other) {
 		return location.distance(other.location);
 	}
@@ -192,20 +194,14 @@ public class PlayerCharacter {
 	}
 
 	/**
-	 * get a list of actions the character may perform. Only one action may be
-	 * chosen.
-	 * 
-	 * @param timer
-	 * @return
+	 * @return a list of actions that the player character may choose only one to
+	 *         perform.
 	 */
-	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
+	public List<Action> getActionsCombat(CombatArena arena) {
 		List<Action> actions = new ArrayList<Action>();
-		if (race != null) {
-			actions.addAll(race.getActionsCombat(arena, timer));
-		}
 		if ((characterClasses != null) && (!characterClasses.isEmpty())) {
 			for (CharacterClass characterClass : characterClasses) {
-				actions.addAll(characterClass.getActionsCombat(arena, timer));
+				actions.addAll(characterClass.getActionsCombat(arena));
 			}
 		}
 		return actions;
@@ -213,6 +209,7 @@ public class PlayerCharacter {
 
 	/**
 	 * Add this Class to the PC.
+	 * 
 	 * @param characterClass
 	 * @return
 	 */
@@ -228,6 +225,22 @@ public class PlayerCharacter {
 
 	public void equippedAdd(Item item) {
 		equipped.add(item);
+	}
+
+	public String getSummary() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getName()).append(", ").append(getRaceName());
+		if (characterClasses.size() != 1) {
+			sb.append(", level ").append(getLevel());
+		}
+		for (CharacterClass characterClass : characterClasses) {
+			sb.append(", ").append(characterClass.getName()).append("(").append(characterClass.getLevel()).append(")");
+		}
+		return sb.toString();
+	}
+
+	public double getNaturalReach() {
+		return creatureSize.getNaturalReach();
 	}
 
 }

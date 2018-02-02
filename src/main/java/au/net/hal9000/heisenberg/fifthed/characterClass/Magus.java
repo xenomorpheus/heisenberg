@@ -1,16 +1,16 @@
-package au.net.hal9000.heisenberg.fifthed.CharacterClass;
+package au.net.hal9000.heisenberg.fifthed.characterClass;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import au.net.hal9000.heisenberg.fifthed.Action;
-import au.net.hal9000.heisenberg.fifthed.ActionDuration;
-import au.net.hal9000.heisenberg.fifthed.ActionSpellCast;
-import au.net.hal9000.heisenberg.fifthed.CombatArena;
-import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
-import au.net.hal9000.heisenberg.fifthed.TimerRound;
+import au.net.hal9000.heisenberg.fifthed.combat.Action;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionSpellCast;
+import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
+import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 
 public class Magus extends Fighter {
@@ -80,19 +80,14 @@ public class Magus extends Fighter {
 	 * Work out what actions may be performed in this amount of time. Explicitly get
 	 * Magus. Get Fighter from super.
 	 */
-	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
+	public List<Action> getActionsCombat(CombatArena arena) {
 		List<Action> actions = new ArrayList<Action>();
+		TimerRound timer = arena.getTimerRound();
 		for (PlayerCharacter opponent : arena.getOpponents()) {
 			for (Spell spell : spells) {
-				// Check ActionDuration
-				ActionDuration actionDuration = spell.getActionDuration();
-				if (!timer.isActionDurationAvailable(actionDuration)) {
-					continue;
+				if (spell.isActionValid(arena, opponent)) {
+					actions.add(new ActionSpellCast(spell, opponent));
 				}
-				// TODO check range
-				// TODO check spell components
-				// TODO set target of spell, either person or location
-				actions.add(new ActionSpellCast(spell, opponent));
 			}
 
 			if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
@@ -102,8 +97,13 @@ public class Magus extends Fighter {
 		// TODO Free Actions, etc.
 
 		// Add
-		actions.addAll(super.getActionsCombat(arena, timer));
+		actions.addAll(super.getActionsCombat(arena));
 		return actions;
+	}
+
+	public Magus spellsAdd(Spell spell) {
+		spells.add(spell);
+		return this;
 	}
 
 }

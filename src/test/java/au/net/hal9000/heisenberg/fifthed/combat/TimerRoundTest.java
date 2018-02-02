@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed;
+package au.net.hal9000.heisenberg.fifthed.combat;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 
 public class TimerRoundTest {
 

@@ -3,22 +3,25 @@ package au.net.hal9000.heisenberg.fifthed.spell;
 import java.util.HashSet;
 import java.util.Set;
 
-import au.net.hal9000.heisenberg.fifthed.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
+import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public abstract class Spell {
 	private String name = null;
 	private Set<SpellComponent> spellComponents = new HashSet<SpellComponent>();
 	private boolean rangeTouch = false;
 	private ActionDuration actionDuration = null;
-	private SpellSavingThrows spellSavingThrow;
+	private SpellSavingThrow spellSavingThrow;
 	private int effectDurationSeconds = 0;
 	private EffectArea effectAreaType = null;
 	private int effectAreaFeet = 0;
 	private int effectRangeBase = 0;
 	private int effectRangeLevelMultiplier = 0;
 	private boolean effectSpellResistance = false;
-	private String description;
-	private String Url;
+	private String description = null;
+	private String Url = null;
 
 	// Setters and Getters
 
@@ -63,7 +66,7 @@ public abstract class Spell {
 		return this;
 	}
 
-	public Spell setEffectSavingThrowsAdd(SpellSavingThrows spellSavingThrow) {
+	public Spell setEffectSavingThrowsAdd(SpellSavingThrow spellSavingThrow) {
 		this.spellSavingThrow = spellSavingThrow;
 		return this;
 	}
@@ -112,7 +115,7 @@ public abstract class Spell {
 	/**
 	 * @return the spellSavingThrow
 	 */
-	public SpellSavingThrows getSpellSavingThrow() {
+	public SpellSavingThrow getSpellSavingThrow() {
 		return spellSavingThrow;
 	}
 
@@ -120,7 +123,7 @@ public abstract class Spell {
 	 * @param spellSavingThrow
 	 *            the spellSavingThrow to set
 	 */
-	public Spell setSpellSavingThrow(SpellSavingThrows spellSavingThrow) {
+	public Spell setSpellSavingThrow(SpellSavingThrow spellSavingThrow) {
 		this.spellSavingThrow = spellSavingThrow;
 		return this;
 	}
@@ -220,7 +223,8 @@ public abstract class Spell {
 	}
 
 	/**
-	 * @param effectSpellResistance the effectSpellResistance to set
+	 * @param effectSpellResistance
+	 *            the effectSpellResistance to set
 	 */
 	public void setEffectSpellResistance(boolean effectSpellResistance) {
 		this.effectSpellResistance = effectSpellResistance;
@@ -238,7 +242,7 @@ public abstract class Spell {
 	public int getEffectRange(int casterLevel) {
 		return effectRangeBase + effectRangeLevelMultiplier * casterLevel;
 	}
-	
+
 	/**
 	 * A detailed description.
 	 * 
@@ -256,10 +260,86 @@ public abstract class Spell {
 	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder(10);
 		sb.append(String.format("%sName: %s%n", prefix, name));
-		if (rangeTouch) {
-			sb.append(String.format("%sRangeTouch: Yes%n", prefix));
+		sb.append(String.format("%s  Components: %s%n", prefix, spellComponents));
+		if (spellSavingThrow != null) {
+			sb.append(String.format("%s  SavingThrow: %s%n", prefix, spellSavingThrow));
 		}
+		if (actionDuration != null) {
+			sb.append(String.format("%s  ActionDuration: %s%n", prefix, actionDuration));
+		}
+
+		if (rangeTouch) {
+			sb.append(String.format("%s  RangeTouch: Yes%n", prefix));
+		}
+		if (Url != null) {
+			sb.append(String.format("%s  URL: %s%n", prefix, Url));
+		}
+		if (description != null) {
+			sb.append(String.format("%s  Description: %s%n", prefix, description));
+		}
+		// Effect
+		sb.append(String.format("%s  Effect: %n", prefix));
+		if (effectDurationSeconds == 0) {
+			sb.append(String.format("%s      Duration: Instantaneous%n", prefix));
+		} else {
+			sb.append(String.format("%s      Duration: %d seconds%n", prefix, effectDurationSeconds));
+		}
+		if (effectAreaType != null) {
+			sb.append(String.format("%s      Area Type: %s%n", prefix, effectAreaType));
+		}
+		sb.append(String.format("%s      Area: %d ft%n", prefix, effectAreaFeet));
+		sb.append(String.format("%s      Range Base: %d ft%n", prefix, effectRangeBase));
+		sb.append(String.format("%s      Range Level Mult: %d ft%n", prefix, effectRangeLevelMultiplier));
+		sb.append(String.format("%s      Spell Resistance: %s%n", prefix, effectSpellResistance));
+
 		return sb.toString();
+	}
+
+	// We separate the different tests so the spell can override any of them if required.
+	/**
+	 * Is there sufficient time to perform this action?
+	 * 
+	 * @param arena
+	 * @param opponent
+	 * @return true iff enough time.
+	 */
+	protected boolean isDurationValid(CombatArena arena, PlayerCharacter opponent) {
+		TimerRound timer = arena.getTimerRound();
+		return timer.isActionDurationAvailable(actionDuration);
+	}
+
+	/**
+	 * Are we within range?
+	 * 
+	 * @param arena
+	 * @param opponent
+	 * @return true iff within range.
+	 */
+	protected boolean isRangeValid(CombatArena arena, PlayerCharacter opponent) {
+		PlayerCharacter self = arena.getSelf();
+		double rangeToOpponent = self.distance(opponent);
+		double spellRange = 0;
+		if (rangeTouch) {
+			spellRange = self.getNaturalReach();
+		}
+		else {
+			int casterLevel = self.getLevel(); // TODO fix this. Get from CharacterClass, but which one?
+			// Use a new class - SpellEvocation
+			spellRange = this.getEffectRange(casterLevel);
+		}
+		return spellRange >= rangeToOpponent;
+	}
+
+	public boolean isActionValid(CombatArena arena, PlayerCharacter opponent) {
+		if (!isDurationValid(arena, opponent)) {
+			return false;
+		}
+		if (!isRangeValid(arena, opponent)) {
+			return false;
+		}
+		// TODO check spell components
+		// TODO check cover
+		return true;
 	}
 
 }

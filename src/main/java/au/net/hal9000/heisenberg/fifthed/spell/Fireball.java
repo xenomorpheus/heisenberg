@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.spell;
 
-import au.net.hal9000.heisenberg.fifthed.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
 
 /*
  * http://www.d20pfsrd.com/magic/all-spells/f/fireball/
@@ -29,7 +29,7 @@ public class Fireball extends Spell {
 		setEffectAreaType(EffectArea.RADIUS);
 		setEffectAreaFeet(20);
 		setEffectDuration(0);
-		setEffectSavingThrowsAdd(SpellSavingThrows.REFLEX_HALF);
+		setEffectSavingThrowsAdd(SpellSavingThrow.REFLEX_HALF);
 		setEffectSpellResistance(true);
 	}
 

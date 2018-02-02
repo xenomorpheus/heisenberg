@@ -1,6 +1,7 @@
-package au.net.hal9000.heisenberg.fifthed;
+package au.net.hal9000.heisenberg.fifthed.combat;
 
 import au.net.hal9000.heisenberg.fifthed.item.Weapon;
+import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public class ActionAttackWeapon extends Action {
 

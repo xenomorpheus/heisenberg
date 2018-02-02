@@ -1,11 +1,10 @@
-package au.net.hal9000.heisenberg.fifthed.CharacterClass;
+package au.net.hal9000.heisenberg.fifthed.characterClass;
 
 import java.util.List;
 
-import au.net.hal9000.heisenberg.fifthed.Action;
-import au.net.hal9000.heisenberg.fifthed.CombatArena;
-import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
-import au.net.hal9000.heisenberg.fifthed.TimerRound;
+import au.net.hal9000.heisenberg.fifthed.combat.Action;
+import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public abstract class CharacterClass {
 	private String name = null;
@@ -90,5 +89,5 @@ public abstract class CharacterClass {
 		return sb.toString();
 	}
 
-	public abstract List<Action> getActionsCombat(CombatArena arena, TimerRound timer);
+	public abstract List<Action> getActionsCombat(CombatArena arena);
 }

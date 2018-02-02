@@ -1,12 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.item;
 
-/**
- * https://www.d20pfsrd.com/equipment/weapons/
- * 
- * @author bruins
- *
- */
-import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public abstract class Weapon extends Item {
 

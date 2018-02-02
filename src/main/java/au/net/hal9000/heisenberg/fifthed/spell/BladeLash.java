@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.spell;
 
-import au.net.hal9000.heisenberg.fifthed.ActionDuration;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
 
 /**
  * http://www.d20pfsrd.com/magic/all-spells/b/blade-lash/
