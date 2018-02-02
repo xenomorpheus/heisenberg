@@ -6,20 +6,27 @@ import java.util.List;
 import java.util.Set;
 
 import au.net.hal9000.heisenberg.fifthed.Action;
+import au.net.hal9000.heisenberg.fifthed.ActionAttackWeapon;
+import au.net.hal9000.heisenberg.fifthed.ActionDuration;
 import au.net.hal9000.heisenberg.fifthed.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.TimerRound;
+import au.net.hal9000.heisenberg.fifthed.item.Item;
+import au.net.hal9000.heisenberg.fifthed.item.Weapon;
 
 public class Fighter extends CharacterClass {
 
 	private Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
 
-	public Fighter() {
-		super();
-		setName("Fighter");
+	public Fighter(String name, int level, PlayerCharacter playerCharacter) {
+		super(name, level, playerCharacter);
+	}
+
+	public Fighter(int level, PlayerCharacter playerCharacter) {
+		this("Fighter", level, playerCharacter);
 	}
 
 	// Setters and Getters
-
 	/**
 	 * @return the feats
 	 */
@@ -28,7 +35,8 @@ public class Fighter extends CharacterClass {
 	}
 
 	/**
-	 * @param feats the feats to set
+	 * @param feats
+	 *            the feats to set
 	 */
 	public Fighter setCombatFeats(Set<CombatFeat> feats) {
 		this.combatFeats = feats;
@@ -40,6 +48,7 @@ public class Fighter extends CharacterClass {
 	public String toString() {
 		return getName();
 	}
+
 	/**
 	 * A detailed description.
 	 * 
@@ -71,10 +80,42 @@ public class Fighter extends CharacterClass {
 	}
 
 	@Override
-	/** work out what actions may be performed in this amount of time */
+	/**
+	 * Work out what actions may be performed in this amount of time. Explicitly get
+	 * Magus. Get Fighter from super.
+	 */
 	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
 		List<Action> actions = new ArrayList<Action>();
+		PlayerCharacter pc = getPlayerCharacter();
+		Set<Item> equipped = pc.getEquipped();
+		for (PlayerCharacter opponent : arena.getOpponents()) {
+			for (Item equipment : equipped) {
+				if (!(equipment instanceof Weapon)) {
+					continue;
+				}
+				Weapon weapon = (Weapon) equipment;
+				// Check single/double hand required
+				// Check range
+				if (weapon.withinRange(pc, opponent)) {
+					actions.add(new ActionAttackWeapon(weapon, opponent));
+				}
+
+			}
+		}
+
+		if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
+			// TODO actions.add(new ActionFree());
+		}
+		// TODO Free Actions, etc.
+
+		// Add
+		// actions.addAll(super.getActionsCombat(arena, timer));
 		return actions;
+	}
+
+	public CharacterClass combatFeatAdd(CombatFeat combatFeat) {
+		combatFeats.add(combatFeat);
+		return this;
 	}
 
 }

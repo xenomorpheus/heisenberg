@@ -9,6 +9,7 @@ import au.net.hal9000.heisenberg.fifthed.Action;
 import au.net.hal9000.heisenberg.fifthed.ActionDuration;
 import au.net.hal9000.heisenberg.fifthed.ActionSpellCast;
 import au.net.hal9000.heisenberg.fifthed.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 
@@ -17,9 +18,12 @@ public class Magus extends Fighter {
 	private Set<Spell> spells = new HashSet<Spell>();
 	private Set<MagusArcana> magusArcana = new HashSet<MagusArcana>();
 
-	public Magus() {
-		super();
-		setName("Magus");
+	public Magus(String name, int level, PlayerCharacter playerCharacter) {
+		super(name, level, playerCharacter);
+	}
+
+	public Magus(int level, PlayerCharacter playerCharacter) {
+		this("Magus", level, playerCharacter);
 	}
 
 	// Setters and Getters
@@ -72,24 +76,28 @@ public class Magus extends Fighter {
 	}
 
 	@Override
-	/** Work out what actions may be performed in this amount of time.
-	 * Explicitly get Magus. Get Fighter from super. */
+	/**
+	 * Work out what actions may be performed in this amount of time. Explicitly get
+	 * Magus. Get Fighter from super.
+	 */
 	public List<Action> getActionsCombat(CombatArena arena, TimerRound timer) {
 		List<Action> actions = new ArrayList<Action>();
-		for (Spell spell : spells) {
-			// Check ActionDuration
-			ActionDuration actionDuration = spell.getActionDuration();
-			if (!timer.isActionDurationAvailable(actionDuration)) {
-				continue;
+		for (PlayerCharacter opponent : arena.getOpponents()) {
+			for (Spell spell : spells) {
+				// Check ActionDuration
+				ActionDuration actionDuration = spell.getActionDuration();
+				if (!timer.isActionDurationAvailable(actionDuration)) {
+					continue;
+				}
+				// TODO check range
+				// TODO check spell components
+				// TODO set target of spell, either person or location
+				actions.add(new ActionSpellCast(spell, opponent));
 			}
-			// TODO check range
-			// TODO check spell components
-			// TODO set target of spell, either person or location
-			actions.add(new ActionSpellCast(spell));
-		}
 
-		if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
-			// TODO actions.add(new ActionFree());
+			if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
+				// TODO actions.add(new ActionFree());
+			}
 		}
 		// TODO Free Actions, etc.
 

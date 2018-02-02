@@ -4,11 +4,21 @@ import java.util.List;
 
 import au.net.hal9000.heisenberg.fifthed.Action;
 import au.net.hal9000.heisenberg.fifthed.CombatArena;
+import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.TimerRound;
 
 public abstract class CharacterClass {
-	String name = null;
-	int level = 0;
+	private String name = null;
+	private int level = 0;
+	private PlayerCharacter playerCharacter = null;
+
+	public CharacterClass(String name, int level, PlayerCharacter playerCharacter) {
+		super();
+		this.name = name;
+		this.level = level;
+		this.playerCharacter = playerCharacter;
+		playerCharacter.classesAdd(this);
+	}
 
 	// Getters and Setters
 
@@ -44,14 +54,25 @@ public abstract class CharacterClass {
 		return this;
 	}
 
+	/** A link back the the PlayerCharacter from the Class */
+	public CharacterClass setPlayerCharacter(PlayerCharacter playerCharacter) {
+		this.playerCharacter = playerCharacter;
+		return this;
+	}
+
+	public PlayerCharacter getPlayerCharacter() {
+		return playerCharacter;
+	}
+
 	// Misc
-	
+
 	public String toString() {
 		return getName();
 	}
 
 	/**
 	 * Detailed description.
+	 * 
 	 * @return
 	 */
 	public String details() {
@@ -60,6 +81,7 @@ public abstract class CharacterClass {
 
 	/**
 	 * Detailed description. Each line may be given a prefix, e.g. for padding.
+	 * 
 	 * @return
 	 */
 	public String details(String prefix) {

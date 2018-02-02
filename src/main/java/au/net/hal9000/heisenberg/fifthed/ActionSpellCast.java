@@ -5,9 +5,14 @@ import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 public class ActionSpellCast extends Action {
 
 	private Spell spell;
+	private PlayerCharacter playerCharacter = null;
 
 	public ActionSpellCast(Spell spell) {
 		this.spell = spell;
+	}
+	public ActionSpellCast(Spell spell, PlayerCharacter playerCharacter) {
+		this(spell);
+		this.playerCharacter  = playerCharacter;
 	}
 
 	// Getters and Setters
@@ -28,6 +33,16 @@ public class ActionSpellCast extends Action {
 
 	@Override
 	public String toString() {
-		return String.format("%s - %s", super.toString(), spell.getName());
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		if (playerCharacter != null) {
+			sb.append(": target '").append(playerCharacter.getName()).append("' with ");
+		}
+		else {
+			sb.append(' ');
+		}
+		sb.append(spell.getName());
+		return sb.toString();
+
 	}
 }

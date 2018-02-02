@@ -10,14 +10,12 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.fifthed.PlayerCharacter;
-import au.net.hal9000.heisenberg.fifthed.CharacterClass.CharacterClass;
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.CombatFeat;
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.Fighter;
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.Magus;
+import au.net.hal9000.heisenberg.fifthed.item.BowCrossLight;
 import au.net.hal9000.heisenberg.fifthed.item.BowLong;
 import au.net.hal9000.heisenberg.fifthed.item.Dagger;
-import au.net.hal9000.heisenberg.fifthed.item.Item;
 import au.net.hal9000.heisenberg.fifthed.race.Human;
 import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
@@ -39,10 +37,7 @@ public class PlayerCharacterTest {
 	private PlayerCharacter _build_magus() {
 		PlayerCharacter character = new PlayerCharacter().setName("Test Character Magus").setRace(new Human());
 
-		// Classes
-		List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
-		Magus magus = new Magus();
-		magus.setLevel(2);
+		Magus magus = new Magus(3, character);
 
 		// Spells
 		Set<Spell> spells = new HashSet<Spell>();
@@ -51,21 +46,15 @@ public class PlayerCharacterTest {
 		magus.setSpells(spells);
 
 		// Combat Feats
-		Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
-		combatFeats.add(CombatFeat.ARTFULL_DODGE);
-		magus.setCombatFeats(combatFeats);
+		magus.combatFeatAdd(CombatFeat.ARTFULL_DODGE);
 
-		characterClasses.add(magus);
-		character.setCharacterClasses(characterClasses);
 		// Conditions
-		Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();
-		conditions.add(PlayerCharacterCondition.MUTE);
-		character.setConditions(conditions);
+		character.conditionAdd(PlayerCharacterCondition.MUTE);
+
 		// Equipment
-		Set<Item> equipped = new HashSet<Item>();
-		equipped.add(new Dagger());
-		equipped.add(new BowLong());
-		character.setEquipped(equipped);
+		character.equippedAdd(new Dagger());
+		character.equippedAdd(new BowCrossLight());
+
 		return character;
 	}
 
@@ -73,26 +62,20 @@ public class PlayerCharacterTest {
 		PlayerCharacter character = new PlayerCharacter().setName("Test Character Fighter").setRace(new Human());
 
 		// Classes
-		List<CharacterClass> characterClasses = new ArrayList<CharacterClass>();
-		Fighter magus = new Fighter();
-		magus.setLevel(2);
+		Fighter fighter = new Fighter(2, character);
+		fighter.setLevel(2);
 
 		// Combat Feats
-		Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
-		combatFeats.add(CombatFeat.ARTFULL_DODGE);
-		magus.setCombatFeats(combatFeats);
+		fighter.combatFeatAdd(CombatFeat.ARTFULL_DODGE);
 
-		characterClasses.add(magus);
-		character.setCharacterClasses(characterClasses);
 		// Conditions
-		Set<PlayerCharacterCondition> conditions = new HashSet<PlayerCharacterCondition>();
-		conditions.add(PlayerCharacterCondition.MUTE);
-		character.setConditions(conditions);
+		character.conditionAdd(PlayerCharacterCondition.MUTE);
+		character.conditionAdd(PlayerCharacterCondition.DEAF);
+
 		// Equipment
-		Set<Item> equipped = new HashSet<Item>();
-		equipped.add(new Dagger());
-		equipped.add(new BowLong());
-		character.setEquipped(equipped);
+		character.equippedAdd(new Dagger());
+		character.equippedAdd(new BowLong());
+
 		return character;
 	}
 
@@ -131,7 +114,7 @@ public class PlayerCharacterTest {
 		arena.setSelf(magus);
 		List<PlayerCharacter> enemies = new ArrayList<PlayerCharacter>();
 		enemies.add(fighter);
-		arena.setEnemies(enemies);
+		arena.setOpponents(enemies);
 		List<Action> actions = magus.getActionsCombat(arena,timer);
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("Actions%n"));

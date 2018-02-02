@@ -5,7 +5,7 @@ import java.util.List;
 public class CombatArena {
 	private PlayerCharacter self = null;
 	private List<PlayerCharacter> allies = null;
-	private List<PlayerCharacter> enemies = null;
+	private List<PlayerCharacter> opponents = null;
 
 	public CombatArena() {
 		super();
@@ -46,16 +46,16 @@ public class CombatArena {
 	/**
 	 * @return the enemies
 	 */
-	public List<PlayerCharacter> getEnemies() {
-		return enemies;
+	public List<PlayerCharacter> getOpponents() {
+		return opponents;
 	}
 
 	/**
-	 * @param enemies
+	 * @param opponents
 	 *            the enemies to set
 	 */
-	public CombatArena setEnemies(List<PlayerCharacter> enemies) {
-		this.enemies = enemies;
+	public CombatArena setOpponents(List<PlayerCharacter> opponents) {
+		this.opponents = opponents;
 		return this;
 	}
 

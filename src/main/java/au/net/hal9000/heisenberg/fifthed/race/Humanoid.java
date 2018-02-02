@@ -5,8 +5,8 @@ import java.util.List;
 
 import au.net.hal9000.heisenberg.fifthed.Action;
 import au.net.hal9000.heisenberg.fifthed.ActionDuration;
-import au.net.hal9000.heisenberg.fifthed.ActionMovement;
 import au.net.hal9000.heisenberg.fifthed.ActionMovementFiveFootStep;
+import au.net.hal9000.heisenberg.fifthed.ActionMovementStandard;
 import au.net.hal9000.heisenberg.fifthed.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.TimerRound;
 
@@ -24,11 +24,12 @@ public abstract class Humanoid extends Race {
 			actions.add(new ActionMovementFiveFootStep());
 		}
 		if (timer.isActionDurationAvailable(ActionDuration.MOVE)) {
-			actions.add(new ActionMovement());
+			actions.add(new ActionMovementStandard());
 		}
 		if (timer.isActionDurationAvailable(ActionDuration.FREE)) {
 			// TODO actions.add(new ActionFree());
 		}
+		// TODO untrained weapon attacks
 		// TODO Free Actions, etc.
 		return actions;
 	}

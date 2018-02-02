@@ -15,9 +15,10 @@ public abstract class Weapon extends Item {
 	String damageCritical = null;
 	private float rangeMax = 0.0f;
 	String damageTypes = null;
+	private int singleHandAttackReduction;
 
 	// Getters and Setters
-	
+
 	/**
 	 * @return the damageVsSmall
 	 */
@@ -29,8 +30,9 @@ public abstract class Weapon extends Item {
 	 * @param damageVsSmall
 	 *            the damageVsSmall to set
 	 */
-	public void setDamageVsSmall(String damageVsSmall) {
+	public Weapon setDamageVsSmall(String damageVsSmall) {
 		this.damageVsSmall = damageVsSmall;
+		return this;
 	}
 
 	/**
@@ -44,8 +46,9 @@ public abstract class Weapon extends Item {
 	 * @param damageVsMedium
 	 *            the damageVsMedium to set
 	 */
-	public void setDamageVsMedium(String damageVsMedium) {
+	public Weapon setDamageVsMedium(String damageVsMedium) {
 		this.damageVsMedium = damageVsMedium;
+		return this;
 	}
 
 	/**
@@ -59,8 +62,9 @@ public abstract class Weapon extends Item {
 	 * @param damageCritical
 	 *            the damageCritical to set
 	 */
-	public void setDamageCritical(String damageCritical) {
+	public Weapon setDamageCritical(String damageCritical) {
 		this.damageCritical = damageCritical;
+		return this;
 	}
 
 	/**
@@ -74,8 +78,9 @@ public abstract class Weapon extends Item {
 	 * @param rangeMax
 	 *            the rangeMax to set
 	 */
-	public void setRangeMax(float rangeMax) {
+	public Weapon setRangeMax(float rangeMax) {
 		this.rangeMax = rangeMax;
+		return this;
 	}
 
 	/**
@@ -89,8 +94,18 @@ public abstract class Weapon extends Item {
 	 * @param damageTypes
 	 *            the damageTypes to set
 	 */
-	public void setDamageTypes(String damageTypes) {
+	public Weapon setDamageTypes(String damageTypes) {
 		this.damageTypes = damageTypes;
+		return this;
+	}
+
+	public Weapon setSingleHandAttackReduction(int singleHandAttackReduction) {
+		this.singleHandAttackReduction = singleHandAttackReduction;
+		return this;
+	}
+
+	public int getSingleHandAttackReduction() {
+		return singleHandAttackReduction;
 	}
 
 	/** is the opponent within range of this weapon */
@@ -107,7 +122,10 @@ public abstract class Weapon extends Item {
 		StringBuilder sb = new StringBuilder(10);
 		sb.append(getName()).append(": ").append(getCost()).append(", S: ").append(getDamageVsSmall());
 		sb.append(", M: ").append(getDamageVsMedium()).append(", ").append(getDamageCritical());
-		sb.append(", ").append(getWeight()).append("lb, ").append(getDamageTypes());		
+		sb.append(", ").append(getWeight()).append("lb, ").append(getDamageTypes());
+		if (singleHandAttackReduction != 0) {
+			sb.append(", Single handed Attack Reduction ").append(singleHandAttackReduction);
+		}
 		return sb.toString();
 	}
 }

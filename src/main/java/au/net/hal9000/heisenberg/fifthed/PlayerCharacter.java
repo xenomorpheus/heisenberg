@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import au.net.hal9000.heisenberg.units.Position;
+
 import au.net.hal9000.heisenberg.fifthed.CharacterClass.CharacterClass;
-import au.net.hal9000.heisenberg.fifthed.race.Race;
 import au.net.hal9000.heisenberg.fifthed.item.Item;
+import au.net.hal9000.heisenberg.fifthed.race.Race;
+import au.net.hal9000.heisenberg.units.Position;
 
 public class PlayerCharacter {
 	private String name = null;
@@ -209,4 +210,24 @@ public class PlayerCharacter {
 		}
 		return actions;
 	}
+
+	/**
+	 * Add this Class to the PC.
+	 * @param characterClass
+	 * @return
+	 */
+	public PlayerCharacter classesAdd(CharacterClass characterClass) {
+		characterClasses.add(characterClass);
+		return this;
+	}
+
+	/** Add this condition to the PC. e.g. deaf, blind */
+	public void conditionAdd(PlayerCharacterCondition condition) {
+		conditions.add(condition);
+	}
+
+	public void equippedAdd(Item item) {
+		equipped.add(item);
+	}
+
 }
