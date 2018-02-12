@@ -8,13 +8,13 @@ import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public abstract class CharacterClass {
 	private String name = null;
-	private int level = 0;
+	private int classLevel = 0;
 	private PlayerCharacter playerCharacter = null;
 
 	public CharacterClass(String name, int level, PlayerCharacter playerCharacter) {
 		super();
 		this.name = name;
-		this.level = level;
+		this.classLevel = level;
 		this.playerCharacter = playerCharacter;
 		playerCharacter.classesAdd(this);
 	}
@@ -40,16 +40,16 @@ public abstract class CharacterClass {
 	/**
 	 * @return the level
 	 */
-	public int getLevel() {
-		return level;
+	public int getClassLevel() {
+		return classLevel;
 	}
 
 	/**
-	 * @param level
+	 * @param classLevel
 	 *            the level to set
 	 */
-	public CharacterClass setLevel(int level) {
-		this.level = level;
+	public CharacterClass setClassLevel(int classLevel) {
+		this.classLevel = classLevel;
 		return this;
 	}
 
@@ -85,7 +85,7 @@ public abstract class CharacterClass {
 	 */
 	public String details(String prefix) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%sClass: %s (%d)%n", prefix, getName(), getLevel()));
+		sb.append(String.format("%sClass: %s (%d)%n", prefix, getName(), getClassLevel()));
 		return sb.toString();
 	}
 

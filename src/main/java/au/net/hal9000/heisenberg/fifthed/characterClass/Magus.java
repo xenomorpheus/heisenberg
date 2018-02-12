@@ -12,8 +12,9 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
+import au.net.hal9000.heisenberg.fifthed.spell.Spellcast;
 
-public class Magus extends Fighter {
+public class Magus extends Fighter implements Spellcaster{
 
 	private Set<Spell> spells = new HashSet<Spell>();
 	private Set<MagusArcana> magusArcana = new HashSet<MagusArcana>();
@@ -27,6 +28,7 @@ public class Magus extends Fighter {
 	}
 
 	// Setters and Getters
+	@Override
 	public Magus setSpells(Set<Spell> spells) {
 		this.spells = spells;
 		return this;
@@ -35,6 +37,7 @@ public class Magus extends Fighter {
 	/**
 	 * @return the spells
 	 */
+	@Override
 	public Set<Spell> getSpells() {
 		return spells;
 	}
@@ -85,7 +88,9 @@ public class Magus extends Fighter {
 		TimerRound timer = arena.getTimerRound();
 		for (PlayerCharacter opponent : arena.getOpponents()) {
 			for (Spell spell : spells) {
-				if (spell.isActionValid(arena, opponent)) {
+
+				Spellcast spellcast = new Spellcast(this, spell, opponent, timer);
+				if (spellcast.isActionValid()) {
 					actions.add(new ActionSpellCast(spell, opponent));
 				}
 			}
@@ -101,9 +106,10 @@ public class Magus extends Fighter {
 		return actions;
 	}
 
-	public Magus spellsAdd(Spell spell) {
+	@Override
+	public CharacterClass spellsAdd(Spell spell) {
 		spells.add(spell);
-		return this;
+		return (CharacterClass)this;
 	}
 
 }

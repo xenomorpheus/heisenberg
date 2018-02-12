@@ -4,9 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
-import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
-import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public abstract class Spell {
 	private String name = null;
@@ -295,51 +292,5 @@ public abstract class Spell {
 		return sb.toString();
 	}
 
-	// We separate the different tests so the spell can override any of them if required.
-	/**
-	 * Is there sufficient time to perform this action?
-	 * 
-	 * @param arena
-	 * @param opponent
-	 * @return true iff enough time.
-	 */
-	protected boolean isDurationValid(CombatArena arena, PlayerCharacter opponent) {
-		TimerRound timer = arena.getTimerRound();
-		return timer.isActionDurationAvailable(actionDuration);
-	}
-
-	/**
-	 * Are we within range?
-	 * 
-	 * @param arena
-	 * @param opponent
-	 * @return true iff within range.
-	 */
-	protected boolean isRangeValid(CombatArena arena, PlayerCharacter opponent) {
-		PlayerCharacter self = arena.getSelf();
-		double rangeToOpponent = self.distance(opponent);
-		double spellRange = 0;
-		if (rangeTouch) {
-			spellRange = self.getNaturalReach();
-		}
-		else {
-			int casterLevel = self.getLevel(); // TODO fix this. Get from CharacterClass, but which one?
-			// Use a new class - SpellEvocation
-			spellRange = this.getEffectRange(casterLevel);
-		}
-		return spellRange >= rangeToOpponent;
-	}
-
-	public boolean isActionValid(CombatArena arena, PlayerCharacter opponent) {
-		if (!isDurationValid(arena, opponent)) {
-			return false;
-		}
-		if (!isRangeValid(arena, opponent)) {
-			return false;
-		}
-		// TODO check spell components
-		// TODO check cover
-		return true;
-	}
 
 }

@@ -187,7 +187,7 @@ public abstract class PlayerCharacter {
 		Integer level = 0;
 		if (characterClasses != null) {
 			for (CharacterClass characterClass : characterClasses) {
-				level += characterClass.getLevel();
+				level += characterClass.getClassLevel();
 			}
 		}
 		return level;
@@ -234,7 +234,7 @@ public abstract class PlayerCharacter {
 			sb.append(", level ").append(getLevel());
 		}
 		for (CharacterClass characterClass : characterClasses) {
-			sb.append(", ").append(characterClass.getName()).append("(").append(characterClass.getLevel()).append(")");
+			sb.append(", ").append(characterClass.getName()).append("(").append(characterClass.getClassLevel()).append(")");
 		}
 		return sb.toString();
 	}

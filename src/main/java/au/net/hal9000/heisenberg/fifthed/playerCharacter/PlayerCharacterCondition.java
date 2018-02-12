@@ -1,5 +1,43 @@
 package au.net.hal9000.heisenberg.fifthed.playerCharacter;
 
+// https://www.d20pfsrd.com/gamemastering/conditions/
+
 public enum PlayerCharacterCondition {
-	DEAF, MUTE, BLIND
+
+	ANTAGONIZED,
+	BLEED,
+	BLINDED,
+	BROKEN,
+	CONFUSED,
+	COWERING,
+	DAZED,
+	DAZZLED,
+	DEAD,
+	DEAFENED,
+	DISABLED,
+	DYING,
+	ENERGY_DRAINED,
+	ENTANGLED,
+	EXHAUSTED,
+	FASCINATED,
+	FATIGUED,
+	FLAT_FOOTED,
+	FRIGHTENED,
+	GRAPPLED,
+	HELPLESS,
+	INCORPOREAL,
+	INVISIBLE,
+	NAUSEATED,
+	PANICKED,
+	PARALYZED,
+	PETRIFIED,
+	PINNED,
+	PRONE,
+	SHAKEN,
+	SICKENED,
+	SINKING,
+	STABLE,
+	STAGGERED,
+	STUNNED,
+	UNCONSCIOUS;
 }

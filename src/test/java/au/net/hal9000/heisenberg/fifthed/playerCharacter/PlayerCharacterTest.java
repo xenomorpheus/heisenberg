@@ -15,8 +15,6 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.BowCrossLight;
 import au.net.hal9000.heisenberg.fifthed.item.BowLong;
 import au.net.hal9000.heisenberg.fifthed.item.Dagger;
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacterCondition;
 import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
 import au.net.hal9000.heisenberg.units.Position;
@@ -46,7 +44,7 @@ public class PlayerCharacterTest {
 		magus.combatFeatAdd(CombatFeat.ARTFULL_DODGE);
 
 		// Conditions
-		character.conditionAdd(PlayerCharacterCondition.MUTE);
+		character.conditionAdd(PlayerCharacterCondition.DEAFENED);
 
 		// Equipment
 		character.equippedAdd(new Dagger());
@@ -65,8 +63,8 @@ public class PlayerCharacterTest {
 		fighter.combatFeatAdd(CombatFeat.ARTFULL_DODGE);
 
 		// Conditions
-		character.conditionAdd(PlayerCharacterCondition.MUTE);
-		character.conditionAdd(PlayerCharacterCondition.DEAF);
+		character.conditionAdd(PlayerCharacterCondition.DEAFENED);
+
 
 		// Equipment
 		character.equippedAdd(new Dagger());
