@@ -2,33 +2,46 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.awt.Menu;
+import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuBar;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 /**
  */
 public class WorldEditorFrameTest {
 
-    /**
-     * Method testGetMenus.
-     */
-    @Test
-    public void testGetMenus() {
-        ActionListener actionListener = new ActionListener() {
+	@Before
+	public void setupClass() {
+		DemoEnvironment.setup();
+	}
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
+	@Test
+	public void testWorldEditorFrame() throws ConfigurationError {
+		WorldEditorFrame wef = new WorldEditorFrame();
+	}
 
-            }
+	@Test
+	public void testGetMenus() {
+		ActionListener actionListener = new ActionListener() {
 
-        };
-        JMenuBar jMenuBar = WorldEditorFrame.getMenus(actionListener);
-        assertNotNull("Not null", jMenuBar);
-    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+		};
+		JMenuBar jMenuBar = WorldEditorFrame.getMenus(actionListener);
+		assertNotNull("Not null", jMenuBar);
+	}
 
 }

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import javax.swing.tree.TreePath;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Bag;
@@ -24,14 +25,13 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
  */
 public class ItemTreePanelTest {
 
-	/**
-	 * Test testItemTreePanel.
-	 * 
-	 * @throws ConfigurationError
-	 */
+	@Before
+	public void setupClass() {
+		DemoEnvironment.setup();
+	}
+
 	@Test
 	public void testItemTreePanel() throws ConfigurationError {
-		DemoEnvironment.setup();
 		Configuration config = Configuration.lastConfig();
 		Location location = DemoEnvironment.getDemoWorld();
 		ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
