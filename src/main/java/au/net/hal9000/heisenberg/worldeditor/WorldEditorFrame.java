@@ -102,7 +102,7 @@ public class WorldEditorFrame extends JFrame {
 		add(itemTreePanel, BorderLayout.NORTH);
 
 		// Menus
-		ActionListener menuActionListener = new ActionListener() {
+		final ActionListener menuActionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String eventName = event.getActionCommand();
 				if (MENU_NEW.equals(eventName)) {

@@ -84,10 +84,10 @@ public class ItemTreeNode implements MutableTreeNode {
 				ItemContainer itemContainer = (ItemContainer) item;
 				index = itemContainer.indexOf(nodeItem);
 			} else {
-				LOGGER.error("getIndex failed as container is null. node " + node + " of " + node.getClass());
+				LOGGER.error("getIndex failed as item not of class ItemContainer. node " + node + " of " + node.getClass());
 			}
 		} else {
-			LOGGER.error("getIndex failed item as not of type ItemContainer. item " + item + ", node " + node + " of "
+			LOGGER.error("getIndex failed as node is not of type ItemTreeNode. item " + item + ", node " + node + " of "
 					+ node.getClass());
 		}
 		LOGGER.info("getIndex - index " + index);
