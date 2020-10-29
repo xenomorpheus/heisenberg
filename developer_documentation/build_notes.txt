@@ -1,0 +1,7 @@
+# Just some quick notes on how to compile
+
+/usr/libexec/java_home -V
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home
+/usr/libexec/java_home -V
+
+mvn -e -X clean compile
