@@ -51,7 +51,7 @@ public class SearchAStarGraphTest {
 		}
 	}
 
-	private class MyAction extends ActionBase implements Action {
+	private class MyAction extends ActionBase {
 		String nodeName;
 
 		// Constructor

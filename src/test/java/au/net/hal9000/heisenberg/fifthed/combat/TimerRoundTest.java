@@ -7,9 +7,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
-import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
-
 public class TimerRoundTest {
 
 	@Test

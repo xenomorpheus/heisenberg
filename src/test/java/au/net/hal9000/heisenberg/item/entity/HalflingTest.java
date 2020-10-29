@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Entity;
-import au.net.hal9000.heisenberg.item.entity.Humanoid;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;

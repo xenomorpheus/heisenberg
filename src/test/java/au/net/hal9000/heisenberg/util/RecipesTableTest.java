@@ -17,10 +17,6 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
  * @version $Revision: 1.0 $
  */
 public class RecipesTableTest {
-    /** frame width. */
-    static final int FRAME_WIDTH = 800;
-    /** frame height. */
-    static final int FRAME_HEIGHT = 300;
 
     /**
      * test basic operations.

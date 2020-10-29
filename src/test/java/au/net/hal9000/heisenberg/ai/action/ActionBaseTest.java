@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.ai.action;
 
-import au.net.hal9000.heisenberg.ai.action.ActionBase;
 import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 

@@ -1,7 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,7 +13,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Location extends ItemContainerImpl implements Serializable {
+public class Location extends ItemContainerImpl {
 
     /** serial version id. */
     private static final long serialVersionUID = 1L;

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import au.net.hal9000.heisenberg.item.entity.PcRace;
-import au.net.hal9000.heisenberg.pceditor.SkillsTable;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
