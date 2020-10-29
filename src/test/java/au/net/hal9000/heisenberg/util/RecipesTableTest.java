@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
+import org.junit.Before;
 
 import au.net.hal9000.heisenberg.item.entity.PcRace;
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
@@ -17,6 +18,10 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
  * @version $Revision: 1.0 $
  */
 public class RecipesTableTest {
+	@Before
+	public void setupClass() {
+		DemoEnvironment.setup();
+	}
 
     /**
      * test basic operations.
