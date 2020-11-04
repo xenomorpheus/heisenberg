@@ -5,7 +5,6 @@ package au.net.hal9000.heisenberg.item;
  * within it.
  */
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
@@ -27,7 +25,7 @@ import au.net.hal9000.heisenberg.units.Position;
  * @version $Revision: 1.0 $
  */
 public class ItemContainerImpl extends ItemImpl
-        implements Serializable, ItemContainer, ItemList {
+        implements ItemContainer {
     /**
      * 
      */
