@@ -61,3 +61,14 @@ or I have identified solutions to the project's requirements.
 
 * Emphasis on Quality - Extensive unit tests, code documentation and use of Checkstyle.
 
+Project Technologies:
+======================
+
+* Maven
+* JPA
+* Apache EclipseLink - JPA Implementation, ORM
+* Derby - Data store
+* Log4j - Logging
+
+
+
