@@ -3,12 +3,20 @@ package au.net.hal9000.heisenberg.ai;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.junit.Before;
 
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.units.Position;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+
 
 public class FringeElementImplTest {
+
+	@Before
+	public void initialize() {
+		DemoEnvironment.setup();
+	}
 
     @Test
     public void testCompareTo() {
