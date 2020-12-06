@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.fifthed.combat;
 import java.util.ArrayList;
 import java.util.List;
 
-import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 
 public class CombatArena {
