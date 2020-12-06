@@ -7,3 +7,6 @@
 /derby.log
 /target/
 /bin/
+.factorypath
+.vscode
+heisenberg.code-workspace
