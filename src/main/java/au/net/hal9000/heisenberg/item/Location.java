@@ -34,5 +34,4 @@ public class Location extends ItemContainerImpl {
     public Location(final String name) {
         super(name);
     }
- 
 }

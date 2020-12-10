@@ -7,7 +7,7 @@ import javax.persistence.InheritanceType;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
 /**
- * Hand Is like an item except: May wear at most one magical ring. May wear any
+ * Is like an item except: May wear at most one magical ring. May wear any
  * number of non-magical rings. Rings may be removed in any order.
  * @author bruins
  * @version $Revision: 1.0 $
@@ -23,14 +23,14 @@ public class Hand extends ItemContainerImpl {
     private static final long serialVersionUID = 1L;
  
     /**
-     * Constructor for Hand.
+     * Constructor.
      */
     public Hand() {
         this("Hand");
     }
 
     /**
-     * Constructor for Hand.
+     * Constructor.
      * @param string String
      */
     public Hand(String string) {
@@ -39,6 +39,4 @@ public class Hand extends ItemContainerImpl {
         this.setWeightMax(2); // TODO move to config
         this.setVolumeMax(2); // TODO move to config
     }
-
-
 }
