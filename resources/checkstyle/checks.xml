@@ -4,7 +4,7 @@
           "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <!--
-  Checkstyle configuration based on sun_checks.xml, modified to conform to our standards.
+  Checkstyle configuration based on sun_checks.xml, modified for use by XXX to conform to our standards.
 -->
 
 <module name="Checker">
@@ -18,7 +18,7 @@
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
     <!-- Removed - doesn't play nicely with Windows dev boxes -->
-    <!--module name="NewlineAtEndOfFile"/-->
+	<!--module name="NewlineAtEndOfFile"/-->
 
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
@@ -26,10 +26,9 @@
 
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
-
     <module name="FileLength"/>
 
- 
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter"/>
@@ -45,7 +44,7 @@
     </module>
 
     <module name="TreeWalker">
- 
+
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
         <module name="JavadocMethod">
@@ -72,7 +71,7 @@
         <module name="ParameterName"/>
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
- 
+
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
         <module name="AvoidStarImport"/>
@@ -83,10 +82,10 @@
         <!-- Checks for Size Violations.                    -->
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <!-- Ignore lines with the $URL svn keyword property -->
-        <module name="LineLength">
+        <!-- <module name="LineLength">
             <property name="max" value="160"/>
             <property name="ignorePattern" value="^.*\$URL.*$"/>
-        </module>
+        </module> -->
 
         <!-- Limit to 200 lines for methods and constructors -->
         <!-- Ignore white space and comments -->
@@ -144,12 +143,12 @@
         <module name="IllegalInstantiation"/>
         -->
         <module name="InnerAssignment"/>
-        <module name="MagicNumber"/>
+        <module name="MagicNumber">
+            <property name="severity" value="warning"/>
+        </module>
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
-        <module name="RedundantThrows">
-          <property name="severity" value="warning"/>
-        </module>
+        <!-- <module name="RedundantThrows"> <property name="severity" value="warning"/> </module> -->
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
 
