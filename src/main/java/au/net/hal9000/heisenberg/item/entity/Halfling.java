@@ -1,12 +1,11 @@
 package au.net.hal9000.heisenberg.item.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * @author bruins
@@ -16,49 +15,40 @@ import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Halfling extends Humanoid implements Animal {
 
-    /**
-     * Field serialVersionUID. (value is 1)
-     */
-    private static final long serialVersionUID = 1L;
+  /** Field serialVersionUID. (value is 1) */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor for Halfling.
-     */
-    public Halfling() {
-        this("Halfling");
-    }
+  /** Constructor for Halfling. */
+  public Halfling() {
+    this("Halfling");
+  }
 
-    /**
-     * Constructor for Halfling.
-     *
-     * @param name
-     *            String
-     */
-    public Halfling(String name) {
-        this(name, "A Halfling");
-    }
+  /**
+   * Constructor for Halfling.
+   *
+   * @param name String
+   */
+  public Halfling(String name) {
+    this(name, "A Halfling");
+  }
 
-    /**
-     * Constructor for Halfling.
-     *
-     * @param name
-     *            String
-     * @param description
-     *            String
-     */
-    public Halfling(String string, String description) {
-        super(string, description);
-    }
+  /**
+   * Constructor for Halfling.
+   *
+   * @param name String
+   * @param description String
+   */
+  public Halfling(String string, String description) {
+    super(string, description);
+  }
 
-    @Override
-    public void eat(Item food) {
-        AnimalConsumeSustenance.eat(this, food);
-    }
+  @Override
+  public void eat(Item food) {
+    AnimalConsumeSustenance.eat(this, food);
+  }
 
-    @Override
-    public void drink(Item food) {
-        AnimalConsumeSustenance.drink(this, food);
-    }
-
-
+  @Override
+  public void drink(Item food) {
+    AnimalConsumeSustenance.drink(this, food);
+  }
 }

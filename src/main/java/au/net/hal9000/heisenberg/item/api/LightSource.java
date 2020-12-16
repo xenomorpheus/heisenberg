@@ -6,26 +6,23 @@ package au.net.hal9000.heisenberg.item.api;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-
 public interface LightSource {
 
-    /**
-     * Start the light.
-     *
-     * @param ignighter
-     *            possible source of ignition.
-     * @return true if ignition occurred. */
-    boolean lightWith(Object ignighter);
+  /**
+   * Start the light.
+   *
+   * @param ignighter possible source of ignition.
+   * @return true if ignition occurred.
+   */
+  boolean lightWith(Object ignighter);
 
-    /**
-     * Stop the light.
-     */
-    void extinguish();
+  /** Stop the light. */
+  void extinguish();
 
-    /**
-     * Is this torch lit?
-     *
-     * @return true if lit */
-    boolean isLit();
-
+  /**
+   * Is this torch lit?
+   *
+   * @return true if lit
+   */
+  boolean isLit();
 }

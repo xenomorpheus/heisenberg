@@ -12,36 +12,33 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class FlintAndTinder extends ItemImpl {
 
-    /**
-     * Field serialVersionUID.
-     * (value is 1)
-     */
-    private static final long serialVersionUID = 1L;
+  /** Field serialVersionUID. (value is 1) */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor for FlintAndTinder.
-     */
-    public FlintAndTinder() {
-        this("FlintAndTinder");
-    }
+  /** Constructor for FlintAndTinder. */
+  public FlintAndTinder() {
+    this("FlintAndTinder");
+  }
 
-    /**
-     * Constructor for FlintAndTinder.
-     * @param pName String
-     */
-    private FlintAndTinder(String pName) {
-        this(pName, "some flint and tinder");
-    }
+  /**
+   * Constructor for FlintAndTinder.
+   *
+   * @param pName String
+   */
+  private FlintAndTinder(String pName) {
+    this(pName, "some flint and tinder");
+  }
 
-    /**
-     * Constructor for FlintAndTinder.
-     * @param pName String
-     * @param pDescription String
-     */
-    private FlintAndTinder(String pName, String pDescription) {
-        super(pName, pDescription);
-    }
+  /**
+   * Constructor for FlintAndTinder.
+   *
+   * @param pName String
+   * @param pDescription String
+   */
+  private FlintAndTinder(String pName, String pDescription) {
+    super(pName, pDescription);
+  }
 
-    // Methods
+  // Methods
 
 }

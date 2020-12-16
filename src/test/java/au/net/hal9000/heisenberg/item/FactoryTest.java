@@ -3,80 +3,62 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import org.junit.Before;
+import org.junit.Test;
 
-/**
- */
+/** */
 public class FactoryTest {
-    /**
-     * Field config.
-     */
-    private Configuration config;
+  /** Field config. */
+  private Configuration config;
 
-    @Before
-    public void initialize() {
-        DemoEnvironment.setup();
-        config = Configuration.lastConfig();
+  @Before
+  public void initialize() {
+    DemoEnvironment.setup();
+    config = Configuration.lastConfig();
+  }
+
+  /**
+   * Method testBagOfHolding.
+   *
+   * @param object Object
+   */
+  private static void testBagOfHolding(Object object) {
+    assertTrue("instanceof Item", object instanceof Item);
+    assertEquals("simple class", "BagOfHolding", object.getClass().getSimpleName());
+  }
+
+  /** Create all the products of the recipe. */
+  @Test
+  public void createItemsAll() {
+    for (String type : config.getItemClassIds()) {
+      Object item = Factory.createItem(type);
+      assertTrue("instanceof Item", item instanceof Item);
+      assertEquals("simple class", type, item.getClass().getSimpleName());
     }
+  }
 
-    /**
-     * Method testBagOfHolding.
-     * 
-     * @param object
-     *            Object
-     */
-    private static void testBagOfHolding(Object object) {
-        assertTrue("instanceof Item", object instanceof Item);
-        assertEquals("simple class", "BagOfHolding", object.getClass()
-                .getSimpleName());
-    }
+  /** Create item with params passed to createItem. */
+  @Test
+  public void createItemWithParams() {
+    testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding"));
+    testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding", null));
+    testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding", new Object[] {}));
+    testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding", new Object[] {2}));
+    testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding", new Object[] {4, "TEST"}));
+  }
 
-    /**
-     * Create all the products of the recipe.
-     */
-    @Test
-    public void createItemsAll() {
-        for (String type : config.getItemClassIds()) {
-            Object item = Factory.createItem(type);
-            assertTrue("instanceof Item", item instanceof Item);
-            assertEquals("simple class", type, item.getClass().getSimpleName());
+  /** Create Item objects and test the instanceof. */
+  @Test
+  public void createItemTestInstance() {
 
-        }
-    }
-
-    /**
-     * Create item with params passed to createItem.
-     */
-    @Test
-    public void createItemWithParams() {
-        testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding"));
-        testBagOfHolding((BagOfHolding) Factory
-                .createItem("BagOfHolding", null));
-        testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding",
-                new Object[] {}));
-        testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding",
-                new Object[] { 2 }));
-        testBagOfHolding((BagOfHolding) Factory.createItem("BagOfHolding",
-                new Object[] { 4, "TEST" }));
-    }
-
-    /**
-     * Create Item objects and test the instanceof.
-     */
-    @Test
-    public void createItemTestInstance() {
-
-        // Check the sub-class
-        Item cookie = Factory.createItem("Cookie");
-        assertTrue("instanceof", cookie instanceof Cookie);
-        Item human = Factory.createItem("Human");
-        assertTrue("instanceof", human instanceof Human);
-
-    }
+    // Check the sub-class
+    Item cookie = Factory.createItem("Cookie");
+    assertTrue("instanceof", cookie instanceof Cookie);
+    Item human = Factory.createItem("Human");
+    assertTrue("instanceof", human instanceof Human);
+  }
 }
