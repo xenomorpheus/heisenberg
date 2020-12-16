@@ -1,20 +1,18 @@
 package au.net.hal9000.heisenberg.fifthed.characterClass;
 
-import java.util.Set;
-
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
+import java.util.Set;
 
 public interface Spellcaster {
 
-	CharacterClass setSpells(Set<Spell> spells);
+  CharacterClass setSpells(Set<Spell> spells);
 
-	Set<Spell> getSpells();
+  Set<Spell> getSpells();
 
-	CharacterClass spellsAdd(Spell spell);
+  CharacterClass spellsAdd(Spell spell);
 
-	int getClassLevel();
+  int getClassLevel();
 
-	PlayerCharacter getPlayerCharacter();
-
+  PlayerCharacter getPlayerCharacter();
 }

@@ -4,21 +4,21 @@ import au.net.hal9000.heisenberg.units.Position;
 
 public interface ModelStateConsumerConsumable {
 
-    /** Treat immutable */
-    Object getConsumer();
+  /** Treat immutable */
+  Object getConsumer();
 
-    /** Treat immutable */
-    Object getConsumable();
+  /** Treat immutable */
+  Object getConsumable();
 
-    /** Treat mutable */
-    Position getEntityPosition();
+  /** Treat mutable */
+  Position getEntityPosition();
 
-    /** Treat mutable */
-    Position getConsumablePosition();
+  /** Treat mutable */
+  Position getConsumablePosition();
 
-    /** consumable been consumed */
-	void setConsumed();
+  /** consumable been consumed */
+  void setConsumed();
 
-    /** has consumable been consumed? */
-	boolean getConsumed();
+  /** has consumable been consumed? */
+  boolean getConsumed();
 }

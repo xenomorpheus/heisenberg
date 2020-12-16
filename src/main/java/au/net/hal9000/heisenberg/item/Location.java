@@ -5,8 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 /**
- * A Location is the base type for an area that Items can interact. e.g. a
- * clearing.
+ * A Location is the base type for an area that Items can interact. e.g. a clearing.
  *
  * @author bruins
  * @version $Revision: 1.0 $
@@ -15,23 +14,20 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Location extends ItemContainerImpl {
 
-    /** serial version id. */
-    private static final long serialVersionUID = 1L;
+  /** serial version id. */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor.
-     */
-    public Location() {
-        this("Location");
-    }
+  /** Constructor. */
+  public Location() {
+    this("Location");
+  }
 
-    /**
-     * Constructor.
-     *
-     * @param name
-     *            name of location.
-     */
-    public Location(final String name) {
-        super(name);
-    }
+  /**
+   * Constructor.
+   *
+   * @param name name of location.
+   */
+  public Location(final String name) {
+    super(name);
+  }
 }

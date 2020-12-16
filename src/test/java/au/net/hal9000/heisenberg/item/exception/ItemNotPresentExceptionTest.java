@@ -4,9 +4,8 @@ import org.junit.Test;
 
 public class ItemNotPresentExceptionTest {
 
-    @Test(expected = ItemNotPresentException.class)
-    public void test(){
-        throw new ItemNotPresentException("Can't find foo");
-    }
-
+  @Test(expected = ItemNotPresentException.class)
+  public void test() {
+    throw new ItemNotPresentException("Can't find foo");
+  }
 }

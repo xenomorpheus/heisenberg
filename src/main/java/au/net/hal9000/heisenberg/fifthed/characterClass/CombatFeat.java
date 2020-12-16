@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.fifthed.characterClass;
 
-/** 
+/**
  * http://www.d20pfsrd.com/feats/combat-feats/
- * @author bruins
  *
+ * @author bruins
  */
 public enum CombatFeat {
-	ARTFULL_DODGE
+  ARTFULL_DODGE
 }

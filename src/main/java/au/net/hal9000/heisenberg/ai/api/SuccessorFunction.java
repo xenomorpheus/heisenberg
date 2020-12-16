@@ -10,14 +10,12 @@ import java.util.Queue;
  */
 public interface SuccessorFunction {
 
-    /**
-     * Generate a list of possible Successor objects from current ModelState.
-     *
-     * @param modelState
-     *            current ModelState
-     * @param actions a list of actions to generate new ModelState objects for.
-     * @return A list of successors from current model state.
-     */
-    Queue<Successor> generateSuccessors(ModelState modelState,
-            Path actions);
+  /**
+   * Generate a list of possible Successor objects from current ModelState.
+   *
+   * @param modelState current ModelState
+   * @param actions a list of actions to generate new ModelState objects for.
+   * @return A list of successors from current model state.
+   */
+  Queue<Successor> generateSuccessors(ModelState modelState, Path actions);
 }

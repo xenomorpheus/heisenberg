@@ -17,20 +17,19 @@ Saving Throw Reflex half; Spell Resistance yes
  */
 public class Fireball extends Spell {
 
-	public Fireball() {
-		super();
-		setName("Fireball");
-		setCastingTime(ActionDuration.STANDARD);
-		componentsAdd(SpellComponent.VERBAL);
-		componentsAdd(SpellComponent.SOMATIC);
-		componentsAdd(SpellComponent.MATERIAL);
-		setEffectRangeBase(400);
-		setEffectRangeLevelMultiplier(40);
-		setEffectAreaType(EffectArea.RADIUS);
-		setEffectAreaFeet(20);
-		setEffectDuration(0);
-		setEffectSavingThrowsAdd(SpellSavingThrow.REFLEX_HALF);
-		setEffectSpellResistance(true);
-	}
-
+  public Fireball() {
+    super();
+    setName("Fireball");
+    setCastingTime(ActionDuration.STANDARD);
+    componentsAdd(SpellComponent.VERBAL);
+    componentsAdd(SpellComponent.SOMATIC);
+    componentsAdd(SpellComponent.MATERIAL);
+    setEffectRangeBase(400);
+    setEffectRangeLevelMultiplier(40);
+    setEffectAreaType(EffectArea.RADIUS);
+    setEffectAreaFeet(20);
+    setEffectDuration(0);
+    setEffectSavingThrowsAdd(SpellSavingThrow.REFLEX_HALF);
+    setEffectSpellResistance(true);
+  }
 }

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-//Persistence
+// Persistence
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,36 +13,33 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Fungus extends ItemImpl {
 
-    /**
-     * Field serialVersionUID.
-     * (value is 1)
-     */
-    private static final long serialVersionUID = 1L;
+  /** Field serialVersionUID. (value is 1) */
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor for Fungus.
-     */
-    public Fungus() {
-        this("Fungus");
-    }
+  /** Constructor for Fungus. */
+  public Fungus() {
+    this("Fungus");
+  }
 
-    /**
-     * Constructor for Fungus.
-     * @param name String
-     */
-    public Fungus(String name) {
-        this(name, "Some fugus");
-    }
+  /**
+   * Constructor for Fungus.
+   *
+   * @param name String
+   */
+  public Fungus(String name) {
+    this(name, "Some fugus");
+  }
 
-    /**
-     * Constructor for Fungus.
-     * @param name String
-     * @param description String
-     */
-    public Fungus(String name, String description) {
-        super(name, description);
-    }
+  /**
+   * Constructor for Fungus.
+   *
+   * @param name String
+   * @param description String
+   */
+  public Fungus(String name, String description) {
+    super(name, description);
+  }
 
-    // Methods
+  // Methods
 
 }

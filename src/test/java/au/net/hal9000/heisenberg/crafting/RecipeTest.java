@@ -2,293 +2,248 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.assertEquals;
 
+import au.net.hal9000.heisenberg.units.Skill;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import au.net.hal9000.heisenberg.units.Skill;
-
-/**
- * Testing Recipe class.
- */
+/** Testing Recipe class. */
 public class RecipeTest {
-    /**
-     * Field PROCESS_NAME. (value is ""process name"")
-     */
-    private static final String PROCESS_NAME = "process name";
-    /**
-     * Field REQUIRED_ACTION_POINTS. (value is 42)
-     */
-    private static final int REQUIRED_ACTION_POINTS = 42;
-    /**
-     * Field REQUIRED_MANA. (value is 3)
-     */
-    private static final int REQUIRED_MANA = 3;
-    /**
-     * Field REQUIRED_SKILLS.
-     */
-    private static final String[] REQUIRED_SKILLS = new String[] { "Skill0",
-            "Skill1", "Skill2" };
+  /** Field PROCESS_NAME. (value is ""process name"") */
+  private static final String PROCESS_NAME = "process name";
+  /** Field REQUIRED_ACTION_POINTS. (value is 42) */
+  private static final int REQUIRED_ACTION_POINTS = 42;
+  /** Field REQUIRED_MANA. (value is 3) */
+  private static final int REQUIRED_MANA = 3;
+  /** Field REQUIRED_SKILLS. */
+  private static final String[] REQUIRED_SKILLS = new String[] {"Skill0", "Skill1", "Skill2"};
 
-    /**
-     * Field simple.
-     */
-    private Recipe simple;
-    /**
-     * Field requirementsAll.
-     */
-    private Map<String,Requirement> requirementsAll;
-    /**
-     * Field recipeAll.
-     */
-    private Recipe recipeAll;
+  /** Field simple. */
+  private Recipe simple;
+  /** Field requirementsAll. */
+  private Map<String, Requirement> requirementsAll;
+  /** Field recipeAll. */
+  private Recipe recipeAll;
 
-    /**
-     * Method setup.
-     */
-    @Before
-    public void setUp() {
-        simple = new Recipe("recipe1", "the first recipe", null, REQUIRED_MANA,
-                REQUIRED_ACTION_POINTS, null, null, null);
-        requirementsAll = new TreeMap<>();
+  /** Method setup. */
+  @Before
+  public void setUp() {
+    simple =
+        new Recipe(
+            "recipe1",
+            "the first recipe",
+            null,
+            REQUIRED_MANA,
+            REQUIRED_ACTION_POINTS,
+            null,
+            null,
+            null);
+    requirementsAll = new TreeMap<>();
 
-        // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
-        requirementsAll.put("FlintAndTinder",flintAndTinder);
+    // RequirementItem
+    RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder");
+    requirementsAll.put("FlintAndTinder", flintAndTinder);
 
-        RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
-        requirementsAll.put("Wood",wood);
+    RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
+    requirementsAll.put("Wood", wood);
 
-        // Product(s)
-        List<Product> products = new ArrayList<Product>();
-        products.add(new ProductItem("SmallGroundFire"));
+    // Product(s)
+    List<Product> products = new ArrayList<Product>();
+    products.add(new ProductItem("SmallGroundFire"));
 
-        // Skills
-        Set<Skill> skills = new TreeSet<Skill>();
-        for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-            skills.add(new Skill(REQUIRED_SKILLS[i]));
-        }
-
-        // Build a recipe with the list of required ingredients
-        recipeAll = new Recipe("recipe1", "the first recipe", PROCESS_NAME, REQUIRED_MANA,
-                REQUIRED_ACTION_POINTS, requirementsAll, skills, products);
-
+    // Skills
+    Set<Skill> skills = new TreeSet<Skill>();
+    for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
+      skills.add(new Skill(REQUIRED_SKILLS[i]));
     }
 
-    /**
-     * Method testRecipeIngredients.
-     */
-    @Test
-    public void testRecipeIngredients() {
+    // Build a recipe with the list of required ingredients
+    recipeAll =
+        new Recipe(
+            "recipe1",
+            "the first recipe",
+            PROCESS_NAME,
+            REQUIRED_MANA,
+            REQUIRED_ACTION_POINTS,
+            requirementsAll,
+            skills,
+            products);
+  }
 
-        Map<String,Requirement> requirements = new TreeMap<>();
+  /** Method testRecipeIngredients. */
+  @Test
+  public void testRecipeIngredients() {
 
-        // RequirementItem
-        RequirementItem flintAndTinder = new RequirementItem("FlintAndTinder",
-                "FlintAndTinder", false, 0);
-        requirements.put("FlintAndTinder",flintAndTinder);
+    Map<String, Requirement> requirements = new TreeMap<>();
 
-        RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
-        requirements.put("Wood",wood);
+    // RequirementItem
+    RequirementItem flintAndTinder =
+        new RequirementItem("FlintAndTinder", "FlintAndTinder", false, 0);
+    requirements.put("FlintAndTinder", flintAndTinder);
 
-        // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0,
-                requirements, null, null);
+    RequirementItem wood = new RequirementItem("Wood", "Wood", true, 3);
+    requirements.put("Wood", wood);
 
-        assertEquals("ingredient count", requirements.size(),
-                recipe.getRequirementCount());
-        assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement("FlintAndTinder"));
-        assertEquals("ingredient 1", wood, recipe.getRequirement("Wood"));
-    }
+    // Build a recipe with the list of required ingredients
+    Recipe recipe = new Recipe("recipe1", "the first recipe", null, 0, 0, requirements, null, null);
 
-    /**
-     * Method testGetId.
-     */
-    @Test
-    public void testGetId() {
-        assertEquals("id", "recipe1", recipeAll.getId());
-    }
+    assertEquals("ingredient count", requirements.size(), recipe.getRequirementCount());
+    assertEquals("ingredient 0", flintAndTinder, recipe.getRequirement("FlintAndTinder"));
+    assertEquals("ingredient 1", wood, recipe.getRequirement("Wood"));
+  }
 
-    /**
-     * Method testGetDescription.
-     */
-    @Test
-    public void testGetDescription() {
-        assertEquals("description", "the first recipe",
-                recipeAll.getDescription());
-    }
+  /** Method testGetId. */
+  @Test
+  public void testGetId() {
+    assertEquals("id", "recipe1", recipeAll.getId());
+  }
 
-    /**
-     * Method testGetProcess.
-     */
-    @Test
-    public void testGetProcess() {
-        assertEquals("process", PROCESS_NAME, recipeAll.getProcess());
-    }
+  /** Method testGetDescription. */
+  @Test
+  public void testGetDescription() {
+    assertEquals("description", "the first recipe", recipeAll.getDescription());
+  }
 
-    /**
-     * Method testGetMana.
-     */
-    @Test
-    public void testGetMana() {
-        assertEquals("mana", REQUIRED_MANA, recipeAll.getMana());
-    }
+  /** Method testGetProcess. */
+  @Test
+  public void testGetProcess() {
+    assertEquals("process", PROCESS_NAME, recipeAll.getProcess());
+  }
 
-    /**
-     * Method testGetActionPoints.
-     */
-    @Test
-    public void testGetActionPoints() {
-        assertEquals("actionPoints", REQUIRED_ACTION_POINTS,
-                recipeAll.getActionPoints());
-    }
+  /** Method testGetMana. */
+  @Test
+  public void testGetMana() {
+    assertEquals("mana", REQUIRED_MANA, recipeAll.getMana());
+  }
 
-    /**
-     * Method testGetRequirementCount.
-     */
-    @Test
-    public void testGetRequirementCount() {
-        assertEquals("requirement count", requirementsAll.size(),
-                recipeAll.getRequirementCount());
-    }
+  /** Method testGetActionPoints. */
+  @Test
+  public void testGetActionPoints() {
+    assertEquals("actionPoints", REQUIRED_ACTION_POINTS, recipeAll.getActionPoints());
+  }
 
-    /**
-     * Method testGetRequirements.
-     */
-    @Test
-    public void testGetRequirements() {
-    }
+  /** Method testGetRequirementCount. */
+  @Test
+  public void testGetRequirementCount() {
+    assertEquals("requirement count", requirementsAll.size(), recipeAll.getRequirementCount());
+  }
 
-    /**
-     * Method testGetRequirement.
-     */
-    @Test
-    public void testGetRequirement() {
-    }
+  /** Method testGetRequirements. */
+  @Test
+  public void testGetRequirements() {}
 
-    /**
-     * Method testGetProducts.
-     */
-    @Test
-    public void testGetProducts() {
-    }
+  /** Method testGetRequirement. */
+  @Test
+  public void testGetRequirement() {}
 
-    /**
-     * Method testGetProduct.
-     */
-    @Test
-    public void testGetProduct() {
-    }
+  /** Method testGetProducts. */
+  @Test
+  public void testGetProducts() {}
 
-    /**
-     * Method testGetProductCount.
-     */
-    @Test
-    public void testGetProductCount() {
-        // Product(s)
-        List<Product> products = new ArrayList<Product>();
-        products.add(new ProductItem("SmallGroundFire"));
+  /** Method testGetProduct. */
+  @Test
+  public void testGetProduct() {}
 
-        // Build a recipe with the list of required ingredients
-        Recipe recipe = new Recipe("recipe1", "the first recipe", null,
-                REQUIRED_MANA, REQUIRED_ACTION_POINTS, null, null, products);
+  /** Method testGetProductCount. */
+  @Test
+  public void testGetProductCount() {
+    // Product(s)
+    List<Product> products = new ArrayList<Product>();
+    products.add(new ProductItem("SmallGroundFire"));
 
-        assertEquals("count", 1, recipe.getProductCount());
-    }
+    // Build a recipe with the list of required ingredients
+    Recipe recipe =
+        new Recipe(
+            "recipe1",
+            "the first recipe",
+            null,
+            REQUIRED_MANA,
+            REQUIRED_ACTION_POINTS,
+            null,
+            null,
+            products);
 
-    /**
-     * Method testGetSkillCount.
-     */
-    @Test
-    public void testGetSkillCount() {
-        assertEquals("skill count", REQUIRED_SKILLS.length,
-                recipeAll.getSkillCount());
-    }
+    assertEquals("count", 1, recipe.getProductCount());
+  }
 
-    /**
-     * Method testGetSkills.
-     */
-    @Test
-    public void testGetSkills() {
-    }
+  /** Method testGetSkillCount. */
+  @Test
+  public void testGetSkillCount() {
+    assertEquals("skill count", REQUIRED_SKILLS.length, recipeAll.getSkillCount());
+  }
 
-    /**
-     * Method testGetNewCooker.
-     */
-    @Test
-    public void testGetNewCooker() {
-    }
+  /** Method testGetSkills. */
+  @Test
+  public void testGetSkills() {}
 
-    /**
-     * Method testToString.
-     */
-    @Test
-    public void testToString() {
-        assertEquals("recipe1", simple.getId());
-    }
+  /** Method testGetNewCooker. */
+  @Test
+  public void testGetNewCooker() {}
 
-    /**
-     * Method testDetails.
-     */
-    @Test
-    public void testDetails() {
-        StringBuilder text = new StringBuilder("Id: recipe1");
-        text.append(System.lineSeparator());
-        text.append("Description: the first recipe");
-        text.append(System.lineSeparator());
-        text.append("Process: null");
-        text.append(System.lineSeparator());
-        text.append("Mana:");
-        text.append(REQUIRED_MANA);
-        text.append(System.lineSeparator());
-        text.append("Action Point(s):");
-        text.append(REQUIRED_ACTION_POINTS);
-        text.append(System.lineSeparator());
-        assertEquals("simple", text.toString(), simple.details());
-    }
+  /** Method testToString. */
+  @Test
+  public void testToString() {
+    assertEquals("recipe1", simple.getId());
+  }
 
-    /**
-     * Method testDetailsComplex.
-     */
-    @Test
-    public void testDetailsComplex() {
-        StringBuilder text = new StringBuilder("Id: recipe1");
-        text.append(System.lineSeparator());
-        text.append("Description: the first recipe");
-        text.append(System.lineSeparator());
-        text.append("Process: ");
-        text.append(PROCESS_NAME);
-        text.append(System.lineSeparator());
-        text.append("Mana:");
-        text.append(REQUIRED_MANA);
-        text.append(System.lineSeparator());
-        text.append("Action Point(s):");
-        text.append(REQUIRED_ACTION_POINTS);
-        text.append(System.lineSeparator());
-        text.append("Skill(s):");
-        text.append(System.lineSeparator());
-        text.append("  0: Skill0");
-        text.append(System.lineSeparator());
-        text.append("  1: Skill1");
-        text.append(System.lineSeparator());
-        text.append("  2: Skill2");
-        text.append(System.lineSeparator());
-        text.append("Requirement(s):");
-        text.append(System.lineSeparator());
-        text.append("  FlintAndTinder: Id: FlintAndTinder, consumed, item type FlintAndTinder");
-        text.append(System.lineSeparator());
-        text.append("  Wood: Id: Wood, consumed, item type Wood, weighing at least 3.0");
-        text.append(System.lineSeparator());
-        text.append("Product(s):");
-        text.append(System.lineSeparator());
-        text.append("  SmallGroundFire: Id: SmallGroundFire, item type of SmallGroundFire, weightBase 0.0");
-        text.append(System.lineSeparator());
-        assertEquals("recipeAll", text.toString(), recipeAll.details());
-    }
+  /** Method testDetails. */
+  @Test
+  public void testDetails() {
+    StringBuilder text = new StringBuilder("Id: recipe1");
+    text.append(System.lineSeparator());
+    text.append("Description: the first recipe");
+    text.append(System.lineSeparator());
+    text.append("Process: null");
+    text.append(System.lineSeparator());
+    text.append("Mana:");
+    text.append(REQUIRED_MANA);
+    text.append(System.lineSeparator());
+    text.append("Action Point(s):");
+    text.append(REQUIRED_ACTION_POINTS);
+    text.append(System.lineSeparator());
+    assertEquals("simple", text.toString(), simple.details());
+  }
+
+  /** Method testDetailsComplex. */
+  @Test
+  public void testDetailsComplex() {
+    StringBuilder text = new StringBuilder("Id: recipe1");
+    text.append(System.lineSeparator());
+    text.append("Description: the first recipe");
+    text.append(System.lineSeparator());
+    text.append("Process: ");
+    text.append(PROCESS_NAME);
+    text.append(System.lineSeparator());
+    text.append("Mana:");
+    text.append(REQUIRED_MANA);
+    text.append(System.lineSeparator());
+    text.append("Action Point(s):");
+    text.append(REQUIRED_ACTION_POINTS);
+    text.append(System.lineSeparator());
+    text.append("Skill(s):");
+    text.append(System.lineSeparator());
+    text.append("  0: Skill0");
+    text.append(System.lineSeparator());
+    text.append("  1: Skill1");
+    text.append(System.lineSeparator());
+    text.append("  2: Skill2");
+    text.append(System.lineSeparator());
+    text.append("Requirement(s):");
+    text.append(System.lineSeparator());
+    text.append("  FlintAndTinder: Id: FlintAndTinder, consumed, item type FlintAndTinder");
+    text.append(System.lineSeparator());
+    text.append("  Wood: Id: Wood, consumed, item type Wood, weighing at least 3.0");
+    text.append(System.lineSeparator());
+    text.append("Product(s):");
+    text.append(System.lineSeparator());
+    text.append(
+        "  SmallGroundFire: Id: SmallGroundFire, item type of SmallGroundFire, weightBase 0.0");
+    text.append(System.lineSeparator());
+    assertEquals("recipeAll", text.toString(), recipeAll.details());
+  }
 }
