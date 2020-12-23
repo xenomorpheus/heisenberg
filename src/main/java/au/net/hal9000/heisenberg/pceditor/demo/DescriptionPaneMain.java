@@ -25,7 +25,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
         new Runnable() {
           public void run() {
             try {
-
+              DemoEnvironment.setup();
               PcRace pc = DemoEnvironment.getPcRace();
               JFrame guiFrame = new JFrame();
 

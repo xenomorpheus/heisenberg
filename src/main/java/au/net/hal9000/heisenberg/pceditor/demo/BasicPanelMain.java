@@ -28,6 +28,7 @@ public class BasicPanelMain { // NO_UCD (unused code)
           @Override
           public void run() {
             try {
+              DemoEnvironment.setup();
               PcRace pc = DemoEnvironment.getPcRace();
               JFrame guiFrame = new JFrame();
 

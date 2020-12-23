@@ -20,6 +20,7 @@ public class PcRaceEditorMain { // NO_UCD (unused code)
         new Runnable() {
           public void run() {
             try {
+              DemoEnvironment.setup();
               PcRace pc = DemoEnvironment.getPcRace();
               PcRaceEditor editor = new PcRaceEditor();
               editor.setPcRace(pc);
