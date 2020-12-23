@@ -15,8 +15,8 @@ public class ConfigurationError extends Throwable {
    *
    * @param pException the original exception
    */
-  ConfigurationError(Exception pException) {
-    exception = pException;
+  ConfigurationError(Exception exception) {
+    this.exception = exception;
   }
 
   /**
