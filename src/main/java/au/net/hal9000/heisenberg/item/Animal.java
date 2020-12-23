@@ -7,7 +7,6 @@ public interface Animal {
   /**
    * Eat
    *
-   * @param entity that which is doing the eating.
    * @param food that which is eaten.
    */
   public void eat(Item food);
@@ -15,7 +14,6 @@ public interface Animal {
   /**
    * Drink
    *
-   * @param entity that which is doing the drinking.
    * @param drink that which is eaten.
    */
   public void drink(Item drink);
