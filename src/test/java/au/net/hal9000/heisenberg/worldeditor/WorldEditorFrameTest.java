@@ -20,7 +20,7 @@ public class WorldEditorFrameTest {
 
   @Test
   public void testWorldEditorFrame() throws ConfigurationError {
-    WorldEditorFrame wef = new WorldEditorFrame();
+    new WorldEditorFrame();
   }
 
   @Test
