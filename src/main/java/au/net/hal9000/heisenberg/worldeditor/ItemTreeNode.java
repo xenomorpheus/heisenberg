@@ -14,8 +14,7 @@ import org.apache.log4j.Logger;
  *
  * <p>This class contains major design flaw(s).
  *
- * <p>TODO To detected items containing other items, it should ItemList not ItemContainer. Or
- * alternatively all items that contain items should be ItemContainer subclasses.
+ * <p>TODO To detected items containing other items, it should ItemList not ItemContainer.
  *
  * @author bruins
  */
