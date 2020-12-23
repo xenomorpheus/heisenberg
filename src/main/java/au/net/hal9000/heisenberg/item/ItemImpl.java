@@ -52,10 +52,6 @@ public abstract class ItemImpl implements Serializable, Item {
   /** serial version id. */
   private static final long serialVersionUID = 1L;
 
-  // ** object for logging *./
-  // private static final Logger LOGGER =
-  // Logger.getLogger(Item.class.getName());
-
   // Initialise as many values as possible.
   /**
    * The ID of the object. <br>
@@ -72,6 +68,7 @@ public abstract class ItemImpl implements Serializable, Item {
   @Column(name = "jpaid", nullable = false)
   @GeneratedValue
   private long jpaId;
+
   /** where this item is located. */
   private ItemContainer container = null;
   /** A short description of the item. */
