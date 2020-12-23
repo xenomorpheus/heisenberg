@@ -32,7 +32,7 @@ public final class Factory {
     try {
       Class<?> itemClass = Class.forName(Item.getClassForType(type));
       if (null == arguments) {
-        return (Item) itemClass.newInstance();
+        return (Item) itemClass.getDeclaredConstructor().newInstance();
       } else {
         final Class<?>[] partypes = new Class[arguments.length];
 
