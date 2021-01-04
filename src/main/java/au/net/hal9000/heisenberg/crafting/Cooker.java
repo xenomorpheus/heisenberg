@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.ItemContainerImpl;
+import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.entity.Entity;
@@ -38,7 +38,7 @@ import java.util.TreeMap;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class Cooker extends ItemContainerImpl {
+public class Cooker extends Location {
 
   /** error message. * */
   static final String ITEM_MAY_NOT_BE_NULL = "item must exist";

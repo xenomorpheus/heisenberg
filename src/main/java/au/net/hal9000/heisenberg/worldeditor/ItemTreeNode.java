@@ -70,9 +70,7 @@ public class ItemTreeNode implements MutableTreeNode {
     LOGGER.info("getIndex - node " + node + " of " + node.getClass());
     int index = -1;
     if (node instanceof ItemTreeNode) {
-      ItemTreeNode itn = (ItemTreeNode) node;
-      Item nodeItem = itn.getItem();
-
+      Item nodeItem = ((ItemTreeNode) node).getItem();
       if (item instanceof ItemContainer) {
         ItemContainer itemContainer = (ItemContainer) item;
         index = itemContainer.indexOf(nodeItem);
@@ -107,11 +105,7 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public boolean isLeaf() {
-    boolean isLeaf = true;
-    if (item instanceof ItemContainer) {
-      isLeaf = false;
-    }
-    return isLeaf;
+    return !(item instanceof ItemContainer);
   }
 
   @Override

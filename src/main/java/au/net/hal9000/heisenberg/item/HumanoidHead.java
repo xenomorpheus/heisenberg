@@ -13,7 +13,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class HumanoidHead extends ItemContainerImpl {
+public class HumanoidHead extends Location {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;

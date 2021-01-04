@@ -15,7 +15,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Quiver extends ItemContainerImpl {
+public class Quiver extends Location {
 
   /** serial version. */
   private static final long serialVersionUID = 1L;

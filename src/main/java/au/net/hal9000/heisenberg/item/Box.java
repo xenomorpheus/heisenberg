@@ -12,7 +12,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Box extends ItemContainerImpl {
+public class Box extends Location {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;

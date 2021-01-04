@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.HumanoidHead;
-import au.net.hal9000.heisenberg.item.ItemContainerImpl;
+import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.HumanoidArmClothing;
 import au.net.hal9000.heisenberg.item.api.HumanoidCoreClothing;
 import au.net.hal9000.heisenberg.item.api.Item;
@@ -41,7 +41,7 @@ abstract class Humanoid extends PcRace implements ItemList {
   private Hand rightHand = new Hand("Right Hand");
 
   /** Field core. */
-  private ItemContainer core = new ItemContainerImpl("core");
+  private ItemContainer core = new Location("core");
 
   /** We are implementing ItemList. */
   private List<Item> itemList;
