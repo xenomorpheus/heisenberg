@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.worldeditor;
 
 import static org.junit.Assert.assertNotNull;
 
-import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +15,6 @@ public class WorldEditorFrameTest {
   @Before
   public void setupClass() {
     DemoEnvironment.setup();
-  }
-
-  @Test
-  public void testWorldEditorFrame() throws ConfigurationError {
-    new WorldEditorFrame();
   }
 
   @Test
