@@ -123,40 +123,40 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>3.0.0-M5</version>
 		<!-- Make sure not to steal focus from Firefox on OSX -->
-						<configuration>
-							<systemProperties>
-								<java.awt.headless>true</java.awt.headless>
-							</systemProperties>
-						</configuration>
-					<executions>
-				<execution>
-				<goals>
-					<goal>integration-test</goal>
-					<goal>verify</goal>
-				</goals>
-				</execution>
+				<configuration>
+					<systemProperties>
+						<java.awt.headless>true</java.awt.headless>
+					</systemProperties>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 			<!--plugin TODO re-enable checkstyle>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-checkstyle-plugin</artifactId>
-			<version>3.1.1</version>
-			<configuration>
-				<configLocation>google_checks.xml</configLocation>
-				<encoding>UTF-8</encoding>
-				<consoleOutput>true</consoleOutput>
-				<failsOnError>true</failsOnError>
-				<linkXRef>false</linkXRef>
-			</configuration>
-			<executions>
-				<execution>
-				<id>validate</id>
-				<phase>validate</phase>
-				<goals>
-					<goal>check</goal>
-				</goals>
-				</execution>
-			</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+					<id>validate</id>
+					<phase>validate</phase>
+					<goals>
+						<goal>check</goal>
+					</goals>
+					</execution>
+				</executions>
 			</plugin-->
 		</plugins>
 	</build>
