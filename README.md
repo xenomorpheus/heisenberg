@@ -64,11 +64,18 @@ or I have identified solutions to the project's requirements.
 Project Technologies:
 ======================
 
-* Maven
-* JPA
+Java Technologies:
+* Maven - Build automation
+* Checkstyle - Code standards compliance
+* JUnit - Unit tests
+* JPA - Persistence API
 * Apache EclipseLink - JPA Implementation, ORM
 * Derby - Data store
 * Log4j - Logging
+
+Other Technologies:
+* XSD - XML checking
+* JBox2d - Physics engine
 
 
 
