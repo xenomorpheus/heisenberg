@@ -77,14 +77,14 @@ public class ItemTreeNode implements MutableTreeNode {
         ItemContainer itemContainer = (ItemContainer) item;
         index = itemContainer.indexOf(nodeItem);
       } else {
-        throw new IllegalArgumentException(
+        LOGGER.error(
             "getIndex failed as item not of class ItemContainer. node "
                 + node
                 + " of "
                 + node.getClass());
       }
     } else {
-      throw new IllegalArgumentException(
+      LOGGER.error(
           "getIndex failed as node is not of type ItemTreeNode. item "
               + item
               + ", node "
