@@ -2,8 +2,6 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.units.Currency;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * A ring is an Item except: <br>
@@ -14,7 +12,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Ring extends ItemImpl {
 
   /** serial id. */

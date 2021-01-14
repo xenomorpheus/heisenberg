@@ -11,8 +11,6 @@ import au.net.hal9000.heisenberg.item.property.ItemSearchExtraDimensional;
 import au.net.hal9000.heisenberg.units.Currency;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /*
@@ -31,7 +29,6 @@ Type IV    | 60 lb.     | 1,500 lb.             | 250 cu. ft.           |10,000 
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class BagOfHolding extends Bag implements ExtraDimensional {
 

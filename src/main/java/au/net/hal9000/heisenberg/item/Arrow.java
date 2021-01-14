@@ -2,15 +2,12 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * @author bruins
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 // @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
 public class Arrow extends ItemImpl implements Sharp {
 

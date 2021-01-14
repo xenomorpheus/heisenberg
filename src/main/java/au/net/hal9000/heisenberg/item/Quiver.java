@@ -4,8 +4,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * A common quiver for holding arrows.
@@ -14,7 +12,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Quiver extends Location {
 
   /** serial version. */

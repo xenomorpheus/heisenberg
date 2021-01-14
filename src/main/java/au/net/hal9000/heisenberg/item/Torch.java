@@ -1,8 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * A common torch. e.g. A rod with oil soaked rags on the end.
@@ -11,7 +9,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Torch extends Candle {
 
   /** A stick with some kind of combustable material on the end e.g. oiled rag. */

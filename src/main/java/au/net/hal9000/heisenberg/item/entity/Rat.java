@@ -4,8 +4,6 @@ import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * A common rat.
@@ -14,7 +12,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Rat extends au.net.hal9000.heisenberg.item.entity.Entity implements Animal {
 
   /** Field serialVersionUID. (value is 1) */

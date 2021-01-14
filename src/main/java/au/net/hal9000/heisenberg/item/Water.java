@@ -5,8 +5,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * Some common water.
@@ -15,7 +13,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Water extends ItemImpl implements SplitByWeight {
   /** serial version id. */
   private static final long serialVersionUID = 1L;

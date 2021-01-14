@@ -4,8 +4,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 /**
  * Some common wood.
@@ -14,7 +12,6 @@ import javax.persistence.InheritanceType;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Wood extends ItemImpl implements SplitByWeight {
 
   /** Field serialVersionUID. (value is 1) */

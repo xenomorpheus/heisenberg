@@ -4,8 +4,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
@@ -15,7 +13,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Bag extends Box {
 

@@ -11,8 +11,6 @@ import au.net.hal9000.heisenberg.units.Position;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;
@@ -21,7 +19,6 @@ import org.apache.log4j.Logger;
  * @version $Revision: 1.0 $
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Location extends ItemImpl implements ItemContainer {
   /** */
   private static final long serialVersionUID = 1L;
