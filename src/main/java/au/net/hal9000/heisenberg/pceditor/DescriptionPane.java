@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JScrollPane;
@@ -21,7 +21,7 @@ public class DescriptionPane extends JScrollPane {
   private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class.getName());
 
   /** Field pc. */
-  private PcRace pc;
+  private Race pc;
   /** Field descriptionTextArea. */
   private JTextArea descriptionTextArea = new JTextArea(30, 25);
 
@@ -62,7 +62,7 @@ public class DescriptionPane extends JScrollPane {
    *     because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setPcRace(final PcRace pc) {
+  public void setRace(final Race pc) {
     this.pc = pc;
     if (null == pc) {
       descriptionTextArea.setText("");

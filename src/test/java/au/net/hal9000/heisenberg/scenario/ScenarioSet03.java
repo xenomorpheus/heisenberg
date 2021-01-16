@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -58,7 +58,7 @@ public class ScenarioSet03 {
     location.add(flintAndTinder);
 
     // Setup the PC
-    PcRace pc = new Human();
+    Race pc = new Human();
     final int expectedMana = 1;
     final int expectedActionPoints = 2;
     pc.setMana(recipe.getMana() + expectedMana);

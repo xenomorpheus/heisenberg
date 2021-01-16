@@ -1,2 +1,2 @@
-In tree view, right click on PcRace then edit using PcCreator.
+In tree view, right click on Race then edit using PcCreator.
 

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.BasicPanel;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -29,7 +29,7 @@ public class BasicPanelMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              PcRace pc = DemoEnvironment.getPcRace();
+              Race pc = DemoEnvironment.getRace();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -38,7 +38,7 @@ public class BasicPanelMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               BasicPanel basicPanel = new BasicPanel();
-              basicPanel.setPcRace(pc);
+              basicPanel.setRace(pc);
 
               // add to JFrame
               guiFrame.add(basicPanel);

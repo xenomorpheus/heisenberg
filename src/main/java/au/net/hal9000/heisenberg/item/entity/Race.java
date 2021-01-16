@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class PcRace extends Entity {
+public abstract class Race extends Entity {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
@@ -41,21 +41,21 @@ public abstract class PcRace extends Entity {
   // Constructors
 
   /**
-   * Constructor for PcRace.
+   * Constructor for Race.
    *
    * @param pName String
    */
-  protected PcRace(String pName) {
+  protected Race(String pName) {
     this(pName, "");
   }
 
   /**
-   * Constructor for PcRace.
+   * Constructor for Race.
    *
    * @param string String
    * @param description String
    */
-  protected PcRace(String string, String description) {
+  protected Race(String string, String description) {
     super(string, description);
   }
 
@@ -65,7 +65,7 @@ public abstract class PcRace extends Entity {
    * @param pName String
    * @param pPcClass PcClass
    */
-  protected PcRace(String pName, PcClass pPcClass) {
+  protected Race(String pName, PcClass pPcClass) {
     this(pName);
     pcClass = pPcClass;
     init();
@@ -74,11 +74,11 @@ public abstract class PcRace extends Entity {
   /**
    * Give me a PC that is a {@link PcClass} (e.g. Warrior).
    *
-   * @param name common name (e.g. Jo Smith) of the PcRace.
+   * @param name common name (e.g. Jo Smith) of the Race.
    * @param description appearance.
    * @param pcClass the profession {@link PcClass} (e.g. Warrior).
    */
-  protected PcRace(String name, String description, PcClass pcClass) {
+  protected Race(String name, String description, PcClass pcClass) {
     this(name, description);
     this.pcClass = pcClass;
     init();
@@ -344,7 +344,7 @@ public abstract class PcRace extends Entity {
    *
    * @param pc source
    */
-  public void setAllFrom(PcRace pc) {
+  public void setAllFrom(Race pc) {
     super.setAllFrom(pc);
     setLevel(pc.getLevel());
     setPcClass(pc.getPcClass()); // TODO ensure results are not linked

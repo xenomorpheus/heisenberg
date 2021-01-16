@@ -14,12 +14,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** */
-public class PcRaceTest {
+public class RaceTest {
   /** Field config. */
   private Configuration config = null;
 
   /*
-   * Most tests will use a Human as a representative of the PcRace. Tests
+   * Most tests will use a Human as a representative of the Race. Tests
    * should be in the same order as the fields or methods.
    */
 
@@ -30,9 +30,9 @@ public class PcRaceTest {
   }
 
   // Constructor
-  /** Method testPcRace. */
+  /** Method testRace. */
   @Test
-  public void testPcRace() {
+  public void testRace() {
     Human human = new Human();
     checkBasicsAreZero(human);
     assertEquals("Name check", "Human", human.getName());
@@ -41,9 +41,9 @@ public class PcRaceTest {
     assertTrue("living", ItemProperty.isLiving(human));
   }
 
-  /** Method testPcRaceString. */
+  /** Method testRaceString. */
   @Test
-  public void testPcRaceString() {
+  public void testRaceString() {
     Human human = new Human("Fred1");
     assertEquals("Name check1", "Fred1", human.getName());
     assertEquals("Description check1", "", human.getDescription());
@@ -51,9 +51,9 @@ public class PcRaceTest {
     assertTrue("living1", ItemProperty.isLiving(human));
   }
 
-  /** Method testPcRaceStringString. */
+  /** Method testRaceStringString. */
   @Test
-  public void testPcRaceStringString() {
+  public void testRaceStringString() {
     Human human = new Human("Fred2", "Desc2");
     assertEquals("Name check2", "Fred2", human.getName());
     assertEquals("Description check2", "Desc2", human.getDescription());
@@ -61,9 +61,9 @@ public class PcRaceTest {
     assertTrue("living2", ItemProperty.isLiving(human));
   }
 
-  /** Method testPcRaceStringPcClass. */
+  /** Method testRaceStringPcClass. */
   @Test
-  public void testPcRaceStringPcClass() {
+  public void testRaceStringPcClass() {
     final PcClass expectedValue = new PcClass();
     Human human = new Human("Fred3", expectedValue);
     assertEquals("Name check3", "Fred3", human.getName());
@@ -73,9 +73,9 @@ public class PcRaceTest {
     assertSame(expectedValue, human.getPcClass());
   }
 
-  /** Method testPcRaceStringStringPcClass. */
+  /** Method testRaceStringStringPcClass. */
   @Test
-  public void testPcRaceStringStringPcClass() {
+  public void testRaceStringStringPcClass() {
     final PcClass expectedValue = new PcClass();
     Human human = new Human("Fred4", "Desc4", expectedValue);
     assertEquals("Name check3", "Fred4", human.getName());
@@ -124,9 +124,9 @@ public class PcRaceTest {
   /**
    * Method checkBasicsAreZero.
    *
-   * @param pc PcRace
+   * @param pc Race
    */
-  public void checkBasicsAreZero(PcRace pc) {
+  public void checkBasicsAreZero(Race pc) {
     assertEquals("combatDice", 0, pc.getCombatDice());
     assertEquals("magicDice", 0, pc.getMagicDice());
     assertEquals("stealthDice", 0, pc.getStealthDice());

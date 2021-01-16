@@ -1,4 +1,4 @@
-PcRace refactored to Player
+Race refactored to Player
 Consider removing all Human, Halfling, Elf, etc. and replace with enum Race.
 Player class to have a field race which is enum Race.
 Greatly simplifies UI Pc editor.

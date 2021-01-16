@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 /** */
-public class PcRaceEditor extends JPanel {
+public class RaceEditor extends JPanel {
   /** window default x pos. */
   private static final int X_POS = 100;
   /** window default y pos. */
@@ -20,8 +20,8 @@ public class PcRaceEditor extends JPanel {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
-  /** Field pcRace. */
-  private PcRace pcRace;
+  /** Field Race. */
+  private Race Race;
 
   /** Field basicPanel. */
   private BasicPanel basicPanel = new BasicPanel();
@@ -35,7 +35,7 @@ public class PcRaceEditor extends JPanel {
   private DescriptionPane descriptionPane = new DescriptionPane();
 
   /** Create the application. */
-  public PcRaceEditor() {
+  public RaceEditor() {
     setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
     // Main container
@@ -73,8 +73,8 @@ public class PcRaceEditor extends JPanel {
    *
    * @return the PcClass object we are editing.
    */
-  public PcRace getPcRace() {
-    return pcRace;
+  public Race getRace() {
+    return Race;
   }
 
   /**
@@ -82,12 +82,12 @@ public class PcRaceEditor extends JPanel {
    *
    * @param pc the PcClass object we are editing.
    */
-  public void setPcRace(PcRace pc) {
-    pcRace = pc;
-    basicPanel.setPcRace(pc);
-    abilityScoresTable.setPcRace(pc);
-    skillsTable.setPcRace(pc);
-    recipesTable.setPcRace(pc);
-    descriptionPane.setPcRace(pc);
+  public void setRace(Race pc) {
+    Race = pc;
+    basicPanel.setRace(pc);
+    abilityScoresTable.setRace(pc);
+    skillsTable.setRace(pc);
+    recipesTable.setRace(pc);
+    descriptionPane.setRace(pc);
   }
 }

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 import java.awt.GridBagConstraints;
@@ -33,7 +33,7 @@ public class BasicPanel extends JPanel {
 
   // Misc
   /** Field pc. */
-  private PcRace pc;
+  private Race pc;
   /** Field config. */
   private Configuration config = Configuration.lastConfig();
 
@@ -116,7 +116,7 @@ public class BasicPanel extends JPanel {
    *     because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setPcRace(final PcRace pc) {
+  public void setRace(final Race pc) {
     this.pc = pc;
     updateForm();
   }

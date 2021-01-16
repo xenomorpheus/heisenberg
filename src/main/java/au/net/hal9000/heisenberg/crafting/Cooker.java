@@ -28,7 +28,7 @@ import java.util.TreeMap;
  * </ol>
  *
  * // Example: // Create a SmallGroundFire. <br>
- * PcRace pc = new Human("Fred the Fighter"); <br>
+ * Race pc = new Human("Fred the Fighter"); <br>
  * Cooker cooker = pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>
  * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
@@ -55,7 +55,7 @@ public class Cooker extends Location {
   private static final long serialVersionUID = 1L;
   /** recipe describes the process to make the products. */
   private Recipe recipe = null;
-  /** The PcRace doing the cooking. Supplies any actionPoints and mana. */
+  /** The Race doing the cooking. Supplies any actionPoints and mana. */
   private Item chef = null;
 
   /** Ingredients we will cook with. */

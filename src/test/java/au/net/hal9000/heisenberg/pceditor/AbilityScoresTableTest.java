@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.pceditor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
@@ -24,9 +24,9 @@ public class AbilityScoresTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
-    PcRace pc = DemoEnvironment.getPcRace();
+    Race pc = DemoEnvironment.getRace();
     AbilityScoresTable basicPanel = new AbilityScoresTable();
-    basicPanel.setPcRace(pc);
+    basicPanel.setRace(pc);
     assertNotNull("BasicPanel not null", basicPanel);
   }
 

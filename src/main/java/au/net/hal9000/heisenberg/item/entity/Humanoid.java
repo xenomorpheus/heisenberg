@@ -21,7 +21,7 @@ import java.util.List;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-abstract class Humanoid extends PcRace implements ItemList {
+abstract class Humanoid extends Race implements ItemList {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;

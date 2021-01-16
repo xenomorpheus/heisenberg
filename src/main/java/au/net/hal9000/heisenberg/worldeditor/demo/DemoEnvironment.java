@@ -23,7 +23,7 @@ import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.entity.PcRace;
+import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import org.apache.log4j.Logger;
@@ -65,12 +65,12 @@ public final class DemoEnvironment {
   }
 
   /**
-   * Get Demo PcRace object with a few simple properties.
+   * Get Demo Race object with a few simple properties.
    *
-   * @return PcRace
+   * @return Race
    * @throws ConfigurationError
    */
-  public static PcRace getPcRace() throws ConfigurationError {
+  public static Race getRace() throws ConfigurationError {
     Configuration config = Configuration.lastConfig();
     Elf elf = (Elf) Factory.createItem("Elf");
     elf.setName("Jane");

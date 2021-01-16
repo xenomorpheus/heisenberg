@@ -38,7 +38,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
   private int mana;
   /**
    * This object has a list of {@link au.net.hal9000.heisenberg.util.AbilityScore} objects.<br>
-   * To set up, just work through the list on the {@link PcRace}.
+   * To set up, just work through the list on the {@link Race}.
    *
    * <p>Create a new AbilityScore object for each one on PC. Set the modifier to 0. Set the name =
    * pcClassAbility.getName()
