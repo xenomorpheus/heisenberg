@@ -14,6 +14,8 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.PcClass;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * Humanoid is more to do with the physical body shape, so can be undead.
@@ -21,6 +23,7 @@ import java.util.List;
  * @author bruins
  * @version $Revision: 1.0 $
  */
+@Inheritance(strategy = InheritanceType.JOINED)
 abstract class Humanoid extends Race implements ItemList {
 
   /** Field serialVersionUID. (value is 1) */

@@ -16,6 +16,8 @@ import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import java.util.Set;
 import java.util.TreeSet;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * Entity is the basis of conscious entities. <br>
@@ -24,6 +26,7 @@ import java.util.TreeSet;
  * @author bruins
  * @version $Revision: 1.0 $
  */
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class EntityItem extends ItemImpl implements StateEvaluation {
 
   /** serial version. */
