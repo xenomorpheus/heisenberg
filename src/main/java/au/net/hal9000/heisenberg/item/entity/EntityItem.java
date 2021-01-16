@@ -18,8 +18,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Entity is the bases of conscious entities. <br>
- * May living or undead.
+ * Entity is the basis of conscious entities. <br>
+ * May living or undead. May be PC, NPC, animal, etc.
  *
  * @author bruins
  * @version $Revision: 1.0 $

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Humanoid is more to do with the shape, so can be undead.
+ * Humanoid is more to do with the physical body shape, so can be undead.
  *
  * @author bruins
  * @version $Revision: 1.0 $
