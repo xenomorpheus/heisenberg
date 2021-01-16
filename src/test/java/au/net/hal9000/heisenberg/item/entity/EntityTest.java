@@ -94,7 +94,7 @@ public class EntityTest {
   @Test
   public void testInstanceof() {
     Item cat = new Cat();
-    assertTrue("is Entity", cat instanceof Entity);
+    assertTrue("is EntityItem", cat instanceof EntityItem);
     assertTrue("is Living", ItemProperty.isLiving(cat));
   }
 

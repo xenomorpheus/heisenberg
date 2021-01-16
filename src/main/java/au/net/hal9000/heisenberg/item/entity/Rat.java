@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  * @version $Revision: 1.0 $
  */
 @Entity
-public class Rat extends au.net.hal9000.heisenberg.item.entity.Entity implements Animal {
+public class Rat extends EntityItem implements Animal {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;

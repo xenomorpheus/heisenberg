@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item.mixin;
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 
 public class AnimalConsumeSustenance {
 
@@ -14,7 +14,7 @@ public class AnimalConsumeSustenance {
    * @param food that which is eaten.
    */
   public static void eat(Animal animal, Item food) {
-    Cooker cooker = ((Entity) animal).getCooker("AnimalEat");
+    Cooker cooker = ((EntityItem) animal).getCooker("AnimalEat");
     cooker.setItemsAvailable("Food", food);
     cooker.cook();
   }
@@ -26,7 +26,7 @@ public class AnimalConsumeSustenance {
    * @param drink that which is eaten.
    */
   public static void drink(Animal animal, Item drink) {
-    Cooker cooker = ((Entity) animal).getCooker("AnimalDrink");
+    Cooker cooker = ((EntityItem) animal).getCooker("AnimalDrink");
     cooker.setItemsAvailable("Drink", drink);
     cooker.cook();
   }

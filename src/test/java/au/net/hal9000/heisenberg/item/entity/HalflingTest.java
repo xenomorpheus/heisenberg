@@ -24,7 +24,7 @@ public class HalflingTest {
   public void testInstanceof() {
     Object halfling = new Halfling();
     assertTrue("is Humanoid", halfling instanceof Humanoid);
-    assertTrue("is Entity", halfling instanceof Entity);
+    assertTrue("is EntityItem", halfling instanceof EntityItem);
     assertTrue("is item", halfling instanceof Item);
   }
 

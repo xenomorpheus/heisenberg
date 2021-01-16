@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.entity.Cat;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class ItemPropertyTest {
   public void testAeration() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setAeration(entity, startValue);
     ItemProperty.alterAeration(entity, propertyDelta);
     assertEquals(
@@ -32,7 +32,7 @@ public class ItemPropertyTest {
   /** Method testClothing. */
   @Test
   public void testClothing() {
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setClothing(entity, true);
     assertTrue("Clothing set", ItemProperty.isClothing(entity));
     ItemProperty.setClothing(entity, false);
@@ -44,7 +44,7 @@ public class ItemPropertyTest {
   public void testEntertainment() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setEntertainment(entity, startValue);
     ItemProperty.alterEntertainment(entity, propertyDelta);
     assertEquals(
@@ -60,7 +60,7 @@ public class ItemPropertyTest {
   /** Method testHumanoidFood. */
   @Test
   public void testHumanoidFood() {
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setHumanoidFood(entity, true);
     assertTrue("HumanoidFood set", ItemProperty.isHumanoidFood(entity));
     ItemProperty.setHumanoidFood(entity, false);
@@ -72,7 +72,7 @@ public class ItemPropertyTest {
   public void testNourishment() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setNourishment(entity, startValue);
     ItemProperty.alterNourishment(entity, propertyDelta);
     assertEquals(
@@ -87,7 +87,7 @@ public class ItemPropertyTest {
   /** Method testLiving. */
   @Test
   public void testLiving() {
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setLiving(entity, true);
     assertTrue("Living set", ItemProperty.isLiving(entity));
     ItemProperty.setLiving(entity, false);
@@ -97,7 +97,7 @@ public class ItemPropertyTest {
   /** Method testMagical. */
   @Test
   public void testMagical() {
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setMagical(entity, true);
     assertTrue("Magical set", ItemProperty.isMagical(entity));
     ItemProperty.setMagical(entity, false);
@@ -109,7 +109,7 @@ public class ItemPropertyTest {
   public void testHydration() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setHydration(entity, startValue);
     ItemProperty.alterHydration(entity, propertyDelta);
     assertEquals(
@@ -126,7 +126,7 @@ public class ItemPropertyTest {
   public void testRest() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    Entity entity = new Cat();
+    EntityItem entity = new Cat();
     ItemProperty.setRest(entity, startValue);
     ItemProperty.alterRest(entity, propertyDelta);
     assertEquals("Rest alter", startValue + propertyDelta, ItemProperty.getRest(entity), TOLERANCE);
@@ -146,7 +146,7 @@ public class ItemPropertyTest {
     final float startValue = 12.3f;
     for (String propertyName : properties) {
       final float propertyDelta = 1.6f;
-      Entity entity = new Cat();
+      EntityItem entity = new Cat();
       ItemProperty.setAeration(entity, startValue);
       ItemProperty.setEntertainment(entity, startValue);
       ItemProperty.setHydration(entity, startValue);

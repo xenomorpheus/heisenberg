@@ -15,7 +15,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.entity.Cat;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.units.Position;
 import java.awt.geom.Line2D;
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class SearchAStarGridTest {
   private void testAiMovementWithGoalBase(
       final int distanceStraightLine, final double stepSizeMax) {
 
-    Entity agent = new Cat();
+    EntityItem agent = new Cat();
     final Position startPosition = new Position(0, 2);
     final Position goalPosition = new Position(0, startPosition.getY() - distanceStraightLine);
     agent.setPosition(new Position(startPosition));
@@ -129,7 +129,7 @@ public class SearchAStarGridTest {
   public void testAiMovementWithGoalMemorySet() {
 
     final double stepSizeMax = 1; // Max entity step size.
-    Entity agent = new Cat();
+    EntityItem agent = new Cat();
 
     final int distanceStraightLine = 4;
     final Position startPosition = new Position(0, 2);

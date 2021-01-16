@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.units.Skill;
 import java.util.Map;
 import java.util.Set;
@@ -177,8 +177,8 @@ public class Cooker extends Location {
     // mana
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
-      if (chef instanceof Entity) {
-        Entity entity = (Entity) chef;
+      if (chef instanceof EntityItem) {
+        EntityItem entity = (EntityItem) chef;
         if (manaRequired > entity.getMana()) {
           string.append("Not enough mana");
           string.append(System.lineSeparator());
@@ -192,8 +192,8 @@ public class Cooker extends Location {
     // actionPoints
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
-      if (chef instanceof Entity) {
-        Entity entity = (Entity) chef;
+      if (chef instanceof EntityItem) {
+        EntityItem entity = (EntityItem) chef;
         if (actionPointsRequired > entity.getActionPoints()) {
           string.append("Not enough action points");
           string.append(System.lineSeparator());
@@ -207,8 +207,8 @@ public class Cooker extends Location {
     // skills
     final Set<Skill> required = recipe.getSkills();
     if ((null != required) && (required.size() > 0)) {
-      if (chef instanceof Entity) {
-        Entity entity = (Entity) chef;
+      if (chef instanceof EntityItem) {
+        EntityItem entity = (EntityItem) chef;
         final Set<Skill> chefSkills = entity.getSkills();
         if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
           string.append("Missing Skills");
@@ -285,13 +285,13 @@ public class Cooker extends Location {
     // mana
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
-      Entity entity = (Entity) chef;
+      EntityItem entity = (EntityItem) chef;
       entity.manaAdjust(-1 * manaRequired);
     }
     // actionPoints
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
-      Entity entity = (Entity) chef;
+      EntityItem entity = (EntityItem) chef;
       entity.actionPointsAdjust(-1 * actionPointsRequired);
     }
 

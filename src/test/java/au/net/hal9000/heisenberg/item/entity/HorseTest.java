@@ -15,7 +15,7 @@ public class HorseTest {
   public void testInstanceof() {
     Item horse = new Horse();
     assertTrue("is humanoid mount", horse instanceof HumanoidMount);
-    assertTrue("is Entity", horse instanceof Entity);
+    assertTrue("is EntityItem", horse instanceof EntityItem);
     assertTrue("is Living", ItemProperty.isLiving(horse));
   }
 }

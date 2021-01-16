@@ -24,7 +24,7 @@ import java.util.TreeSet;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class Entity extends ItemImpl implements StateEvaluation {
+public abstract class EntityItem extends ItemImpl implements StateEvaluation {
 
   /** serial version. */
   private static final long serialVersionUID = 1L;
@@ -64,7 +64,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
    * @param name String
    * @param description String
    */
-  protected Entity(String name, String description) {
+  protected EntityItem(String name, String description) {
     super(name, description);
     // By default PCs are living, but this may be changed at any time.
     ItemProperty.setLiving(this, true);
@@ -80,7 +80,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
    *
    * @param name String
    */
-  protected Entity(String name) {
+  protected EntityItem(String name) {
     this(name, "");
   }
 
@@ -317,7 +317,7 @@ public abstract class Entity extends ItemImpl implements StateEvaluation {
    *
    * @param entity source
    */
-  public void setAllFrom(Entity entity) {
+  public void setAllFrom(EntityItem entity) {
     super.setAllFrom(entity);
     setGender(entity.getGender());
     setSize(entity.getSize());

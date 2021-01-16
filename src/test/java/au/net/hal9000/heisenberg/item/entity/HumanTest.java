@@ -16,7 +16,7 @@ public class HumanTest {
     Object human = new Human();
     assertTrue("is Human", human instanceof Human);
     assertTrue("is Humanoid", human instanceof Human);
-    assertTrue("is Entity", human instanceof Entity);
+    assertTrue("is EntityItem", human instanceof EntityItem);
     assertTrue("is item", human instanceof Item);
   }
 

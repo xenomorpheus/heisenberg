@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public abstract class Race extends Entity {
+public abstract class Race extends EntityItem {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;

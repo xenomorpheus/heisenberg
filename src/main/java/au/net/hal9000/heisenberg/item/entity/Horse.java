@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  * @version $Revision: 1.0 $
  */
 @Entity
-public class Horse extends au.net.hal9000.heisenberg.item.entity.Entity implements HumanoidMount {
+public class Horse extends EntityItem implements HumanoidMount {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;

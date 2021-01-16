@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Elf;
-import au.net.hal9000.heisenberg.item.entity.Entity;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ActionConsumeTest {
-  private static final Entity ENTITY = new Elf();
+  private static final EntityItem ENTITY = new Elf();
   private static final Item CONSUMABLE = new Cookie();
   private static final double COST = 1.67;
 
