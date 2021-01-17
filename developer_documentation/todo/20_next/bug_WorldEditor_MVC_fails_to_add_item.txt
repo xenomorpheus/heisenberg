@@ -1,0 +1,10 @@
+There is a bug in the WorldEditor that the add button doesn't end up adding 
+the item to the view.
+There looks to be problems in some cases when adding items to containers in tree view.
+
+No changes shown. Possibly JTree not being notified of change events.
+
+For ideas on how to fix the bug, review the MVC JTree Mutable Example.
+
+http://www.codejava.net/java-se/swing/jtree-basic-tutorial-and-examples
+
