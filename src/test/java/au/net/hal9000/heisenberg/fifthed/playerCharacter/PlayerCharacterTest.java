@@ -1,11 +1,20 @@
 package au.net.hal9000.heisenberg.fifthed.playerCharacter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.fifthed.characterClass.CombatFeat;
 import au.net.hal9000.heisenberg.fifthed.characterClass.Fighter;
 import au.net.hal9000.heisenberg.fifthed.characterClass.Magus;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionFree;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionFullRound;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionImmediate;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionMovement;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionMovementFiveFootStep;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionSpellCast;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionStandard;
+import au.net.hal9000.heisenberg.fifthed.combat.ActionSwift;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.BowCrossLight;
 import au.net.hal9000.heisenberg.fifthed.item.BowLong;
@@ -13,7 +22,8 @@ import au.net.hal9000.heisenberg.fifthed.item.Dagger;
 import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
 import au.net.hal9000.heisenberg.units.Position;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -71,7 +81,12 @@ public class PlayerCharacterTest {
     // Misc
     PlayerCharacter character = _build_magus();
     String details = character.details();
-    System.out.println(details);
+    assertTrue(details.contains("Name: Mr Magus"));
+    assertTrue(details.contains("Race: Human"));
+    assertTrue(details.contains("Level: 3"));
+    assertTrue(details.contains("Condition: DEAFENED"));
+    assertTrue(details.contains("Location (relative): "));
+    assertTrue(details.contains("Equiped:"));
   }
 
   /** Test distance to other character. */
@@ -94,15 +109,18 @@ public class PlayerCharacterTest {
     arena.opponentAdd(opponent);
 
     // Calculate legal actions
-    List<Action> actions = self.getActionsCombat(arena);
-
-    // Display the results
-    StringBuilder sb = new StringBuilder();
-    sb.append(String.format("Combat Arena%n")).append(arena.toString());
-    sb.append(String.format("Actions%n"));
-    for (Action action : actions) {
-      sb.append(String.format("  %s%n", action));
+    Set<Class> actions = new HashSet<>();
+    for (Action a : self.getActionsCombat(arena)) {
+      actions.add(a.getClass());
     }
-    System.out.println(sb.toString());
+    assertTrue("contains ActionSpellCast", actions.contains(ActionSpellCast.class));
+    assertTrue("contains ActionFullRound", actions.contains(ActionFullRound.class));
+    assertTrue("contains ActionStandard", actions.contains(ActionStandard.class));
+    assertTrue("contains ActionMovement", actions.contains(ActionMovement.class));
+    assertTrue(
+        "contains ActionMovementFiveFootStep", actions.contains(ActionMovementFiveFootStep.class));
+    assertTrue("contains ActionFree", actions.contains(ActionFree.class));
+    assertTrue("contains ActionSwift", actions.contains(ActionSwift.class));
+    assertTrue("contains ActionImmediate", actions.contains(ActionImmediate.class));
   }
 }

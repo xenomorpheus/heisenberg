@@ -7,9 +7,7 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.Item;
 import au.net.hal9000.heisenberg.fifthed.item.Weapon;
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Fighter extends CharacterClass {
@@ -77,8 +75,8 @@ public class Fighter extends CharacterClass {
    * Work out what actions may be performed in this amount of time. Explicitly get Magus. Get
    * Fighter from super.
    */
-  public List<Action> getActionsCombat(CombatArena arena) {
-    List<Action> actions = new ArrayList<Action>();
+  public Set<Action> getActionsCombat(CombatArena arena) {
+    Set<Action> actions = new HashSet<Action>();
     PlayerCharacter pc = getPlayerCharacter();
     Set<Item> equipped = pc.getEquipped();
     for (PlayerCharacter opponent : arena.getOpponents()) {

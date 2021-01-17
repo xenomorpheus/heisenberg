@@ -11,8 +11,8 @@ import au.net.hal9000.heisenberg.fifthed.combat.ActionStandard;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionSwift;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Humanoid extends PlayerCharacter {
 
@@ -22,8 +22,8 @@ public abstract class Humanoid extends PlayerCharacter {
 
   @Override
   /** work out what actions may be performed in this amount of time */
-  public List<Action> getActionsCombat(CombatArena arena) {
-    List<Action> actions = new ArrayList<Action>();
+  public Set<Action> getActionsCombat(CombatArena arena) {
+    Set<Action> actions = new HashSet<Action>();
     actions.addAll(super.getActionsCombat(arena));
     TimerRound timer = arena.getTimerRound();
     if (timer.isActionDurationAvailable(ActionDuration.FULLROUND)) {

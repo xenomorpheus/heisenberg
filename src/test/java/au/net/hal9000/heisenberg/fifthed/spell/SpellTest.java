@@ -1,5 +1,7 @@
 package au.net.hal9000.heisenberg.fifthed.spell;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +14,10 @@ public class SpellTest {
 
   @Test
   public void testDetails() {
-    System.out.println(new Fireball().details());
+    String s = new Fireball().details();
+    assertTrue(s.contains("Name: Fireball"));
+    assertTrue(s.contains("SavingThrow: REFLEX_HALF"));
+    assertTrue(s.contains("ActionDuration: STANDARD"));
+    assertTrue(s.contains("Effect: "));
   }
 }

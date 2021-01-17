@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.fifthed.characterClass;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
-import java.util.List;
+import java.util.Set;
 
 public abstract class CharacterClass {
   private String name = null;
@@ -78,5 +78,5 @@ public abstract class CharacterClass {
     return sb.toString();
   }
 
-  public abstract List<Action> getActionsCombat(CombatArena arena);
+  public abstract Set<Action> getActionsCombat(CombatArena arena);
 }

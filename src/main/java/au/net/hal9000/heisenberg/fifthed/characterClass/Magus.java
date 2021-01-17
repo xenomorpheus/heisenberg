@@ -8,9 +8,7 @@ import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 import au.net.hal9000.heisenberg.fifthed.spell.Spellcast;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Magus extends Fighter implements Spellcaster {
@@ -75,8 +73,8 @@ public class Magus extends Fighter implements Spellcaster {
    * Work out what actions may be performed in this amount of time. Explicitly get Magus. Get
    * Fighter from super.
    */
-  public List<Action> getActionsCombat(CombatArena arena) {
-    List<Action> actions = new ArrayList<Action>();
+  public Set<Action> getActionsCombat(CombatArena arena) {
+    Set<Action> actions = new HashSet<Action>();
     TimerRound timer = arena.getTimerRound();
     for (PlayerCharacter opponent : arena.getOpponents()) {
       for (Spell spell : spells) {

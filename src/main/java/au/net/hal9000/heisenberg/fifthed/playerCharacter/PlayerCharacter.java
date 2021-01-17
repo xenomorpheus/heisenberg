@@ -165,9 +165,9 @@ public abstract class PlayerCharacter {
     return level;
   }
 
-  /** @return a list of actions that the player character may choose only one to perform. */
-  public List<Action> getActionsCombat(CombatArena arena) {
-    List<Action> actions = new ArrayList<Action>();
+  /** @return a set of actions that the player character may choose only one to perform. */
+  public Set<Action> getActionsCombat(CombatArena arena) {
+    Set<Action> actions = new HashSet<Action>();
     if ((characterClasses != null) && (!characterClasses.isEmpty())) {
       for (CharacterClass characterClass : characterClasses) {
         actions.addAll(characterClass.getActionsCombat(arena));
