@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-/** */
+/** Race editor. */
 public class RaceEditor extends JPanel {
   /** window default x pos. */
   private static final int X_POS = 100;
@@ -39,11 +39,11 @@ public class RaceEditor extends JPanel {
     setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
     // Main container
-    GridBagLayout gridBag = new GridBagLayout();
     GridBagConstraints cons = new GridBagConstraints();
     cons.fill = GridBagConstraints.BOTH;
     cons.ipady = 0;
     cons.ipadx = 0;
+    GridBagLayout gridBag = new GridBagLayout();
     setLayout(gridBag);
 
     // Tabbed Pane

@@ -55,6 +55,7 @@ public final class DemoEnvironment {
     super();
   }
 
+  /** Setup demo environement. */
   public static void setup() {
     LOGGER.info("Demo Env setup");
     try {
@@ -67,7 +68,7 @@ public final class DemoEnvironment {
   /**
    * Get Demo Race object with a few simple properties.
    *
-   * @return Race
+   * @return Race race of PC / NPC.
    * @throws ConfigurationError
    */
   public static Race getRace() throws ConfigurationError {

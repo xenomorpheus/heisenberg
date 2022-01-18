@@ -7,7 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-/** */
+/** Abilities Score Table Main. */
 public class AbilitiesScoresTableMain { // NO_UCD (unused code)
   /** frame width. */
   static final int FRAME_WIDTH = 800;
@@ -29,7 +29,6 @@ public class AbilitiesScoresTableMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              Race pc = DemoEnvironment.getRace();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -38,6 +37,7 @@ public class AbilitiesScoresTableMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+              Race pc = DemoEnvironment.getRace();
               abilityScoresTable.setRace(pc);
 
               // add to JFrame

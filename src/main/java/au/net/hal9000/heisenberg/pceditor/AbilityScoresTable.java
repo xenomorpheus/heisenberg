@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class AbilityScoresTable extends JTable implements FocusListener {
 
-  /** */
+  /** serial id. */
   private static final long serialVersionUID = 1L;
 
   private MyTableModel myTableModel;
@@ -57,7 +57,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
    * @author bruins
    */
   private class MyTableModel extends AbstractTableModel {
-    /** */
+    /** serial id. */
     private static final long serialVersionUID = 1L;
 
     /** column names. */

@@ -49,6 +49,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Get aeration.
+   *
    * @param item the item we are changing the property of.
    * @return float
    */
@@ -80,6 +82,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Determine if is clothing.
+   *
    * @param item the item we are changing the property of.
    * @return clothing the status
    */
@@ -87,7 +91,11 @@ public final class ItemProperty {
     return (Boolean) item.getProperty(IS_CLOTHING);
   }
 
-  /** @param item the item we are changing the property of. */
+  /**
+   * Remove clothing.
+   *
+   * @param item the item we are changing the property of.
+   */
   public static void removeClothing(Item item) {
     item.removeProperty(IS_CLOTHING);
   }
@@ -104,6 +112,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Get entertainment.
+   *
    * @param item the item we are changing the property of.
    * @return float
    */
@@ -127,6 +137,8 @@ public final class ItemProperty {
 
   // HumanoidFood
   /**
+   * Set humanoid food.
+   *
    * @param item the item we are changing the property of.
    * @param isHumanoidFood the new status
    */
@@ -135,6 +147,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Determine if is humanoid food.
+   *
    * @param item the item we are changing the property of.
    * @return isHumanoidFood the status
    */
@@ -142,7 +156,7 @@ public final class ItemProperty {
     return (Boolean) item.getProperty(IS_HUMANOID_FOOD);
   }
 
-  /** @param item the item we are changing the property of. */
+  /** Remove humanoid food.@param item the item we are changing the property of. */
   public static void removeHumanoidFood(Item item) {
     item.removeProperty(IS_HUMANOID_FOOD);
   }
@@ -159,6 +173,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Get hydration.
+   *
    * @param item the item we are changing the property of.
    * @return float
    */
@@ -182,6 +198,8 @@ public final class ItemProperty {
 
   // Living
   /**
+   * Set living.
+   *
    * @param item the item we are changing the property of.
    * @param living the new status
    */
@@ -190,6 +208,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Determine if is living.
+   *
    * @param item the item we are changing the property of.
    * @return living the status
    */
@@ -197,13 +217,19 @@ public final class ItemProperty {
     return (Boolean) item.getProperty(IS_LIVING);
   }
 
-  /** @param item the item we are changing the property of. */
+  /**
+   * Remove is living.
+   *
+   * @param item the item we are changing the property of.
+   */
   public static void removeLiving(Item item) {
     item.removeProperty(IS_LIVING);
   }
 
   // Magical
   /**
+   * Set magical.
+   *
    * @param item the item we are changing the property of.
    * @param isMagical the new status
    */
@@ -212,6 +238,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Determine if is magical.
+   *
    * @param item the item we are changing the property of.
    * @return magical the status
    */
@@ -219,7 +247,11 @@ public final class ItemProperty {
     return (Boolean) item.getProperty(IS_MAGICAL);
   }
 
-  /** @param item the item we are changing the property of. */
+  /**
+   * Remove magical.
+   *
+   * @param item the item we are changing the property of.
+   */
   public static void removeMagical(Item item) {
     item.removeProperty(IS_MAGICAL);
   }
@@ -236,6 +268,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Get nourishment.
+   *
    * @param item the item we are changing the property of.
    * @return float
    */
@@ -269,6 +303,8 @@ public final class ItemProperty {
   }
 
   /**
+   * Get rest.
+   *
    * @param item the item we are changing the property of.
    * @return float
    */

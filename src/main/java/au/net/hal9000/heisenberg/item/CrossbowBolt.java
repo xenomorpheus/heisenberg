@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 
 /**
+ * Cross bow bolt.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

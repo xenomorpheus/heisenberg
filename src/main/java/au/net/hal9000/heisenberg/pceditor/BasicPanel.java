@@ -23,12 +23,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
+ * Basic panel.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
 public class BasicPanel extends JPanel {
 
-  /** */
+  /** serial id. */
   private static final long serialVersionUID = 1L;
 
   // Misc
@@ -124,8 +126,6 @@ public class BasicPanel extends JPanel {
   /** Add components to Basic panel. */
   private void addComponents() {
 
-    // create GribBagLayout and the GridBagLayout Constraints
-    GridBagLayout gridBag = new GridBagLayout();
     // Use the GridBagConstraints to determine how the component
     // is displayed within the GridBagLayout. ipadx and ipady are used
     // to pad the component within the cell(s). The weightx and weighty
@@ -133,16 +133,15 @@ public class BasicPanel extends JPanel {
     // any extra space is handled by a row or column. gridx and gridy are
     // the position coordinates for the component within the grid. fill
     // determines what happens to sizing of a component if it doesn't
-    // completely
-    // fill its cell. gridwidth and gridheight specify how many cells
-    // (either
-    // in a row or column) the component will take up.
+    // completely fill its cell. gridwidth and gridheight specify how many
+    // cells (either in a row or column) the component will take up.
     GridBagConstraints cons = new GridBagConstraints();
-
     cons.fill = GridBagConstraints.BOTH;
     cons.ipady = 0;
     cons.ipadx = 0;
 
+    // create GribBagLayout and the GridBagLayout Constraints
+    GridBagLayout gridBag = new GridBagLayout();
     this.setLayout(gridBag);
     row0(gridBag, cons);
     row1(gridBag, cons);
@@ -158,7 +157,6 @@ public class BasicPanel extends JPanel {
    * @param cons cell constraints.
    */
   private void row0(GridBagLayout gridBag, GridBagConstraints cons) {
-    Collection<PcClass> pcClassesItr = config.getPcClasses().values();
 
     final int row = 0;
     int pos = 0;
@@ -190,6 +188,7 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
 
     classComboBox = new JComboBox<>();
+    Collection<PcClass> pcClassesItr = config.getPcClasses().values();
     for (PcClass pcClass : pcClassesItr) {
       classComboBox.addItem(pcClass);
     }
@@ -444,8 +443,8 @@ public class BasicPanel extends JPanel {
     // Size List
     sizeComboBox = new JComboBox<>();
     Collection<String> sizes = config.getSizes();
-    for (String aSize : sizes) {
-      sizeComboBox.addItem(aSize);
+    for (String size : sizes) {
+      sizeComboBox.addItem(size);
     }
     sizeComboBox.setSelectedIndex(0);
     cons.gridx = pos;
@@ -467,8 +466,8 @@ public class BasicPanel extends JPanel {
     // Gender List
     genderComboBox = new JComboBox<>();
     Collection<String> genders = config.getGenders();
-    for (String aGender : genders) {
-      genderComboBox.addItem(aGender);
+    for (String gender : genders) {
+      genderComboBox.addItem(gender);
     }
     genderComboBox.setSelectedIndex(0);
     cons.gridx = pos;

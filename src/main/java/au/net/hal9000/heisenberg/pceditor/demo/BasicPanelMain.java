@@ -29,7 +29,6 @@ public class BasicPanelMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              Race pc = DemoEnvironment.getRace();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -38,6 +37,7 @@ public class BasicPanelMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               BasicPanel basicPanel = new BasicPanel();
+              Race pc = DemoEnvironment.getRace();
               basicPanel.setRace(pc);
 
               // add to JFrame

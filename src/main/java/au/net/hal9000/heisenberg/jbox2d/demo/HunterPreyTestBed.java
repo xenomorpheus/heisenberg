@@ -22,31 +22,31 @@ import org.jbox2d.testbed.framework.TestbedTest;
  */
 class HunterPreyTestBed extends TestbedTest {
 
-  /** Perform vision update every Nth world step */
+  /** Perform vision update every Nth world step. */
   private static final int CAT_AI_UPDATE = 30;
-  /** Cat's tag */
+  /** Cat's tag. */
   private static final long CAT_TAG = 100L;
-  /** Rat's tag */
+  /** Rat's tag. */
   private static final long RAT_TAG = 101L;
-  /** Other wall's tag */
+  /** Other wall's tag. */
   private static final long BOUNDARY_TAG = 102L;
-  /** Barrier's tag */
+  /** Barrier's tag. */
   private static final long BARRIER_TAG = 103L;
-  /** maze position */
+  /** maze position. */
   private static final float BARRIER_OFFSET_X = 5.0f;
-  /** maze position */
+  /** maze position. */
   private static final float BARRIER_OFFSET_Y = 5.0f;
   /** Cat Jbox2d object. */
   private Body catBody;
-  /** Cat will do a vision update every Nth world step */
+  /** Cat will do a vision update every Nth world step. */
   private int catAiCounter = 0;
   /** Rat Jbox2d object. */
   private Body ratBody;
-  /** AI */
+  /** AI. */
   private HunterPreyAi hunterPreyAi;
-  /** JBox Physics Engine world */
+  /** JBox Physics Engine world. */
   private World world = null;
-  /** Debug Graphics object for drawing in JBox Physics Engine world */
+  /** Debug Graphics object for drawing in JBox Physics Engine world. */
   private DebugDraw debugDraw = null;
 
   /** Constructor */

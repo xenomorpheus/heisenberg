@@ -59,17 +59,15 @@ public final class Geometry {
       double p3Y) {
     // TODO
     // http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
-    double s1X, s1Y, s2X, s2Y;
-    double s, t, divisor;
 
-    s1X = p1X - p0X;
-    s1Y = p1Y - p0Y;
-    s2X = p3X - p2X;
-    s2Y = p3Y - p2Y;
+    double s1X = p1X - p0X;
+    double s1Y = p1Y - p0Y;
+    double s2X = p3X - p2X;
+    double s2Y = p3Y - p2Y;
 
-    divisor = -s2X * s1Y + s1X * s2Y;
-    s = (-s1Y * (p0X - p2X) + s1X * (p0Y - p2Y)) / divisor;
-    t = (s2X * (p0Y - p2Y) - s2Y * (p0X - p2X)) / divisor;
+    double divisor = -s2X * s1Y + s1X * s2Y;
+    double s = (-s1Y * (p0X - p2X) + s1X * (p0Y - p2Y)) / divisor;
+    double t = (s2X * (p0Y - p2Y) - s2Y * (p0X - p2X)) / divisor;
 
     if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
       // Collision detected

@@ -36,9 +36,9 @@ public class RecipesTable extends JTable {
     this.setModel(new MyTableModel(pc));
   }
 
-  /** */
+  /** My table model. */
   private class MyTableModel extends AbstractTableModel {
-    /** */
+    /** serial id. */
     private static final long serialVersionUID = 1L;
     /** Field config. */
     private Configuration config = Configuration.lastConfig();

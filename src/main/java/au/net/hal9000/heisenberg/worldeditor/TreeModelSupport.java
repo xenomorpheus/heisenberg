@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  */
 public class TreeModelSupport {
 
-  /** class logger */
+  /** class logger. */
   private static final Logger LOGGER = Logger.getLogger(TreeModelSupport.class.getName());
 
   /**
@@ -31,7 +31,7 @@ public class TreeModelSupport {
    */
   private final Object objLock = new Object();
 
-  /** Constructor */
+  /** Constructor. */
   public TreeModelSupport() {
     listeners = new ArrayList<TreeModelListener>();
   }

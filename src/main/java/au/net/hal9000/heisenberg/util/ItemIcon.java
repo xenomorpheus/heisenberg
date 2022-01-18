@@ -34,6 +34,11 @@ public class ItemIcon implements Serializable {
     super();
   }
 
+  /**
+   * Icon of Item.
+   *
+   * @param item game Item.
+   */
   public ItemIcon(Item item) {
     this();
     Icon icon = getIconOpenDefault(item);
@@ -193,6 +198,11 @@ public class ItemIcon implements Serializable {
     }
   }
 
+  /**
+   * Get a copy of the Item Icon.
+   *
+   * @return A copy of the Item Icon.
+   */
   public ItemIcon dupicate() {
     ItemIcon itemIcon = new ItemIcon();
     itemIcon.setIconClosed(getIconClosed());

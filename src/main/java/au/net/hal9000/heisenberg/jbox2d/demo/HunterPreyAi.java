@@ -50,21 +50,21 @@ public class HunterPreyAi {
   private static final int FRINGE_MAX = 1000;
 
   // Game Entity objects
-  /** JBox2d game object - hunter */
+  /** JBox2d game object - hunter. */
   private Body hunterBody;
-  /** JBox2d game object - target e.g. prey */
+  /** JBox2d game object - target e.g. prey. */
   private Body preyBody;
-  /** AI - path search method */
+  /** AI - path search method. */
   private SearchAStar search;
-  /** AI - search results. List of actions */
+  /** AI - search results. List of actions . */
   private Path hunterPath;
-  /** hunter - Thinking game item */
+  /** hunter - Thinking game item. */
   private EntityItem hunter;
-  /** prey - Generic game item */
+  /** prey - Generic game item. */
   private Item prey;
-  /** world */
+  /** world. */
   private Location world;
-  /** is the test finished */
+  /** is the test finished. */
   private boolean complete;
 
   HunterPreyAi(Body hunterBody, Body preyBody) {
@@ -195,7 +195,7 @@ public class HunterPreyAi {
    * TODO update hunter's memory of barriers.
    *
    * @param world JBox2d world
-   * @param debugDraw
+   * @param debugDraw space to draw into.
    */
   void vision(World world, DebugDraw debugDraw) {
     RayCastMultipleCallback mcallback = new RayCastMultipleCallback();
@@ -316,7 +316,7 @@ public class HunterPreyAi {
     }
   }
 
-  /** convert the fringe to a list of circles * */
+  /** convert the fringe to a list of circles. */
   private List<MyCircle> fringeToCircles(List<ModelState> fringeAdded) {
     List<MyCircle> circleList = new ArrayList<>();
     if (fringeAdded != null) {
@@ -336,9 +336,9 @@ public class HunterPreyAi {
 
   /** Hold the position and colour of a circle shown on the JBox2D Testbed. */
   private class MyCircle {
-    /** middle of circle */
+    /** middle of circle. */
     public Position position;
-    /** colour of circle */
+    /** colour of circle. */
     public Color3f colour;
 
     /**

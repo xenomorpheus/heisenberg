@@ -285,7 +285,11 @@ public class Position {
         getClass().getSimpleName() + "=[%.2f, %.2f, %.2f]", getX(), getY(), getZ());
   }
 
-  /** @return a duplicate of this position. */
+  /**
+   * Duplicate the position object.
+   *
+   * @return a duplicate of this position.
+   */
   public Position duplicate() {
     return new Position(this);
   }

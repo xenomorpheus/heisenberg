@@ -301,7 +301,7 @@ public class Currency implements Serializable, Cloneable {
    * Method writeObject.
    *
    * @param out ObjectOutputStream
-   * @throws IOException
+   * @throws IOException exception
    */
   private void writeObject(ObjectOutputStream out) throws IOException {
     out.defaultWriteObject();
@@ -311,8 +311,8 @@ public class Currency implements Serializable, Cloneable {
    * Method readObject.
    *
    * @param in ObjectInputStream
-   * @throws IOException
-   * @throws ClassNotFoundException
+   * @throws IOException exception
+   * @throws ClassNotFoundException exception
    */
   private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
     // our "pseudo-constructor"
@@ -324,7 +324,7 @@ public class Currency implements Serializable, Cloneable {
    * Method clone.
    *
    * @return Currency
-   * @throws CloneNotSupportedException
+   * @throws CloneNotSupportedException exception
    */
   @Override
   public Currency clone() throws CloneNotSupportedException {

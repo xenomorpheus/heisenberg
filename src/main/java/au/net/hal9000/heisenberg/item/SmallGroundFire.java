@@ -34,8 +34,8 @@ public class SmallGroundFire extends ItemImpl {
    * @param name String
    * @param pDescription String
    */
-  private SmallGroundFire(String name, String pDescription) {
-    super(name, pDescription);
+  private SmallGroundFire(String name, String description) {
+    super(name, description);
   }
 
   // Methods

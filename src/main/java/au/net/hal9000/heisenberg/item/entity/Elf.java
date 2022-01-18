@@ -7,6 +7,8 @@ import au.net.hal9000.heisenberg.util.PcClass;
 import javax.persistence.Entity;
 
 /**
+ * Elf.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * Item search magical.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

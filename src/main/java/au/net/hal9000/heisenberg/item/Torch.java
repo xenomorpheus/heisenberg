@@ -25,8 +25,8 @@ public class Torch extends Candle {
    * @param name String
    * @param pDescription String
    */
-  Torch(String name, String pDescription) {
-    super(name, pDescription);
+  Torch(String name, String description) {
+    super(name, description);
   }
 
   /**

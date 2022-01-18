@@ -65,9 +65,9 @@ public abstract class Race extends EntityItem {
    * @param name String
    * @param pPcClass PcClass
    */
-  protected Race(String name, PcClass pPcClass) {
+  protected Race(String name, PcClass pcClass) {
     this(name);
-    pcClass = pPcClass;
+    this.pcClass = pcClass;
     init();
   }
 
@@ -85,12 +85,16 @@ public abstract class Race extends EntityItem {
   }
 
   // Getters and Setters
-  /** @return the level */
+  /** Get the level. @return the level */
   public final int getLevel() {
     return level;
   }
 
-  /** @param level the level to set */
+  /**
+   * Set the level.
+   *
+   * @param level the level to set
+   */
   public final void setLevel(final int level) {
     int oldLevel = this.level;
     if (level != oldLevel) {
@@ -99,12 +103,20 @@ public abstract class Race extends EntityItem {
     }
   }
 
-  /** @return the pcClass */
+  /**
+   * Get the PC class,
+   *
+   * @return the pcClass
+   */
   public final PcClass getPcClass() {
     return pcClass;
   }
 
-  /** @param pcClass the pcClass to set */
+  /**
+   * Set the PC class
+   *
+   * @param pcClass the pcClass to set
+   */
   public final void setPcClass(final PcClass pcClass) {
     this.pcClass = pcClass;
     if (null == pcClass) {
@@ -114,17 +126,17 @@ public abstract class Race extends EntityItem {
     }
   }
 
-  /** @return the combatDice */
+  /** Get the combat dice. @return the combatDice */
   public final int getCombatDice() {
     return combatDice;
   }
 
-  /** @param combatDice the combatDice to set */
+  /** Set the Combat dice. @param combatDice the combatDice to set */
   public final void setCombatDice(final int combatDice) {
     this.combatDice = combatDice;
   }
 
-  /** @return the magicDice */
+  /** Get the magic dice. @return the magicDice */
   public final int getMagicDice() {
     return magicDice;
   }

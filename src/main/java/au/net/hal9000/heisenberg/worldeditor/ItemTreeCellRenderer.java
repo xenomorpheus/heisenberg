@@ -5,7 +5,7 @@ import java.awt.Component;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-/** */
+/** Item Tree Cell Renderer. */
 class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
 
   /** Set the Icon to be shown next to each Icon when in a JTree in the UI. */

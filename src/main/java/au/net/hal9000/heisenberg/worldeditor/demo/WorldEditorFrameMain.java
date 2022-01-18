@@ -6,15 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 
+/** World Editor Frame Main. */
 public class WorldEditorFrameMain {
+
+  /** Field LOGGER. */
+  static final Logger LOGGER = Logger.getLogger(WorldEditorFrameMain.class.getName());
+
   /**
    * app to test the world editor.
    *
    * @param args not used
    */
-  /** Field LOGGER. */
-  static final Logger LOGGER = Logger.getLogger(WorldEditorFrameMain.class.getName());
-
   public static void main(String[] args) {
 
     // Use the event dispatch thread for Swing components

@@ -39,7 +39,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   /** Class serial version id. */
   private static final long serialVersionUID = 1L;
 
-  /** LOGGER */
+  /** LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class.getName());
 
   /** The TreeModel will translate our custom structure into Swing paths etc.. */
@@ -128,7 +128,11 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     return new TreePath(itemList.toArray(new TreeNode[itemList.size()]));
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   *
+   * @param e Tree model event.
+   */
   @Override
   public void treeNodesChanged(TreeModelEvent e) {
     Object o = e.getTreePath().getLastPathComponent();

@@ -9,7 +9,7 @@ public class FiringSolution {
    * Return the firing solution for a projectile starting at 'src' with velocity 'v', to hit a
    * target, 'targetPos'.
    *
-   * @param Object src position of shooter
+   * @param src position of shooter
    * @param targetPos target position
    * @param targetVelocity target velocity
    * @param projectileSpeed speed of projectile
@@ -37,7 +37,9 @@ public class FiringSolution {
       float t0 = ts.x;
       float t1 = ts.y;
       float t = Math.min(t0, t1);
-      if (t < 0) t = Math.max(t0, t1);
+      if (t < 0) {
+        t = Math.max(t0, t1);
+      }
       if (t > 0) {
         sol = new Vec2(targetPos.x + targetVelocity.x * t, targetPos.y + targetVelocity.y * t);
       }
@@ -45,7 +47,14 @@ public class FiringSolution {
     return sol;
   }
 
-  /** Return solutions for quadratic */
+  /**
+   * Return solutions for quadratic.
+   *
+   * @param a coefficient of square
+   * @param b coefficient of liner
+   * @param c constant
+   * @return
+   */
   static Vec2 quad(float a, float b, float c) {
     Vec2 sol = null;
     if (Math.abs(a) < 1e-6) {

@@ -111,7 +111,7 @@ public class Configuration {
   /**
    * Get the recipes.
    *
-   * @return Map<String,Recipe>
+   * @return Map of String and Recipe
    */
   public final Map<String, Recipe> getRecipes() {
     return recipes;
@@ -121,7 +121,7 @@ public class Configuration {
   /**
    * Method getPcClasses.
    *
-   * @return Map<String,PcClass>
+   * @return Map of String and PcClass.
    */
   public Map<String, PcClass> getPcClasses() {
     return pcClasses;
@@ -131,7 +131,7 @@ public class Configuration {
   /**
    * Method getRaces.
    *
-   * @return List<String>
+   * @return List of strings.
    */
   public List<String> getRaces() {
     return races;
@@ -171,7 +171,7 @@ public class Configuration {
    * Method init.
    *
    * @param filename String
-   * @throws ConfigurationError
+   * @throws ConfigurationError exception
    */
   private void init(String filename) throws ConfigurationError {
     File file = new File(filename);
@@ -230,7 +230,7 @@ public class Configuration {
   /**
    * Load details about each Item class.
    *
-   * @param itemClassesElement
+   * @param itemClassesElement xml element.
    * @return a collection of information about each Item type.
    */
   private Map<String, ItemClassConfiguration> xmlToItemClasses(Element itemClassesElement) {
@@ -285,7 +285,7 @@ public class Configuration {
    * Method xmlToPcClasses.
    *
    * @param pcClassesElements Elements
-   * @return Map<String,PcClass>
+   * @return Map of String and PcClass
    */
   private Map<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
     Map<String, PcClass> classes = new TreeMap<String, PcClass>();
@@ -404,7 +404,7 @@ public class Configuration {
    * Read in XML Recipe Product details and produce Recipe Product object(s).<br>
    *
    * @param entry an XML Recipe Product element.
-   * @return List<Product>
+   * @return List of Product
    */
   private static List<Product> xmlToRecipeProducts(Element entry) {
 
@@ -427,7 +427,7 @@ public class Configuration {
    * Read in XML Requirement details and produce Requirement object(s).<br>
    *
    * @param entry an XML Requirement element.
-   * @return List<Requirement>
+   * @return List of Requirement
    */
   private static Map<String, Requirement> xmlToRecipeRequirements(Element entry) {
     Elements items = entry.getChildElements("item");
@@ -444,9 +444,6 @@ public class Configuration {
    * @return a Recipe object.
    */
   private static Recipe xmlToRecipe(Element recipeElement) {
-    String id = recipeElement.getAttributeValue("id");
-    String description = recipeElement.getAttributeValue("description");
-
     // <ingredient mana="2" actionPoints="42">
     // mana
     int mana = 0;
@@ -481,6 +478,8 @@ public class Configuration {
     List<Product> products = xmlToRecipeProducts(productElement);
 
     // Return the completed recipe
+    String id = recipeElement.getAttributeValue("id");
+    String description = recipeElement.getAttributeValue("description");
     return new Recipe(id, description, process, mana, actionPoints, requirements, skills, products);
   }
 
@@ -506,7 +505,7 @@ public class Configuration {
   /**
    * Read multiple SkillDetail objects from an XML element.
    *
-   * @param element
+   * @param element xml element.
    * @return Map of SkillDetail objects.
    */
   private static Map<String, SkillDetail> xmlToSkillDetails(Element element) {
@@ -600,7 +599,7 @@ public class Configuration {
   /**
    * Get an AbilityScore object from an XML element.
    *
-   * @param element
+   * @param element xml element.
    * @return the AbilityScore object.
    */
   private static AbilityScore xmlToAbilityScore(Element element) {
@@ -617,8 +616,10 @@ public class Configuration {
   }
 
   /**
+   * Get a map of String and SpriteSheetConfiguration.
+   *
    * @param spriteSheets Element
-   * @return Map<String, SpriteSheetConfiguration>
+   * @return Map of String and SpriteSheetConfiguration.
    */
   private Map<String, SpriteSheetConfiguration> xmlToSpriteSheets(Element spriteSheets) {
     Elements entries = spriteSheets.getChildElements();
@@ -640,6 +641,8 @@ public class Configuration {
   }
 
   /**
+   * Get PC class.
+   *
    * @param id the class name e.g. Soldier
    * @return the PC Character Class.
    */
