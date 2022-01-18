@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
+ * Backpack.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

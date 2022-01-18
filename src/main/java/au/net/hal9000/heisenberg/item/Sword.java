@@ -23,9 +23,9 @@ public class Sword extends ItemImpl implements Sharp {
   /**
    * Constructor for Sword.
    *
-   * @param pString String
+   * @param string String
    */
-  private Sword(final String pString) {
-    super(pString);
+  private Sword(final String string) {
+    super(string);
   }
 }

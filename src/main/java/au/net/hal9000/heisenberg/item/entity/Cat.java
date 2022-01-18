@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @Entity
 public class Cat extends EntityItem implements Animal {
 
-  /** */
+  /** serial id. */
   private static final long serialVersionUID = 1L;
 
   /** Constructor for Cat. */

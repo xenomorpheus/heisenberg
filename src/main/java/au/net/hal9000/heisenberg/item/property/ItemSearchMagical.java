@@ -32,7 +32,7 @@ class ItemSearchMagical extends ItemSearch {
   /**
    * Method visit.
    *
-   * @param itemVector List<Item>
+   * @param itemVector List of Item.
    * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
    */
   public void visit(List<Item> itemVector) {

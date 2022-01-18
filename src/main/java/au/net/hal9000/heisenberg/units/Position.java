@@ -15,32 +15,32 @@ public class Position {
   public static final Position WEST = new Position(-1, 0);
 
   public static final double DEFAULT_AXIS_TOLERANCE = 0.05;
-  private double xPos;
-  private double yPos;
-  private double zPos;
+  private double xpos;
+  private double ypos;
+  private double zpos;
 
   // Constructors
   /**
    * 3D Constructor.
    *
-   * @param xPos x position.
-   * @param yPos y position.
-   * @param zPos y position.
+   * @param xpos x position.
+   * @param ypos y position.
+   * @param zpos y position.
    */
-  public Position(double xPos, double yPos, double zPos) {
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.zPos = zPos;
+  public Position(double xpos, double ypos, double zpos) {
+    this.xpos = xpos;
+    this.ypos = ypos;
+    this.zpos = zpos;
   }
 
   /**
    * 2D Constructor.
    *
-   * @param xPos x position.
-   * @param yPos y position.
+   * @param xpos x position.
+   * @param ypos y position.
    */
-  public Position(double xPos, double yPos) {
-    this(xPos, yPos, 0);
+  public Position(double xpos, double ypos) {
+    this(xpos, ypos, 0);
   }
 
   /**
@@ -64,16 +64,16 @@ public class Position {
    * @return x position
    */
   public double getX() {
-    return xPos;
+    return xpos;
   }
 
   /**
    * Set x position.
    *
-   * @param xPos new x position.
+   * @param xpos new x position.
    */
-  public void setX(double xPos) {
-    this.xPos = xPos;
+  public void setX(double xpos) {
+    this.xpos = xpos;
   }
 
   /**
@@ -82,16 +82,16 @@ public class Position {
    * @return y position
    */
   public double getY() {
-    return yPos;
+    return ypos;
   }
 
   /**
    * Set y position.
    *
-   * @param yPos new y position.
+   * @param ypos new y position.
    */
-  public void setY(double yPos) {
-    this.yPos = yPos;
+  public void setY(double ypos) {
+    this.ypos = ypos;
   }
 
   /**
@@ -100,16 +100,16 @@ public class Position {
    * @return z position
    */
   public double getZ() {
-    return zPos;
+    return zpos;
   }
 
   /**
    * Set z position.
    *
-   * @param zPos new z position.
+   * @param zpos new z position.
    */
-  public void setZ(double zPos) {
-    this.zPos = zPos;
+  public void setZ(double zpos) {
+    this.zpos = zpos;
   }
 
   // Misc
@@ -120,9 +120,9 @@ public class Position {
    * @return current Position object.
    */
   public Position applyDelta(Position delta) {
-    xPos += delta.getX();
-    yPos += delta.getY();
-    zPos += delta.getZ();
+    xpos += delta.getX();
+    ypos += delta.getY();
+    zpos += delta.getZ();
     return this;
   }
 
@@ -133,7 +133,7 @@ public class Position {
    * @return Return a new Position object that is the current Position, plus argument.
    */
   public Position add(Position delta) {
-    return new Position(xPos + delta.getX(), yPos + delta.getY(), zPos + delta.getZ());
+    return new Position(xpos + delta.getX(), ypos + delta.getY(), zpos + delta.getZ());
   }
 
   /**
@@ -143,7 +143,7 @@ public class Position {
    * @return Return a new Position object that is the current Position, minus argument.
    */
   public Position subtract(Position other) {
-    return new Position(xPos - other.getX(), yPos - other.getY(), zPos - other.getZ());
+    return new Position(xpos - other.getX(), ypos - other.getY(), zpos - other.getZ());
   }
 
   /**
@@ -182,11 +182,11 @@ public class Position {
     final int prime = 31;
     int result = 1;
     long temp;
-    temp = Double.doubleToLongBits(xPos);
+    temp = Double.doubleToLongBits(xpos);
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(yPos);
+    temp = Double.doubleToLongBits(ypos);
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(zPos);
+    temp = Double.doubleToLongBits(zpos);
     result = prime * result + (int) (temp ^ (temp >>> 32));
     return result;
   }
@@ -228,9 +228,9 @@ public class Position {
    */
   public boolean equals(Position other, double tolerance) {
     return (other != null)
-        && (Math.abs(xPos - other.getX()) < tolerance)
-        && (Math.abs(yPos - other.getY()) < tolerance)
-        && (Math.abs(zPos - other.getZ()) < tolerance);
+        && (Math.abs(xpos - other.getX()) < tolerance)
+        && (Math.abs(ypos - other.getY()) < tolerance)
+        && (Math.abs(zpos - other.getZ()) < tolerance);
   }
 
   /**
@@ -239,9 +239,9 @@ public class Position {
    * @param c multiplier.
    */
   public void vectorMul(double c) {
-    xPos *= c;
-    yPos *= c;
-    zPos *= c;
+    xpos *= c;
+    ypos *= c;
+    zpos *= c;
   }
 
   /**
@@ -250,9 +250,9 @@ public class Position {
    * @param theta in radians.
    */
   public void rotateX(double theta) {
-    double newY = yPos * Math.cos(theta) + zPos * Math.sin(theta);
-    zPos = -yPos * Math.sin(theta) + zPos * Math.cos(theta);
-    yPos = newY;
+    double newY = ypos * Math.cos(theta) + zpos * Math.sin(theta);
+    zpos = -ypos * Math.sin(theta) + zpos * Math.cos(theta);
+    ypos = newY;
   }
 
   /**
@@ -262,9 +262,9 @@ public class Position {
    */
   public void rotateY(double theta) {
 
-    double newX = xPos * Math.cos(theta) - zPos * Math.sin(theta);
-    zPos = xPos * Math.sin(theta) + zPos * Math.cos(theta);
-    xPos = newX;
+    double newX = xpos * Math.cos(theta) - zpos * Math.sin(theta);
+    zpos = xpos * Math.sin(theta) + zpos * Math.cos(theta);
+    xpos = newX;
   }
 
   /**
@@ -273,9 +273,9 @@ public class Position {
    * @param theta in radians.
    */
   public void rotateZ(double theta) {
-    double newX = xPos * Math.cos(theta) + yPos * Math.sin(theta);
-    yPos = -xPos * Math.sin(theta) + yPos * Math.cos(theta);
-    xPos = newX;
+    double newX = xpos * Math.cos(theta) + ypos * Math.sin(theta);
+    ypos = -xpos * Math.sin(theta) + ypos * Math.cos(theta);
+    xpos = newX;
   }
 
   /** Return string representation of this object. */
@@ -300,8 +300,8 @@ public class Position {
    * @param other Position
    */
   public void set(Position other) {
-    xPos = other.getX();
-    yPos = other.getY();
-    zPos = other.getZ();
+    xpos = other.getX();
+    ypos = other.getY();
+    zpos = other.getZ();
   }
 }

@@ -25,6 +25,8 @@ Type IV    | 60 lb.     | 1,500 lb.             | 250 cu. ft.           |10,000 
 
 */
 /**
+ * Bag of Holding.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 
 /**
+ * Flint and Tinder.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

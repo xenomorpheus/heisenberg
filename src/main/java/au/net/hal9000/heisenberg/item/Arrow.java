@@ -4,6 +4,8 @@ import au.net.hal9000.heisenberg.item.api.Sharp;
 import javax.persistence.Entity;
 
 /**
+ * Arrow.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

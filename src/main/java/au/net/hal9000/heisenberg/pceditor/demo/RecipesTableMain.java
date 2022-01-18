@@ -29,7 +29,6 @@ public class RecipesTableMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              Race pc = DemoEnvironment.getRace();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -38,6 +37,7 @@ public class RecipesTableMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               RecipesTable recipesTable = new RecipesTable();
+              Race pc = DemoEnvironment.getRace();
               recipesTable.setRace(pc);
 
               // add to JFrame

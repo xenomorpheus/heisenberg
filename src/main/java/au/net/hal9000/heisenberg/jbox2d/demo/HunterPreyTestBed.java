@@ -49,7 +49,7 @@ class HunterPreyTestBed extends TestbedTest {
   /** Debug Graphics object for drawing in JBox Physics Engine world. */
   private DebugDraw debugDraw = null;
 
-  /** Constructor */
+  /** Constructor. */
   public HunterPreyTestBed() {
     super();
   }
@@ -203,13 +203,13 @@ class HunterPreyTestBed extends TestbedTest {
     }
   }
 
-  /** @return Return the name of this test. */
+  /** Get test name. @return Return the name of this test. */
   @Override
   public String getTestName() {
     return "Hunter Prey";
   }
 
-  /** @return Return the default camera scale. */
+  /** Get default camera scale. @return Return the default camera scale. */
   @Override
   public float getDefaultCameraScale() {
     return 25;

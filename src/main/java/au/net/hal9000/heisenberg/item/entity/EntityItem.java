@@ -241,8 +241,9 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
   public final MemorySet getMemorySet() {
     return memorySet;
   }
+
   /**
-   * Ensure a non-null MemorySet
+   * Ensure a non-null MemorySet.
    *
    * @return
    */

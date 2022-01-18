@@ -41,10 +41,10 @@ public interface Item {
    */
   void setDescription(String description);
 
-  /** @return the structural integrity / health. */
+  /** Get hit points. @return the structural integrity / health. */
   float getHitPoints();
 
-  /** @param hitPoints the structural integrity / health. */
+  /** Set hit points. @param hitPoints the structural integrity / health. */
   void setHitPoints(float hitPoints);
 
   /**
@@ -61,7 +61,7 @@ public interface Item {
    */
   void setName(String name);
 
-  /** @return return the position within the container. */
+  /** Get position. @return return the position within the container. */
   Position getPosition();
 
   /**
@@ -80,11 +80,15 @@ public interface Item {
 
   // property related
   /**
+   * Get properties.
+   *
    * @return the properties - A set of key/value pairs that don't warrant real setters and getters.
    */
   Properties getProperties();
 
   /**
+   * Set properties.
+   *
    * @param properties set the properties object. A set of key/value pairs that don't warrant real
    *     setters and getters.
    */
@@ -115,7 +119,7 @@ public interface Item {
 
   // value related
   /**
-   * value before addition of other items such as those carried.
+   * Get value before addition of other items such as those carried.
    *
    * @return The value before any contained items.
    */
@@ -129,7 +133,7 @@ public interface Item {
   Currency getValue();
 
   /**
-   * value before addition of other items such as those carried.
+   * Set value before addition of other items such as those carried.
    *
    * @param valueBase The value before any contained items.
    */
@@ -143,7 +147,7 @@ public interface Item {
   float getVolume();
 
   /**
-   * volume before addition of other items such as those carried.
+   * Get volume before addition of other items such as those carried.
    *
    * @return the volume that this item occupies without any contained items.
    */
@@ -164,10 +168,16 @@ public interface Item {
    */
   float getWeight();
 
-  /** @return weight before addition of other items such as those carried */
+  /**
+   * Get weight base. weight before addition of other items such as those carried. @return weight
+   * before addition of other items such as those carried.
+   */
   float getWeightBase();
 
-  /** @param weightBase weight before addition of other items such as those carried. */
+  /**
+   * Set weight bass. Weight before addition of other items such as those carried. @param weightBase
+   * weight before addition of other items such as those carried.
+   */
   void setWeightBase(float weightBase);
 
   /**
@@ -192,10 +202,10 @@ public interface Item {
    */
   void move(ItemContainer container);
 
-  /** @return A short identifying string. e.g. 'Cookie', 'John Smith' */
+  /** A short identifying string. @return A short identifying string. e.g. 'Cookie', 'John Smith' */
   String toString();
 
-  /** @return A description. e.g. 'A lit candle' */
+  /** A description. e.g. 'A lit candle'. @return A description. e.g. 'A lit candle' */
   String detailedDescription();
 
   /**
@@ -208,7 +218,7 @@ public interface Item {
   /**
    * Change the position by the supplied amount.
    *
-   * @param delta
+   * @param delta change of position.
    */
   void applyDelta(Position delta);
 

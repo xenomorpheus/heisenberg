@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The entry point for the testbed application
+ * The entry point for the testbed application.
  *
  * @author Mike Bruins
  */
