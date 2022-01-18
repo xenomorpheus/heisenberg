@@ -76,38 +76,66 @@ public class AbilityScore implements Comparable<AbilityScore> {
     value = Integer.parseInt(valueString);
   }
 
-  /** @return the name */
+  /**
+   * Name.
+   *
+   * @return the name
+   */
   public final String getName() {
     return name;
   }
 
-  /** @param name the name to set */
+  /**
+   * Set name.
+   *
+   * @param name the name to set
+   */
   public final void setName(String name) {
     this.name = name;
   }
 
-  /** @return the value */
+  /**
+   * Get the value.
+   *
+   * @return the value
+   */
   public final int getValue() {
     return value;
   }
 
-  /** @param value the value to set */
+  /**
+   * Set the value.
+   *
+   * @param value the value to set
+   */
   public final void setValue(int value) {
     this.value = value;
   }
 
-  /** @return the mod */
+  /**
+   * Get the modifier.
+   *
+   * @return the mod
+   */
   public final int getMod() {
     return mod;
   }
 
-  /** @param mod the mod to set */
+  /**
+   * Set the modifier.
+   *
+   * @param mod the mod to set
+   */
   public final void setMod(int mod) {
     this.mod = mod;
   }
 
   // misc
-  /** @return Value with optional mod. e.g. 3/1 or 3 */
+  /**
+   * String form of value with optional modifier e.g. 3/1 or 3.
+   *
+   * @return Value with optional mod. e.g. 3/1 or 3
+   */
   public String valueOptionalMod() {
     String string = "" + value;
     if (0 != mod) {

@@ -7,7 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-/** */
+/** Basic panel main. */
 public class BasicPanelMain { // NO_UCD (unused code)
   /** frame width. */
   static final int FRAME_WIDTH = 800;

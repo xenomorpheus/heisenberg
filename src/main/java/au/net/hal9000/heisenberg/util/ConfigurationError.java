@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.util;
 
 /**
+ * Configuration error.
+ *
  * @author bruins
  * @version $Revision$
  */

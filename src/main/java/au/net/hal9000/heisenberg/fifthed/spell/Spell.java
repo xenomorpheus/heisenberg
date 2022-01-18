@@ -41,12 +41,20 @@ public abstract class Spell {
     return rangeTouch;
   }
 
-  /** @return the actionDuration */
+  /**
+   * The actionDuration.
+   *
+   * @return the actionDuration
+   */
   public ActionDuration getActionDuration() {
     return actionDuration;
   }
 
-  /** @param actionDuration the actionDuration to set */
+  /**
+   * Set the action duration.
+   *
+   * @param actionDuration the actionDuration to set
+   */
   public Spell setCastingTime(ActionDuration actionDuration) {
     this.actionDuration = actionDuration;
     return this;
@@ -82,12 +90,21 @@ public abstract class Spell {
     return this;
   }
 
-  /** @return the spellComponents */
+  /**
+   * Get the spell components
+   *
+   * @return the spellComponents
+   */
   public Set<SpellComponent> getSpellComponents() {
     return spellComponents;
   }
 
-  /** @param spellComponents the spellComponents to set */
+  /**
+   * Set the spell components.
+   *
+   * @param spellComponents the spellComponents to set
+   * @return this
+   */
   public Spell setSpellComponents(Set<SpellComponent> spellComponents) {
     this.spellComponents = spellComponents;
     return this;

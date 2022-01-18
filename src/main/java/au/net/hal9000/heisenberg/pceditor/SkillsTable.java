@@ -11,7 +11,7 @@ import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-/** */
+/** Skills table. */
 public class SkillsTable extends JTable {
 
   /** */

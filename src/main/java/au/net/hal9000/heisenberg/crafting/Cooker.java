@@ -27,7 +27,7 @@ import java.util.TreeMap;
  *   <li>Any new Item objects will be at the newItemLocation.
  * </ol>
  *
- * // Example: // Create a SmallGroundFire. <br>
+ * <p>// Example: // Create a SmallGroundFire. <br>
  * Race pc = new Human("Fred the Fighter"); <br>
  * Cooker cooker = pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>
@@ -69,7 +69,7 @@ public class Cooker extends Location {
   Cooker(final Recipe recipe) {
     super("Cooker");
     this.recipe = recipe;
-    /**
+    /*
      * There may be an exploit in ability to hold items of unlimited weight or volume. <br>
      * Mitigation: Sometimes Ingredients are be checked on entry, but not all methods do. <br>
      * Mitigation: Location of Cooker still needs to be able to hold the weight and volume. But

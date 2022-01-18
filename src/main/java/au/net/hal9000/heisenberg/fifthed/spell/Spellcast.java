@@ -30,7 +30,7 @@ public class Spellcast {
   // We separate the different tests so the spell can override any of them if
   // required.
   /**
-   * Is there sufficient time to perform this action?
+   * Deterine if there is sufficient time to perform this action.
    *
    * @param arena
    * @param target
@@ -41,7 +41,7 @@ public class Spellcast {
   }
 
   /**
-   * Are we within range?
+   * Determine if we are within range.
    *
    * @param arena
    * @param target
@@ -61,14 +61,16 @@ public class Spellcast {
   }
 
   /**
-   * Check spell components
+   * Check spell components.
    *
    * @return
    */
   private boolean isComponentsValid() {
     Set<PlayerCharacterCondition> conditions = self.getConditions();
     for (SpellComponent component : spell.getSpellComponents()) {
-      if (component == SpellComponent.MATERIAL) continue; // Material Components are assumed.
+      if (component == SpellComponent.MATERIAL) {
+        continue; // Material Components are assumed.
+      }
       if (component == SpellComponent.SOMATIC) {
         // At least one free hand
         // Not bound condition, sleeping, etc.

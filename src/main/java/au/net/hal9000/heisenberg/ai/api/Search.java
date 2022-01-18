@@ -6,7 +6,7 @@ public interface Search {
   SuccessorFunction getSuccessorFunction();
 
   /**
-   * set the successor function
+   * set the successor function.
    *
    * @param successorFunction the successor function.
    */

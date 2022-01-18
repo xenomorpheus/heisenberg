@@ -10,6 +10,8 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
+ * Abilty scores table.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */
@@ -49,7 +51,11 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     // Nothing
   }
 
-  /** @author bruins */
+  /**
+   * My table model.
+   *
+   * @author bruins
+   */
   private class MyTableModel extends AbstractTableModel {
     /** */
     private static final long serialVersionUID = 1L;

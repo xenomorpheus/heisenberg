@@ -231,7 +231,7 @@ public class Recipe {
   }
 
   /**
-   * Return the Requirement at the specified index.
+   * Get the Requirement at the specified index.
    *
    * @param index the index of the Requirement requested
    * @return the Requirement at this index.
@@ -243,15 +243,17 @@ public class Recipe {
   // products
 
   /**
-   * Method getProducts.
+   * Get a list of Products.
    *
-   * @return List<Product>
+   * @return List of Products.
    */
   public List<Product> getProducts() {
     return products;
   }
 
   /**
+   * Get the product.
+   *
    * @param index the index of the product we want details of.
    * @return the info for product at the given index.
    */
@@ -259,7 +261,11 @@ public class Recipe {
     return products.get(index);
   }
 
-  /** @return the number of products that this recipe produces. */
+  /**
+   * Get the number of products that this recipe produces.
+   *
+   * @return the number of products that this recipe produces.
+   */
   public final int getProductCount() {
     if (null == products) {
       return 0;
@@ -288,6 +294,8 @@ public class Recipe {
 
   // Misc Methods
   /**
+   * A Cooker object for this recipe.
+   *
    * @param chef The Entity doing the cooking
    * @return A Cooker object for this recipe.
    */
@@ -297,12 +305,20 @@ public class Recipe {
     return cooker;
   }
 
-  /** @return a description */
+  /**
+   * Description as a String.
+   *
+   * @return a description
+   */
   public String toString() {
     return id;
   }
 
-  /** @return a description */
+  /**
+   * Description as a String.
+   *
+   * @return a description
+   */
   String details() {
     StringBuilder string = new StringBuilder();
     string.append("Id: " + id);

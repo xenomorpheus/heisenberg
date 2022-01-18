@@ -430,11 +430,6 @@ public class BasicPanel extends JPanel {
    * @param cons cell constraints.
    */
   private void row4(GridBagLayout gridBag, GridBagConstraints cons) {
-
-    // Row 4
-    Collection<String> sizes = config.getSizes();
-    Collection<String> genders = config.getGenders();
-
     final int row = 4;
     int pos = 0;
 
@@ -448,6 +443,7 @@ public class BasicPanel extends JPanel {
 
     // Size List
     sizeComboBox = new JComboBox<>();
+    Collection<String> sizes = config.getSizes();
     for (String aSize : sizes) {
       sizeComboBox.addItem(aSize);
     }
@@ -470,6 +466,7 @@ public class BasicPanel extends JPanel {
 
     // Gender List
     genderComboBox = new JComboBox<>();
+    Collection<String> genders = config.getGenders();
     for (String aGender : genders) {
       genderComboBox.addItem(aGender);
     }

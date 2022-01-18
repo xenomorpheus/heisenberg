@@ -39,7 +39,11 @@ public abstract class Product {
     return id;
   }
 
-  /** @return Return a description of the object. */
+  /**
+   * Return a description of the object.
+   *
+   * @return Return a description of the object.
+   */
   public String getDescription() {
     return "Id: " + id;
   }

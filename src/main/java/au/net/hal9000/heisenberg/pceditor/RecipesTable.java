@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import org.apache.log4j.Logger;
 
-/** */
+/** Recipe table. */
 public class RecipesTable extends JTable {
 
   /** serial version id. */

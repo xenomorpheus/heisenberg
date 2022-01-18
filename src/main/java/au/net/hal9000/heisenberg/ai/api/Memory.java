@@ -13,6 +13,10 @@ public interface Memory {
   /** @return created date. */
   Date getCreatedDate();
 
-  /** @return the rate of decay of this Memory. */
+  /**
+   * The rate of decay of this Memory.
+   *
+   * @return the rate of decay of this Memory.
+   */
   double getDecayRate();
 }

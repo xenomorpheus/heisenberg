@@ -59,7 +59,7 @@ public class Configuration {
    * Constructor.
    *
    * @param filename config file to read.
-   * @throws ConfigurationError
+   * @throws ConfigurationError the configuration error.
    */
   public Configuration(String filename) throws ConfigurationError {
     super();
@@ -71,13 +71,17 @@ public class Configuration {
   /**
    * Change a static variable. Required by findbugs.
    *
-   * @param config
+   * @param config Configuration.
    */
   private static void setLastConfig(Configuration config) {
     Configuration.lastConfig = config;
   }
 
-  /** @return Return the last config that was read. */
+  /**
+   * Get the last configuration.
+   *
+   * @return Return the last config that was read.
+   */
   public static Configuration lastConfig() {
     if (null == lastConfig) {
       throw new RuntimeException("Please fetch config before using Singleton");
@@ -86,7 +90,11 @@ public class Configuration {
   }
 
   // Getters and Setters
-  /** @return the itemClasses */
+  /**
+   * Get the item classes.
+   *
+   * @return the itemClasses
+   */
   public final Map<String, ItemClassConfiguration> getItemClasses() {
     return itemClasses;
   }
@@ -101,9 +109,9 @@ public class Configuration {
   }
 
   /**
-   * Method getRecipes.
+   * Get the recipes.
    *
-   * @return TreeMap<String,Recipe>
+   * @return Map<String,Recipe>
    */
   public final Map<String, Recipe> getRecipes() {
     return recipes;
@@ -113,7 +121,7 @@ public class Configuration {
   /**
    * Method getPcClasses.
    *
-   * @return TreeMap<String,PcClass>
+   * @return Map<String,PcClass>
    */
   public Map<String, PcClass> getPcClasses() {
     return pcClasses;
@@ -131,9 +139,9 @@ public class Configuration {
 
   // TODO remove/refactor so caller can't modify sizes
   /**
-   * Method getSizes.
+   * Get the sizes.
    *
-   * @return List<String>
+   * @return List of Strings
    */
   public List<String> getSizes() {
     return sizes;
@@ -141,16 +149,16 @@ public class Configuration {
 
   // TODO remove/refactor so caller can't modify genders
   /**
-   * Method getGenders.
+   * Get the genders.
    *
-   * @return List<String>
+   * @return List of Strings.
    */
   public List<String> getGenders() {
     return genders;
   }
 
   /**
-   * Return the sprite sheet details.
+   * Get the sprite sheet details.
    *
    * @return the sprite sheet details
    */
@@ -277,7 +285,7 @@ public class Configuration {
    * Method xmlToPcClasses.
    *
    * @param pcClassesElements Elements
-   * @return TreeMap<String,PcClass>
+   * @return Map<String,PcClass>
    */
   private Map<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
     Map<String, PcClass> classes = new TreeMap<String, PcClass>();
@@ -499,7 +507,7 @@ public class Configuration {
    * Read multiple SkillDetail objects from an XML element.
    *
    * @param element
-   * @return TreeMap of SkillDetail objects.
+   * @return Map of SkillDetail objects.
    */
   private static Map<String, SkillDetail> xmlToSkillDetails(Element element) {
     Elements entries = element.getChildElements("skill");
@@ -610,7 +618,7 @@ public class Configuration {
 
   /**
    * @param spriteSheets Element
-   * @return TreeMap<String,SpriteSheetConfiguration>
+   * @return Map<String, SpriteSheetConfiguration>
    */
   private Map<String, SpriteSheetConfiguration> xmlToSpriteSheets(Element spriteSheets) {
     Elements entries = spriteSheets.getChildElements();
