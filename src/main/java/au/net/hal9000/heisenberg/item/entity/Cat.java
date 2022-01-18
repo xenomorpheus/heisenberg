@@ -6,6 +6,8 @@ import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import javax.persistence.Entity;
 
 /**
+ * Cat.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

@@ -20,20 +20,20 @@ public class FlintAndTinder extends ItemImpl {
   /**
    * Constructor for FlintAndTinder.
    *
-   * @param pName String
+   * @param name String
    */
-  private FlintAndTinder(String pName) {
-    this(pName, "some flint and tinder");
+  private FlintAndTinder(String name) {
+    this(name, "some flint and tinder");
   }
 
   /**
    * Constructor for FlintAndTinder.
    *
-   * @param pName String
+   * @param name String
    * @param pDescription String
    */
-  private FlintAndTinder(String pName, String pDescription) {
-    super(pName, pDescription);
+  private FlintAndTinder(String name, String pDescription) {
+    super(name, pDescription);
   }
 
   // Methods

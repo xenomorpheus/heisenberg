@@ -22,20 +22,20 @@ public class Torch extends Candle {
   /**
    * Constructor for Torch.
    *
-   * @param pName String
+   * @param name String
    * @param pDescription String
    */
-  Torch(String pName, String pDescription) {
-    super(pName, pDescription);
+  Torch(String name, String pDescription) {
+    super(name, pDescription);
   }
 
   /**
    * Constructor for Torch.
    *
-   * @param pName String
+   * @param name String
    */
-  public Torch(String pName) {
-    this(pName, "a short wooden rod tipped with cloth soaked in oil");
+  public Torch(String name) {
+    this(name, "a short wooden rod tipped with cloth soaked in oil");
   }
 
   /**

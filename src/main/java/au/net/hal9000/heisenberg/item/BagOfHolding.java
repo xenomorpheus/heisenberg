@@ -88,10 +88,10 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    * <p>Note: Use only objects as params if you want Factory to work.
    *
    * @param type type of bag I-IV
-   * @param pName name to use.
+   * @param name name to use.
    */
-  public BagOfHolding(Integer type, String pName) {
-    super(pName);
+  public BagOfHolding(Integer type, String name) {
+    super(name);
     this.setType(type);
     ItemProperty.setMagical(this, true);
   }

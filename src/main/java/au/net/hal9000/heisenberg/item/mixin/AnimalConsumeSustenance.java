@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.item.entity.EntityItem;
 public class AnimalConsumeSustenance {
 
   /**
-   * Eat
+   * Eat.
    *
    * @param animal that which is doing the eating.
    * @param food that which is eaten.
@@ -20,7 +20,7 @@ public class AnimalConsumeSustenance {
   }
 
   /**
-   * Drink
+   * Drink.
    *
    * @param animal that which is doing the drinking.
    * @param drink that which is eaten.

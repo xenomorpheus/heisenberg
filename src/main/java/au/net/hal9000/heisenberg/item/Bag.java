@@ -33,10 +33,10 @@ public class Bag extends Box {
   /**
    * Constructor.
    *
-   * @param pName the name of the bag.
+   * @param name the name of the bag.
    */
-  public Bag(final String pName) {
-    super(pName);
+  public Bag(final String name) {
+    super(name);
     setDescription("A common cloth sack about 2 feet by 4 feet in size.");
     this.setWeightMax(WEIGHT_MAX_DEFAULT);
     this.setVolumeMax(VOLUME_MAX_DEFAULT);

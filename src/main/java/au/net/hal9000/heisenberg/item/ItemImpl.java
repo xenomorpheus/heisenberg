@@ -87,7 +87,7 @@ public abstract class ItemImpl implements Serializable, Item {
   private float volumeBase = 0;
   /** The weight, excludes contents if this is a container. */
   private float weightBase = 0;
-  /** Icon to show in swing */
+  /** Icon to show in swing. */
   private ItemIcon itemIcon = null;
 
   // Constructors
@@ -322,37 +322,79 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ItemImpl other = (ItemImpl) obj;
     if (id == null) {
-      if (other.id != null) return false;
-    } else if (!id.equals(other.id)) return false;
+      if (other.id != null) {
+        return false;
+      }
+    } else if (!id.equals(other.id)) {
+      return false;
+    }
     // Code almost certainly won't reach here as id values are random and
     // very likely to be different.
     if (description == null) {
-      if (other.description != null) return false;
-    } else if (!description.equals(other.description)) return false;
-    if (Float.floatToIntBits(hitPoints) != Float.floatToIntBits(other.hitPoints)) return false;
+      if (other.description != null) {
+        return false;
+      }
+    } else if (!description.equals(other.description)) {
+      return false;
+    }
+    if (Float.floatToIntBits(hitPoints) != Float.floatToIntBits(other.hitPoints)) {
+      return false;
+    }
     if (itemIcon == null) {
-      if (other.itemIcon != null) return false;
-    } else if (!itemIcon.equals(other.itemIcon)) return false;
-    if (jpaId != other.jpaId) return false;
+      if (other.itemIcon != null) {
+        return false;
+      }
+    } else if (!itemIcon.equals(other.itemIcon)) {
+      return false;
+    }
+    if (jpaId != other.jpaId) {
+      return false;
+    }
     if (name == null) {
-      if (other.name != null) return false;
-    } else if (!name.equals(other.name)) return false;
+      if (other.name != null) {
+        return false;
+      }
+    } else if (!name.equals(other.name)) {
+      return false;
+    }
     if (position == null) {
-      if (other.position != null) return false;
-    } else if (!position.equals(other.position)) return false;
+      if (other.position != null) {
+        return false;
+      }
+    } else if (!position.equals(other.position)) {
+      return false;
+    }
     if (properties == null) {
-      if (other.properties != null) return false;
-    } else if (!properties.equals(other.properties)) return false;
+      if (other.properties != null) {
+        return false;
+      }
+    } else if (!properties.equals(other.properties)) {
+      return false;
+    }
     if (valueBase == null) {
-      if (other.valueBase != null) return false;
-    } else if (!valueBase.equals(other.valueBase)) return false;
-    if (Float.floatToIntBits(volumeBase) != Float.floatToIntBits(other.volumeBase)) return false;
-    if (Float.floatToIntBits(weightBase) != Float.floatToIntBits(other.weightBase)) return false;
+      if (other.valueBase != null) {
+        return false;
+      }
+    } else if (!valueBase.equals(other.valueBase)) {
+      return false;
+    }
+    if (Float.floatToIntBits(volumeBase) != Float.floatToIntBits(other.volumeBase)) {
+      return false;
+    }
+    if (Float.floatToIntBits(weightBase) != Float.floatToIntBits(other.weightBase)) {
+      return false;
+    }
     return true;
   }
 

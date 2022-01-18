@@ -92,15 +92,25 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ActionAgentMoveAbsoluteImpl other = (ActionAgentMoveAbsoluteImpl) obj;
     if (Double.doubleToLongBits(getCost()) != Double.doubleToLongBits(other.getCost()))
       return false;
     if (agentPositionTarget == null) {
-      if (other.getAgentTarget() != null) return false;
-    } else if (!agentPositionTarget.equals(other.getAgentTarget())) return false;
+      if (other.getAgentTarget() != null) {
+        return false;
+      }
+    } else if (!agentPositionTarget.equals(other.getAgentTarget())) {
+      return false;
+    }
     return true;
   }
 }

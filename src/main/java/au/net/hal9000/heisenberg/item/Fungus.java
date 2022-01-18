@@ -4,6 +4,8 @@ package au.net.hal9000.heisenberg.item;
 import javax.persistence.Entity;
 
 /**
+ * A Fungus.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

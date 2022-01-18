@@ -165,14 +165,26 @@ public class SearchAStarGraphTest {
 
     @Override
     public boolean equals(Object obj) {
-      if (this == obj) return true;
-      if (obj == null) return false;
-      if (getClass() != obj.getClass()) return false;
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
       MyModelState other = (MyModelState) obj;
-      if (!getOuterType().equals(other.getOuterType())) return false;
+      if (!getOuterType().equals(other.getOuterType())) {
+        return false;
+      }
       if (agentPosition == null) {
-        if (other.agentPosition != null) return false;
-      } else if (!agentPosition.equals(other.agentPosition)) return false;
+        if (other.agentPosition != null) {
+          return false;
+        }
+      } else if (!agentPosition.equals(other.agentPosition)) {
+        return false;
+      }
       return true;
     }
   }

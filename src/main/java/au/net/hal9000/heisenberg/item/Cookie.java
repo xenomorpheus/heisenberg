@@ -24,21 +24,21 @@ public class Cookie extends ItemImpl implements HumanoidFood {
   /**
    * Constructor for Cookie.
    *
-   * @param pName String
+   * @param name String
    */
-  public Cookie(String pName) {
-    super(pName);
+  public Cookie(String name) {
+    super(name);
     ItemProperty.setHumanoidFood(this, true);
   }
 
   /**
    * Constructor for Cookie.
    *
-   * @param pName String
+   * @param name String
    * @param pDescription String
    */
-  Cookie(String pName, String pDescription) {
-    super(pName, pDescription);
+  Cookie(String name, String pDescription) {
+    super(name, pDescription);
   }
 
   // Methods

@@ -77,9 +77,15 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ModelStateAgentGoalImpl other = (ModelStateAgentGoalImpl) obj;
     if (agentPosition == null) {
       if (other.agentPosition != null) return false;

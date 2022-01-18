@@ -46,7 +46,11 @@ public class Scabbard extends Box {
     // TODO set max volume & weight to that of a sword.
   }
 
-  /** {@inheritDoc} * @param item Item */
+  /**
+   * {@inheritDoc}
+   *
+   * @param item Item
+   */
   @Override
   public void add(Item item) {
     // We need to accept all Items, not just swords,

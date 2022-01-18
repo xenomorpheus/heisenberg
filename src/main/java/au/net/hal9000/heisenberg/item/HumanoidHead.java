@@ -18,10 +18,10 @@ public class HumanoidHead extends Location {
   /**
    * Constructor for HumanoidHead.
    *
-   * @param pName String
+   * @param name String
    */
-  private HumanoidHead(String pName) {
-    super(pName);
+  private HumanoidHead(String name) {
+    super(name);
     ItemProperty.setLiving(this, true);
   }
 

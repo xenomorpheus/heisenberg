@@ -43,10 +43,10 @@ public abstract class Race extends EntityItem {
   /**
    * Constructor for Race.
    *
-   * @param pName String
+   * @param name String
    */
-  protected Race(String pName) {
-    this(pName, "");
+  protected Race(String name) {
+    this(name, "");
   }
 
   /**
@@ -62,11 +62,11 @@ public abstract class Race extends EntityItem {
   /**
    * Give me a PC that is a {@link PcClass} (e.g. Warrior).
    *
-   * @param pName String
+   * @param name String
    * @param pPcClass PcClass
    */
-  protected Race(String pName, PcClass pPcClass) {
-    this(pName);
+  protected Race(String name, PcClass pPcClass) {
+    this(name);
     pcClass = pPcClass;
     init();
   }
@@ -154,32 +154,32 @@ public abstract class Race extends EntityItem {
     this.generalDice = generalDice;
   }
 
-  /** @return the encumbrance */
+  /** @return the encumbrance. */
   public final int getEncumbrance() {
     return encumbrance;
   }
 
-  /** @param encumbrance the encumbrance to set */
+  /** @param encumbrance the encumbrance to set. */
   public final void setEncumbrance(final int encumbrance) {
     this.encumbrance = encumbrance;
   }
 
-  /** @return the health */
+  /** @return the health. */
   public final int getHealth() {
     return health;
   }
 
-  /** @param health the health to set */
+  /** @param health the health to set. */
   public final void setHealth(final int health) {
     this.health = health;
   }
 
-  /** @return the abilityScores */
+  /** @return the abilityScores. */
   public final Map<String, AbilityScore> getAbilityScores() {
     return abilityScores;
   }
 
-  /** @param abilityScores the abilityScores to set */
+  /** @param abilityScores the abilityScores to set. */
   public final void setAbilityScores(Map<String, AbilityScore> abilityScores) {
     this.abilityScores = abilityScores;
   }

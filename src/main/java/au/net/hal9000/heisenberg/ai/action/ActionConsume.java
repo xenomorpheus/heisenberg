@@ -70,16 +70,30 @@ public final class ActionConsume extends ActionBase {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ActionConsume other = (ActionConsume) obj;
     if (consumable == null) {
-      if (other.consumable != null) return false;
-    } else if (!consumable.equals(other.consumable)) return false;
+      if (other.consumable != null) {
+        return false;
+      }
+    } else if (!consumable.equals(other.consumable)) {
+      return false;
+    }
     if (consumer == null) {
-      if (other.consumer != null) return false;
-    } else if (!consumer.equals(other.consumer)) return false;
+      if (other.consumer != null) {
+        return false;
+      }
+    } else if (!consumer.equals(other.consumer)) {
+      return false;
+    }
     return true;
   }
 }

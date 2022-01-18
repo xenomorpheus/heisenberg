@@ -22,20 +22,20 @@ public class SmallGroundFire extends ItemImpl {
   /**
    * Constructor for SmallGroundFire.
    *
-   * @param pName String
+   * @param name String
    */
-  private SmallGroundFire(String pName) {
-    this(pName, "a small ground fire");
+  private SmallGroundFire(String name) {
+    this(name, "a small ground fire");
   }
 
   /**
    * Constructor for SmallGroundFire.
    *
-   * @param pName String
+   * @param name String
    * @param pDescription String
    */
-  private SmallGroundFire(String pName, String pDescription) {
-    super(pName, pDescription);
+  private SmallGroundFire(String name, String pDescription) {
+    super(name, pDescription);
   }
 
   // Methods

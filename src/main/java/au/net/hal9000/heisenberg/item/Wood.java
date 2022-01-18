@@ -25,20 +25,20 @@ public class Wood extends ItemImpl implements SplitByWeight {
   /**
    * Constructor for Wood.
    *
-   * @param pName String
+   * @param name String
    */
-  public Wood(String pName) {
-    this(pName, "some wood");
+  public Wood(String name) {
+    this(name, "some wood");
   }
 
   /**
    * Constructor for Wood.
    *
-   * @param pName String
+   * @param name String
    * @param pDescription String
    */
-  public Wood(String pName, String pDescription) {
-    super(pName, pDescription);
+  public Wood(String name, String pDescription) {
+    super(name, pDescription);
   }
 
   // Methods

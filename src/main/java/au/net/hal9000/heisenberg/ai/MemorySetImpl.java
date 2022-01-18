@@ -78,13 +78,23 @@ public class MemorySetImpl implements MemorySet {
   /** {@inheritDoc} */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     MemorySetImpl other = (MemorySetImpl) obj;
     if (memorySet == null) {
-      if (other.memorySet != null) return false;
-    } else if (!memorySet.equals(other.memorySet)) return false;
+      if (other.memorySet != null) {
+        return false;
+      }
+    } else if (!memorySet.equals(other.memorySet)) {
+      return false;
+    }
     return true;
   }
 

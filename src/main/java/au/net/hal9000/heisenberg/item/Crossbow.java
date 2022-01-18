@@ -4,6 +4,8 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import javax.persistence.Entity;
 
 /**
+ * A Crossbow.
+ *
  * @author bruins
  * @version $Revision: 1.0 $
  */

@@ -92,15 +92,25 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
    */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ActionAgentMoveRelativeImpl other = (ActionAgentMoveRelativeImpl) obj;
     if (Double.doubleToLongBits(getCost()) != Double.doubleToLongBits(other.getCost()))
       return false;
     if (agentPostionDelta == null) {
-      if (other.getPositionDelta() != null) return false;
-    } else if (!agentPostionDelta.equals(other.getPositionDelta())) return false;
+      if (other.getPositionDelta() != null) {
+        return false;
+      }
+    } else if (!agentPostionDelta.equals(other.getPositionDelta())) {
+      return false;
+    }
     return true;
   }
 }

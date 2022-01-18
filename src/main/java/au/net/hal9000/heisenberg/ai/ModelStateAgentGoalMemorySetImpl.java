@@ -75,13 +75,23 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
   /** {@inheritDoc} */
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ModelStateAgentGoalMemorySetImpl other = (ModelStateAgentGoalMemorySetImpl) obj;
     if (memorySet == null) {
-      if (other.memorySet != null) return false;
-    } else if (!memorySet.equals(other.memorySet)) return false;
+      if (other.memorySet != null) {
+        return false;
+      }
+    } else if (!memorySet.equals(other.memorySet)) {
+      return false;
+    }
     return true;
   }
 }

@@ -132,19 +132,37 @@ public class ItemIcon implements Serializable {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ItemIcon other = (ItemIcon) obj;
     if (iconClosed == null) {
-      if (other.iconClosed != null) return false;
-    } else if (!iconClosed.equals(other.iconClosed)) return false;
+      if (other.iconClosed != null) {
+        return false;
+      }
+    } else if (!iconClosed.equals(other.iconClosed)) {
+      return false;
+    }
     if (iconLeaf == null) {
-      if (other.iconLeaf != null) return false;
-    } else if (!iconLeaf.equals(other.iconLeaf)) return false;
+      if (other.iconLeaf != null) {
+        return false;
+      }
+    } else if (!iconLeaf.equals(other.iconLeaf)) {
+      return false;
+    }
     if (iconOpen == null) {
-      if (other.iconOpen != null) return false;
-    } else if (!iconOpen.equals(other.iconOpen)) return false;
+      if (other.iconOpen != null) {
+        return false;
+      }
+    } else if (!iconOpen.equals(other.iconOpen)) {
+      return false;
+    }
     return true;
   }
 

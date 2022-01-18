@@ -35,11 +35,19 @@ public abstract class ActionBase implements Action {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     ActionBase other = (ActionBase) obj;
-    if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost)) return false;
+    if (Double.doubleToLongBits(cost) != Double.doubleToLongBits(other.cost)) {
+      return false;
+    }
     return true;
   }
 }
