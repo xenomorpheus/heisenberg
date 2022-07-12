@@ -10,6 +10,24 @@ The aims of this project are somewhat unconventional:
 2) To have fun.
 3) Develop my Java skills, in particular frameworks commonly used in the workplace.
 
+Building
+=========
+sh build.sh
+
+Running
+========
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home"
+
+The following will run the default application - jbox2d.demo.Main
+java -jar heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
+All main classes:
+java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.jbox2d.demo.Main
+java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
+java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
+java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
+
+
 Background and Inspiration:
 ============================
 
@@ -73,6 +91,4 @@ Java Technologies:
 Other Technologies:
 * XSD - XML checking
 * JBox2d - Physics engine
-
-
 
