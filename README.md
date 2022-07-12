@@ -19,13 +19,19 @@ Running
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home"
 
 The following will run the default application - jbox2d.demo.Main
+
 java -jar heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 All main classes:
+
 java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.jbox2d.demo.Main
+
 java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
+
 java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
+
 java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
+
 
 
 Background and Inspiration:
