@@ -90,7 +90,7 @@
 		</pluginManagement>
 		<plugins>
 			<!-- add to the Jar's manifest to tell it the main. -->
-			<!-- plugin>
+			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptorRefs>
@@ -98,7 +98,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>au.net.hal9000.heisenberg.worldeditor.WorldEditor</mainClass>
+							<mainClass>au.net.hal9000.heisenberg.jbox2d.demo.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -110,7 +110,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin -->
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
