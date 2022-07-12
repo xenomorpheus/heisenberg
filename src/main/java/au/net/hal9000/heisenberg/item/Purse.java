@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.units.Currency;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A common purse for holding coins.

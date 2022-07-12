@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Some common wood.

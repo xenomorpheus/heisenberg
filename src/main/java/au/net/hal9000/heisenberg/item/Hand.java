@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Is like an item except: May wear at most one magical ring. May wear any number of non-magical

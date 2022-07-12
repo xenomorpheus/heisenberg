@@ -3,8 +3,8 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 /**
  * A common Bog for holding multiple Item objects.

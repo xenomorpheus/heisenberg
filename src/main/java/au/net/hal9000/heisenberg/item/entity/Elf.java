@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import au.net.hal9000.heisenberg.util.PcClass;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Elf.

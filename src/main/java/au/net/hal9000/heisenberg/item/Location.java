@@ -10,7 +10,7 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;

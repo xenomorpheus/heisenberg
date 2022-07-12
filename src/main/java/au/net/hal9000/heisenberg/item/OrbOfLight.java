@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 /**
  * A magical Orb of light.

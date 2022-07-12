@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A common torch. e.g. A rod with oil soaked rags on the end.

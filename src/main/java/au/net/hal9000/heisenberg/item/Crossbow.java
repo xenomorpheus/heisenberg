@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A Crossbow.

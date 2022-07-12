@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.api.LightSource;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A simple tallow candle.

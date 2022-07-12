@@ -10,8 +10,8 @@ import au.net.hal9000.heisenberg.item.property.ItemSearch;
 import au.net.hal9000.heisenberg.item.property.ItemSearchExtraDimensional;
 import au.net.hal9000.heisenberg.units.Currency;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 /*
 

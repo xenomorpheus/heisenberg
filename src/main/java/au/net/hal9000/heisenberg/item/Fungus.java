@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 // Persistence
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A Fungus.

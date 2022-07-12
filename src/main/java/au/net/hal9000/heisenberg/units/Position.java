@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.units;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Position {

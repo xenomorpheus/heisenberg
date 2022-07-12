@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import au.net.hal9000.heisenberg.item.api.HumanoidMount;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A common horse.
