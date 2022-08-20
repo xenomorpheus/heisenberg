@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The entry point for the testbed application.
+ * The HunterPreyTestBed is added to the JBox2D physics engine.
  *
  * @author Mike Bruins
  */
