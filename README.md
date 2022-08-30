@@ -17,20 +17,24 @@ sh build.sh
 Running
 ========
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home"
+export CLASSPATH="$HOME/git/Java_Projects/heisenberg/target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 
 The following will run the default application - jbox2d.demo.Main
 
-java -jar heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
 
 All main classes:
 
-java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.jbox2d.demo.Main
+See above for JAVA_HOME and CLASSPATH
 
-java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
+java au.net.hal9000.heisenberg.jbox2d.demo.Main
 
-java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
+java au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
 
-java -cp heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
+java au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
+
+java au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
 
 
 
