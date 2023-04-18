@@ -9,10 +9,20 @@ import au.net.hal9000.heisenberg.item.Bag;
 import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import org.junit.Before;
 import org.junit.Test;
 
 /** */
 public class RequirementItemTest {
+
+  /*
+   */
+
+  @Before
+  public void initialize() {
+    DemoEnvironment.setup();
+  }
 
   /** Method testGetDescription. */
   @Test
