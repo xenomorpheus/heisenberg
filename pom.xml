@@ -111,11 +111,11 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Make sure not to steal focus from Firefox on OSX -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>3.0.0-M5</version>
-		<!-- Make sure not to steal focus from Firefox on OSX -->
+				<version>3.1.2</version>
 				<configuration>
 					<systemProperties>
 						<java.awt.headless>true</java.awt.headless>
