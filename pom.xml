@@ -89,6 +89,7 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
 			<!-- add to the Jar's manifest to tell it the main. -->
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
