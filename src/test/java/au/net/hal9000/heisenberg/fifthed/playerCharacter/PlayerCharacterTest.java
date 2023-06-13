@@ -109,18 +109,18 @@ public class PlayerCharacterTest {
     arena.opponentAdd(opponent);
 
     // Calculate legal actions
-    Set<Class> actions = new HashSet<>();
+    Set<String> actions = new HashSet<>();
     for (Action a : self.getActionsCombat(arena)) {
-      actions.add(a.getClass());
+      actions.add(a.getClass().getName());
     }
-    assertTrue("contains ActionSpellCast", actions.contains(ActionSpellCast.class));
-    assertTrue("contains ActionFullRound", actions.contains(ActionFullRound.class));
-    assertTrue("contains ActionStandard", actions.contains(ActionStandard.class));
-    assertTrue("contains ActionMovement", actions.contains(ActionMovement.class));
+    assertTrue("contains ActionSpellCast", actions.contains(ActionSpellCast.class.getName()));
+    assertTrue("contains ActionFullRound", actions.contains(ActionFullRound.class.getName()));
+    assertTrue("contains ActionStandard", actions.contains(ActionStandard.class.getName()));
+    assertTrue("contains ActionMovement", actions.contains(ActionMovement.class.getName()));
     assertTrue(
-        "contains ActionMovementFiveFootStep", actions.contains(ActionMovementFiveFootStep.class));
-    assertTrue("contains ActionFree", actions.contains(ActionFree.class));
-    assertTrue("contains ActionSwift", actions.contains(ActionSwift.class));
-    assertTrue("contains ActionImmediate", actions.contains(ActionImmediate.class));
+        "contains ActionMovementFiveFootStep", actions.contains(ActionMovementFiveFootStep.class.getName()));
+    assertTrue("contains ActionFree", actions.contains(ActionFree.class.getName()));
+    assertTrue("contains ActionSwift", actions.contains(ActionSwift.class.getName()));
+    assertTrue("contains ActionImmediate", actions.contains(ActionImmediate.class.getName()));
   }
 }
