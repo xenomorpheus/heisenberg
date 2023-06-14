@@ -10,9 +10,14 @@
 	<name>heisenberg</name>
 	<url>http://maven.apache.org</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <maven.compiler.compilerVersion>20</maven.compiler.compilerVersion>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
 	<repositories>
 		<repository>
 			<id>oss.sonatype.org</id>
@@ -21,12 +26,16 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-api</artifactId>
-		    <version>2.19.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
 		<dependency>
 			<groupId>xom</groupId>
 			<artifactId>xom</artifactId>
@@ -89,6 +98,14 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin>
+
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin -->
 			<!-- add to the Jar's manifest to tell it the main. -->
 			<plugin>
@@ -133,7 +150,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--plugin TODO re-enable checkstyle>
+			<!-- TODO re-enable checkstyle -->
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>3.1.1</version>
@@ -153,7 +171,7 @@
 					</goals>
 					</execution>
 				</executions>
-			</plugin-->
+			</plugin> -->
 		</plugins>
 	</build>
 </project>
