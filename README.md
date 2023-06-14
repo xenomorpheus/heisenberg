@@ -96,7 +96,7 @@ Java Technologies:
 * JPA - Persistence API
 * Apache EclipseLink - JPA Implementation, ORM
 * Derby - Data store
-* Log4j - Logging
+* Log4j2 - Logging
 
 Other Technologies:
 * XSD - XML checking
