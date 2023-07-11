@@ -68,9 +68,9 @@ public class PersistenceTest {
     em.close();
   }
 
-  /** Method testContainer. */
+  /** Method testItemContainer. */
   @Test
-  public void testContainer() {
+  public void testItemContainer() {
     Bag bag = new Bag();
     Cookie cookie1 = new Cookie();
     Cookie cookie2 = new Cookie();
