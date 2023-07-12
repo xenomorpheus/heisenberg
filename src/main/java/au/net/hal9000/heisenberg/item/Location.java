@@ -35,20 +35,20 @@ public class Location extends ItemImpl implements ItemContainer {
   /**
    * Constructor for ItemContainer.
    *
-   * @param string String
+   * @param name String
    * @param description String
    */
-  protected Location(String string, String description) {
-    super(string, description);
+  protected Location(String name, String description) {
+    super(name, description);
   }
 
   /**
    * Constructor for ItemContainer.
    *
-   * @param string String
+   * @param name String
    */
-  public Location(String string) {
-    this(string, "Location");
+  public Location(String name) {
+    this(name, "Location");
   }
 
   /**
