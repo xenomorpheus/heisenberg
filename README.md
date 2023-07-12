@@ -106,4 +106,5 @@ java au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
 Test Coverage
 ==============
 mvn jacoco:report
+
 open target/site/jacoco/index.html
