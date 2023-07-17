@@ -28,6 +28,15 @@ public class PersistenceTest {
   }
 
   /**
+   * Method println.
+   *
+   * @param string String
+   */
+  private void println(String string) {
+    // System.out.println(string);
+  }
+
+  /**
    * Method oneOfEachItem.
    *
    * @throws ConfigurationError
@@ -37,33 +46,22 @@ public class PersistenceTest {
     final String persistenceUnitName = "items";
     EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
     EntityManager em = factory.createEntityManager();
-
+    assertNotEquals(0, config.getItemClasses().values().size());
     for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
       String itemClass = itemClassConfiguration.getId();
+      println("Testing " + itemClass);
 
       // Create a new Item
       em.getTransaction().begin();
       Item item = Factory.createItem(itemClass);
       item.setName("This is a " + itemClass + " Name");
       item.setDescription("This is a " + itemClass + " Description");
-      // TODO assertEquals(0L, item.getJpaId());
+      assertEquals(0L, item.getJpaId());
 
       // Persist it
       em.persist(item);
       em.getTransaction().commit();
-      /**
-       * TODO PersistanceTest long jpaId = item.getJpaId(); assertNotEquals(0L, jpaId);
-       *
-       * <p>Query query = em.createQuery("select c from " + itemClass + " c where c.jpaId = " +
-       * jpaId);
-       *
-       * <p>Object resultList = query.getResultList(); //
-       * http://stackoverflow.com/questions/262367/type-safety-unchecked-cast @SuppressWarnings("unchecked")
-       * List<Item> itemList = (List<Item>) resultList; assertEquals("select count", 1,
-       * itemList.size()); for (Item item2 : itemList) { assertEquals("name", "This is a " +
-       * itemClass + " Name", item2.getName()); assertEquals("description", "This is a " + itemClass
-       * + " Description", item2.getDescription()); }
-       */
+      assertNotEquals(0L, item.getJpaId());
     }
     em.close();
   }
