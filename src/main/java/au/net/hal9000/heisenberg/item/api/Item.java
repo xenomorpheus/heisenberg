@@ -9,6 +9,9 @@ import au.net.hal9000.heisenberg.util.ItemIcon;
 import java.util.Properties;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public interface Item {
   /** name of this package. Perhaps move this to config */
   static final String PACKAGE_NAME = "au.net.hal9000.heisenberg.item";

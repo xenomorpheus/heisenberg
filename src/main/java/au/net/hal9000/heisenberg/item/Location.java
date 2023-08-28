@@ -10,7 +10,17 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;
@@ -24,12 +34,17 @@ public class Location extends ItemImpl implements ItemContainer {
   private static final long serialVersionUID = 1L;
   /** Field LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(Location.class.getName());
+
   /** Field weightMax. */
   private float weightMax = 0;
   /** Field volumeMax. */
   private float volumeMax = 0;
+
+
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "location_item", joinColumns = @JoinColumn(name = "container_id"))
   /** Field contents. */
-  private List<Item> contents = new ArrayList<Item>();
+  protected List<Item> contents = new ArrayList<Item>();
 
   // Constructor
   /**
