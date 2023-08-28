@@ -33,11 +33,12 @@ public class PersistenceTest {
    * @param string String
    */
   private void println(String string) {
-    // System.out.println(string);
+    System.out.println(string);
   }
 
   /**
    * Method oneOfEachItem.
+   * One of every type of Item, but none contain another Item.
    *
    * @throws ConfigurationError
    */
@@ -68,7 +69,35 @@ public class PersistenceTest {
 
   /** Method testItemContainer. */
   @Test
-  public void testItemContainer() {
+  public void testItemContainerAddAfterPersist() {
+    Cookie cookie1 = new Cookie();
+
+    final String persistenceUnitName = "items";
+    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+    EntityManager em = factory.createEntityManager();
+
+    // Persist Cookie
+    em.getTransaction().begin();
+    assertEquals(0L, cookie1.getJpaId());
+    em.persist(cookie1);
+    assertNotEquals(0L, cookie1.getJpaId());
+    em.getTransaction().commit();
+
+    // Persist Location holding a Cookie
+    em.getTransaction().begin();
+    Location location = new Location();
+    location.add(cookie1);
+    assertEquals(0L, location.getJpaId());
+    em.persist(location);
+    em.getTransaction().commit();
+    assertNotEquals(0L, location.getJpaId());
+
+    em.close();
+  }
+
+  /** Method testItemContainer. */
+  @Test
+  public void testItemContainerAddBeforePersist() {
     Bag bag = new Bag();
     Cookie cookie1 = new Cookie();
     Cookie cookie2 = new Cookie();
@@ -84,14 +113,13 @@ public class PersistenceTest {
 
     // Persist it
     em.getTransaction().begin();
-    em.persist(bag);
     em.persist(cookie1);
     em.persist(cookie2);
-    em.getTransaction().commit();
-    assertNotEquals(0L, bag.getJpaId());
+    em.persist(bag);
     assertNotEquals(0L, cookie1.getJpaId());
     assertNotEquals(0L, cookie2.getJpaId());
-
+    assertNotEquals(0L, bag.getJpaId());
+    em.getTransaction().commit();
     em.close();
   }
 
