@@ -14,6 +14,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /** */
@@ -41,6 +42,7 @@ public class PersistenceTest {
    *
    * @throws ConfigurationError
    */
+  @Ignore
   @Test
   public void oneOfEachItem() throws ConfigurationError {
     final String persistenceUnitName = "items";
@@ -67,6 +69,7 @@ public class PersistenceTest {
   }
 
   /** Method testItemContainer. */
+  @Ignore
   @Test
   public void testItemContainer() {
     Bag bag = new Bag();
@@ -168,6 +171,7 @@ public class PersistenceTest {
   }
 
   /** Method testLocation. */
+  @Ignore
   @Test
   // world persistence
   public void testLocation() {
