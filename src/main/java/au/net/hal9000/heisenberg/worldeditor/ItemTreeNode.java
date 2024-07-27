@@ -66,8 +66,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public int getIndex(TreeNode node) {
-    LOGGER.info("getIndex - item " + item);
-    LOGGER.info("getIndex - node " + node + " of " + node.getClass());
+    LOGGER.trace("getIndex - item " + item);
+    LOGGER.trace("getIndex - node " + node + " of " + node.getClass());
     int index = -1;
     if (node instanceof ItemTreeNode) {
       Item nodeItem = ((ItemTreeNode) node).getItem();
@@ -90,7 +90,7 @@ public class ItemTreeNode implements MutableTreeNode {
               + " of "
               + node.getClass());
     }
-    LOGGER.info("getIndex - index " + index);
+    LOGGER.trace("getIndex - index " + index);
     return index;
   }
 
