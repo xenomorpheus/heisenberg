@@ -180,12 +180,10 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public void setUserObject(Object object) {
-    if (object instanceof String) {
-      item.setName((String) object);
-    } else {
-      LOGGER.error(
-          "setUserObject failed as wrong type for item " + item + " type " + object.getClass());
-    }
+    LOGGER.info("TODO setUserObject item '" + item + "' was passed object " + object.getClass());
+    // if (object instanceof Item) {
+    //   item = (Item) object;
+    // }
   }
 
   @Override
