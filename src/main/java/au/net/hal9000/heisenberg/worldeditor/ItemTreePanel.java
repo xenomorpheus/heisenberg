@@ -185,49 +185,48 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     }
 
     public void actionPerformed(ActionEvent event) {
-
       Object selectedObject = tree.getLastSelectedPathComponent();
-      if (selectedObject instanceof MutableTreeNode) {
-        MutableTreeNode treeNode = (MutableTreeNode) selectedObject;
-        if (treeNode.getAllowsChildren()) {
-          // Create an Item of the requested type.
-          String itemClass = itemClassesList.getSelectedItem().toString();
-          Item childItem = Factory.createItem(itemClass);
-          MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
-          // Add the new Item to the selected container.
-
-          // TODO Bugfix the UI isn't being updated when new
-          // Item objects added to container.
-          // Is anything listening to the changes in the
-          // container?
-          // Perhaps the model?
-          int insertIndex = 0;
-          if (treeNode instanceof ItemTreeNode) { // Add to end
-            ItemTreeNode itemTreeNode = (ItemTreeNode) treeNode;
-            ItemContainer container = (ItemContainer) itemTreeNode.getItem();
-
-            insertIndex = container.size();
-            itemTreeNode.insert(childTreeNode, insertIndex);
-            LOGGER.warn("newTreeNode is " + childTreeNode);
-
-            TreePath path = getPathToNode(treeNode);
-            LOGGER.warn("path is " + path);
-
-            // fireTreeNodesInserted
-            treeModel.valueForPathChanged(path, childItem);
-          }
-
-          // tree.scrollPathToVisible(path);
-          // tree.setSelectionPath(path);
-          // tree.startEditingAtPath(path);
-        } else {
-          LOGGER.warn(treeNode + " does not allow addition of items");
-          toolkit.beep();
-        }
-      } else {
+      if (selectedObject == null) {
+        toolkit.beep();
+        LOGGER.warn("No component was selected");
+        return;
+      }
+      if (!(selectedObject instanceof MutableTreeNode)) {
         toolkit.beep();
         LOGGER.warn(selectedObject + " is not a MutableTreeNode");
+        return;
       }
+
+      MutableTreeNode parent = (MutableTreeNode) selectedObject;
+      if (!parent.getAllowsChildren()) {
+        LOGGER.warn(parent + " does not allow addition of items");
+        toolkit.beep();
+        return;
+      }
+
+      // Create an Item of the requested type.
+      String itemClass = itemClassesList.getSelectedItem().toString();
+      Item childItem = Factory.createItem(itemClass);
+      MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
+
+      if (!(parent instanceof ItemTreeNode)) {
+        LOGGER.warn(parent + " treeNode, is not an instanceof ItemTreeNode");
+        toolkit.beep();
+        return;
+      }
+      // Append to selected node
+      ItemTreeNode itemTreeNode = (ItemTreeNode) parent;
+      ItemContainer container = (ItemContainer) itemTreeNode.getItem();
+      int insertIndex = container.size();
+      itemTreeNode.insert(childTreeNode, insertIndex);
+
+
+      TreePath path = getPathToNode(parent);
+      LOGGER.warn("path: " + path+", insertIndex: " + insertIndex+", newTreeNode: " + childTreeNode);
+      // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
+      // ((DefaultTreeModel) tree.getModel()).nodesWereInserted(itemTreeNode,new int[]{insertIndex});
+
+      ((DefaultTreeModel) tree.getModel()).nodeStructureChanged(itemTreeNode);
     }
   }
 }
