@@ -145,9 +145,9 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
      */
 
     // int index = e.getChildIndices()[0];
-    // node = (DefaultMutableTreeNode) (node.getChildAt(index));
+    // DefaultMutableTreeNode node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-    LOGGER.warn("The user has finished editing the node " + o + ", " + o.getClass());
+    LOGGER.info("treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
     // LOGGER.debug("New value: " + node.getUserObject());
   }
 
