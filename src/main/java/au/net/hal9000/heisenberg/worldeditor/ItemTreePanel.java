@@ -155,28 +155,28 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   @Override
   public void treeNodesInserted(TreeModelEvent e) {
     // TODO finish treeNodesInserted
-    throw new RuntimeException("Node Inserted.");
+    LOGGER.info("TODO treeNodesInserted: " + e.toString());
   }
 
   /** {@inheritDoc} */
   @Override
   public void treeNodesRemoved(TreeModelEvent e) {
     // TODO finish treeNodesRemoved
-    throw new RuntimeException("treeNodesRemoved - Node Removed.");
+    LOGGER.info("TODO treeNodesRemoved: " + e.toString());
   }
 
   /** {@inheritDoc} */
   @Override
   public void treeStructureChanged(TreeModelEvent e) {
     // TODO finish treeStructureChanged
-    throw new RuntimeException("treeStructureChanged - Node Changed.");
+    LOGGER.info("TODO treeStructureChanged: " + e.toString());
   }
 
   /** {@inheritDoc} */
   @Override
-  public void propertyChange(PropertyChangeEvent evt) {
+  public void propertyChange(PropertyChangeEvent e) {
     // TODO Auto-generated method stub propertyChange
-    throw new RuntimeException("propertyChange - Node Changed.");
+    LOGGER.info("TODO propertyChange: " + e.toString());
   }
 
   private class ButtonActionListener implements ActionListener {
