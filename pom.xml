@@ -149,9 +149,9 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>3.1.2</version>
 				<configuration>
-					<systemProperties>
+					<systemPropertyVariables>
 						<java.awt.headless>true</java.awt.headless>
-					</systemProperties>
+					</systemPropertyVariables>
 				</configuration>
 				<executions>
 					<execution>
