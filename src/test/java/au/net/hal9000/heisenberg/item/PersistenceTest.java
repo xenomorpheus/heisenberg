@@ -14,17 +14,29 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 
 /** */
 public class PersistenceTest {
 
   private Configuration config = null;
+  private EntityManager em = null;
 
   @Before
-  public void initialize() {
+  public void initialise() {
     DemoEnvironment.setup();
     config = Configuration.lastConfig();
+
+    final String persistenceUnitName = "items";
+    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+    em = factory.createEntityManager();
+  }
+
+  @After
+  public void finalise() {
+    em.close();
+    em = null;
   }
 
   /**
@@ -43,9 +55,6 @@ public class PersistenceTest {
    */
   @Test
   public void oneOfEachItem() throws ConfigurationError {
-    final String persistenceUnitName = "items";
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    EntityManager em = factory.createEntityManager();
     assertNotEquals(0, config.getItemClasses().values().size());
     for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
       String itemClass = itemClassConfiguration.getId();
@@ -69,7 +78,6 @@ public class PersistenceTest {
       Item retrievedItem = em.find(classExpected, jpaId);
       assertEquals(classExpected, retrievedItem.getClass());
     }
-    em.close();
   }
 
   /** Method testItemContainer. */
@@ -84,11 +92,7 @@ public class PersistenceTest {
     assertEquals(0L, cookie2.getJpaId());
     assertEquals(0L, bag.getJpaId());
 
-    final String persistenceUnitName = "items";
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    EntityManager em = factory.createEntityManager();
-
-    // Persist it
+    // Persist Item
     em.getTransaction().begin();
     em.persist(bag);
     em.persist(cookie1);
@@ -97,8 +101,6 @@ public class PersistenceTest {
     assertNotEquals(0L, bag.getJpaId());
     assertNotEquals(0L, cookie1.getJpaId());
     assertNotEquals(0L, cookie2.getJpaId());
-
-    em.close();
   }
 
   /**
@@ -180,16 +182,11 @@ public class PersistenceTest {
 
     Location loc = testGetWorld();
 
-    final String persistenceUnitName = "items";
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    EntityManager em = factory.createEntityManager();
-
-    // Persist it
+    // Persist Item
     em.getTransaction().begin();
     // TODO use a visitor pattern to persist every item and location.
     em.persist(loc);
     em.getTransaction().commit();
     assertNotEquals(0L, loc.getJpaId());
-    em.close();
   }
 }
