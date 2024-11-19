@@ -111,6 +111,28 @@
 		</pluginManagement>
 		<plugins>
 
+			<!-- https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html -->
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-enforcer-plugin</artifactId>
+		        <version>3.5.0</version>
+		        <executions>
+		          <execution>
+		            <id>enforce-maven</id>
+		            <goals>
+		              <goal>enforce</goal>
+		            </goals>
+		            <configuration>
+		              <rules>
+		                <requireMavenVersion>
+		                  <version>3.9.9</version>
+		                </requireMavenVersion>
+		              </rules>
+		            </configuration>
+		          </execution>
+		        </executions>
+	        </plugin>
+
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
