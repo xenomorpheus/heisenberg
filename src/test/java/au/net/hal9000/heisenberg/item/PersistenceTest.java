@@ -63,20 +63,24 @@ public class PersistenceTest {
       // Create a new Item
       em.getTransaction().begin();
       Item item = Factory.createItem(itemClass);
-      item.setName("This is a " + itemClass + " Name");
-      item.setDescription("This is a " + itemClass + " Description");
+      final String name = "This is a " + itemClass + " Name";
+      item.setName(name);
+      final String description = "This is a " + itemClass + " Description";
+      item.setDescription(description);
       assertEquals(0L, item.getJpaId());
 
-      // Persist it
+      // Persist Item
       em.persist(item);
       em.getTransaction().commit();
       assertNotEquals(0L, item.getJpaId());
       final var jpaId = item.getJpaId();
       final var classExpected = item.getClass();
 
-      // Retrieve it
+      // Retrieve Item
       Item retrievedItem = em.find(classExpected, jpaId);
       assertEquals(classExpected, retrievedItem.getClass());
+      assertEquals(name, retrievedItem.getName());
+      assertEquals(description, retrievedItem.getDescription());
     }
   }
 
