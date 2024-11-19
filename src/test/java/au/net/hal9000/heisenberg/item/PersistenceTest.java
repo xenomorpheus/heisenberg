@@ -62,6 +62,12 @@ public class PersistenceTest {
       em.persist(item);
       em.getTransaction().commit();
       assertNotEquals(0L, item.getJpaId());
+      final var jpaId = item.getJpaId();
+      final var classExpected = item.getClass();
+
+      // Retrieve it
+      Item retrievedItem = em.find(classExpected, jpaId);
+      assertEquals(classExpected, retrievedItem.getClass());
     }
     em.close();
   }
