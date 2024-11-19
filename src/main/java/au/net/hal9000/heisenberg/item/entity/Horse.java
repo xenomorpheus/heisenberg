@@ -18,7 +18,8 @@ public class Horse extends EntityItem implements HumanoidMount {
 
   /** Constructor. */
   public Horse() {
-    this("Horse");
+    super("Horse");
+    ItemProperty.setLiving(this, true);
   }
 
   /**
@@ -26,8 +27,8 @@ public class Horse extends EntityItem implements HumanoidMount {
    *
    * @param name name of Item.
    */
-  private Horse(String name) {
-    super(name);
-    ItemProperty.setLiving(this, true);
+  public Horse(String name) {
+    this();
+    setName(name);
   }
 }

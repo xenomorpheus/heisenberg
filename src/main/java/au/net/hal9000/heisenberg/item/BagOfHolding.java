@@ -84,17 +84,11 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
   /** Bag type I-IV. */
   private int type;
 
-  /**
-   * Constructor.
-   *
-   * <p>Note: Use only objects as params if you want Factory to work.
-   *
-   * @param type type of bag I-IV
-   * @param name name to use.
-   */
-  public BagOfHolding(Integer type, String name) {
-    super(name);
-    this.setType(type);
+
+  /** Constructor. Defaults to type I. */
+  public BagOfHolding() {
+    super("Bag of Holding");
+    setType(TYPE_I); // default type
     ItemProperty.setMagical(this, true);
   }
 
@@ -106,12 +100,21 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    * @param type bag type is I - IV.
    */
   public BagOfHolding(Integer type) {
-    this(type, "Bag of Holding");
+    this();
+    setType(type);
   }
 
-  /** Constructor. Defaults to type I. */
-  public BagOfHolding() {
-    this(TYPE_I); // default type
+  /**
+   * Constructor.
+   *
+   * <p>Note: Use only objects as params if you want Factory to work.
+   *
+   * @param type type of bag I-IV
+   * @param name name to use.
+   */
+  public BagOfHolding(Integer type, String name) {
+    this(type);
+    setName(name);
   }
 
   // Other methods

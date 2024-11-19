@@ -18,7 +18,8 @@ public class Cookie extends ItemImpl implements HumanoidFood {
 
   /** Constructor for Cookie. */
   public Cookie() {
-    this("Cookie");
+    super("Cookie");
+    ItemProperty.setHumanoidFood(this, true);
   }
 
   /**
@@ -27,18 +28,20 @@ public class Cookie extends ItemImpl implements HumanoidFood {
    * @param name String
    */
   public Cookie(String name) {
-    super(name);
-    ItemProperty.setHumanoidFood(this, true);
+    this();
+    setName(name);
   }
 
   /**
    * Constructor for Cookie.
    *
    * @param name String
-   * @param pDescription String
+   * @param description String
    */
-  Cookie(String name, String pDescription) {
-    super(name, pDescription);
+  Cookie(String name, String description) {
+    this();
+    setName(name);
+    setDescription(description);
   }
 
   // Methods

@@ -19,7 +19,8 @@ public class MagicRing extends Ring {
 
   /** Constructor. */
   public MagicRing() {
-    this("MagicRing");
+    super("MagicRing");
+    ItemProperty.setMagical(this, true);
   }
 
   /**
@@ -27,8 +28,8 @@ public class MagicRing extends Ring {
    *
    * @param name name of ring.
    */
-  private MagicRing(String name) {
-    super(name);
-    ItemProperty.setMagical(this, true);
+  public MagicRing(String name) {
+    this();
+    setName(name);
   }
 }

@@ -20,16 +20,17 @@ public class Backpack extends Bag implements HumanoidCoreClothing {
 
   /** Constructor for Backpack. */
   public Backpack() {
-    this("Backpack");
+    super("Backpack");
+    ItemProperty.setClothing(this, true);
   }
 
   /**
    * Constructor for Backpack.
    *
-   * @param pString String
+   * @param name String
    */
-  public Backpack(final String pString) {
-    super(pString);
-    ItemProperty.setClothing(this, true);
+  public Backpack(final String name) {
+    this();
+    setName(name);
   }
 }

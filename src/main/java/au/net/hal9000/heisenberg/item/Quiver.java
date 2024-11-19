@@ -21,7 +21,9 @@ public class Quiver extends Location {
 
   /** Constructor. */
   public Quiver() {
-    this("Quiver");
+    super("Quiver", "Quiver");
+    this.setVolumeMax(VOLUME_MAX_DFT);
+    ItemProperty.setClothing(this, true);
   }
 
   /**
@@ -29,10 +31,9 @@ public class Quiver extends Location {
    *
    * @param name name to use.
    */
-  private Quiver(final String name) {
-    super(name);
-    this.setVolumeMax(VOLUME_MAX_DFT);
-    ItemProperty.setClothing(this, true);
+  public Quiver(final String name) {
+    this();
+    setName(name);
   }
 
   /**

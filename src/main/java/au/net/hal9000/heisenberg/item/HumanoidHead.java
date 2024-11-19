@@ -15,18 +15,20 @@ public class HumanoidHead extends Location {
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
+
+  /** Constructor for HumanoidHead. */
+  public HumanoidHead() {
+    super("Head", "Humanoid head");
+    ItemProperty.setLiving(this, true);
+  }
+
   /**
    * Constructor for HumanoidHead.
    *
    * @param name String
    */
-  private HumanoidHead(String name) {
-    super(name);
-    ItemProperty.setLiving(this, true);
-  }
-
-  /** Constructor for HumanoidHead. */
-  public HumanoidHead() {
-    this("Head");
+  public HumanoidHead(String name) {
+    this();
+    setName(name);
   }
 }
