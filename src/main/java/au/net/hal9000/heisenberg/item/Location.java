@@ -31,6 +31,15 @@ public class Location extends ItemImpl implements ItemContainer {
   /** Field contents. */
   private List<Item> contents = new ArrayList<Item>();
 
+  /**
+   * Constructor for ItemContainer.
+   *
+   * @param string String
+   */
+  public Location() {
+    super();
+  }
+
   // Constructor
   /**
    * Constructor for ItemContainer.
@@ -39,7 +48,9 @@ public class Location extends ItemImpl implements ItemContainer {
    * @param description String
    */
   protected Location(String name, String description) {
-    super(name, description);
+    this();
+    setName(name);
+    setDescription(description);
   }
 
   /**
@@ -48,16 +59,8 @@ public class Location extends ItemImpl implements ItemContainer {
    * @param name String
    */
   public Location(String name) {
-    this(name, "Location");
-  }
-
-  /**
-   * Constructor for ItemContainer.
-   *
-   * @param string String
-   */
-  public Location() {
-    this("Location", "Location");
+    this();
+    setName(name);
   }
 
   // Getters and Setters
