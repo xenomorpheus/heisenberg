@@ -3,9 +3,13 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.util.List;
+import java.util.HashMap;
+
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
@@ -16,36 +20,42 @@ import jakarta.persistence.Persistence;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
+import org.apache.log4j.Logger;
 
 /** */
 public class PersistenceTest {
 
   private Configuration config = null;
+  private EntityManagerFactory factory = null;
   private EntityManager em = null;
+  private static final Logger LOGGER = Logger.getLogger(PersistenceTest.class.getName());
 
   @Before
   public void initialise() {
     DemoEnvironment.setup();
     config = Configuration.lastConfig();
-
-    final String persistenceUnitName = "items";
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    em = factory.createEntityManager();
+    open_db();
   }
 
   @After
   public void finalise() {
+    close_db();
+  }
+
+  private void open_db() {
+    final String persistenceUnitName = "items";
+    factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+    em = factory.createEntityManager();
+  }
+
+  private void close_db() {
     em.close();
     em = null;
   }
 
-  /**
-   * Method println.
-   *
-   * @param string String
-   */
-  private void println(String string) {
-    // System.out.println(string);
+  private void close_then_open_db() {
+    close_db();
+    open_db();
   }
 
   /**
@@ -58,7 +68,7 @@ public class PersistenceTest {
     assertNotEquals(0, config.getItemClasses().values().size());
     for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
       String itemClass = itemClassConfiguration.getId();
-      println("Testing " + itemClass);
+      LOGGER.info("Testing " + itemClass);
 
       // Create a new Item
       em.getTransaction().begin();
@@ -68,13 +78,15 @@ public class PersistenceTest {
       final String description = "This is a " + itemClass + " Description";
       item.setDescription(description);
       assertEquals(0L, item.getJpaId());
+      final var classExpected = item.getClass();
 
       // Persist Item
       em.persist(item);
       em.getTransaction().commit();
-      assertNotEquals(0L, item.getJpaId());
       final var jpaId = item.getJpaId();
-      final var classExpected = item.getClass();
+      assertNotEquals(0L, jpaId);
+
+      close_then_open_db();
 
       // Retrieve Item
       Item retrievedItem = em.find(classExpected, jpaId);
@@ -87,11 +99,13 @@ public class PersistenceTest {
   /** Method testItemContainer. */
   @Test
   public void testItemContainer() {
-    Bag bag = new Bag();
+    Bag bag = new Bag("Bag1");
     Cookie cookie1 = new Cookie();
     Cookie cookie2 = new Cookie();
     bag.add(cookie1);
     bag.add(cookie2);
+    LOGGER.info(bag.detailedDescription());
+    assertEquals(2, bag.getContents().size());
     assertEquals(0L, cookie1.getJpaId());
     assertEquals(0L, cookie2.getJpaId());
     assertEquals(0L, bag.getJpaId());
@@ -102,17 +116,24 @@ public class PersistenceTest {
     em.persist(cookie1);
     em.persist(cookie2);
     em.getTransaction().commit();
-    assertNotEquals(0L, bag.getJpaId());
+    final var bagJpaId = bag.getJpaId();
+    assertNotEquals(0L, bagJpaId);
     assertNotEquals(0L, cookie1.getJpaId());
     assertNotEquals(0L, cookie2.getJpaId());
+
+    close_then_open_db();
+
+    // Fetch the bag and contents.
+    var bagFetched = em.find(Bag.class, bagJpaId);
+    assertEquals(2, bagFetched.getContents().size());
+    LOGGER.info(bagFetched.detailedDescription());
+    LOGGER.info("Bag Contents Count: " + bagFetched.getContents().size());
+    for (var item : bagFetched.getContents()) {
+      LOGGER.info("Content: " + item.detailedDescription());
+    }
   }
 
-  /**
-   * Method testGetWorld.
-   *
-   * @return Location
-   */
-  public static Location testGetWorld() {
+  private static Location testGetWorld() {
     // Ad-hoc test world
     Location world = new Location("World");
     world.setWeightMax(100000);
@@ -179,18 +200,77 @@ public class PersistenceTest {
     return world;
   }
 
-  /** Method testLocation. */
+  private class MyItemVisitor implements ItemVisitor {
+
+    private HashMap<String,Integer>summary = new HashMap<>();
+
+    private void incrementCount(Item item){
+      var className = item.getSimpleClassName();
+      if (summary.containsKey(className)){
+        summary.merge(className, 1, Integer::sum);
+      }
+      else{
+        summary.put(className, 1);
+      }
+    }
+
+    private void printSummary(){
+      for (final var entry: summary.entrySet()){
+        LOGGER.info("ClassName: "+entry.getKey()+", count: "+entry.getValue());
+      }
+    }
+
+    public HashMap<String,Integer> summary(){
+      return summary;
+    }
+
+    @Override
+    public void visit(Item item) {
+      incrementCount(item);
+      LOGGER.info(item.detailedDescription());
+    }
+
+    @Override
+    public void visit(List<Item> items) {
+      for (var item : items) {
+        incrementCount(item);
+        LOGGER.warn("Content: " + item.detailedDescription());
+      }
+    }
+  }
+
+  /** Method testWorld. */
   @Test
-  // world persistence
-  public void testLocation() {
+  public void testWorld() {
 
-    Location loc = testGetWorld();
+    final long locJpaId;
+    final HashMap<String,Integer> summaryExpect;
+    {
+      Location loc = testGetWorld();
+      var visitor = new MyItemVisitor();
+      loc.accept(visitor);
+      summaryExpect = visitor.summary();
+      visitor.printSummary();
 
-    // Persist Item
-    em.getTransaction().begin();
-    // TODO use a visitor pattern to persist every item and location.
-    em.persist(loc);
-    em.getTransaction().commit();
-    assertNotEquals(0L, loc.getJpaId());
+      // Persist Location
+      em.getTransaction().begin();
+      em.persist(loc);
+      em.getTransaction().commit();
+      locJpaId = loc.getJpaId();
+      assertNotEquals(0L, locJpaId);
+    }
+
+    close_then_open_db();
+
+    {
+      // Retrieve Location
+      final var locFetched = em.find(Location.class, locJpaId);
+
+      var visitor = new MyItemVisitor();
+      locFetched.accept(visitor);
+      var summaryAfter = visitor.summary();
+      assertEquals(summaryExpect, summaryAfter);
+      visitor.printSummary();
+    }
   }
 }
