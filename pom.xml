@@ -31,12 +31,6 @@
             <version>3.0.0-beta2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>3.0.0-beta3</version>
-        </dependency>
-
 		<dependency>
 			<groupId>xom</groupId>
 			<artifactId>xom</artifactId>
@@ -54,7 +48,7 @@
 		<dependency>
 		    <groupId>org.apache.derby</groupId>
 		    <artifactId>derbytools</artifactId>
-		    <version>10.15.2.0</version>
+		    <version>10.17.1.0</version>
 		</dependency>
 
 
@@ -62,7 +56,7 @@
 		<dependency>
 		    <groupId>org.eclipse.persistence</groupId>
 		    <artifactId>org.eclipse.persistence.jpa</artifactId>
-		    <version>5.0.0-B03</version>
+		    <version>5.0.0-B04</version>
 		</dependency>
 
 		<dependency>
