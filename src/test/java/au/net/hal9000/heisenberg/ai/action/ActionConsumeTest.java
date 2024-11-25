@@ -8,6 +8,8 @@ import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
+
 
 public class ActionConsumeTest {
   private static final EntityItem ENTITY = new Elf();
@@ -21,8 +23,9 @@ public class ActionConsumeTest {
   public void setUp() throws Exception {}
 
   @Test
+  @Ignore
   public void testApply() {
-    // TODO fail("TEST not yet implemented");
+    fail("TEST not yet implemented");
   }
 
   @Test
@@ -30,4 +33,11 @@ public class ActionConsumeTest {
     String expect = "ActionConsume=[consumer=" + ENTITY + ",consumable=" + CONSUMABLE + ']';
     assertEquals(expect, actionEat.toString());
   }
+
+  @Test
+  public void testEquals() {
+    ActionConsume actionEat2 = new ActionConsume(ENTITY, CONSUMABLE, COST);
+    assertTrue(actionEat.equals(actionEat2));
+  }
+
 }
