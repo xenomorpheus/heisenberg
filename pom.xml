@@ -51,6 +51,12 @@
 		    <version>10.17.1.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyshared -->
+		<dependency>
+		    <groupId>org.apache.derby</groupId>
+		    <artifactId>derbyshared</artifactId>
+		    <version>10.17.1.0</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
 		<dependency>
