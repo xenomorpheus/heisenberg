@@ -1,14 +1,12 @@
+#!/bin/bash
 
-#  /usr/libexec/java_home -V
+# List available compilers
+# /usr/libexec/java_home -V
+# export JAVA_HOME="`/usr/libexec/java_home -v 16`"
 
-# adoptopenjdk-16 NOT supported by EclipeLink (yet).
+unset JAVA_HOME
 
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home"
-
-# TODO don't delete the database
-rm -fr /tmp/HeisenbergItemDb/
-
-mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-mvn test -B
+# mvn clean test package -f pom.xml
+mvn test package -f pom.xml
 
 # See README.md for running any of the main classes.

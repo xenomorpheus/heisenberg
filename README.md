@@ -83,7 +83,7 @@ sh build.sh
 
 Running
 ========
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home"
+export JAVA_HOME="`/usr/libexec/java_home -v 16`"
 export CLASSPATH="$HOME/git/Java_Projects/heisenberg/target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 
 The following will run the default application - jbox2d.demo.Main
@@ -103,8 +103,3 @@ java au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
 
 java au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
 
-Test Coverage
-==============
-mvn jacoco:report
-
-open target/site/jacoco/index.html
