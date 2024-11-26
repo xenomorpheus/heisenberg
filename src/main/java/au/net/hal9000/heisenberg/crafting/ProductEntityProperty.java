@@ -32,6 +32,8 @@ public class ProductEntityProperty extends Product {
   // Getters
 
   /**
+   * Entity property name.
+   *
    * @return the Entity property name.
    */
   public final String getPropertyName() {
@@ -39,6 +41,8 @@ public class ProductEntityProperty extends Product {
   }
 
   /**
+   * The amount the Entity property will change.
+   *
    * @return the amount the Entity property will change.
    */
   public float getPropertyDelta() {

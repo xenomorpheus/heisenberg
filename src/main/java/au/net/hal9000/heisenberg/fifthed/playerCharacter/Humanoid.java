@@ -14,6 +14,9 @@ import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ A Humanoid shaped PlayerCharacter.
+*/
 public abstract class Humanoid extends PlayerCharacter {
 
   public Humanoid(String name) {
@@ -21,7 +24,9 @@ public abstract class Humanoid extends PlayerCharacter {
   }
 
   @Override
-  /** work out what actions may be performed in this amount of time */
+  /**
+   *  Work out what actions may be performed in this amount of time.
+   */
   public Set<Action> getActionsCombat(CombatArena arena) {
     Set<Action> actions = new HashSet<Action>();
     actions.addAll(super.getActionsCombat(arena));

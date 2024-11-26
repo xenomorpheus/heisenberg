@@ -23,8 +23,8 @@ public enum CreatureSize {
   private int sizeModifierToStealth;
   private double space; // ft
   private double naturalReach; // ft
-  private String typicalHeightLength; // ft
-  private String typicalWeight; // lb
+  private String typicalHeightLength; // imperial description of length
+  private String typicalWeight; // imperial
 
   CreatureSize(
       int sizeModifier,
@@ -88,6 +88,8 @@ public enum CreatureSize {
   }
 
   /**
+   * The typical height/length in imperial measurements.
+   *
    * @return the typicalHeightLength
    */
   public String getTypicalHeightLength() {

@@ -68,6 +68,8 @@ public abstract class Requirement {
   }
 
   /**
+   * Return a description of the object.
+   *
    * @return Return a description of the object.
    */
   String getDescription() {

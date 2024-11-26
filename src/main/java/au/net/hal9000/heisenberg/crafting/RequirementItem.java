@@ -68,6 +68,8 @@ public class RequirementItem extends Requirement {
   // Setters
 
   /**
+   * {@summary The Requirement Item type name as a String.}
+   *
    * @return the itemType
    */
   public final String getItemType() {
@@ -75,7 +77,7 @@ public class RequirementItem extends Requirement {
   }
 
   /**
-   * Method getWeightMin.
+   * {@summary The minimum weight to of the Item to satisfy the Requirement.}
    *
    * @return float
    */

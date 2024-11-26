@@ -136,6 +136,8 @@ public class Recipe {
   private final Set<Skill> skills;
 
   /**
+   * {@summary Recipe constructor. }
+   *
    * @param id Identifier
    * @param description Description.
    * @param process The label for the code to run. e.g. produce new Item objects.
@@ -187,6 +189,8 @@ public class Recipe {
   }
 
   /**
+   * {@summary The label for the process.}
+   *
    * @return the process
    */
   public final String getProcess() {
