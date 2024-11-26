@@ -1,4 +1,7 @@
 
+Checking Code
+================
+mvn validate
 
 Checking POM
 ==================

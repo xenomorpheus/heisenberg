@@ -214,11 +214,10 @@
                 </executions>
             </plugin>
 
-			<!-- TODO re-enable checkstyle -->
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.1.1</version>
+				<version>3.6.0</version>
 				<configuration>
 					<configLocation>google_checks.xml</configLocation>
 					<encoding>UTF-8</encoding>
@@ -235,7 +234,7 @@
 					</goals>
 					</execution>
 				</executions>
-			</plugin> -->
+			</plugin>
 		</plugins>
 	</build>
 </project>
