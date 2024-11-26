@@ -32,8 +32,9 @@ public class CookerTest {
 
   /** test amount of mana. */
   private static final int REQUIRED_MANA = 3;
+
   /** Field REQUIRED_SKILLS. */
-  private static final String[] REQUIRED_SKILLS = new String[] { "Skill0", "Skill1", "Skill2" };
+  private static final String[] REQUIRED_SKILLS = new String[] {"Skill0", "Skill1", "Skill2"};
 
   /** Field config. */
   private Configuration config = null;
@@ -46,8 +47,8 @@ public class CookerTest {
   }
 
   /**
-   * Magically create a Cookie. e.g. using only magic and time. An example of
-   * common use - create an Item.
+   * Magically create a Cookie. e.g. using only magic and time. An example of common use - create an
+   * Item.
    */
   @Test
   public void testItemCreation() {
@@ -150,15 +151,16 @@ public class CookerTest {
     }
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "magicCookie1",
-        "a magic cookie",
-        null,
-        REQUIRED_MANA,
-        REQUIRED_ACTION_POINTS,
-        requirements,
-        skills,
-        products);
+    Recipe recipe =
+        new Recipe(
+            "magicCookie1",
+            "a magic cookie",
+            null,
+            REQUIRED_MANA,
+            REQUIRED_ACTION_POINTS,
+            requirements,
+            skills,
+            products);
 
     // Set the chef
     Race chef = new Human();
@@ -202,7 +204,8 @@ public class CookerTest {
     // RequirementItem
     // FlintAndTinder (not consumed)
     // Wood, min weight 3.
-    RequirementItem ingredientFlintAndTinder = new RequirementItem("FlintAndTinder", "FlintAndTinder", false, 0);
+    RequirementItem ingredientFlintAndTinder =
+        new RequirementItem("FlintAndTinder", "FlintAndTinder", false, 0);
     requirements.put("FlintAndTinder", ingredientFlintAndTinder);
 
     RequirementItem ingredientWood = new RequirementItem("Wood", "Wood", true, 3);
@@ -233,7 +236,8 @@ public class CookerTest {
     // FlintAndTinder, not consumed
     FlintAndTinder flintAndTinder = new FlintAndTinder();
     world.add(flintAndTinder);
-    RequirementItem ingredientFlintAndTinder = new RequirementItem("FlintAndTinder", "FlintAndTinder", false, 0);
+    RequirementItem ingredientFlintAndTinder =
+        new RequirementItem("FlintAndTinder", "FlintAndTinder", false, 0);
     requirements.put("FlintAndTinder", ingredientFlintAndTinder);
 
     // Wood, min weight 3
@@ -321,7 +325,8 @@ public class CookerTest {
   public void testCookGeneralNull() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
+    Recipe recipe =
+        new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(null);
     cooker.cook();
@@ -332,7 +337,8 @@ public class CookerTest {
   public void testSetChef() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
+    Recipe recipe =
+        new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -355,7 +361,8 @@ public class CookerTest {
   public void testCookGeneralMana1() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe("test-mana-1", "Mana test, just enough.", null, 1, 0, null, null, null);
+    Recipe recipe =
+        new Recipe("test-mana-1", "Mana test, just enough.", null, 1, 0, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -388,7 +395,8 @@ public class CookerTest {
   public void testCookGeneralMana2() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe("test-mana-2", "Mana test, not enough.", null, 3, 0, null, null, null);
+    Recipe recipe =
+        new Recipe("test-mana-2", "Mana test, not enough.", null, 3, 0, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -426,7 +434,8 @@ public class CookerTest {
   public void testCookGeneralMana3() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe("test-mana-3", "Mana test, more than enough.", null, 3, 0, null, null, null);
+    Recipe recipe =
+        new Recipe("test-mana-3", "Mana test, more than enough.", null, 3, 0, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -459,8 +468,9 @@ public class CookerTest {
   public void testCookGeneralActionPoints1() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-actionPoints-1", "ActionPoints test, just enough.", null, 0, 1, null, null, null);
+    Recipe recipe =
+        new Recipe(
+            "test-actionPoints-1", "ActionPoints test, just enough.", null, 0, 1, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -494,8 +504,9 @@ public class CookerTest {
   public void testCookGeneralActionPoints2() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-actionPoints-2", "ActionPoints test, not enough.", null, 0, 3, null, null, null);
+    Recipe recipe =
+        new Recipe(
+            "test-actionPoints-2", "ActionPoints test, not enough.", null, 0, 3, null, null, null);
 
     // Set the chef
     Race chef = new Human();
@@ -531,15 +542,16 @@ public class CookerTest {
   public void testCookGeneralActionPoints3() {
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-actionPoints-3",
-        "ActionPoints test, more than enough.",
-        null,
-        0,
-        3,
-        null,
-        null,
-        null);
+    Recipe recipe =
+        new Recipe(
+            "test-actionPoints-3",
+            "ActionPoints test, more than enough.",
+            null,
+            0,
+            3,
+            null,
+            null,
+            null);
 
     // Set the chef
     Race chef = new Human();
@@ -577,8 +589,9 @@ public class CookerTest {
     }
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-skills-1", "Skill test, just enough.", null, 0, 0, null, skillsRequired, null);
+    Recipe recipe =
+        new Recipe(
+            "test-skills-1", "Skill test, just enough.", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
     Race chef = new Human();
@@ -617,8 +630,9 @@ public class CookerTest {
     skillsRequired.add(new Skill("MissingSkill"));
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-skills-2", "Less skills than required", null, 0, 0, null, skillsRequired, null);
+    Recipe recipe =
+        new Recipe(
+            "test-skills-2", "Less skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
     Race chef = new Human();
@@ -662,8 +676,9 @@ public class CookerTest {
     skillsGot.add(new Skill("MissingSkill"));
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-skills-3", "More skills than required", null, 0, 0, null, skillsRequired, null);
+    Recipe recipe =
+        new Recipe(
+            "test-skills-3", "More skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
     Race chef = new Human();
@@ -703,15 +718,16 @@ public class CookerTest {
     requirements.put("Cookie", new RequirementItem("Cookie"));
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-item-1",
-        "simplest test of one required item",
-        null,
-        0,
-        0,
-        requirements,
-        null,
-        null);
+    Recipe recipe =
+        new Recipe(
+            "test-item-1",
+            "simplest test of one required item",
+            null,
+            0,
+            0,
+            requirements,
+            null,
+            null);
 
     // Set the chef
     Race chef = new Human();
@@ -759,15 +775,16 @@ public class CookerTest {
     requirements.put("Cookie", new RequirementItem("Cookie", "Cookie", false, 0));
 
     // Build a recipe with the list of required ingredients
-    Recipe recipe = new Recipe(
-        "test-item-11-catalyst",
-        "simplest test of one required item NOT consumed",
-        null,
-        0,
-        0,
-        requirements,
-        null,
-        null);
+    Recipe recipe =
+        new Recipe(
+            "test-item-11-catalyst",
+            "simplest test of one required item NOT consumed",
+            null,
+            0,
+            0,
+            requirements,
+            null,
+            null);
 
     // Set the chef
     Race chef = new Human();

@@ -12,7 +12,10 @@ public class ActionGeneratorConsumer implements ActionGenerator {
 
   private double consumeDistanceMax;
   private double consumeCost;
-  /** @param consumeCost TODO */
+
+  /**
+   * @param consumeCost TODO
+   */
   public ActionGeneratorConsumer(double distanceMax, double consumeCost) {
     this.consumeDistanceMax = distanceMax;
     this.consumeCost = consumeCost;

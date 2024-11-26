@@ -33,6 +33,7 @@ public class HunterPreyAi {
 
   /** Cat's speed. */
   private static final float HUNTER_NORMAL_SPEED = 4f;
+
   /** Cat's directions count. */
   private static final int HUNTER_DIRECTION_COUNT = 6;
 
@@ -41,29 +42,38 @@ public class HunterPreyAi {
    * Must be greater than POSITON_TOLERANCE
    */
   private static final float HUNTER_STEP_SIZE = 1f;
+
   /**
    * How close together two points are to be considered same.<br>
    * Must be less than HUNTER_STEP_SIZE
    */
   private static final float POSITON_TOLERANCE = 0.5f;
+
   /** Max number of points to consider when planning a path to goal. */
   private static final int FRINGE_MAX = 1000;
 
   // Game Entity objects
   /** JBox2d game object - hunter. */
   private Body hunterBody;
+
   /** JBox2d game object - target e.g. prey. */
   private Body preyBody;
+
   /** AI - path search method. */
   private SearchAStar search;
+
   /** AI - search results. List of actions . */
   private Path hunterPath;
+
   /** hunter - Thinking game item. */
   private EntityItem hunter;
+
   /** prey - Generic game item. */
   private Item prey;
+
   /** world. */
   private Location world;
+
   /** is the test finished. */
   private boolean complete;
 
@@ -221,18 +231,23 @@ public class HunterPreyAi {
   private class RayCastMultipleCallback implements RayCastCallback {
     /** Field RAYCAST_TERMINATE. (value is 0.0) */
     static final float RAYCAST_TERMINATE = 0f;
+
     // static final float RAYCAST_FILTER = -1f;
     /** Field RAYCAST_CONTINUE. (value is 1.0) */
     static final float RAYCAST_CONTINUE = 1f;
 
     /** Field E_MAX_COUNT. (value is 30) */
     static final int E_MAX_COUNT = 30;
+
     /** Field m_points. */
     private Vec2[] m_points = new Vec2[E_MAX_COUNT];
+
     /** Field m_normals. */
     private Vec2[] m_normals = new Vec2[E_MAX_COUNT];
+
     /** Field m_user_data. */
     private Object[] m_user_data = new Object[E_MAX_COUNT];
+
     /** Field m_count. */
     private int m_count;
 
@@ -338,6 +353,7 @@ public class HunterPreyAi {
   private class MyCircle {
     /** middle of circle. */
     public Position position;
+
     /** colour of circle. */
     public Color3f colour;
 

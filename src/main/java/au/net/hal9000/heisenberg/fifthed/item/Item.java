@@ -15,45 +15,61 @@ public abstract class Item {
 
   // Getters and Setters
 
-  /** @return the name */
+  /**
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
-  /** @param name the name to set */
+  /**
+   * @param name the name to set
+   */
   public Item setName(String name) {
     this.name = name;
     return this;
   }
 
-  /** @return the url */
+  /**
+   * @return the url
+   */
   public String getUrl() {
     return url;
   }
 
-  /** @param url the url to set */
+  /**
+   * @param url the url to set
+   */
   public Item setUrl(String url) {
     this.url = url;
     return this;
   }
 
-  /** @return the cost */
+  /**
+   * @return the cost
+   */
   public Currency getCost() {
     return cost;
   }
 
-  /** @param cost the cost to set */
+  /**
+   * @param cost the cost to set
+   */
   public Item setCost(Currency cost) {
     this.cost = cost;
     return this;
   }
 
-  /** @return the weight */
+  /**
+   * @return the weight
+   */
   public float getWeight() {
     return weight;
   }
 
-  /** @param weight the weight to set */
+  /**
+   * @param weight the weight to set
+   */
   public Item setWeight(float weight) {
     this.weight = weight;
     return this;

@@ -24,6 +24,7 @@ import org.junit.Test;
 public class ConfigurationTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.00001f;
+
   /** Field config. */
   private Configuration config = null;
 

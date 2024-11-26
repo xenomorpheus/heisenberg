@@ -10,7 +10,9 @@ import java.util.Date;
  */
 public interface Memory {
 
-  /** @return created date. */
+  /**
+   * @return created date.
+   */
   Date getCreatedDate();
 
   /**

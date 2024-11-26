@@ -22,6 +22,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 public class RequirementItem extends Requirement {
   /** The simple class name of the Item object. */
   private String itemType;
+
   /**
    * Minimum weight of this item.<br>
    * e.g. 3 weight units of wood.<br>
@@ -66,7 +67,9 @@ public class RequirementItem extends Requirement {
 
   // Setters
 
-  /** @return the itemType */
+  /**
+   * @return the itemType
+   */
   public final String getItemType() {
     return itemType;
   }

@@ -20,34 +20,46 @@ public class CombatArena {
     this(self, new TimerRound());
   }
 
-  /** @return the self */
+  /**
+   * @return the self
+   */
   public PlayerCharacter getSelf() {
     return self;
   }
 
-  /** @param self the self to set */
+  /**
+   * @param self the self to set
+   */
   public CombatArena setSelf(PlayerCharacter self) {
     this.self = self;
     return this;
   }
 
-  /** @return the alies */
+  /**
+   * @return the alies
+   */
   public List<PlayerCharacter> getAllies() {
     return allies;
   }
 
-  /** @param alies the alies to set */
+  /**
+   * @param alies the alies to set
+   */
   public CombatArena setAllies(List<PlayerCharacter> alies) {
     this.allies = alies;
     return this;
   }
 
-  /** @return the enemies */
+  /**
+   * @return the enemies
+   */
   public List<PlayerCharacter> getOpponents() {
     return opponents;
   }
 
-  /** @param opponents the enemies to set */
+  /**
+   * @param opponents the enemies to set
+   */
   public CombatArena setOpponents(List<PlayerCharacter> opponents) {
     this.opponents = opponents;
     return this;

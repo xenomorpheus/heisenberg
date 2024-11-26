@@ -14,12 +14,15 @@ public class Purse extends ItemImpl {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
+
   // TODO put in config
   /** conversion of coin count to weight units. */
   public static final float COINS_TO_WEIGHT = 0.1f;
+
   // TODO give value and put in config
   /** conversion of coin count to volume units. */
   public static final float COINS_TO_VOLUME = 0.01f;
+
   /** holder for currency. */
   private Currency coins;
 

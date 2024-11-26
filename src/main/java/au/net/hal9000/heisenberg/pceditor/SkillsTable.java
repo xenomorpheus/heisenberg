@@ -16,6 +16,7 @@ public class SkillsTable extends JTable {
 
   /** column names. */
   private static final String[] COLUMN_NAMES = {"Id", "Description"};
+
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
@@ -40,11 +41,13 @@ public class SkillsTable extends JTable {
   private class MyTableModel extends AbstractTableModel {
     /** serial id. */
     private static final long serialVersionUID = 1L;
+
     /** Field config. */
     private Configuration config = Configuration.lastConfig();
 
     /** Field orderedSkills. */
     private List<Skill> orderedSkills;
+
     /** Field skillDetails. */
     private Map<String, SkillDetail> skillDetails;
 

@@ -24,7 +24,9 @@ public class MemoryOfBarrier extends MemoryAbstract {
     this.barrier = barrier;
   }
 
-  /** @return get the barrier. */
+  /**
+   * @return get the barrier.
+   */
   public Barrier getBarrier() {
     return barrier;
   }

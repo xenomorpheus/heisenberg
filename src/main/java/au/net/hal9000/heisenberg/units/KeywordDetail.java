@@ -11,6 +11,7 @@ package au.net.hal9000.heisenberg.units;
 class KeywordDetail implements Comparable<KeywordDetail> {
   /** the id. */
   private String id;
+
   /** The description of the id. */
   private String description;
 

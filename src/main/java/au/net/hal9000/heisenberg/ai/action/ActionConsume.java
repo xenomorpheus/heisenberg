@@ -14,6 +14,7 @@ public final class ActionConsume extends ActionBase {
 
   /** Entity to eat */
   private Object consumer;
+
   /** Item to be eaten */
   private Object consumable;
 

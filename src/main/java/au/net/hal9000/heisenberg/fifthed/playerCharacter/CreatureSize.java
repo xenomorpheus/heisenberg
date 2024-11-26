@@ -45,42 +45,58 @@ public enum CreatureSize {
     this.typicalWeight = typicalWeight; // lb
   }
 
-  /** @return the sizeModifier */
+  /**
+   * @return the sizeModifier
+   */
   public int getSizeModifier() {
     return sizeModifier;
   }
 
-  /** @return the specialSizeModifier */
+  /**
+   * @return the specialSizeModifier
+   */
   public int getSpecialSizeModifier() {
     return specialSizeModifier;
   }
 
-  /** @return the sizeModifierToFly */
+  /**
+   * @return the sizeModifierToFly
+   */
   public int getSizeModifierToFly() {
     return sizeModifierToFly;
   }
 
-  /** @return the sizeModifierToStealth */
+  /**
+   * @return the sizeModifierToStealth
+   */
   public int getSizeModifierToStealth() {
     return sizeModifierToStealth;
   }
 
-  /** @return the space */
+  /**
+   * @return the space
+   */
   public double getSpace() {
     return space;
   }
 
-  /** @return the naturalReach */
+  /**
+   * @return the naturalReach
+   */
   public double getNaturalReach() {
     return naturalReach;
   }
 
-  /** @return the typicalHeightLength */
+  /**
+   * @return the typicalHeightLength
+   */
   public String getTypicalHeightLength() {
     return typicalHeightLength;
   }
 
-  /** @return the typicalWeight */
+  /**
+   * @return the typicalWeight
+   */
   public String getTypicalWeight() {
     return typicalWeight;
   }

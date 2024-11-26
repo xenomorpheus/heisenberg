@@ -11,26 +11,34 @@ import javax.swing.JTabbedPane;
 public class RaceEditor extends JPanel {
   /** window default x pos. */
   private static final int X_POS = 100;
+
   /** window default y pos. */
   private static final int Y_POS = 100;
+
   /** window width. */
   private static final int WIDTH = 894;
+
   /** window height. */
   private static final int HEIGHT = 634;
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
+
   /** Field Race. */
   private Race Race;
 
   /** Field basicPanel. */
   private BasicPanel basicPanel = new BasicPanel();
+
   /** Field abilityScoresTable. */
   private AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+
   /** Field skillsTable. */
   private SkillsTable skillsTable = new SkillsTable();
+
   /** Field recipesTable. */
   private RecipesTable recipesTable = new RecipesTable();
+
   /** Field descriptionPane. */
   private DescriptionPane descriptionPane = new DescriptionPane();
 

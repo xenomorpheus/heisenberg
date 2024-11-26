@@ -12,9 +12,13 @@ import au.net.hal9000.heisenberg.units.Position;
  */
 public interface ActionAgentMoveAbsolute extends Action {
 
-  /** @return the Agent's desired/target position. */
+  /**
+   * @return the Agent's desired/target position.
+   */
   Position getAgentTarget();
 
-  /** @param position the Agent's desired/target position. */
+  /**
+   * @param position the Agent's desired/target position.
+   */
   void setAgentTarget(Position position);
 }

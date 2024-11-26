@@ -17,8 +17,10 @@ public class SuccessorImpl implements Successor {
 
   /** the new model state if the actor performs this action. */
   private ModelState modelState;
+
   /** the action that led to this ModelState */
   private Action action;
+
   /** the cost of performing this action */
   private double cost;
 

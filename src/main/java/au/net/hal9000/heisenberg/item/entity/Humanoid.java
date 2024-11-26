@@ -12,10 +12,10 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.PcClass;
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Humanoid is more to do with the physical body shape, so can be undead.
@@ -28,18 +28,25 @@ abstract class Humanoid extends Race implements ItemList {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
+
   /** head percentage of max weight and volume. */
   private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
+
   /** left hand percentage of max weight and volume. */
   private static final float LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
+
   /** right hand percentage of max weight and volume. */
   private static final float RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
+
   /** core percentage of max weight and volume. */
   private static final float CORE_PERCENTAGE_MAX_WEIGHT_VOLUME = 36;
+
   /** Field head. */
   private HumanoidHead head = new HumanoidHead();
+
   /** Field leftHand. */
   private Hand leftHand = new Hand("Left Hand");
+
   /** Field rightHand. */
   private Hand rightHand = new Hand("Right Hand");
 
@@ -157,7 +164,9 @@ abstract class Humanoid extends Race implements ItemList {
   }
 
   // Weight and capacity is spread across body.
-  /** @return The max weight that can be carried. */
+  /**
+   * @return The max weight that can be carried.
+   */
   public float getWeightMax() {
     float weightMax = 0;
     return weightMax;

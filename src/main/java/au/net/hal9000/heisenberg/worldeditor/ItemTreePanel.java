@@ -147,7 +147,8 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     // int index = e.getChildIndices()[0];
     // DefaultMutableTreeNode node = (DefaultMutableTreeNode) (node.getChildAt(index));
 
-    LOGGER.info("treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
+    LOGGER.info(
+        "treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
     // LOGGER.debug("New value: " + node.getUserObject());
   }
 
@@ -220,11 +221,12 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       int insertIndex = container.size();
       itemTreeNode.insert(childTreeNode, insertIndex);
 
-
       TreePath path = getPathToNode(parent);
-      LOGGER.warn("path: " + path+", insertIndex: " + insertIndex+", newTreeNode: " + childTreeNode);
+      LOGGER.warn(
+          "path: " + path + ", insertIndex: " + insertIndex + ", newTreeNode: " + childTreeNode);
       // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
-      // ((DefaultTreeModel) tree.getModel()).nodesWereInserted(itemTreeNode,new int[]{insertIndex});
+      // ((DefaultTreeModel) tree.getModel()).nodesWereInserted(itemTreeNode,new
+      // int[]{insertIndex});
 
       ((DefaultTreeModel) tree.getModel()).nodeStructureChanged(itemTreeNode);
     }

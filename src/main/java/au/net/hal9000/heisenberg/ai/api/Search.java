@@ -2,7 +2,9 @@ package au.net.hal9000.heisenberg.ai.api;
 
 public interface Search {
 
-  /** @return the successor function. */
+  /**
+   * @return the successor function.
+   */
   SuccessorFunction getSuccessorFunction();
 
   /**

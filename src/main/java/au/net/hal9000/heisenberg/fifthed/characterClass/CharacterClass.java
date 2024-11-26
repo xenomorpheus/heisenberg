@@ -20,23 +20,31 @@ public abstract class CharacterClass {
 
   // Getters and Setters
 
-  /** @return the name */
+  /**
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
-  /** @param name the name to set */
+  /**
+   * @param name the name to set
+   */
   public CharacterClass setName(String name) {
     this.name = name;
     return this;
   }
 
-  /** @return the level */
+  /**
+   * @return the level
+   */
   public int getClassLevel() {
     return classLevel;
   }
 
-  /** @param classLevel the level to set */
+  /**
+   * @param classLevel the level to set
+   */
   public CharacterClass setClassLevel(int classLevel) {
     this.classLevel = classLevel;
     return this;

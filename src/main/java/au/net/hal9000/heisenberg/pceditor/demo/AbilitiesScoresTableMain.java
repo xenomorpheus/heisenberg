@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 public class AbilitiesScoresTableMain { // NO_UCD (unused code)
   /** frame width. */
   static final int FRAME_WIDTH = 800;
+
   /** frame height. */
   static final int FRAME_HEIGHT = 300;
 

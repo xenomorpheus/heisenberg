@@ -11,6 +11,7 @@ public class RecipesTableMain { // NO_UCD (unused code)
 
   /** frame width. */
   static final int FRAME_WIDTH = 2400;
+
   /** frame height. */
   static final int FRAME_HEIGHT = 300;
 

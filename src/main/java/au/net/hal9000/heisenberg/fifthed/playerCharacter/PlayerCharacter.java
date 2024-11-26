@@ -32,40 +32,54 @@ public abstract class PlayerCharacter {
   }
 
   // Getters and Setters
-  /** @return the name */
+  /**
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
-  /** @param name the name to set */
+  /**
+   * @param name the name to set
+   */
   public PlayerCharacter setName(String name) {
     this.name = name;
     return this;
   }
 
-  /** @return the characterClasses */
+  /**
+   * @return the characterClasses
+   */
   public List<CharacterClass> getCharacterClasses() {
     return characterClasses;
   }
 
-  /** @param characterClasses the characterClasses to set */
+  /**
+   * @param characterClasses the characterClasses to set
+   */
   public PlayerCharacter setCharacterClasses(List<CharacterClass> characterClasses) {
     this.characterClasses = characterClasses;
     return this;
   }
 
-  /** @return the location */
+  /**
+   * @return the location
+   */
   public Position getLocation() {
     return location;
   }
 
-  /** @param location the location to set */
+  /**
+   * @param location the location to set
+   */
   public PlayerCharacter setLocation(Position location) {
     this.location = location;
     return this;
   }
 
-  /** @return the conditions */
+  /**
+   * @return the conditions
+   */
   public Set<PlayerCharacterCondition> getConditions() {
     return conditions;
   }
@@ -83,23 +97,31 @@ public abstract class PlayerCharacter {
     return this;
   }
 
-  /** @return the equipped */
+  /**
+   * @return the equipped
+   */
   public Set<Item> getEquipped() {
     return equipped;
   }
 
-  /** @param equipped the equipped to set */
+  /**
+   * @param equipped the equipped to set
+   */
   public PlayerCharacter setEquipped(Set<Item> equipped) {
     this.equipped = equipped;
     return this;
   }
 
-  /** @return the creatureSize */
+  /**
+   * @return the creatureSize
+   */
   public CreatureSize getCreatureSize() {
     return creatureSize;
   }
 
-  /** @param creatureSize the creatureSize to set */
+  /**
+   * @param creatureSize the creatureSize to set
+   */
   public void setCreatureSize(CreatureSize creatureSize) {
     this.creatureSize = creatureSize;
   }
@@ -165,7 +187,9 @@ public abstract class PlayerCharacter {
     return level;
   }
 
-  /** @return a set of actions that the player character may choose only one to perform. */
+  /**
+   * @return a set of actions that the player character may choose only one to perform.
+   */
   public Set<Action> getActionsCombat(CombatArena arena) {
     Set<Action> actions = new HashSet<Action>();
     if ((characterClasses != null) && (!characterClasses.isEmpty())) {

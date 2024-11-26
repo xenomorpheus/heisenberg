@@ -15,8 +15,10 @@ public abstract class Race extends EntityItem {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
+
   /** How skilled in the chosen profession AKA PcClass. */
   private int level = 0;
+
   /** profession e.g. Soldier, Wizard etc. */
   private PcClass pcClass;
 
@@ -31,10 +33,13 @@ public abstract class Race extends EntityItem {
 
   /** dice to use in general. */
   private int generalDice;
+
   /** Field encumbrance. */
   private int encumbrance;
+
   /** Field health. */
   private int health;
+
   /** Field abilityScores. */
   private Map<String, AbilityScore> abilityScores;
 
@@ -141,57 +146,79 @@ public abstract class Race extends EntityItem {
     return magicDice;
   }
 
-  /** @param magicDice the magicDice to set */
+  /**
+   * @param magicDice the magicDice to set
+   */
   public final void setMagicDice(int magicDice) {
     this.magicDice = magicDice;
   }
 
-  /** @return the stealthDice */
+  /**
+   * @return the stealthDice
+   */
   public final int getStealthDice() {
     return stealthDice;
   }
 
-  /** @param stealthDice the stealthDice to set */
+  /**
+   * @param stealthDice the stealthDice to set
+   */
   public final void setStealthDice(final int stealthDice) {
     this.stealthDice = stealthDice;
   }
 
-  /** @return the generalDice */
+  /**
+   * @return the generalDice
+   */
   public final int getGeneralDice() {
     return generalDice;
   }
 
-  /** @param generalDice the generalDice to set */
+  /**
+   * @param generalDice the generalDice to set
+   */
   public final void setGeneralDice(final int generalDice) {
     this.generalDice = generalDice;
   }
 
-  /** @return the encumbrance. */
+  /**
+   * @return the encumbrance.
+   */
   public final int getEncumbrance() {
     return encumbrance;
   }
 
-  /** @param encumbrance the encumbrance to set. */
+  /**
+   * @param encumbrance the encumbrance to set.
+   */
   public final void setEncumbrance(final int encumbrance) {
     this.encumbrance = encumbrance;
   }
 
-  /** @return the health. */
+  /**
+   * @return the health.
+   */
   public final int getHealth() {
     return health;
   }
 
-  /** @param health the health to set. */
+  /**
+   * @param health the health to set.
+   */
   public final void setHealth(final int health) {
     this.health = health;
   }
 
-  /** @return the abilityScores. */
+  /**
+   * @return the abilityScores.
+   */
   public final Map<String, AbilityScore> getAbilityScores() {
     return abilityScores;
   }
 
-  /** @param abilityScores the abilityScores to set. */
+  /**
+   * @param abilityScores the abilityScores to set.
+   */
   public final void setAbilityScores(Map<String, AbilityScore> abilityScores) {
     this.abilityScores = abilityScores;
   }
@@ -300,7 +327,9 @@ public abstract class Race extends EntityItem {
     health = 0;
   }
 
-  /** @return Plain text description of the object */
+  /**
+   * @return Plain text description of the object
+   */
   public String detailedDescription() {
     StringBuilder text = new StringBuilder();
 

@@ -13,6 +13,7 @@ import org.junit.Test;
 public class DiceTest {
   /** number of tries to see if dice will fail. */
   private static final int TEST_MAX = 10;
+
   /** number of rolls per try . */
   private static final int ROLL_MAX = 10;
 

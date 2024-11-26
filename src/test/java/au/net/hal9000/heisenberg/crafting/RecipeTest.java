@@ -16,17 +16,22 @@ import org.junit.Test;
 public class RecipeTest {
   /** Field PROCESS_NAME. (value is ""process name"") */
   private static final String PROCESS_NAME = "process name";
+
   /** Field REQUIRED_ACTION_POINTS. (value is 42) */
   private static final int REQUIRED_ACTION_POINTS = 42;
+
   /** Field REQUIRED_MANA. (value is 3) */
   private static final int REQUIRED_MANA = 3;
+
   /** Field REQUIRED_SKILLS. */
   private static final String[] REQUIRED_SKILLS = new String[] {"Skill0", "Skill1", "Skill2"};
 
   /** Field simple. */
   private Recipe simple;
+
   /** Field requirementsAll. */
   private Map<String, Requirement> requirementsAll;
+
   /** Field recipeAll. */
   private Recipe recipeAll;
 

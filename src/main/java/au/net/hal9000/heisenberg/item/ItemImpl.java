@@ -8,14 +8,14 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.ItemIcon;
-import java.io.Serializable;
-import java.util.Map.Entry;
-import java.util.Properties;
-import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import java.io.Serializable;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.UUID;
 
 /**
  * Base abstract class for all items in this world.
@@ -71,22 +71,31 @@ public abstract class ItemImpl implements Serializable, Item {
 
   /** where this item is located. */
   private ItemContainer container = null;
+
   /** A short description of the item. */
   private String description = null;
+
   /** The remaining structural integrity of this item. */
   private float hitPoints = 0F;
+
   /** The name of this item. */
   private String name = null;
+
   /** The position within the container. */
   private Position position = null;
+
   /** Misc properties about this item that don't deserve their own setters and getters. */
   private Properties properties = new Properties();
+
   /** The value (in Currency), excludes contents if this is a container. */
   private Currency valueBase = new Currency();
+
   /** The volume, excludes contents if this is a container. */
   private float volumeBase = 0;
+
   /** The weight, excludes contents if this is a container. */
   private float weightBase = 0;
+
   /** Icon to show in swing. */
   private ItemIcon itemIcon = null;
 

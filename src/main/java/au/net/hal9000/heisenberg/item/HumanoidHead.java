@@ -15,7 +15,6 @@ public class HumanoidHead extends Location {
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
-
   /** Constructor for HumanoidHead. */
   public HumanoidHead() {
     super("Head", "Humanoid head");

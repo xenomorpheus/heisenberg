@@ -20,14 +20,19 @@ public class ModelStateHunterPreyAgentGoalMemorySet
 
   /** consider immutable */
   private Object hunter;
+
   /** consider immutable */
   private Object prey;
+
   /** consider mutable */
   private Position agentPosition;
+
   /** consider mutable */
   private Position goalPosition;
+
   /** consider mutable */
   private MemorySet memorySet;
+
   /** consider mutable */
   private boolean preyConsumed;
 

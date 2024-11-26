@@ -7,9 +7,8 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.Ignore;
-
+import org.junit.Test;
 
 public class ActionConsumeTest {
   private static final EntityItem ENTITY = new Elf();
@@ -39,5 +38,4 @@ public class ActionConsumeTest {
     ActionConsume actionEat2 = new ActionConsume(ENTITY, CONSUMABLE, COST);
     assertTrue(actionEat.equals(actionEat2));
   }
-
 }

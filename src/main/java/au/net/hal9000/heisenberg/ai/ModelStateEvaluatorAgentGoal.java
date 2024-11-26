@@ -11,6 +11,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
 
   /** error. */
   private final String GOAL_MAY_MAY_NOT_BE_NULL = "goal may not be null";
+
   /** error. */
   private final String AGENT_MAY_MAY_NOT_BE_NULL = "agent may not be null";
 

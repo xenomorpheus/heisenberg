@@ -15,20 +15,28 @@ public final class ItemProperty {
 
   /** Field AERATION. (value is ""aeration"") */
   static final String AERATION = "aeration";
+
   /** Field ENTERTAINMENT. (value is ""entertainment"") */
   static final String ENTERTAINMENT = "entertainment";
+
   /** Field HYDRATION. (value is ""hydration"") */
   static final String HYDRATION = "hydration";
+
   /** Field IS_CLOTHING. (value is ""is clothing"") */
   private static final String IS_CLOTHING = "is clothing";
+
   /** Field IS_HUMANOID_FOOD. (value is ""is humanoid food"") */
   private static final String IS_HUMANOID_FOOD = "is humanoid food";
+
   /** Field IS_LIVING. (value is ""is living"") */
   private static final String IS_LIVING = "is living";
+
   /** Field IS_MAGICAL. (value is ""is magical"") */
   private static final String IS_MAGICAL = "is magical";
+
   /** Field NOURISHMENT. (value is ""nourishment"") */
   static final String NOURISHMENT = "nourishment";
+
   /** Field REST. (value is ""rest"") */
   static final String REST = "rest";
 

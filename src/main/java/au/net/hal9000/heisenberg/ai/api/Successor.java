@@ -23,6 +23,8 @@ public interface Successor {
    */
   Action getAction();
 
-  /** @return get the cost. */
+  /**
+   * @return get the cost.
+   */
   double getCost();
 }

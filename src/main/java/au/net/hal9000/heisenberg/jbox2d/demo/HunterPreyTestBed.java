@@ -24,28 +24,40 @@ class HunterPreyTestBed extends TestbedTest {
 
   /** Perform vision update every Nth world step. */
   private static final int CAT_AI_UPDATE = 30;
+
   /** Cat's tag. */
   private static final long CAT_TAG = 100L;
+
   /** Rat's tag. */
   private static final long RAT_TAG = 101L;
+
   /** Other wall's tag. */
   private static final long BOUNDARY_TAG = 102L;
+
   /** Barrier's tag. */
   private static final long BARRIER_TAG = 103L;
+
   /** maze position. */
   private static final float BARRIER_OFFSET_X = 5.0f;
+
   /** maze position. */
   private static final float BARRIER_OFFSET_Y = 5.0f;
+
   /** Cat Jbox2d object. */
   private Body catBody;
+
   /** Cat will do a vision update every Nth world step. */
   private int catAiCounter = 0;
+
   /** Rat Jbox2d object. */
   private Body ratBody;
+
   /** AI. */
   private HunterPreyAi hunterPreyAi;
+
   /** JBox Physics Engine world. */
   private World world = null;
+
   /** Debug Graphics object for drawing in JBox Physics Engine world. */
   private DebugDraw debugDraw = null;
 

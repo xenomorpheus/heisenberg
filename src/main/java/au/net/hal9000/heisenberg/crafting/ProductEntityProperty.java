@@ -12,6 +12,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 public class ProductEntityProperty extends Product {
   /** The name of the property we will change in the Entity. */
   private String propertyName;
+
   /** The amount the property we will change in the Entity. */
   private float propertyDelta;
 
@@ -30,12 +31,16 @@ public class ProductEntityProperty extends Product {
 
   // Getters
 
-  /** @return the Entity property name. */
+  /**
+   * @return the Entity property name.
+   */
   public final String getPropertyName() {
     return propertyName;
   }
 
-  /** @return the amount the Entity property will change. */
+  /**
+   * @return the amount the Entity property will change.
+   */
   public float getPropertyDelta() {
     return propertyDelta;
   }

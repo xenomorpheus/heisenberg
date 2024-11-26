@@ -17,11 +17,13 @@ public class DescriptionPane extends JScrollPane {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
+
   /** Logger. */
   private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class.getName());
 
   /** Field pc. */
   private Race pc;
+
   /** Field descriptionTextArea. */
   private JTextArea descriptionTextArea = new JTextArea(30, 25);
 

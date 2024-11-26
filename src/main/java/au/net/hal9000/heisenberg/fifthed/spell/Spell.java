@@ -21,7 +21,9 @@ public abstract class Spell {
 
   // Setters and Getters
 
-  /** @param name the name to set */
+  /**
+   * @param name the name to set
+   */
   public Spell setName(String name) {
     this.name = name;
     return this;
@@ -36,7 +38,9 @@ public abstract class Spell {
     return this;
   }
 
-  /** @return the rangeTouch */
+  /**
+   * @return the rangeTouch
+   */
   public boolean isRangeTouch() {
     return rangeTouch;
   }
@@ -110,71 +114,97 @@ public abstract class Spell {
     return this;
   }
 
-  /** @return the spellSavingThrow */
+  /**
+   * @return the spellSavingThrow
+   */
   public SpellSavingThrow getSpellSavingThrow() {
     return spellSavingThrow;
   }
 
-  /** @param spellSavingThrow the spellSavingThrow to set */
+  /**
+   * @param spellSavingThrow the spellSavingThrow to set
+   */
   public Spell setSpellSavingThrow(SpellSavingThrow spellSavingThrow) {
     this.spellSavingThrow = spellSavingThrow;
     return this;
   }
 
-  /** @return the effectDurationSeconds */
+  /**
+   * @return the effectDurationSeconds
+   */
   public int getEffectDurationSeconds() {
     return effectDurationSeconds;
   }
 
-  /** @param effectDurationSeconds the effectDurationSeconds to set */
+  /**
+   * @param effectDurationSeconds the effectDurationSeconds to set
+   */
   public Spell setEffectDurationSeconds(int effectDurationSeconds) {
     this.effectDurationSeconds = effectDurationSeconds;
     return this;
   }
 
-  /** @return the effectRangeLevelMultiplier */
+  /**
+   * @return the effectRangeLevelMultiplier
+   */
   public int getEffectRangeLevelMultiplier() {
     return effectRangeLevelMultiplier;
   }
 
-  /** @return the description */
+  /**
+   * @return the description
+   */
   public String getDescription() {
     return description;
   }
 
-  /** @param description the description to set */
+  /**
+   * @param description the description to set
+   */
   public Spell setDescription(String description) {
     this.description = description;
     return this;
   }
 
-  /** @return the url */
+  /**
+   * @return the url
+   */
   public String getUrl() {
     return Url;
   }
 
-  /** @param url the url to set */
+  /**
+   * @param url the url to set
+   */
   public Spell setUrl(String url) {
     Url = url;
     return this;
   }
 
-  /** @return the effectAreaType */
+  /**
+   * @return the effectAreaType
+   */
   public EffectArea getEffectAreaType() {
     return effectAreaType;
   }
 
-  /** @return the effectAreaFeet */
+  /**
+   * @return the effectAreaFeet
+   */
   public int getEffectAreaFeet() {
     return effectAreaFeet;
   }
 
-  /** @return the effectRangeBase */
+  /**
+   * @return the effectRangeBase
+   */
   public int getEffectRangeBase() {
     return effectRangeBase;
   }
 
-  /** @param actionDuration the actionDuration to set */
+  /**
+   * @param actionDuration the actionDuration to set
+   */
   public Spell setActionDuration(ActionDuration actionDuration) {
     this.actionDuration = actionDuration;
     return this;
@@ -182,12 +212,16 @@ public abstract class Spell {
 
   // Misc
 
-  /** @return the effectSpellResistance */
+  /**
+   * @return the effectSpellResistance
+   */
   public boolean isEffectSpellResistance() {
     return effectSpellResistance;
   }
 
-  /** @param effectSpellResistance the effectSpellResistance to set */
+  /**
+   * @param effectSpellResistance the effectSpellResistance to set
+   */
   public void setEffectSpellResistance(boolean effectSpellResistance) {
     this.effectSpellResistance = effectSpellResistance;
   }

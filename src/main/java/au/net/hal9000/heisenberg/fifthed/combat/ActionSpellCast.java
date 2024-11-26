@@ -18,12 +18,16 @@ public class ActionSpellCast extends Action {
   }
 
   // Getters and Setters
-  /** @return the spell */
+  /**
+   * @return the spell
+   */
   public Spell getSpell() {
     return spell;
   }
 
-  /** @param spell the spell to set */
+  /**
+   * @param spell the spell to set
+   */
   public void setSpell(Spell spell) {
     this.spell = spell;
   }

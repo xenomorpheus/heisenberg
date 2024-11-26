@@ -8,20 +8,19 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -50,7 +49,9 @@ public class WorldEditorFrame extends JFrame {
   private static final long serialVersionUID = 1L;
 
   /** Persistence Entity Manager. */
-  private EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+  private EntityManagerFactory factory =
+      Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+
   private EntityManager entityManager = null;
 
   /** the Location object at the root of this world. */
@@ -173,7 +174,6 @@ public class WorldEditorFrame extends JFrame {
           }
         });
   }
-
 
   /**
    * set the location.

@@ -13,12 +13,14 @@ import java.util.regex.Pattern;
 public class AbilityScore implements Comparable<AbilityScore> {
   /** name. */
   private String name;
+
   /**
    * value <br>
    * a) For PcClass this is the base prior to modification for levels<br>
    * b) For CharacterSheet this includes the all modifications.
    */
   private int value = 0;
+
   /**
    * modifier<br>
    * a) For PcClass this is the value to add on per level<br>

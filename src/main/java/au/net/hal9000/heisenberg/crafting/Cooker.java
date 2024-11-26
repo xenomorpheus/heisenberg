@@ -42,19 +42,25 @@ public class Cooker extends Location {
 
   /** error message. * */
   static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
+
   /** error message. * */
   static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
+
   /** error message. * */
   private static final String NO_SUCH_REQUIREMENT = "no such requirement";
+
   /** error message. * */
   static final String ALREADY_OCCUPIED = "already occupied";
+
   /** error message. * */
   static final String FAILED_TO_ADD = "failed to add";
 
   /** serial version. */
   private static final long serialVersionUID = 1L;
+
   /** recipe describes the process to make the products. */
   private Recipe recipe = null;
+
   /** The Race doing the cooking. Supplies any actionPoints and mana. */
   private Item chef = null;
 

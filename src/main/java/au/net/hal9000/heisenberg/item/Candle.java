@@ -17,6 +17,7 @@ public class Candle extends ItemImpl implements LightSource {
 
   /** default weight. */
   static final float WEIGHT_DEFAULT = 0.02f;
+
   /** default volume. */
   static final float VOLUME_DEFAULT = 0.02f;
 

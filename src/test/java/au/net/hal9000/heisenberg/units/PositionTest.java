@@ -16,16 +16,22 @@ public class PositionTest {
 
   /** Field TEST_TOLERANCE. (value is 0.01) */
   private static final double TEST_TOLERANCE = 0.01f;
+
   /** Field WITHIN_TOLERANCE. (value is 0.9) */
   private static final double WITHIN_TOLERANCE = 0.9;
+
   /** Field OUTSIDE_TOLERANCE. (value is 1.1) */
   private static final double OUTSIDE_TOLERANCE = 1.1;
+
   /** Field ZERO. (value is 0.0) */
   private static final double ZERO = 0f;
+
   /** Field X_TEST. (value is 1.0) */
   private static final double X_TEST = 1;
+
   /** Field Y_TEST. (value is 2.0) */
   private static final double Y_TEST = 2;
+
   /** Field Z_TEST. (value is 3.0) */
   private static final double Z_TEST = 3;
 

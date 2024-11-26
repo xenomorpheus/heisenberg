@@ -9,11 +9,13 @@ package au.net.hal9000.heisenberg.util;
 public class ItemClassConfiguration {
   /** primary key - The simple class name e.g. Arrow. */
   private String id;
+
   /**
    * The index in the sprite sheet that holds the default icon to display in the UI, when closed in
    * tree view.
    */
   private int iconClosedId;
+
   /**
    * The index in the sprite sheet that holds the default icon to display in the UI, when open in
    * tree view.

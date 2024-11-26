@@ -23,12 +23,16 @@ public class Fighter extends CharacterClass {
   }
 
   // Setters and Getters
-  /** @return the feats */
+  /**
+   * @return the feats
+   */
   public Set<CombatFeat> getCombatFeats() {
     return combatFeats;
   }
 
-  /** @param feats the feats to set */
+  /**
+   * @param feats the feats to set
+   */
   public Fighter setCombatFeats(Set<CombatFeat> feats) {
     this.combatFeats = feats;
     return this;

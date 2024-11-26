@@ -22,10 +22,13 @@ import java.util.Queue;
 public class SearchAStar extends SearchBase {
   /** generates possible Action objects from current ModelState */
   private ActionGenerator actionGenerator;
+
   /** maximum fringe expansion. */
   private int fringeExpansionMax = 0;
+
   /** how many fringe expansions so far */
   private int fringeExpansionCount = 0;
+
   /** */
   private List<ModelState> fringeAdded;
 
@@ -45,7 +48,9 @@ public class SearchAStar extends SearchBase {
   }
 
   // Setters and Getters.
-  /** @return the number of Fringes elements that were expanded. */
+  /**
+   * @return the number of Fringes elements that were expanded.
+   */
   public int getFringeExpansionCount() {
     return fringeExpansionCount;
   }

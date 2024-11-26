@@ -13,6 +13,7 @@ import org.junit.Test;
 public class AbilityScoreTest {
   /** test number for base value. */
   private static final int BASE = 3;
+
   /** test number for mod value. */
   private static final int MODIFIER = 5;
 

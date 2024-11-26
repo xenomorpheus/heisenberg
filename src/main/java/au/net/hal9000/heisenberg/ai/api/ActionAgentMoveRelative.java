@@ -12,9 +12,13 @@ import au.net.hal9000.heisenberg.units.Position;
  */
 public interface ActionAgentMoveRelative extends Action {
 
-  /** @return the amount of movement. */
+  /**
+   * @return the amount of movement.
+   */
   Position getPositionDelta();
 
-  /** @param position the amount of movement to set. */
+  /**
+   * @param position the amount of movement to set.
+   */
   void setPositionDelta(Position position);
 }

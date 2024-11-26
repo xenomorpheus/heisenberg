@@ -24,11 +24,14 @@ public class HunterPreyAiTest {
 
   /** maze position */
   private static final float BARRIER_OFFSET_X = 5.0f;
+
   /** maze position */
   private static final float BARRIER_OFFSET_Y = 5.0f;
+
   /** update Cat AI Plan only every nth step */
   /** Cat Jbox2d object. */
   private Body hunterBody;
+
   /** Rat Jbox2d object. */
   private Body preyBody;
 

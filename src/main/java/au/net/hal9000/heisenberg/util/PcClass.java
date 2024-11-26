@@ -23,29 +23,41 @@ public class PcClass implements Comparable<PcClass> {
   // e.g. "Soldier"
   /** Field id. */
   private String id;
+
   /** combat dice. */
   private int combatDice = 0;
+
   /** magic dice. */
   private int magicDice = 0;
+
   /** stealth dice. */
   private int stealthDice = 0;
+
   /** general dice. */
   private int generalDice = 0;
+
   // misc
   /** Field actionPoints. */
   private int actionPoints = 0;
+
   /** Field health. */
   private int health = 0;
+
   /** Field mana. */
   private int mana = 0;
+
   /** Field raceAllow. */
   private String raceAllow;
+
   /** Field genderAllow. */
   private String genderAllow;
+
   /** Field sizeAllow. */
   private String sizeAllow;
+
   /** Field encumbrance. */
   private int encumbrance = 0;
+
   /** Field abilityScores. */
   private Map<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
 

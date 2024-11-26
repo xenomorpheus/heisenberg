@@ -118,7 +118,8 @@ public class PlayerCharacterTest {
     assertTrue("contains ActionStandard", actions.contains(ActionStandard.class.getName()));
     assertTrue("contains ActionMovement", actions.contains(ActionMovement.class.getName()));
     assertTrue(
-        "contains ActionMovementFiveFootStep", actions.contains(ActionMovementFiveFootStep.class.getName()));
+        "contains ActionMovementFiveFootStep",
+        actions.contains(ActionMovementFiveFootStep.class.getName()));
     assertTrue("contains ActionFree", actions.contains(ActionFree.class.getName()));
     assertTrue("contains ActionSwift", actions.contains(ActionSwift.class.getName()));
     assertTrue("contains ActionImmediate", actions.contains(ActionImmediate.class.getName()));

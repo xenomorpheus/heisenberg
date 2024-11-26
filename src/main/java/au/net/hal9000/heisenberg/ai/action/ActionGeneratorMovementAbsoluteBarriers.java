@@ -37,6 +37,7 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
     this.directionCount = directionCount;
     this.bodyRadiusMax = bodyRadiusMax;
   }
+
   // TODO unit tests MovementAbsoluteBarriers
 
   @Override

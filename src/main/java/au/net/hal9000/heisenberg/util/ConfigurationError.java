@@ -9,6 +9,7 @@ package au.net.hal9000.heisenberg.util;
 public class ConfigurationError extends Throwable {
   /** The serial ID. */
   private static final long serialVersionUID = 1L;
+
   /** The original exception. */
   private Exception exception;
 

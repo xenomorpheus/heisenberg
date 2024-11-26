@@ -36,6 +36,7 @@ public class BasicPanel extends JPanel {
   // Misc
   /** Field pc. */
   private Race pc;
+
   /** Field config. */
   private Configuration config = Configuration.lastConfig();
 
@@ -43,36 +44,50 @@ public class BasicPanel extends JPanel {
   // Row 0
   /** Field nameTextField. */
   private JTextField nameTextField;
+
   /** Field classComboBox. */
   private JComboBox<PcClass> classComboBox;
+
   // Row 1
   /** Field descriptionTextField. */
   private JTextField descriptionTextField;
+
   /** Field raceTextField. */
   private JTextField raceTextField;
+
   // Row 2
   /** Field comTextField. */
   private JTextField comTextField;
+
   /** Field magTextField. */
   private JTextField magTextField;
+
   /** Field steTextField. */
   private JTextField steTextField;
+
   /** Field genTextField. */
   private JTextField genTextField;
+
   // Row 3
   /** Field levelSpinner. */
   private JSpinner levelSpinner;
+
   /** Field levelModel. */
   private SpinnerModel levelModel;
+
   /** Field actionPointsTextField. */
   private JTextField actionPointsTextField;
+
   /** Field healthTextField. */
   private JTextField healthTextField;
+
   /** Field manaTextField. */
   private JTextField manaTextField;
+
   // Row 4
   /** Field sizeComboBox. */
   private JComboBox<String> sizeComboBox;
+
   /** Field genderComboBox. */
   private JComboBox<String> genderComboBox;
 

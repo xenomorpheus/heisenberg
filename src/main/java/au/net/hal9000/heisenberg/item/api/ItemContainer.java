@@ -14,7 +14,9 @@ public interface ItemContainer extends Item, ItemList {
    */
   List<Item> getContents();
 
-  /** @return The max weight that can be carried. */
+  /**
+   * @return The max weight that can be carried.
+   */
   float getWeightMax();
 
   /**

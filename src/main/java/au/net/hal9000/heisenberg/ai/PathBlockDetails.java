@@ -10,6 +10,7 @@ import au.net.hal9000.heisenberg.units.Position;
 public class PathBlockDetails {
   /** the point in our intended path at which we are blocked. */
   private Position blockingPoint;
+
   /** the object doing the blocking. */
   private Object blocker;
 
@@ -25,12 +26,16 @@ public class PathBlockDetails {
     this.blocker = blocker;
   }
 
-  /** @return get the point where the path is blocked. */
+  /**
+   * @return get the point where the path is blocked.
+   */
   public Position getBlockingPoint() {
     return blockingPoint;
   }
 
-  /** @return get the object blocking the path. */
+  /**
+   * @return get the object blocking the path.
+   */
   public Object getBlocker() {
     return blocker;
   }

@@ -37,21 +37,29 @@ public class Configuration {
 
   /** Singleton. Holder of the config */
   private static Configuration lastConfig = null;
+
   /** A list of genders. */
   private List<String> genders;
+
   /** A map of ItemClassConfiguration objects. */
   private Map<String, ItemClassConfiguration> itemClasses;
+
   // TODO private TreeMap<String,PcClass> npcClasses;
   /** A map of possible pcClass details. */
   private Map<String, PcClass> pcClasses;
+
   /** list of valid races. */
   private List<String> races;
+
   /** A map of Recipe objects. */
   private Map<String, Recipe> recipes;
+
   /** A map of SkillDetail objects. */
   private Map<String, SkillDetail> skillDetails;
+
   /** A list of sizes. */
   private List<String> sizes;
+
   /** Images to show in UI. */
   private Map<String, SpriteSheetConfiguration> spriteSheets;
 

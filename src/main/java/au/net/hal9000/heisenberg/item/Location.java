@@ -8,9 +8,9 @@ import au.net.hal9000.heisenberg.item.exception.TooLargeException;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
+import jakarta.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.Entity;
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;
@@ -22,12 +22,16 @@ import org.apache.log4j.Logger;
 public class Location extends ItemImpl implements ItemContainer {
   /** */
   private static final long serialVersionUID = 1L;
+
   /** Field LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(Location.class.getName());
+
   /** Field weightMax. */
   private float weightMax = 0;
+
   /** Field volumeMax. */
   private float volumeMax = 0;
+
   /** Field contents. */
   private List<Item> contents = new ArrayList<Item>();
 
@@ -164,7 +168,9 @@ public class Location extends ItemImpl implements ItemContainer {
     return contents.indexOf(child);
   }
 
-  /** @return Total weight, including contents. */
+  /**
+   * @return Total weight, including contents.
+   */
   @Override
   public float getWeight() {
     float total = this.getWeightBase();
@@ -172,7 +178,9 @@ public class Location extends ItemImpl implements ItemContainer {
     return total;
   }
 
-  /** @return Total volume, including contents. */
+  /**
+   * @return Total volume, including contents.
+   */
   @Override
   public float getVolume() {
     float total = this.getVolumeBase();
@@ -180,7 +188,9 @@ public class Location extends ItemImpl implements ItemContainer {
     return total;
   }
 
-  /** @return Total value, including contents. */
+  /**
+   * @return Total value, including contents.
+   */
   @Override
   public Currency getValue() {
     Currency total = new Currency(this.getValueBase());

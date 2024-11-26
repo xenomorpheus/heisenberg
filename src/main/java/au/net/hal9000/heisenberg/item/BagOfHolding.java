@@ -9,9 +9,9 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemSearch;
 import au.net.hal9000.heisenberg.item.property.ItemSearchExtraDimensional;
 import au.net.hal9000.heisenberg.units.Currency;
-import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
+import java.util.List;
 
 /*
 
@@ -36,45 +36,61 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
   /** bag type I. */
   static final int TYPE_I = 1;
+
   /** type I weight base. */
   static final float TYPE_I_WEIGHT_BASE = 15F;
+
   /** type I weight max. */
   static final float TYPE_I_WEIGHT_MAX = 250F;
+
   /** type I volume max. */
   static final float TYPE_I_VOLUME_MAX = 30F;
+
   /** type I value. */
   static final int TYPE_I_VALUE_GP = 2500;
 
   /** bag type II. */
   static final int TYPE_II = 2;
+
   /** type I weight base. */
   static final float TYPE_II_WEIGHT_BASE = 25F;
+
   /** type I weight max. */
   static final float TYPE_II_WEIGHT_MAX = 500F;
+
   /** type I volume max. */
   static final float TYPE_II_VOLUME_MAX = 70F;
+
   /** type I value. */
   static final int TYPE_II_VALUE_GP = 5000;
 
   /** bag type III. */
   static final int TYPE_III = 3;
+
   /** type I weight base. */
   static final float TYPE_III_WEIGHT_BASE = 35F;
+
   /** type I weight max. */
   static final float TYPE_III_WEIGHT_MAX = 1000F;
+
   /** type I volume max. */
   static final float TYPE_III_VOLUME_MAX = 150F;
+
   /** type I value. */
   static final int TYPE_III_VALUE_GP = 7400;
 
   /** bag type IV. */
   static final int TYPE_IV = 4;
+
   /** type I weight base. */
   static final float TYPE_IV_WEIGHT_BASE = 60F;
+
   /** type I weight max. */
   static final float TYPE_IV_WEIGHT_MAX = 1500F;
+
   /** type I volume max. */
   static final float TYPE_IV_VOLUME_MAX = 250F;
+
   /** type I value. */
   static final int TYPE_IV_VALUE_GP = 10000;
 
@@ -83,7 +99,6 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
   /** Bag type I-IV. */
   private int type;
-
 
   /** Constructor. Defaults to type I. */
   public BagOfHolding() {

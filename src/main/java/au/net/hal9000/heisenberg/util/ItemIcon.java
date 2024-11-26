@@ -19,11 +19,13 @@ public class ItemIcon implements Serializable {
    * when open.
    */
   private Icon iconClosed = null;
+
   /**
    * If this item is a container and shown in the UI in tree view, then this is the icon to show
    * when closed.
    */
   private Icon iconOpen = null;
+
   /**
    * If this item is NOT a container and shown in the UI in tree view, then this is the icon to
    * show.

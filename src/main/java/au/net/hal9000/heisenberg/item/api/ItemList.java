@@ -6,9 +6,7 @@ package au.net.hal9000.heisenberg.item.api;
  */
 public interface ItemList {
 
-  /**
-   * The number of (top level) Item objects inside a container e.g. Backpack.
-   */
+  /** The number of (top level) Item objects inside a container e.g. Backpack. */
   public int size();
 
   public Item get(int index);

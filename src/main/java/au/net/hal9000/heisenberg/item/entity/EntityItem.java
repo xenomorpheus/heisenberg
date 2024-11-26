@@ -14,10 +14,10 @@ import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
-import java.util.Set;
-import java.util.TreeSet;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Entity is the basis of conscious entities. <br>
@@ -37,8 +37,10 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
    * remaining, not the maximum.
    */
   private int actionPoints;
+
   /** The size of the magic user's fuel tank. This is the remaining, not the maximum. */
   private int mana;
+
   /**
    * This object has a list of {@link au.net.hal9000.heisenberg.util.AbilityScore} objects.<br>
    * To set up, just work through the list on the {@link Race}.
@@ -50,10 +52,13 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
    * Set the value = pcClassAbility.getValue() + (level * pcClassAbility.getModifier()) + modifier;
    */
   private String gender;
+
   /** The {@link au.net.hal9000.heisenberg.crafting.Recipe} list that is known by this object. */
   private Set<String> recipes;
+
   /** The {@link Skill} objects required. */
   private Set<Skill> skills;
+
   /** Field size. */
   private String size;
 
@@ -90,12 +95,16 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
   // Methods
 
   // Getters and Setters
-  /** @return the actionPoints */
+  /**
+   * @return the actionPoints
+   */
   public final int getActionPoints() {
     return actionPoints;
   }
 
-  /** @param actionPoints the actionPoints to set */
+  /**
+   * @param actionPoints the actionPoints to set
+   */
   public final void setActionPoints(final int actionPoints) {
     this.actionPoints = actionPoints;
   }
@@ -109,22 +118,30 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
     actionPoints += adjust;
   }
 
-  /** @return the gender */
+  /**
+   * @return the gender
+   */
   public final String getGender() {
     return gender;
   }
 
-  /** @param gender the gender to set */
+  /**
+   * @param gender the gender to set
+   */
   public final void setGender(String gender) {
     this.gender = gender;
   }
 
-  /** @return the mana */
+  /**
+   * @return the mana
+   */
   public final int getMana() {
     return mana;
   }
 
-  /** @param mana the mana to set */
+  /**
+   * @param mana the mana to set
+   */
   public final void setMana(int mana) {
     this.mana = mana;
   }
@@ -180,12 +197,16 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
     }
   }
 
-  /** @return the size */
+  /**
+   * @return the size
+   */
   public final String getSize() {
     return size;
   }
 
-  /** @param size the size to set */
+  /**
+   * @param size the size to set
+   */
   public final void setSize(String size) {
     this.size = size;
   }
@@ -327,7 +348,9 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
     setSize(entity.getSize());
   }
 
-  /** @return the value of this objects current state. */
+  /**
+   * @return the value of this objects current state.
+   */
   @Override
   public double getStateEvaluation() {
 

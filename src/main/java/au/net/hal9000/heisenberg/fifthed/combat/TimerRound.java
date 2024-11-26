@@ -113,7 +113,9 @@ public class TimerRound {
     return retVal;
   }
 
-  /** @return a list of valid ActionDuration objects. */
+  /**
+   * @return a list of valid ActionDuration objects.
+   */
   public Set<ActionDuration> getAvailableActionDurationSet() {
     Set<ActionDuration> actionDurations = new HashSet<ActionDuration>();
     for (ActionDuration actionDuration : ActionDuration.values()) {

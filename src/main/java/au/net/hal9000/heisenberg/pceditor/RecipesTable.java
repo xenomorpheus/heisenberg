@@ -16,6 +16,7 @@ public class RecipesTable extends JTable {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
+
   /** column names. */
   private static final String[] COLUMN_NAMES = {"Id", "Description"};
 
@@ -40,13 +41,16 @@ public class RecipesTable extends JTable {
   private class MyTableModel extends AbstractTableModel {
     /** serial id. */
     private static final long serialVersionUID = 1L;
+
     /** Field config. */
     private Configuration config = Configuration.lastConfig();
+
     /** Field logger. */
     private final Logger logger = Logger.getLogger(RecipesTable.class.getName());
 
     /** Field recipeIds. */
     private List<String> recipeIds;
+
     /** Field recipes. */
     private Map<String, Recipe> recipes;
 

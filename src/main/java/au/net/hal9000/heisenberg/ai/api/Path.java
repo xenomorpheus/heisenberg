@@ -11,6 +11,8 @@ public interface Path extends List<Action> {
    */
   Path duplicate();
 
-  /** @return number of actions in the path. */
+  /**
+   * @return number of actions in the path.
+   */
   int size();
 }

@@ -22,12 +22,16 @@ import org.junit.Test;
 public class CurrencyTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.00001F;
+
   /** pp test value. */
   private static final int PP = 1;
+
   /** gp test value. */
   private static final int GP = 2;
+
   /** sp test value. */
   private static final int SP = 4;
+
   /** cp test value. */
   private static final int CP = 8;
 

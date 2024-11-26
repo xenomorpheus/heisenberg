@@ -117,18 +117,25 @@ public class Recipe {
 
   /** The identifier for this recipe. */
   private final String id;
+
   /** The amount of actionPoints required for this recipe. */
   private final int actionPoints;
+
   /** Describe the recipe in terms a game player understands. */
   private final String description;
+
   /** The amount of Mana required for this recipe. */
   private final int mana;
+
   /** The name given to the subroutine. */
   private final String process;
+
   /** The items required for this recipe. */
   private final Map<String, Requirement> requirements;
+
   /** What the recipe produces. */
   private final List<Product> products;
+
   /** The {@link Skill} objects required. */
   private final Set<Skill> skills;
 
@@ -183,7 +190,9 @@ public class Recipe {
     return description;
   }
 
-  /** @return the process */
+  /**
+   * @return the process
+   */
   public final String getProcess() {
     return process;
   }

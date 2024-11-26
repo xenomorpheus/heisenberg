@@ -3,9 +3,6 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import java.util.List;
-import java.util.HashMap;
-
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
@@ -17,10 +14,12 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
+import java.util.HashMap;
+import java.util.List;
 import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /** */
 public class PersistenceTest {
@@ -202,25 +201,24 @@ public class PersistenceTest {
 
   private class MyItemVisitor implements ItemVisitor {
 
-    private HashMap<String,Integer>summary = new HashMap<>();
+    private HashMap<String, Integer> summary = new HashMap<>();
 
-    private void incrementCount(Item item){
+    private void incrementCount(Item item) {
       var className = item.getSimpleClassName();
-      if (summary.containsKey(className)){
+      if (summary.containsKey(className)) {
         summary.merge(className, 1, Integer::sum);
-      }
-      else{
+      } else {
         summary.put(className, 1);
       }
     }
 
-    private void printSummary(){
-      for (final var entry: summary.entrySet()){
-        LOGGER.info("ClassName: "+entry.getKey()+", count: "+entry.getValue());
+    private void printSummary() {
+      for (final var entry : summary.entrySet()) {
+        LOGGER.info("ClassName: " + entry.getKey() + ", count: " + entry.getValue());
       }
     }
 
-    public HashMap<String,Integer> summary(){
+    public HashMap<String, Integer> summary() {
       return summary;
     }
 
@@ -244,7 +242,7 @@ public class PersistenceTest {
   public void testWorld() {
 
     final long locJpaId;
-    final HashMap<String,Integer> summaryExpect;
+    final HashMap<String, Integer> summaryExpect;
     {
       Location loc = testGetWorld();
       var visitor = new MyItemVisitor();

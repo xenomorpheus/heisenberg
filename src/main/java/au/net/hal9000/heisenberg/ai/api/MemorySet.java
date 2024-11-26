@@ -11,10 +11,14 @@ import java.util.List;
 public interface MemorySet extends Iterable<Memory> {
 
   // Getters and setters.
-  /** @return the Memory objects in this set. */
+  /**
+   * @return the Memory objects in this set.
+   */
   List<Memory> getMemorySet();
 
-  /** @param memorySet replace Memory set with supplied set. */
+  /**
+   * @param memorySet replace Memory set with supplied set.
+   */
   void setMemorySet(List<Memory> memorySet);
 
   // Misc
@@ -26,9 +30,13 @@ public interface MemorySet extends Iterable<Memory> {
    */
   void add(Memory memory);
 
-  /** @return true IFF no memories in this set. */
+  /**
+   * @return true IFF no memories in this set.
+   */
   boolean isEmpty();
 
-  /** @return a duplicate of this object. */
+  /**
+   * @return a duplicate of this object.
+   */
   MemorySet duplicate();
 }

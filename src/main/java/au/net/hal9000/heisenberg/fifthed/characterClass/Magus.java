@@ -31,18 +31,24 @@ public class Magus extends Fighter implements Spellcaster {
     return this;
   }
 
-  /** @return the spells */
+  /**
+   * @return the spells
+   */
   @Override
   public Set<Spell> getSpells() {
     return spells;
   }
 
-  /** @return the magusArcana */
+  /**
+   * @return the magusArcana
+   */
   public Set<MagusArcana> getMagusArcana() {
     return magusArcana;
   }
 
-  /** @param magusArcana the magusArcana to set */
+  /**
+   * @param magusArcana the magusArcana to set
+   */
   public Magus setMagusArcana(Set<MagusArcana> magusArcana) {
     this.magusArcana = magusArcana;
     return this;

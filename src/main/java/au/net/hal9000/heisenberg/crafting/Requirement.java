@@ -67,7 +67,9 @@ public abstract class Requirement {
     return isConsumed;
   }
 
-  /** @return Return a description of the object. */
+  /**
+   * @return Return a description of the object.
+   */
   String getDescription() {
     String string = "Id: " + id;
     if (isConsumed) {

@@ -7,10 +7,13 @@ public class Position {
 
   /** move agent North. */
   public static final Position NORTH = new Position(0, -1);
+
   /** move agent South. */
   public static final Position SOUTH = new Position(0, 1);
+
   /** move agent East. */
   public static final Position EAST = new Position(1, 0);
+
   /** move agent West. */
   public static final Position WEST = new Position(-1, 0);
 

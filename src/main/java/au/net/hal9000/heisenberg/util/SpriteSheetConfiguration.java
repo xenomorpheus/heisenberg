@@ -9,14 +9,19 @@ package au.net.hal9000.heisenberg.util;
 public class SpriteSheetConfiguration {
   /** primary key e.g. "item" for all the sheet of default icons for Item objects. */
   private String id;
+
   /** the filename of the sprite sheet, relative the resource root. * */
   private String filename;
+
   /** the width of a single icon within the sprite sheet. * */
   private int width;
+
   /** the height of a single icon within the sprite sheet. * */
   private int height;
+
   /** the number of rows of icons in the sprite sheet. * */
   private int rows;
+
   /** the number of columns of icons in the sprite sheet. * */
   private int columns;
 

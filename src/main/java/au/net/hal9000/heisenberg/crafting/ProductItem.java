@@ -42,12 +42,16 @@ public class ProductItem extends Product {
   }
 
   // Getters
-  /** @return the type of the item */
+  /**
+   * @return the type of the item
+   */
   public final String getType() {
     return type;
   }
 
-  /** @return the required weightBase for the new item. */
+  /**
+   * @return the required weightBase for the new item.
+   */
   public float getWeightBase() {
     return weightBase;
   }

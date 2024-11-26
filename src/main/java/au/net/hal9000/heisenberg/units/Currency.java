@@ -36,10 +36,13 @@ public class Currency implements Serializable, Cloneable {
   // coin count in this collection
   /** platinum pieces. */
   private int pp = 0;
+
   /** gold pieces. */
   private int gp = 0;
+
   /** silver pieces. */
   private int sp = 0;
+
   /** coper pieces. */
   private int cp = 0;
 

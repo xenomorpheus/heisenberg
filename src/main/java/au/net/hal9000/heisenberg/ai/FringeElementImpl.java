@@ -19,10 +19,13 @@ import java.text.DecimalFormat;
 class FringeElementImpl implements FringeElement, Comparable<FringeElementImpl> {
   /** the state of the model at this fringe element. */
   private ModelState modelState;
+
   /** the list of actions to reach this state of the model. */
   private Path pathSoFar;
+
   /** the total cost to reach this state of the model. */
   private double costSoFar;
+
   /** the estimated total cost of following the path then on to the goal. */
   private double estimatedTotalCost;
 

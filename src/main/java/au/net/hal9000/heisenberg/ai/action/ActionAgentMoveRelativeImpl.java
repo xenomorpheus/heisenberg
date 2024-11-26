@@ -84,6 +84,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
     result = prime * result + ((agentPostionDelta == null) ? 0 : agentPostionDelta.hashCode());
     return result;
   }
+
   /**
    * Method equals.
    *

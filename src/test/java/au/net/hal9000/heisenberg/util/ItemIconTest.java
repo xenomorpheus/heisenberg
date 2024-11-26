@@ -22,6 +22,7 @@ public class ItemIconTest {
   public void setUp() {
     DemoEnvironment.setup();
   }
+
   /**
    * Method testSetIcon.
    *

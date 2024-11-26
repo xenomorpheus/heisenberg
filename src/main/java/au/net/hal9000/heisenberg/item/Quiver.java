@@ -16,6 +16,7 @@ public class Quiver extends Location {
 
   /** serial version. */
   private static final long serialVersionUID = 1L;
+
   /** Quiver volume default. 20 times volume of an arrow. */
   private static final float VOLUME_MAX_DFT = 20;
 

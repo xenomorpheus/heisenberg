@@ -37,16 +37,21 @@ import org.apache.log4j.Logger;
 public final class DemoEnvironment {
   /** Field LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(DemoEnvironment.class.getName());
+
   /** file containing test configuration. */
   private static String TEST_CONFIG_FILE = "src/test/resources/config.xml";
+
   /** test skills. */
   private static final String[] TEST_SKILLS =
       new String[] {"testSkill1", "testSkill2", "testSkill3"};
+
   /** test recipes. */
   private static final String[] TEST_RECIPES =
       new String[] {"testItem1", "testFireGround1", "testSpell1"};
+
   /** test level. */
   private static final int TEST_LEVEL = 3;
+
   /** test weight or volume. */
   private static final int TEST_WEIGHT_VOLUME = 100000;
 

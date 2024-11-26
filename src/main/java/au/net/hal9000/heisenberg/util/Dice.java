@@ -10,6 +10,7 @@ class Dice {
 
   /** 6 sided die. */
   static final int D_SIX = 6;
+
   /** 20 sided die. */
   static final int D_TWENTY = 20;
 

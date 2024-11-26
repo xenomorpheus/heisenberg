@@ -14,6 +14,7 @@ public class Crossbow extends ItemImpl {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
+
   /** Field loadedBolt. */
   private CrossbowBolt loadedBolt = null;
 
