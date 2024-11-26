@@ -1,0 +1,1 @@
+JPA persistence unit tests for many levels of Item objects seems to work for store and retrieve.
