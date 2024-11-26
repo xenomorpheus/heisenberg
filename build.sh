@@ -2,9 +2,10 @@
 
 # List available compilers
 # /usr/libexec/java_home -V
-# export JAVA_HOME="`/usr/libexec/java_home -v 16`"
-
 unset JAVA_HOME
+# export JAVA_HOME="`/usr/libexec/java_home -v 16`"
+export JAVA_HOME="/usr/local/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home/"
+
 
 # mvn clean test package -f pom.xml
 mvn test package -f pom.xml
