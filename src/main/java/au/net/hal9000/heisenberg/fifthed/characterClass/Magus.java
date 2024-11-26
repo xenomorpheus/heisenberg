@@ -5,7 +5,7 @@ import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionSpellCast;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 import au.net.hal9000.heisenberg.fifthed.spell.Spellcast;
 import java.util.HashSet;

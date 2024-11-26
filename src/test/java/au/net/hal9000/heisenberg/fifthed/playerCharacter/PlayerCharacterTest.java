@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.playerCharacter;
+package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +19,9 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.BowCrossLight;
 import au.net.hal9000.heisenberg.fifthed.item.BowLong;
 import au.net.hal9000.heisenberg.fifthed.item.Dagger;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.Human;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacterCondition;
 import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
 import au.net.hal9000.heisenberg.units.Position;

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.combat;
 
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 
 public class ActionSpellCast extends Action {

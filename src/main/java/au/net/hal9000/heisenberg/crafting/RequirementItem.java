@@ -95,7 +95,7 @@ public class RequirementItem extends Requirement {
   /**
    * Determine if Item is of the specified type.
    *
-   * @param Item
+   * @param Item the item.
    * @param type the type of Item to create.
    */
   private boolean isType(Item item, String type) {

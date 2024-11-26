@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.playerCharacter;
+package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;

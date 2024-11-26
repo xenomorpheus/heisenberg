@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.item;
 
-import au.net.hal9000.heisenberg.fifthed.playerCharacter.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 
 public abstract class Weapon extends Item {
 

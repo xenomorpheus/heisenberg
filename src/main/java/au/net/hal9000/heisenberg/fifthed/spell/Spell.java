@@ -17,7 +17,7 @@ public abstract class Spell {
   private int effectRangeLevelMultiplier = 0;
   private boolean effectSpellResistance = false;
   private String description = null;
-  private String Url = null;
+  private String url = null;
 
   // Setters and Getters
 
@@ -95,7 +95,7 @@ public abstract class Spell {
   }
 
   /**
-   * Get the spell components
+   * Get the spell components.
    *
    * @return the spellComponents
    */
@@ -170,14 +170,14 @@ public abstract class Spell {
    * @return the url
    */
   public String getUrl() {
-    return Url;
+    return url;
   }
 
   /**
    * @param url the url to set
    */
   public Spell setUrl(String url) {
-    Url = url;
+    url = url;
     return this;
   }
 
@@ -267,8 +267,8 @@ public abstract class Spell {
     if (rangeTouch) {
       sb.append(String.format("%s  RangeTouch: Yes%n", prefix));
     }
-    if (Url != null) {
-      sb.append(String.format("%s  URL: %s%n", prefix, Url));
+    if (url != null) {
+      sb.append(String.format("%s  URL: %s%n", prefix, url));
     }
     if (description != null) {
       sb.append(String.format("%s  Description: %s%n", prefix, description));

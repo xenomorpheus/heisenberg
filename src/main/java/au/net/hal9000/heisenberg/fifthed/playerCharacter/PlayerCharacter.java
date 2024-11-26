@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.playerCharacter;
+package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
 import au.net.hal9000.heisenberg.fifthed.characterClass.CharacterClass;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
@@ -85,15 +85,15 @@ public abstract class PlayerCharacter {
   }
 
   /** set the Condition */
-  public PlayerCharacter setConditions(Set<PlayerCharacterCondition> conditions_new) {
+  public PlayerCharacter setConditions(Set<PlayerCharacterCondition> conditionsNew) {
     conditions.clear();
-    conditions.addAll(conditions_new);
+    conditions.addAll(conditionsNew);
     return this;
   }
 
   /** set the Position */
-  public PlayerCharacter setPosition(Position location_new) {
-    location.set(location_new);
+  public PlayerCharacter setPosition(Position locationNew) {
+    location.set(locationNew);
     return this;
   }
 

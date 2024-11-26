@@ -10,7 +10,7 @@ package au.net.hal9000.heisenberg.crafting;
  * <ul>
  *   <li>Item - Wood with a minimum of 3 weight units.
  *   <li>Item - FlintAndTinder, not consumed.
- *       <ul>
+ * </ul>
  *
  * @author bruins
  * @version $Revision: 1.0 $
@@ -79,5 +79,5 @@ public abstract class Requirement {
     }
     return string;
   }
-  ;
+
 }

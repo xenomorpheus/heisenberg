@@ -12,11 +12,7 @@ import java.util.Set;
  *
  * <p>Recipes are comprised of a list of Requirement objects ({@link Requirement}).
  *
- * <p>
- *
  * <p>Recipes produce outcomes, eg. ({@link au.net.hal9000.heisenberg.item.Item}).
- *
- * <p>
  *
  * <p>In order to perform a Recipe all the requirements must be met.
  *
@@ -26,7 +22,7 @@ import java.util.Set;
  *
  * <h3>Cook a meat pie</h3>
  *
- * Requires:
+ * <p>Requires:
  *
  * <ul>
  *   <li>Possess plan (recipe) for pie,
@@ -38,7 +34,7 @@ import java.util.Set;
  *   <li>round-limit = 20 - can work on it.
  * </ul>
  *
- * Produces:
+ * <p>Produces:
  *
  * <ul>
  *   <li>X meat pies
@@ -46,7 +42,7 @@ import java.util.Set;
  *
  * <h3>Carpenter build a basic wooden chair</h3>
  *
- * Requires:
+ * <p>Requires:
  *
  * <ul>
  *   <li>Possess plan (recipe) for basic wooden chair,
@@ -57,7 +53,7 @@ import java.util.Set;
  *   <li>round-limit = 20 - can work on it.
  * </ul>
  *
- * Produces:
+ * <p>Produces:
  *
  * <ul>
  *   <li>a basic wooden chair, and non-consumed items.
@@ -65,7 +61,7 @@ import java.util.Set;
  *
  * <h3>Build small open fire:</h3>
  *
- * Requires:
+ * <p>Requires:
  *
  * <ul>
  *   <li>Possess plan (recipe) for small open fire,
@@ -75,7 +71,7 @@ import java.util.Set;
  *   <li>round-limit = 20 - can work on it.
  * </ul>
  *
- * Produces:
+ * <p>Produces:
  *
  * <ul>
  *   <li>a small open fire, and non-consumed items.
@@ -85,7 +81,7 @@ import java.util.Set;
  *
  * <h3>Wizard casts small light orb</h3>
  *
- * Requires:
+ * <p>Requires:
  *
  * <ul>
  *   <li>Possess spell (recipe) for small light,
@@ -95,7 +91,7 @@ import java.util.Set;
  *   <li>round-limit = 1 - Must be done in one round
  * </ul>
  *
- * Produces:
+ * <p>Produces:
  *
  * <ul>
  *   <li>a small orb that produces light for Z rounds.
@@ -103,7 +99,7 @@ import java.util.Set;
  *
  * <h2>Notes</h2>
  *
- * The following default to being consumed when added: Action points, mana.
+ * <p>The following default to being consumed when added: Action points, mana.
  *
  * <p>Developer Notes: <br>
  * No need for more than one instance of a recipe.<br>

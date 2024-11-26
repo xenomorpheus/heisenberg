@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.playerCharacter;
+package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
 // http://www.d20pfsrd.com/gamemastering/combat/space-reach-threatened-area-templates/
 

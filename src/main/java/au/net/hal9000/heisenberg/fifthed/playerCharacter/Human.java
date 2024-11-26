@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.playerCharacter;
+package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
 public class Human extends Humanoid {
 
