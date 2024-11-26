@@ -22,6 +22,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import org.apache.log4j.Logger;
+
 /**
  * The main application window. Shows a tree of the items in this world.
  *
@@ -48,6 +50,7 @@ public class WorldEditorFrame extends JFrame {
   private static final long serialVersionUID = 1L;
 
   /** Persistence Entity Manager. */
+  private EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
   private EntityManager entityManager = null;
 
   /** the Location object at the root of this world. */
@@ -58,6 +61,8 @@ public class WorldEditorFrame extends JFrame {
 
   /** Persistence unit name for Entity Manager. */
   private static final String PERSISTENCE_UNIT_NAME = "items";
+
+  private static final Logger LOGGER = Logger.getLogger(WorldEditorFrame.class.getName());
 
   /**
    * Constructor.
@@ -74,8 +79,9 @@ public class WorldEditorFrame extends JFrame {
     /** Config. */
     final Configuration config = Configuration.lastConfig();
     /** Persistence. */
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    LOGGER.error("TODO Crashes on the next line");
     entityManager = factory.createEntityManager();
+    LOGGER.error("TODO Crashes on the previous line");
 
     // Icons
     ItemIcon.setIcon(config);
@@ -168,18 +174,6 @@ public class WorldEditorFrame extends JFrame {
         });
   }
 
-  /** getter for Entity Manager. @return Entity Manager. * @return EntityManager */
-  public EntityManager getEntityManager() {
-    return entityManager;
-  }
-
-  /**
-   * setter for Entity Manager. @param entityManager Entity Manager. * @param entityManager
-   * EntityManager
-   */
-  public void setEntityManager(EntityManager entityManager) {
-    this.entityManager = entityManager;
-  }
 
   /**
    * set the location.
