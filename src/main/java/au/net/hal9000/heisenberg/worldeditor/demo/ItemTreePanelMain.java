@@ -33,7 +33,7 @@ public class ItemTreePanelMain {
             // location.setVolumeMax(100000);
             ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
             itemTreePanel.setVisible(true);
-            JFrame jFrame = new JFrame("ItemTeePanel Test");
+            JFrame jFrame = new JFrame("ItemTreePanel Test");
             jFrame.setContentPane(itemTreePanel);
             jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
             jFrame.pack();

@@ -55,7 +55,7 @@ public final class DemoEnvironment {
     super();
   }
 
-  /** Setup demo environement. */
+  /** Setup demo environment. */
   public static void setup() {
     LOGGER.info("Demo Env setup");
     try {
