@@ -270,7 +270,7 @@ abstract class Humanoid extends Race implements ItemList {
 
   /** {@inheritDoc} * @return String */
   @Override
-  public String getRace() {
+  public String getSpeciesName() {
     return this.getClass().getSimpleName();
   }
 

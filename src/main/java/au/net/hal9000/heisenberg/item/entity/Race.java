@@ -337,11 +337,9 @@ public abstract class Race extends EntityItem {
     text.append(super.detailedDescription());
     // Only add properties in this class.
 
-    String race = getRace();
-
     text.append("Level: " + level);
     text.append(System.lineSeparator());
-    text.append("Race: " + race);
+    text.append("Species: " + getSpeciesName());
     text.append(System.lineSeparator());
 
     if (null != pcClass) {
@@ -378,7 +376,7 @@ public abstract class Race extends EntityItem {
    *
    * @return the name of the race.
    */
-  public abstract String getRace();
+  public abstract String getSpeciesName();
 
   /**
    * Shallow copy properties from one object to another.

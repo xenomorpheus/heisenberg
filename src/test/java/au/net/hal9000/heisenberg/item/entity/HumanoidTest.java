@@ -26,11 +26,11 @@ public class HumanoidTest {
     assertEquals("getWeight", human.getWeight(), 7F, WITHIN_MARGIN);
   }
 
-  /** getRace should return Human. */
+  /** getSpeciesName should return Human. */
   @Test
-  public void testGetRace() {
+  public void testGetSpeciesName() {
     Human human = new Human();
-    assertEquals("getRace", "Human", human.getRace());
+    assertEquals("getSpeciesName", "Human", human.getSpeciesName());
   }
 
   /** Method testWear. */
