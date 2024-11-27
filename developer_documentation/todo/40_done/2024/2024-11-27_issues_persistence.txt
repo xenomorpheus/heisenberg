@@ -1,0 +1,6 @@
+Issue:
+My Persistence unit tests pass using derby database.
+Running from application fails to find derby database library.
+
+Remedy:
+The scope was limited to 'test' for derby in the pom.xml.
