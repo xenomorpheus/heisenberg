@@ -116,15 +116,6 @@ abstract class Humanoid extends Race implements ItemList {
     return head;
   }
 
-  /**
-   * Method setHead.
-   *
-   * @param head HumanoidHead
-   */
-  public void setHead(HumanoidHead head) {
-    this.head = head;
-  }
-
   // left Hand
   /**
    * Method getLeftHand.
@@ -135,15 +126,6 @@ abstract class Humanoid extends Race implements ItemList {
     return leftHand;
   }
 
-  /**
-   * Method setLeftHand.
-   *
-   * @param hand Hand
-   */
-  public void setLeftHand(Hand hand) {
-    leftHand = hand;
-  }
-
   // right Hand
   /**
    * Method getRightHand.
@@ -152,15 +134,6 @@ abstract class Humanoid extends Race implements ItemList {
    */
   public Hand getRightHand() {
     return rightHand;
-  }
-
-  /**
-   * Method setRightHand.
-   *
-   * @param hand Hand
-   */
-  public void setRightHand(Hand hand) {
-    rightHand = hand;
   }
 
   // Weight and capacity is spread across body.
