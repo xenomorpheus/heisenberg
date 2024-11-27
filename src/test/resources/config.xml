@@ -3,7 +3,7 @@
 	xsi:noNamespaceSchemaLocation="config.xsd">
 
 	<items>
-		<!-- Items that may be instantiated -->
+		<!-- Item types that may be instantiated by Item Factory -->
 		<item id="Arrow" iconOpenId="23" iconClosedId="23" iconLeafId="23" />
 		<item id="Backpack" />
 		<item id="Bag" />
