@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -18,11 +19,14 @@ import java.util.TreeMap;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class PcClass implements Comparable<PcClass> {
+public class PcClass implements Serializable, Comparable<PcClass> {
+
+  // It's a good practice to declare a serialVersionUID
+  private static final long serialVersionUID = 1L;
 
   // e.g. "Soldier"
   /** Field id. */
-  private String id;
+  private String id = null;
 
   /** combat dice. */
   private int combatDice = 0;
@@ -50,10 +54,10 @@ public class PcClass implements Comparable<PcClass> {
   private String speciesAllow;
 
   /** Field genderAllow. */
-  private String genderAllow;
+  private String genderAllow = null;
 
   /** Field sizeAllow. */
-  private String sizeAllow;
+  private String sizeAllow = null;
 
   /** Field encumbrance. */
   private int encumbrance = 0;

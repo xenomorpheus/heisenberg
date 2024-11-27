@@ -9,8 +9,8 @@ import au.net.hal9000.heisenberg.item.FlintAndTinder;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -58,13 +58,13 @@ public class ScenarioSet03 {
     location.add(flintAndTinder);
 
     // Setup the PC
-    Race pc = new Human();
+    EntityItem pc = new Human();
     final int expectedMana = 1;
     final int expectedActionPoints = 2;
-    pc.setMana(recipe.getMana() + expectedMana);
-    pc.setActionPoints(recipe.getActionPoints() + expectedActionPoints);
-    pc.skillsAdd(new Skill("testFireLighting"));
-    pc.recipeAdd("testFireGround1");
+    pc.getPlayableState().setMana(recipe.getMana() + expectedMana);
+    pc.getPlayableState().setActionPoints(recipe.getActionPoints() + expectedActionPoints);
+    pc.getCharacterSheet().skillsAdd(new Skill("testFireLighting"));
+    pc.getCharacterSheet().recipeAdd("testFireGround1");
 
     // TODO set XYZ location
     location.add(pc);
@@ -90,7 +90,7 @@ public class ScenarioSet03 {
     assertEquals("item type", "SmallGroundFire", item.getClass().getSimpleName());
 
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", expectedMana, pc.getMana());
-    assertEquals("actionPoints", expectedActionPoints, pc.getActionPoints());
+    assertEquals("mana", expectedMana, pc.getPlayableState().getMana());
+    assertEquals("actionPoints", expectedActionPoints, pc.getPlayableState().getActionPoints());
   }
 }

@@ -54,8 +54,8 @@ public class LocationTest {
 
   @Test
   public void testAddDoesRemove() {
-    ItemContainer bagStart = new Bag("Start");
-    ItemContainer bagFinal = new Bag("Final");
+    ItemContainer bagStart = new Bag();
+    ItemContainer bagFinal = new Bag();
     Cookie cookie = new Cookie();
     assertEquals("Setup - bagStart count setup ", 0, bagStart.size());
     assertEquals("Setup - bagFinal count setup ", 0, bagFinal.size());
@@ -85,7 +85,7 @@ public class LocationTest {
     Cookie c1 = new Cookie();
     Cookie c2 = new Cookie();
     Cookie c3 = new Cookie();
-    ItemContainer newBag = new Bag("New ItemContainer");
+    ItemContainer newBag = new Bag();
     List<Item> items = new ArrayList<Item>();
     items.add(c1);
     items.add(c2);
@@ -181,8 +181,8 @@ public class LocationTest {
   public void testGetIndexOfChild() {
     ItemContainer bag = new Bag();
     Scabbard scabbard = new Scabbard();
-    Cookie cookie1 = new Cookie("Cookie1");
-    Cookie cookie2 = new Cookie("Cookie2");
+    Cookie cookie1 = new Cookie();
+    Cookie cookie2 = new Cookie();
     Cookie cookie3 = new Cookie();
     assertEquals("getIndexOfChild - empty", -1, bag.indexOf(cookie1));
     bag.add(cookie1);

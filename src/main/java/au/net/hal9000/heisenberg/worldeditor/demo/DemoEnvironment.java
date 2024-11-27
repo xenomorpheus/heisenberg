@@ -10,8 +10,6 @@ import au.net.hal9000.heisenberg.item.Cloak;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
-import au.net.hal9000.heisenberg.item.Factory;
-import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.MagicRing;
 import au.net.hal9000.heisenberg.item.Quiver;
@@ -20,12 +18,16 @@ import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
-import au.net.hal9000.heisenberg.item.entity.Elf;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.entity.Race;
+import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 
 /**
@@ -42,12 +44,14 @@ public final class DemoEnvironment {
   private static String TEST_CONFIG_FILE = "src/test/resources/config.xml";
 
   /** test skills. */
-  private static final String[] TEST_SKILLS =
-      new String[] {"testSkill1", "testSkill2", "testSkill3"};
+  private static final Set<Skill> TEST_SKILLS =
+      Stream.of(new Skill("testSkill1"), new Skill("testSkill2"))
+          .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test recipes. */
-  private static final String[] TEST_RECIPES =
-      new String[] {"testItem1", "testFireGround1", "testSpell1"};
+  private static final Set<String> TEST_RECIPES =
+      Stream.of("testItem1", "testFireGround1", "testSpell1")
+          .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test level. */
   private static final int TEST_LEVEL = 3;
@@ -71,25 +75,23 @@ public final class DemoEnvironment {
   }
 
   /**
-   * Get Demo Race object with a few simple properties.
+   * Get Demo CharacterSheet object with a few simple properties.
    *
-   * @return Race race of PC / NPC.
+   * @return CharacterSheet of PC/NPC.
    * @throws ConfigurationError
    */
-  public static Race getRace() throws ConfigurationError {
+  public static CharacterSheet getCharacterSheet() throws ConfigurationError {
     Configuration config = Configuration.lastConfig();
-    Elf elf = (Elf) Factory.createItem("Elf");
-    elf.setName("Jane");
-    elf.setPcClass(config.getPcClasses().get("Paladin"));
-    elf.setDescription("The Paladin");
-    elf.setGender(config.getGenders().get(0));
-    elf.setSize("Small");
-    elf.setLevel(TEST_LEVEL);
-    elf.skillsAddArray(TEST_SKILLS);
-    elf.recipesAdd(TEST_RECIPES);
-    Backpack backpack = (Backpack) Factory.createItem("Backpack");
-    elf.wear(backpack);
-    return elf;
+    CharacterSheet characterSheet = new CharacterSheet();
+    characterSheet.setName("Jane");
+    characterSheet.setDescription("The Paladin");
+    characterSheet.setPcClass(config.getPcClasses().get("Paladin"));
+    characterSheet.setGender(config.getGenders().get(0));
+    characterSheet.setSize(config.getSizes().get(0));
+    characterSheet.setLevel(TEST_LEVEL);
+    characterSheet.setSkills(TEST_SKILLS);
+    characterSheet.setRecipes(TEST_RECIPES);
+    return characterSheet;
   }
 
   /**
@@ -107,15 +109,15 @@ public final class DemoEnvironment {
     Scabbard scabbard = new Scabbard();
     scabbard.add(new Sword());
 
-    Scabbard scabbard2 = new Scabbard("Scabbard2");
+    Scabbard scabbard2 = new Scabbard();
     scabbard2.add(new Sword());
 
     Bag boh = new BagOfHolding(1);
-    boh.add(new Bag("Bag1"));
-    boh.add(new Box("Box1"));
+    boh.add(new Bag());
+    boh.add(new Box());
     boh.add(new Candle());
     boh.add(new Cloak());
-    boh.add(new Cookie("Cookie1"));
+    boh.add(new Cookie());
     boh.add(new Crossbow());
     boh.add(new CrossbowBolt());
     boh.add(new Ring());
@@ -123,7 +125,7 @@ public final class DemoEnvironment {
     boh.add(new Torch());
 
     // a backpack of stuff
-    Bag backpack = new Backpack("Backpack1");
+    Bag backpack = new Backpack();
     backpack.setWeightMax(TEST_WEIGHT_VOLUME);
     backpack.setVolumeMax(TEST_WEIGHT_VOLUME);
     backpack.add(boh);
@@ -133,14 +135,14 @@ public final class DemoEnvironment {
     quiver.add(new Arrow());
     quiver.add(new Arrow());
 
-    Bag bag2 = new Bag("Bag of Cookies");
-    bag2.add(new Cookie("Cookie6"));
-    bag2.add(new Cookie("Cookie7"));
-    bag2.add(new Cookie("Cookie8"));
+    Bag bag2 = new Bag();
+    bag2.add(new Cookie());
+    bag2.add(new Cookie());
+    bag2.add(new Cookie());
     backpack.add(bag2);
 
     // a human with a bag of cookies
-    Human human = new Human("Human1");
+    Human human = new Human();
     human.setWeightMax(TEST_WEIGHT_VOLUME);
     human.setVolumeMax(TEST_WEIGHT_VOLUME);
 
@@ -149,19 +151,16 @@ public final class DemoEnvironment {
     human.wear(scabbard2);
     human.wear(quiver);
     human.wear(backpack);
+    human.wear(new MagicRing());
     world.add(human);
-
-    Hand leftHand = human.getLeftHand();
-    leftHand.add(new MagicRing());
 
     world.add(new Sword());
     world.add(new Horse());
 
-    // bag3
-    Bag bag3 = new Bag("Bag of Cookies");
-    bag3.add(new Cookie("Cookie9"));
-    bag3.add(new Cookie("Cookie10"));
-    bag3.add(new Cookie("Cookie11"));
+    Bag bag3 = new Bag();
+    bag3.add(new Cookie());
+    bag3.add(new Cookie());
+    bag3.add(new Cookie());
     world.add(bag3);
 
     return world;

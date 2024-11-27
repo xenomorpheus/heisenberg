@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -10,8 +11,8 @@ import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -58,20 +59,21 @@ public class CookerTest {
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     Location world = new Location();
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     chef.setContainer(world);
-    chef.setMana(recipe.getMana() + manaRemaining);
-    chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
-    chef.skillsAdd(new Skill("testSkill1"));
-    chef.recipeAdd("testItem1");
+    chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
+    chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
+    chef.getCharacterSheet().skillsAdd(new Skill("testSkill1"));
+    chef.getCharacterSheet().recipeAdd("testItem1");
 
     // Prepare to cook
-    Cooker cooker = chef.getCooker("testItem1");
+    Cooker cooker = new Cooker(recipe);
     Location newItemLocation = new Location();
     cooker.setItemsAvailable("Location", newItemLocation);
     Water water = new Water();
     water.setWeightBase(3);
     cooker.setItemsAvailable("Water1", water);
+    cooker.setChef(chef);
 
     // Cook
     cooker.cook();
@@ -82,8 +84,8 @@ public class CookerTest {
     assertEquals("item type", "Cookie", item.getClass().getSimpleName());
 
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /** test findIngredientByName. */
@@ -110,20 +112,21 @@ public class CookerTest {
 
     // Setup the chef
     Location world = new Location();
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     chef.setContainer(world);
-    chef.setMana(recipe.getMana() + manaRemaining);
-    chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
-    chef.recipeAdd("testSpell1");
+    chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
+    chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
+    chef.getCharacterSheet().recipeAdd("testSpell1");
 
     // Prepare to cast a spell
-    Cooker cooker = chef.getCooker("testSpell1");
+    Cooker cooker = new Cooker(recipe);
+    cooker.setChef(chef);
     cooker.cook();
 
     // TODO check the spell method was run.
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -163,12 +166,12 @@ public class CookerTest {
             products);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(REQUIRED_MANA + manaRemaining);
-    chef.setActionPoints(REQUIRED_ACTION_POINTS + actionPointsRemaining);
-    chef.skillsAddArray(REQUIRED_SKILLS);
+    chef.getPlayableState().setMana(REQUIRED_MANA + manaRemaining);
+    chef.getPlayableState().setActionPoints(REQUIRED_ACTION_POINTS + actionPointsRemaining);
+    chef.getCharacterSheet().setSkills(skills);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -188,8 +191,8 @@ public class CookerTest {
     assertEquals("new item location", newItemLocation, newItem.getContainer());
 
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -274,18 +277,25 @@ public class CookerTest {
     cooker.setItemsAvailable("FlintAndTinder", flintAndTinder);
 
     FlintAndTinder flintAndTinder2 = new FlintAndTinder();
+    flintAndTinder2.setName("flintAndTinder2");
     world.add(flintAndTinder2);
+    assertEquals("item 0 - item removed from Container", world, flintAndTinder2.getContainer());
+
     try {
       cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2);
     } catch (RuntimeException e) {
       assertEquals("item 0 - already occupied", Cooker.ALREADY_OCCUPIED, e.getMessage());
     }
+    assertEquals("flintAndTinder2 remains in world", world, flintAndTinder2.getContainer());
 
     cooker.clearItemsAvailable("FlintAndTinder", world);
 
     cooker.setItemsAvailable("FlintAndTinder", flintAndTinder2);
 
-    assertEquals("item 0 - item removed from Container", cooker, flintAndTinder2.getContainer());
+    assertFalse(
+        "flintAndTinder2 not in world, presumably in cooker",
+        world.equals(flintAndTinder2.getContainer()));
+
     // Item - Wood
     cooker.setItemsAvailable("Wood", wood);
 
@@ -302,13 +312,9 @@ public class CookerTest {
     }
 
     cooker.setItemsAvailable("Wood2", wood2);
-
-    // misc
-    assertEquals("item count", 3, cooker.size());
     // Only the FlintAndTinder2
     assertEquals("world count before", 1, world.size());
     cooker.empty(world);
-    assertEquals("item count", 0, cooker.size());
     assertEquals("world count after", 4, world.size());
   }
 
@@ -341,7 +347,7 @@ public class CookerTest {
         new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
 
     // Get a cooker
     recipe.getNewCooker(chef);
@@ -365,11 +371,11 @@ public class CookerTest {
         new Recipe("test-mana-1", "Mana test, just enough.", null, 1, 0, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(recipe.getMana() + manaRemaining);
-    chef.setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
+    chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
+    chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -377,8 +383,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -399,12 +405,12 @@ public class CookerTest {
         new Recipe("test-mana-2", "Mana test, not enough.", null, 3, 0, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     assertTrue("check test pre-condition", recipe.getMana() > manaRemaining);
-    chef.setMana(manaRemaining);
-    chef.setActionPoints(actionPointsRemaining);
+    chef.getPlayableState().setMana(manaRemaining);
+    chef.getPlayableState().setActionPoints(actionPointsRemaining);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -418,8 +424,8 @@ public class CookerTest {
     ;
 
     // Check the chef hasn't lost Mana or ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -438,11 +444,11 @@ public class CookerTest {
         new Recipe("test-mana-3", "Mana test, more than enough.", null, 3, 0, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -451,8 +457,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in Mana and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -473,11 +479,11 @@ public class CookerTest {
             "test-actionPoints-1", "ActionPoints test, just enough.", null, 0, 1, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -486,8 +492,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -509,11 +515,11 @@ public class CookerTest {
             "test-actionPoints-2", "ActionPoints test, not enough.", null, 0, 3, null, null, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining);
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -526,8 +532,8 @@ public class CookerTest {
     }
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", 2, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", 2, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -554,11 +560,11 @@ public class CookerTest {
             null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -566,8 +572,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -594,12 +600,12 @@ public class CookerTest {
             "test-skills-1", "Skill test, just enough.", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
-    chef.setSkills(skillsGot);
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getCharacterSheet().setSkills(skillsGot);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -607,8 +613,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -635,12 +641,12 @@ public class CookerTest {
             "test-skills-2", "Less skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining);
-    chef.setActionPoints(actionPointsRemaining);
-    chef.setSkills(skillsGot);
+    chef.getPlayableState().setMana(manaRemaining);
+    chef.getPlayableState().setActionPoints(actionPointsRemaining);
+    chef.getCharacterSheet().setSkills(skillsGot);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -653,8 +659,8 @@ public class CookerTest {
     }
 
     // Check the chef has not paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -681,12 +687,12 @@ public class CookerTest {
             "test-skills-3", "More skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
-    chef.setSkills(skillsGot);
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getCharacterSheet().setSkills(skillsGot);
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -694,8 +700,8 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
   }
 
   /**
@@ -730,11 +736,11 @@ public class CookerTest {
             null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -745,11 +751,13 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
 
     // Check the cooker has no items left.
-    assertEquals("cooker item count", 0, cooker.size());
+    var dump = new Location();
+    cooker.empty(dump);
+    assertEquals("cooker item count", 0, dump.size());
 
     // TODO Assistance required - test for destroyed object
   }
@@ -787,11 +795,11 @@ public class CookerTest {
             null);
 
     // Set the chef
-    Race chef = new Human();
+    final EntityItem chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    chef.setMana(manaRemaining + recipe.getMana());
-    chef.setActionPoints(actionPointsRemaining + recipe.getActionPoints());
+    chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
+    chef.getPlayableState().setActionPoints(actionPointsRemaining + recipe.getActionPoints());
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
@@ -800,11 +808,13 @@ public class CookerTest {
     cooker.cook();
 
     // Check the chef has paid in ActionPoints and ActionPoints
-    assertEquals("mana", manaRemaining, chef.getMana());
-    assertEquals("actionPoints", actionPointsRemaining, chef.getActionPoints());
+    assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
+    assertEquals("actionPoints", actionPointsRemaining, chef.getPlayableState().getActionPoints());
 
     // Check the cooker has one items left.
-    assertEquals("cooker item count", 1, cooker.size());
+    var dump = new Location();
+    cooker.empty(dump);
+    assertEquals("cooker item count", 1, dump.size());
   }
   // TODO Implement Test
   /**

@@ -18,26 +18,4 @@ public class Box extends Location {
   public Box() {
     super();
   }
-
-  /**
-   * Constructor with name.
-   *
-   * @param name name for item.
-   */
-  public Box(final String name) {
-    this();
-    setName(name);
-  }
-
-  /**
-   * Constructor with name.
-   *
-   * @param name name for item.
-   * @param description description of item.
-   */
-  Box(String name, String description) {
-    this();
-    setName(name);
-    setDescription(description);
-  }
 }

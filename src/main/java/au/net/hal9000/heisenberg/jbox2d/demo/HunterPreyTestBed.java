@@ -184,7 +184,7 @@ class HunterPreyTestBed extends TestbedTest {
       body.createFixture(fd);
 
       // Learn boundary.
-      hunterPreyAi.learnBarrierArray(
+      hunterPreyAi.learnMemoryOfBarrierArray(
           boundary_shape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "boundary");
     }
 
@@ -210,7 +210,7 @@ class HunterPreyTestBed extends TestbedTest {
       body.createFixture(fd);
 
       // Learn internal barrier.
-      hunterPreyAi.learnBarrierArray(
+      hunterPreyAi.learnMemoryOfBarrierArray(
           barrier_shape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "barrier");
     }
   }

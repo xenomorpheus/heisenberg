@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
 import java.awt.GridBagConstraints;
@@ -34,8 +34,8 @@ public class BasicPanel extends JPanel {
   private static final long serialVersionUID = 1L;
 
   // Misc
-  /** Field pc. */
-  private Race pc;
+  /** Field characterSheet. */
+  private CharacterSheet characterSheet;
 
   /** Field config. */
   private Configuration config = Configuration.lastConfig();
@@ -52,8 +52,8 @@ public class BasicPanel extends JPanel {
   /** Field descriptionTextField. */
   private JTextField descriptionTextField;
 
-  /** Field raceTextField. */
-  private JTextField speciesTextField;
+  /** Field speciesComboBox. */
+  private JComboBox<String> speciesComboBox;
 
   // Row 2
   /** Field comTextField. */
@@ -107,6 +107,7 @@ public class BasicPanel extends JPanel {
 
     BasicItemListener basicItemListener = new BasicItemListener();
     classComboBox.addItemListener(basicItemListener);
+    speciesComboBox.addItemListener(basicItemListener);
     sizeComboBox.addItemListener(basicItemListener);
     genderComboBox.addItemListener(basicItemListener);
 
@@ -119,22 +120,22 @@ public class BasicPanel extends JPanel {
             if (levelModel instanceof SpinnerNumberModel) {
               int newPcLevel =
                   Integer.parseInt(((SpinnerNumberModel) levelModel).getValue().toString());
-              pc.setLevel(newPcLevel);
+              characterSheet.setLevel(newPcLevel);
             }
           }
         });
   }
 
   /**
-   * Set the PcClass object to show values for.
+   * Set the CharacterSheet object to show values for.
    *
-   * @param pc the PcClass object to show values for.
-   *     <p>Note we pass the PcClass rather than the values needed to do the display. We do this
-   *     because the values to display may be changed by other tabs, and passing by pc allows a
+   * @param characterSheet the CharacterSheet object to show values for.
+   *     <p>Note we pass the CharacterSheet rather than the values needed to do the display. We do
+   *     this because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setRace(final Race pc) {
-    this.pc = pc;
+  public void setCharacterSheet(final CharacterSheet characterSheet) {
+    this.characterSheet = characterSheet;
     updateForm();
   }
 
@@ -204,7 +205,7 @@ public class BasicPanel extends JPanel {
 
     classComboBox = new JComboBox<>();
     Collection<PcClass> pcClassesItr = config.getPcClasses().values();
-    for (PcClass pcClass : pcClassesItr) {
+    for (var pcClass : pcClassesItr) {
       classComboBox.addItem(pcClass);
     }
 
@@ -256,15 +257,17 @@ public class BasicPanel extends JPanel {
     add(speciesLbl);
     pos += cons.gridwidth;
 
-    speciesTextField = new JTextField();
-    speciesTextField.setColumns(10);
-    speciesTextField.putClientProperty("id", "species");
-    speciesTextField.setEditable(false);
+    speciesComboBox = new JComboBox<>();
+    Collection<String> speciesItr = config.getSpecies();
+    for (var name : speciesItr) {
+      speciesComboBox.addItem(name);
+    }
+
     cons.gridx = pos;
     cons.gridy = row;
     cons.gridwidth = 6;
-    gridBag.setConstraints(speciesTextField, cons);
-    add(speciesTextField);
+    gridBag.setConstraints(speciesComboBox, cons);
+    add(speciesComboBox);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
   }
@@ -458,8 +461,8 @@ public class BasicPanel extends JPanel {
     // Size List
     sizeComboBox = new JComboBox<>();
     Collection<String> sizes = config.getSizes();
-    for (String size : sizes) {
-      sizeComboBox.addItem(size);
+    for (var name : sizes) {
+      sizeComboBox.addItem(name);
     }
     sizeComboBox.setSelectedIndex(0);
     cons.gridx = pos;
@@ -481,7 +484,7 @@ public class BasicPanel extends JPanel {
     // Gender List
     genderComboBox = new JComboBox<>();
     Collection<String> genders = config.getGenders();
-    for (String gender : genders) {
+    for (var gender : genders) {
       genderComboBox.addItem(gender);
     }
     genderComboBox.setSelectedIndex(0);
@@ -510,9 +513,9 @@ public class BasicPanel extends JPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
       if (e.getSource() == nameTextField) {
-        pc.setName(nameTextField.getText());
+        characterSheet.setName(nameTextField.getText());
       } else if (e.getSource() == descriptionTextField) {
-        pc.setDescription(descriptionTextField.getText());
+        characterSheet.setDescription(descriptionTextField.getText());
       }
     }
   }
@@ -549,9 +552,9 @@ public class BasicPanel extends JPanel {
       if (component instanceof JTextField) {
         JTextField textField = (JTextField) component;
         if (textField == nameTextField) {
-          pc.setName(nameTextField.getText());
+          characterSheet.setName(nameTextField.getText());
         } else if (textField == descriptionTextField) {
-          pc.setDescription(descriptionTextField.getText());
+          characterSheet.setDescription(descriptionTextField.getText());
         }
       }
     }
@@ -580,25 +583,33 @@ public class BasicPanel extends JPanel {
           // Class
           if (source == classComboBox) {
             PcClass newPcClass = (PcClass) classComboBox.getSelectedItem();
-            if (!newPcClass.equals(pc.getPcClass())) {
-              pc.setPcClass(newPcClass);
+            if (!newPcClass.equals(characterSheet.getPcClass())) {
+              characterSheet.setPcClass(newPcClass);
               updateForm = true;
+            }
+          }
+
+          // Species
+          else if (source == speciesComboBox) {
+            String newSpecies = (String) speciesComboBox.getSelectedItem();
+            if (!newSpecies.equals(characterSheet.getSpecies())) {
+              characterSheet.setSpecies(newSpecies);
             }
           }
 
           // Size
           else if (source == sizeComboBox) {
             String newSize = (String) sizeComboBox.getSelectedItem();
-            if (!newSize.equals(pc.getSize())) {
-              pc.setSize(newSize);
+            if (!newSize.equals(characterSheet.getSize())) {
+              characterSheet.setSize(newSize);
             }
           }
 
           // Gender
           else if (source == genderComboBox) {
             String newGender = (String) genderComboBox.getSelectedItem();
-            if (!newGender.equals(pc.getGender())) {
-              pc.setGender(newGender);
+            if (!newGender.equals(characterSheet.getGender())) {
+              characterSheet.setGender(newGender);
             }
           }
         }
@@ -611,30 +622,31 @@ public class BasicPanel extends JPanel {
 
   /** update the form. */
   private void updateForm() {
-    if (null != pc) {
+    if (null != characterSheet) {
 
       // TODO only change values if required.
       // e.g. don't trigger needless change events.
       // Fields
       // Row 0
-      nameTextField.setText(pc.getName());
-      classComboBox.setSelectedItem(pc.getPcClass());
+      nameTextField.setText(characterSheet.getName());
+      classComboBox.setSelectedItem(characterSheet.getPcClass());
       // Row 1
-      descriptionTextField.setText(pc.getDescription());
-      speciesTextField.setText(pc.getSpeciesName());
+      descriptionTextField.setText(characterSheet.getDescription());
+      speciesComboBox.setSelectedItem(characterSheet.getSpecies());
       // Row 2
-      comTextField.setText(Integer.toString(pc.getCombatDice()));
-      magTextField.setText(Integer.toString(pc.getMagicDice()));
-      steTextField.setText(Integer.toString(pc.getStealthDice()));
-      genTextField.setText(Integer.toString(pc.getGeneralDice()));
+      comTextField.setText(Integer.toString(characterSheet.getPcClass().getCombatDice()));
+      magTextField.setText(Integer.toString(characterSheet.getPcClass().getMagicDice()));
+      steTextField.setText(Integer.toString(characterSheet.getPcClass().getStealthDice()));
+      genTextField.setText(Integer.toString(characterSheet.getPcClass().getGeneralDice()));
       // Row 3
-      levelModel.setValue(pc.getLevel());
-      actionPointsTextField.setText(Integer.toString(pc.getActionPoints()));
-      healthTextField.setText(Integer.toString(pc.getHealth()));
-      manaTextField.setText(Integer.toString(pc.getMana()));
+      levelModel.setValue(characterSheet.getLevel());
+      actionPointsTextField.setText(
+          Integer.toString(characterSheet.getPcClass().getActionPoints()));
+      healthTextField.setText(Integer.toString(characterSheet.getPcClass().getHealth()));
+      manaTextField.setText(Integer.toString(characterSheet.getPcClass().getMana()));
       // Row 4
-      sizeComboBox.setSelectedItem(pc.getSize());
-      genderComboBox.setSelectedItem(pc.getGender());
+      sizeComboBox.setSelectedItem(characterSheet.getSize());
+      genderComboBox.setSelectedItem(characterSheet.getGender());
     }
   }
 }

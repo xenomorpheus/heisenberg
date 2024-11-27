@@ -31,7 +31,7 @@ public class HalflingTest {
   public void halflingEatsACookie() throws InvalidTypeException {
     // Setup
     Halfling halfling = new Halfling();
-    halfling.setActionPoints(3);
+    halfling.getPlayableState().setActionPoints(3);
     ItemProperty.setNourishment(halfling, ItemProperty.HEALTH_METRIC_IDEAL / 2);
     float nourishment_before = ItemProperty.getNourishment(halfling);
     Cookie cookie = new Cookie();
@@ -39,6 +39,6 @@ public class HalflingTest {
     halfling.eat(cookie);
     // Test
     float nourishment_after = ItemProperty.getNourishment(halfling);
-    assertTrue("Eating increases nouritshment", nourishment_after > nourishment_before);
+    assertTrue("Eating increases nourishment", nourishment_after > nourishment_before);
   }
 }

@@ -19,8 +19,8 @@ import java.util.Set;
 */
 public abstract class Humanoid extends PlayerCharacter {
 
-  public Humanoid(String name) {
-    super(name);
+  public Humanoid() {
+    super();
   }
 
   @Override
@@ -29,7 +29,7 @@ public abstract class Humanoid extends PlayerCharacter {
     Set<Action> actions = new HashSet<Action>();
     actions.addAll(super.getActionsCombat(arena));
     TimerRound timer = arena.getTimerRound();
-    if (timer.isActionDurationAvailable(ActionDuration.FULLROUND)) {
+    if (timer.isActionDurationAvailable(ActionDuration.FULL_ROUND)) {
       actions.add(new ActionFullRound());
     }
     if (timer.isActionDurationAvailable(ActionDuration.STANDARD)) {
@@ -38,7 +38,7 @@ public abstract class Humanoid extends PlayerCharacter {
     if (timer.isActionDurationAvailable(ActionDuration.MOVE)) {
       actions.add(new ActionMovement());
     }
-    if (timer.isActionDurationAvailable(ActionDuration.FIVEFOOTSTEP)) {
+    if (timer.isActionDurationAvailable(ActionDuration.FIVE_FOOT_STEP)) {
       actions.add(new ActionMovementFiveFootStep());
     }
     if (timer.isActionDurationAvailable(ActionDuration.FREE)) {

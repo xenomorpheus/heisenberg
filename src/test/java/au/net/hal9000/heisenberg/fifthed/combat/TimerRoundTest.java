@@ -13,10 +13,10 @@ public class TimerRoundTest {
     TimerRound timer = new TimerRound();
     Set<ActionDuration> got = timer.getAvailableActionDurationSet();
     Set<ActionDuration> expected = new HashSet<ActionDuration>();
-    expected.add(ActionDuration.FULLROUND);
+    expected.add(ActionDuration.FULL_ROUND);
     expected.add(ActionDuration.STANDARD);
     expected.add(ActionDuration.MOVE);
-    expected.add(ActionDuration.FIVEFOOTSTEP);
+    expected.add(ActionDuration.FIVE_FOOT_STEP);
     expected.add(ActionDuration.IMMEDIATE);
     expected.add(ActionDuration.SWIFT);
     expected.add(ActionDuration.FREE);
@@ -26,10 +26,10 @@ public class TimerRoundTest {
   @Test
   public void testGetAvailableActionDurationSetTakeFullRoundAction() {
     TimerRound timer = new TimerRound();
-    timer.takeActionDuration(ActionDuration.FULLROUND);
+    timer.takeActionDuration(ActionDuration.FULL_ROUND);
     Set<ActionDuration> got = timer.getAvailableActionDurationSet();
     Set<ActionDuration> expected = new HashSet<ActionDuration>();
-    expected.add(ActionDuration.FIVEFOOTSTEP);
+    expected.add(ActionDuration.FIVE_FOOT_STEP);
     expected.add(ActionDuration.IMMEDIATE);
     expected.add(ActionDuration.SWIFT);
     expected.add(ActionDuration.FREE);
@@ -43,7 +43,7 @@ public class TimerRoundTest {
     Set<ActionDuration> got = timer.getAvailableActionDurationSet();
     Set<ActionDuration> expected = new HashSet<ActionDuration>();
     expected.add(ActionDuration.MOVE);
-    expected.add(ActionDuration.FIVEFOOTSTEP);
+    expected.add(ActionDuration.FIVE_FOOT_STEP);
     expected.add(ActionDuration.IMMEDIATE);
     expected.add(ActionDuration.SWIFT);
     expected.add(ActionDuration.FREE);
@@ -53,10 +53,10 @@ public class TimerRoundTest {
   @Test
   public void testGetAvailableActionDurationSetTakeFiveFootStep() {
     TimerRound timer = new TimerRound();
-    timer.takeActionDuration(ActionDuration.FIVEFOOTSTEP);
+    timer.takeActionDuration(ActionDuration.FIVE_FOOT_STEP);
     Set<ActionDuration> got = timer.getAvailableActionDurationSet();
     Set<ActionDuration> expected = new HashSet<ActionDuration>();
-    expected.add(ActionDuration.FULLROUND);
+    expected.add(ActionDuration.FULL_ROUND);
     expected.add(ActionDuration.STANDARD);
     expected.add(ActionDuration.IMMEDIATE);
     expected.add(ActionDuration.SWIFT);

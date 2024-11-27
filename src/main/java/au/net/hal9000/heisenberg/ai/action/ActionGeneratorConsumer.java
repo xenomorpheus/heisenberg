@@ -7,14 +7,15 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateConsumerConsumable;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.units.Position;
 
-/** Geneerate Action object if we are close enough to consume. */
+/** Generate Action object if we are close enough to consume. */
 public class ActionGeneratorConsumer implements ActionGenerator {
 
   private double consumeDistanceMax;
   private double consumeCost;
 
   /**
-   * @param consumeCost TODO
+   * @param distanceMax Maximum distance
+   * @param consumeCost Cost to consume
    */
   public ActionGeneratorConsumer(double distanceMax, double consumeCost) {
     this.consumeDistanceMax = distanceMax;

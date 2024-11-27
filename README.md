@@ -99,7 +99,7 @@ java au.net.hal9000.heisenberg.jbox2d.demo.Main
 
 java au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
 
-java au.net.hal9000.heisenberg.pceditor.demo.RaceEditorMain
+java au.net.hal9000.heisenberg.pceditor.demo.CharacterSheetEditorMain
 
 java au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
 

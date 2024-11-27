@@ -1,14 +1,14 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-/** Race editor. */
-public class RaceEditor extends JPanel {
+/** CharacterSheet editor. */
+public class CharacterSheetEditor extends JPanel {
   /** window default x pos. */
   private static final int X_POS = 100;
 
@@ -24,8 +24,8 @@ public class RaceEditor extends JPanel {
   /** serial version id. */
   private static final long serialVersionUID = 1L;
 
-  /** Field Race. */
-  private Race Race;
+  /** Field CharacterSheet. */
+  private CharacterSheet charactersheet;
 
   /** Field basicPanel. */
   private BasicPanel basicPanel = new BasicPanel();
@@ -43,7 +43,7 @@ public class RaceEditor extends JPanel {
   private DescriptionPane descriptionPane = new DescriptionPane();
 
   /** Create the application. */
-  public RaceEditor() {
+  public CharacterSheetEditor() {
     setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
     // Main container
@@ -77,25 +77,25 @@ public class RaceEditor extends JPanel {
   }
 
   /**
-   * Get the PcClass object we are editing.
+   * Get the CharacterSheet object we are editing.
    *
-   * @return the PcClass object we are editing.
+   * @return the CharacterSheet object we are editing.
    */
-  public Race getRace() {
-    return Race;
+  public CharacterSheet getCharactersheet() {
+    return charactersheet;
   }
 
   /**
-   * Set the PcClass object we are editing.
+   * Set the CharacterSheet we are editing.
    *
-   * @param pc the PcClass object we are editing.
+   * @param cs the CharacterSheet we are editing.
    */
-  public void setRace(Race pc) {
-    Race = pc;
-    basicPanel.setRace(pc);
-    abilityScoresTable.setRace(pc);
-    skillsTable.setRace(pc);
-    recipesTable.setRace(pc);
-    descriptionPane.setRace(pc);
+  public void setCharacterSheet(CharacterSheet cs) {
+    charactersheet = cs;
+    basicPanel.setCharacterSheet(cs);
+    abilityScoresTable.setCharacterSheet(cs);
+    skillsTable.setCharacterSheet(cs);
+    recipesTable.setCharacterSheet(cs);
+    descriptionPane.setCharacterSheet(cs);
   }
 }

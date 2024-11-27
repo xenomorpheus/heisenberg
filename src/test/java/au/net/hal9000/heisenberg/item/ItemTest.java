@@ -47,19 +47,6 @@ public class ItemTest {
   }
 
   @Test
-  public void testItemWithName() {
-    Item item = new Cookie("The Name");
-    assertEquals("Item() name", "The Name", item.getName());
-  }
-
-  @Test
-  public void testItemWithNameAndDescription() {
-    Item item = new Cookie("The Name", "The Description");
-    assertEquals("Item() name", "The Name", item.getName());
-    assertEquals("Item() description", "The Description", item.getDescription());
-  }
-
-  @Test
   public void testId() {
     Item item = new Cookie();
     UUID id = item.getId();
@@ -83,9 +70,7 @@ public class ItemTest {
 
   @Test
   public void testName() {
-    Item item = new Cookie("A Name");
-    assertEquals("name", "A Name", item.getName());
-
+    Item item = new Cookie();
     item.setName("fred");
     assertEquals("setname & getname", "fred", item.getName());
   }

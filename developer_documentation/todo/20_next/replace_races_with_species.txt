@@ -1,0 +1,8 @@
+
+Remove Human, Elf, Halfling classes and put functionality into other classes.
+
+Create a Species class
+* Replaces the concept of game Race types like Elf, Human.
+* Holds only the species specific properties
+ * Species name
+ * Base attribute deltas

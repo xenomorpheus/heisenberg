@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.AbilityScoresTable;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -38,8 +38,8 @@ public class AbilitiesScoresTableMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
-              Race pc = DemoEnvironment.getRace();
-              abilityScoresTable.setRace(pc);
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
+              abilityScoresTable.setCharacterSheet(pc);
 
               // add to JFrame
               guiFrame.add(abilityScoresTable);

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JScrollPane;
@@ -21,8 +21,8 @@ public class DescriptionPane extends JScrollPane {
   /** Logger. */
   private static final Logger LOGGER = Logger.getLogger(DescriptionPane.class.getName());
 
-  /** Field pc. */
-  private Race pc;
+  /** Field charactersheet. */
+  private CharacterSheet charactersheet;
 
   /** Field descriptionTextArea. */
   private JTextArea descriptionTextArea = new JTextArea(30, 25);
@@ -46,11 +46,11 @@ public class DescriptionPane extends JScrollPane {
         new FocusAdapter() {
           @Override
           public void focusGained(FocusEvent e) {
-            if (null == pc) {
+            if (null == charactersheet) {
               descriptionTextArea.setText("");
-              LOGGER.error("pc is NULL");
+              LOGGER.error("charactersheet is NULL");
             } else {
-              descriptionTextArea.setText(pc.detailedDescription());
+              descriptionTextArea.setText(charactersheet.detailedDescription());
             }
           }
         });
@@ -59,17 +59,17 @@ public class DescriptionPane extends JScrollPane {
   /**
    * Set the PcClass object to show values for.
    *
-   * @param pc the PcClass object to show values for.
+   * @param charactersheet the PcClass object to show values for.
    *     <p>Note we pass the PcClass rather than the values needed to do the display. We do this
    *     because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setRace(final Race pc) {
-    this.pc = pc;
-    if (null == pc) {
+  public void setCharacterSheet(final CharacterSheet charactersheet) {
+    this.charactersheet = charactersheet;
+    if (null == charactersheet) {
       descriptionTextArea.setText("");
     } else {
-      descriptionTextArea.setText(pc.detailedDescription());
+      descriptionTextArea.setText(charactersheet.detailedDescription());
     }
   }
 }

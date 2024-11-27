@@ -35,7 +35,7 @@ public class CatTest {
   public void testDrinkWater() {
     // Setup
     Cat cat = new Cat();
-    cat.setActionPoints(2);
+    cat.getPlayableState().setActionPoints(2);
     Water water = new Water();
     water.setWeightBase(1.0f);
     // Set hydration to half of ideal.
@@ -52,7 +52,7 @@ public class CatTest {
   public void testEatRat() {
     // Setup
     Cat cat = new Cat();
-    cat.setActionPoints(2);
+    cat.getPlayableState().setActionPoints(2);
     Rat rat = new Rat();
     rat.setWeightBase(1.0f);
     // Set nourishment to half of ideal.

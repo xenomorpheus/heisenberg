@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.util.AbilityScore;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -28,14 +28,14 @@ public class AbilityScoresTable extends JTable implements FocusListener {
   }
 
   /**
-   * Set the PcClass object to show values for.
+   * Set the CharacterSheet object to show values for.
    *
-   * @param pc the PcClass object to show values for.
-   *     <p>Note we pass the PcClass rather than the values needed to do the display. We do this
-   *     because the values to display may be changed by other tabs, and passing by pc allows a
+   * @param pc the CharacterSheet object to show values for.
+   *     <p>Note we pass the CharacterSheet rather than the values needed to do the display. We do
+   *     this because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setRace(final Race pc) {
+  public void setCharacterSheet(final CharacterSheet pc) {
     myTableModel = new MyTableModel(pc);
     setModel(myTableModel);
   }
@@ -69,9 +69,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     /**
      * Constructor for MyTableModel.
      *
-     * @param pc Race
+     * @param pc CharacterSheet
      */
-    private MyTableModel(Race pc) {
+    private MyTableModel(CharacterSheet pc) {
       Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
       if (null != abilityScores) {
         pcAbilityScores = new ArrayList<AbilityScore>(abilityScores.values());

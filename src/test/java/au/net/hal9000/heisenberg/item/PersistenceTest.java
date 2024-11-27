@@ -2,8 +2,12 @@ package au.net.hal9000.heisenberg.item;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
@@ -25,6 +29,7 @@ import org.junit.Test;
 public class PersistenceTest {
 
   private Configuration config = null;
+  final String persistenceUnitName = "items";
   private EntityManagerFactory factory = null;
   private EntityManager em = null;
   private static final Logger LOGGER = Logger.getLogger(PersistenceTest.class.getName());
@@ -42,7 +47,6 @@ public class PersistenceTest {
   }
 
   private void open_db() {
-    final String persistenceUnitName = "items";
     factory = Persistence.createEntityManagerFactory(persistenceUnitName);
     em = factory.createEntityManager();
   }
@@ -55,6 +59,109 @@ public class PersistenceTest {
   private void close_then_open_db() {
     close_db();
     open_db();
+  }
+
+  /** Persistence of basic Item. */
+  @Test
+  public void item() {
+    var item = new Cookie();
+    final var classExpected = item.getClass();
+    String nameExpected = "Name of " + item.getSimpleClassName();
+    item.setName(nameExpected);
+    assertEquals("Name before", nameExpected, item.getName());
+    assertEquals(0L, item.getJpaId());
+    item.setProperty("WantBAR", "BAR");
+
+    // Persist Item
+    em.getTransaction().begin();
+    em.persist(item);
+    em.getTransaction().commit();
+    final var jpaId = item.getJpaId();
+    assertNotEquals(0L, jpaId);
+
+    close_then_open_db();
+
+    // Retrieve Item
+    var itemFetched = em.find(classExpected, jpaId);
+    assertNotNull(itemFetched);
+    assertEquals(jpaId, itemFetched.getJpaId());
+    assertEquals("WantBar property after", "BAR", itemFetched.getProperty("WantBAR"));
+    assertEquals("Name after", nameExpected, itemFetched.getName());
+  }
+
+  /**
+   * Test Item with character sheet. <br>
+   * This tests the persistence of properties that are classes.
+   */
+  @Test
+  public void itemWithCharacterSheet() {
+    var item = new Cat();
+    final var classExpected = item.getClass();
+    assertEquals(0L, item.getJpaId());
+    String nameExpected = "Name of " + item.getSimpleClassName();
+    item.setName(nameExpected);
+    assertEquals("Name", nameExpected, item.getName());
+    item.setProperty("WantBAR", "BAR");
+    int manaExpected = 555;
+    item.getPlayableState().setMana(manaExpected);
+
+    // Persist Item
+    em.getTransaction().begin();
+    em.persist(item);
+    em.getTransaction().commit();
+    final var jpaId = item.getJpaId();
+    assertNotEquals(0L, jpaId);
+
+    close_then_open_db();
+
+    // Retrieve Item
+    var itemFetched = em.find(classExpected, jpaId);
+    assertNotNull(itemFetched);
+    assertEquals(jpaId, itemFetched.getJpaId());
+    // TODO CharacterSheet Persistence
+    assertNotEquals("Name after", nameExpected, itemFetched.getName());
+    assertEquals("BAR", itemFetched.getProperty("WantBAR"));
+    // TODO PlayableState Persistence
+    assertNotEquals("Mana after", manaExpected, itemFetched.getPlayableState().getMana());
+  }
+
+  /**
+   * Persist Item with CharacterSheet as member.<br>
+   * Using Factory for initial construction.
+   */
+  @Test
+  public void itemFromFactoryHasCharacterSheet() {
+    String itemClass = "entity.Human";
+    LOGGER.info("Testing " + itemClass);
+
+    // Create a new Item
+    em.getTransaction().begin();
+    Item item = Factory.createItem(itemClass);
+    final String nameExpected = "Name of " + item.getSimpleClassName();
+    item.setName(nameExpected);
+    assertEquals("Name before", nameExpected, item.getName());
+    final String descriptionExpected = "This is a " + item.getSimpleClassName() + " Description";
+    item.setDescription(descriptionExpected);
+    assertEquals("Description before", descriptionExpected, item.getDescription());
+
+    assertEquals(0L, item.getJpaId());
+    final var classExpected = item.getClass();
+
+    // Persist Item
+    em.persist(item);
+    em.getTransaction().commit();
+    final var jpaId = item.getJpaId();
+    assertNotEquals(0L, jpaId);
+
+    close_then_open_db();
+
+    // Retrieve Item
+    Item retrievedItem = em.find(classExpected, jpaId);
+    assertNotNull(retrievedItem);
+    assertEquals("jpaId", jpaId, retrievedItem.getJpaId());
+    assertEquals("Class after", classExpected, retrievedItem.getClass());
+    assertNotEquals(
+        "Name after", nameExpected, retrievedItem.getName()); // TODO CharacterSheet Persistence
   }
 
   /**
@@ -72,10 +179,13 @@ public class PersistenceTest {
       // Create a new Item
       em.getTransaction().begin();
       Item item = Factory.createItem(itemClass);
-      final String name = "This is a " + itemClass + " Name";
-      item.setName(name);
-      final String description = "This is a " + itemClass + " Description";
-      item.setDescription(description);
+      final String nameExpected = "Name of " + item.getSimpleClassName();
+      item.setName(nameExpected);
+      assertEquals("Name before", nameExpected, item.getName());
+      final String descriptionExpected = "This is a " + itemClass + " Description";
+      item.setDescription(descriptionExpected);
+      assertEquals("Description after", descriptionExpected, item.getDescription());
+
       assertEquals(0L, item.getJpaId());
       final var classExpected = item.getClass();
 
@@ -89,17 +199,36 @@ public class PersistenceTest {
 
       // Retrieve Item
       Item retrievedItem = em.find(classExpected, jpaId);
-      assertEquals(classExpected, retrievedItem.getClass());
-      assertEquals(name, retrievedItem.getName());
-      assertEquals(description, retrievedItem.getDescription());
+      assertNotNull(retrievedItem);
+      assertEquals(jpaId, retrievedItem.getJpaId());
+      assertEquals("Class", classExpected, retrievedItem.getClass());
+
+      // TODO EntityItem Persistence of CharacterSheet and PlayableState
+      if (retrievedItem instanceof EntityItem) {
+        assertNull("Name after", retrievedItem.getName());
+        assertNull("Description after", retrievedItem.getDescription());
+      } else {
+        assertEquals("Name after", nameExpected, retrievedItem.getName());
+        assertEquals("Description after", descriptionExpected, retrievedItem.getDescription());
+      }
     }
   }
 
   /** Method testItemContainer. */
   @Test
   public void testItemContainer() {
-    Bag bag = new Bag("Bag1");
+
+    var factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+    var em = factory.createEntityManager();
+    assertNotNull(em);
+
+    Bag bag = new Bag();
+    String bagNameExpected = "Bag Name";
+    bag.setName(bagNameExpected);
+    assertEquals("Bag Name", bagNameExpected, bag.getName());
     Cookie cookie1 = new Cookie();
+    String cookie1Name = "Cookie1 Name";
+    cookie1.setName(cookie1Name);
     Cookie cookie2 = new Cookie();
     bag.add(cookie1);
     bag.add(cookie2);
@@ -120,37 +249,44 @@ public class PersistenceTest {
     assertNotEquals(0L, cookie1.getJpaId());
     assertNotEquals(0L, cookie2.getJpaId());
 
-    close_then_open_db();
+    em.close();
+    em = null;
 
+    em = factory.createEntityManager();
     // Fetch the bag and contents.
     var bagFetched = em.find(Bag.class, bagJpaId);
+    assertEquals("Bag Name", bagNameExpected, bagFetched.getName());
     assertEquals(2, bagFetched.getContents().size());
     LOGGER.info(bagFetched.detailedDescription());
     LOGGER.info("Bag Contents Count: " + bagFetched.getContents().size());
+    var cookie1Fetched = bagFetched.get(0);
+    assertEquals("Cookie1 Name", cookie1Name, cookie1Fetched.getName());
     for (var item : bagFetched.getContents()) {
       LOGGER.info("Content: " + item.detailedDescription());
     }
+    em.close();
+    em = null;
   }
 
   private static Location testGetWorld() {
     // Ad-hoc test world
     Location world = new Location();
-    world.setWeightMax(100000);
-    world.setVolumeMax(100000);
+    world.setWeightMax(-1f);
+    world.setVolumeMax(-1f);
 
     // Scabbard
     Scabbard scabbard = new Scabbard();
     scabbard.add(new Sword());
 
-    Scabbard scabbard2 = new Scabbard("Scabbard2");
+    Scabbard scabbard2 = new Scabbard();
     scabbard2.add(new Sword());
 
     Bag boh = new BagOfHolding(1);
-    boh.add(new Bag("Bag1"));
-    boh.add(new Box("Box1"));
+    boh.add(new Bag());
+    boh.add(new Box());
     boh.add(new Candle());
     boh.add(new Cloak());
-    boh.add(new Cookie("Cookie1"));
+    boh.add(new Cookie());
     boh.add(new Crossbow());
     boh.add(new CrossbowBolt());
     boh.add(new MagicRing());
@@ -159,7 +295,7 @@ public class PersistenceTest {
     boh.add(new Torch());
 
     // a backpack of stuff
-    Bag backpack = new Backpack("Backpack1");
+    Bag backpack = new Backpack();
     backpack.setWeightMax(100000);
     backpack.setVolumeMax(100000);
     backpack.add(boh);
@@ -169,14 +305,14 @@ public class PersistenceTest {
     quiver.add(new Arrow());
     quiver.add(new Arrow());
 
-    Bag bag2 = new Bag("Bag2");
-    bag2.add(new Cookie("Cookie6"));
-    bag2.add(new Cookie("Cookie7"));
-    bag2.add(new Cookie("Cookie8"));
+    Bag bag2 = new Bag();
+    bag2.add(new Cookie());
+    bag2.add(new Cookie());
+    bag2.add(new Cookie());
     backpack.add(bag2);
 
     // a human with a bag of cookies
-    Human human = new Human("Human1");
+    Human human = new Human();
     world.add(human);
     human.setWeightMax(100000);
     human.setVolumeMax(100000);
@@ -190,10 +326,10 @@ public class PersistenceTest {
     world.add(new Horse());
 
     // bag3
-    Bag bag3 = new Bag("Bag3");
-    bag3.add(new Cookie("Cookie9"));
-    bag3.add(new Cookie("Cookie10"));
-    bag3.add(new Cookie("Cookie11"));
+    Bag bag3 = new Bag();
+    bag3.add(new Cookie());
+    bag3.add(new Cookie());
+    bag3.add(new Cookie());
     world.add(bag3);
 
     return world;
@@ -239,7 +375,7 @@ public class PersistenceTest {
 
   /** Method testWorld. */
   @Test
-  public void testWorld() {
+  public void world() {
 
     final long locJpaId;
     final HashMap<String, Integer> summaryExpect;

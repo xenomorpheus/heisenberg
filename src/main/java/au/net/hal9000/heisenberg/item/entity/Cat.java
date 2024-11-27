@@ -22,6 +22,8 @@ public class Cat extends EntityItem implements Animal {
     super();
   }
 
+  // Implement Animal
+
   @Override
   public void eat(Item food) {
     AnimalConsumeSustenance.eat(this, food);

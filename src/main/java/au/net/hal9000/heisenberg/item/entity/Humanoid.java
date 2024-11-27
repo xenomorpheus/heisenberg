@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.item.entity;
 
+import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Hand;
 import au.net.hal9000.heisenberg.item.HumanoidHead;
 import au.net.hal9000.heisenberg.item.Location;
@@ -9,6 +10,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
+import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import jakarta.persistence.Inheritance;
@@ -23,10 +25,7 @@ import java.util.List;
  * @version $Revision: 1.0 $
  */
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Humanoid extends Race implements ItemList {
-
-  /** Field serialVersionUID. (value is 1) */
-  private static final long serialVersionUID = 1L;
+abstract class Humanoid extends EntityItem implements Animal, ItemList {
 
   /** head percentage of max weight and volume. */
   private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;
@@ -160,6 +159,18 @@ abstract class Humanoid extends Race implements ItemList {
     core.setVolumeMax(volumeMax * corePercentage);
   }
 
+  // Implement Animal
+
+  @Override
+  public void eat(Item food) {
+    AnimalConsumeSustenance.eat(this, food);
+  }
+
+  @Override
+  public void drink(Item food) {
+    AnimalConsumeSustenance.drink(this, food);
+  }
+
   // Misc
 
   /**
@@ -234,12 +245,6 @@ abstract class Humanoid extends Race implements ItemList {
     }
     core.accept(visitor);
     visitor.visit(this);
-  }
-
-  /** {@inheritDoc} * @return String */
-  @Override
-  public String getSpeciesName() {
-    return getClass().getSimpleName();
   }
 
   /** {@inheritDoc} * @return int */

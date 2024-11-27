@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -27,7 +27,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              Race pc = DemoEnvironment.getRace();
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -39,7 +39,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
               guiFrame.setLocationRelativeTo(null);
 
               DescriptionPane window = new DescriptionPane();
-              window.setRace(pc);
+              window.setCharacterSheet(pc);
 
               // add to JFrame
               guiFrame.add(window);

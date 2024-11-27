@@ -156,7 +156,7 @@ public class ScenarioSet01 {
   public void halflingEatsACookie() throws InvalidTypeException {
     println(System.lineSeparator() + "** A halfling eats a cookie.");
     Halfling halfling = new Halfling();
-    halfling.setActionPoints(3);
+    halfling.getPlayableState().setActionPoints(3);
     Cookie cookie = new Cookie();
     halfling.eat(cookie);
     println("Halfling ate a cookie");

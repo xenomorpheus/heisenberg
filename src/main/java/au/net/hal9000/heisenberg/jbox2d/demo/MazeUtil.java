@@ -2,9 +2,6 @@ package au.net.hal9000.heisenberg.jbox2d.demo;
 
 import au.net.hal9000.heisenberg.ai.BarrierShape;
 import au.net.hal9000.heisenberg.ai.MemoryOfBarrier;
-import au.net.hal9000.heisenberg.ai.api.Barrier;
-import au.net.hal9000.heisenberg.ai.api.Memory;
-import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +38,11 @@ class MazeUtil {
   /**
    * Add to Entity memory an array of barrier lines.
    *
-   * @param entity entity.
    * @param shape the barrier as an array of Vec2 points.
    * @param position the position of this shape.
    * @param body the object that is the barrier.
    */
-  static void learnBarrierArray(MemorySet memorySet, Vec2[] shape, Vec2 position, Object body) {
+  static MemoryOfBarrier getMemoryOfBarrierArray(Vec2[] shape, Vec2 position, Object body) {
     List<Line2D.Double> shapeLine2D = new ArrayList<>();
 
     for (int index = 1; index < shape.length; index++) {
@@ -57,9 +53,6 @@ class MazeUtil {
               shape[index].x + position.x,
               shape[index].y + position.y));
     }
-
-    Barrier barrier = new BarrierShape(shapeLine2D, body);
-    Memory memory = new MemoryOfBarrier(null, 0, barrier);
-    memorySet.add(memory);
+    return new MemoryOfBarrier(null, 0, new BarrierShape(shapeLine2D, body));
   }
 }

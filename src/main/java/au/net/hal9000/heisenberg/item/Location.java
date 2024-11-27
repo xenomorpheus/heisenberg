@@ -258,23 +258,21 @@ public class Location extends ItemImpl implements ItemContainer {
 
     // check Weight
     final float weightMax = getWeightMax();
-    if (weightMax > 0) {
+    if (weightMax > 0f) {
       float total = getContentsWeight();
       total += item.getWeight();
       if (total > weightMax) {
-        StringBuilder text =
-            new StringBuilder(11)
-                .append("TooHeavy - Adding ")
-                .append(item.getName())
-                .append(" weighing ")
-                .append(item.getWeight())
-                .append(" will total ")
-                .append(total)
-                .append(", which is too heavy for ")
-                .append(getName())
-                .append(", weightMax=")
-                .append(weightMax);
-        throw new TooHeavyException(text.toString());
+        throw new TooHeavyException(
+            "TooHeavy - Adding "
+                + item.getName()
+                + " weighing "
+                + item.getWeight()
+                + " will total "
+                + total
+                + ", which is too heavy for "
+                + getName()
+                + ", weightMax="
+                + weightMax);
       }
     }
 
@@ -284,19 +282,17 @@ public class Location extends ItemImpl implements ItemContainer {
       float total = getContentsVolume();
       total += item.getVolume();
       if (total > volumeMax) {
-        StringBuilder text =
-            new StringBuilder(11)
-                .append("TooLarge - Adding ")
-                .append(item.getName())
-                .append(" weighing ")
-                .append(item.getWeight())
-                .append(" will total ")
-                .append(total)
-                .append(", which is too heavy for ")
-                .append(getName())
-                .append(", weightMax=")
-                .append(weightMax);
-        throw new TooLargeException(text.toString());
+        throw new TooLargeException(
+            "TooLarge - Adding "
+                + item.getName()
+                + " weighing "
+                + item.getWeight()
+                + " will total "
+                + total
+                + ", which is too heavy for "
+                + getName()
+                + ", weightMax="
+                + weightMax);
       }
     }
 
@@ -334,6 +330,7 @@ public class Location extends ItemImpl implements ItemContainer {
    */
   @Override
   public void addAll(List<Item> items) {
+    // TODO make add call this method and only calculate container volume and weight once.
     for (Item item : items) {
       add(item);
     }

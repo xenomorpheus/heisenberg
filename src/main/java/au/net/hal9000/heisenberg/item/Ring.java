@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
+import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 import jakarta.persistence.Entity;
 
@@ -26,6 +27,7 @@ public class Ring extends ItemImpl {
   /** Constructor. */
   public Ring() {
     super();
+    ItemProperty.setClothing(this, true);
     setDescription("small metalic ring");
     setValueBase(new Currency(0, DEFAULT_VALUE_GP, 0, 0));
     setWeightBase(DEFAULT_WEIGHT);

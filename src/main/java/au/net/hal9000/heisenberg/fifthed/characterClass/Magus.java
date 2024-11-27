@@ -6,8 +6,8 @@ import au.net.hal9000.heisenberg.fifthed.combat.ActionSpellCast;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
+import au.net.hal9000.heisenberg.fifthed.spell.Casting;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;
-import au.net.hal9000.heisenberg.fifthed.spell.Spellcast;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -85,8 +85,8 @@ public class Magus extends Fighter implements Spellcaster {
     for (PlayerCharacter opponent : arena.getOpponents()) {
       for (Spell spell : spells) {
 
-        Spellcast spellcast = new Spellcast(this, spell, opponent, timer);
-        if (spellcast.isActionValid()) {
+        Casting casting = new Casting(this, spell, opponent, timer);
+        if (casting.isActionValid()) {
           actions.add(new ActionSpellCast(spell, opponent));
         }
       }

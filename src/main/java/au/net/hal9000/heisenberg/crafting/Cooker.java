@@ -28,7 +28,7 @@ import java.util.TreeMap;
  * </ol>
  *
  * <p>// Example: // Create a SmallGroundFire. <br>
- * Race pc = new Human("Fred the Fighter"); <br>
+ * var pc = new Human(); <br>
  * Cooker cooker = pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>
  * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
@@ -38,7 +38,7 @@ import java.util.TreeMap;
  * @author bruins
  * @version $Revision: 1.0 $
  */
-public class Cooker extends Location {
+public final class Cooker {
 
   /** error message. * */
   static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
@@ -55,14 +55,13 @@ public class Cooker extends Location {
   /** error message. * */
   static final String FAILED_TO_ADD = "failed to add";
 
-  /** serial version. */
-  private static final long serialVersionUID = 1L;
-
   /** recipe describes the process to make the products. */
   private Recipe recipe = null;
 
-  /** The Race doing the cooking. Supplies any actionPoints and mana. */
-  private Item chef = null;
+  private Location pot = new Location();
+
+  /** The CharacterSheet doing the cooking. Supplies any actionPoints and mana. */
+  private EntityItem chef = null;
 
   /** Ingredients we will cook with. */
   private Map<String, Item> ingredients = new TreeMap<>();
@@ -75,14 +74,6 @@ public class Cooker extends Location {
   Cooker(final Recipe recipe) {
     super();
     this.recipe = recipe;
-    /*
-     * There may be an exploit in ability to hold items of unlimited weight or volume. <br>
-     * Mitigation: Sometimes Ingredients are be checked on entry, but not all methods do. <br>
-     * Mitigation: Location of Cooker still needs to be able to hold the weight and volume. But
-     * currently there is an exploit when adding to a bag inside a bag.<br>
-     */
-    setVolumeMax(-1f);
-    setWeightMax(-1f);
   }
 
   // Setters and Getters
@@ -92,7 +83,7 @@ public class Cooker extends Location {
    *
    * @param chef the person doing the cooking.
    */
-  public void setChef(final Item chef) {
+  public void setChef(final EntityItem chef) {
     this.chef = chef;
   }
 
@@ -124,7 +115,7 @@ public class Cooker extends Location {
       throw new RuntimeException(ALREADY_OCCUPIED);
     }
     // already in this container?
-    if (contains(item)) {
+    if (pot.contains(item)) {
       throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM + ": " + item);
     }
     // is there a requirement to fulfill ?
@@ -140,7 +131,7 @@ public class Cooker extends Location {
     }
 
     // success
-    add(item);
+    pot.add(item);
     ingredients.put(key, item);
   }
 
@@ -183,14 +174,11 @@ public class Cooker extends Location {
     // mana
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
-      if (chef instanceof EntityItem) {
-        EntityItem entity = (EntityItem) chef;
-        if (manaRequired > entity.getMana()) {
-          string.append("Not enough mana");
-          string.append(System.lineSeparator());
-        }
-      } else {
+      if (null == chef) {
         string.append("No chef set to supply mana");
+        string.append(System.lineSeparator());
+      } else if (manaRequired > chef.getPlayableState().getMana()) {
+        string.append("Not enough mana");
         string.append(System.lineSeparator());
       }
     }
@@ -198,14 +186,11 @@ public class Cooker extends Location {
     // actionPoints
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
-      if (chef instanceof EntityItem) {
-        EntityItem entity = (EntityItem) chef;
-        if (actionPointsRequired > entity.getActionPoints()) {
-          string.append("Not enough action points");
-          string.append(System.lineSeparator());
-        }
-      } else {
+      if (null == chef) {
         string.append("No chef set to supply action points");
+        string.append(System.lineSeparator());
+      } else if (actionPointsRequired > chef.getPlayableState().getActionPoints()) {
+        string.append("Not enough action points");
         string.append(System.lineSeparator());
       }
     }
@@ -214,8 +199,7 @@ public class Cooker extends Location {
     final Set<Skill> required = recipe.getSkills();
     if ((null != required) && (required.size() > 0)) {
       if (chef instanceof EntityItem) {
-        EntityItem entity = (EntityItem) chef;
-        final Set<Skill> chefSkills = entity.getSkills();
+        final Set<Skill> chefSkills = chef.getCharacterSheet().getSkills();
         if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
           string.append("Missing Skills");
           string.append(System.lineSeparator());
@@ -291,18 +275,15 @@ public class Cooker extends Location {
     // mana
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
-      EntityItem entity = (EntityItem) chef;
-      entity.manaAdjust(-1 * manaRequired);
+      chef.getPlayableState().manaAdjust(-1 * manaRequired);
     }
     // actionPoints
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
-      EntityItem entity = (EntityItem) chef;
-      entity.actionPointsAdjust(-1 * actionPointsRequired);
+      chef.getPlayableState().actionPointsAdjust(-1 * actionPointsRequired);
     }
 
     int requirementCount = recipe.getRequirementCount();
-
     if (requirementCount > 0) {
       final Map<String, Requirement> requirements = recipe.getRequirements();
       for (String key : requirements.keySet()) {
@@ -376,5 +357,9 @@ public class Cooker extends Location {
    */
   Item findIngredientByName(final String name) {
     return ingredients.get(name);
+  }
+
+  public void empty(Location destination) {
+    pot.empty(destination);
   }
 }

@@ -39,7 +39,7 @@ public class HunterPreyAi {
 
   /**
    * Cat's step size.<br>
-   * Must be greater than POSITON_TOLERANCE
+   * Must be greater than POSITION_TOLERANCE
    */
   private static final float HUNTER_STEP_SIZE = 1f;
 
@@ -47,7 +47,7 @@ public class HunterPreyAi {
    * How close together two points are to be considered same.<br>
    * Must be less than HUNTER_STEP_SIZE
    */
-  private static final float POSITON_TOLERANCE = 0.5f;
+  private static final float POSITION_TOLERANCE = 0.5f;
 
   /** Max number of points to consider when planning a path to goal. */
   private static final int FRINGE_MAX = 1000;
@@ -116,21 +116,24 @@ public class HunterPreyAi {
     // Setup how to generate new successor states.
     final SuccessorFunctionImpl successorFunction = new SuccessorFunctionImpl(transitionFunction);
 
-    modelStateEvaluator.setPositionTolerance(POSITON_TOLERANCE);
+    modelStateEvaluator.setPositionTolerance(POSITION_TOLERANCE);
 
     search = new SearchAStar(successorFunction, modelStateEvaluator, actionGenerator);
     search.setFringeExpansionMax(FRINGE_MAX);
 
     hunter = new Cat();
-    hunter.setActionPoints(100); // Enough to perform eating
+    hunter.getPlayableState().setActionPoints(100); // Enough to perform eating
     prey = new Rat();
     world = new Location();
     world.add(hunter);
     world.add(prey);
   }
 
-  public void learnBarrierArray(Vec2[] boundary_shape, Vec2 position, Object barrierObject) {
-    MazeUtil.learnBarrierArray(hunter.getMemorySetValid(), boundary_shape, position, barrierObject);
+  public void learnMemoryOfBarrierArray(Vec2[] boundaryShape, Vec2 position, Object barrierObject) {
+    hunter
+        .getPlayableState()
+        .getMemorySet()
+        .add(MazeUtil.getMemoryOfBarrierArray(boundaryShape, position, barrierObject));
   }
 
   void aiPlan() {
@@ -147,7 +150,7 @@ public class HunterPreyAi {
             prey,
             hunterPos.duplicate(),
             new Position(preyPosVec2.x, preyPosVec2.y),
-            hunter.getMemorySetValid().duplicate(),
+            hunter.getPlayableState().getMemorySet().duplicate(),
             false);
 
     // Find a path to the goal e.g. Rat position.
@@ -174,17 +177,14 @@ public class HunterPreyAi {
         // if we are at the first point in the path, remove it and move
         // to next.
         float cost = directionToPathHead.length();
-        if (cost < POSITON_TOLERANCE) {
+        if (cost < POSITION_TOLERANCE) {
           hunterPath.remove(0);
         }
         effortRemaining -= cost;
 
         directionToPathHead.normalize();
-        directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED); // TODO cut
-        // speed
-        // when we
-        // reach
-        // goal
+        directionToPathHead.mulLocal(HUNTER_NORMAL_SPEED);
+        // TODO cut speed when we reach goal
         hunterBody.setLinearVelocity(directionToPathHead);
       } else if (action instanceof ActionConsume) {
         hunter.consume(prey);

@@ -27,20 +27,10 @@ public class Bag extends Box {
 
   /** Constructor. */
   public Bag() {
-    super("Bag");
+    super();
     setDescription("A common cloth sack about 2 feet by 4 feet in size.");
     setWeightMax(WEIGHT_MAX_DEFAULT);
     setVolumeMax(VOLUME_MAX_DEFAULT);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name the name of the bag.
-   */
-  public Bag(final String name) {
-    this();
-    setName(name);
   }
 
   // Methods

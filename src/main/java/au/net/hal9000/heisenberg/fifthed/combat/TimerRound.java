@@ -42,7 +42,7 @@ public class TimerRound {
     if (action == ActionDuration.FREE) {
       retVal = true;
     }
-    if (action == ActionDuration.FULLROUND) {
+    if (action == ActionDuration.FULL_ROUND) {
       if (this.isFullRoundActionAvailable) {
         if (takeActionDuration) {
           this.isFullRoundActionAvailable = false;
@@ -99,7 +99,7 @@ public class TimerRound {
         retVal = false;
       }
     }
-    if (action == ActionDuration.FIVEFOOTSTEP) {
+    if (action == ActionDuration.FIVE_FOOT_STEP) {
       if (this.isFiveFootStepActionAvailable) {
         if (takeActionDuration) {
           this.isMoveActionAvailable = false;

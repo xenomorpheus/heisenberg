@@ -6,5 +6,5 @@ package au.net.hal9000.heisenberg.fifthed.characterClass;
  * @author bruins
  */
 public enum CombatFeat {
-  ARTFULL_DODGE
+  ARTFUL_DODGE
 }

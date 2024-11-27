@@ -12,15 +12,6 @@ Refactor/create entity.CharacterSheet class from Race class
 * use type composition rather than type inheritance.
 * has_a Species instance.
 
-Create a Species class
-* Replaces the concept of game Race types like Elf, Human.
-* Holds only the species specific properties
- * Species name
- * Base attribute deltas
-
-
-Remove Human, Elf, Halfling classes and put functionality into other classes.
-
 Perhaps Player should be an interface.
 
 Perhaps create a HumanoidPlayer interface.
@@ -40,3 +31,9 @@ Currently no race based properties anyway.
 
 Alternatively PC Editor can now handle different classes. This may be good
 as future classes may not be humanoid.
+
+
+-------
+Move CharacterSheet out of heisenberg.item package
+CharacterSheet.java
+CharacterSheetTest.java

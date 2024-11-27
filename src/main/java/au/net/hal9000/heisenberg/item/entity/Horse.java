@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.item.entity;
 
 import au.net.hal9000.heisenberg.item.api.HumanoidMount;
-import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 
 /**
@@ -18,17 +17,6 @@ public class Horse extends EntityItem implements HumanoidMount {
 
   /** Constructor. */
   public Horse() {
-    super("Horse");
-    ItemProperty.setLiving(this, true);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name of Item.
-   */
-  public Horse(String name) {
-    this();
-    setName(name);
+    super();
   }
 }

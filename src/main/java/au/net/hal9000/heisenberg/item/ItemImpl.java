@@ -108,7 +108,6 @@ public abstract class ItemImpl implements Serializable, Item {
     ItemProperty.setClothing(this, false);
     ItemProperty.setLiving(this, false);
     ItemProperty.setHumanoidFood(this, false);
-    itemIcon = new ItemIcon(this);
   }
 
   // Getters and Setters - Instance
@@ -271,6 +270,9 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public ItemIcon getItemIcon() {
+    if (null == itemIcon) {
+      itemIcon = new ItemIcon(this);
+    }
     return itemIcon;
   }
 
@@ -471,7 +473,7 @@ public abstract class ItemImpl implements Serializable, Item {
       text.append("Name: " + temp);
       text.append(System.lineSeparator());
     }
-    text.append("Class: " + getSimpleClassName());
+    text.append("Item Class: " + getSimpleClassName());
     text.append(System.lineSeparator());
 
     temp = getDescription();

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.BasicPanel;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -38,8 +38,8 @@ public class BasicPanelMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               BasicPanel basicPanel = new BasicPanel();
-              Race pc = DemoEnvironment.getRace();
-              basicPanel.setRace(pc);
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
+              basicPanel.setCharacterSheet(pc);
 
               // add to JFrame
               guiFrame.add(basicPanel);

@@ -92,27 +92,27 @@ public class HunterPreyAiTest {
 
   /** Test learning where walls are. */
   @Test
-  public void learnBarrierArrayTest() {
+  public void learnMemoryOfBarrierArrayTest() {
     // Setup and AI object to test with.
     ConstructorTest();
 
     // Outer Boundary Walls
-    Vec2[] boundary_shape = MazeUtil.getBoundaryShape();
-    hunterPrey.learnBarrierArray(
-        boundary_shape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "boundary");
+    Vec2[] boundaryShape = MazeUtil.getBoundaryShape();
+    hunterPrey.learnMemoryOfBarrierArray(
+        boundaryShape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "boundary");
 
     // Internal Barrier "n" shape - three lines.
 
-    Vec2[] barrier_shape = MazeUtil.getBarrierShape();
-    hunterPrey.learnBarrierArray(
-        barrier_shape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "barrier");
+    Vec2[] barrierShape = MazeUtil.getBarrierShape();
+    hunterPrey.learnMemoryOfBarrierArray(
+        barrierShape, new Vec2(BARRIER_OFFSET_X, BARRIER_OFFSET_Y), "barrier");
   }
 
   /** Test planning to get from hunter to prey. */
   @Test
   public void aiPlanTest() {
     // Setup and AI object to test with.
-    learnBarrierArrayTest();
+    learnMemoryOfBarrierArrayTest();
     hunterPrey.aiPlan(); // TODO add tests
   }
 

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.item.entity.Race;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class RecipesTable extends JTable {
    *     because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setRace(final Race pc) {
+  public void setCharacterSheet(final CharacterSheet pc) {
     setModel(new MyTableModel(pc));
   }
 
@@ -57,15 +57,15 @@ public class RecipesTable extends JTable {
     /**
      * Constructor for MyTableModel.
      *
-     * @param pc Race
+     * @param cs CharacterSheet
      */
-    private MyTableModel(Race pc) {
+    private MyTableModel(CharacterSheet cs) {
       recipes = config.getRecipes();
       Set<String> pcRecipeIds = null;
-      if (null == pc) {
+      if (null == cs) {
         logger.error("PC is NULL");
       } else {
-        pcRecipeIds = pc.getRecipes();
+        pcRecipeIds = cs.getRecipes();
       }
       if (null != pcRecipeIds) {
         recipeIds = new ArrayList<String>(pcRecipeIds);

@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
@@ -28,9 +27,9 @@ public class RecipesTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
-    Race pc = DemoEnvironment.getRace();
+    CharacterSheet pc = DemoEnvironment.getCharacterSheet();
     RecipesTable basicPanel = new RecipesTable();
-    basicPanel.setRace(pc);
+    basicPanel.setCharacterSheet(pc);
     assertNotNull("BasicPanel not null", basicPanel);
   }
 

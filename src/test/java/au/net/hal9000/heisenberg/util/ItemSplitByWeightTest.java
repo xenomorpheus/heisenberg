@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import au.net.hal9000.heisenberg.item.Water;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -15,6 +17,11 @@ import org.junit.Test;
 public class ItemSplitByWeightTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.0001f;
+
+  @Before
+  public void initialize() {
+    DemoEnvironment.setup();
+  }
 
   /** Method testsplitByWeightZero. */
   @Test(expected = IllegalArgumentException.class)
@@ -44,8 +51,7 @@ public class ItemSplitByWeightTest {
     Water water = new Water();
     water.setWeightBase(6f);
     water.setVolumeBase(3f);
-    Water water2 = null;
-    water2 = (Water) water.splitByWeight(2.0f);
+    Water water2 = (Water) water.splitByWeight(2.0f);
     assertNotNull("new object not null", water2);
     assertEquals("old object weight", 4.0f, water.getWeightBase(), TOLERANCE);
     assertEquals("old object volume", 2.0f, water.getVolumeBase(), TOLERANCE);

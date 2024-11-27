@@ -1,10 +1,10 @@
 package au.net.hal9000.heisenberg.fifthed.combat;
 
 public enum ActionDuration {
-  FULLROUND,
+  FULL_ROUND,
   STANDARD,
   MOVE,
-  FIVEFOOTSTEP,
+  FIVE_FOOT_STEP,
   SWIFT,
   IMMEDIATE,
   FREE,

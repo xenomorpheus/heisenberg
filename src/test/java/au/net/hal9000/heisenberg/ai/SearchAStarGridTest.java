@@ -142,14 +142,14 @@ public class SearchAStarGridTest {
     Line2D.Double line = new Line2D.Double(-2, 0.5, 2, 0.5);
     Barrier barrier = new BarrierShape(Arrays.asList(line), blocker);
     MemoryAbstract memory = new MemoryOfBarrier(null, 0, barrier);
-    agent.memoryAdd(memory);
+    agent.getPlayableState().memoryAdd(memory);
 
     // Setup starting model state.
     final ModelStateAgentGoalImpl modelStateStart =
         new ModelStateAgentGoalMemorySetImpl(
             new Position(agent.getPosition()),
             new Position(goalPosition),
-            new MemorySetImpl(agent.getMemorySet()));
+            new MemorySetImpl(agent.getPlayableState().getMemorySet()));
 
     // Service to transition (move) to a new ModelState.
     TransitionFunction transitionFunction = new TransitionFunctionAgentGoalImpl();

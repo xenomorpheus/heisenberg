@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author bruins
  */
-public class Spellcast {
+public class Casting {
 
   private PlayerCharacter self;
   private Spellcaster spellcaster;
@@ -19,7 +19,7 @@ public class Spellcast {
   private PlayerCharacter target;
   private TimerRound timer;
 
-  public Spellcast(Spellcaster spellcaster, Spell spell, PlayerCharacter target, TimerRound timer) {
+  public Casting(Spellcaster spellcaster, Spell spell, PlayerCharacter target, TimerRound timer) {
     this.self = spellcaster.getPlayerCharacter();
     this.spellcaster = spellcaster;
     this.spell = spell;
@@ -30,7 +30,7 @@ public class Spellcast {
   // We separate the different tests so the spell can override any of them if
   // required.
   /**
-   * Deterine if there is sufficient time to perform this action.
+   * Determine if there is sufficient time to perform this action.
    *
    * @param arena
    * @param target

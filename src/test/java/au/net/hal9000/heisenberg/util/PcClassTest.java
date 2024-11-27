@@ -1,7 +1,11 @@
 package au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import org.junit.Test;
 
 /** */
@@ -134,5 +138,19 @@ public class PcClassTest {
     PcClass pc3 = new PcClass();
     pc3.setId("CCC");
     assertEquals(pc3.compareTo(pc2), 0);
+  }
+
+  /** Test serialisation. */
+  @Test
+  public void serialisation() {
+    PcClass pcc = new PcClass();
+    try (FileOutputStream fos = new FileOutputStream("/tmp/PcClass.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+      oos.writeObject(pcc);
+      System.out.println("characterSheet object serialized successfully.");
+
+    } catch (IOException e) {
+      fail(e.toString());
+    }
   }
 }

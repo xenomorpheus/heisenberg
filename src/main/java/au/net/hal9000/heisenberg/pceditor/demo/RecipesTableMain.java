@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -38,8 +38,8 @@ public class RecipesTableMain { // NO_UCD (unused code)
               guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
               RecipesTable recipesTable = new RecipesTable();
-              Race pc = DemoEnvironment.getRace();
-              recipesTable.setRace(pc);
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
+              recipesTable.setCharacterSheet(pc);
 
               // add to JFrame
               guiFrame.add(recipesTable);

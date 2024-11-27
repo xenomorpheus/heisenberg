@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.pceditor.SkillsTable;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -29,7 +29,7 @@ public class SkillsTableMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              Race pc = DemoEnvironment.getRace();
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -41,7 +41,7 @@ public class SkillsTableMain { // NO_UCD (unused code)
               guiFrame.setLocationRelativeTo(null);
 
               SkillsTable skillsTable = new SkillsTable();
-              skillsTable.setRace(pc);
+              skillsTable.setCharacterSheet(pc);
 
               // add to JFrame
               guiFrame.add(skillsTable);

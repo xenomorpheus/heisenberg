@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.item.entity.Race;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class SkillsTable extends JTable {
    *     because the values to display may be changed by other tabs, and passing by pc allows a
    *     refresh of values.
    */
-  public void setRace(final Race pc) {
+  public void setCharacterSheet(final CharacterSheet pc) {
     setModel(new MyTableModel(pc));
   }
 
@@ -54,10 +54,10 @@ public class SkillsTable extends JTable {
     /**
      * Constructor for MyTableModel.
      *
-     * @param pc Race
+     * @param cs CharacterSheet
      */
-    private MyTableModel(final Race pc) {
-      Set<Skill> pcSkills = pc.getSkills();
+    private MyTableModel(final CharacterSheet cs) {
+      Set<Skill> pcSkills = cs.getSkills();
       if (null == pcSkills) {
         orderedSkills = new ArrayList<Skill>();
       } else {
