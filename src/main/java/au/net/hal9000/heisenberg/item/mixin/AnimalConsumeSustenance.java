@@ -22,8 +22,8 @@ public class AnimalConsumeSustenance {
   /**
    * Drink.
    *
-   * @param animal that which is doing the drinking.
-   * @param drink that which is eaten.
+   * @param animal Animal which is doing the drinking.
+   * @param drink Item which is drunk.
    */
   public static void drink(Animal animal, Item drink) {
     Cooker cooker = ((EntityItem) animal).getCooker("AnimalDrink");

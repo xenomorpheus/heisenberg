@@ -503,7 +503,7 @@
 		<!-- Game Recipes -->
 		<!-- Unit Test Recipes -->
 		<!-- Animal Recipes -->
-		<recipe id="AnimalDrink" description="Dnimal drink"
+		<recipe id="AnimalDrink" description="Animal drink"
 			actionPoints="2">
 			<requirements>
 				<item id="Drink" type="Water" weightMin="1" />
