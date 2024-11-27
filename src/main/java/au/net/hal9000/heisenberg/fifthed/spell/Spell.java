@@ -176,8 +176,8 @@ public abstract class Spell {
   /**
    * @param url the url to set
    */
-  public Spell setUrl(String url) {
-    url = url;
+  public Spell setUrl(String newUrl) {
+    url = newUrl;
     return this;
   }
 
