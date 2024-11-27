@@ -28,9 +28,9 @@ public class HalflingTest {
     assertTrue("is item", halfling instanceof Item);
   }
 
-  /** Method testGetRace. */
+  /** Method testGetName. */
   @Test
-  public void testGetRace() {
+  public void testGetName() {
     Halfling halfling = new Halfling();
     assertEquals("Halfling", halfling.getName());
   }

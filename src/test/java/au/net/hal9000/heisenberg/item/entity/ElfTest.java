@@ -20,9 +20,9 @@ public class ElfTest {
     assertTrue("is item", elf instanceof Item);
   }
 
-  /** Method testGetRace. */
+  /** Method testGetName. */
   @Test
-  public void testGetRace() {
+  public void testGetName() {
     Elf elf = new Elf();
     assertEquals("Elf", elf.getName());
   }
