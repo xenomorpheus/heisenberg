@@ -206,49 +206,49 @@ public class WorldEditorFrame extends JFrame {
    * @return a menu bar.
    */
   public static JMenuBar getMenus(ActionListener actionListener) {
-    JMenuBar menubar = new JMenuBar();
+    JMenuBar menuBar = new JMenuBar();
     // Application Menu
-    JMenu appemenu = new JMenu("WorldEditor");
-    JMenuItem appItem1 = new JMenuItem(MENU_QUIT);
-    appItem1.addActionListener(actionListener);
-    appemenu.add(appItem1);
-    menubar.add(appemenu);
+    JMenu appMenu = new JMenu("WorldEditor");
+    JMenuItem appQuit = new JMenuItem(MENU_QUIT);
+    appQuit.addActionListener(actionListener);
+    appMenu.add(appQuit);
+    menuBar.add(appMenu);
     // File Menu
-    JMenu filemenu = new JMenu("File");
-    JMenuItem fileItem1 = new JMenuItem(MENU_NEW);
-    fileItem1.addActionListener(actionListener);
-    filemenu.add(fileItem1);
-    JMenuItem fileItem2 = new JMenuItem(MENU_OPEN);
-    fileItem2.addActionListener(actionListener);
-    filemenu.add(fileItem2);
-    JMenuItem fileItem3 = new JMenuItem(MENU_CLOSE);
-    fileItem3.addActionListener(actionListener);
-    filemenu.add(fileItem3);
-    JMenuItem fileItem4 = new JMenuItem(MENU_SAVE);
-    fileItem4.addActionListener(actionListener);
-    filemenu.add(fileItem4);
-    JMenuItem fileItem5 = new JMenuItem(MENU_DEMO);
-    fileItem5.addActionListener(actionListener);
-    filemenu.add(fileItem5);
-    JMenuItem fileItem6 = new JMenuItem(MENU_DEBUG_TREE);
-    fileItem6.addActionListener(actionListener);
-    filemenu.add(fileItem6);
-    menubar.add(filemenu);
+    JMenu fileMenu = new JMenu("File");
+    JMenuItem fileNew = new JMenuItem(MENU_NEW);
+    fileNew.addActionListener(actionListener);
+    fileMenu.add(fileNew);
+    JMenuItem fileOpen = new JMenuItem(MENU_OPEN);
+    fileOpen.addActionListener(actionListener);
+    fileMenu.add(fileOpen);
+    JMenuItem fileClose = new JMenuItem(MENU_CLOSE);
+    fileClose.addActionListener(actionListener);
+    fileMenu.add(fileClose);
+    JMenuItem fileSave = new JMenuItem(MENU_SAVE);
+    fileSave.addActionListener(actionListener);
+    fileMenu.add(fileSave);
+    JMenuItem fileDemo = new JMenuItem(MENU_DEMO);
+    fileDemo.addActionListener(actionListener);
+    fileMenu.add(fileDemo);
+    JMenuItem fileDebugTree = new JMenuItem(MENU_DEBUG_TREE);
+    fileDebugTree.addActionListener(actionListener);
+    fileMenu.add(fileDebugTree);
+    menuBar.add(fileMenu);
     // Edit Menu
-    JMenu editmenu = new JMenu("Edit");
-    JMenuItem editItem1 = new JMenuItem("Cut");
-    editItem1.addActionListener(actionListener);
-    editmenu.add(editItem1);
-    JMenuItem editItem2 = new JMenuItem("Copy");
-    editItem2.addActionListener(actionListener);
-    editmenu.add(editItem2);
-    JMenuItem editItem3 = new JMenuItem("Paste");
-    editItem3.addActionListener(actionListener);
-    editmenu.add(editItem3);
-    JMenuItem editItem4 = new JMenuItem("Insert");
-    editItem4.addActionListener(actionListener);
-    editmenu.add(editItem4);
-    menubar.add(editmenu);
-    return menubar;
+    JMenu editMenu = new JMenu("Edit");
+    JMenuItem editCut = new JMenuItem("Cut");
+    editCut.addActionListener(actionListener);
+    editMenu.add(editCut);
+    JMenuItem editCopy = new JMenuItem("Copy");
+    editCopy.addActionListener(actionListener);
+    editMenu.add(editCopy);
+    JMenuItem editPaste = new JMenuItem("Paste");
+    editPaste.addActionListener(actionListener);
+    editMenu.add(editPaste);
+    JMenuItem editInsert = new JMenuItem("Insert");
+    editInsert.addActionListener(actionListener);
+    editMenu.add(editInsert);
+    menuBar.add(editMenu);
+    return menuBar;
   }
 }
