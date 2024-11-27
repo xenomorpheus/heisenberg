@@ -80,9 +80,7 @@ public class WorldEditorFrame extends JFrame {
     /** Config. */
     final Configuration config = Configuration.lastConfig();
     /** Persistence. */
-    LOGGER.error("TODO Crashes on the next line");
     entityManager = factory.createEntityManager();
-    LOGGER.error("TODO Crashes on the previous line");
 
     // Icons
     ItemIcon.setIcon(config);
@@ -123,6 +121,7 @@ public class WorldEditorFrame extends JFrame {
               debugTreePrint();
             }
             if (MENU_OPEN.equals(eventName)) {
+              LOGGER.warn("Open not implemented");
               // TODO load.
               // TODO Create a project object to contain details and a
               // pointer to top location.
@@ -195,7 +194,7 @@ public class WorldEditorFrame extends JFrame {
       entityManager.close();
       entityManager = null;
     }
-    System.out.println("End");
+    LOGGER.info("Exiting");
     System.exit(0);
   }
 
