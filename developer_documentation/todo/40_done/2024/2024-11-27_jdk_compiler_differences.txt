@@ -1,0 +1,30 @@
+Issue Description:
+There seems to be a difference between running in VSCode and from the command line.
+
+Ideally I want to move seamlessly between developing in both command line and VSCode.
+* running code
+* running unit tests
+
+Frequently getting Java linking errors with java version differences between classes
+
+* I need to run the tests from the same environment in which they were built in.
+    e.g choose either VSCode or command line.
+* When switching between environments:
+    * running mvn clean
+    * removing database
+    * sometime removing ~/.m2
+
+Identified that VSCode is using a Java compiler/jre that isn't in the Mac's
+list of java versions.
+  JAVA_HOME="/usr/local/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/Home/"
+
+Remedies for java version compatibility
+* Sometimes I run "mvn clean".
+* Sometimes I remove entire third-party packages e.g. rm -r ~/.m2
+
+--------------------------
+Issue Resolution:
+* VSCode uses an embedded JDK provided by brew that doesn't appear in java_home
+      command output.
+* Identify the JDK from the output of VSCode during compilation.
+* Set the JAVA_HOME to that of the JDK identified above.
