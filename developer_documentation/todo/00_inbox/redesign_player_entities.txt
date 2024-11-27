@@ -1,0 +1,24 @@
+Redesign the Classes for holding PCs (player characters), Race, EntityItem.
+
+Create a Player class
+* uses type composition rather than type inheritance.
+* Has a Species instance.
+
+Create a Species class
+* Replaces the concept of game Race types like Elf, Human.
+* Holds only the species specific properties
+ * Species name
+ * Base attribute deltas
+
+Remove Race class and put functionality into other classes.
+
+Remove Human, Elf, Halfling classes and put functionality into other classes.
+
+Perhaps Player should be an interface.
+
+Perhaps create a HumanoidPlayer interface.
+* Combines both Player and Humanoid interfaces.
+
+
+Perhaps create a Humanoid interface rather than class.
+
