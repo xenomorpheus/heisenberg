@@ -8,7 +8,7 @@ public class Human extends Humanoid {
   }
 
   @Override
-  public String getRaceName() {
+  public String getSpeciesName() {
     return "Human";
   }
 }

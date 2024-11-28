@@ -76,11 +76,11 @@ public class ConfigurationTest {
     assertEquals(16, details.getColumns());
   }
 
-  /** Method testRaces. */
+  /** Method testSpecies. */
   @Test
-  public void testRaces() {
-    List<String> races = config.getRaces();
-    assertEquals("count", 3, races.size());
+  public void testSpecies() {
+    List<String> species_list = config.getSpecies();
+    assertEquals("count", 3, species_list.size());
   }
 
   /** Method testSizes. */
@@ -289,6 +289,6 @@ public class ConfigurationTest {
     // TODO required?
     // assertEquals("~", warrior.getGenderAllow());
     // assertEquals("~", warrior.getSizeAllow());
-    // assertEquals("~", warrior.getRaceAllow());
+    // assertEquals("~", warrior.getSpeciesAllow());
   }
 }

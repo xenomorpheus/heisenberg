@@ -248,12 +248,12 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
     cons.gridwidth = 1;
 
-    // Race
-    JLabel raceLbl = new JLabel("Race");
+    // Species
+    JLabel speciesLbl = new JLabel("Species");
     cons.gridx = pos;
     cons.gridy = row;
-    gridBag.setConstraints(raceLbl, cons);
-    this.add(raceLbl);
+    gridBag.setConstraints(speciesLbl, cons);
+    this.add(speciesLbl);
     pos += cons.gridwidth;
 
     speciesTextField = new JTextField();

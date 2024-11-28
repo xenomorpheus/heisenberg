@@ -75,8 +75,8 @@ public class PcClassTest {
   @Test
   public final void testRaceAllow() {
     PcClass pc = new PcClass();
-    pc.setRaceAllow("human");
-    assertEquals(pc.getRaceAllow(), "human");
+    pc.setSpeciesAllow("human");
+    assertEquals(pc.getSpeciesAllow(), "human");
   }
 
   /** Method testGenderAllow. */

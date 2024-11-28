@@ -48,8 +48,8 @@ public class Configuration {
   /** A map of possible pcClass details. */
   private Map<String, PcClass> pcClasses;
 
-  /** list of valid races. */
-  private List<String> races;
+  /** list of valid species. */
+  private List<String> species;
 
   /** A map of Recipe objects. */
   private Map<String, Recipe> recipes;
@@ -135,14 +135,14 @@ public class Configuration {
     return pcClasses;
   }
 
-  // TODO remove/refactor so caller can't modify races
+  // TODO remove/refactor so caller can't modify species
   /**
-   * Method getRaces.
+   * Method getSpecies.
    *
    * @return List of strings.
    */
-  public List<String> getRaces() {
-    return races;
+  public List<String> getSpecies() {
+    return species;
   }
 
   // TODO remove/refactor so caller can't modify sizes
@@ -227,9 +227,9 @@ public class Configuration {
     Element genderElement = characterElement.getFirstChildElement("genders");
     genders = xmlToIdList(genderElement.getChildElements());
 
-    // races
-    Element raceElement = characterElement.getFirstChildElement("races");
-    races = xmlToIdList(raceElement.getChildElements());
+    // species list
+    Element speciesElement = characterElement.getFirstChildElement("species_list");
+    species = xmlToIdList(speciesElement.getChildElements());
 
     // sprite sheet details
     spriteSheets = xmlToSpriteSheets(root.getFirstChildElement("spriteSheets"));

@@ -85,7 +85,7 @@ public class PlayerCharacterTest {
     PlayerCharacter character = _build_magus();
     String details = character.details();
     assertTrue(details.contains("Name: Mr Magus"));
-    assertTrue(details.contains("Race: Human"));
+    assertTrue(details.contains("Species: Human"));
     assertTrue(details.contains("Level: 3"));
     assertTrue(details.contains("Condition: DEAFENED"));
     assertTrue(details.contains("Location (relative): "));

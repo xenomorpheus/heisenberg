@@ -35,10 +35,10 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="races">
+							<xs:element name="species_list">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="race" type="ctKeywordType"
+										<xs:element name="species" type="ctKeywordType"
 											maxOccurs="unbounded" minOccurs="1" />
 									</xs:sequence>
 								</xs:complexType>

@@ -372,9 +372,9 @@ public abstract class Race extends EntityItem {
   }
 
   /**
-   * Get the name of the race.
+   * Get the name of the species.
    *
-   * @return the name of the race.
+   * @return the name of the species.
    */
   public abstract String getSpeciesName();
 

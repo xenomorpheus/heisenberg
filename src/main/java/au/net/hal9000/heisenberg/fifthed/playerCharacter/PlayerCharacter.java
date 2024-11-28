@@ -149,7 +149,7 @@ public abstract class PlayerCharacter {
   public String details(String prefix) {
     StringBuilder sb = new StringBuilder(10);
     sb.append(String.format("%sName: %s%n", prefix, name));
-    sb.append(String.format("%sRace: %s%n", prefix, getRaceName()));
+    sb.append(String.format("%sSpecies: %s%n", prefix, getSpeciesName()));
     sb.append(String.format("%sLevel: %d%n", prefix, getLevel()));
     if ((characterClasses != null) && (!characterClasses.isEmpty())) {
       for (CharacterClass characterClass : characterClasses) {
@@ -171,7 +171,7 @@ public abstract class PlayerCharacter {
     return sb.toString();
   }
 
-  public abstract String getRaceName();
+  public abstract String getSpeciesName();
 
   public double distance(PlayerCharacter other) {
     return location.distance(other.location);
@@ -222,7 +222,7 @@ public abstract class PlayerCharacter {
 
   public String getSummary() {
     StringBuilder sb = new StringBuilder();
-    sb.append(getName()).append(", ").append(getRaceName());
+    sb.append(getName()).append(", ").append(getSpeciesName());
     if (characterClasses.size() != 1) {
       sb.append(", level ").append(getLevel());
     }

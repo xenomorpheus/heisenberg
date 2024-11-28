@@ -46,8 +46,8 @@ public class PcClass implements Comparable<PcClass> {
   /** Field mana. */
   private int mana = 0;
 
-  /** Field raceAllow. */
-  private String raceAllow;
+  /** Field speciesAllow. */
+  private String speciesAllow;
 
   /** Field genderAllow. */
   private String genderAllow;
@@ -211,21 +211,21 @@ public class PcClass implements Comparable<PcClass> {
   }
 
   /**
-   * Get the race allow.
+   * Get the species allow.
    *
    * @return the raceAllow
    */
-  public final String getRaceAllow() {
-    return raceAllow;
+  public final String getSpeciesAllow() {
+    return speciesAllow;
   }
 
   /**
-   * Set the race allow.
+   * Set the species allow.
    *
-   * @param raceAllow the raceAllow to set
+   * @param speciesAllow the speciesAllow to set
    */
-  public final void setRaceAllow(String raceAllow) {
-    this.raceAllow = raceAllow;
+  public final void setSpeciesAllow(String speciesAllow) {
+    this.speciesAllow = speciesAllow;
   }
 
   /**
@@ -362,7 +362,7 @@ public class PcClass implements Comparable<PcClass> {
     text.append(mana);
     text.append(System.lineSeparator());
     text.append("raceAllow: ");
-    text.append(raceAllow);
+    text.append(speciesAllow);
     text.append(System.lineSeparator());
     text.append("genderAllow: ");
     text.append(genderAllow);

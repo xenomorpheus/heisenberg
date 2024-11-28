@@ -470,11 +470,11 @@
 			<gender id="Androgynous" />
 			<gender id="Eunuch" />
 		</genders>
-		<races>
-			<race id="Human" />
-			<race id="Elf" />
-			<race id="Halfling" />
-		</races>
+		<species_list>
+			<species id="Human" />
+			<species id="Elf" />
+			<species id="Halfling" />
+		</species_list>
 	</character>
 
 	<skills>
