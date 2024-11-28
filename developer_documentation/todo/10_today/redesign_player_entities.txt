@@ -1,8 +1,16 @@
 Redesign the Classes for holding PCs (player characters), Race, EntityItem.
 
-Create a Player class
-* uses type composition rather than type inheritance.
-* Has a Species instance.
+Note that fifthed packages are entirely different to entity packages.
+Redesign classes within entity packages, not fifthed packages.
+
+Remove entity.CharacterSheet from inheritance.
+
+Make CharacterSheet a property of EntityItem.
+* redirect EntityItem calls to get/set name/description to the CharacterSheet.
+
+Refactor/create entity.CharacterSheet class from Race class
+* use type composition rather than type inheritance.
+* has_a Species instance.
 
 Create a Species class
 * Replaces the concept of game Race types like Elf, Human.
@@ -10,7 +18,6 @@ Create a Species class
  * Species name
  * Base attribute deltas
 
-Remove Race class and put functionality into other classes.
 
 Remove Human, Elf, Halfling classes and put functionality into other classes.
 
@@ -22,3 +29,14 @@ Perhaps create a HumanoidPlayer interface.
 
 Perhaps create a Humanoid interface rather than class.
 
+---
+
+Race refactored to CharacterSheet
+Consider removing all Human, Halfling, Elf, etc. and replace with enum Race.
+Player class to have a field race which is enum Race.
+Greatly simplifies UI Pc editor.
+Allows changing of race without removing and reinserting PC object.
+Currently no race based properties anyway.
+
+Alternatively PC Editor can now handle different classes. This may be good
+as future classes may not be humanoid.

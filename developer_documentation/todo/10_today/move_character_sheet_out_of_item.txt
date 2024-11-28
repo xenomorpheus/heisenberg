@@ -1,0 +1,3 @@
+Move CharacterSheet out of heisenberg.item package
+CharacterSheet.java
+CharacterSheetTest.java
