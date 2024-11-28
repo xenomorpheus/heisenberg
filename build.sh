@@ -8,6 +8,6 @@ export JAVA_HOME="/usr/local/Cellar/openjdk/23.0.1/libexec/openjdk.jdk/Contents/
 
 
 # mvn clean test package -f pom.xml
-mvn test package -f pom.xml
+mvn package -f pom.xml
 
 # See README.md for running any of the main classes.
