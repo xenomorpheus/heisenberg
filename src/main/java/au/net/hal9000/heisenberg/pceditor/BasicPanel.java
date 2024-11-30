@@ -155,7 +155,7 @@ public class BasicPanel extends JPanel {
     cons.ipady = 0;
     cons.ipadx = 0;
 
-    // create GribBagLayout and the GridBagLayout Constraints
+    // create GridBagLayout and the GridBagLayout Constraints
     GridBagLayout gridBag = new GridBagLayout();
     setLayout(gridBag);
     row0(gridBag, cons);

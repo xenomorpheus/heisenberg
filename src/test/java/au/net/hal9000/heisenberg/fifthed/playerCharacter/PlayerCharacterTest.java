@@ -89,7 +89,7 @@ public class PlayerCharacterTest {
     assertTrue(details.contains("Level: 3"));
     assertTrue(details.contains("Condition: DEAFENED"));
     assertTrue(details.contains("Location (relative): "));
-    assertTrue(details.contains("Equiped:"));
+    assertTrue(details.contains("Equipped:"));
   }
 
   /** Test distance to other character. */
