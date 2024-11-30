@@ -19,21 +19,9 @@ public class Water extends ItemImpl implements SplitByWeight {
 
   /** constructor. */
   public Water() {
-    this("Water", "water");
-  }
-
-  /**
-   * constructor.
-   *
-   * @param name name to use.
-   * @param pDescription description to use.
-   */
-  private Water(String name, String pDescription) {
-    super(name, pDescription);
+    super();
     ItemProperty.setHumanoidFood(this, true);
   }
-
-  // Methods
 
   // Static
 

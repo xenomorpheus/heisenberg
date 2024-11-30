@@ -14,22 +14,13 @@ public class CandleTest {
   /** Field MARGIN. (value is 1.0E-5) */
   private static final float MARGIN = 0.00001f;
 
-  // Name and Description
-  /** Method testName. */
+  /** Test Constructor. */
   @Test
-  public void testName() {
+  public void testConstructor() {
     // defaults
-    final String defaultName = "Candle";
     final String defaultDescription = "a simple tallow candle";
     Candle candle = new Candle();
-    assertEquals(defaultName, candle.getName());
     assertEquals(defaultDescription, candle.getDescription());
-    // custom
-    final String expectedName = "my candle";
-    final String expectedDescription = "the description";
-    Candle custom = new Candle(expectedName, expectedDescription);
-    assertEquals(expectedName, custom.getName());
-    assertEquals(expectedDescription, custom.getDescription());
   }
 
   /** Method testSetType. */
@@ -102,7 +93,7 @@ public class CandleTest {
   /** Method testExtinquish. */
   @Test
   public void testExtinquish() {
-    Candle candle = new Candle("TheCandle");
+    Candle candle = new Candle();
     assertFalse("isLit=false", candle.isLit());
     candle.setLit(true);
     assertTrue("isLit=true", candle.isLit());

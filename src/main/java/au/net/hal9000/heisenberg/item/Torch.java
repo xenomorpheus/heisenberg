@@ -16,26 +16,8 @@ public class Torch extends Candle {
 
   /** Constructor for Torch. */
   public Torch() {
-    this("Torch");
-  }
-
-  /**
-   * Constructor for Torch.
-   *
-   * @param name String
-   * @param pDescription String
-   */
-  Torch(String name, String description) {
-    super(name, description);
-  }
-
-  /**
-   * Constructor for Torch.
-   *
-   * @param name String
-   */
-  public Torch(String name) {
-    this(name, "a short wooden rod tipped with cloth soaked in oil");
+    super();
+    setDescription("a short wooden rod tipped with cloth soaked in oil");
   }
 
   /**

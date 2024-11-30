@@ -16,28 +16,7 @@ public class SmallGroundFire extends ItemImpl {
 
   /** Constructor for SmallGroundFire. */
   public SmallGroundFire() {
-    this("SmallGroundFire");
+    super();
+    setDescription("a small ground fire");
   }
-
-  /**
-   * Constructor for SmallGroundFire.
-   *
-   * @param name String
-   */
-  private SmallGroundFire(String name) {
-    this(name, "a small ground fire");
-  }
-
-  /**
-   * Constructor for SmallGroundFire.
-   *
-   * @param name String
-   * @param pDescription String
-   */
-  private SmallGroundFire(String name, String description) {
-    super(name, description);
-  }
-
-  // Methods
-
 }

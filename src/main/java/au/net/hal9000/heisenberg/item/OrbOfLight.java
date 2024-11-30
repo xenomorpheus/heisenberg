@@ -19,26 +19,7 @@ class OrbOfLight extends Candle {
 
   /** Constructor. */
   public OrbOfLight() {
-    this("Orb Of Light");
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name of the orb.
-   */
-  private OrbOfLight(String name) {
-    this(name, "orb of light");
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name of the orb.
-   * @param description the description.
-   */
-  OrbOfLight(String name, String description) {
-    super(name, description);
+    super();
     ItemProperty.setMagical(this, true);
   }
 }

@@ -111,27 +111,6 @@ public abstract class ItemImpl implements Serializable, Item {
     itemIcon = new ItemIcon(this);
   }
 
-  /**
-   * Constructor.
-   *
-   * @param name the name of this Item.
-   */
-  protected ItemImpl(final String name) {
-    this();
-    this.name = name;
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name the name of this Item.
-   * @param description the description of this Item.
-   */
-  protected ItemImpl(final String name, final String description) {
-    this(name);
-    this.description = description;
-  }
-
   // Getters and Setters - Instance
 
   @Override
@@ -167,6 +146,9 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public void setDescription(final String description) {
+    if (null == this.description) {
+      this.description = new String();
+    }
     this.description = description;
   }
 
@@ -187,6 +169,9 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public void setName(final String name) {
+    if (null == this.name) {
+      this.name = new String();
+    }
     this.name = name;
   }
 

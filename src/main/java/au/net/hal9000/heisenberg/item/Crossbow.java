@@ -20,26 +20,7 @@ public class Crossbow extends ItemImpl {
 
   /** Constructor for Crossbow. */
   public Crossbow() {
-    this("Crossbow");
-  }
-
-  /**
-   * Constructor for Crossbow.
-   *
-   * @param name String
-   */
-  private Crossbow(final String name) {
-    this(name, "A crossbow");
-  }
-
-  /**
-   * Constructor for Crossbow.
-   *
-   * @param name String
-   * @param description String
-   */
-  private Crossbow(final String name, String description) {
-    super(name, description);
+    super();
   }
 
   /**

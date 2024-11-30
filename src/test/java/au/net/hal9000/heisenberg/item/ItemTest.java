@@ -37,90 +37,90 @@ public class ItemTest {
 
   @Test
   public void testItem() {
-    Item i = new Cookie();
-    assertEquals("Item() name", "Cookie", i.getName());
-    assertEquals("Item() description", null, i.getDescription());
+    Item item = new Cookie();
+    assertEquals("Item() name", null, item.getName());
+    assertEquals("Item() description", null, item.getDescription());
     // assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
     // assertTrue("Item() weightMax", i.getWeightMax().equals(0F));
     // assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
-    assertEquals("Item() location", null, i.getContainer());
+    assertEquals("Item() location", null, item.getContainer());
   }
 
   @Test
   public void testItemWithName() {
-    Item i = new Cookie("The Name");
-    assertEquals("Item() name", "The Name", i.getName());
+    Item item = new Cookie("The Name");
+    assertEquals("Item() name", "The Name", item.getName());
   }
 
   @Test
   public void testItemWithNameAndDescription() {
-    Item i = new Cookie("The Name", "The Description");
-    assertEquals("Item() name", "The Name", i.getName());
-    assertEquals("Item() description", "The Description", i.getDescription());
+    Item item = new Cookie("The Name", "The Description");
+    assertEquals("Item() name", "The Name", item.getName());
+    assertEquals("Item() description", "The Description", item.getDescription());
   }
 
   @Test
   public void testId() {
-    Item i = new Cookie();
-    UUID id = i.getId();
+    Item item = new Cookie();
+    UUID id = item.getId();
     assertNotNull("id", id);
   }
 
   @Test
   public void testGetJpaId() {
-    Item i = new Cookie();
-    long jpaId = i.getJpaId();
+    Item item = new Cookie();
+    long jpaId = item.getJpaId();
     assertEquals("jpaId", 0L, jpaId);
   }
 
   @Test
   public void testHitPoints() {
-    Item i = new Cookie();
+    Item item = new Cookie();
     float expectHitPoints = 1.23f;
-    i.setHitPoints(expectHitPoints);
-    assertEquals("hit Points", expectHitPoints, i.getHitPoints(), WITHIN_MARGIN);
+    item.setHitPoints(expectHitPoints);
+    assertEquals("hit Points", expectHitPoints, item.getHitPoints(), WITHIN_MARGIN);
   }
 
   @Test
   public void testName() {
-    Item i = new Cookie("A Name");
-    assertEquals("name", "A Name", i.getName());
+    Item item = new Cookie("A Name");
+    assertEquals("name", "A Name", item.getName());
 
-    i.setName("fred");
-    assertEquals("setname & getname", "fred", i.getName());
+    item.setName("fred");
+    assertEquals("setname & getname", "fred", item.getName());
   }
 
   @Test
   public void testDescription() {
-    Item i = new Cookie();
-    i.setDescription("A Description");
-    assertEquals("description", "A Description", i.getDescription());
+    Item item = new Cookie();
+    item.setDescription("A Description");
+    assertEquals("description", "A Description", item.getDescription());
   }
 
   @Test
   public void testBaseWeight() {
     final float weight = 0.123F;
-    Item i = new Cookie();
-    i.setWeightBase(weight);
-    assertEquals("weightBase", i.getWeightBase(), weight, WITHIN_MARGIN);
+    Item item = new Cookie();
+    item.setWeightBase(weight);
+    assertEquals("weightBase", item.getWeightBase(), weight, WITHIN_MARGIN);
   }
 
   @Test
   public void testWeight() {
     final float weight = 0.123F;
-    Item i = new Cookie();
-    i.setWeightBase(weight);
-    assertEquals("weight", i.getWeight(), weight, WITHIN_MARGIN);
+    Item item = new Cookie();
+    item.setWeightBase(weight);
+    assertEquals("weight", item.getWeight(), weight, WITHIN_MARGIN);
   }
 
   /** test valueBase and value */
   @Test
   public void testValueBase() {
-    Item i = new Cookie();
+    Item item = new Cookie();
     Currency currency = new Currency();
-    i.setValueBase(currency);
-    assertTrue("valueBase", currency == i.getValueBase());
-    assertTrue("value", currency == i.getValue());
+    item.setValueBase(currency);
+    assertTrue("valueBase", currency == item.getValueBase());
+    assertTrue("value", currency == item.getValue());
   }
 
   @Test
@@ -160,10 +160,10 @@ public class ItemTest {
 
   @Test
   public void testProperties() {
-    Item i = new Cookie();
+    Item item = new Cookie();
     Properties p = new Properties();
-    i.setProperties(p);
-    assertEquals("description", p, i.getProperties());
+    item.setProperties(p);
+    assertEquals("description", p, item.getProperties());
   }
 
   @Test

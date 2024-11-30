@@ -28,27 +28,8 @@ public class Candle extends ItemImpl implements LightSource {
 
   /** Constructor. */
   public Candle() {
-    this("Candle");
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name to call the item.
-   * @param description description of item.
-   */
-  Candle(final String name, final String description) {
-    super(name, description);
-    setType(1);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name to call the item.
-   */
-  Candle(final String name) {
-    this(name, "a simple tallow candle");
+    super();
+    setDescription("a simple tallow candle");
   }
 
   // Getters and Setters

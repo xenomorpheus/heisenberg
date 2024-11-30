@@ -18,7 +18,7 @@ public class Cookie extends ItemImpl implements HumanoidFood {
 
   /** Constructor for Cookie. */
   public Cookie() {
-    super("Cookie");
+    super();
     ItemProperty.setHumanoidFood(this, true);
   }
 

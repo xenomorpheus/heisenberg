@@ -17,28 +17,6 @@ public class Fungus extends ItemImpl {
 
   /** Constructor for Fungus. */
   public Fungus() {
-    this("Fungus");
+    super();
   }
-
-  /**
-   * Constructor for Fungus.
-   *
-   * @param name String
-   */
-  public Fungus(String name) {
-    this(name, "Some fugus");
-  }
-
-  /**
-   * Constructor for Fungus.
-   *
-   * @param name String
-   * @param description String
-   */
-  public Fungus(String name, String description) {
-    super(name, description);
-  }
-
-  // Methods
-
 }
