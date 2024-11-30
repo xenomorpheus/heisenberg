@@ -4,7 +4,6 @@ import au.net.hal9000.heisenberg.fifthed.characterClass.Spellcaster;
 import au.net.hal9000.heisenberg.fifthed.combat.TimerRound;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacterCondition;
-
 import java.util.Set;
 
 /**

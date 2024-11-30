@@ -45,9 +45,7 @@ public abstract class Race extends EntityItem {
 
   // Constructors
 
-  /**
-   * Constructor for Race.
-   */
+  /** Constructor for Race. */
   protected Race() {
     super();
   }

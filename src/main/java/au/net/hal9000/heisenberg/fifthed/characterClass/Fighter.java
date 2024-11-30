@@ -7,7 +7,6 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.Item;
 import au.net.hal9000.heisenberg.fifthed.item.Weapon;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
-
 import java.util.HashSet;
 import java.util.Set;
 

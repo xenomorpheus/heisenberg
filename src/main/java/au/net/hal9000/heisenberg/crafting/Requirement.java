@@ -81,5 +81,4 @@ public abstract class Requirement {
     }
     return description;
   }
-
 }

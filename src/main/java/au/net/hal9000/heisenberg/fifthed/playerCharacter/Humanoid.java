@@ -24,9 +24,7 @@ public abstract class Humanoid extends PlayerCharacter {
   }
 
   @Override
-  /**
-   *  Work out what actions may be performed in this amount of time.
-   */
+  /** Work out what actions may be performed in this amount of time. */
   public Set<Action> getActionsCombat(CombatArena arena) {
     Set<Action> actions = new HashSet<Action>();
     actions.addAll(super.getActionsCombat(arena));

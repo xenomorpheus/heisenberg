@@ -35,9 +35,7 @@ public class Location extends ItemImpl implements ItemContainer {
   /** Field contents. */
   private List<Item> contents = new ArrayList<Item>();
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Location() {
     super();
   }

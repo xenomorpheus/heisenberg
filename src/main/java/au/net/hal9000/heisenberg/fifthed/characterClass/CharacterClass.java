@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.fifthed.characterClass;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
-
 import java.util.Set;
 
 public abstract class CharacterClass {
