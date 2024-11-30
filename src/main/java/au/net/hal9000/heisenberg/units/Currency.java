@@ -192,7 +192,7 @@ public class Currency implements Serializable, Cloneable {
    * @param fromCollection losing collection.
    */
   public void transfer(Currency fromCollection) {
-    this.add(fromCollection);
+    add(fromCollection);
     // remove the value from the original otherCollection.
     fromCollection.pp = 0;
     fromCollection.gp = 0;

@@ -29,7 +29,7 @@ public class Hand extends Location {
   public Hand(String string) {
     super(string);
     ItemProperty.setLiving(this, true);
-    this.setWeightMax(2); // TODO move to config
-    this.setVolumeMax(2); // TODO move to config
+    setWeightMax(2); // TODO move to config
+    setVolumeMax(2); // TODO move to config
   }
 }

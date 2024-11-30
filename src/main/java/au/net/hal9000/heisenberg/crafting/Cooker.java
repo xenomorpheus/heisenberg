@@ -81,8 +81,8 @@ public class Cooker extends Location {
      * Mitigation: Location of Cooker still needs to be able to hold the weight and volume. But
      * currently there is an exploit when adding to a bag inside a bag.<br>
      */
-    this.setVolumeMax(-1f);
-    this.setWeightMax(-1f);
+    setVolumeMax(-1f);
+    setWeightMax(-1f);
   }
 
   // Setters and Getters
@@ -124,7 +124,7 @@ public class Cooker extends Location {
       throw new RuntimeException(ALREADY_OCCUPIED);
     }
     // already in this container?
-    if (this.contains(item)) {
+    if (contains(item)) {
       throw new RuntimeException(ALREADY_CONTAINS_THAT_ITEM + ": " + item);
     }
     // is there a requirement to fulfill ?
@@ -140,7 +140,7 @@ public class Cooker extends Location {
     }
 
     // success
-    this.add(item);
+    add(item);
     ingredients.put(key, item);
   }
 

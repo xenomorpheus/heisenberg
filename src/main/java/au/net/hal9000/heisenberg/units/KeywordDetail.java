@@ -61,6 +61,6 @@ class KeywordDetail implements Comparable<KeywordDetail> {
    * @return String
    */
   public String toString() {
-    return "Id: " + this.getId() + ": " + this.getDescription();
+    return "Id: " + getId() + ": " + getDescription();
   }
 }

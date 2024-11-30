@@ -45,8 +45,8 @@ public class Torch extends Candle {
    */
   public void setType(final int type) {
     if (1 == type) {
-      this.setVolumeBase(1.0f); // TODO what about litres vs. gallons
-      this.setWeightBase(1.0f); // TODO what about kilos vs. pounds ?
+      setVolumeBase(1.0f); // TODO what about litres vs. gallons
+      setWeightBase(1.0f); // TODO what about kilos vs. pounds ?
     }
   }
 }

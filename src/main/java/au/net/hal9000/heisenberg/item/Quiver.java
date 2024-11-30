@@ -23,7 +23,7 @@ public class Quiver extends Location {
   /** Constructor. */
   public Quiver() {
     super("Quiver", "Quiver");
-    this.setVolumeMax(VOLUME_MAX_DFT);
+    setVolumeMax(VOLUME_MAX_DFT);
     ItemProperty.setClothing(this, true);
   }
 

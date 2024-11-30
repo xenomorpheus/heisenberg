@@ -72,13 +72,13 @@ public class Purse extends ItemImpl {
   /** {@inheritDoc} * @return float */
   @Override
   public float getWeight() {
-    return this.getWeightBase() + this.getCoinCount() * COINS_TO_WEIGHT;
+    return getWeightBase() + getCoinCount() * COINS_TO_WEIGHT;
   }
 
   /** {@inheritDoc} * @return float */
   @Override
   public float getVolume() {
-    return this.getVolumeBase() + this.getCoinCount() * COINS_TO_VOLUME;
+    return getVolumeBase() + getCoinCount() * COINS_TO_VOLUME;
   }
 
   /** {@inheritDoc} * @return Currency */
@@ -86,7 +86,7 @@ public class Purse extends ItemImpl {
   public Currency getValue() {
     // We take a fresh currency so we don't alter the Purse's inner currency
     // object.
-    Currency total = new Currency(this.getValueBase());
+    Currency total = new Currency(getValueBase());
     total.add(coins);
     return total;
   }

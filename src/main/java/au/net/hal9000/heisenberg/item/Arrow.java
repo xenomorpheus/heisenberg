@@ -22,6 +22,6 @@ public class Arrow extends ItemImpl implements Sharp {
   /** Constructor. */
   public Arrow() {
     super("Arrow");
-    this.setVolumeBase(VOLUME_BASE);
+    setVolumeBase(VOLUME_BASE);
   }
 }

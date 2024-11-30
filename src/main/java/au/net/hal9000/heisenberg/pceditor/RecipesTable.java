@@ -34,7 +34,7 @@ public class RecipesTable extends JTable {
    *     refresh of values.
    */
   public void setRace(final Race pc) {
-    this.setModel(new MyTableModel(pc));
+    setModel(new MyTableModel(pc));
   }
 
   /** My table model. */

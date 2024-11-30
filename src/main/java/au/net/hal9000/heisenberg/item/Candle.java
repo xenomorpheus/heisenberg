@@ -39,7 +39,7 @@ public class Candle extends ItemImpl implements LightSource {
    */
   Candle(final String name, final String description) {
     super(name, description);
-    this.setType(1);
+    setType(1);
   }
 
   /**
@@ -75,8 +75,8 @@ public class Candle extends ItemImpl implements LightSource {
    */
   public void setType(final int type) {
     if (1 == type) {
-      this.setVolumeBase(VOLUME_DEFAULT);
-      this.setWeightBase(WEIGHT_DEFAULT);
+      setVolumeBase(VOLUME_DEFAULT);
+      setWeightBase(WEIGHT_DEFAULT);
     } else {
       throw new RuntimeException("Invalid Candle type=" + type);
     }
@@ -86,14 +86,14 @@ public class Candle extends ItemImpl implements LightSource {
   @Override
   public boolean lightWith(Object ignighter) { // NO_UCD (test only)
     if (ignighter instanceof FlintAndTinder) {
-      this.setLit(true);
+      setLit(true);
     }
     // OrbOfLight (or sub-class) won't lite it.
     // Candle (or sub-class) and MUST BE LIT.
     else if ((ignighter instanceof Candle) && !(ignighter instanceof OrbOfLight)) {
       Candle candle = (Candle) ignighter;
       if (candle.isLit()) {
-        this.setLit(true);
+        setLit(true);
       }
     }
     // Note may already be lit.
@@ -103,7 +103,7 @@ public class Candle extends ItemImpl implements LightSource {
   /** {@inheritDoc} */
   @Override
   public void extinguish() {
-    this.setLit(false);
+    setLit(false);
   }
 
   /** {@inheritDoc} * @return String */
@@ -111,7 +111,7 @@ public class Candle extends ItemImpl implements LightSource {
   public String detailedDescription() {
     StringBuilder string = new StringBuilder(super.detailedDescription());
     string.append(System.lineSeparator());
-    string.append("The " + this.getClass().getSimpleName());
+    string.append("The " + getClass().getSimpleName());
 
     if (lit) {
       string.append(" is lit.");

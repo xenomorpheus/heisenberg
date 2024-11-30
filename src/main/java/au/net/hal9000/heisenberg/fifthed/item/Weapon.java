@@ -99,7 +99,7 @@ public abstract class Weapon extends Item {
 
   /** is the opponent within range of this weapon */
   public boolean withinRange(PlayerCharacter attacker, PlayerCharacter opponent) {
-    return this.getRangeMax() > attacker.distance(opponent);
+    return getRangeMax() > attacker.distance(opponent);
   }
 
   public boolean validAttack(PlayerCharacter attacker, PlayerCharacter opponent) {

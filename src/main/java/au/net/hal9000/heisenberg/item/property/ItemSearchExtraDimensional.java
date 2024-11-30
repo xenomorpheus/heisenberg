@@ -26,7 +26,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
    */
   public void visit(Item item) {
     if (item instanceof ExtraDimensional) {
-      this.addMatchingItems(item);
+      addMatchingItems(item);
     }
   }
 
@@ -41,7 +41,7 @@ public class ItemSearchExtraDimensional extends ItemSearch {
     while (itr.hasNext()) {
       Item item = itr.next();
       if (item instanceof ExtraDimensional) {
-        this.addMatchingItems(item);
+        addMatchingItems(item);
       }
     }
   }

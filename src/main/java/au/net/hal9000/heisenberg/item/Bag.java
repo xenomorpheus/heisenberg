@@ -29,8 +29,8 @@ public class Bag extends Box {
   public Bag() {
     super("Bag");
     setDescription("A common cloth sack about 2 feet by 4 feet in size.");
-    this.setWeightMax(WEIGHT_MAX_DEFAULT);
-    this.setVolumeMax(VOLUME_MAX_DEFAULT);
+    setWeightMax(WEIGHT_MAX_DEFAULT);
+    setVolumeMax(VOLUME_MAX_DEFAULT);
   }
 
   /**
@@ -60,7 +60,7 @@ public class Bag extends Box {
   public void add(final Item item) {
     // Look for sharp items. Wrapped sharp items are safe.
     if (item instanceof Sharp) {
-      this.rupture();
+      rupture();
       throw new InvalidTypeException("Sharp");
     }
     super.add(item);

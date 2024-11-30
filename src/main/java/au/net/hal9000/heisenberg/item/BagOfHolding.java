@@ -145,30 +145,30 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
 
     this.type = type;
     if (type == TYPE_I) {
-      this.setWeightBase(TYPE_I_WEIGHT_BASE);
-      this.setWeightMax(TYPE_I_WEIGHT_MAX);
-      this.setVolumeMax(TYPE_I_VOLUME_MAX);
-      this.setValueBase(new Currency(0, TYPE_I_VALUE_GP, 0, 0));
+      setWeightBase(TYPE_I_WEIGHT_BASE);
+      setWeightMax(TYPE_I_WEIGHT_MAX);
+      setVolumeMax(TYPE_I_VOLUME_MAX);
+      setValueBase(new Currency(0, TYPE_I_VALUE_GP, 0, 0));
     }
     if (type == TYPE_II) {
-      this.setWeightBase(TYPE_II_WEIGHT_BASE);
-      this.setWeightMax(TYPE_II_WEIGHT_MAX);
-      this.setVolumeMax(TYPE_II_VOLUME_MAX);
-      this.setValueBase(new Currency(0, TYPE_II_VALUE_GP, 0, 0));
+      setWeightBase(TYPE_II_WEIGHT_BASE);
+      setWeightMax(TYPE_II_WEIGHT_MAX);
+      setVolumeMax(TYPE_II_VOLUME_MAX);
+      setValueBase(new Currency(0, TYPE_II_VALUE_GP, 0, 0));
     }
     if (type == TYPE_III) {
-      this.setWeightBase(TYPE_III_WEIGHT_BASE);
-      this.setWeightMax(TYPE_III_WEIGHT_MAX);
-      this.setVolumeMax(TYPE_III_VOLUME_MAX);
-      this.setValueBase(new Currency(0, TYPE_III_VALUE_GP, 0, 0));
+      setWeightBase(TYPE_III_WEIGHT_BASE);
+      setWeightMax(TYPE_III_WEIGHT_MAX);
+      setVolumeMax(TYPE_III_VOLUME_MAX);
+      setValueBase(new Currency(0, TYPE_III_VALUE_GP, 0, 0));
     }
     if (type == TYPE_IV) {
-      this.setWeightBase(TYPE_IV_WEIGHT_BASE);
-      this.setWeightMax(TYPE_IV_WEIGHT_MAX);
-      this.setVolumeMax(TYPE_IV_VOLUME_MAX);
-      this.setValueBase(new Currency(0, TYPE_IV_VALUE_GP, 0, 0));
+      setWeightBase(TYPE_IV_WEIGHT_BASE);
+      setWeightMax(TYPE_IV_WEIGHT_MAX);
+      setVolumeMax(TYPE_IV_VOLUME_MAX);
+      setValueBase(new Currency(0, TYPE_IV_VALUE_GP, 0, 0));
     }
-    this.setVolumeBase(2F); // TODO set default volume
+    setVolumeBase(2F); // TODO set default volume
   }
 
   /**
@@ -179,7 +179,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    * @return the relocated item
    */
   public Item getItem(Item item, ItemContainer newLocation) {
-    List<Item> items = this.getContents();
+    List<Item> items = getContents();
     if (!items.remove(item)) {
       throw new ItemNotPresentException("remove failed");
     }
@@ -194,7 +194,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    */
   @Override
   public float getWeight() {
-    return this.getWeightBase();
+    return getWeightBase();
   }
 
   /**
@@ -204,7 +204,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    */
   @Override
   public float getVolume() {
-    return this.getVolumeBase();
+    return getVolumeBase();
   }
 
   /**
@@ -220,7 +220,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
   /** {@inheritDoc} */
   @Override
   public void rupture() {
-    this.beNot();
+    beNot();
   }
 
   /**
@@ -234,7 +234,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
     ItemSearch search = new ItemSearchExtraDimensional();
     item.accept(search);
     if (search.getMatchingItemsCount() > 0) {
-      this.rupture();
+      rupture();
       throw new InvalidTypeException("ExtraDimensional");
     }
     // TODO Do sharp objects cause a ED rupture?

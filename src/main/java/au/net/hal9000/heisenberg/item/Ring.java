@@ -26,9 +26,9 @@ public class Ring extends ItemImpl {
   /** Constructor. */
   public Ring() {
     super("Ring");
-    this.setDescription("small metalic ring");
-    this.setValueBase(new Currency(0, DEFAULT_VALUE_GP, 0, 0));
-    this.setWeightBase(DEFAULT_WEIGHT);
+    setDescription("small metalic ring");
+    setValueBase(new Currency(0, DEFAULT_VALUE_GP, 0, 0));
+    setWeightBase(DEFAULT_WEIGHT);
   }
 
   /**

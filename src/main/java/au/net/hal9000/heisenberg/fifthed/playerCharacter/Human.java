@@ -4,7 +4,7 @@ public class Human extends Humanoid {
 
   public Human(String name) {
     super(name);
-    this.setCreatureSize(CreatureSize.MEDIUM);
+    setCreatureSize(CreatureSize.MEDIUM);
   }
 
   @Override

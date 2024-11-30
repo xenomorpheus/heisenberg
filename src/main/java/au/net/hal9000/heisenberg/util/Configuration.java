@@ -71,7 +71,7 @@ public class Configuration {
    */
   public Configuration(String filename) throws ConfigurationError {
     super();
-    this.init(filename);
+    init(filename);
     setLastConfig(this);
   }
 

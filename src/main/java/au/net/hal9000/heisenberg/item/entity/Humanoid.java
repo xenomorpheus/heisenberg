@@ -79,7 +79,7 @@ abstract class Humanoid extends Race implements ItemList {
    */
   protected Humanoid(String string, String description) {
     this(string);
-    this.setDescription(description);
+    setDescription(description);
   }
 
   /**
@@ -91,7 +91,7 @@ abstract class Humanoid extends Race implements ItemList {
    */
   protected Humanoid(String name, String description, PcClass pcClass) {
     this(name, description);
-    this.setPcClass(pcClass);
+    setPcClass(pcClass);
   }
 
   /**
@@ -102,7 +102,7 @@ abstract class Humanoid extends Race implements ItemList {
    */
   protected Humanoid(String name, PcClass pcClass) {
     this(name);
-    this.setPcClass(pcClass);
+    setPcClass(pcClass);
   }
 
   // Getters and Setters
@@ -211,7 +211,7 @@ abstract class Humanoid extends Race implements ItemList {
       core.add(item);
     } else {
       if (!ItemProperty.isClothing(item)) {
-        throw new InvalidTypeException(this.getName() + " can't wear " + item.getName());
+        throw new InvalidTypeException(getName() + " can't wear " + item.getName());
       }
       core.add(item);
     }
@@ -271,7 +271,7 @@ abstract class Humanoid extends Race implements ItemList {
   /** {@inheritDoc} * @return String */
   @Override
   public String getSpeciesName() {
-    return this.getClass().getSimpleName();
+    return getClass().getSimpleName();
   }
 
   /** {@inheritDoc} * @return int */

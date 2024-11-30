@@ -417,7 +417,7 @@ public abstract class ItemImpl implements Serializable, Item {
     // TODO Help Required - How do I delete an object that
     // may be referenced by other objects?
     // Perhaps listeners on the containers?
-    ItemContainer container = this.getContainer();
+    ItemContainer container = getContainer();
     if (null != container) {
       container.remove(this);
     }
@@ -466,7 +466,7 @@ public abstract class ItemImpl implements Serializable, Item {
   public String toString() {
     String string = getName();
     if ((null == string) || (0 == string.length())) {
-      string = this.getClass().getSimpleName().toLowerCase();
+      string = getClass().getSimpleName().toLowerCase();
     }
     return string;
   }
@@ -481,7 +481,7 @@ public abstract class ItemImpl implements Serializable, Item {
     StringBuilder text = new StringBuilder();
     String temp;
 
-    temp = this.getName();
+    temp = getName();
     if (null != temp) {
       text.append("Name: " + temp);
       text.append(System.lineSeparator());
@@ -489,27 +489,27 @@ public abstract class ItemImpl implements Serializable, Item {
     text.append("Class: " + getSimpleClassName());
     text.append(System.lineSeparator());
 
-    temp = this.getDescription();
+    temp = getDescription();
     if ((null != temp) && (temp.length() > 0)) {
       text.append("Description: " + temp);
       text.append(System.lineSeparator());
     }
-    text.append("Weight Base: " + this.getWeightBase());
+    text.append("Weight Base: " + getWeightBase());
     text.append(System.lineSeparator());
-    text.append("Volume Base: " + this.getVolumeBase());
+    text.append("Volume Base: " + getVolumeBase());
     text.append(System.lineSeparator());
 
-    Currency valueBase = this.getValueBase();
+    Currency valueBase = getValueBase();
     if (null != valueBase) {
       text.append("Value Base: " + valueBase);
       text.append(System.lineSeparator());
     }
-    ItemContainer container = this.getContainer();
+    ItemContainer container = getContainer();
     if (null != container) {
       text.append("Container: " + container.getName());
       text.append(System.lineSeparator());
     }
-    Position position = this.getPosition();
+    Position position = getPosition();
     if (null != position) {
       text.append("Position: " + position);
       text.append(System.lineSeparator());

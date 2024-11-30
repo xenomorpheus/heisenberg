@@ -157,7 +157,7 @@ public class BasicPanel extends JPanel {
 
     // create GribBagLayout and the GridBagLayout Constraints
     GridBagLayout gridBag = new GridBagLayout();
-    this.setLayout(gridBag);
+    setLayout(gridBag);
     row0(gridBag, cons);
     row1(gridBag, cons);
     row2(gridBag, cons);
@@ -180,7 +180,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(nameLbl, cons);
-    this.add(nameLbl);
+    add(nameLbl);
     pos += cons.gridwidth;
 
     nameTextField = new JTextField();
@@ -190,7 +190,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 6;
     gridBag.setConstraints(nameTextField, cons);
-    this.add(nameTextField);
+    add(nameTextField);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
 
@@ -199,7 +199,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(classLbl, cons);
-    this.add(classLbl);
+    add(classLbl);
     pos += cons.gridwidth;
 
     classComboBox = new JComboBox<>();
@@ -212,7 +212,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 4;
     gridBag.setConstraints(classComboBox, cons);
-    this.add(classComboBox);
+    add(classComboBox);
     cons.gridwidth = 1;
     pos += cons.gridwidth;
   }
@@ -234,7 +234,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(descriptionLbl, cons);
-    this.add(descriptionLbl);
+    add(descriptionLbl);
     pos += cons.gridwidth;
 
     descriptionTextField = new JTextField();
@@ -244,7 +244,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 6;
     gridBag.setConstraints(descriptionTextField, cons);
-    this.add(descriptionTextField);
+    add(descriptionTextField);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
 
@@ -253,7 +253,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(speciesLbl, cons);
-    this.add(speciesLbl);
+    add(speciesLbl);
     pos += cons.gridwidth;
 
     speciesTextField = new JTextField();
@@ -264,7 +264,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 6;
     gridBag.setConstraints(speciesTextField, cons);
-    this.add(speciesTextField);
+    add(speciesTextField);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
   }
@@ -286,7 +286,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(comLbl, cons);
-    this.add(comLbl);
+    add(comLbl);
     pos += cons.gridwidth;
 
     comTextField = new JTextField();
@@ -295,7 +295,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(comTextField, cons);
-    this.add(comTextField);
+    add(comTextField);
     pos += cons.gridwidth;
 
     // Mag
@@ -303,7 +303,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(magLbl, cons);
-    this.add(magLbl);
+    add(magLbl);
     pos += cons.gridwidth;
 
     magTextField = new JTextField();
@@ -312,7 +312,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(magTextField, cons);
-    this.add(magTextField);
+    add(magTextField);
     pos += cons.gridwidth;
 
     // Ste
@@ -320,7 +320,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(steLbl, cons);
-    this.add(steLbl);
+    add(steLbl);
     pos += cons.gridwidth;
 
     steTextField = new JTextField();
@@ -329,7 +329,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(steTextField, cons);
-    this.add(steTextField);
+    add(steTextField);
     pos += cons.gridwidth;
 
     // Gen
@@ -337,7 +337,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(genLbl, cons);
-    this.add(genLbl);
+    add(genLbl);
     pos += cons.gridwidth;
 
     genTextField = new JTextField();
@@ -346,7 +346,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(genTextField, cons);
-    this.add(genTextField);
+    add(genTextField);
     pos += cons.gridwidth;
   }
 
@@ -366,7 +366,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(levelLbl, cons);
-    this.add(levelLbl);
+    add(levelLbl);
     pos += cons.gridwidth;
 
     // Level Spinner
@@ -382,7 +382,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(levelSpinner, cons);
-    this.add(levelSpinner);
+    add(levelSpinner);
     pos += cons.gridwidth;
 
     // Action Points
@@ -390,7 +390,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(apLbl, cons);
-    this.add(apLbl);
+    add(apLbl);
     pos += cons.gridwidth;
 
     actionPointsTextField = new JTextField();
@@ -399,7 +399,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(actionPointsTextField, cons);
-    this.add(actionPointsTextField);
+    add(actionPointsTextField);
     pos += cons.gridwidth;
 
     // Health
@@ -407,7 +407,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(healthLbl, cons);
-    this.add(healthLbl);
+    add(healthLbl);
     pos += cons.gridwidth;
 
     healthTextField = new JTextField();
@@ -416,7 +416,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(healthTextField, cons);
-    this.add(healthTextField);
+    add(healthTextField);
     pos += cons.gridwidth;
 
     // Mana
@@ -424,7 +424,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(manaLbl, cons);
-    this.add(manaLbl);
+    add(manaLbl);
     pos += cons.gridwidth;
 
     manaTextField = new JTextField();
@@ -433,7 +433,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(manaTextField, cons);
-    this.add(manaTextField);
+    add(manaTextField);
     pos += cons.gridwidth;
   }
 
@@ -452,7 +452,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(sizeLbl, cons);
-    this.add(sizeLbl);
+    add(sizeLbl);
     pos += cons.gridwidth;
 
     // Size List
@@ -466,7 +466,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 3;
     gridBag.setConstraints(sizeComboBox, cons);
-    this.add(sizeComboBox);
+    add(sizeComboBox);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
 
@@ -475,7 +475,7 @@ public class BasicPanel extends JPanel {
     cons.gridx = pos;
     cons.gridy = row;
     gridBag.setConstraints(genderLbl, cons);
-    this.add(genderLbl);
+    add(genderLbl);
     pos += cons.gridwidth;
 
     // Gender List
@@ -489,7 +489,7 @@ public class BasicPanel extends JPanel {
     cons.gridy = row;
     cons.gridwidth = 3;
     gridBag.setConstraints(genderComboBox, cons);
-    this.add(genderComboBox);
+    add(genderComboBox);
     pos += cons.gridwidth;
     cons.gridwidth = 1;
   }

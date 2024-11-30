@@ -197,7 +197,7 @@ public class HunterPreyAi {
   }
 
   public String toString() {
-    return this.getClass().toString();
+    return getClass().toString();
   }
 
   /**

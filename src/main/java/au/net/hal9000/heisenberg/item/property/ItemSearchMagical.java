@@ -25,7 +25,7 @@ class ItemSearchMagical extends ItemSearch {
    */
   public void visit(Item item) {
     if (ItemProperty.isMagical(item)) {
-      this.addMatchingItems(item);
+      addMatchingItems(item);
     }
   }
 
@@ -40,7 +40,7 @@ class ItemSearchMagical extends ItemSearch {
     while (itr.hasNext()) {
       Item item = itr.next();
       if (ItemProperty.isMagical(item)) {
-        this.addMatchingItems(item);
+        addMatchingItems(item);
       }
     }
   }

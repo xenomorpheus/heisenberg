@@ -173,8 +173,8 @@ public class Location extends ItemImpl implements ItemContainer {
    */
   @Override
   public float getWeight() {
-    float total = this.getWeightBase();
-    total += this.getContentsWeight();
+    float total = getWeightBase();
+    total += getContentsWeight();
     return total;
   }
 
@@ -183,8 +183,8 @@ public class Location extends ItemImpl implements ItemContainer {
    */
   @Override
   public float getVolume() {
-    float total = this.getVolumeBase();
-    total += this.getContentsVolume();
+    float total = getVolumeBase();
+    total += getContentsVolume();
     return total;
   }
 
@@ -193,8 +193,8 @@ public class Location extends ItemImpl implements ItemContainer {
    */
   @Override
   public Currency getValue() {
-    Currency total = new Currency(this.getValueBase());
-    total.add(this.getContentsValue());
+    Currency total = new Currency(getValueBase());
+    total.add(getContentsValue());
     return total;
   }
 
@@ -274,7 +274,7 @@ public class Location extends ItemImpl implements ItemContainer {
   public void add(int index, Item item) {
     ItemContainer itemCurrentContainer = item.getContainer();
     if (null != itemCurrentContainer) {
-      if (this.equals(itemCurrentContainer)) {
+      if (equals(itemCurrentContainer)) {
         LOGGER.error("Item " + this + " was already in container " + itemCurrentContainer);
         // Nothing to do.
         return;
@@ -284,9 +284,9 @@ public class Location extends ItemImpl implements ItemContainer {
     // up the weight and volume in one pass.
 
     // check Weight
-    final float weightMax = this.getWeightMax();
+    final float weightMax = getWeightMax();
     if (weightMax > 0) {
-      float total = this.getContentsWeight();
+      float total = getContentsWeight();
       total += item.getWeight();
       if (total > weightMax) {
         StringBuilder text =
@@ -306,9 +306,9 @@ public class Location extends ItemImpl implements ItemContainer {
     }
 
     // check Volume
-    final float volumeMax = this.getVolumeMax();
+    final float volumeMax = getVolumeMax();
     if (volumeMax > 0) {
-      float total = this.getContentsVolume();
+      float total = getContentsVolume();
       total += item.getVolume();
       if (total > volumeMax) {
         StringBuilder text =
@@ -341,7 +341,7 @@ public class Location extends ItemImpl implements ItemContainer {
               + " much greater "
               + currentSize
               + ". container is a "
-              + this.getName()
+              + getName()
               + ", added item is "
               + item.getName());
     }
@@ -362,7 +362,7 @@ public class Location extends ItemImpl implements ItemContainer {
   @Override
   public void addAll(List<Item> items) {
     for (Item item : items) {
-      this.add(item);
+      add(item);
     }
   }
 
