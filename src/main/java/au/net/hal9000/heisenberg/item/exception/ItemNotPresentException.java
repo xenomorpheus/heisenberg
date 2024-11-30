@@ -12,10 +12,10 @@ public final class ItemNotPresentException extends RuntimeException {
   /**
    * Constructor for ItemNotPresentException.
    *
-   * @param string String
+   * @param errorText String
    */
-  public ItemNotPresentException(String string) {
-    super(string);
+  public ItemNotPresentException(String errorText) {
+    super(errorText);
   }
   ;
 }

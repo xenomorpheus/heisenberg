@@ -12,9 +12,9 @@ public final class TooHeavyException extends RuntimeException {
   /**
    * Constructor for TooHeavyException.
    *
-   * @param string String
+   * @param errorText String
    */
-  public TooHeavyException(String string) {
-    super(string);
+  public TooHeavyException(String errorText) {
+    super(errorText);
   }
 }

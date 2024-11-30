@@ -18,9 +18,9 @@ public class Skill extends Keyword {
   /**
    * Constructor for Skill.
    *
-   * @param string String
+   * @param name String
    */
-  public Skill(String string) {
-    super(string);
+  public Skill(String name) {
+    super(name);
   }
 }

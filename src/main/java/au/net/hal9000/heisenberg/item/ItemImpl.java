@@ -464,11 +464,11 @@ public abstract class ItemImpl implements Serializable, Item {
    */
   @Override
   public String toString() {
-    String string = getName();
-    if ((null == string) || (0 == string.length())) {
-      string = getClass().getSimpleName().toLowerCase();
+    String name = getName();
+    if ((null == name) || (0 == name.length())) {
+      name = getClass().getSimpleName().toLowerCase();
     }
-    return string;
+    return name;
   }
 
   /*

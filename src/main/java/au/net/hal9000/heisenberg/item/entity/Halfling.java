@@ -35,8 +35,8 @@ public class Halfling extends Humanoid implements Animal {
    * @param name String
    * @param description String
    */
-  public Halfling(String string, String description) {
-    super(string, description);
+  public Halfling(String name, String description) {
+    super(name, description);
   }
 
   @Override

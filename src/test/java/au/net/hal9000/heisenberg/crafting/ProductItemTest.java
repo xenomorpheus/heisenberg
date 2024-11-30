@@ -55,7 +55,7 @@ public class ProductItemTest {
     // TODO complete unit test
     // ProductItem productItem = new ProductItem("SomeId");
     // Cooker cooker = new Cooker();
-    // String string = productItem.meetsRequirements(cooker);
+    // String problems = productItem.meetsRequirements(cooker);
   }
 
   /** Method createProductTest. */

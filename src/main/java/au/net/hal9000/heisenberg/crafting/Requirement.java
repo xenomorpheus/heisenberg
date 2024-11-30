@@ -73,13 +73,13 @@ public abstract class Requirement {
    * @return Return a description of the object.
    */
   String getDescription() {
-    String string = "Id: " + id;
+    String description = "Id: " + id;
     if (isConsumed) {
-      string += ", consumed";
+      description += ", consumed";
     } else {
-      string += ", not consumed";
+      description += ", not consumed";
     }
-    return string;
+    return description;
   }
 
 }

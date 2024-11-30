@@ -13,10 +13,10 @@ public class Backlog {
   /**
    * Method println.
    *
-   * @param string String
+   * @param debugText String
    */
-  private void println(String string) {
-    // System.out.println(string);
+  private void println(String debugText) {
+    // System.out.println(debugText);
   }
 
   // Scenario 01

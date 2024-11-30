@@ -135,9 +135,9 @@ public class ItemTest {
   public void testToString() throws ConfigurationError {
     for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
       String itemClass = itemClassConfiguration.getId();
-      String string = Factory.createItem(itemClass).toString();
-      assertTrue(itemClass + ".toString not null", null != string);
-      assertTrue(itemClass + ".toString length", string.length() > 0);
+      String type = Factory.createItem(itemClass).toString();
+      assertTrue(itemClass + ".toString not null", null != type);
+      assertTrue(itemClass + ".toString length", type.length() > 0);
     }
   }
 

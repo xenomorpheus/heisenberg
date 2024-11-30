@@ -12,9 +12,9 @@ public class InvalidTypeException extends RuntimeException {
   /**
    * Constructor for InvalidTypeException.
    *
-   * @param string String
+   * @param errorText String
    */
-  public InvalidTypeException(String string) {
-    super(string);
+  public InvalidTypeException(String errorText) {
+    super(errorText);
   }
 }

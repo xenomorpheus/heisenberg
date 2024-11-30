@@ -9,9 +9,9 @@ public final class TooLargeException extends RuntimeException {
   /**
    * Constructor for TooBigException.
    *
-   * @param string String
+   * @param error String
    */
-  public TooLargeException(String string) {
-    super(string);
+  public TooLargeException(String error) {
+    super(error);
   }
 }

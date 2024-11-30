@@ -57,11 +57,11 @@ public abstract class Race extends EntityItem {
   /**
    * Constructor for Race.
    *
-   * @param string String
+   * @param name String
    * @param description String
    */
-  protected Race(String string, String description) {
-    super(string, description);
+  protected Race(String name, String description) {
+    super(name, description);
   }
 
   /**
