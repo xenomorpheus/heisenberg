@@ -15,20 +15,12 @@ public class PurseTest {
   @Test
   public void testPurse() {
     Purse purse = new Purse();
-    assertEquals("getName", "Purse", purse.getName());
     assertEquals("getValue - empty purse", purse.getValueBase(), purse.getValue());
     assertEquals(
         "getWeight - empty purse", purse.getWeightBase(), purse.getWeight(), MARGIN_OF_ERROR);
     assertEquals(
         "getVolume - empty purse", purse.getVolumeBase(), purse.getVolume(), MARGIN_OF_ERROR);
     // TODO add more tests
-  }
-
-  /** Method testPurseString. */
-  @Test
-  public void testPurseString() {
-    Purse purse = new Purse("ThisName");
-    assertEquals("Name", "ThisName", purse.getName());
   }
 
   /** Method testGetCoinCount. */

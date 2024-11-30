@@ -35,8 +35,6 @@ public class RaceTest {
   public void testRace() {
     Human human = new Human();
     checkBasicsAreZero(human);
-    assertEquals("Name check", "Human", human.getName());
-    assertEquals("Description check", "", human.getDescription());
     // By default PCs are living.
     assertTrue("living", ItemProperty.isLiving(human));
   }
@@ -46,7 +44,6 @@ public class RaceTest {
   public void testRaceString() {
     Human human = new Human("Fred1");
     assertEquals("Name check1", "Fred1", human.getName());
-    assertEquals("Description check1", "", human.getDescription());
     // By default PCs are living.
     assertTrue("living1", ItemProperty.isLiving(human));
   }
@@ -67,7 +64,6 @@ public class RaceTest {
     final PcClass expectedValue = new PcClass();
     Human human = new Human("Fred3", expectedValue);
     assertEquals("Name check3", "Fred3", human.getName());
-    assertEquals("Description check3", "", human.getDescription());
     // By default PCs are living.
     assertTrue("living3", ItemProperty.isLiving(human));
     assertSame(expectedValue, human.getPcClass());

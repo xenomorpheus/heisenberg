@@ -11,7 +11,6 @@ import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
-import au.net.hal9000.heisenberg.util.PcClass;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import java.util.ArrayList;
@@ -45,13 +44,13 @@ abstract class Humanoid extends Race implements ItemList {
   private HumanoidHead head = new HumanoidHead();
 
   /** Field leftHand. */
-  private Hand leftHand = new Hand("Left Hand");
+  private Hand leftHand = new Hand();
 
   /** Field rightHand. */
-  private Hand rightHand = new Hand("Right Hand");
+  private Hand rightHand = new Hand();
 
   /** Field core. */
-  private ItemContainer core = new Location("core");
+  private ItemContainer core = new Location();
 
   /** We are implementing ItemList. */
   private List<Item> itemList;
@@ -62,47 +61,16 @@ abstract class Humanoid extends Race implements ItemList {
    *
    * @param name String
    */
-  protected Humanoid(String name) {
-    super(name);
+  protected Humanoid() {
+    super();
+    leftHand.setName("Left Hand");
+    rightHand.setName("Right Hand");
+    core.setName("Core");
     itemList = new ArrayList<Item>();
     itemList.add(core);
     itemList.add(head);
     itemList.add(rightHand);
     itemList.add(leftHand);
-  }
-
-  /**
-   * Constructor for Humanoid.
-   *
-   * @param string String
-   * @param description String
-   */
-  protected Humanoid(String string, String description) {
-    this(string);
-    setDescription(description);
-  }
-
-  /**
-   * Constructor for Humanoid.
-   *
-   * @param name String
-   * @param description String
-   * @param pcClass PcClass
-   */
-  protected Humanoid(String name, String description, PcClass pcClass) {
-    this(name, description);
-    setPcClass(pcClass);
-  }
-
-  /**
-   * Constructor for Humanoid.
-   *
-   * @param name String
-   * @param pcClass PcClass
-   */
-  protected Humanoid(String name, PcClass pcClass) {
-    this(name);
-    setPcClass(pcClass);
   }
 
   // Getters and Setters

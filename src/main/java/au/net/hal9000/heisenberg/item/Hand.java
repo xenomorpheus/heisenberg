@@ -18,16 +18,7 @@ public class Hand extends Location {
 
   /** Constructor. */
   public Hand() {
-    this("Hand");
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param string String
-   */
-  public Hand(String string) {
-    super(string);
+    super();
     ItemProperty.setLiving(this, true);
     setWeightMax(2); // TODO move to config
     setVolumeMax(2); // TODO move to config

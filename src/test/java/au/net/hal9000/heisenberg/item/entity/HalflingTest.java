@@ -28,13 +28,6 @@ public class HalflingTest {
     assertTrue("is item", halfling instanceof Item);
   }
 
-  /** Method testGetName. */
-  @Test
-  public void testGetName() {
-    Halfling halfling = new Halfling();
-    assertEquals("Halfling", halfling.getName());
-  }
-
   @Test
   public void halflingEatsACookie() throws InvalidTypeException {
     // Setup

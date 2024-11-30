@@ -15,16 +15,7 @@ public class Cloak extends ItemImpl {
 
   /** Constructor for Cloak. */
   public Cloak() {
-    this("Cloak");
-  }
-
-  /**
-   * Constructor for Cloak.
-   *
-   * @param pString String
-   */
-  private Cloak(String pString) {
-    super(pString);
+    super();
     ItemProperty.setClothing(this, true);
   }
 }

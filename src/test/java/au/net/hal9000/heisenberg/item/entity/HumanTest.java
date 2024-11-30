@@ -20,13 +20,6 @@ public class HumanTest {
     assertTrue("is item", human instanceof Item);
   }
 
-  /** Method testGetName. */
-  @Test
-  public void testGetName() {
-    Human human = new Human();
-    assertEquals("Human", human.getName());
-  }
-
   /** Test drink */
   @Test
   public void testDrink() {

@@ -57,7 +57,7 @@ public class CookerTest {
     // Setup the chef
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
-    Location world = new Location("World");
+    Location world = new Location();
     Race chef = new Human();
     chef.setContainer(world);
     chef.setMana(recipe.getMana() + manaRemaining);
@@ -67,7 +67,7 @@ public class CookerTest {
 
     // Prepare to cook
     Cooker cooker = chef.getCooker("testItem1");
-    Location newItemLocation = new Location("New Item Location");
+    Location newItemLocation = new Location();
     cooker.setItemsAvailable("Location", newItemLocation);
     Water water = new Water();
     water.setWeightBase(3);
@@ -94,7 +94,7 @@ public class CookerTest {
     requirements.put("Location", requirementItem);
     Recipe recipe = new Recipe("someId", null, "someProcess", 0, 0, requirements, null, null);
     Cooker cooker = new Cooker(recipe);
-    Location world = new Location("World");
+    Location world = new Location();
     cooker.setItemsAvailable("Location", world);
 
     assertTrue("correct location", world.equals(cooker.findIngredientByName("Location")));
@@ -109,7 +109,7 @@ public class CookerTest {
     Recipe recipe = config.getRecipe("testSpell1");
 
     // Setup the chef
-    Location world = new Location("World");
+    Location world = new Location();
     Race chef = new Human();
     chef.setContainer(world);
     chef.setMana(recipe.getMana() + manaRemaining);
@@ -133,7 +133,7 @@ public class CookerTest {
   @Test
   public void testFullProcess() {
 
-    Location world = new Location("World");
+    Location world = new Location();
     Cookie cookie = new Cookie();
     world.add(cookie);
 
@@ -174,7 +174,7 @@ public class CookerTest {
     Cooker cooker = recipe.getNewCooker(chef);
 
     // Set the
-    Location newItemLocation = new Location("newItemLocation");
+    Location newItemLocation = new Location();
     cooker.setItemsAvailable("Location", newItemLocation);
     cooker.setItemsAvailable("Cookie", cookie);
 
@@ -227,7 +227,7 @@ public class CookerTest {
   @Test
   public void testRecipeItemsAvailable() {
 
-    Location world = new Location("world");
+    Location world = new Location();
     world.setVolumeMax(-1);
     world.setWeightMax(-1);
     Map<String, Requirement> requirements = new TreeMap<>();
@@ -708,7 +708,7 @@ public class CookerTest {
    */
   @Test
   public void testCookItem1() {
-    Location world = new Location("World");
+    Location world = new Location();
     Cookie cookie = new Cookie();
     world.add(cookie);
 
@@ -765,7 +765,7 @@ public class CookerTest {
    */
   @Test
   public void testCookItem1Catalyst() {
-    Location world = new Location("World");
+    Location world = new Location();
     Cookie cookie = new Cookie();
     world.add(cookie);
 

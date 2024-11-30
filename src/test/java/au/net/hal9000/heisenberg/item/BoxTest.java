@@ -15,7 +15,7 @@ public class BoxTest {
   /** Normal item into box. */
   @Test
   public void testAddOrdinary() {
-    Location world = new Location("World");
+    Location world = new Location();
     Cookie cookie = new Cookie();
     Sword sword = new Sword();
     // set the location so we can see that it changes

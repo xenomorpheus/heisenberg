@@ -134,7 +134,7 @@ public class PersistenceTest {
 
   private static Location testGetWorld() {
     // Ad-hoc test world
-    Location world = new Location("World");
+    Location world = new Location();
     world.setWeightMax(100000);
     world.setVolumeMax(100000);
 

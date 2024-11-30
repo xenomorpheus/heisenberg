@@ -21,8 +21,8 @@ public class CatTest {
   /** Method CatMove. */
   @Test
   public void testCatMove() {
-    Location dungeon = new Location("Dungeon");
-    Cat cat = new Cat("Fluffy", "Black cat");
+    Location dungeon = new Location();
+    Cat cat = new Cat();
     cat.move(dungeon, new Position());
     Position pos = new Position();
     assertTrue(pos.equals(cat.getPosition()));

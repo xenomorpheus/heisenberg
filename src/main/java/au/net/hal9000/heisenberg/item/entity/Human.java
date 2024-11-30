@@ -20,26 +20,28 @@ public class Human extends Humanoid implements Animal {
 
   /** Constructor for Human. */
   public Human() {
-    super("Human");
+    super();
   }
 
   /**
    * Constructor for Human.
    *
-   * @param string String
+   * @param name String
    */
-  public Human(String string) {
-    super(string);
+  public Human(String name) {
+    this();
+    setName(name);
   }
 
   /**
    * Constructor for Human.
    *
-   * @param string String
+   * @param name String
    * @param description String
    */
-  Human(String string, String description) {
-    super(string, description);
+  Human(String name, String description) {
+    this(name);
+    setDescription(description);
   }
 
   /**
@@ -49,7 +51,8 @@ public class Human extends Humanoid implements Animal {
    * @param pcClass PcClass
    */
   Human(String name, PcClass pcClass) {
-    super(name, pcClass);
+    this(name);
+    setPcClass(pcClass);
   }
 
   /**
@@ -60,7 +63,8 @@ public class Human extends Humanoid implements Animal {
    * @param pcClass PcClass
    */
   Human(String name, String description, PcClass pcClass) {
-    super(name, description, pcClass);
+    this(name, description);
+    setPcClass(pcClass);
   }
 
   @Override

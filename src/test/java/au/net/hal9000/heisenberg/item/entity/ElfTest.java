@@ -19,11 +19,4 @@ public class ElfTest {
     assertTrue("is EntityItem", elf instanceof EntityItem);
     assertTrue("is item", elf instanceof Item);
   }
-
-  /** Method testGetName. */
-  @Test
-  public void testGetName() {
-    Elf elf = new Elf();
-    assertEquals("Elf", elf.getName());
-  }
 }

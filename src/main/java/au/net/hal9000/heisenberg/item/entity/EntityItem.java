@@ -72,8 +72,8 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
    * @param name String
    * @param description String
    */
-  protected EntityItem(String name, String description) {
-    super(name, description);
+  protected EntityItem() {
+    super();
     // By default PCs are living, but this may be changed at any time.
     ItemProperty.setLiving(this, true);
     ItemProperty.setAeration(this, ItemProperty.HEALTH_METRIC_IDEAL);
@@ -89,7 +89,8 @@ public abstract class EntityItem extends ItemImpl implements StateEvaluation {
    * @param name String
    */
   protected EntityItem(String name) {
-    this(name, "");
+    this();
+    setName(name);
   }
 
   // Methods

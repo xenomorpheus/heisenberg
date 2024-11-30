@@ -29,7 +29,7 @@ public class LocationTest {
   @Test
   public void testSetVolumeMax() {
     float volumeMax = 20F;
-    Location location = new Location("World");
+    Location location = new Location();
     location.setVolumeMax(volumeMax);
     float v = location.getVolumeMax();
     assertEquals("location.getVolumeMax=", volumeMax, v, 0.0001F);
@@ -41,7 +41,7 @@ public class LocationTest {
     float volumeMax = 10F;
     float weightMax = 20F;
     // Location
-    Location location = new Location("World");
+    Location location = new Location();
     location.setWeightMax(weightMax);
     location.setVolumeMax(volumeMax);
     // Item
@@ -226,8 +226,8 @@ public class LocationTest {
   /** Method testAddMulti. */
   @Test
   public void testAddMulti() {
-    Location location = new Location("World");
-    Location newLocation = new Location("New Location");
+    Location location = new Location();
+    Location newLocation = new Location();
     Cookie c1 = new Cookie();
     Cookie c2 = new Cookie();
     Cookie c3 = new Cookie();
@@ -245,7 +245,7 @@ public class LocationTest {
   /** Method testBeNot. */
   @Test
   public void testBeNot() {
-    Location location = new Location("World");
+    Location location = new Location();
     Cookie c1 = new Cookie();
     Cookie c2 = new Cookie();
     Cookie c3 = new Cookie();

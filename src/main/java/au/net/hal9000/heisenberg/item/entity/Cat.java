@@ -19,26 +19,7 @@ public class Cat extends EntityItem implements Animal {
 
   /** Constructor for Cat. */
   public Cat() {
-    this("Cat");
-  }
-
-  /**
-   * Constructor for Cat.
-   *
-   * @param name String
-   */
-  Cat(String name) {
-    this(name, "A cat");
-  }
-
-  /**
-   * Constructor for Cat.
-   *
-   * @param name String
-   * @param description String
-   */
-  Cat(String name, String description) {
-    super(name, description);
+    super();
   }
 
   @Override

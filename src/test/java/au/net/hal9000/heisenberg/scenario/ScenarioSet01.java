@@ -80,7 +80,7 @@ public class ScenarioSet01 {
     println("Crossbow created with name: " + crossbow);
     CrossbowBolt bolt = new CrossbowBolt();
     println("CrossbowBolt created with name: " + bolt);
-    Location ground = new Location("Ground");
+    Location ground = new Location();
     bolt.setContainer(ground);
     crossbow.setLoadedBolt(bolt);
     CrossbowBolt got = crossbow.getLoadedBolt();

@@ -73,7 +73,7 @@ public class Cooker extends Location {
    * @param recipe the recipe we are cooking.
    */
   Cooker(final Recipe recipe) {
-    super("Cooker");
+    super();
     this.recipe = recipe;
     /*
      * There may be an exploit in ability to hold items of unlimited weight or volume. <br>

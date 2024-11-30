@@ -24,22 +24,11 @@ public class Purse extends ItemImpl {
   public static final float COINS_TO_VOLUME = 0.01f;
 
   /** holder for currency. */
-  private Currency coins;
-
-  /**
-   * Constructor for Purse.
-   *
-   * @param pString String
-   * @param coins Currency
-   */
-  public Purse(final String pString, Currency coins) {
-    super(pString);
-    this.coins = coins;
-  }
+  private Currency coins = new Currency();
 
   /** constructor. */
   public Purse() {
-    this("Purse", new Currency());
+    super();
   }
 
   /**
@@ -48,16 +37,8 @@ public class Purse extends ItemImpl {
    * @param coins coin object to place in the Purse.
    */
   public Purse(Currency coins) {
-    this("Purse", coins);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param pString
-   */
-  public Purse(final String pString) {
-    this(pString, new Currency());
+    this();
+    this.coins = coins;
   }
 
   /**

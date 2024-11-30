@@ -19,26 +19,7 @@ public class Rat extends EntityItem implements Animal {
 
   /** Constructor for Rat. */
   public Rat() {
-    this("Rat");
-  }
-
-  /**
-   * Constructor for Rat.
-   *
-   * @param name String
-   */
-  public Rat(String name) {
-    this(name, "A Rat");
-  }
-
-  /**
-   * Constructor for Rat.
-   *
-   * @param name String
-   * @param description String
-   */
-  public Rat(String name, String description) {
-    super(name, description);
+    super();
   }
 
   @Override

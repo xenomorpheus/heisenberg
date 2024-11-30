@@ -109,7 +109,7 @@ public class WorldEditorFrame extends JFrame {
           public void actionPerformed(ActionEvent event) {
             String eventName = event.getActionCommand();
             if (MENU_NEW.equals(eventName)) {
-              location = new Location("The world");
+              location = new Location();
               location.setWeightMax(1000000);
               location.setVolumeMax(1000000);
               setLocation(location);

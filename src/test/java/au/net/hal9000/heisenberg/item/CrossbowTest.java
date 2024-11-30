@@ -12,7 +12,7 @@ public class CrossbowTest {
   public void testSetGetLoadedBolt() {
     Crossbow crossbow = new Crossbow();
     CrossbowBolt bolt = new CrossbowBolt();
-    Location newLocation = new Location("Ground");
+    Location newLocation = new Location();
     bolt.setContainer(newLocation);
     crossbow.setLoadedBolt(bolt);
     CrossbowBolt got = crossbow.getLoadedBolt();

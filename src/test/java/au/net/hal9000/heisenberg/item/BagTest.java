@@ -14,7 +14,7 @@ public class BagTest {
   /** Normal item into bag. */
   @Test
   public void testAddOrdinary() {
-    Location world = new Location("World");
+    Location world = new Location();
     Cookie cookie = new Cookie();
     // set the location so we can see that it changes
     cookie.setContainer(world);
@@ -28,7 +28,7 @@ public class BagTest {
   @Test(expected = InvalidTypeException.class)
   public void testAddSharpRupture() {
     Sword sword = new Sword();
-    Location world = new Location("World");
+    Location world = new Location();
     sword.setContainer(world);
     Bag bag = new Bag();
     try {

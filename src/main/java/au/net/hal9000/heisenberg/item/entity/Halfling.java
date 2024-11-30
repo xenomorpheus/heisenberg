@@ -17,26 +17,7 @@ public class Halfling extends Humanoid implements Animal {
 
   /** Constructor for Halfling. */
   public Halfling() {
-    this("Halfling");
-  }
-
-  /**
-   * Constructor for Halfling.
-   *
-   * @param name String
-   */
-  public Halfling(String name) {
-    this(name, "A Halfling");
-  }
-
-  /**
-   * Constructor for Halfling.
-   *
-   * @param name String
-   * @param description String
-   */
-  public Halfling(String name, String description) {
-    super(name, description);
+    super();
   }
 
   @Override

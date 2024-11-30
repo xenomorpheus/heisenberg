@@ -16,15 +16,6 @@ public class CrossbowBolt extends ItemImpl {
 
   /** Constructor for CrossbowBolt. */
   public CrossbowBolt() {
-    this("CrossbowBolt");
-  }
-
-  /**
-   * Constructor for CrossbowBolt.
-   *
-   * @param pString String
-   */
-  private CrossbowBolt(String pString) {
-    super(pString);
+    super();
   }
 }

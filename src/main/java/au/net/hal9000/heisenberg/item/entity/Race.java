@@ -47,46 +47,9 @@ public abstract class Race extends EntityItem {
 
   /**
    * Constructor for Race.
-   *
-   * @param name String
    */
-  protected Race(String name) {
-    this(name, "");
-  }
-
-  /**
-   * Constructor for Race.
-   *
-   * @param name String
-   * @param description String
-   */
-  protected Race(String name, String description) {
-    super(name, description);
-  }
-
-  /**
-   * Give me a PC that is a {@link PcClass} (e.g. Warrior).
-   *
-   * @param name String
-   * @param pPcClass PcClass
-   */
-  protected Race(String name, PcClass pcClass) {
-    this(name);
-    this.pcClass = pcClass;
-    init();
-  }
-
-  /**
-   * Give me a PC that is a {@link PcClass} (e.g. Warrior).
-   *
-   * @param name common name (e.g. Jo Smith) of the Race.
-   * @param description appearance.
-   * @param pcClass the profession {@link PcClass} (e.g. Warrior).
-   */
-  protected Race(String name, String description, PcClass pcClass) {
-    this(name, description);
-    this.pcClass = pcClass;
-    init();
+  protected Race() {
+    super();
   }
 
   // Getters and Setters
@@ -243,16 +206,6 @@ public abstract class Race extends EntityItem {
   }
 
   // Misc
-
-  /** Method init. */
-  private void init() {
-    if (null == pcClass) {
-      clearClassBaseFields();
-    } else {
-      setBasicsFromPcClass();
-      abilityScoresRecalculate();
-    }
-  }
 
   /** Warning: will reset all abilityScore objects. */
   private void setBasicsFromPcClass() {

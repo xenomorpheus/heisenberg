@@ -20,26 +20,28 @@ public class Elf extends Humanoid implements Animal {
 
   /** Constructor for Elf. */
   public Elf() {
-    this("Elf");
+    super();
   }
 
   /**
    * Constructor for Elf.
    *
-   * @param string String
+   * @param name String
    */
-  private Elf(String string) {
-    super(string);
+  public Elf(String name) {
+    this();
+    setName(name);
   }
 
   /**
    * Constructor for Elf.
    *
-   * @param string String
+   * @param name String
    * @param description String
    */
-  public Elf(String string, String description) {
-    super(string, description);
+  public Elf(String name, String description) {
+    this(name);
+    setDescription(description);
   }
 
   /**
@@ -50,7 +52,8 @@ public class Elf extends Humanoid implements Animal {
    * @param pcClass PcClass
    */
   public Elf(String name, String description, PcClass pcClass) {
-    super(name, description, pcClass);
+    this(name, description);
+    setPcClass(pcClass);
   }
 
   @Override
