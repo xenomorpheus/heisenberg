@@ -86,6 +86,7 @@ public final class DemoEnvironment {
     characterSheet.setName("Jane");
     characterSheet.setDescription("The Paladin");
     characterSheet.setPcClass(config.getPcClasses().get("Paladin"));
+    characterSheet.setSpecies(config.getSpecies().get(0));
     characterSheet.setGender(config.getGenders().get(0));
     characterSheet.setSize(config.getSizes().get(0));
     characterSheet.setLevel(TEST_LEVEL);
