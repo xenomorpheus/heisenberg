@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.characterClass;
+package au.net.hal9000.heisenberg.fifthed.characterclass;
 
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.spell.Spell;

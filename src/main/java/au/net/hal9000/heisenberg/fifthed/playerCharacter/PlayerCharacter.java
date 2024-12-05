@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.fifthed.playercharacter;
 
-import au.net.hal9000.heisenberg.fifthed.characterClass.CharacterClass;
+import au.net.hal9000.heisenberg.fifthed.characterclass.CharacterClass;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import au.net.hal9000.heisenberg.fifthed.item.Item;

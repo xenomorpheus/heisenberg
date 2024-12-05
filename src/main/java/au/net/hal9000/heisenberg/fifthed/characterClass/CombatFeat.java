@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.characterClass;
+package au.net.hal9000.heisenberg.fifthed.characterclass;
 
 /**
  * http://www.d20pfsrd.com/feats/combat-feats/

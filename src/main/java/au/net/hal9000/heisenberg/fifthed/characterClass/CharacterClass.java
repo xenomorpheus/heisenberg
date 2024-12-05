@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.fifthed.characterClass;
+package au.net.hal9000.heisenberg.fifthed.characterclass;
 
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;

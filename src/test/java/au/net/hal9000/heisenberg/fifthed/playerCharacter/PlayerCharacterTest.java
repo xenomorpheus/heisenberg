@@ -3,9 +3,9 @@ package au.net.hal9000.heisenberg.fifthed.playercharacter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import au.net.hal9000.heisenberg.fifthed.characterClass.CombatFeat;
-import au.net.hal9000.heisenberg.fifthed.characterClass.Fighter;
-import au.net.hal9000.heisenberg.fifthed.characterClass.Magus;
+import au.net.hal9000.heisenberg.fifthed.characterclass.CombatFeat;
+import au.net.hal9000.heisenberg.fifthed.characterclass.Fighter;
+import au.net.hal9000.heisenberg.fifthed.characterclass.Magus;
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionFree;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionFullRound;
