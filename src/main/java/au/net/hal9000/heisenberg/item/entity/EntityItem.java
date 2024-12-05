@@ -10,8 +10,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PlayableState;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
 
 /**
  * Entity is the basis of conscious entities. <br>
@@ -20,7 +19,7 @@ import jakarta.persistence.InheritanceType;
  * @author bruins
  * @version : 1.0 $
  */
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class EntityItem extends ItemImpl {
 
   private CharacterSheet characterSheet = null;

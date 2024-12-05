@@ -3,11 +3,9 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Cat;
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
@@ -118,11 +116,9 @@ public class PersistenceTest {
     var itemFetched = em.find(classExpected, jpaId);
     assertNotNull(itemFetched);
     assertEquals(jpaId, itemFetched.getJpaId());
-    // TODO CharacterSheet Persistence
-    assertNotEquals("Name after", nameExpected, itemFetched.getName());
+    assertEquals("Name after", nameExpected, itemFetched.getName());
     assertEquals("BAR", itemFetched.getProperty("WantBAR"));
-    // TODO PlayableState Persistence
-    assertNotEquals("Mana after", manaExpected, itemFetched.getPlayableState().getMana());
+    assertEquals("Mana after", manaExpected, itemFetched.getPlayableState().getMana());
   }
 
   /**
@@ -160,8 +156,7 @@ public class PersistenceTest {
     assertNotNull(retrievedItem);
     assertEquals("jpaId", jpaId, retrievedItem.getJpaId());
     assertEquals("Class after", classExpected, retrievedItem.getClass());
-    assertNotEquals(
-        "Name after", nameExpected, retrievedItem.getName()); // TODO CharacterSheet Persistence
+    assertEquals("Name after", nameExpected, retrievedItem.getName());
   }
 
   /**
@@ -202,15 +197,8 @@ public class PersistenceTest {
       assertNotNull(retrievedItem);
       assertEquals(jpaId, retrievedItem.getJpaId());
       assertEquals("Class", classExpected, retrievedItem.getClass());
-
-      // TODO EntityItem Persistence of CharacterSheet and PlayableState
-      if (retrievedItem instanceof EntityItem) {
-        assertNull("Name after", retrievedItem.getName());
-        assertNull("Description after", retrievedItem.getDescription());
-      } else {
-        assertEquals("Name after", nameExpected, retrievedItem.getName());
-        assertEquals("Description after", descriptionExpected, retrievedItem.getDescription());
-      }
+      assertEquals("Name after", nameExpected, retrievedItem.getName());
+      assertEquals("Description after", descriptionExpected, retrievedItem.getDescription());
     }
   }
 
