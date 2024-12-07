@@ -341,51 +341,33 @@ public class PcClass implements Serializable, Comparable<PcClass> {
    * @return Plain text description of the object
    */
   public String getDetailedDescription() {
-    StringBuilder text = new StringBuilder("Id: ");
-    text.append(id);
-    text.append(System.lineSeparator());
-    text.append("Combat Dice: D");
-    text.append(combatDice);
-    text.append(System.lineSeparator());
-    text.append("Magic Dice: D");
-    text.append(magicDice);
-    text.append(System.lineSeparator());
-    text.append("Stealth Dice: D");
-    text.append(stealthDice);
-    text.append(System.lineSeparator());
-    text.append("General Dice: D");
-    text.append(generalDice);
-    text.append(System.lineSeparator());
-    text.append("Action Points: ");
-    text.append(actionPoints);
-    text.append(System.lineSeparator());
-    text.append("health: ");
-    text.append(health);
-    text.append(System.lineSeparator());
-    text.append("mana: ");
-    text.append(mana);
-    text.append(System.lineSeparator());
-    text.append("raceAllow: ");
-    text.append(speciesAllow);
-    text.append(System.lineSeparator());
-    text.append("genderAllow: ");
-    text.append(genderAllow);
-    text.append(System.lineSeparator());
-    text.append("sizeAllow:");
-    text.append(sizeAllow);
-    text.append(System.lineSeparator());
-    text.append("encumbrance: ");
-    text.append(encumbrance);
-    text.append(System.lineSeparator());
+    return getDetailedDescription("");
+  }
+
+  /**
+   * Get the detailed description.
+   *
+   * @return Plain text description of the object
+   */
+  public String getDetailedDescription(String prefix) {
+    StringBuilder text = new StringBuilder(prefix + "Id: " + id + System.lineSeparator());
+    text.append(prefix + "Combat Dice: D" + combatDice + System.lineSeparator());
+    text.append(prefix + "Magic Dice: D" + magicDice + System.lineSeparator());
+    text.append(prefix + "Stealth Dice: D" + stealthDice + System.lineSeparator());
+    text.append(prefix + "General Dice: D" + generalDice + System.lineSeparator());
+    text.append(prefix + "Action Points: " + actionPoints + System.lineSeparator());
+    text.append(prefix + "Health: " + health + System.lineSeparator());
+    text.append(prefix + "Mana: " + mana + System.lineSeparator());
+    text.append(prefix + "Species Allow: " + speciesAllow + System.lineSeparator());
+    text.append(prefix + "Gender Allow: " + genderAllow + System.lineSeparator());
+    text.append(prefix + "Size Allow:" + sizeAllow + System.lineSeparator());
+    text.append(prefix + "Encumbrance: " + encumbrance + System.lineSeparator());
 
     if (null != abilityScores) {
-      text.append("Abilities:");
-      text.append(System.lineSeparator());
+      text.append(prefix + "Abilities:" + System.lineSeparator());
       Iterator<AbilityScore> itr = abilityScores.values().iterator();
       while (itr.hasNext()) {
-        text.append("  ");
-        text.append(itr.next());
-        text.append(System.lineSeparator());
+        text.append(prefix + "  " + itr.next() + System.lineSeparator());
       }
     }
     return text.toString();

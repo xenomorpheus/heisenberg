@@ -41,23 +41,23 @@ public final class DemoEnvironment {
   private static final Logger LOGGER = Logger.getLogger(DemoEnvironment.class.getName());
 
   /** file containing test configuration. */
-  private static String TEST_CONFIG_FILE = "src/test/resources/config.xml";
+  private static String DEMO_CONFIG_FILE = "src/test/resources/config.xml";
 
   /** test skills. */
-  private static final Set<Skill> TEST_SKILLS =
+  private static final Set<Skill> DEMO_SKILLS =
       Stream.of(new Skill("testSkill1"), new Skill("testSkill2"))
           .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test recipes. */
-  private static final Set<String> TEST_RECIPES =
+  private static final Set<String> DEMO_RECIPES =
       Stream.of("testItem1", "testFireGround1", "testSpell1")
           .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test level. */
-  private static final int TEST_LEVEL = 3;
+  private static final int DEMO_LEVEL = 3;
 
   /** test weight or volume. */
-  private static final int TEST_WEIGHT_VOLUME = 100000;
+  private static final int DEMO_WEIGHT_VOLUME = 100000;
 
   /** Constructor. */
   private DemoEnvironment() {
@@ -68,7 +68,7 @@ public final class DemoEnvironment {
   public static void setup() {
     LOGGER.info("Demo Env setup");
     try {
-      new Configuration(TEST_CONFIG_FILE);
+      new Configuration(DEMO_CONFIG_FILE);
     } catch (ConfigurationError e) {
       throw new RuntimeException(e);
     }
@@ -89,9 +89,10 @@ public final class DemoEnvironment {
     characterSheet.setSpecies(config.getSpecies().get(0));
     characterSheet.setGender(config.getGenders().get(0));
     characterSheet.setSize(config.getSizes().get(0));
-    characterSheet.setLevel(TEST_LEVEL);
-    characterSheet.setSkills(TEST_SKILLS);
-    characterSheet.setRecipes(TEST_RECIPES);
+    characterSheet.setLevel(DEMO_LEVEL);
+    characterSheet.setSkills(DEMO_SKILLS);
+    characterSheet.setRecipes(DEMO_RECIPES);
+    // TODO characterSheet.setAbilityScores(null);
     return characterSheet;
   }
 
@@ -103,8 +104,8 @@ public final class DemoEnvironment {
   public static Location getDemoWorld() {
     // Ad-hoc test world
     Location world = new Location();
-    world.setWeightMax(TEST_WEIGHT_VOLUME);
-    world.setVolumeMax(TEST_WEIGHT_VOLUME);
+    world.setWeightMax(DEMO_WEIGHT_VOLUME);
+    world.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
     // Scabbard
     Scabbard scabbard = new Scabbard();
@@ -127,8 +128,8 @@ public final class DemoEnvironment {
 
     // a backpack of stuff
     Bag backpack = new Backpack();
-    backpack.setWeightMax(TEST_WEIGHT_VOLUME);
-    backpack.setVolumeMax(TEST_WEIGHT_VOLUME);
+    backpack.setWeightMax(DEMO_WEIGHT_VOLUME);
+    backpack.setVolumeMax(DEMO_WEIGHT_VOLUME);
     backpack.add(boh);
 
     Quiver quiver = new Quiver();
@@ -144,8 +145,8 @@ public final class DemoEnvironment {
 
     // a human with a bag of cookies
     Human human = new Human();
-    human.setWeightMax(TEST_WEIGHT_VOLUME);
-    human.setVolumeMax(TEST_WEIGHT_VOLUME);
+    human.setWeightMax(DEMO_WEIGHT_VOLUME);
+    human.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
     // Automatic placement
     human.wear(new Shield());

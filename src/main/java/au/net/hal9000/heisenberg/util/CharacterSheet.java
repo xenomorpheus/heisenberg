@@ -15,6 +15,8 @@ import java.util.TreeSet;
  */
 public class CharacterSheet implements Serializable {
 
+  private static final String ls = System.lineSeparator();
+
   // It's a good practice to declare a serialVersionUID
   private static final long serialVersionUID = 1L;
 
@@ -255,54 +257,47 @@ public class CharacterSheet implements Serializable {
   public String detailedDescription() {
     StringBuilder text = new StringBuilder();
 
-    text.append("Level: " + level);
-    text.append(System.lineSeparator());
-    text.append("Species: " + species);
-    text.append(System.lineSeparator());
-
-    if (null != pcClass) {
-      text.append("Class: " + pcClass.getId());
-      text.append(System.lineSeparator());
+    text.append("Name: ");
+    if (null == name) {
+      text.append("<none>" + ls);
+    } else {
+      text.append(name + ls);
     }
-
-    if (null != abilityScores) {
-      text.append("Abilities:");
-      text.append(System.lineSeparator());
-      for (AbilityScore abilityScore : abilityScores.values()) {
-        text.append("  " + abilityScore);
-        text.append(System.lineSeparator());
-      }
+    if (null != description) {
+      text.append("Description: " + description + ls);
     }
-
+    text.append("Level: " + level + ls);
+    text.append("Species: " + species + ls);
     if (null != gender) {
-      text.append("Gender: " + gender);
-      text.append(System.lineSeparator());
+      text.append("Gender: " + gender + ls);
     }
     if (null != size) {
-      text.append("Size: " + size);
-      text.append(System.lineSeparator());
+      text.append("Size: " + size + ls);
     }
-
     final Set<Skill> skills = getSkills();
     if (null != skills && !skills.isEmpty()) {
-      text.append("Skills:");
-      text.append(System.lineSeparator());
+      text.append("Skills:" + ls);
       for (Skill skill : skills) {
-        text.append("  " + skill);
-        text.append(System.lineSeparator());
+        text.append("  " + skill + ls);
       }
     }
-
     final Set<String> recipes = getRecipes();
     if (null != recipes && !recipes.isEmpty()) {
-      text.append("Recipes:");
-      text.append(System.lineSeparator());
+      text.append("Recipes:" + ls);
       for (String recipeId : recipes) {
-        text.append("  " + recipeId);
-        text.append(System.lineSeparator());
+        text.append("  " + recipeId + ls);
       }
     }
-
+    if (null != abilityScores) {
+      text.append("Abilities:" + ls);
+      for (AbilityScore abilityScore : abilityScores.values()) {
+        text.append("  " + abilityScore + ls);
+      }
+    }
+    if (null != pcClass) {
+      text.append("Class: " + pcClass.getId() + ls);
+      text.append(pcClass.getDetailedDescription("    ") + ls);
+    }
     return text.toString();
   }
 }
