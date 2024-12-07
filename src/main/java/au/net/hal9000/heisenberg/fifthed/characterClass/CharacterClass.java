@@ -2,38 +2,20 @@ package au.net.hal9000.heisenberg.fifthed.characterclass;
 
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
-import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import java.util.Set;
 
+/**
+ * The gaming classes that a PC may have. E.g. Wizard at third level. A PlayerCharacter may have
+ * multi-classed which means multiple CharacterClass objects.
+ */
 public abstract class CharacterClass {
-  private String name = null;
   private int classLevel = 0;
-  private PlayerCharacter playerCharacter = null;
 
-  public CharacterClass(String name, int level, PlayerCharacter playerCharacter) {
+  public CharacterClass() {
     super();
-    this.name = name;
-    this.classLevel = level;
-    this.playerCharacter = playerCharacter;
-    playerCharacter.classesAdd(this);
   }
 
   // Getters and Setters
-
-  /**
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * @param name the name to set
-   */
-  public CharacterClass setName(String name) {
-    this.name = name;
-    return this;
-  }
 
   /**
    * @return the level
@@ -45,25 +27,14 @@ public abstract class CharacterClass {
   /**
    * @param classLevel the level to set
    */
-  public CharacterClass setClassLevel(int classLevel) {
+  public void setClassLevel(int classLevel) {
     this.classLevel = classLevel;
-    return this;
-  }
-
-  /** A link back the the PlayerCharacter from the Class */
-  public CharacterClass setPlayerCharacter(PlayerCharacter playerCharacter) {
-    this.playerCharacter = playerCharacter;
-    return this;
-  }
-
-  public PlayerCharacter getPlayerCharacter() {
-    return playerCharacter;
   }
 
   // Misc
 
   public String toString() {
-    return getName();
+    return getClass().getSimpleName();
   }
 
   /**
@@ -82,9 +53,13 @@ public abstract class CharacterClass {
    */
   public String details(String prefix) {
     StringBuilder sb = new StringBuilder();
-    sb.append(String.format("%sClass: %s (%d)%n", prefix, getName(), getClassLevel()));
+    sb.append(
+        String.format("%sClass: %s (%d)%n", prefix, getClass().getSimpleName(), getClassLevel()));
     return sb.toString();
   }
 
+  /* Return a set of valid Action objects the PlayerCharacter may perform using the capabilities of this CharacterClass may perform
+   * in the area. The assumption is that the caller is the PlayerCharacter.
+   */
   public abstract Set<Action> getActionsCombat(CombatArena arena);
 }

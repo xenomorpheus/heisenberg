@@ -7,21 +7,29 @@ import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacterConditio
 import java.util.Set;
 
 /**
- * The act of casting one single spell on one occasion.
+ * The single casting of a specific spell.
  *
  * @author bruins
  */
 public class Casting {
 
   private PlayerCharacter self;
-  private Spellcaster spellcaster;
+
+  /** e.g. Wizard(3) The Class not the PC. */
+  private Spellcaster spellCasterClass;
+
   private Spell spell;
   private PlayerCharacter target;
   private TimerRound timer;
 
-  public Casting(Spellcaster spellcaster, Spell spell, PlayerCharacter target, TimerRound timer) {
-    this.self = spellcaster.getPlayerCharacter();
-    this.spellcaster = spellcaster;
+  public Casting(
+      PlayerCharacter self,
+      Spellcaster spellCasterClass,
+      Spell spell,
+      PlayerCharacter target,
+      TimerRound timer) {
+    this.self = self;
+    this.spellCasterClass = spellCasterClass;
     this.spell = spell;
     this.target = target;
     this.timer = timer;
@@ -53,7 +61,7 @@ public class Casting {
     if (spell.isRangeTouch()) {
       spellRange = self.getNaturalReach();
     } else {
-      int casterLevel = spellcaster.getClassLevel();
+      int casterLevel = spellCasterClass.getClassLevel();
       // Use a new class - SpellEvocation
       spellRange = spell.getEffectRange(casterLevel);
     }

@@ -3,50 +3,35 @@ package au.net.hal9000.heisenberg.fifthed.combat;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class CombatArena {
-  private PlayerCharacter self;
-  private TimerRound timerRound;
+public final class CombatArena {
+  private PlayerCharacter playerCharacter = null;
+  private TimerRound timerRound = new TimerRound();
   private List<PlayerCharacter> allies = new ArrayList<PlayerCharacter>();
   private List<PlayerCharacter> opponents = new ArrayList<PlayerCharacter>();
 
-  public CombatArena(PlayerCharacter self, TimerRound timerRound) {
+  public CombatArena(PlayerCharacter playerCharacter) {
     super();
-    this.self = self;
-    this.timerRound = timerRound;
+    this.playerCharacter = playerCharacter;
   }
 
-  public CombatArena(PlayerCharacter self) {
-    this(self, new TimerRound());
-  }
-
-  /**
-   * @return the self
-   */
-  public PlayerCharacter getSelf() {
-    return self;
+  public PlayerCharacter getPlayerCharacter() {
+    return playerCharacter;
   }
 
   /**
-   * @param self the self to set
-   */
-  public CombatArena setSelf(PlayerCharacter self) {
-    this.self = self;
-    return this;
-  }
-
-  /**
-   * @return the alies
+   * @return the allies
    */
   public List<PlayerCharacter> getAllies() {
     return allies;
   }
 
   /**
-   * @param alies the alies to set
+   * @param allies the companions
    */
-  public CombatArena setAllies(List<PlayerCharacter> alies) {
-    this.allies = alies;
+  public CombatArena setAllies(List<PlayerCharacter> allies) {
+    this.allies = allies;
     return this;
   }
 
@@ -70,18 +55,25 @@ public class CombatArena {
     return this;
   }
 
+  /** Return the set of valid Action objects that the PlayerCharacter may preform. */
+  public Set<Action> getActionsCombat() {
+    return playerCharacter.getActionsCombat(this);
+  }
+
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append(String.format("Self: %s%n", self.getSummary()));
+    sb.append(String.format("Self: %s%n", playerCharacter.getSummary()));
     if (!allies.isEmpty()) {
-      for (PlayerCharacter pc : allies) {
-        sb.append(String.format("Ally: %s%n", pc.getSummary()));
+      for (PlayerCharacter ally : allies) {
+        sb.append(String.format("Ally: %s%n", ally.getSummary()));
       }
     }
     if (!opponents.isEmpty()) {
-      for (PlayerCharacter pc : opponents) {
+      for (PlayerCharacter opponent : opponents) {
         sb.append(
-            String.format("Opponent: %s, range %.0f ft%n", pc.getSummary(), self.distance(pc)));
+            String.format(
+                "Opponent: %s, range %.0f ft%n",
+                opponent.getSummary(), playerCharacter.distance(opponent)));
       }
     }
     return sb.toString();

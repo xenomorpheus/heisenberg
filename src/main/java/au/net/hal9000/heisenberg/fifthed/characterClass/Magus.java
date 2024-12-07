@@ -11,17 +11,13 @@ import au.net.hal9000.heisenberg.fifthed.spell.Spell;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Magus extends Fighter implements Spellcaster {
+public final class Magus extends Fighter implements Spellcaster {
 
   private Set<Spell> spells = new HashSet<Spell>();
   private Set<MagusArcana> magusArcana = new HashSet<MagusArcana>();
 
-  public Magus(String name, int level, PlayerCharacter playerCharacter) {
-    super(name, level, playerCharacter);
-  }
-
-  public Magus(int level, PlayerCharacter playerCharacter) {
-    this("Magus", level, playerCharacter);
+  public Magus() {
+    super();
   }
 
   // Setters and Getters
@@ -85,7 +81,7 @@ public class Magus extends Fighter implements Spellcaster {
     for (PlayerCharacter opponent : arena.getOpponents()) {
       for (Spell spell : spells) {
 
-        Casting casting = new Casting(this, spell, opponent, timer);
+        Casting casting = new Casting(arena.getPlayerCharacter(), this, spell, opponent, timer);
         if (casting.isActionValid()) {
           actions.add(new ActionSpellCast(spell, opponent));
         }

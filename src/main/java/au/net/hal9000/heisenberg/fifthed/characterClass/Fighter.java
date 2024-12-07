@@ -14,12 +14,8 @@ public class Fighter extends CharacterClass {
 
   private Set<CombatFeat> combatFeats = new HashSet<CombatFeat>();
 
-  public Fighter(String name, int level, PlayerCharacter playerCharacter) {
-    super(name, level, playerCharacter);
-  }
-
-  public Fighter(int level, PlayerCharacter playerCharacter) {
-    this("Fighter", level, playerCharacter);
+  public Fighter() {
+    super();
   }
 
   // Setters and Getters
@@ -39,10 +35,6 @@ public class Fighter extends CharacterClass {
   }
 
   // Misc
-  @Override
-  public String toString() {
-    return getName();
-  }
 
   /**
    * A detailed description.
@@ -76,12 +68,12 @@ public class Fighter extends CharacterClass {
 
   @Override
   /**
-   * Work out what actions may be performed in this amount of time. Explicitly get Magus. Get
-   * Fighter from super.
+   * Work out what actions may be performed in this amount of time. <br>
+   * Explicitly get Magus. Get Fighter from super.
    */
   public Set<Action> getActionsCombat(CombatArena arena) {
     Set<Action> actions = new HashSet<Action>();
-    PlayerCharacter pc = getPlayerCharacter();
+    PlayerCharacter pc = arena.getPlayerCharacter();
     Set<Item> equipped = pc.getEquipped();
     for (PlayerCharacter opponent : arena.getOpponents()) {
       for (Item equipment : equipped) {
@@ -89,8 +81,8 @@ public class Fighter extends CharacterClass {
           continue;
         }
         Weapon weapon = (Weapon) equipment;
-        // Check single/double hand required
-        // Check range
+        // Check single/double hand required.
+        // Check range.
         if (weapon.withinRange(pc, opponent)) {
           actions.add(new ActionAttackWeapon(weapon, opponent));
         }

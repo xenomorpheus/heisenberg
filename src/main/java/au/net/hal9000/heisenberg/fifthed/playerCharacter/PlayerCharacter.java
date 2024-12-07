@@ -225,7 +225,7 @@ public abstract class PlayerCharacter {
     }
     for (CharacterClass characterClass : characterClasses) {
       sb.append(", ")
-          .append(characterClass.getName())
+          .append(characterClass)
           .append("(")
           .append(characterClass.getClassLevel())
           .append(")");
