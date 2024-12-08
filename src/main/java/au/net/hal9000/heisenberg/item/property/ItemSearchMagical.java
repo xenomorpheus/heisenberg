@@ -4,12 +4,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Item search magical.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Item search magical. */
 class ItemSearchMagical extends ItemSearch {
 
   /** Constructor for ItemSearchMagical. */

@@ -6,12 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * A very simple collection of Memory objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A very simple collection of Memory objects. */
 public class MemorySetImpl implements MemorySet {
 
   /** A collection of Memory objects. */

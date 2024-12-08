@@ -1,9 +1,6 @@
 package au.net.hal9000.heisenberg.units;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 class Keyword implements Comparable<Keyword> {
   /** Main Id. */
   private String id;

@@ -10,8 +10,6 @@ import java.util.List;
 /**
  * Used by MemoryOfBarrier class to remember barriers seen in physics engine. Proof of concept. A
  * very simple Barrier. Just a straight line.
- *
- * @author bruins
  */
 public class BarrierShape implements Barrier {
 

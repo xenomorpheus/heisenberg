@@ -4,10 +4,7 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
 
   /** Constructor. */

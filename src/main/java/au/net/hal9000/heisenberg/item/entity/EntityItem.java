@@ -15,9 +15,6 @@ import jakarta.persistence.MappedSuperclass;
 /**
  * Entity is the basis of conscious entities. <br>
  * May living or undead. May be PC, NPC, animal, etc.
- *
- * @author bruins
- * @version : 1.0 $
  */
 @MappedSuperclass
 public abstract class EntityItem extends ItemImpl {

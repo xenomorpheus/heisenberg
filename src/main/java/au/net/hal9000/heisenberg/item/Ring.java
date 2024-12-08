@@ -9,9 +9,6 @@ import jakarta.persistence.Entity;
  * A ring is an Item except: <br>
  * Default description is "small metallic ring". <br>
  * Default value is 5gp ? Default weight ?
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 @Entity
 public class Ring extends ItemImpl implements HumanoidArmClothing {

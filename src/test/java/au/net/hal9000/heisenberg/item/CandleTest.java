@@ -6,10 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class CandleTest {
   /** Field MARGIN. (value is 1.0E-5) */
   private static final float MARGIN = 0.00001f;

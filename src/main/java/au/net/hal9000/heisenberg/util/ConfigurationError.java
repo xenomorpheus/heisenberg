@@ -1,11 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-/**
- * Configuration error.
- *
- * @author bruins
- * @version $Revision$
- */
+/** Configuration error. */
 public class ConfigurationError extends Throwable {
   /** The serial ID. */
   private static final long serialVersionUID = 1L;

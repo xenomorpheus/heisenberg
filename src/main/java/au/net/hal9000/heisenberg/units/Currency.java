@@ -13,9 +13,6 @@ import java.io.Serializable;
  * gold and platinum. These are abbreviated as CP, SP, GP and PP respectively.
  *
  * <p>Objects are mutable.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class Currency implements Serializable, Cloneable {
   /** serial version id. */

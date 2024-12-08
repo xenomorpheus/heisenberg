@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import jakarta.persistence.Entity;
 
-/**
- * A common sword.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common sword. */
 @Entity
 public class Sword extends ItemImpl implements Sharp {
 

@@ -1,10 +1,6 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-/**
- * A search algorithm will expand elements on the fringe of the area yet to be searched.
- *
- * @author bruins
- */
+/** A search algorithm will expand elements on the fringe of the area yet to be searched. */
 public interface FringeElement {
 
   /**

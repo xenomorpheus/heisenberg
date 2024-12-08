@@ -9,12 +9,7 @@ import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Generate new ModelState objects from current ModelState object and transitionFunction.<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Generate new ModelState objects from current ModelState object and transitionFunction.<br> */
 public final class SuccessorFunctionImpl implements SuccessorFunction {
 
   /** A Transition Function allows movement from one model state to another. */

@@ -9,9 +9,6 @@ import org.apache.log4j.Logger;
 /**
  * JTree nodes may be listened to for changes. This class provides support for adding and removing
  * listeners, also for sending events to those listeners.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class TreeModelSupport {
 

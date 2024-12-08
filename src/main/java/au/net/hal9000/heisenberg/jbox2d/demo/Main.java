@@ -11,11 +11,7 @@ import org.jbox2d.testbed.framework.j2d.TestPanelJ2D;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * The HunterPreyTestBed is added to the JBox2D physics engine.
- *
- * @author Mike Bruins
- */
+/** The HunterPreyTestBed is added to the JBox2D physics engine. */
 public class Main {
   private static final Logger log = LoggerFactory.getLogger(Main.class);
 

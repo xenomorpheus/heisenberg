@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.ai.api;
 
 import java.util.Queue;
 
-/**
- * Generate all possible ModelState objects from current ModelState object.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Generate all possible ModelState objects from current ModelState object. */
 public interface SuccessorFunction {
 
   /**

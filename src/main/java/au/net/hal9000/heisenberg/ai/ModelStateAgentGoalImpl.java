@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.units.Position;
 
-/**
- * A very simple model state. It holds agent position and goal position.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A very simple model state. It holds agent position and goal position. */
 public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
 
   /** The agent moving to goal. */

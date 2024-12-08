@@ -34,9 +34,6 @@ import java.util.TreeMap;
  * cooker.setItemsAvailable("FlintAndTinder", flintAndTinder); <br>
  * cooker.setItemsAvailable("Wood", wood); <br>
  * cooker.cook(); <br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public final class Cooker {
 

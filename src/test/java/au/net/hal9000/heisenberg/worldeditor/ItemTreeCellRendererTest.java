@@ -9,11 +9,6 @@ import junit.framework.TestCase;
 /**
  * The class <code>ItemTreeCellRendererTest</code> contains tests for the class {@link
  * <code>ItemTreeCellRenderer</code>}
- *
- * @pattern JUnit Test Case
- * @generatedBy CodePro at 6/03/15 9:06 AM
- * @author bruins
- * @version $Revision$
  */
 public class ItemTreeCellRendererTest extends TestCase {
 

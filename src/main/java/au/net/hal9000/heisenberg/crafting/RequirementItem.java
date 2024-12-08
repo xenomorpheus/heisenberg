@@ -13,9 +13,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
  *   <li>Item - Wood with a minimum of 3 weight units.
  *   <li>Item - FlintAndTinder, not consumed.
  * </ul>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 
 // TODO consider changing to RequirementBuilder style

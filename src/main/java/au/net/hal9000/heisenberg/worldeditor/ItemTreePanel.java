@@ -28,12 +28,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import org.apache.log4j.Logger;
 
-/**
- * A window with hierarchical representation of the game objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A window with hierarchical representation of the game objects. */
 public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
 
   /** Class serial version id. */

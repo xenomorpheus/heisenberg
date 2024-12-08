@@ -2,11 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.units.Position;
 
-/**
- * Details about the point in our path that we are blocked by an object.
- *
- * @author bruins
- */
+/** Details about the point in our path that we are blocked by an object. */
 public class PathBlockDetails {
   /** the point in our intended path at which we are blocked. */
   private Position blockingPoint;

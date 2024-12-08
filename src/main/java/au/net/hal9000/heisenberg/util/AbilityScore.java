@@ -6,9 +6,6 @@ import java.util.regex.Pattern;
 /**
  * AbilityScore properties.<br>
  * Int: value (including modifier)<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class AbilityScore implements Comparable<AbilityScore> {
   /** name. */

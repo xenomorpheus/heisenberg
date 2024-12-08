@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import jakarta.persistence.Entity;
 
-/**
- * Cat.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Cat. */
 @Entity
 public class Cat extends EntityItem implements Animal {
 

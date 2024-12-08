@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 
-/**
- * The head of a common humanoid.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** The head of a common humanoid. */
 @Entity
 public class HumanoidHead extends Location {
 

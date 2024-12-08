@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import jakarta.persistence.Entity;
 
-/**
- * A common torch. e.g. A rod with oil soaked rags on the end.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common torch. e.g. A rod with oil soaked rags on the end. */
 @Entity
 public class Torch extends Candle {
 

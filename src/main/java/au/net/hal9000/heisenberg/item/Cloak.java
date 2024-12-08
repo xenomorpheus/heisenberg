@@ -3,10 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 @Entity
 public class Cloak extends ItemImpl {
 

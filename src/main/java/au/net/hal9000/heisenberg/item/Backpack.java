@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
-/**
- * Backpack.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Backpack. */
 @Entity
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Backpack extends Bag implements HumanoidCoreClothing {

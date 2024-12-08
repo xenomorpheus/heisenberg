@@ -1,10 +1,6 @@
 package au.net.hal9000.heisenberg.ai.api;
 
-/**
- * Objects that can evaluate their own state.
- *
- * @author bruins
- */
+/** Objects that can evaluate their own state. */
 public interface StateEvaluation {
 
   /**

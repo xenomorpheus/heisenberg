@@ -4,9 +4,6 @@ package au.net.hal9000.heisenberg.units;
  * Base class of {@link SkillDetail}.
  *
  * <p>Developer Notes:Lets try making objects immutable and see how it goes.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 class KeywordDetail implements Comparable<KeywordDetail> {
   /** the id. */

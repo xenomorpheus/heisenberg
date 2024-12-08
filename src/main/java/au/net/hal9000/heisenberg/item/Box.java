@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import jakarta.persistence.Entity;
 
-/**
- * A simple box container.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A simple box container. */
 @Entity
 public class Box extends Location {
 

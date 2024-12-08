@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 
-/**
- * As much as possible consider these objects immutable.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** As much as possible consider these objects immutable. */
 public class ProductEntityProperty extends Product {
   /** The name of the property we will change in the Entity. */
   private String propertyName;

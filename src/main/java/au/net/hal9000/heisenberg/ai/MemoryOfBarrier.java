@@ -3,11 +3,7 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.ai.api.Barrier;
 import java.util.Date;
 
-/**
- * Holds a memory of a Barrier.
- *
- * @author bruins
- */
+/** Holds a memory of a Barrier. */
 public class MemoryOfBarrier extends MemoryAbstract {
   /** the barrier this memory is about. */
   private Barrier barrier;

@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.ai.api;
 
 import java.util.Date;
 
-/**
- * Holds a Memory for a period of until the memory fades.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Holds a Memory for a period of until the memory fades. */
 public interface Memory {
 
   /**

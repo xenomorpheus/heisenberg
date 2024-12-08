@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import jakarta.persistence.Entity;
 
-/**
- * Flint and Tinder.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Flint and Tinder. */
 @Entity
 public class FlintAndTinder extends ItemImpl {
 

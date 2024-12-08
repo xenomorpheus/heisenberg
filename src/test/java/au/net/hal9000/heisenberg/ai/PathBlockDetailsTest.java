@@ -5,11 +5,7 @@ import static org.junit.Assert.assertTrue;
 import au.net.hal9000.heisenberg.units.Position;
 import org.junit.Test;
 
-/**
- * Test PathBlockDetails class.
- *
- * @author bruins
- */
+/** Test PathBlockDetails class. */
 public class PathBlockDetailsTest {
 
   /** Test Blocker class. */

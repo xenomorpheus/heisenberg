@@ -4,12 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/**
- * unit tests for AbilityScore class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** unit tests for AbilityScore class. */
 public class AbilityScoreTest {
   /** test number for base value. */
   private static final int BASE = 3;

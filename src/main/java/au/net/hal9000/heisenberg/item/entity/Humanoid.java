@@ -18,12 +18,7 @@ import jakarta.persistence.InheritanceType;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Humanoid is more to do with the physical body shape, so can be undead.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Humanoid is more to do with the physical body shape, so can be undead. */
 @Inheritance(strategy = InheritanceType.JOINED)
 abstract class Humanoid extends EntityItem implements Animal, ItemList {
 

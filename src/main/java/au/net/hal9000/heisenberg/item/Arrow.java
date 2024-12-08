@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Sharp;
 import jakarta.persistence.Entity;
 
-/**
- * Arrow.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Arrow. */
 @Entity
 // @PrimaryKeyJoinColumn(name="tableid", referencedColumnName="tableid")
 public class Arrow extends ItemImpl implements Sharp {

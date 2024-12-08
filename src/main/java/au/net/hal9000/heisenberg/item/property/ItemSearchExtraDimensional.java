@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Item search extra dimensional.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Item search extra dimensional. */
 public class ItemSearchExtraDimensional extends ItemSearch {
 
   /** Constructor for ItemSearchExtraDimensional. */

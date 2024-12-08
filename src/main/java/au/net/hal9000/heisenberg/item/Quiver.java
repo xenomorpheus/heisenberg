@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 
-/**
- * A common quiver for holding arrows.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common quiver for holding arrows. */
 @Entity
 public class Quiver extends Location {
 

@@ -6,11 +6,7 @@ import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacterCondition;
 import java.util.Set;
 
-/**
- * The single casting of a specific spell.
- *
- * @author bruins
- */
+/** The single casting of a specific spell. */
 public class Casting {
 
   private PlayerCharacter self;

@@ -1,11 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-/**
- * Simulate dice rolls.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Simulate dice rolls. */
 class Dice {
 
   /** 6 sided die. */

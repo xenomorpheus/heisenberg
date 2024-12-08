@@ -6,9 +6,6 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateConsumerConsumable;
 /**
  * Action to eat something.<br>
  * Check super classes but this class is likely to be immutable.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public final class ActionConsume extends ActionBase {
 

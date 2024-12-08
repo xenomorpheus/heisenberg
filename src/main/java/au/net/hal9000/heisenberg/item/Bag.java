@@ -6,12 +6,7 @@ import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
-/**
- * A common Bog for holding multiple Item objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common Bog for holding multiple Item objects. */
 @Entity
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Bag extends Box {

@@ -9,9 +9,6 @@ import au.net.hal9000.heisenberg.ai.api.Successor;
  * 1) The resultant ModelState when the Action is performed.<br>
  * 2) A valid Action that may be performed at the current ModelState.<br>
  * 3) The cost of performing the action.<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class SuccessorImpl implements Successor {
 

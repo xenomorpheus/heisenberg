@@ -7,12 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-/**
- * A Character Sheet of PC/NPC.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A Character Sheet of PC/NPC. */
 public class CharacterSheet implements Serializable {
 
   private static final String ls = System.lineSeparator();

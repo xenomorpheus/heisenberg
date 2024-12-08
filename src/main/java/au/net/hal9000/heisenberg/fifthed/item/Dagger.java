@@ -2,11 +2,7 @@ package au.net.hal9000.heisenberg.fifthed.item;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
-/**
- * Dagger: 2gp, 1d3, 1d4, 19-20/x2, 10 ft, 1lb, P or S
- *
- * @author bruins
- */
+/** Dagger: 2gp, 1d3, 1d4, 19-20/x2, 10 ft, 1lb, P or S */
 public class Dagger extends WeaponMelee {
   public Dagger() {
     super();

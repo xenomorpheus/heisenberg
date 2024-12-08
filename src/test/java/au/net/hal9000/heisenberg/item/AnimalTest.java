@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-/**
- * The class <code>AnimalTest</code> contains tests for the class {@link <code>Animal</code>}.
- *
- * @author bruins
- * @version $Revision$
- */
+/** The class <code>AnimalTest</code> contains tests for the class {@link <code>Animal</code>}. */
 public class AnimalTest extends TestCase {
 
   @Test

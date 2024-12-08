@@ -34,12 +34,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 
-/**
- * Utility class for setting up test environment and building test Item objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Utility class for setting up test environment and building test Item objects. */
 public final class DemoEnvironment {
   /** Field LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(DemoEnvironment.class.getName());

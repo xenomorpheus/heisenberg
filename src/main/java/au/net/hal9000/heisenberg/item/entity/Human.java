@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import jakarta.persistence.Entity;
 
-/**
- * A common human.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common human. */
 @Entity
 public class Human extends Humanoid {
 

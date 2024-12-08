@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import jakarta.persistence.Entity;
 
-/**
- * A small ground fire.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A small ground fire. */
 @Entity
 public class SmallGroundFire extends ItemImpl {
 

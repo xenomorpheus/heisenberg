@@ -1,11 +1,6 @@
 package au.net.hal9000.heisenberg.item.api;
 
-/**
- * Sources of light, e.g. torches, lanterns etc.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Sources of light, e.g. torches, lanterns etc. */
 public interface LightSource {
 
   /**

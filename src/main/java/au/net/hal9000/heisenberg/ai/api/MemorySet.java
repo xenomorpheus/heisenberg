@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.ai.api;
 
 import java.util.List;
 
-/**
- * A collection of memories.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A collection of memories. */
 public interface MemorySet extends Iterable<Memory> {
 
   // Getters and setters.

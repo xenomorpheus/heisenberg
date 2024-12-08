@@ -5,12 +5,7 @@ import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import jakarta.persistence.Entity;
 
-/**
- * Some common wood.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Some common wood. */
 @Entity
 public class Wood extends ItemImpl implements SplitByWeight {
 

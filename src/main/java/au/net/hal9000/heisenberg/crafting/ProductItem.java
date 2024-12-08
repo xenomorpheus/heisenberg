@@ -4,12 +4,7 @@ import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 
-/**
- * The results of the crafting process. e.g. Item objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** The results of the crafting process. e.g. Item objects. */
 public class ProductItem extends Product {
 
   /** The item type. */

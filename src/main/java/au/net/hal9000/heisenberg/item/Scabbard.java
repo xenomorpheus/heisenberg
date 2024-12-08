@@ -7,12 +7,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
-/**
- * An ordinary scabbard (with belt) for holding a sword.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** An ordinary scabbard (with belt) for holding a sword. */
 @Entity
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Scabbard extends Box {

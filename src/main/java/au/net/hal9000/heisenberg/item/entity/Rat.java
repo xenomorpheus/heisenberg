@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import jakarta.persistence.Entity;
 
-/**
- * A common rat.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common rat. */
 @Entity
 public class Rat extends EntityItem {
 

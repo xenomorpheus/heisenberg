@@ -5,11 +5,7 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Geometry utility.
- *
- * @author bruins
- */
+/** Geometry utility. */
 public final class Geometry {
 
   /** Utility Class. */

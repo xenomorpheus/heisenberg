@@ -12,9 +12,6 @@ import java.text.DecimalFormat;
  * The current model state.<br>
  * The path to get there.<br>
  * The cost so far.<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 class FringeElementImpl implements FringeElement, Comparable<FringeElementImpl> {
   /** the state of the model at this fringe element. */

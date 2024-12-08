@@ -10,10 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class ItemSearchMagicalTest {
 
   /** Method testAccept. Ordinary non-magical, non-container. */

@@ -4,11 +4,7 @@ import au.net.hal9000.heisenberg.units.Currency;
 
 public class BowLong extends WeaponRanged {
 
-  /**
-   * "Longbow 75gp 1d6 1d8 x3 100ft. 3lbs. P"
-   *
-   * @author bruins
-   */
+  /** "Longbow 75gp 1d6 1d8 x3 100ft. 3lbs. P" */
   public BowLong() {
     super();
     setName("Longbow");

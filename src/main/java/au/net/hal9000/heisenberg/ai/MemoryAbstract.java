@@ -3,11 +3,7 @@ package au.net.hal9000.heisenberg.ai;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import java.util.Date;
 
-/**
- * Holds a memory for a period of time.
- *
- * @author bruins
- */
+/** Holds a memory for a period of time. */
 public abstract class MemoryAbstract implements Memory {
   /** When the memory was created. */
   private Date createdDate;

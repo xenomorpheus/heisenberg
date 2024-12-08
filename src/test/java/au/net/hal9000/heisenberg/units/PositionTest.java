@@ -6,12 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * 3D point in space.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** 3D point in space. */
 public class PositionTest {
 
   /** Field TEST_TOLERANCE. (value is 0.01) */

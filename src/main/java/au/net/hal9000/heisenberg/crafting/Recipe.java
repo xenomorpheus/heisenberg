@@ -105,9 +105,6 @@ import java.util.Set;
  * No need for more than one instance of a recipe.<br>
  * Lets try making Recipes immutable and see how it goes.<br>
  * TODO Consider moving Recipe to units package.<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class Recipe {
 

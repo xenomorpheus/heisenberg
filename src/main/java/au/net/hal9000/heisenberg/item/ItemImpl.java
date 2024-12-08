@@ -42,9 +42,6 @@ import java.util.UUID;
  * An item may be damaged by fire which will...<br>
  * An item may be damaged by acid which will...<br>
  * An item may be repaired which will ...<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 @MappedSuperclass
 public abstract class ItemImpl implements Serializable, Item {

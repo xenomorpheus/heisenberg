@@ -4,12 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/**
- * Test Box class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test Box class. */
 public class BoxTest {
 
   /** Normal item into box. */

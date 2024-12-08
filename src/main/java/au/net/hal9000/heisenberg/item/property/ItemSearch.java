@@ -4,10 +4,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public abstract class ItemSearch implements ItemVisitor {
 
   /** Field matchingItems. */

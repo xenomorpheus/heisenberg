@@ -4,12 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/**
- * Read sprites from a packed sprites file.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Read sprites from a packed sprites file. */
 public class SpritePack {
   /** so we can find the resource files. * */
   private static ClassLoader ClassLoader = SpritePack.class.getClassLoader();

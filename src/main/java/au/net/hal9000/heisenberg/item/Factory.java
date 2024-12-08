@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Item;
 import java.lang.reflect.Constructor;
 
-/**
- * Factory Design Pattern. Create different type of Item objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Factory Design Pattern. Create different type of Item objects. */
 public final class Factory {
 
   /**

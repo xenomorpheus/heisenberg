@@ -8,12 +8,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Unit tests for the class ItemSplitByWeight.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Unit tests for the class ItemSplitByWeight. */
 public class ItemSplitByWeightTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.0001f;

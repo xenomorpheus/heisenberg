@@ -7,12 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import org.apache.log4j.Logger;
 
-/**
- * Description Pane.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Description Pane. */
 public class DescriptionPane extends JScrollPane {
 
   /** serial version id. */

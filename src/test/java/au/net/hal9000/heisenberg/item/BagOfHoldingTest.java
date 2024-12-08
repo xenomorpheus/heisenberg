@@ -8,12 +8,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 import org.junit.Test;
 
-/**
- * Test the BagOfHolding class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test the BagOfHolding class. */
 public class BagOfHoldingTest {
   /** how close do the floats need to be to match. */
   private static final float FLOAT_TOLERANCE = 0.00009F;

@@ -15,12 +15,7 @@ import javax.swing.tree.TreePath;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Test the ItemPanel.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test the ItemPanel. */
 public class ItemTreePanelTest {
 
   @Before

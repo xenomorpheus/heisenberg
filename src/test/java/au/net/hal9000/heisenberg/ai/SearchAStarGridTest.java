@@ -21,12 +21,7 @@ import java.awt.geom.Line2D;
 import java.util.Arrays;
 import org.junit.Test;
 
-/**
- * Testing A* Search in a grid based system using Position objects.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Testing A* Search in a grid based system using Position objects. */
 public class SearchAStarGridTest {
   /* Max number of successors. */
   private static final int successorCountMax = 8;

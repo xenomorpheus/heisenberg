@@ -5,10 +5,7 @@ import static org.junit.Assert.assertEquals;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import org.junit.Test;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class BagTest {
 
   /** Normal item into bag. */

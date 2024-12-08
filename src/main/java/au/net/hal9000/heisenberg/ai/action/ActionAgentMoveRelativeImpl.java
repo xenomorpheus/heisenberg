@@ -8,9 +8,6 @@ import au.net.hal9000.heisenberg.units.Position;
 /**
  * Very simple actions - Agent movement only.<br>
  * Position is the change in position.<br>
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public final class ActionAgentMoveRelativeImpl extends ActionBase
     implements ActionAgentMoveRelative {

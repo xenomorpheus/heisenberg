@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item.property;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 
-/**
- * Miscellaneous properties of an Item that don't deserve their own field.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Miscellaneous properties of an Item that don't deserve their own field. */
 public final class ItemProperty {
 
   /** ideal value for health metric. */

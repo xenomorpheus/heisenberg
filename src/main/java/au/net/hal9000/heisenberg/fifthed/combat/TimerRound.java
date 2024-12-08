@@ -23,8 +23,6 @@ import java.util.Set;
  * <p>A few special cases The 5 ft. step Provided you don't take any other action that actually
  * involves using a move speed (walking/running/flying...) during the same round, you can take a 5'
  * step as a free action that does not provoke attacks of opportunity once per round.
- *
- * @author bruins
  */
 public class TimerRound {
   private boolean isFullRoundActionAvailable = true;

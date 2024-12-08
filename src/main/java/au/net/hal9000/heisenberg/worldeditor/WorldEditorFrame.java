@@ -23,12 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import org.apache.log4j.Logger;
 
-/**
- * The main application window. Shows a tree of the items in this world.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** The main application window. Shows a tree of the items in this world. */
 public class WorldEditorFrame extends JFrame {
 
   private static final String MENU_DEMO = "Demo";

@@ -22,12 +22,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- * Basic panel.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Basic panel. */
 public class BasicPanel extends JPanel {
 
   /** serial id. */
@@ -497,11 +492,7 @@ public class BasicPanel extends JPanel {
     cons.gridwidth = 1;
   }
 
-  /**
-   * Handle changes in text fields.
-   *
-   * @author bruins
-   */
+  /** Handle changes in text fields. */
   private class BasicTextFieldListener implements ActionListener {
 
     /**
@@ -520,11 +511,7 @@ public class BasicPanel extends JPanel {
     }
   }
 
-  /**
-   * Handle changes in text fields.
-   *
-   * @author bruins
-   */
+  /** Handle changes in text fields. */
   private class BasicTextFieldFocusEvent implements FocusListener {
 
     /**
@@ -560,11 +547,7 @@ public class BasicPanel extends JPanel {
     }
   }
 
-  /**
-   * Listens to multiple form elements. * @author bruins
-   *
-   * @author bruins
-   */
+  /** Listens to multiple form elements. */
   private class BasicItemListener implements ItemListener {
 
     /**

@@ -6,12 +6,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.Search;
 import au.net.hal9000.heisenberg.ai.api.SuccessorFunction;
 
-/**
- * Base class for all search algorithms
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Base class for all search algorithms */
 abstract class SearchBase implements Search {
 
   /** a function that supplies a list of possible actions from current model state. */

@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.LightSource;
 import jakarta.persistence.Entity;
 
-/**
- * A simple tallow candle.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A simple tallow candle. */
 @Entity
 public class Candle extends ItemImpl implements LightSource {
 

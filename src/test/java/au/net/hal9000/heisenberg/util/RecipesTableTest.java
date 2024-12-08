@@ -8,12 +8,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Unit tests for RecipesTable.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Unit tests for RecipesTable. */
 public class RecipesTableTest {
   @Before
   public void setupClass() {

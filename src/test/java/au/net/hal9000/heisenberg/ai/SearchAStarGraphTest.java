@@ -24,9 +24,6 @@ import org.junit.Test;
  * This test is performed within a graph. The AStar search is required to find the minimum cost from
  * Start node (S) to Goal node (G). A node has edges that lead to other nodes. Following an edge
  * incurs a cost.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class SearchAStarGraphTest {
 

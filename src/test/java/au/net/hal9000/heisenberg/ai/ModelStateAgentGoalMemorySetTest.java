@@ -8,12 +8,7 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.units.Position;
 import org.junit.Test;
 
-/**
- * Test ModelStateGoalMemorySet.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test ModelStateGoalMemorySet. */
 public class ModelStateAgentGoalMemorySetTest {
 
   // TODO add tests related to memory set

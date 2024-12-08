@@ -5,9 +5,6 @@ import java.util.List;
 /**
  * Evaluate the state of the model and give an evaluation rating on how good it is. e.g. how close
  * we are to the goal state.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public interface ModelStateEvaluator {
 

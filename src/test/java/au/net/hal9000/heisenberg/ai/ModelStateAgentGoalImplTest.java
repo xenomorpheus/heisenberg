@@ -8,12 +8,7 @@ import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.units.Position;
 import org.junit.Test;
 
-/**
- * Test ModelStateAgentGoal.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test ModelStateAgentGoal. */
 public class ModelStateAgentGoalImplTest {
   /** tolerance for comparing floats. */
   static final double DIFF = 0.00001f;

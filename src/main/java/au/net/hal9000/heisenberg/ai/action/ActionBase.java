@@ -5,8 +5,6 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 /**
  * That base class for Action classes.<br>
  * Note the base class is immutable.
- *
- * @author bruins
  */
 public abstract class ActionBase implements Action {
 

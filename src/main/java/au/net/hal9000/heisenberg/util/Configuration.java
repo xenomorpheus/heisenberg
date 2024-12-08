@@ -29,9 +29,6 @@ import nu.xom.ParsingException;
  * <p>Singleton Design Pattern.
  *
  * <p>Please consider the values read only.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class Configuration {
 

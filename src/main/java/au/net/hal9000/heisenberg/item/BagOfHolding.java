@@ -24,12 +24,7 @@ Type III   | 35 lb.     | 1,000 lb.             | 150 cu. ft.           | 7,400 
 Type IV    | 60 lb.     | 1,500 lb.             | 250 cu. ft.           |10,000 gp
 
 */
-/**
- * Bag of Holding.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Bag of Holding. */
 @Entity
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class BagOfHolding extends Bag implements ExtraDimensional {

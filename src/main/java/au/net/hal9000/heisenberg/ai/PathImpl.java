@@ -4,12 +4,7 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.Path;
 import java.util.ArrayList;
 
-/**
- * AI path of Action objects. <br>
- *
- * @version $Revision: 1.0 $
- * @author bruins
- */
+/** AI path of Action objects. <br> */
 public class PathImpl extends ArrayList<Action> implements Path {
 
   /** Version of this class. */

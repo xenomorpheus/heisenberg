@@ -6,9 +6,6 @@ import jakarta.persistence.Entity;
 /**
  * Is like an item except: May wear at most one magical ring. May wear any number of non-magical
  * rings. Rings may be removed in any order.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 @Entity
 public class Hand extends Location {

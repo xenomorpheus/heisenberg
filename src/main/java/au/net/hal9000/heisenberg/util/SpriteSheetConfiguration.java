@@ -1,11 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-/**
- * Configuration about sprite sheets - e.g. images that hold a grid of icons.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Configuration about sprite sheets - e.g. images that hold a grid of icons. */
 public class SpriteSheetConfiguration {
   /** primary key e.g. "item" for all the sheet of default icons for Item objects. */
   private String id;

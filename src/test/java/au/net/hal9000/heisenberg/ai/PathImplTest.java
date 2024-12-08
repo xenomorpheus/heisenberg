@@ -9,10 +9,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.units.Position;
 import org.junit.Test;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class PathImplTest {
 
   /** */

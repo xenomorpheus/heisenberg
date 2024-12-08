@@ -12,9 +12,6 @@ import jakarta.persistence.Entity;
  * 3) How can a shield get damaged?<br>
  * 4) Will there be armour types ? Brace, shield, body, magical ...<br>
  * TODO perhaps create a protection Interface.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 @Entity
 public class Shield extends ItemImpl implements HumanoidArmClothing {

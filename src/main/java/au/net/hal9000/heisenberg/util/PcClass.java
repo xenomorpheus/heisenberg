@@ -15,9 +15,6 @@ import java.util.TreeMap;
  * 1) (no extension) - The current value Equals:<br>
  * CharacterClass ability base + (level * CharacterClass ability inc) + Mod <br>
  * 2) "Mod" - Any modifiers the character has chosen.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class PcClass implements Serializable, Comparable<PcClass> {
 

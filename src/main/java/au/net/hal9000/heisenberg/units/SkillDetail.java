@@ -9,9 +9,6 @@ package au.net.hal9000.heisenberg.units;
  * </ul>
  *
  * <p>Developer Notes:Lets try making Skills immutable and see how it goes
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public class SkillDetail extends KeywordDetail {
   /**

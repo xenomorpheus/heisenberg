@@ -14,10 +14,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 @Entity
 public class Location extends ItemImpl implements ItemContainer {
   /** */

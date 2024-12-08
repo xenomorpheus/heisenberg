@@ -6,12 +6,7 @@ import au.net.hal9000.heisenberg.item.property.SplitByWeight;
 import au.net.hal9000.heisenberg.util.ItemSplitByWeight;
 import jakarta.persistence.Entity;
 
-/**
- * Some common water.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Some common water. */
 @Entity
 public class Water extends ItemImpl implements SplitByWeight {
   /** serial version id. */

@@ -4,12 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * Unit tests for Dice class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Unit tests for Dice class. */
 public class DiceTest {
   /** number of tries to see if dice will fail. */
   private static final int TEST_MAX = 10;

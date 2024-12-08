@@ -13,12 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.junit.Test;
 
-/**
- * Test for Currentcy class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Test for Currentcy class. */
 public class CurrencyTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.00001F;

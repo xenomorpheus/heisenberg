@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item.property;
 import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.List;
 
-/**
- * Visitor Design Pattern for Item class.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Visitor Design Pattern for Item class. */
 public interface ItemVisitor {
 
   /**

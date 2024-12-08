@@ -1,11 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-/**
- * Holds configuration information about each concrete Item subclass.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Holds configuration information about each concrete Item subclass. */
 public class ItemClassConfiguration {
   /** primary key - The simple class name e.g. Arrow. */
   private String id;

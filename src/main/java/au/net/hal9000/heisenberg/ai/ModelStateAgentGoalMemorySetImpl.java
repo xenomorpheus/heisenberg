@@ -4,12 +4,7 @@ import au.net.hal9000.heisenberg.ai.api.MemorySet;
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoalMemorySet;
 import au.net.hal9000.heisenberg.units.Position;
 
-/**
- * A very simple model state. It holds agent position and memories.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A very simple model state. It holds agent position and memories. */
 public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
     implements ModelStateAgentGoalMemorySet {
 

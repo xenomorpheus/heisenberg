@@ -8,9 +8,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
  *
  * <p>This allows the system to divide an item into two if only some of the item is required. e.g.
  * as ingredient for a recipe.
- *
- * @author bruins
- * @version $Revision: 1.0 $
  */
 public interface SplitByWeight {
 

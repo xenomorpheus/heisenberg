@@ -4,10 +4,7 @@ import au.net.hal9000.heisenberg.item.Cloak;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import org.junit.Test;
 
-/**
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** */
 public class Backlog {
 
   /**

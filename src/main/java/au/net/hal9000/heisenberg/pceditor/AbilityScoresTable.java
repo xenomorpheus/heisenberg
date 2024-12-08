@@ -9,12 +9,7 @@ import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-/**
- * Abilty scores table.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Abilty scores table. */
 public class AbilityScoresTable extends JTable implements FocusListener {
 
   /** serial id. */
@@ -51,11 +46,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     // Nothing
   }
 
-  /**
-   * My table model.
-   *
-   * @author bruins
-   */
+  /** My table model. */
   private class MyTableModel extends AbstractTableModel {
     /** serial id. */
     private static final long serialVersionUID = 1L;

@@ -2,12 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import jakarta.persistence.Entity;
 
-/**
- * Cross bow bolt.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Cross bow bolt. */
 @Entity
 public class CrossbowBolt extends ItemImpl {
 

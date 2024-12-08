@@ -12,8 +12,6 @@ import au.net.hal9000.heisenberg.units.Position;
  * ModelStateAgentGoalMemorySet - moving towards the goal (prey) but around barriers that it has
  * memories of.<br>
  * ModelStateHunterPrey - eating prey. <br>
- *
- * @author bruins
  */
 public class ModelStateHunterPreyAgentGoalMemorySet
     implements ModelStateConsumerConsumable, ModelStateAgentGoalMemorySet {

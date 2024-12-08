@@ -1,9 +1,4 @@
 package au.net.hal9000.heisenberg.item.api;
 
-/**
- * Is a Humanoid able to ride this item?
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Is a Humanoid able to ride this item? */
 public interface HumanoidMount {}

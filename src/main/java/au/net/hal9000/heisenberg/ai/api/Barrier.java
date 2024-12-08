@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.ai.api;
 import au.net.hal9000.heisenberg.ai.PathBlockDetails;
 import au.net.hal9000.heisenberg.units.Position;
 
-/**
- * Holds details about a barrier blocking the path of movement.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** Holds details about a barrier blocking the path of movement. */
 public interface Barrier {
 
   /**
