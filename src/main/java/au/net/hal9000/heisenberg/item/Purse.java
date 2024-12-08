@@ -3,12 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.units.Currency;
 import jakarta.persistence.Entity;
 
-/**
- * A common purse for holding coins.
- *
- * @author bruins
- * @version $Revision: 1.0 $
- */
+/** A common purse for holding coins. */
 @Entity
 public class Purse extends ItemImpl {
 

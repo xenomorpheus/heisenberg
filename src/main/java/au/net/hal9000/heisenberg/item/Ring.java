@@ -1,5 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
+import au.net.hal9000.heisenberg.item.api.HumanoidArmClothing;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Currency;
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Entity;
  * @version $Revision: 1.0 $
  */
 @Entity
-public class Ring extends ItemImpl {
+public class Ring extends ItemImpl implements HumanoidArmClothing {
 
   /** serial id. */
   private static final long serialVersionUID = 1L;
@@ -31,15 +32,5 @@ public class Ring extends ItemImpl {
     setDescription("small metalic ring");
     setValueBase(new Currency(0, DEFAULT_VALUE_GP, 0, 0));
     setWeightBase(DEFAULT_WEIGHT);
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param name name of Ring.
-   */
-  Ring(final String name) {
-    this();
-    setName(name);
   }
 }

@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 
 /**
  * A magical Orb of light.
@@ -11,8 +10,7 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
  * @version $Revision: 1.0 $
  */
 @Entity
-@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
-class OrbOfLight extends Candle {
+public class OrbOfLight extends Candle {
 
   /** serial id. */
   private static final long serialVersionUID = 1L;
