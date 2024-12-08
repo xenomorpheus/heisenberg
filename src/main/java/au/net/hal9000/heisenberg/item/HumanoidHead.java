@@ -20,14 +20,4 @@ public class HumanoidHead extends Location {
     super();
     ItemProperty.setLiving(this, true);
   }
-
-  /**
-   * Constructor for HumanoidHead.
-   *
-   * @param name String
-   */
-  public HumanoidHead(String name) {
-    this();
-    setName(name);
-  }
 }
