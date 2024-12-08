@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.worldeditor;
 import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.util.Configuration;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -217,7 +217,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       }
       // Append to selected node
       ItemTreeNode itemTreeNode = (ItemTreeNode) parent;
-      ItemContainer container = (ItemContainer) itemTreeNode.getItem();
+      ItemList container = (ItemList) itemTreeNode.getItem();
       int insertIndex = container.size();
       itemTreeNode.insert(childTreeNode, insertIndex);
 

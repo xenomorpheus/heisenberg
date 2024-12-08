@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -9,15 +9,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import org.apache.log4j.Logger;
 
-/**
- * An adapter/wrapper around a Item object to make it look like a ItemTreeNode.
- *
- * <p>This class contains major design flaw(s).
- *
- * <p>TODO To detected items containing other items, it should ItemList not ItemContainer.
- *
- * @author bruins
- */
+/** An adapter/wrapper around a Item object to make it look like a ItemTreeNode. */
 public class ItemTreeNode implements MutableTreeNode {
   /** Field LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(ItemTreeNode.class.getName());
@@ -32,14 +24,16 @@ public class ItemTreeNode implements MutableTreeNode {
   @Override
   public TreeNode getChildAt(int childIndex) {
     TreeNode child = null;
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
+    if (item instanceof ItemList) {
+      ItemList container = (ItemList) item;
       Item childItem = container.get(childIndex);
       if (childItem == null) {
         LOGGER.error("getChildAt failed to get childIndex='" + childIndex + "' of " + item);
       } else {
         child = new ItemTreeNode(childItem);
       }
+    } else {
+      LOGGER.warn("getChildAt called on non-container " + item);
     }
     return child;
   }
@@ -47,9 +41,11 @@ public class ItemTreeNode implements MutableTreeNode {
   @Override
   public int getChildCount() {
     int count = 0;
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
+    if (item instanceof ItemList) {
+      ItemList container = (ItemList) item;
       count = container.size();
+    } else {
+      LOGGER.warn("getChildCount called on non-container " + item);
     }
     return count;
   }
@@ -57,8 +53,9 @@ public class ItemTreeNode implements MutableTreeNode {
   @Override
   public TreeNode getParent() {
     TreeNode parent = null;
-    ItemContainer parentItem = item.getContainer();
+    Item parentItem = item.getContainer();
     if (parentItem != null) {
+      // TODO should this be creating a new node or getting the existing node?
       parent = new ItemTreeNode(parentItem);
     }
     return parent;
@@ -71,12 +68,12 @@ public class ItemTreeNode implements MutableTreeNode {
     int index = -1;
     if (node instanceof ItemTreeNode) {
       Item nodeItem = ((ItemTreeNode) node).getItem();
-      if (item instanceof ItemContainer) {
-        ItemContainer itemContainer = (ItemContainer) item;
-        index = itemContainer.indexOf(nodeItem);
+      if (item instanceof ItemList) {
+        ItemList ItemList = (ItemList) item;
+        index = ItemList.indexOf(nodeItem);
       } else {
         LOGGER.error(
-            "getIndex failed as item not of class ItemContainer. node "
+            "getIndex failed as item not of class ItemList. node "
                 + node
                 + " of "
                 + node.getClass());
@@ -97,27 +94,29 @@ public class ItemTreeNode implements MutableTreeNode {
   @Override
   public boolean getAllowsChildren() {
     boolean allowsChildren = false;
-    if (item instanceof ItemContainer) {
+    if (item instanceof ItemList) {
       allowsChildren = true;
+    } else {
+      LOGGER.trace("getAllowsChildren called on: " + item);
     }
     return allowsChildren;
   }
 
   @Override
   public boolean isLeaf() {
-    return !(item instanceof ItemContainer);
+    return !(item instanceof ItemList);
   }
 
   @Override
   public Enumeration<TreeNode> children() {
     Enumeration<TreeNode> enumeration = null;
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
-      ArrayList<TreeNode> treeNodeList = new ArrayList<>();
-      for (Item item : container.getContents()) {
-        treeNodeList.add(new ItemTreeNode(item));
+    if (item instanceof ItemList) {
+      ItemList items = (ItemList) item;
+      ArrayList<TreeNode> treeNodes = new ArrayList<>();
+      for (int index = 0; index < items.size(); index++) {
+        treeNodes.add(new ItemTreeNode(items.get(index)));
       }
-      enumeration = Collections.enumeration(treeNodeList);
+      enumeration = Collections.enumeration(treeNodes);
     }
     return enumeration;
   }
@@ -129,8 +128,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public void insert(MutableTreeNode child, int index) {
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
+    if (item instanceof ItemList) {
+      ItemList container = (ItemList) item;
       if (child instanceof ItemTreeNode) {
         ItemTreeNode childItemTreeNode = (ItemTreeNode) child;
         Item childItem = childItemTreeNode.getItem();
@@ -151,8 +150,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public void remove(int index) {
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
+    if (item instanceof ItemList) {
+      ItemList container = (ItemList) item;
       container.remove(index);
     } else {
       LOGGER.error(
@@ -162,8 +161,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public void remove(MutableTreeNode child) {
-    if (item instanceof ItemContainer) {
-      ItemContainer container = (ItemContainer) item;
+    if (item instanceof ItemList) {
+      ItemList container = (ItemList) item;
       if (child instanceof ItemTreeNode) {
         ItemTreeNode childTreeNode = (ItemTreeNode) child;
         Item childItem = childTreeNode.getItem();
@@ -188,7 +187,7 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public void removeFromParent() {
-    ItemContainer container = item.getContainer();
+    ItemList container = item.getContainer();
     if (container == null) {
       LOGGER.error("removeFromParent container is null");
     } else {
@@ -201,12 +200,12 @@ public class ItemTreeNode implements MutableTreeNode {
     if (newParent instanceof ItemTreeNode) {
       ItemTreeNode parentItemTreeNode = (ItemTreeNode) newParent;
       Item parentItem = parentItemTreeNode.getItem();
-      if (parentItem instanceof ItemContainer) {
-        ItemContainer container = (ItemContainer) parentItem;
+      if (parentItem instanceof ItemList) {
+        ItemList container = (ItemList) parentItem;
         container.add(item);
       } else {
         LOGGER.error(
-            "setParent failed as newParent's Item is not an ItemContainer as type is "
+            "setParent failed as newParent's Item is not an ItemList as type is "
                 + parentItem.getClass());
       }
     } else {
