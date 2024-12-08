@@ -104,6 +104,7 @@ public final class DemoEnvironment {
   public static Location getDemoWorld() {
     // Ad-hoc test world
     Location world = new Location();
+    world.setName("World");
     world.setWeightMax(DEMO_WEIGHT_VOLUME);
     world.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
