@@ -74,9 +74,9 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   }
 
   // Getters and Setters
-  // Head
+
   /**
-   * Method getHead.
+   * Get the head.
    *
    * @return HumanoidHead
    */
@@ -84,9 +84,8 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     return head;
   }
 
-  // left Hand
   /**
-   * Method getLeftHand.
+   * Get left hand.
    *
    * @return Hand
    */
@@ -94,14 +93,22 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     return leftHand;
   }
 
-  // right Hand
   /**
-   * Method getRightHand.
+   * Get right hand.
    *
    * @return Hand
    */
   public Hand getRightHand() {
     return rightHand;
+  }
+
+  /**
+   * Get core.
+   *
+   * @return Core
+   */
+  public ItemContainer getCore() {
+    return core;
   }
 
   // Weight and capacity is spread across body.

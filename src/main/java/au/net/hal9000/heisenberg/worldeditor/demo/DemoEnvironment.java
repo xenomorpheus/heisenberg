@@ -10,14 +10,18 @@ import au.net.hal9000.heisenberg.item.Cloak;
 import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
+import au.net.hal9000.heisenberg.item.FlintAndTinder;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.MagicRing;
+import au.net.hal9000.heisenberg.item.OrbOfLight;
+import au.net.hal9000.heisenberg.item.Purse;
 import au.net.hal9000.heisenberg.item.Quiver;
 import au.net.hal9000.heisenberg.item.Ring;
 import au.net.hal9000.heisenberg.item.Scabbard;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
+import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.units.Skill;
@@ -108,12 +112,8 @@ public final class DemoEnvironment {
     world.setWeightMax(DEMO_WEIGHT_VOLUME);
     world.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
-    // Scabbard
     Scabbard scabbard = new Scabbard();
     scabbard.add(new Sword());
-
-    Scabbard scabbard2 = new Scabbard();
-    scabbard2.add(new Sword());
 
     Bag boh = new BagOfHolding(1);
     boh.add(new Bag());
@@ -123,26 +123,29 @@ public final class DemoEnvironment {
     boh.add(new Cookie());
     boh.add(new Crossbow());
     boh.add(new CrossbowBolt());
-    boh.add(new Ring());
     boh.add(scabbard);
     boh.add(new Torch());
+
+    var wineskin = new Bag();
+    wineskin.setName("Wineskin");
+    wineskin.add(new Water());
 
     // a backpack of stuff
     Bag backpack = new Backpack();
     backpack.setWeightMax(DEMO_WEIGHT_VOLUME);
     backpack.setVolumeMax(DEMO_WEIGHT_VOLUME);
+    backpack.add(new Candle());
+    backpack.add(new Ring());
+    backpack.add(new FlintAndTinder());
+    backpack.add(new OrbOfLight());
+    backpack.add(new Purse());
+    backpack.add(wineskin);
     backpack.add(boh);
 
     Quiver quiver = new Quiver();
-    quiver.add(new Arrow());
-    quiver.add(new Arrow());
-    quiver.add(new Arrow());
-
-    Bag bag2 = new Bag();
-    bag2.add(new Cookie());
-    bag2.add(new Cookie());
-    bag2.add(new Cookie());
-    backpack.add(bag2);
+    for (int i = 0; i < 18; i++) {
+      quiver.add(new Arrow());
+    }
 
     // a human with a bag of cookies
     Human human = new Human();
@@ -150,8 +153,9 @@ public final class DemoEnvironment {
     human.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
     // Automatic placement
-    human.add(new Shield());
-    human.add(scabbard2);
+    human.getRightHand().add(new Sword());
+    human.getLeftHand().add(new Shield());
+    human.getCore().add(new Scabbard());
     human.add(quiver);
     human.add(backpack);
     human.add(new MagicRing());
