@@ -144,10 +144,10 @@ public class WorldEditorFrame extends JFrame {
 
                   @Override
                   public void visit(Item item) {
-                    StringBuilder sb = new StringBuilder("Found Node ").append(item.toString());
+                    StringBuilder sb = new StringBuilder(item.toString());
                     ItemContainer container = item.getContainer();
                     if (container != null) {
-                      sb.append(", who's container is " + container);
+                      sb.append(" located in " + container);
                     }
                     System.out.println(sb.toString());
                   }
