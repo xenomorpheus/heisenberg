@@ -305,10 +305,10 @@ public class PersistenceTest {
     human.setWeightMax(100000);
     human.setVolumeMax(100000);
 
-    human.wear(new Shield());
-    human.wear(scabbard2);
-    human.wear(quiver);
-    human.wear(backpack);
+    human.add(new Shield());
+    human.add(scabbard2);
+    human.add(quiver);
+    human.add(backpack);
 
     world.add(new Sword());
     world.add(new Horse());

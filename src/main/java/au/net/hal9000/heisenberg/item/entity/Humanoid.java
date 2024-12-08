@@ -173,13 +173,10 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
 
   // Misc
 
-  /**
-   * add - Wear an item.
-   *
-   * @param item clothing Item to wear.
-   */
+  /** {@inheritDoc} */
+  @Override
   // TODO consider wear could fail, e.g. spot occupied.
-  public void wear(Item item) {
+  public void add(Item item) {
     if ((rightHand != null) && (item instanceof HumanoidArmClothing)) {
       // TODO consider implementing wear on hands.
       // TODO consider wear could fail, e.g. spot occupied.

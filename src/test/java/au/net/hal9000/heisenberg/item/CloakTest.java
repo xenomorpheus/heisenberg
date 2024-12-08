@@ -21,6 +21,6 @@ public class CloakTest {
   public void testIsWearable() {
     Human human = new Human();
     Cloak cloak = new Cloak();
-    human.wear(cloak);
+    human.add(cloak);
   }
 }

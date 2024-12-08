@@ -31,7 +31,7 @@ public class HumanoidTest {
   public void testWear() {
     Humanoid human = new Human(); // Close enough
     Item shield = new Shield();
-    human.wear(shield);
+    human.add(shield);
   }
 
   /** Test trying to wear non-clothing. */
@@ -39,6 +39,6 @@ public class HumanoidTest {
   public void testAddItem() {
     Humanoid human = new Human();
     Cookie cookie = new Cookie();
-    human.wear(cookie);
+    human.add(cookie);
   }
 }

@@ -22,7 +22,7 @@ public class ScabbardTest {
   public void testIsWearable() {
     Human human = new Human();
     Scabbard scabbard = new Scabbard();
-    human.wear(scabbard);
+    human.add(scabbard);
   }
 
   /** Method testAddSword. */

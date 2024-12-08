@@ -110,7 +110,7 @@ public class ScenarioSet01 {
     Shield shield = new Shield();
     Human human = new Human();
     println("Equip the shield.");
-    human.wear(shield);
+    human.add(shield);
     println("Shield location: " + shield.getContainer());
   }
 

@@ -15,7 +15,7 @@ public class ShieldTest {
   public void testShieldAdd() {
     Shield shield = new Shield();
     Human human = new Human();
-    human.wear(shield);
+    human.add(shield);
   }
 
   /** clothing test. */
