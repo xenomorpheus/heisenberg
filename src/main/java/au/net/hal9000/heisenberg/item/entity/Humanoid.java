@@ -52,7 +52,7 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   private ItemContainer core = new Location();
 
   /** We are implementing ItemList. */
-  private List<Item> itemList;
+  private List<Item> items;
 
   // Constructors
   /**
@@ -62,14 +62,15 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
    */
   protected Humanoid() {
     super();
+    head.setName("Head");
     leftHand.setName("Left Hand");
     rightHand.setName("Right Hand");
     core.setName("Core");
-    itemList = new ArrayList<Item>();
-    itemList.add(core);
-    itemList.add(head);
-    itemList.add(rightHand);
-    itemList.add(leftHand);
+    items = new ArrayList<Item>();
+    items.add(head);
+    items.add(rightHand);
+    items.add(leftHand);
+    items.add(core);
   }
 
   // Getters and Setters
@@ -161,17 +162,19 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
 
   // Implement Animal
 
+  /** {@inheritDoc} */
   @Override
   public void eat(Item food) {
     AnimalConsumeSustenance.eat(this, food);
   }
 
+  /** {@inheritDoc} */
   @Override
   public void drink(Item food) {
     AnimalConsumeSustenance.drink(this, food);
   }
 
-  // Misc
+  // Implement ItemList
 
   /** {@inheritDoc} */
   @Override
@@ -197,7 +200,7 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   @Override
   public float getWeight() {
     float total = 0;
-    for (Item item : itemList) {
+    for (Item item : items) {
       total += item.getWeight();
     }
     return total;
@@ -207,7 +210,7 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   @Override
   public float getVolume() {
     float total = 0;
-    for (Item item : itemList) {
+    for (Item item : items) {
       total += item.getVolume();
     }
     return total;
@@ -230,7 +233,7 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   }
 
   // Visitor Design Pattern. Find items that match the criteria
-  /** {@inheritDoc} * @param visitor ItemVisitor */
+  /** {@inheritDoc} */
   @Override
   public void accept(ItemVisitor visitor) {
     head.accept(visitor);
@@ -244,32 +247,39 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     visitor.visit(this);
   }
 
-  /** {@inheritDoc} * @return int */
+  /** {@inheritDoc} */
   @Override
   public int size() {
-    return itemList.size();
+    return items.size();
   }
 
-  /** {@inheritDoc} * @return Item */
+  /** {@inheritDoc} */
   @Override
   public Item get(int index) {
-    return itemList.get(index);
+    return items.get(index);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @param index where to add
-   * @param item what to add
-   */
+  /** {@inheritDoc} */
   @Override
   public void add(int index, Item item) {
-    itemList.add(index, item);
+    items.add(index, item);
   }
 
-  /** {@inheritDoc} * @return int */
+  /** {@inheritDoc} */
   @Override
   public int indexOf(Item child) {
-    return itemList.indexOf(child);
+    return items.indexOf(child);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public void remove(Item item) {
+    items.remove(item);
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public void remove(int index) {
+    items.remove(index);
   }
 }
