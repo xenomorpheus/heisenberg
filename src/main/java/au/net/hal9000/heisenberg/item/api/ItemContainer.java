@@ -4,6 +4,10 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Position;
 import java.util.List;
 
+/**
+ * This is an Item that extends the ItemList interface with more advanced features. This container
+ * is still an ordered list.
+ */
 public interface ItemContainer extends Item, ItemList {
 
   // Getters and Setters
@@ -49,37 +53,6 @@ public interface ItemContainer extends Item, ItemList {
   boolean contains(Item item);
 
   /**
-   * Get the number of items in the container.
-   *
-   * @return the number of items directly inside the container. Items with other items don't add to
-   *     the count as they are *NOT* directly contained.
-   */
-  int size();
-
-  /**
-   * Used for tree display.
-   *
-   * @param index get child with with this index in list of items.
-   * @return the item requested.
-   */
-  Item get(int index);
-
-  /**
-   * Add the Item to the contents.
-   *
-   * @param item
-   */
-  void add(Item item);
-
-  /**
-   * Add the Item to the contents.
-   *
-   * @param index index position to add at.
-   * @param item item to add.
-   */
-  void add(int index, Item item);
-
-  /**
    * Empty the bag into this location.
    *
    * @param newLocation
@@ -96,20 +69,6 @@ public interface ItemContainer extends Item, ItemList {
   void accept(ItemVisitor visitor);
 
   /**
-   * Remove the Item from the container.
-   *
-   * @param item the item to remove.
-   */
-  void remove(Item item);
-
-  /**
-   * Remove the Item at position index from the container.
-   *
-   * @param index the position to remove.
-   */
-  void remove(int index);
-
-  /**
    * Change the position of the item within the ItemContainer.
    *
    * <p>Note: The request can fail or partially complete.<br>
@@ -120,8 +79,6 @@ public interface ItemContainer extends Item, ItemList {
    *     a delta but rather absolute WRT the position of the container.
    */
   void moveItemAbsolute(Item item, Position requestedPosition);
-
-  int indexOf(Item child);
 
   /**
    * Add multiple items to the contents.
