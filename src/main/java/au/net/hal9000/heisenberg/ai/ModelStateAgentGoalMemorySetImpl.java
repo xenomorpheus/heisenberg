@@ -47,7 +47,6 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
   /** {@inheritDoc} */
   @Override
   public String toString() {
-    // TODO string buffer
     return getClass().getSimpleName()
         + "=[agent "
         + getAgentPosition()
