@@ -4,7 +4,7 @@ package au.net.hal9000.heisenberg.ai.api;
 public interface Action {
 
   /**
-   * Get the cost of this acion.
+   * Get the cost of this action.
    *
    * @return
    */

@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import org.junit.Test;
 
-/** Test for Currentcy class. */
+/** Test for Currency class. */
 public class CurrencyTest {
   /** float comparison tolerance. */
   private static final float TOLERANCE = 0.00001F;
@@ -136,7 +136,7 @@ public class CurrencyTest {
   /** Tests of persistence methods. */
   @Test
   public void testPersistence() {
-    File fileObj = new File(System.getProperty("java.io.tmpdir"), "currency_persit_test.ser");
+    File fileObj = new File(System.getProperty("java.io.tmpdir"), "currency_persist_test.ser");
     String filename = fileObj.getAbsolutePath();
     Currency old = new Currency(PP, GP, SP, CP);
     // Store the object

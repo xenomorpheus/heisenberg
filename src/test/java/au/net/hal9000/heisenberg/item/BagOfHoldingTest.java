@@ -117,7 +117,7 @@ public class BagOfHoldingTest {
     scabbard.add(sword);
     // Check that locations are what we expect
     assertEquals("sword location", scabbard, sword.getContainer());
-    assertEquals("scabard location", box, scabbard.getContainer());
+    assertEquals("scabbard location", box, scabbard.getContainer());
     BagOfHolding bag = new BagOfHolding(1);
 
     // Try adding the scabbard to the BOH
@@ -125,7 +125,7 @@ public class BagOfHoldingTest {
 
     // Check that locations are what we expect
     assertEquals("sword location", scabbard, sword.getContainer());
-    assertEquals("scabard location", bag, scabbard.getContainer());
+    assertEquals("scabbard location", bag, scabbard.getContainer());
   }
 
   /** an extra-dimensional object causes rupture. */

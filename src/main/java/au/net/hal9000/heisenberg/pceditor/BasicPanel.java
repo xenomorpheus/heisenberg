@@ -92,7 +92,7 @@ public class BasicPanel extends JPanel {
 
     addComponents();
 
-    // Add change hander
+    // Add change handler
     BasicTextFieldListener basicTextFieldListener = new BasicTextFieldListener();
     BasicTextFieldFocusEvent basicTextFieldFocusEvent = new BasicTextFieldFocusEvent();
     nameTextField.addActionListener(basicTextFieldListener);

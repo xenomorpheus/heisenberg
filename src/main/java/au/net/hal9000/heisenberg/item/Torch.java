@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class Torch extends Candle {
 
-  /** A stick with some kind of combustable material on the end e.g. oiled rag. */
+  /** A stick with some kind of combustible material on the end e.g. oiled rag. */
   private static final long serialVersionUID = 1L;
 
   /** Constructor for Torch. */

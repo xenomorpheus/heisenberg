@@ -13,30 +13,30 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
     implements ActionAgentMoveRelative {
 
   /** Agent's movement relative to current position. */
-  private Position agentPostionDelta;
+  private Position agentPositionDelta;
 
   /**
    * Constructor.
    *
-   * @param agentPostionDelta Agent's movement relative to current position.
+   * @param agentPositionDelta Agent's movement relative to current position.
    * @param cost the effort / cost of performing the action
    */
-  public ActionAgentMoveRelativeImpl(final Position agentPostionDelta, double cost) {
+  public ActionAgentMoveRelativeImpl(final Position agentPositionDelta, double cost) {
     super(cost);
-    this.agentPostionDelta = agentPostionDelta;
+    this.agentPositionDelta = agentPositionDelta;
   }
 
   // Getters and Setters
   /** {@inheritDoc} */
   @Override
   public Position getPositionDelta() {
-    return agentPostionDelta;
+    return agentPositionDelta;
   }
 
   /** {@inheritDoc} */
   @Override
   public void setPositionDelta(Position position) {
-    agentPostionDelta = position;
+    agentPositionDelta = position;
   }
 
   // Misc
@@ -46,7 +46,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
       throw new RuntimeException("Expecting ModelStateAgentGoal");
     }
     ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
-    modelStateAgentGoal.getAgentPosition().applyDelta(agentPostionDelta);
+    modelStateAgentGoal.getAgentPosition().applyDelta(agentPositionDelta);
     // TODO consider reduce energy of Entity
   }
 
@@ -61,7 +61,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
   public String toString() {
     StringBuilder sb = new StringBuilder(3);
     sb.append("ActionMove=[delta=");
-    sb.append(agentPostionDelta);
+    sb.append(agentPositionDelta);
     sb.append(']');
     return sb.toString();
   }
@@ -78,7 +78,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
     long temp;
     temp = Double.doubleToLongBits(getCost());
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    result = prime * result + ((agentPostionDelta == null) ? 0 : agentPostionDelta.hashCode());
+    result = prime * result + ((agentPositionDelta == null) ? 0 : agentPositionDelta.hashCode());
     return result;
   }
 
@@ -102,11 +102,11 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
     ActionAgentMoveRelativeImpl other = (ActionAgentMoveRelativeImpl) obj;
     if (Double.doubleToLongBits(getCost()) != Double.doubleToLongBits(other.getCost()))
       return false;
-    if (agentPostionDelta == null) {
+    if (agentPositionDelta == null) {
       if (other.getPositionDelta() != null) {
         return false;
       }
-    } else if (!agentPostionDelta.equals(other.getPositionDelta())) {
+    } else if (!agentPositionDelta.equals(other.getPositionDelta())) {
       return false;
     }
     return true;

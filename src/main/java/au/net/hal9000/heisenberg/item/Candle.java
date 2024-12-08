@@ -60,14 +60,14 @@ public class Candle extends ItemImpl implements LightSource {
 
   /** {@inheritDoc} */
   @Override
-  public boolean lightWith(Object ignighter) { // NO_UCD (test only)
-    if (ignighter instanceof FlintAndTinder) {
+  public boolean lightWith(Object igniter) { // NO_UCD (test only)
+    if (igniter instanceof FlintAndTinder) {
       setLit(true);
     }
     // OrbOfLight (or sub-class) won't lite it.
     // Candle (or sub-class) and MUST BE LIT.
-    else if ((ignighter instanceof Candle) && !(ignighter instanceof OrbOfLight)) {
-      Candle candle = (Candle) ignighter;
+    else if ((igniter instanceof Candle) && !(igniter instanceof OrbOfLight)) {
+      Candle candle = (Candle) igniter;
       if (candle.isLit()) {
         setLit(true);
       }

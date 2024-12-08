@@ -6,10 +6,10 @@ public interface LightSource {
   /**
    * Start the light.
    *
-   * @param ignighter possible source of ignition.
+   * @param igniter possible source of ignition.
    * @return true if ignition occurred.
    */
-  boolean lightWith(Object ignighter);
+  boolean lightWith(Object igniter);
 
   /** Stop the light. */
   void extinguish();

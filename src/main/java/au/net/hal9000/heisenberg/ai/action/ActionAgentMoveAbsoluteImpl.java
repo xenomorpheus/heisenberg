@@ -18,12 +18,12 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase
   /**
    * Constructor.
    *
-   * @param agentPostionTarget desired position.
+   * @param agentPositionTarget desired position.
    * @param cost
    */
-  public ActionAgentMoveAbsoluteImpl(final Position agentPostionTarget, double cost) {
+  public ActionAgentMoveAbsoluteImpl(final Position agentPositionTarget, double cost) {
     super(cost);
-    this.agentPositionTarget = agentPostionTarget;
+    this.agentPositionTarget = agentPositionTarget;
   }
 
   // Getters and Setters

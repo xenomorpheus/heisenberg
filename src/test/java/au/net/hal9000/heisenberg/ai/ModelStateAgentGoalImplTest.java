@@ -32,7 +32,7 @@ public class ModelStateAgentGoalImplTest {
         new ModelStateAgentGoalImpl(agentPositionInitial, goalPosition);
     Position agentPositionNew = new Position(0, 1);
     assertFalse(
-        "test integrity. Possitions must be different",
+        "test integrity. Positions must be different",
         agentPositionInitial.equals(agentPositionNew));
     // Run test
     modelStateAgentGoal.setAgentPosition(agentPositionNew);

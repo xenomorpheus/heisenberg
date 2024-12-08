@@ -164,7 +164,7 @@ public class SearchAStarGridTest {
 
     // Generate path of actions.
     Path path = searchAStar.findPathToGoal(modelStateStart);
-    // System.out.println("FingeExpansionCount="+searchAStar.getFringeExpansionCount());
+    // System.out.println("FringeExpansionCount="+searchAStar.getFringeExpansionCount());
 
     // Tests
     assertNotNull("path defined", path);

@@ -298,7 +298,7 @@ public class Position {
   }
 
   /**
-   * Set the current position to the same location as the other Postion.
+   * Set the current position to the same location as the other Position.
    *
    * @param other Position
    */

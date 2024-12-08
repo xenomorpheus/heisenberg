@@ -87,9 +87,9 @@ public class CandleTest {
     assertFalse("candle2 NOT lit from lit OrbOfLight", candle2.isLit());
   }
 
-  /** Method testExtinquish. */
+  /** Method testExtinguish. */
   @Test
-  public void testExtinquish() {
+  public void testExtinguish() {
     Candle candle = new Candle();
     assertFalse("isLit=false", candle.isLit());
     candle.setLit(true);
