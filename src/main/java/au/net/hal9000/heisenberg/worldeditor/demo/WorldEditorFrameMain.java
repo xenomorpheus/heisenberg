@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 
 /** World Editor Frame Main. */
-public class WorldEditorFrameMain {
+public class WorldEditorFrameMain { // NO_UCD (unused code)
 
   /** Field LOGGER. */
   static final Logger LOGGER = Logger.getLogger(WorldEditorFrameMain.class.getName());

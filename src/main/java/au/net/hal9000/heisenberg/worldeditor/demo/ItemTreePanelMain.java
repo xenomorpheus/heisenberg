@@ -7,7 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class ItemTreePanelMain {
+public class ItemTreePanelMain { // NO_UCD (unused code)
 
   /** panel width. */
   private static final int PANEL_WIDTH = 400;
