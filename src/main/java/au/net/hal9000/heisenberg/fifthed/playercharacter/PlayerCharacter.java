@@ -208,7 +208,7 @@ public abstract class PlayerCharacter {
     return this;
   }
 
-  /** Add this condition to the PC. e.g. deaf, blind */
+  /** Add this condition to the PC e.g. deaf, blind */
   public void conditionAdd(PlayerCharacterCondition condition) {
     conditions.add(condition);
   }

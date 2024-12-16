@@ -5,7 +5,7 @@ import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
 import java.util.Set;
 
 /**
- * The gaming classes that a PC may have. E.g. Wizard at third level. A PlayerCharacter may have
+ * The gaming classes that a PC may have e.g. Wizard at third level. A PlayerCharacter may have
  * multi-classed which means multiple CharacterClass objects.
  */
 public abstract class CharacterClass {

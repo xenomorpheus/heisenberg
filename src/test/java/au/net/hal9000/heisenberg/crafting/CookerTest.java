@@ -48,8 +48,8 @@ public class CookerTest {
   }
 
   /**
-   * Magically create a Biscuit. e.g. using only magic and time. An example of common use - create
-   * an Item.
+   * Magically create a Biscuit e.g. using only magic and time. An example of common use - create an
+   * Item.
    */
   @Test
   public void testItemCreation() {

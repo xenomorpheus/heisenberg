@@ -357,15 +357,6 @@ public class Location extends ItemImpl implements ItemContainer {
     remove(contents.get(index));
   }
 
-  /**
-   * Attempt to move Item's position within the ItemContainer to this new position.
-   *
-   * <p>The container has control of the movement of Item objects within it. Partial or no movement
-   * may occur.
-   *
-   * @param item the item to be moved.
-   * @param requestedPosition the new position.
-   */
   @Override
   public void moveItemAbsolute(Item item, Position requestedPosition) {
     ItemContainer container = item.getContainer();
@@ -376,15 +367,6 @@ public class Location extends ItemImpl implements ItemContainer {
     item.setPosition(requestedPosition);
   }
 
-  /**
-   * Attempt to move Item's position within the ItemContainer by this amount.
-   *
-   * <p>The container has control of the movement of Item objects within it. Partial or no movement
-   * may occur.
-   *
-   * @param item the item to be moved.
-   * @param delta the amount to move within the container.
-   */
   @Override
   public void moveItemDelta(Item item, Position delta) {
     ItemContainer container = item.getContainer();

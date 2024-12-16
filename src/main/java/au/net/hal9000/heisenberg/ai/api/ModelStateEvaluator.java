@@ -3,8 +3,8 @@ package au.net.hal9000.heisenberg.ai.api;
 import java.util.List;
 
 /**
- * Evaluate the state of the model and give an evaluation rating on how good it is. e.g. how close
- * we are to the goal state.
+ * Evaluate the state of the model and give an evaluation rating on how good it is e.g. how close we
+ * are to the goal state.
  */
 public interface ModelStateEvaluator {
 

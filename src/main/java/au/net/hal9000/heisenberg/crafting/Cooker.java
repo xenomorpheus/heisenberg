@@ -311,7 +311,7 @@ public final class Cooker {
   }
 
   /**
-   * We will start with a restriction that all cooking is done at once. e.g. we wan't allow cooking
+   * We will start with a restriction that all cooking is done at once e.g. we won't allow cooking
    * over multiple rounds.
    *
    * <p>Throws RuntimeException on failure.

@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.item.api;
 
 /**
- * An ordered list of Item objects. e.g. inside a backpack. For a Humanoid this might be one for
- * each of core, head, arms and legs. <br>
+ * An ordered list of Item objects e.g. inside a backpack. For a Humanoid this might be one for each
+ * of core, head, arms and legs. <br>
  * Note that this object doesn't need to be an Item.
  */
 public interface ItemList {

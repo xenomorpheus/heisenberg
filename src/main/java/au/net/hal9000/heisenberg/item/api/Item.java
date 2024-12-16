@@ -202,12 +202,10 @@ public interface Item {
    */
   void move(ItemContainer container);
 
-  /**
-   * A short identifying string. @return A short identifying string. e.g. 'Biscuit', 'John Smith'
-   */
+  /** A short identifying string. @return A short identifying string e.g. 'Biscuit', 'John Smith' */
   String toString();
 
-  /** A description. e.g. 'A lit candle'. @return A description. e.g. 'A lit candle' */
+  /** A description e.g. 'A lit candle'. @return A description e.g. 'A lit candle' */
   String detailedDescription();
 
   /**

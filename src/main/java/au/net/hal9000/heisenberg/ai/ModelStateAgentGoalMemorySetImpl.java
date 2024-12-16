@@ -8,7 +8,7 @@ import au.net.hal9000.heisenberg.units.Position;
 public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
     implements ModelStateAgentGoalMemorySet {
 
-  /** Memories. e.g. Walls */
+  /** Memories e.g. Walls */
   private MemorySet memorySet;
 
   /**

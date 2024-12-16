@@ -138,7 +138,7 @@ public class Recipe {
    *
    * @param id Identifier
    * @param description Description.
-   * @param process The label for the code to run. e.g. produce new Item objects.
+   * @param process The label for the code to run e.g. produce new Item objects.
    * @param mana amount of mana required
    * @param actionPoints number of actionPoints required.
    * @param requirements the Requirement list.

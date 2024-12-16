@@ -3,11 +3,11 @@
  *
  * <p>The eventual aim of this package is to allow Agents to move rationally within the game.
  *
- * <p>Action - A possible choice an Agent may make to change the state of the Model. e.g. move left.
+ * <p>Action - A possible choice an Agent may make to change the state of the Model e.g. move left.
  * <br>
  * Agent - the entity we control in the Model e.g. move the Agent towards the desired location.
  *
- * <p>Cost - A measure of the effort in performing the action. e.g. the distance of a step modified
+ * <p>Cost - A measure of the effort in performing the action e.g. the distance of a step modified
  * by gradient of ground.
  *
  * <p>Goal (State) - The desired State of the Model e.g. Agent at the desired destination.<br>
@@ -24,7 +24,7 @@
  * Path - an ordered list of Action objects.
  *
  * <p>Successor - An Action, Cost and the ModelState that action will lead to.<br>
- * e.g. A movement left one step, a cost of 1.0 effort, and the new location which is to the left.
+ * e.g. a movement left one step, a cost of 1.0 effort, and the new location which is to the left.
  *
  * <p>SuccessorFunction - A function that produces a list of Successor objects from current
  * ModelState. <br>
