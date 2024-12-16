@@ -49,7 +49,7 @@ public class SkillsTable extends JTable {
     private List<Skill> orderedSkills;
 
     /** Field skillDetails. */
-    private Map<String, SkillDetail> skillDetails;
+    private Map<Skill, SkillDetail> skillDetails;
 
     /**
      * Constructor for MyTableModel.
@@ -108,12 +108,12 @@ public class SkillsTable extends JTable {
      */
     public Object getValueAt(int row, int col) {
       Skill skillCell = orderedSkills.get(row);
-      String skillId = skillCell.toString();
+      Skill skill = new Skill(skillCell.toString());
       String result = null;
       if (0 == col) {
-        result = skillId;
+        result = skill.getId();
       } else {
-        SkillDetail skillDetail = skillDetails.get(skillId);
+        SkillDetail skillDetail = skillDetails.get(skill);
         if (null != skillDetail) {
           result = skillDetail.getDescription();
         }

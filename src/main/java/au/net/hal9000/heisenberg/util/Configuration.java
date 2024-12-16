@@ -52,7 +52,7 @@ public class Configuration {
   private Map<String, Recipe> recipes;
 
   /** A map of SkillDetail objects. */
-  private Map<String, SkillDetail> skillDetails;
+  private Map<Skill, SkillDetail> skillDetails;
 
   /** A list of sizes. */
   private List<String> sizes;
@@ -109,7 +109,7 @@ public class Configuration {
    *
    * @return skill details.
    */
-  public final Map<String, SkillDetail> getSkillDetails() {
+  public final Map<Skill, SkillDetail> getSkillDetails() {
     return skillDetails;
   }
 
@@ -513,15 +513,15 @@ public class Configuration {
    * @param element xml element.
    * @return Map of SkillDetail objects.
    */
-  private static Map<String, SkillDetail> xmlToSkillDetails(Element element) {
+  private static Map<Skill, SkillDetail> xmlToSkillDetails(Element element) {
     Elements entries = element.getChildElements("skill");
-    Map<String, SkillDetail> skillDetails = new TreeMap<String, SkillDetail>();
+    Map<Skill, SkillDetail> skillDetails = new TreeMap<Skill, SkillDetail>();
     for (int current = 0; current < entries.size(); current++) {
       // get current Skill
       Element entry = entries.get(current);
       SkillDetail pw =
           new SkillDetail(entry.getAttributeValue("id"), entry.getAttributeValue("description"));
-      skillDetails.put(entry.getAttributeValue("id"), pw);
+      skillDetails.put(new Skill(entry.getAttributeValue("id")), pw);
     }
     return skillDetails;
   }

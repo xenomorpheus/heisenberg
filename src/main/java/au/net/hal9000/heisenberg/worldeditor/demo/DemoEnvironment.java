@@ -24,7 +24,6 @@ import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
-import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -41,11 +40,6 @@ public final class DemoEnvironment {
 
   /** file containing test configuration. */
   private static String DEMO_CONFIG_FILE = "src/test/resources/config.xml";
-
-  /** test skills. */
-  private static final Set<Skill> DEMO_SKILLS =
-      Stream.of(new Skill("testSkill1"), new Skill("testSkill2"))
-          .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test recipes. */
   private static final Set<String> DEMO_RECIPES =
@@ -89,7 +83,7 @@ public final class DemoEnvironment {
     characterSheet.setGender(config.getGenders().get(0));
     characterSheet.setSize(config.getSizes().get(0));
     characterSheet.setLevel(DEMO_LEVEL);
-    characterSheet.setSkills(DEMO_SKILLS);
+    characterSheet.setSkills(config.getSkillDetails().keySet());
     characterSheet.setRecipes(DEMO_RECIPES);
     // TODO characterSheet.setAbilityScores(null);
     return characterSheet;

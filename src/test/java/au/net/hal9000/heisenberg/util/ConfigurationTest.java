@@ -100,8 +100,8 @@ public class ConfigurationTest {
   /** Method testSkills. */
   @Test
   public void testSkills() {
-    Map<String, SkillDetail> skillDetails = config.getSkillDetails();
-    SkillDetail fireLighting = skillDetails.get("testFireLighting");
+    var skillDetails = config.getSkillDetails();
+    SkillDetail fireLighting = skillDetails.get(new Skill("testFireLighting"));
     assertEquals("FireLighting-id", "testFireLighting", fireLighting.getId());
     assertEquals(
         "FireLighting-Description",
