@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
 import au.net.hal9000.heisenberg.item.Bag;
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.Enumeration;
 import javax.swing.tree.TreeNode;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class ItemTreeNodeTest extends TestCase {
 
-  private Item cookie;
+  private Item biscuit;
   private Bag bag;
   private final TreeNode notTreeNode =
       new TreeNode() {
@@ -53,25 +53,25 @@ public class ItemTreeNodeTest extends TestCase {
 
   @Override
   protected void setUp() throws Exception {
-    cookie = new Cookie();
+    biscuit = new Biscuit();
     bag = new Bag();
   }
 
   @Test
   public void testItemTreeNode() {
-    ItemTreeNode itn = new ItemTreeNode(cookie);
+    ItemTreeNode itn = new ItemTreeNode(biscuit);
     assertNotNull(itn);
   }
 
   @Test
   public void testGetChildAt() {
-    bag.add(cookie);
+    bag.add(biscuit);
     ItemTreeNode bagNode = new ItemTreeNode(bag);
-    int childIndex = bag.indexOf(cookie);
+    int childIndex = bag.indexOf(biscuit);
     TreeNode childNode = bagNode.getChildAt(childIndex);
     if (childNode instanceof ItemTreeNode) {
       ItemTreeNode itn = (ItemTreeNode) childNode;
-      assertEquals("Item", cookie, itn.getItem());
+      assertEquals("Item", biscuit, itn.getItem());
     } else {
       fail("not an instance of ItemTreeNode");
     }
@@ -79,7 +79,7 @@ public class ItemTreeNodeTest extends TestCase {
 
   @Test
   public void testGetChildCount() {
-    bag.add(cookie);
+    bag.add(biscuit);
     ItemTreeNode bagNode = new ItemTreeNode(bag);
     assertEquals("childCount", bag.size(), bagNode.getChildCount());
   }
@@ -92,48 +92,48 @@ public class ItemTreeNodeTest extends TestCase {
   @Test
   public void testGetIndexIsContained() {
 
-    // cookie in bag
-    bag.add(cookie);
-    int expectedResult = bag.indexOf(cookie);
-    ItemTreeNode cookieTreeNode = new ItemTreeNode(cookie);
+    // biscuit in bag
+    bag.add(biscuit);
+    int expectedResult = bag.indexOf(biscuit);
+    ItemTreeNode biscuitTreeNode = new ItemTreeNode(biscuit);
     ItemTreeNode bagTreeNode = new ItemTreeNode(bag);
-    int gotResult = bagTreeNode.getIndex(cookieTreeNode);
+    int gotResult = bagTreeNode.getIndex(biscuitTreeNode);
     assertEquals("getIndex result", expectedResult, gotResult);
   }
 
   @Test
   public void testGetIndexNotContained() {
-    Item cookie = new Cookie();
+    Item biscuit = new Biscuit();
     Bag bag = new Bag();
     int expectedResult = -1;
-    ItemTreeNode cookieTreeNode = new ItemTreeNode(cookie);
+    ItemTreeNode biscuitTreeNode = new ItemTreeNode(biscuit);
     ItemTreeNode bagTreeNode = new ItemTreeNode(bag);
-    int gotResult = cookieTreeNode.getIndex(bagTreeNode);
+    int gotResult = biscuitTreeNode.getIndex(bagTreeNode);
     assertEquals("getIndex result", expectedResult, gotResult);
   }
 
   @Test
   public void testGetIndexNotTreeNode() {
-    Item cookie = new Cookie();
+    Item biscuit = new Biscuit();
     int expectedResult = -1;
-    ItemTreeNode cookieTreeNode = new ItemTreeNode(cookie);
+    ItemTreeNode biscuitTreeNode = new ItemTreeNode(biscuit);
 
-    int gotResult = cookieTreeNode.getIndex(notTreeNode);
+    int gotResult = biscuitTreeNode.getIndex(notTreeNode);
     assertEquals("getIndex result", expectedResult, gotResult);
   }
 
   @Test
   public void testGetAllowsChildren() {
-    ItemTreeNode cookieNode = new ItemTreeNode(cookie);
-    assertFalse("cookie", cookieNode.getAllowsChildren());
+    ItemTreeNode biscuitNode = new ItemTreeNode(biscuit);
+    assertFalse("biscuit", biscuitNode.getAllowsChildren());
     ItemTreeNode bagNode = new ItemTreeNode(bag);
     assertTrue("bag", bagNode.getAllowsChildren());
   }
 
   @Test
   public void testIsLeaf() {
-    ItemTreeNode cookieNode = new ItemTreeNode(cookie);
-    assertTrue("cookie", cookieNode.isLeaf());
+    ItemTreeNode biscuitNode = new ItemTreeNode(biscuit);
+    assertTrue("biscuit", biscuitNode.isLeaf());
     ItemTreeNode bagNode = new ItemTreeNode(bag);
     assertFalse("bag", bagNode.isLeaf());
   }

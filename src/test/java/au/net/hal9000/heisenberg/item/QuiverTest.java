@@ -27,6 +27,6 @@ public class QuiverTest {
   @Test(expected = InvalidTypeException.class)
   public void quiverAddNonArrow() {
     Quiver quiver = new Quiver();
-    quiver.add(new Cookie());
+    quiver.add(new Biscuit());
   }
 }

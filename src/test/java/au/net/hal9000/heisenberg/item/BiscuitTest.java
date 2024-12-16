@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item;
 
 /*
- * Note a lot of unit tests for cookie are in
+ * Note a lot of unit tests for biscuit are in
  * Item as Item is an abstract class
  * and needs an item to do tests.
  *
@@ -15,12 +15,12 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import org.junit.Test;
 
 /** */
-public class CookieTest {
+public class BiscuitTest {
   /** Method testEquals. */
   @Test
   public void testEquals() {
-    Cookie first = new Cookie();
-    Cookie second = new Cookie();
+    Biscuit first = new Biscuit();
+    Biscuit second = new Biscuit();
     assertTrue("equals true for self", first.equals(first));
     assertFalse("equals false for other", first.equals(second));
   }
@@ -28,14 +28,14 @@ public class CookieTest {
   /** Method testIsHumanoidFood. */
   @Test
   public void testIsHumanoidFood() {
-    Cookie cookie = new Cookie();
-    assertTrue("is humanoid food", ItemProperty.isHumanoidFood(cookie));
+    Biscuit biscuit = new Biscuit();
+    assertTrue("is humanoid food", ItemProperty.isHumanoidFood(biscuit));
   }
 
   /** Method testGetSimpleClassName. */
   @Test
   public void testGetSimpleClassName() {
-    Cookie cookie = new Cookie();
-    assertEquals("getSimpleClassName", "Cookie", cookie.getSimpleClassName());
+    Biscuit biscuit = new Biscuit();
+    assertEquals("getSimpleClassName", "Biscuit", biscuit.getSimpleClassName());
   }
 }

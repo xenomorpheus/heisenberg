@@ -65,8 +65,8 @@ public class BagOfHoldingTest {
           "type=" + type + ", description", boh.getDescription(), ordinaryBag.getDescription());
 
       // Check weight and volume limits.
-      // This cookie should only just fit.
-      Cookie i = new Cookie();
+      // This biscuit should only just fit.
+      Biscuit i = new Biscuit();
       i.setVolumeBase(expectedVolumeMax);
       i.setWeightBase(expectedWeightMax);
       boh.add(i);
@@ -83,11 +83,11 @@ public class BagOfHoldingTest {
   /** testing that an ordinary Item may be added to the bag. */
   @Test
   public void testAdd() {
-    Cookie cookie = new Cookie();
-    cookie.setContainer(new Box());
+    Biscuit biscuit = new Biscuit();
+    biscuit.setContainer(new Box());
     BagOfHolding bagOfHolding = new BagOfHolding(1);
-    bagOfHolding.add(cookie);
-    assertEquals("cookie location", bagOfHolding, cookie.getContainer());
+    bagOfHolding.add(biscuit);
+    assertEquals("biscuit location", bagOfHolding, biscuit.getContainer());
   }
 
   /** an exposed sharp object causes rupture. */
@@ -101,7 +101,7 @@ public class BagOfHoldingTest {
       bag.add(sword);
     } catch (InvalidTypeException e) {
       // The Exception we want
-      assertEquals("cookie location", box, sword.getContainer());
+      assertEquals("biscuit location", box, sword.getContainer());
       throw e;
     }
   }
@@ -138,7 +138,7 @@ public class BagOfHoldingTest {
     try {
       bag.add(bagInner);
     } catch (InvalidTypeException e) {
-      assertEquals("cookie location", box, bagInner.getContainer());
+      assertEquals("biscuit location", box, bagInner.getContainer());
       throw e;
     }
   }

@@ -56,8 +56,8 @@ public class FactoryTest {
   public void createItemTestInstance() {
 
     // Check the sub-class
-    Item cookie = Factory.createItem("Cookie");
-    assertTrue("instanceof", cookie instanceof Cookie);
+    Item biscuit = Factory.createItem("Biscuit");
+    assertTrue("instanceof", biscuit instanceof Biscuit);
     Item human = Factory.createItem("Human");
     assertTrue("instanceof", human instanceof Human);
   }

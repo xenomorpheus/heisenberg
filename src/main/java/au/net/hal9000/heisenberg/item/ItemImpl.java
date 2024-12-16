@@ -522,9 +522,9 @@ public abstract class ItemImpl implements Serializable, Item {
   }
 
   /**
-   * Returns the simple type of this item e.g. Cookie, Arrow, etc.
+   * Returns the simple type of this item e.g. Biscuit, Arrow, etc.
    *
-   * @return the simple type of this item e.g. Cookie, Arrow, etc.
+   * @return the simple type of this item e.g. Biscuit, Arrow, etc.
    */
   @Override
   public String getSimpleClassName() {

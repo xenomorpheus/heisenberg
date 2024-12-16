@@ -12,7 +12,7 @@
 		<item id="Candle" />
 		<item id="Cat" javaClass="entity.Cat" />
 		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
-		<item id="Cookie" />
+		<item id="Biscuit" />
 		<item id="Crossbow" iconOpenId="280" iconClosedId="280"
 			iconLeafId="280" />
 		<item id="CrossbowBolt" iconOpenId="23" iconClosedId="23"
@@ -554,7 +554,7 @@
 				<item id="Water1" type="Water" consumed="true" weightMin="3" />
 			</requirements>
 			<products>
-				<item id="Cookie" weightBase="1" />
+				<item id="Biscuit" weightBase="1" />
 			</products>
 		</recipe>
 		<recipe id="testFireGround1" description="small open ground fire"

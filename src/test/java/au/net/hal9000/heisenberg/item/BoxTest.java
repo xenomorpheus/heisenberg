@@ -11,17 +11,17 @@ public class BoxTest {
   @Test
   public void testAddOrdinary() {
     Location world = new Location();
-    Cookie cookie = new Cookie();
+    Biscuit biscuit = new Biscuit();
     Sword sword = new Sword();
     // set the location so we can see that it changes
-    cookie.setContainer(world);
+    biscuit.setContainer(world);
     sword.setContainer(world);
     Box box = new Box();
-    box.add(cookie);
+    box.add(biscuit);
     box.add(sword);
 
     // item's location changes to box
-    assertEquals("cookie location", box, cookie.getContainer());
+    assertEquals("biscuit location", box, biscuit.getContainer());
     assertEquals("sword location", box, sword.getContainer());
   }
 }

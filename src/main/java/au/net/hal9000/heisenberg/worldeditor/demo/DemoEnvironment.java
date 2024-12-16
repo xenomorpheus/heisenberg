@@ -4,10 +4,10 @@ import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
 import au.net.hal9000.heisenberg.item.Bag;
 import au.net.hal9000.heisenberg.item.BagOfHolding;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Candle;
 import au.net.hal9000.heisenberg.item.Cloak;
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
@@ -115,7 +115,7 @@ public final class DemoEnvironment {
     boh.add(new Box());
     boh.add(new Candle());
     boh.add(new Cloak());
-    boh.add(new Cookie());
+    boh.add(new Biscuit());
     boh.add(new Crossbow());
     boh.add(new CrossbowBolt());
     boh.add(scabbard);
@@ -142,7 +142,7 @@ public final class DemoEnvironment {
       quiver.add(new Arrow());
     }
 
-    // a human with a bag of cookies
+    // a human with a bag of Biscuits
     Human human = new Human();
     human.setWeightMax(DEMO_WEIGHT_VOLUME);
     human.setVolumeMax(DEMO_WEIGHT_VOLUME);
@@ -160,9 +160,9 @@ public final class DemoEnvironment {
     world.add(new Horse());
 
     Bag bag3 = new Bag();
-    bag3.add(new Cookie());
-    bag3.add(new Cookie());
-    bag3.add(new Cookie());
+    bag3.add(new Biscuit());
+    bag3.add(new Biscuit());
+    bag3.add(new Biscuit());
     world.add(bag3);
 
     return world;

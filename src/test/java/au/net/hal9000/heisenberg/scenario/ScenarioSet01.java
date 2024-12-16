@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Backpack;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Candle;
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.Crossbow;
 import au.net.hal9000.heisenberg.item.CrossbowBolt;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
@@ -145,17 +145,17 @@ public class ScenarioSet01 {
   }
 
   /**
-   * Method halflingEatsACookie.
+   * Method halflingEatsABiscuit.
    *
    * @throws InvalidTypeException
    */
   @Test
-  public void halflingEatsACookie() throws InvalidTypeException {
-    println(System.lineSeparator() + "** A halfling eats a cookie.");
+  public void halflingEatsABiscuit() throws InvalidTypeException {
+    println(System.lineSeparator() + "** A halfling eats a biscuit.");
     Halfling halfling = new Halfling();
     halfling.getPlayableState().setActionPoints(3);
-    Cookie cookie = new Cookie();
-    halfling.eat(cookie);
-    println("Halfling ate a cookie");
+    Biscuit biscuit = new Biscuit();
+    halfling.eat(biscuit);
+    println("Halfling ate a biscuit");
   }
 }

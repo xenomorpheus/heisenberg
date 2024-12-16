@@ -62,7 +62,7 @@ public class PersistenceTest {
   /** Persistence of basic Item. */
   @Test
   public void item() {
-    var item = new Cookie();
+    var item = new Biscuit();
     final var classExpected = item.getClass();
     String nameExpected = "Name of " + item.getSimpleClassName();
     item.setName(nameExpected);
@@ -214,28 +214,28 @@ public class PersistenceTest {
     String bagNameExpected = "Bag Name";
     bag.setName(bagNameExpected);
     assertEquals("Bag Name", bagNameExpected, bag.getName());
-    Cookie cookie1 = new Cookie();
-    String cookie1Name = "Cookie1 Name";
-    cookie1.setName(cookie1Name);
-    Cookie cookie2 = new Cookie();
-    bag.add(cookie1);
-    bag.add(cookie2);
+    Biscuit biscuit1 = new Biscuit();
+    String biscuit1Name = "Biscuit1 Name";
+    biscuit1.setName(biscuit1Name);
+    Biscuit biscuit2 = new Biscuit();
+    bag.add(biscuit1);
+    bag.add(biscuit2);
     LOGGER.info(bag.detailedDescription());
     assertEquals(2, bag.getContents().size());
-    assertEquals(0L, cookie1.getJpaId());
-    assertEquals(0L, cookie2.getJpaId());
+    assertEquals(0L, biscuit1.getJpaId());
+    assertEquals(0L, biscuit2.getJpaId());
     assertEquals(0L, bag.getJpaId());
 
     // Persist Item
     em.getTransaction().begin();
     em.persist(bag);
-    em.persist(cookie1);
-    em.persist(cookie2);
+    em.persist(biscuit1);
+    em.persist(biscuit2);
     em.getTransaction().commit();
     final var bagJpaId = bag.getJpaId();
     assertNotEquals(0L, bagJpaId);
-    assertNotEquals(0L, cookie1.getJpaId());
-    assertNotEquals(0L, cookie2.getJpaId());
+    assertNotEquals(0L, biscuit1.getJpaId());
+    assertNotEquals(0L, biscuit2.getJpaId());
 
     em.close();
     em = null;
@@ -247,8 +247,8 @@ public class PersistenceTest {
     assertEquals(2, bagFetched.getContents().size());
     LOGGER.info(bagFetched.detailedDescription());
     LOGGER.info("Bag Contents Count: " + bagFetched.getContents().size());
-    var cookie1Fetched = bagFetched.get(0);
-    assertEquals("Cookie1 Name", cookie1Name, cookie1Fetched.getName());
+    var biscuit1Fetched = bagFetched.get(0);
+    assertEquals("Biscuit1 Name", biscuit1Name, biscuit1Fetched.getName());
     for (var item : bagFetched.getContents()) {
       LOGGER.info("Content: " + item.detailedDescription());
     }
@@ -274,7 +274,7 @@ public class PersistenceTest {
     boh.add(new Box());
     boh.add(new Candle());
     boh.add(new Cloak());
-    boh.add(new Cookie());
+    boh.add(new Biscuit());
     boh.add(new Crossbow());
     boh.add(new CrossbowBolt());
     boh.add(new MagicRing());
@@ -294,12 +294,12 @@ public class PersistenceTest {
     quiver.add(new Arrow());
 
     Bag bag2 = new Bag();
-    bag2.add(new Cookie());
-    bag2.add(new Cookie());
-    bag2.add(new Cookie());
+    bag2.add(new Biscuit());
+    bag2.add(new Biscuit());
+    bag2.add(new Biscuit());
     backpack.add(bag2);
 
-    // a human with a bag of cookies
+    // a human with a bag of biscuits
     Human human = new Human();
     world.add(human);
     human.setWeightMax(100000);
@@ -315,9 +315,9 @@ public class PersistenceTest {
 
     // bag3
     Bag bag3 = new Bag();
-    bag3.add(new Cookie());
-    bag3.add(new Cookie());
-    bag3.add(new Cookie());
+    bag3.add(new Biscuit());
+    bag3.add(new Biscuit());
+    bag3.add(new Biscuit());
     world.add(bag3);
 
     return world;

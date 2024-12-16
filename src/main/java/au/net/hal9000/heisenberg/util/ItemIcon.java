@@ -115,7 +115,7 @@ public class ItemIcon implements Serializable {
   /**
    * Set the Icon to show in the UI when collection is opened.
    *
-   * @param simpleClassName Simple Item name e.g. Cookie.
+   * @param simpleClassName Simple Item name e.g. Biscuit.
    * @param imageIcon Icon to show.
    */
   public static void setIconOpenDefaultForClass(String simpleClassName, ImageIcon imageIcon) {

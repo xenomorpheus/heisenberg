@@ -12,7 +12,7 @@
 		<class>au.net.hal9000.heisenberg.item.Candle</class>
 		<class>au.net.hal9000.heisenberg.item.entity.Cat</class>
 		<class>au.net.hal9000.heisenberg.item.Cloak</class>
-		<class>au.net.hal9000.heisenberg.item.Cookie</class>
+		<class>au.net.hal9000.heisenberg.item.Biscuit</class>
 		<class>au.net.hal9000.heisenberg.item.Crossbow</class>
 		<class>au.net.hal9000.heisenberg.item.CrossbowBolt</class>
 		<class>au.net.hal9000.heisenberg.item.entity.Elf</class>

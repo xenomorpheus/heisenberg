@@ -37,7 +37,7 @@ public class ItemTest {
 
   @Test
   public void testItem() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     assertEquals("Item() name", null, item.getName());
     assertEquals("Item() description", null, item.getDescription());
     // assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
@@ -48,21 +48,21 @@ public class ItemTest {
 
   @Test
   public void testId() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     UUID id = item.getId();
     assertNotNull("id", id);
   }
 
   @Test
   public void testGetJpaId() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     long jpaId = item.getJpaId();
     assertEquals("jpaId", 0L, jpaId);
   }
 
   @Test
   public void testHitPoints() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     float expectHitPoints = 1.23f;
     item.setHitPoints(expectHitPoints);
     assertEquals("hit Points", expectHitPoints, item.getHitPoints(), WITHIN_MARGIN);
@@ -70,14 +70,14 @@ public class ItemTest {
 
   @Test
   public void testName() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setName("fred");
     assertEquals("setname & getname", "fred", item.getName());
   }
 
   @Test
   public void testDescription() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setDescription("A Description");
     assertEquals("description", "A Description", item.getDescription());
   }
@@ -85,7 +85,7 @@ public class ItemTest {
   @Test
   public void testBaseWeight() {
     final float weight = 0.123F;
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setWeightBase(weight);
     assertEquals("weightBase", item.getWeightBase(), weight, WITHIN_MARGIN);
   }
@@ -93,7 +93,7 @@ public class ItemTest {
   @Test
   public void testWeight() {
     final float weight = 0.123F;
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setWeightBase(weight);
     assertEquals("weight", item.getWeight(), weight, WITHIN_MARGIN);
   }
@@ -101,7 +101,7 @@ public class ItemTest {
   /** test valueBase and value */
   @Test
   public void testValueBase() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     Currency currency = new Currency();
     item.setValueBase(currency);
     assertTrue("valueBase", currency == item.getValueBase());
@@ -110,7 +110,7 @@ public class ItemTest {
 
   @Test
   public void testLocation() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     Box box = new Box();
     item.setContainer(box);
     assertEquals("location", box, item.getContainer());
@@ -129,7 +129,7 @@ public class ItemTest {
   @Test
   public void testSetVolumeMax() {
     float volumeBase = 20F;
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setVolumeBase(volumeBase);
     float v = item.getVolumeBase();
     assertEquals("getVolumeBase=", volumeBase, v, 0.0001F);
@@ -137,15 +137,15 @@ public class ItemTest {
 
   @Test
   public void testEquals() {
-    Item first = new Cookie();
-    Item second = new Cookie();
+    Item first = new Biscuit();
+    Item second = new Biscuit();
     assertTrue("equals true for self", first.equals(first));
     assertFalse("equals false for other", first.equals(second));
   }
 
   @Test
   public void testProperties() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     Properties p = new Properties();
     item.setProperties(p);
     assertEquals("description", p, item.getProperties());
@@ -153,7 +153,7 @@ public class ItemTest {
 
   @Test
   public void testProperty() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setProperty("myKey", "myVal");
     assertEquals("get property", "myVal", item.getProperty("myKey"));
     item.removeProperty("myKey");
@@ -161,7 +161,7 @@ public class ItemTest {
 
   @Test
   public void testItemIcon() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     ItemIcon ii = new ItemIcon(item);
     ItemIcon ii2 = item.getItemIcon();
     assertEquals("ItemIcon", ii, ii2);
@@ -171,14 +171,14 @@ public class ItemTest {
   public void testSetAllFrom() {
     Item candle = new Candle();
     ItemIcon ii = new ItemIcon(candle);
-    Item item = new Cookie();
-    Item other = new Cookie();
+    Item item = new Biscuit();
+    Item other = new Biscuit();
     ItemContainer bag = new Bag();
     other.setContainer(bag);
     other.setDescription("other");
     other.setHitPoints(123f);
     other.setItemIcon(ii);
-    other.setName("the cookie of awesomeness");
+    other.setName("the biscuit of awesomeness");
     other.setPosition(new Position(1, 2));
     other.setValueBase(new Currency(1, 2, 3, 4));
     other.setVolumeBase(145);
@@ -199,14 +199,14 @@ public class ItemTest {
   @Test
   public void testHashCode() {
 
-    Item item = new Cookie();
+    Item item = new Biscuit();
     ItemIcon ii = new ItemIcon(item);
     ItemContainer bag = new Bag();
     item.setContainer(bag);
     item.setDescription("other");
     item.setHitPoints(123f);
     item.setItemIcon(ii);
-    item.setName("the cookie of awesomeness");
+    item.setName("the biscuit of awesomeness");
     item.setPosition(new Position(1, 2));
     item.setValueBase(new Currency(1, 2, 3, 4));
     item.setVolumeBase(145);
@@ -217,7 +217,7 @@ public class ItemTest {
   /** Move without a container. */
   @Test(expected = UnsupportedOperationException.class)
   public void testMoveNoContainer() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
 
     // No container - No Movement
     Position expectedPosition = new Position(10, 20, 30);
@@ -237,7 +237,7 @@ public class ItemTest {
   /** Move within a container. */
   @Test
   public void testMoveContainer() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
 
     Location container = new Location();
     item.setContainer(container);
@@ -249,7 +249,7 @@ public class ItemTest {
 
   @Test
   public void testApplyDelta() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     ItemContainer bag = new Bag();
     bag.add(item);
     Position delta = new Position(1, 2);
@@ -259,7 +259,7 @@ public class ItemTest {
   @Test
   public void testBeNot() {
     ItemContainer container = new Bag();
-    Item item = new Cookie();
+    Item item = new Biscuit();
     container.add(item);
     assertTrue(container.contains(item));
     item.beNot();
@@ -269,7 +269,7 @@ public class ItemTest {
   @Test
   public void testMoveItemContainerPosition() {
     ItemContainer container = new Bag();
-    Item item = new Cookie();
+    Item item = new Biscuit();
     Position position = new Position(4, 5);
     item.move(container, position);
     assertTrue(container.contains(item));
@@ -280,7 +280,7 @@ public class ItemTest {
   @Test
   public void testMoveItemContainer() {
     ItemContainer container = new Bag();
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.move(container);
     assertTrue(container.contains(item));
     assertEquals(container, item.getContainer());
@@ -289,10 +289,10 @@ public class ItemTest {
   @Test
   public void testDetailedDescription() {
 
-    Item item = new Cookie();
+    Item item = new Biscuit();
     item.setDescription("other");
     item.setHitPoints(123f);
-    item.setName("the cookie of awesomeness");
+    item.setName("the biscuit of awesomeness");
     item.setPosition(new Position(1, 2));
     item.setValueBase(new Currency(1, 2, 3, 4));
     item.setVolumeBase(145);
@@ -314,7 +314,7 @@ public class ItemTest {
 
   @Test
   public void testAcceptItemVisitor() {
-    Item item = new Cookie();
+    Item item = new Biscuit();
     ItemVisitor visitor = new MyItemVisitor();
     item.accept(visitor);
     MyItemVisitor myItemVisitor = (MyItemVisitor) visitor;

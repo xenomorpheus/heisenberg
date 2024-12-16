@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import static org.junit.Assert.assertEquals;
 
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
@@ -38,7 +38,7 @@ public class HumanoidTest {
   @Test(expected = InvalidTypeException.class)
   public void testAddItem() {
     Humanoid human = new Human();
-    Cookie cookie = new Cookie();
-    human.add(cookie);
+    Biscuit biscuit = new Biscuit();
+    human.add(biscuit);
   }
 }

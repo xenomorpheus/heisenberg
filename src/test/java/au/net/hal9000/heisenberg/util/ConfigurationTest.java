@@ -127,8 +127,8 @@ public class ConfigurationTest {
     assertEquals("product count", 1, recipe1.getProductCount());
     ProductItem product0 = (ProductItem) recipe1.getProduct(0);
     assertNotNull("product0 not null", product0);
-    assertEquals("product0 id", "Cookie", product0.getId());
-    assertEquals("product0 itemType", "Cookie", product0.getType());
+    assertEquals("product0 id", "Biscuit", product0.getId());
+    assertEquals("product0 itemType", "Biscuit", product0.getType());
     assertEquals("product0 getWeightBase", 1, product0.getWeightBase(), TOLERANCE);
   }
 
@@ -198,8 +198,8 @@ public class ConfigurationTest {
       fail("Expecint ProcutItem");
     }
     ProductItem productItem = (ProductItem) product;
-    assertEquals("Product 0 Id", "Cookie", productItem.getId());
-    assertEquals("Product 0 Type", "Cookie", productItem.getType());
+    assertEquals("Product 0 Id", "Biscuit", productItem.getId());
+    assertEquals("Product 0 Type", "Biscuit", productItem.getType());
     assertEquals("Product 0 weightBase", 1, productItem.getWeightBase(), 0.0001f);
   }
 

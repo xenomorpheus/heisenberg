@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.Bag;
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -35,12 +35,12 @@ public class ItemTreePanelTest {
   public void testGetPathToNode() {
     Location location = new Location();
     Bag bag = new Bag();
-    Cookie cookie = new Cookie();
+    Biscuit biscuit = new Biscuit();
     location.add(bag);
-    bag.add(cookie);
-    Item itemArray[] = new Item[] {location, bag, cookie};
+    bag.add(biscuit);
+    Item itemArray[] = new Item[] {location, bag, biscuit};
 
-    TreePath actual = ItemTreePanel.getPathToNode(new ItemTreeNode(cookie));
+    TreePath actual = ItemTreePanel.getPathToNode(new ItemTreeNode(biscuit));
     assertEquals("path size", itemArray.length, actual.getPathCount());
     int expectedIndex = 0;
     for (Object object : actual.getPath()) {

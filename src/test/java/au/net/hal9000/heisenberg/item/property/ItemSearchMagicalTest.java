@@ -3,8 +3,8 @@ package au.net.hal9000.heisenberg.item.property;
 import static org.junit.Assert.assertEquals;
 
 import au.net.hal9000.heisenberg.item.BagOfHolding;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ public class ItemSearchMagicalTest {
   /** Method testAccept. Ordinary non-magical, non-container. */
   @Test
   public void testAccept1() {
-    Cookie cookie = new Cookie();
-    ItemSearch searchCookie = new ItemSearchMagical();
-    cookie.accept(searchCookie);
-    assertEquals(0, searchCookie.getMatchingItemsCount());
+    Biscuit biscuit = new Biscuit();
+    ItemSearch searchBiscuit = new ItemSearchMagical();
+    biscuit.accept(searchBiscuit);
+    assertEquals(0, searchBiscuit.getMatchingItemsCount());
   }
 
   /** Method testAccept. Ordinary non-magical, container. */
@@ -44,10 +44,10 @@ public class ItemSearchMagicalTest {
   @Test
   public void testAccept4() {
     Box box = new Box();
-    Cookie cookie = new Cookie();
-    box.setWeightMax(cookie.getWeight());
-    box.setVolumeMax(cookie.getVolume());
-    box.add(cookie);
+    Biscuit biscuit = new Biscuit();
+    box.setWeightMax(biscuit.getWeight());
+    box.setVolumeMax(biscuit.getVolume());
+    box.add(biscuit);
     ItemSearch searchBox2 = new ItemSearchMagical();
     box.accept(searchBox2);
     assertEquals("count", 0, searchBox2.getMatchingItemsCount());
@@ -72,11 +72,11 @@ public class ItemSearchMagicalTest {
   public void testAccept6() {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
-    Cookie cookie = new Cookie();
-    box.setWeightMax(boh.getWeight() + cookie.getWeight());
-    box.setVolumeMax(boh.getVolume() + cookie.getVolume());
+    Biscuit biscuit = new Biscuit();
+    box.setWeightMax(boh.getWeight() + biscuit.getWeight());
+    box.setVolumeMax(boh.getVolume() + biscuit.getVolume());
     box.add(boh);
-    box.add(cookie);
+    box.add(biscuit);
     ItemSearch searchBox = new ItemSearchMagical();
     box.accept(searchBox);
     assertEquals("count", 1, searchBox.getMatchingItemsCount());
@@ -88,11 +88,11 @@ public class ItemSearchMagicalTest {
   public void testAccept7() {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
-    Cookie cookie = new Cookie();
+    Biscuit biscuit = new Biscuit();
     List<Item> container = new ArrayList<Item>();
     container.add(box);
     container.add(boh);
-    container.add(cookie);
+    container.add(biscuit);
 
     ItemSearch search = new ItemSearchMagical();
     search.visit(container);

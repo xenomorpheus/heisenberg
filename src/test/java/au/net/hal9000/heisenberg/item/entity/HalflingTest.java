@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import static org.junit.Assert.assertTrue;
 
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
@@ -28,15 +28,15 @@ public class HalflingTest {
   }
 
   @Test
-  public void halflingEatsACookie() throws InvalidTypeException {
+  public void halflingEatsABiscuit() throws InvalidTypeException {
     // Setup
     Halfling halfling = new Halfling();
     halfling.getPlayableState().setActionPoints(3);
     ItemProperty.setNourishment(halfling, ItemProperty.HEALTH_METRIC_IDEAL / 2);
     float nourishment_before = ItemProperty.getNourishment(halfling);
-    Cookie cookie = new Cookie();
+    Biscuit biscuit = new Biscuit();
     // Run
-    halfling.eat(cookie);
+    halfling.eat(biscuit);
     // Test
     float nourishment_after = ItemProperty.getNourishment(halfling);
     assertTrue("Eating increases nourishment", nourishment_after > nourishment_before);

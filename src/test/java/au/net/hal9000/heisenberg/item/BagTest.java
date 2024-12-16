@@ -12,13 +12,13 @@ public class BagTest {
   @Test
   public void testAddOrdinary() {
     Location world = new Location();
-    Cookie cookie = new Cookie();
+    Biscuit biscuit = new Biscuit();
     // set the location so we can see that it changes
-    cookie.setContainer(world);
+    biscuit.setContainer(world);
     Bag bag = new Bag();
-    bag.add(cookie);
+    bag.add(biscuit);
     // item's location changes to bag
-    assertEquals("cookie location", bag, cookie.getContainer());
+    assertEquals("biscuit location", bag, biscuit.getContainer());
   }
 
   /** Sharp items throw ExceptionInvalidType. */
@@ -32,7 +32,7 @@ public class BagTest {
       bag.add(sword);
     } catch (InvalidTypeException e) {
       // Item's location remains unchanged.
-      assertEquals("cookie location", world, sword.getContainer());
+      assertEquals("biscuit location", world, sword.getContainer());
       throw e;
     }
   }

@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 import au.net.hal9000.heisenberg.item.Arrow;
 import au.net.hal9000.heisenberg.item.Bag;
 import au.net.hal9000.heisenberg.item.BagOfHolding;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
-import au.net.hal9000.heisenberg.item.Cookie;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
 import org.junit.Test;
@@ -67,15 +67,15 @@ public class RequirementItemTest {
   @Test
   public void testMeetsRequirementsMinWeight() {
     // The requirement
-    RequirementItem requirementItem = new RequirementItem("Cookie", "Cookie", true, 3);
+    RequirementItem requirementItem = new RequirementItem("Biscuit", "Biscuit", true, 3);
 
     // Correct type and weight
-    Cookie cookie = new Cookie();
-    cookie.setWeightBase(3);
+    Biscuit biscuit = new Biscuit();
+    biscuit.setWeightBase(3);
 
     // Correct type, too lite.
-    Cookie cookieLite = new Cookie();
-    cookieLite.setWeightBase(2.95f);
+    Biscuit biscuitLite = new Biscuit();
+    biscuitLite.setWeightBase(2.95f);
 
     // Correct weight, wrong type
     Arrow arrow = new Arrow();
@@ -83,21 +83,22 @@ public class RequirementItemTest {
 
     // Tests
     assertEquals(
-        "correct type, just meets weight", null, requirementItem.meetsRequirements(cookie));
+        "correct type, just meets weight", null, requirementItem.meetsRequirements(biscuit));
     assertEquals(
         "incorrect type, meets weight",
-        "item must be a Cookie",
+        "item must be a Biscuit",
         requirementItem.meetsRequirements(arrow));
     assertEquals(
         "correct type, too lite",
         "item must weight at least 3.0",
-        requirementItem.meetsRequirements(cookieLite));
+        requirementItem.meetsRequirements(biscuitLite));
   }
 
   /** Method testToString. */
   @Test
   public void testToString() {
-    RequirementItem requirementItem = new RequirementItem("Cookie");
-    assertEquals("toString", "Id: Cookie, consumed, item type Cookie", requirementItem.toString());
+    RequirementItem requirementItem = new RequirementItem("Biscuit");
+    assertEquals(
+        "toString", "Id: Biscuit, consumed, item type Biscuit", requirementItem.toString());
   }
 }

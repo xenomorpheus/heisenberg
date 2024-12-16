@@ -8,13 +8,13 @@ import jakarta.persistence.Entity;
 
 /** */
 @Entity
-public class Cookie extends ItemImpl implements HumanoidFood {
+public class Biscuit extends ItemImpl implements HumanoidFood {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
-  /** Constructor for Cookie. */
-  public Cookie() {
+  /** Constructor for Biscuit. */
+  public Biscuit() {
     super();
     ItemProperty.setHumanoidFood(this, true);
   }

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
 import java.awt.Component;
 import javax.swing.JTree;
@@ -48,7 +48,7 @@ public class ItemTreeCellRendererTest extends TestCase {
     // add test code here
     ItemTreeCellRenderer fixture = new ItemTreeCellRenderer();
     JTree tree = new JTree();
-    Item value = new Cookie();
+    Item value = new Biscuit();
     boolean sel = false;
     boolean exp = false;
     boolean leaf = false;

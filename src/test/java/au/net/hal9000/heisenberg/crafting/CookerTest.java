@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import au.net.hal9000.heisenberg.item.Cookie;
+import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.FlintAndTinder;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Water;
@@ -48,8 +48,8 @@ public class CookerTest {
   }
 
   /**
-   * Magically create a Cookie. e.g. using only magic and time. An example of common use - create an
-   * Item.
+   * Magically create a Biscuit. e.g. using only magic and time. An example of common use - create
+   * an Item.
    */
   @Test
   public void testItemCreation() {
@@ -81,7 +81,7 @@ public class CookerTest {
     // Check the item produced
     assertEquals("location has new item", 1, newItemLocation.size());
     Item item = newItemLocation.get(0);
-    assertEquals("item type", "Cookie", item.getClass().getSimpleName());
+    assertEquals("item type", "Biscuit", item.getClass().getSimpleName());
 
     // Check the chef has paid in Mana and ActionPoints
     assertEquals("mana", manaRemaining, chef.getPlayableState().getMana());
@@ -137,15 +137,15 @@ public class CookerTest {
   public void testFullProcess() {
 
     Location world = new Location();
-    Cookie cookie = new Cookie();
-    world.add(cookie);
+    Biscuit biscuit = new Biscuit();
+    world.add(biscuit);
 
     Map<String, Requirement> requirements = new TreeMap<>();
     requirements.put("Location", new RequirementItem("Location", "Location", false, 0));
-    requirements.put("Cookie", new RequirementItem("Cookie"));
+    requirements.put("Biscuit", new RequirementItem("Biscuit"));
 
     List<Product> products = new ArrayList<Product>();
-    products.add(new ProductItem("Cookie"));
+    products.add(new ProductItem("Biscuit"));
 
     // Skill(s)
     Set<Skill> skills = new TreeSet<Skill>();
@@ -156,8 +156,8 @@ public class CookerTest {
     // Build a recipe with the list of required ingredients
     Recipe recipe =
         new Recipe(
-            "magicCookie1",
-            "a magic cookie",
+            "magicBiscuit1",
+            "a magic biscuit",
             null,
             REQUIRED_MANA,
             REQUIRED_ACTION_POINTS,
@@ -179,15 +179,15 @@ public class CookerTest {
     // Set the
     Location newItemLocation = new Location();
     cooker.setItemsAvailable("Location", newItemLocation);
-    cooker.setItemsAvailable("Cookie", cookie);
+    cooker.setItemsAvailable("Biscuit", biscuit);
 
     // Do the cooking
     cooker.cook();
 
-    // Does the location now contain a Cookie?
+    // Does the location now contain a Biscuit?
     assertEquals("1 item", 1, newItemLocation.size());
     Item newItem = newItemLocation.get(0);
-    assertEquals("item type", "Cookie", newItem.getClass().getSimpleName());
+    assertEquals("item type", "Biscuit", newItem.getClass().getSimpleName());
     assertEquals("new item location", newItemLocation, newItem.getContainer());
 
     // Check the chef has paid in Mana and ActionPoints
@@ -707,21 +707,21 @@ public class CookerTest {
   /**
    * ID: test-item-1 <br>
    * Desc: simplest test of one required item. <br>
-   * Require: Cookie <br>
-   * Input: Cookie <br>
+   * Require: Biscuit <br>
+   * Input: Biscuit <br>
    * overall: true <br>
-   * output: The Cookie is consumed. <br>
+   * output: The Biscuit is consumed. <br>
    */
   @Test
   public void testCookItem1() {
     Location world = new Location();
-    Cookie cookie = new Cookie();
-    world.add(cookie);
+    Biscuit biscuit = new Biscuit();
+    world.add(biscuit);
 
     // RequirementItem
     Map<String, Requirement> requirements = new TreeMap<>();
 
-    requirements.put("Cookie", new RequirementItem("Cookie"));
+    requirements.put("Biscuit", new RequirementItem("Biscuit"));
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =
@@ -746,7 +746,7 @@ public class CookerTest {
     Cooker cooker = recipe.getNewCooker(chef);
 
     // Add an item.
-    cooker.setItemsAvailable("Cookie", cookie);
+    cooker.setItemsAvailable("Biscuit", biscuit);
 
     cooker.cook();
 
@@ -766,21 +766,21 @@ public class CookerTest {
    * <br>
    * ID: test-item-1-catalyst <br>
    * Desc: simplest test of one required item NOT consumed <br>
-   * Require: Cookie <br>
-   * Input: Cookie <br>
+   * Require: Biscuit <br>
+   * Input: Biscuit <br>
    * overall: true <br>
-   * output: The Cookie is NOT consumed. <br>
+   * output: The Biscuit is NOT consumed. <br>
    */
   @Test
   public void testCookItem1Catalyst() {
     Location world = new Location();
-    Cookie cookie = new Cookie();
-    world.add(cookie);
+    Biscuit biscuit = new Biscuit();
+    world.add(biscuit);
 
     // RequirementItem
     Map<String, Requirement> requirements = new TreeMap<>();
 
-    requirements.put("Cookie", new RequirementItem("Cookie", "Cookie", false, 0));
+    requirements.put("Biscuit", new RequirementItem("Biscuit", "Biscuit", false, 0));
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =
@@ -803,7 +803,7 @@ public class CookerTest {
 
     // Get a cooker
     Cooker cooker = recipe.getNewCooker(chef);
-    cooker.setItemsAvailable("Cookie", cookie);
+    cooker.setItemsAvailable("Biscuit", biscuit);
 
     cooker.cook();
 
@@ -821,38 +821,38 @@ public class CookerTest {
    * ID: test-item-2 <br>
    * Desc: Multiple items of same type required but not enough present. <br>
    * Require: <br>
-   * 3 x Cookie <br>
-   * Input: 2 x Cookie <br>
+   * 3 x Biscuit <br>
+   * Input: 2 x Biscuit <br>
    * overall: fail <br>
    * output: No change. <br>
    */
   // TODO Implement Test
   /**
    * ID: test-item-weightMin-1 <br>
-   * Require: Cookie weighing at least 2 units. <br>
-   * Input: Cookie weighing at least 2 units. <br>
+   * Require: Biscuit weighing at least 2 units. <br>
+   * Input: Biscuit weighing at least 2 units. <br>
    * overall: true <br>
-   * output: Cookie is consumed. <br>
+   * output: Biscuit is consumed. <br>
    */
   // TODO Implement Test
   /**
    * ID: test-item-weightMin-2 <br>
    * Desc: Simplest test for minimum required weight <br>
-   * Require: Cookie weighing at least 2.0001 units. <br>
-   * Input: Cookie weighing at least 2 units. <br>
+   * Require: Biscuit weighing at least 2.0001 units. <br>
+   * Input: Biscuit weighing at least 2 units. <br>
    * overall: fail <br>
-   * output: Cookie is untouched. <br>
+   * output: Biscuit is untouched. <br>
    */
   // TODO Implement Test
   /**
    * ID: test-item-weightMin-complex-1 <br>
    * Require: <br>
-   * a) Cookie weighing at least 2 units. <br>
-   * b) Cookie weighing at least 3 units. <br>
+   * a) Biscuit weighing at least 2 units. <br>
+   * b) Biscuit weighing at least 3 units. <br>
    * Input: <br>
-   * a) Cookie weighing 2 units. <br>
-   * b) Cookie weighing 3 units. <br>
+   * a) Biscuit weighing 2 units. <br>
+   * b) Biscuit weighing 3 units. <br>
    * overall: true <br>
-   * output: Cookies consumed <br>
+   * output: Biscuits consumed <br>
    */
 }

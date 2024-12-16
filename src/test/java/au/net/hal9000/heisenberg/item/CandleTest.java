@@ -51,9 +51,9 @@ public class CandleTest {
     // lit with nothing
     candle.lightWith(null);
     assertFalse("lit with nothing", candle.isLit());
-    // lit with cookie
-    candle.lightWith(new Cookie());
-    assertFalse("lit with Cookie", candle.isLit());
+    // lit with biscuit
+    candle.lightWith(new Biscuit());
+    assertFalse("lit with Biscuit", candle.isLit());
     // lit with FlintAndTinder
     candle.lightWith(new FlintAndTinder());
     assertTrue("lit with FlintAndTinder", candle.isLit());
