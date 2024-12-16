@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-/** */
+/** A helper class for finding Item objects using visitor pattern. */
 public abstract class ItemSearch implements ItemVisitor {
 
   /** Field matchingItems. */

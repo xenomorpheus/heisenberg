@@ -6,7 +6,7 @@ import au.net.hal9000.heisenberg.item.api.HumanoidFood;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Entity;
 
-/** */
+/** A common biscuit. */
 @Entity
 public class Biscuit extends ItemImpl implements HumanoidFood {
 

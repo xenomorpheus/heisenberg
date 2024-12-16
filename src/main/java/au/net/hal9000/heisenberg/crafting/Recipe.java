@@ -10,9 +10,10 @@ import java.util.Set;
 /**
  * Recipes describe the process of crafting, spells, cooking etc.
  *
- * <p>Recipes are comprised of a list of Requirement objects ({@link Requirement}).
+ * <p>Recipes are comprised of a list of Requirement objects ({@link
+ * au.net.hal9000.heisenberg.crafting.Requirement}).
  *
- * <p>Recipes produce outcomes, eg. ({@link au.net.hal9000.heisenberg.item.Item}).
+ * <p>Recipes produce outcomes, eg. ({@link au.net.hal9000.heisenberg.item.api.Item}).
  *
  * <p>In order to perform a Recipe all the requirements must be met.
  *

@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.exception;
 
-/** */
+/** Wrong type of Item supplied. */
 public class InvalidTypeException extends RuntimeException {
 
   /** serial version id. */

@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.item.entity;
 
 import jakarta.persistence.Entity;
 
-/** */
+/** A short humanoid. */
 @Entity
 public class Halfling extends Humanoid {
 

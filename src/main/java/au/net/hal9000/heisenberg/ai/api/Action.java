@@ -6,7 +6,7 @@ public interface Action {
   /**
    * Get the cost of this action.
    *
-   * @return
+   * @return the cost
    */
   double getCost();
 

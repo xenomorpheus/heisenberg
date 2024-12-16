@@ -5,3 +5,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/
 /usr/libexec/java_home -V
 
 mvn -e -X clean compile
+
+# Javadoc
+mvn javadoc:javadoc

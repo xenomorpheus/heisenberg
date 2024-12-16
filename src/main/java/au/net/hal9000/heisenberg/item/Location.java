@@ -1,6 +1,5 @@
 package au.net.hal9000.heisenberg.item;
 
-/** The container has control of the movement of Item objects within it. */
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
@@ -14,7 +13,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 // import org.apache.log4j.BasicConfigurator;
-/** */
+/** The container has control of the movement of Item objects within it. */
 @Entity
 public class Location extends ItemImpl implements ItemContainer {
   /** */
@@ -38,75 +37,38 @@ public class Location extends ItemImpl implements ItemContainer {
   }
 
   // Getters and Setters
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#getContents()
-   */
+
   @Override
   public List<Item> getContents() {
     return contents;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#getWeightMax()
-   */
   @Override
   public float getWeightMax() {
     return weightMax;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#setWeightMax(float)
-   */
   @Override
   public void setWeightMax(float weightMax) {
     this.weightMax = weightMax;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#getVolumeMax()
-   */
   @Override
   public float getVolumeMax() {
     return volumeMax;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#setVolumeMax(float)
-   */
   @Override
   public void setVolumeMax(float volumeMax) {
     this.volumeMax = volumeMax;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * au.net.hal9000.heisenberg.item.ItemContainer#contains(au.net.hal9000.
-   * heisenberg.item.api.Item)
-   */
   @Override
   public boolean contains(Item item) {
     return contents.contains(item);
   }
 
   // Misc
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#size()
-   */
 
   @Override
   public int size() {
@@ -117,11 +79,6 @@ public class Location extends ItemImpl implements ItemContainer {
     return count;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#get(int)
-   */
   @Override
   public Item get(final int index) {
     return contents.get(index);
@@ -223,23 +180,11 @@ public class Location extends ItemImpl implements ItemContainer {
     return true;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#add(au.net.hal9000.
-   * heisenberg.item.api.Item)
-   */
   @Override
   public void add(Item item) {
     add(contents.size(), item);
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#add(int,
-   * au.net.hal9000.heisenberg.item.api.Item)
-   */
   @Override
   public void add(int index, Item item) {
     ItemContainer itemCurrentContainer = item.getContainer();
@@ -333,12 +278,6 @@ public class Location extends ItemImpl implements ItemContainer {
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#empty(au.net.hal9000.
-   * heisenberg.item.ItemContainer)
-   */
   @Override
   public void empty(ItemContainer newLocation) {
     while (!contents.isEmpty()) {
@@ -407,12 +346,6 @@ public class Location extends ItemImpl implements ItemContainer {
     super.beNot();
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemContainer#remove(au.net.hal9000.
-   * heisenberg.item.api.Item)
-   */
   @Override
   public void remove(Item item) {
     contents.remove(item);

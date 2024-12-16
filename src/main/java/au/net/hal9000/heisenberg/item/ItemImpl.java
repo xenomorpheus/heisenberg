@@ -391,11 +391,6 @@ public abstract class ItemImpl implements Serializable, Item {
     return true;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemInt#beNot()
-   */
   @Override
   public void beNot() {
     // TODO Help Required - How do I delete an object that
@@ -407,26 +402,12 @@ public abstract class ItemImpl implements Serializable, Item {
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * au.net.hal9000.heisenberg.item.ItemInt#move(au.net.hal9000.heisenberg
-   * .item.ItemContainer, au.net.hal9000.heisenberg.units.Position)
-   */
   @Override
   public void move(ItemContainer container, Position requestedPosition) {
     container.add(this);
     moveWithinContainer(requestedPosition);
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * au.net.hal9000.heisenberg.item.ItemInt#move(au.net.hal9000.heisenberg
-   * .item.ItemContainer)
-   */
   @Override
   public void move(ItemContainer container) {
     container.add(this);
@@ -441,11 +422,6 @@ public abstract class ItemImpl implements Serializable, Item {
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemInt#toString()
-   */
   @Override
   public String toString() {
     String name = getName();
@@ -455,11 +431,6 @@ public abstract class ItemImpl implements Serializable, Item {
     return name;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemInt#detailedDescription()
-   */
   @Override
   public String detailedDescription() {
     StringBuilder text = new StringBuilder();
@@ -509,13 +480,6 @@ public abstract class ItemImpl implements Serializable, Item {
     return text.toString();
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * au.net.hal9000.heisenberg.item.ItemInt#accept(au.net.hal9000.heisenberg
-   * .item.property.ItemVisitor)
-   */
   @Override
   public void accept(ItemVisitor visitor) {
     visitor.visit(this);
@@ -531,12 +495,6 @@ public abstract class ItemImpl implements Serializable, Item {
     return getClass().getSimpleName();
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see au.net.hal9000.heisenberg.item.ItemInt#applyDelta(au.net.hal9000.
-   * heisenberg .units.Position)
-   */
   @Override
   public void applyDelta(Position delta) {
     Position positionInContainer = getPosition();

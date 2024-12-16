@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * A-Star Search & Uniform Cost Search.<br>
+ * A-Star Search &amp; Uniform Cost Search.<br>
  * Uniform Cost Search is just SearchAStar without an estimate of cost to goal.
  */
 public class SearchAStar extends SearchBase {

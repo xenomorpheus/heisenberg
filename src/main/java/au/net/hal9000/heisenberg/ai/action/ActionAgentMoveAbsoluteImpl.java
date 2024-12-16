@@ -19,7 +19,7 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase
    * Constructor.
    *
    * @param agentPositionTarget desired position.
-   * @param cost
+   * @param cost cost to travel to the new position.
    */
   public ActionAgentMoveAbsoluteImpl(final Position agentPositionTarget, double cost) {
     super(cost);

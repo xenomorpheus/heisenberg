@@ -5,6 +5,6 @@
  * <p>Crafting places a number of ingredients into a {@link
  * au.net.hal9000.heisenberg.crafting.Cooker}, follows a {@link
  * au.net.hal9000.heisenberg.crafting.Recipe} and produces some outcomes, typically new {@link
- * au.net.hal9000.heisenberg.item.Item} objects.
+ * au.net.hal9000.heisenberg.item.api.Item} objects.
  */
 package au.net.hal9000.heisenberg.crafting;

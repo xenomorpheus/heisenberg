@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.exception;
 
-/** */
+/** Item not found. */
 public final class ItemNotPresentException extends RuntimeException {
 
   /** serial version id. */

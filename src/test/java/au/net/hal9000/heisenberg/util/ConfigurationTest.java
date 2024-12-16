@@ -195,7 +195,7 @@ public class ConfigurationTest {
     // Product 0
     Product product = recipe.getProduct(0);
     if (!(product instanceof ProductItem)) {
-      fail("Expecint ProcutItem");
+      fail("Expected ProductItem");
     }
     ProductItem productItem = (ProductItem) product;
     assertEquals("Product 0 Id", "Biscuit", productItem.getId());

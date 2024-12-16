@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item.exception;
 
-/** */
+/** Item is too heavy to fit into container. */
 public final class TooHeavyException extends RuntimeException {
 
   /** serial verison id. */

@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.ai.api.Action;
 import au.net.hal9000.heisenberg.ai.api.ModelState;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 
-/** */
+/** Create a new ModelState by applying an Action to a previous ModelState. */
 public class TransitionFunctionAgentGoalImpl implements TransitionFunction {
 
   /** Constructor. */
