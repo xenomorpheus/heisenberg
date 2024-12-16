@@ -18,7 +18,7 @@ Bugfix JTree path from Root node.
 Some work on adding ability for swing tree view to accept new items.
 
 For swing support the ItemList needs to support add() of Item objects.
-add() needed to be stripped of checked exceptions as checked exceptions 
+add() needed to be stripped of checked exceptions as checked exceptions
 should be used sparingly, apparently.
 
 Changed checked exceptions to runtime exceptions for the following
@@ -139,7 +139,7 @@ Adding Physics Engine - JBox2d.
 Replaced Vector types with more general form of List.
 
 2013-08-31
-Fleshing out the ProductItem class. 
+Fleshing out the ProductItem class.
 Trying to work towards having a Recipe for eating.
 
 2013-08-26
@@ -152,7 +152,7 @@ Requirements, Products and Ingredients are nows stored in vectors in a Recipe.
 2013-08-13
 Added Cat. First Entity that isn't a PcRace.
 Added Rat and Fungus.
-To allow Entity to be more useful, moved some attributes from 
+To allow Entity to be more useful, moved some attributes from
 PcRace down to Entity.
 detailedDescription() method now inherits from super.
 Better printing of Currency amounts.
@@ -163,7 +163,7 @@ in tree view. There is a default for each of Open, Closed and Leaf icons.
 The item may override the defaults.
 
 2013-07-15
-Added the Sprite class to hold Sheets of sprites, e.g. 
+Added the Sprite class to hold Sheets of sprites, e.g.
 An image for each Item class.
 
 2013-06-26
@@ -244,8 +244,8 @@ Started work on JPA.
 Cooking errors are now strings to give more information on what went wrong.
    Was boolean and false for failure.
 RequirementItem properly handles inheritance of item classes.
-   e.g. A Bag of Holding may be used when the requirement is for a bag.
-RequirementItem objects and Recipe objects now use Strings to 
+   e.g. a Bag of Holding may be used when the requirement is for a bag.
+RequirementItem objects and Recipe objects now use Strings to
     index their requirements.
 Cooker objects now use Strings to index their requirements.
 The location for new Item objects is now just another RequirementItem.
@@ -271,7 +271,7 @@ Using JTable for showing AbilityScore, Skill, PowerWord and Recipe.
 UI PcCreator now has extra tabs for AbilityScores, Skills and PowerWords.
 Fixed UI PcCreator so that scroll panel works when showing description.
 Added various fields to the description of PcClass.
-PcRace now only holds recipe IDs, not recipes.  
+PcRace now only holds recipe IDs, not recipes.
 Recipes fetched from Configuration.
 Configuration now uses a singleton to fetch last config.
 
@@ -305,8 +305,8 @@ Moved SplitByWeight into a utility and created an interface.
 Fixed the unit test for the Quiver of Arrow objects.
 
 2012-11-20
-IItem (Item Interface) and IItemContainer (Item Container Interface) 
-have been fixed so that they only mention IItem not Item, and IItemContainer 
+IItem (Item Interface) and IItemContainer (Item Container Interface)
+have been fixed so that they only mention IItem not Item, and IItemContainer
 not ItemContainer.  Item and ItemContainer have been updated to match.
 Unit tests updated to match.
 
@@ -326,7 +326,7 @@ Humanoid class' getIndexOfChild has been added.
 All Item objects now have an ID.
 This was needed because UI code needs to be able to call getIndexOfChild,
   which requires being able to tell the difference between two objects with the same properties.
-  E.g. consider a Quiver and 5 identical arrows are inserted then getIndexOfChild() called 
+  E.g. consider a Quiver and 5 identical arrows are inserted then getIndexOfChild() called
   on the third arrow, which must return 2 (zero offset).
   Used globally pseudo-unique Id generator.
   http://www.java2s.com/Code/Java/Development-Class/GeneratepseudoGUIDsequences.htm
@@ -384,7 +384,7 @@ Re-ordered the demo items in the ItemCreator UI to look a less boring.
 Development of the Cooker and related classes.
 For now removed the auto allocation of Item objects.
 This greatly simplifies the requirement checking process.
-Worked on the ItemContainer class. 
+Worked on the ItemContainer class.
 It is now much easier to transfer an Item between ItemContainer objects.
 The Cooker is now an ItemContainer, which greatly simplifies
 transferring Item objects into the cooker.
@@ -403,7 +403,7 @@ Cooker development.
 Powerword removed an merged into Skills.
 
 2012-08-28
-Project rename to Heisenberg. 
+Project rename to Heisenberg.
   * It is all about the quality of the Cook (Recipe class, Breaking Bad).
   * At any point in time we can't tell where we are and how fast we are going.
 Added unit tests for Item Factory.
@@ -449,7 +449,7 @@ Trying to get Recipe, Cooker and Ingredients to work.
 
 2012-08-22
 Development on/for the Recipe, Cooker, and Ingredient classes.
-Added Item property (Interface) SplitByWeight. 
+Added Item property (Interface) SplitByWeight.
 This interface marks an item as being able to be split by weight.
 Added the Water class.
 Water Items can be SplitByWeight.
@@ -458,10 +458,10 @@ Water Items can be SplitByWeight.
 2012-08-21
 Some Recipe Ingredient sub-classes are now using set theory e.g. for Skills and PowerWords.
 This will greatly simplify the code to determine if Player meets the Skill and PowerWord
-requirements for a recipe.  See Java Interface Set - containsAll method. 
+requirements for a recipe.  See Java Interface Set - containsAll method.
 
 2012-08-19
-Starting to flesh out "Ingredient" classes.  
+Starting to flesh out "Ingredient" classes.
 Ingredients are required for "Recipes" which will be the underlying mechanism
 for PCs to cast spells, build mundane objects and possibly other actions.
 
@@ -492,7 +492,7 @@ Trying to get deep persistence to work for ItemContainer.
 
 2012-07-16
 Location objects are back and based on ItemContainer.
-Most references to Item have been replaced with ItemImpl so that the correct 
+Most references to Item have been replaced with ItemImpl so that the correct
 version of equals() is run.
 
 2012-07-12
@@ -512,10 +512,10 @@ Pros
 now have this feature.
 
 Weights and Volumes are now objects.
-Pros 
+Pros
 - should allow for future support of multiple units of weight e.g. SI and Imperial.
 - possibly tighter control over weights and volumes in the future.
-Cons 
+Cons
 - slower and more work to maintain.
 - some risk of use of null pointer.
 
