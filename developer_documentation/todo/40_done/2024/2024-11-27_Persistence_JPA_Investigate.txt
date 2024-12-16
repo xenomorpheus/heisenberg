@@ -1,6 +1,6 @@
 Investigate JPA
 
-EclispeLink
+EclipseLink
 
 Via Eclipse Marketplace install EclipseLink Eclipse plugin.
 

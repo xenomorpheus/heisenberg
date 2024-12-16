@@ -5,7 +5,7 @@ More unit tests and removal of unwanted code.
 Refactored to extract ActionGenerator code into their own classes.
 
     Renamed CatRat classes into generic HunterPrey classes.
-    Refactored to extraact new class MovmentAbsoluteBarriers.
+    Refactored to extract new class MovementAbsoluteBarriers.
 
 2015-10-16
 Cleaned up some notes on TODOs.
