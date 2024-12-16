@@ -85,7 +85,9 @@ public final class DemoEnvironment {
     characterSheet.setLevel(DEMO_LEVEL);
     characterSheet.setSkills(config.getSkillDetails().keySet());
     characterSheet.setRecipes(DEMO_RECIPES);
-    // TODO characterSheet.setAbilityScores(null);
+    // TODO modify abilityscores by character level.
+    characterSheet.setAbilityScores(
+        config.getPcClasses().get(characterSheet.getPcClass().getId()).getAbilityScores());
     return characterSheet;
   }
 
