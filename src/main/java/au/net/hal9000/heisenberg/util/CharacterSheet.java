@@ -19,7 +19,7 @@ public class CharacterSheet implements Serializable {
 
   private String description = null;
 
-  /** How skilled in the chosen profession AKA PcClass. */
+  /** How skilled in the chosen profession AKA PcClass. Multi-classing not supported. */
   private int level = 0;
 
   /** profession e.g. Soldier, Wizard etc. */
