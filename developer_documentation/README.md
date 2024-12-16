@@ -18,3 +18,8 @@ open target/site/jacoco/index.html
 Format All Java
 ================
 find src -name \*.java | xargs google-java-format -r
+
+Build Software Documentation
+=============================
+mvn javadoc:javadoc
+open target/reports/apidocs/index.html
