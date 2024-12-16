@@ -26,19 +26,19 @@ import org.apache.log4j.Logger;
 /** The main application window. Shows a tree of the items in this world. */
 public class WorldEditorFrame extends JFrame {
 
-  private static final String MENU_DEMO = "Demo";
-
-  private static final String MENU_SAVE = "Save";
-
-  private static final String MENU_CLOSE = "Close";
+  private static final String MENU_NEW = "New";
 
   private static final String MENU_OPEN = "Open";
 
-  private static final String MENU_NEW = "New";
+  private static final String MENU_CLOSE = "Close";
 
-  private static final String MENU_QUIT = "Quit";
+  private static final String MENU_SAVE = "Save";
+
+  private static final String MENU_LOAD_DEMO = "Load Demo";
 
   private static final String MENU_DEBUG_TREE = "Debug Tree";
+
+  private static final String MENU_QUIT = "Quit";
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
@@ -109,7 +109,7 @@ public class WorldEditorFrame extends JFrame {
               location.setVolumeMax(1000000);
               setLocation(location);
             }
-            if (MENU_DEMO.equals(eventName)) {
+            if (MENU_LOAD_DEMO.equals(eventName)) {
               setLocation(DemoEnvironment.getDemoWorld());
             }
             if (MENU_DEBUG_TREE.equals(eventName)) {
@@ -122,11 +122,13 @@ public class WorldEditorFrame extends JFrame {
               // pointer to top location.
             }
             if (MENU_SAVE.equals(eventName)) {
-              if (null != entityManager) {
-                entityManager.getTransaction().begin();
-                entityManager.persist(location);
-                entityManager.getTransaction().commit();
+              if (null == entityManager) {
+                throw new RuntimeException("No JPA entity manager");
               }
+              entityManager.getTransaction().begin();
+              entityManager.persist(location);
+              entityManager.getTransaction().commit();
+              LOGGER.info("Location saved");
             }
             if (MENU_QUIT.equals(eventName)) {
               exitProgram();
@@ -221,7 +223,7 @@ public class WorldEditorFrame extends JFrame {
     JMenuItem fileSave = new JMenuItem(MENU_SAVE);
     fileSave.addActionListener(actionListener);
     fileMenu.add(fileSave);
-    JMenuItem fileDemo = new JMenuItem(MENU_DEMO);
+    JMenuItem fileDemo = new JMenuItem(MENU_LOAD_DEMO);
     fileDemo.addActionListener(actionListener);
     fileMenu.add(fileDemo);
     JMenuItem fileDebugTree = new JMenuItem(MENU_DEBUG_TREE);
