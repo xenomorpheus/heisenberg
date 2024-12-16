@@ -34,13 +34,11 @@ public abstract class MemoryAbstract implements Memory {
     this.decayRate = decayRate;
   }
 
-  /** {@inheritDoc} */
   @Override
   public Date getCreatedDate() {
     return createdDate;
   }
 
-  /** {@inheritDoc} */
   @Override
   public double getDecayRate() {
     return decayRate;

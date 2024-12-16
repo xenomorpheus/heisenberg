@@ -17,11 +17,6 @@ public class Wood extends ItemImpl implements SplitByWeight {
     super();
   }
 
-  /**
-   * {@inheritDoc} * @param newItemWeight float
-   *
-   * @return Item
-   */
   @Override
   public Item splitByWeight(float newItemWeight) {
     return ItemSplitByWeight.splitByWeight(this, newItemWeight);

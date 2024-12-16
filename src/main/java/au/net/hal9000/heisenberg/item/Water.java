@@ -20,11 +20,6 @@ public class Water extends ItemImpl implements SplitByWeight {
 
   // Static
 
-  /**
-   * {@inheritDoc} * @param newItemWeight float
-   *
-   * @return Item
-   */
   @Override
   public Item splitByWeight(float newItemWeight) {
     return ItemSplitByWeight.splitByWeight(this, newItemWeight);

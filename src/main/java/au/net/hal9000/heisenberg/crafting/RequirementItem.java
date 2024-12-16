@@ -128,7 +128,6 @@ public class RequirementItem extends Requirement {
     return null;
   }
 
-  /** {@inheritDoc} */
   @Override
   public final String getDescription() {
     StringBuilder string = new StringBuilder();

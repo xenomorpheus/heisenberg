@@ -377,7 +377,6 @@ public class Location extends ItemImpl implements ItemContainer {
     item.applyDelta(delta);
   }
 
-  /** {@inheritDoc} * @param item Item */
   @Override
   public void setAllFrom(Item item) {
     super.setAllFrom(item);

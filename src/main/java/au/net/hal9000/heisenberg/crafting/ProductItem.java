@@ -55,13 +55,11 @@ public class ProductItem extends Product {
     return weightBase;
   }
 
-  /** {@inheritDoc} */
   @Override
   public final String getDescription() {
     return "Id: " + getId() + ", item type of " + type + ", weightBase " + weightBase;
   }
 
-  /** {@inheritDoc} */
   @Override
   public final String meetsRequirements(final Cooker cooker) {
     // TODO Complain unless there is a Location to place item.
@@ -73,7 +71,6 @@ public class ProductItem extends Product {
     return null;
   }
 
-  /** {@inheritDoc} */
   @Override
   public final void createProduct(final Cooker cooker) {
     ItemContainer newItemLocation = (ItemContainer) cooker.findIngredientByName("Location");

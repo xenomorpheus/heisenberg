@@ -35,7 +35,6 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
 
   // overridden methods
 
-  /** {@inheritDoc} */
   @Override
   public ModelStateAgentGoalMemorySetImpl duplicate() {
     // TODO for all duplicate() methods do something smarter with copying properties of super
@@ -44,7 +43,6 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
         getAgentPosition().duplicate(), getGoalPosition().duplicate(), getMemorySet().duplicate());
   }
 
-  /** {@inheritDoc} */
   @Override
   public String toString() {
     return getClass().getSimpleName()
@@ -57,7 +55,6 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
         + "]";
   }
 
-  /** {@inheritDoc} */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -66,7 +63,6 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
     return result;
   }
 
-  /** {@inheritDoc} */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {

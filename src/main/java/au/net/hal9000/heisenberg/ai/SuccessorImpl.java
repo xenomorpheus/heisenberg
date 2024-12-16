@@ -35,29 +35,21 @@ public class SuccessorImpl implements Successor {
     this.cost = cost;
   }
 
-  /** {@inheritDoc} */
   @Override
   public Action getAction() {
     return action;
   }
 
-  /** {@inheritDoc} */
   @Override
   public ModelState getModelState() {
     return modelState;
   }
 
-  /** {@inheritDoc} */
   @Override
   public double getCost() {
     return cost;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @return String
-   */
   @Override
   public String toString() {
     return getClass().getSimpleName() + "=[" + modelState + ", " + action + ", cost=" + cost + "]";

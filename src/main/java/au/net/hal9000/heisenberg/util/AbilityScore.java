@@ -147,22 +147,11 @@ public class AbilityScore implements Comparable<AbilityScore> {
     return description;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @return String
-   */
   @Override
   public String toString() {
     return name + ": " + valueOptionalMod();
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @param other AbilityScore
-   * @return int
-   */
   @Override
   public int compareTo(AbilityScore other) {
     // TODO Auto-generated method stub

@@ -370,11 +370,6 @@ public class PcClass implements Serializable, Comparable<PcClass> {
     return text.toString();
   }
 
-  /**
-   * {@inheritDoc} * @param other PcClass
-   *
-   * @return int
-   */
   @Override
   public int compareTo(PcClass other) {
     return id.compareTo(other.getId());

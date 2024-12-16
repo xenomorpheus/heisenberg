@@ -54,13 +54,11 @@ public class ProductEntityProperty extends Product {
     return getDescription();
   }
 
-  /** {@inheritDoc} */
   @Override
   public final String getDescription() {
     return super.getDescription() + " type " + propertyName + ", delta is " + propertyDelta;
   }
 
-  /** {@inheritDoc} */
   @Override
   String meetsRequirements(Cooker cooker) {
     // Need to find a target to apply property change to.
@@ -75,7 +73,6 @@ public class ProductEntityProperty extends Product {
     return "A Target or chef is required";
   }
 
-  /** {@inheritDoc} */
   @Override
   public final void createProduct(final Cooker cooker) {
     Item item = cooker.getChef();

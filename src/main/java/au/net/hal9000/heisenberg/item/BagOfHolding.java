@@ -212,7 +212,6 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
   }
 
   /** A BOH rupturing is kind of special :-) */
-  /** {@inheritDoc} */
   @Override
   public void rupture() {
     beNot();

@@ -29,31 +29,26 @@ abstract class SearchBase implements Search {
     this.modelStateEvaluator = modelStateEvaluator;
   }
 
-  /** {@inheritDoc} */
   @Override
   public SuccessorFunction getSuccessorFunction() {
     return successorFunction;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setSuccessorFunction(SuccessorFunction successorFunction) {
     this.successorFunction = successorFunction;
   }
 
-  /** {@inheritDoc} */
   @Override
   public ModelStateEvaluator getModelStateEvaluator() {
     return modelStateEvaluator;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setModelStateEvaluator(ModelStateEvaluator modelStateEvaluator) {
     this.modelStateEvaluator = modelStateEvaluator;
   }
 
-  /** {@inheritDoc} */
   @Override
   public abstract Path findPathToGoal(ModelState modelState);
 }

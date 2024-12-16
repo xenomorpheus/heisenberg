@@ -123,11 +123,6 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     return new TreePath(itemList.toArray(new TreeNode[itemList.size()]));
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @param e Tree model event.
-   */
   @Override
   public void treeNodesChanged(TreeModelEvent e) {
     Object o = e.getTreePath().getLastPathComponent();
@@ -147,28 +142,24 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     // LOGGER.debug("New value: " + node.getUserObject());
   }
 
-  /** {@inheritDoc} */
   @Override
   public void treeNodesInserted(TreeModelEvent e) {
     // TODO finish treeNodesInserted
     LOGGER.info("TODO treeNodesInserted: " + e.toString());
   }
 
-  /** {@inheritDoc} */
   @Override
   public void treeNodesRemoved(TreeModelEvent e) {
     // TODO finish treeNodesRemoved
     LOGGER.info("TODO treeNodesRemoved: " + e.toString());
   }
 
-  /** {@inheritDoc} */
   @Override
   public void treeStructureChanged(TreeModelEvent e) {
     // TODO finish treeStructureChanged
     LOGGER.info("TODO treeStructureChanged: " + e.toString());
   }
 
-  /** {@inheritDoc} */
   @Override
   public void propertyChange(PropertyChangeEvent e) {
     // TODO Auto-generated method stub propertyChange

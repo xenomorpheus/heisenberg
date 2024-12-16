@@ -164,13 +164,11 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
 
   // Implement Animal
 
-  /** {@inheritDoc} */
   @Override
   public void eat(Item food) {
     AnimalConsumeSustenance.eat(this, food);
   }
 
-  /** {@inheritDoc} */
   @Override
   public void drink(Item food) {
     AnimalConsumeSustenance.drink(this, food);
@@ -178,7 +176,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
 
   // Implement ItemList
 
-  /** {@inheritDoc} */
   @Override
   // TODO consider wear could fail, e.g. spot occupied.
   public void add(Item item) {
@@ -198,7 +195,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     }
   }
 
-  /** {@inheritDoc} */
   @Override
   public float getWeight() {
     float total = 0;
@@ -208,7 +204,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     return total;
   }
 
-  /** {@inheritDoc} */
   @Override
   public float getVolume() {
     float total = 0;
@@ -218,7 +213,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     return total;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void beNot() {
     // Call beNot on the Items directly declared in this class.
@@ -235,7 +229,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   }
 
   // Visitor Design Pattern. Find items that match the criteria
-  /** {@inheritDoc} */
   @Override
   public void accept(ItemVisitor visitor) {
     head.accept(visitor);
@@ -249,37 +242,31 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     visitor.visit(this);
   }
 
-  /** {@inheritDoc} */
   @Override
   public int size() {
     return items.size();
   }
 
-  /** {@inheritDoc} */
   @Override
   public Item get(int index) {
     return items.get(index);
   }
 
-  /** {@inheritDoc} */
   @Override
   public void add(int index, Item item) {
     items.add(index, item);
   }
 
-  /** {@inheritDoc} */
   @Override
   public int indexOf(Item child) {
     return items.indexOf(child);
   }
 
-  /** {@inheritDoc} */
   @Override
   public void remove(Item item) {
     items.remove(item);
   }
 
-  /** {@inheritDoc} */
   @Override
   public void remove(int index) {
     items.remove(index);

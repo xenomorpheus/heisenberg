@@ -42,31 +42,26 @@ class FringeElementImpl implements FringeElement, Comparable<FringeElementImpl> 
     this.estimatedTotalCost = estimatedTotalCost;
   }
 
-  /** {@inheritDoc} */
   @Override
   public ModelState getModelState() {
     return modelState;
   }
 
-  /** {@inheritDoc} */
   @Override
   public Path getPathSoFar() {
     return pathSoFar;
   }
 
-  /** {@inheritDoc} */
   @Override
   public double getCostSoFar() {
     return costSoFar;
   }
 
-  /** {@inheritDoc} */
   @Override
   public double getEstimatedTotalCost() {
     return estimatedTotalCost;
   }
 
-  /** {@inheritDoc} */
   @Override
   public String toString() {
     DecimalFormat df = new DecimalFormat("#.###");
@@ -85,7 +80,6 @@ class FringeElementImpl implements FringeElement, Comparable<FringeElementImpl> 
         .toString();
   }
 
-  /** {@inheritDoc} */
   @Override
   public int compareTo(FringeElementImpl other) {
     double oEstimatedTotalCost = other.getEstimatedTotalCost();

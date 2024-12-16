@@ -37,7 +37,6 @@ public class Candle extends ItemImpl implements LightSource {
     this.lit = lit;
   }
 
-  /** {@inheritDoc} */
   @Override
   public boolean isLit() {
     return lit;
@@ -58,7 +57,6 @@ public class Candle extends ItemImpl implements LightSource {
     }
   }
 
-  /** {@inheritDoc} */
   @Override
   public boolean lightWith(Object igniter) { // NO_UCD (test only)
     if (igniter instanceof FlintAndTinder) {
@@ -76,13 +74,11 @@ public class Candle extends ItemImpl implements LightSource {
     return isLit();
   }
 
-  /** {@inheritDoc} */
   @Override
   public void extinguish() {
     setLit(false);
   }
 
-  /** {@inheritDoc} * @return String */
   @Override
   public String detailedDescription() {
     StringBuilder string = new StringBuilder(super.detailedDescription());

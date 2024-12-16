@@ -32,19 +32,16 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
 
   // Getters and Setters
 
-  /** {@inheritDoc} */
   @Override
   public Position getAgentPosition() {
     return agentPosition;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setAgentPosition(Position position3d) {
     agentPosition = position3d;
   }
 
-  /** {@inheritDoc} */
   @Override
   public Position getGoalPosition() {
     return goalPosition;
@@ -52,7 +49,6 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
 
   // overridden methods
 
-  /** {@inheritDoc} */
   @Override
   public ModelStateAgentGoalImpl duplicate() {
     return new ModelStateAgentGoalImpl(
@@ -91,7 +87,6 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
     return true;
   }
 
-  /** {@inheritDoc} */
   @Override
   public String toString() {
     return getClass().getSimpleName()

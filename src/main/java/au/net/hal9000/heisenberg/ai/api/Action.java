@@ -17,11 +17,6 @@ public interface Action {
    */
   void apply(ModelState modelState);
 
-  /**
-   * {@inheritDoc}
-   *
-   * @return String
-   */
   @Override
   String toString();
 }

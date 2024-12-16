@@ -27,13 +27,12 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase
   }
 
   // Getters and Setters
-  /** {@inheritDoc} */
+
   @Override
   public Position getAgentTarget() {
     return agentPositionTarget;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setAgentTarget(Position position) {
     agentPositionTarget = position;

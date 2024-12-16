@@ -27,13 +27,12 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
   }
 
   // Getters and Setters
-  /** {@inheritDoc} */
+
   @Override
   public Position getPositionDelta() {
     return agentPositionDelta;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setPositionDelta(Position position) {
     agentPositionDelta = position;

@@ -45,19 +45,16 @@ public class Purse extends ItemImpl {
     return coins.getCp() + coins.getSp() + coins.getGp() + coins.getPp();
   }
 
-  /** {@inheritDoc} * @return float */
   @Override
   public float getWeight() {
     return getWeightBase() + getCoinCount() * COINS_TO_WEIGHT;
   }
 
-  /** {@inheritDoc} * @return float */
   @Override
   public float getVolume() {
     return getVolumeBase() + getCoinCount() * COINS_TO_VOLUME;
   }
 
-  /** {@inheritDoc} * @return Currency */
   @Override
   public Currency getValue() {
     // We take a fresh currency so we don't alter the Purse's inner currency

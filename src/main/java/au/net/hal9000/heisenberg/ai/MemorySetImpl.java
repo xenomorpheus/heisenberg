@@ -28,26 +28,23 @@ public class MemorySetImpl implements MemorySet {
   }
 
   // Getters and Setters
-  /** {@inheritDoc} */
+
   @Override
   public List<Memory> getMemorySet() {
     return memorySet;
   }
 
-  /** {@inheritDoc} */
   @Override
   public void setMemorySet(List<Memory> memorySet) {
     this.memorySet = memorySet;
   }
 
   // Misc
-  /** {@inheritDoc} */
   @Override
   public Iterator<Memory> iterator() {
     return memorySet.iterator();
   }
 
-  /** {@inheritDoc} */
   @Override
   public void add(Memory memory) {
     memorySet.add(memory);
@@ -55,13 +52,11 @@ public class MemorySetImpl implements MemorySet {
 
   }
 
-  /** {@inheritDoc} */
   @Override
   public boolean isEmpty() {
     return memorySet.isEmpty();
   }
 
-  /** {@inheritDoc} */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -70,7 +65,6 @@ public class MemorySetImpl implements MemorySet {
     return result;
   }
 
-  /** {@inheritDoc} */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {

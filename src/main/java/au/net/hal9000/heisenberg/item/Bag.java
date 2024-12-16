@@ -36,11 +36,6 @@ public class Bag extends Box {
     // System.out.println("Ordinary rupture");
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @param item Item
-   */
   @Override
   public void add(final Item item) {
     // Look for sharp items. Wrapped sharp items are safe.

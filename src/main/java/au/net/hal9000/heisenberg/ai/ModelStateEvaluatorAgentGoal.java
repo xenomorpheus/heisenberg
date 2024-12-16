@@ -22,7 +22,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
   private double positionTolerance = Position.DEFAULT_AXIS_TOLERANCE;
 
   // Constructor(s)
-  /** {@inheritDoc} */
+
   public ModelStateEvaluatorAgentGoal() {
     super();
   }
@@ -40,7 +40,7 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
   }
 
   // Misc
-  /** {@inheritDoc} */
+
   @Override
   public double costToGoalEstimate(ModelState modelState) {
     ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;

@@ -21,11 +21,6 @@ public class Scabbard extends Box {
     ItemProperty.setClothing(this, true);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @param item Item
-   */
   @Override
   public void add(Item item) {
     // We need to accept all Items, not just swords,
