@@ -27,10 +27,6 @@ import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 
 /** Utility class for setting up test environment and building test Item objects. */
@@ -40,11 +36,6 @@ public final class DemoEnvironment {
 
   /** file containing test configuration. */
   private static String DEMO_CONFIG_FILE = "src/test/resources/config.xml";
-
-  /** test recipes. */
-  private static final Set<String> DEMO_RECIPES =
-      Stream.of("testItem1", "testFireGround1", "testSpell1")
-          .collect(Collectors.toCollection(() -> new TreeSet<>()));
 
   /** test level. */
   private static final int DEMO_LEVEL = 3;
@@ -84,7 +75,7 @@ public final class DemoEnvironment {
     characterSheet.setSize(config.getSizes().get(0));
     characterSheet.setLevel(DEMO_LEVEL);
     characterSheet.setSkills(config.getSkillDetails().keySet());
-    characterSheet.setRecipes(DEMO_RECIPES);
+    characterSheet.setRecipes(config.getRecipes().keySet());
     // TODO modify abilityscores by character level.
     characterSheet.setAbilityScores(
         config.getPcClasses().get(characterSheet.getPcClass().getId()).getAbilityScores());
