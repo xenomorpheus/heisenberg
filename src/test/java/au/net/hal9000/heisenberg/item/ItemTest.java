@@ -41,7 +41,6 @@ public class ItemTest {
     assertEquals("Item() name", null, item.getName());
     assertEquals("Item() description", null, item.getDescription());
     // assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
-    // assertTrue("Item() weightMax", i.getWeightMax().equals(0F));
     // assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
     assertEquals("Item() location", null, item.getContainer());
   }

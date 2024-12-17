@@ -111,8 +111,10 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
    * @return The max weight that can be carried.
    */
   public float getWeightMax() {
-    float weightMax = 0;
-    return weightMax;
+    return head.getWeightMax()
+        + leftHand.getWeightMax()
+        + rightHand.getWeightMax()
+        + core.getWeightMax();
   }
 
   /**
@@ -121,13 +123,9 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
    * @param weightMax The max weight that can be carried.
    */
   public void setWeightMax(float weightMax) {
-    // head
     head.setWeightMax(weightMax * HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME);
-    // left hand
     leftHand.setWeightMax(weightMax * LEFT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
-    // right hand
     rightHand.setWeightMax(weightMax * RIGHT_HAND_PERCENTAGE_MAX_WEIGHT_VOLUME);
-    // core
     core.setWeightMax(weightMax * CORE_PERCENTAGE_MAX_WEIGHT_VOLUME);
   }
 
