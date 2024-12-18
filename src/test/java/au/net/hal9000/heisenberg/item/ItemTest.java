@@ -3,6 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.api.Item;
@@ -38,11 +39,12 @@ public class ItemTest {
   @Test
   public void testItem() {
     Item item = new Biscuit();
-    assertEquals("Item() name", null, item.getName());
-    assertEquals("Item() description", null, item.getDescription());
+    assertNull("Item() name", item.getName());
+    assertNull("Item() description", item.getDescription());
+    assertNull("Item() valueBase", item.getValueBase());
     // assertTrue("Item() weightBase", i.getWeightBase().equals(0F));
     // assertTrue("Item() volumeBase", i.getVolumeBase().equals(0F));
-    assertEquals("Item() location", null, item.getContainer());
+    assertNull("Item() location", item.getContainer());
   }
 
   @Test

@@ -11,11 +11,11 @@ public class PurseTest {
   /** Field MARGIN_OF_ERROR. (value is 1.0E-4) */
   private static final float MARGIN_OF_ERROR = 0.0001f;
 
-  /** Method testPurse. */
+  /** test Purse. */
   @Test
   public void testPurse() {
     Purse purse = new Purse();
-    assertEquals("getValue - empty purse", purse.getValueBase(), purse.getValue());
+    assertEquals("getValue - empty purse", new Currency(), purse.getValue());
     assertEquals(
         "getWeight - empty purse", purse.getWeightBase(), purse.getWeight(), MARGIN_OF_ERROR);
     assertEquals(
@@ -23,7 +23,7 @@ public class PurseTest {
     // TODO add more tests
   }
 
-  /** Method testGetCoinCount. */
+  /** test getCoinCount. */
   @Test
   public void testGetCoinCount() {
     // empty
@@ -31,11 +31,12 @@ public class PurseTest {
     assertEquals("empty count", 0, purse.getCoinCount());
 
     // coins
-    Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
+    Purse purse2 = new Purse();
+    purse2.add(new Currency(1, 2, 4, 8));
     assertEquals("coins count", 15, purse2.getCoinCount());
   }
 
-  /** Method testGetVolume. */
+  /** test getVolume. */
   @Test
   public void testGetVolume() {
     // empty
@@ -44,26 +45,26 @@ public class PurseTest {
         "getVolume - empty purse", purse.getVolumeBase(), purse.getVolume(), MARGIN_OF_ERROR);
 
     // coins
-    Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
+    Purse purse2 = new Purse();
+    purse2.add(new Currency(1, 2, 4, 8));
     float expect2 = purse2.getVolumeBase() + (15 * Purse.COINS_TO_VOLUME);
     assertEquals("getVolume - coins", expect2, purse2.getVolume(), MARGIN_OF_ERROR);
   }
 
-  /** Method testGetValue. */
+  /** test getValue. */
   @Test
   public void testGetValue() {
     // empty
     Purse purse = new Purse();
-    assertEquals("getValue - empty purse", purse.getValueBase(), purse.getValue());
+    assertEquals("getValue - empty purse", new Currency(), purse.getValue());
 
     // coins
-    Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
-    Currency expect2 = new Currency(purse2.getValueBase());
-    expect2.add(new Currency(1, 2, 4, 8));
-    assertEquals("getValue - coins", expect2, purse2.getValue());
+    Purse purse2 = new Purse();
+    purse2.add(new Currency(1, 2, 4, 8));
+    assertEquals("getValue - coins", new Currency(1, 2, 4, 8), purse2.getValue());
   }
 
-  /** Method testGetWeight. */
+  /** test getWeight. */
   @Test
   public void testGetWeight() {
     // empty
@@ -72,7 +73,8 @@ public class PurseTest {
         "getWeight - empty purse", purse.getWeightBase(), purse.getWeight(), MARGIN_OF_ERROR);
 
     // coins
-    Purse purse2 = new Purse(new Currency(1, 2, 4, 8));
+    Purse purse2 = new Purse();
+    purse2.add(new Currency(1, 2, 4, 8));
     float expect2 = purse2.getWeightBase() + (15 * Purse.COINS_TO_WEIGHT);
     assertEquals("getWeight - coins", expect2, purse2.getWeight(), MARGIN_OF_ERROR);
   }

@@ -85,7 +85,7 @@ public abstract class ItemImpl implements Serializable, Item {
   private Properties properties = new Properties();
 
   /** The value (in Currency), excludes contents if this is a container. */
-  private Currency valueBase = new Currency();
+  private Currency valueBase = null;
 
   /** The volume, excludes contents if this is a container. */
   private float volumeBase = 0;

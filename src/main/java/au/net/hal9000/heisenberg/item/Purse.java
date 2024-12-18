@@ -19,21 +19,11 @@ public class Purse extends ItemImpl {
   public static final float COINS_TO_VOLUME = 0.01f;
 
   /** holder for currency. */
-  private Currency coins = new Currency();
+  private Currency coins = null;
 
   /** constructor. */
   public Purse() {
     super();
-  }
-
-  /**
-   * Constructor.
-   *
-   * @param coins coin object to place in the Purse.
-   */
-  public Purse(Currency coins) {
-    this();
-    this.coins = coins;
   }
 
   /**
@@ -42,6 +32,9 @@ public class Purse extends ItemImpl {
    * @return number of coins
    */
   public int getCoinCount() {
+    if (null == coins) {
+      return 0;
+    }
     return coins.getCp() + coins.getSp() + coins.getGp() + coins.getPp();
   }
 
@@ -59,17 +52,26 @@ public class Purse extends ItemImpl {
   public Currency getValue() {
     // We take a fresh currency so we don't alter the Purse's inner currency
     // object.
-    Currency total = new Currency(getValueBase());
-    total.add(coins);
+    Currency total = new Currency();
+    var value = getValueBase();
+    if (null != value) {
+      total.add(value);
+    }
+    if (null != coins) {
+      total.add(coins);
+    }
     return total;
   }
 
   /**
-   * The coins passed in are transfered to the purse.
+   * The coins passed in are transferred to the purse.
    *
    * @param fromCoins coins passed in.
    */
   public void add(Currency fromCoins) {
+    if (null == coins) {
+      coins = new Currency();
+    }
     coins.transfer(fromCoins);
   }
 }
