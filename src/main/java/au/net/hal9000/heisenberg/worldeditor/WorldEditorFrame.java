@@ -26,11 +26,11 @@ public class WorldEditorFrame extends JFrame {
 
   private static final String MENU_NEW = "New";
 
-  private static final String MENU_OPEN = "Open";
-
-  private static final String MENU_CLOSE = "Close";
-
   private static final String MENU_SAVE = "Save";
+
+  private static final String MENU_IMPORT = "Import...";
+
+  private static final String MENU_EXPORT = "Export...";
 
   private static final String MENU_LOAD_DEMO = "Load Demo";
 
@@ -92,17 +92,17 @@ public class WorldEditorFrame extends JFrame {
             if (MENU_SAVE.equals(eventName)) {
               PersistEntities.save(location);
             }
+            if (MENU_IMPORT.equals(eventName)) {
+              LOGGER.warn("Import not implemented");
+            }
+            if (MENU_EXPORT.equals(eventName)) {
+              LOGGER.warn("Export not implemented");
+            }
             if (MENU_LOAD_DEMO.equals(eventName)) {
               setLocation(DemoEnvironment.getDemoWorld());
             }
             if (MENU_DEBUG_TREE.equals(eventName)) {
               debugTreePrint();
-            }
-            if (MENU_OPEN.equals(eventName)) {
-              LOGGER.warn("Open not implemented");
-              // TODO load.
-              // TODO Create a project object to contain details and a
-              // pointer to top location.
             }
             if (MENU_QUIT.equals(eventName)) {
               exitProgram();
@@ -184,15 +184,15 @@ public class WorldEditorFrame extends JFrame {
     JMenuItem fileNew = new JMenuItem(MENU_NEW);
     fileNew.addActionListener(actionListener);
     fileMenu.add(fileNew);
-    JMenuItem fileOpen = new JMenuItem(MENU_OPEN);
-    fileOpen.addActionListener(actionListener);
-    fileMenu.add(fileOpen);
-    JMenuItem fileClose = new JMenuItem(MENU_CLOSE);
-    fileClose.addActionListener(actionListener);
-    fileMenu.add(fileClose);
     JMenuItem fileSave = new JMenuItem(MENU_SAVE);
     fileSave.addActionListener(actionListener);
     fileMenu.add(fileSave);
+    JMenuItem fileImport = new JMenuItem(MENU_IMPORT);
+    fileImport.addActionListener(actionListener);
+    fileMenu.add(fileImport);
+    JMenuItem fileExport = new JMenuItem(MENU_EXPORT);
+    fileExport.addActionListener(actionListener);
+    fileMenu.add(fileExport);
     JMenuItem fileDemo = new JMenuItem(MENU_LOAD_DEMO);
     fileDemo.addActionListener(actionListener);
     fileMenu.add(fileDemo);
