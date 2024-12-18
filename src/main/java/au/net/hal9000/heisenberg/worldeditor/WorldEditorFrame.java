@@ -7,10 +7,8 @@ import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemIcon;
+import au.net.hal9000.heisenberg.util.PersistEntities;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,23 +38,11 @@ public class WorldEditorFrame extends JFrame {
 
   private static final String MENU_QUIT = "Quit";
 
-  /** serial version id. */
-  private static final long serialVersionUID = 1L;
-
-  /** Persistence Entity Manager. */
-  private EntityManagerFactory factory =
-      Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-
-  private EntityManager entityManager = null;
-
   /** the Location object at the root of this world. */
   private Location location = null;
 
   /** The panel showing the tree of Item objects. */
   private ItemTreePanel itemTreePanel = null;
-
-  /** Persistence unit name for Entity Manager. */
-  private static final String PERSISTENCE_UNIT_NAME = "items";
 
   private static final Logger LOGGER = Logger.getLogger(WorldEditorFrame.class.getName());
 
@@ -74,8 +60,6 @@ public class WorldEditorFrame extends JFrame {
 
     /** Config. */
     final Configuration config = Configuration.lastConfig();
-    /** Persistence. */
-    entityManager = factory.createEntityManager();
 
     // Icons
     ItemIcon.setIcon(config);
@@ -105,6 +89,9 @@ public class WorldEditorFrame extends JFrame {
               location = new Location();
               setLocation(location);
             }
+            if (MENU_SAVE.equals(eventName)) {
+              PersistEntities.save(location);
+            }
             if (MENU_LOAD_DEMO.equals(eventName)) {
               setLocation(DemoEnvironment.getDemoWorld());
             }
@@ -116,15 +103,6 @@ public class WorldEditorFrame extends JFrame {
               // TODO load.
               // TODO Create a project object to contain details and a
               // pointer to top location.
-            }
-            if (MENU_SAVE.equals(eventName)) {
-              if (null == entityManager) {
-                throw new RuntimeException("No JPA entity manager");
-              }
-              entityManager.getTransaction().begin();
-              entityManager.persist(location);
-              entityManager.getTransaction().commit();
-              LOGGER.info("Location saved");
             }
             if (MENU_QUIT.equals(eventName)) {
               exitProgram();
@@ -183,10 +161,6 @@ public class WorldEditorFrame extends JFrame {
 
   /** quit the program. */
   public void exitProgram() {
-    if (null != entityManager) {
-      entityManager.close();
-      entityManager = null;
-    }
     LOGGER.info("Exiting");
     System.exit(0);
   }
