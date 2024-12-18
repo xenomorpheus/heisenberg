@@ -90,8 +90,6 @@ public class WorldEditorFrame extends JFrame {
 
     // Main container
     location = DemoEnvironment.getDemoWorld();
-    location.setWeightMax(1000000);
-    location.setVolumeMax(1000000);
 
     setLayout(new BorderLayout());
     itemTreePanel = new ItemTreePanel(config, location);
@@ -105,8 +103,6 @@ public class WorldEditorFrame extends JFrame {
             String eventName = event.getActionCommand();
             if (MENU_NEW.equals(eventName)) {
               location = new Location();
-              location.setWeightMax(1000000);
-              location.setVolumeMax(1000000);
               setLocation(location);
             }
             if (MENU_LOAD_DEMO.equals(eventName)) {
