@@ -97,7 +97,7 @@ public class CurrencyTest {
   @Test
   public void testGetGpEquiv() {
     Currency cc = new Currency(PP, GP, SP, CP);
-    assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.getGpEquiv(), TOLERANCE);
+    assertEquals("1pp,2gp,4sp,8cp", 12.48F, cc.gpEquiv(), TOLERANCE);
   }
 
   /** Tests for transfer method. */
@@ -106,8 +106,8 @@ public class CurrencyTest {
     Currency cc = new Currency(PP, GP, SP, CP);
     Currency cc2 = new Currency(2, 4, 6, 3);
     cc.transfer(cc2);
-    assertEquals("transfer cc", 37.11F, cc.getGpEquiv(), TOLERANCE);
-    assertEquals("transfer cc2", 0F, cc2.getGpEquiv(), TOLERANCE);
+    assertEquals("transfer cc", 37.11F, cc.gpEquiv(), TOLERANCE);
+    assertEquals("transfer cc2", 0F, cc2.gpEquiv(), TOLERANCE);
   }
 
   /** Tests for add method. */
@@ -117,8 +117,8 @@ public class CurrencyTest {
     Currency cc = new Currency(PP, GP, SP, CP);
     Currency cc2 = new Currency(2, 4, 6, 3);
     cc.add(cc2);
-    assertEquals("add cc", 37.11F, cc.getGpEquiv(), TOLERANCE);
-    assertEquals("add cc2", 24.63F, cc2.getGpEquiv(), TOLERANCE);
+    assertEquals("add cc", 37.11F, cc.gpEquiv(), TOLERANCE);
+    assertEquals("add cc2", 24.63F, cc2.gpEquiv(), TOLERANCE);
   }
 
   /** Tests for equals method. */

@@ -73,11 +73,11 @@ public class Currency implements Serializable, Cloneable {
 
   // instance methods
   /**
-   * Method getGpEquiv.
+   * Method gpEquiv.
    *
    * @return Float
    */
-  public Float getGpEquiv() {
+  public Float gpEquiv() {
     return (pp * PP_AS_GP) + gp + (sp * SP_AS_GP) + (cp * CP_AS_GP);
   }
 
