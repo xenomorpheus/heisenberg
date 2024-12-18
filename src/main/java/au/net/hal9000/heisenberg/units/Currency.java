@@ -40,7 +40,7 @@ public class Currency implements Serializable, Cloneable {
   /** silver pieces. */
   private int sp = 0;
 
-  /** coper pieces. */
+  /** copper pieces. */
   private int cp = 0;
 
   // Constructors
@@ -157,9 +157,9 @@ public class Currency implements Serializable, Cloneable {
   }
 
   /**
-   * Set the number of coper pieces.
+   * Set the number of copper pieces.
    *
-   * @param cp The number of coper pieces.
+   * @param cp The number of copper pieces.
    */
   public Currency setCp(final int cp) {
     if (cp < 0) {
