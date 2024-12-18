@@ -23,10 +23,10 @@ public class Location extends ItemImpl implements ItemContainer {
   private static final Logger LOGGER = Logger.getLogger(Location.class.getName());
 
   /** Field weightMax. */
-  private float weightMax = 0;
+  private float weightMax = -1;
 
   /** Field volumeMax. */
-  private float volumeMax = 0;
+  private float volumeMax = -1;
 
   /** Field contents. */
   private List<Item> contents = new ArrayList<Item>();
