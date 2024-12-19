@@ -64,13 +64,6 @@ public interface Item {
   Position getPosition();
 
   /**
-   * Ensure a non-null Position.
-   *
-   * @return return the position within the container.
-   */
-  Position getPositionValid();
-
-  /**
    * set the position of the item withing the container.
    *
    * @param position the position object.

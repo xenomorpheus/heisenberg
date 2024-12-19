@@ -168,14 +168,6 @@ public abstract class ItemImpl implements Serializable, Item {
   }
 
   @Override
-  public Position getPositionValid() {
-    if (position == null) {
-      position = new Position();
-    }
-    return position;
-  }
-
-  @Override
   public void setPosition(Position position) {
     this.position = position;
   }
