@@ -99,7 +99,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
   public BagOfHolding() {
     super();
     setType(TYPE_I); // default type
-    ItemProperty.setMagical(this, true);
+    ItemProperty.setMagical(this);
   }
 
   /**

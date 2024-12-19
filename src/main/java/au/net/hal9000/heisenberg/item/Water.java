@@ -15,7 +15,7 @@ public class Water extends ItemImpl implements SplitByWeight {
   /** constructor. */
   public Water() {
     super();
-    ItemProperty.setHumanoidFood(this, true);
+    ItemProperty.setHumanoidFood(this);
   }
 
   // Static

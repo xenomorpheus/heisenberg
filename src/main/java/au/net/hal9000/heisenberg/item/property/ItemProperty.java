@@ -5,6 +5,9 @@ import au.net.hal9000.heisenberg.item.api.Item;
 /** Miscellaneous properties of an Item that don't deserve their own field. */
 public final class ItemProperty {
 
+  /** Value TRUE is used because Jackson was converting boolean to strings */
+  public static final String TRUE_FLAG = "ANYTHING";
+
   /** ideal value for health metric. */
   public static final float HEALTH_METRIC_IDEAL = 100f;
 
@@ -78,10 +81,9 @@ public final class ItemProperty {
   // Clothing
   /**
    * @param item the item we are changing the property of.
-   * @param clothing the new status
    */
-  public static void setClothing(Item item, boolean clothing) {
-    item.setProperty(IS_CLOTHING, clothing);
+  public static void setClothing(Item item) {
+    item.setProperty(IS_CLOTHING, TRUE_FLAG);
   }
 
   /**
@@ -91,7 +93,7 @@ public final class ItemProperty {
    * @return clothing the status
    */
   public static boolean isClothing(Item item) {
-    return (Boolean) item.getProperty(IS_CLOTHING);
+    return null != item.getProperty(IS_CLOTHING);
   }
 
   /**
@@ -99,7 +101,7 @@ public final class ItemProperty {
    *
    * @param item the item we are changing the property of.
    */
-  public static void removeClothing(Item item) {
+  public static void clearClothing(Item item) {
     item.removeProperty(IS_CLOTHING);
   }
 
@@ -145,8 +147,8 @@ public final class ItemProperty {
    * @param item the item we are changing the property of.
    * @param isHumanoidFood the new status
    */
-  public static void setHumanoidFood(Item item, boolean isHumanoidFood) {
-    item.setProperty(IS_HUMANOID_FOOD, isHumanoidFood);
+  public static void setHumanoidFood(Item item) {
+    item.setProperty(IS_HUMANOID_FOOD, TRUE_FLAG);
   }
 
   /**
@@ -156,11 +158,11 @@ public final class ItemProperty {
    * @return isHumanoidFood the status
    */
   public static boolean isHumanoidFood(Item item) {
-    return (Boolean) item.getProperty(IS_HUMANOID_FOOD);
+    return null != item.getProperty(IS_HUMANOID_FOOD);
   }
 
   /** Remove humanoid food.@param item the item we are changing the property of. */
-  public static void removeHumanoidFood(Item item) {
+  public static void clearHumanoidFood(Item item) {
     item.removeProperty(IS_HUMANOID_FOOD);
   }
 
@@ -206,8 +208,8 @@ public final class ItemProperty {
    * @param item the item we are changing the property of.
    * @param living the new status
    */
-  public static void setLiving(Item item, boolean living) {
-    item.setProperty(IS_LIVING, living);
+  public static void setLiving(Item item) {
+    item.setProperty(IS_LIVING, TRUE_FLAG);
   }
 
   /**
@@ -217,7 +219,7 @@ public final class ItemProperty {
    * @return living the status
    */
   public static boolean isLiving(Item item) {
-    return (Boolean) item.getProperty(IS_LIVING);
+    return null != item.getProperty(IS_LIVING);
   }
 
   /**
@@ -225,7 +227,7 @@ public final class ItemProperty {
    *
    * @param item the item we are changing the property of.
    */
-  public static void removeLiving(Item item) {
+  public static void clearLiving(Item item) {
     item.removeProperty(IS_LIVING);
   }
 
@@ -234,10 +236,9 @@ public final class ItemProperty {
    * Set magical.
    *
    * @param item the item we are changing the property of.
-   * @param isMagical the new status
    */
-  public static void setMagical(Item item, boolean isMagical) {
-    item.setProperty(IS_MAGICAL, isMagical);
+  public static void setMagical(Item item) {
+    item.setProperty(IS_MAGICAL, TRUE_FLAG);
   }
 
   /**
@@ -247,7 +248,7 @@ public final class ItemProperty {
    * @return magical the status
    */
   public static boolean isMagical(Item item) {
-    return (Boolean) item.getProperty(IS_MAGICAL);
+    return null != item.getProperty(IS_MAGICAL);
   }
 
   /**
@@ -255,7 +256,7 @@ public final class ItemProperty {
    *
    * @param item the item we are changing the property of.
    */
-  public static void removeMagical(Item item) {
+  public static void clearMagical(Item item) {
     item.removeProperty(IS_MAGICAL);
   }
 

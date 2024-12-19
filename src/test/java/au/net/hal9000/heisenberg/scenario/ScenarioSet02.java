@@ -20,7 +20,7 @@ public class ScenarioSet02 {
     assertTrue("is sharp", sword instanceof Sharp);
     assertFalse("is magical", ItemProperty.isMagical(sword));
     // Add code to make magical
-    ItemProperty.setMagical(sword, true);
+    ItemProperty.setMagical(sword);
     // Test the results.
     assertTrue("is sword", sword instanceof Sword);
     assertTrue("is sharp", sword instanceof Sharp);

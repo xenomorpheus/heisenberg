@@ -25,7 +25,7 @@ public class Ring extends ItemImpl implements HumanoidArmClothing {
   /** Constructor. */
   public Ring() {
     super();
-    ItemProperty.setClothing(this, true);
+    ItemProperty.setClothing(this);
     setDescription("small metalic ring");
     setValueBase(new Currency(0, DEFAULT_VALUE_GP, 0, 0));
     setWeightBase(DEFAULT_WEIGHT);

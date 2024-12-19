@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 // Custom
-import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
@@ -97,10 +96,6 @@ public abstract class ItemImpl implements Serializable, Item {
   protected ItemImpl() {
     super();
     id = UUID.randomUUID();
-    ItemProperty.setMagical(this, false);
-    ItemProperty.setClothing(this, false);
-    ItemProperty.setLiving(this, false);
-    ItemProperty.setHumanoidFood(this, false);
   }
 
   // Getters and Setters - Instance

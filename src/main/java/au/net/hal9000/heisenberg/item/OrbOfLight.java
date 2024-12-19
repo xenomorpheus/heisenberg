@@ -13,6 +13,6 @@ public class OrbOfLight extends Candle {
   /** Constructor. */
   public OrbOfLight() {
     super();
-    ItemProperty.setMagical(this, true);
+    ItemProperty.setMagical(this);
   }
 }

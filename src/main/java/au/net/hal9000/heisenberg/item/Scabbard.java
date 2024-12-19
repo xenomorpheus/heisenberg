@@ -18,7 +18,7 @@ public class Scabbard extends Box {
   /** Constructor for Scabbard. */
   public Scabbard() {
     super();
-    ItemProperty.setClothing(this, true);
+    ItemProperty.setClothing(this);
   }
 
   @Override

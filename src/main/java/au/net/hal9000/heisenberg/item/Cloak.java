@@ -13,6 +13,6 @@ public class Cloak extends ItemImpl {
   /** Constructor for Cloak. */
   public Cloak() {
     super();
-    ItemProperty.setClothing(this, true);
+    ItemProperty.setClothing(this);
   }
 }

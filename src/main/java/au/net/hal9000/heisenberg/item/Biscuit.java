@@ -16,6 +16,6 @@ public class Biscuit extends ItemImpl implements HumanoidFood {
   /** Constructor for Biscuit. */
   public Biscuit() {
     super();
-    ItemProperty.setHumanoidFood(this, true);
+    ItemProperty.setHumanoidFood(this);
   }
 }

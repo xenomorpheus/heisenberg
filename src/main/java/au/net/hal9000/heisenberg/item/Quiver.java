@@ -19,7 +19,7 @@ public class Quiver extends Location {
   public Quiver() {
     super();
     setVolumeMax(VOLUME_MAX_DFT);
-    ItemProperty.setClothing(this, true);
+    ItemProperty.setClothing(this);
   }
 
   /**

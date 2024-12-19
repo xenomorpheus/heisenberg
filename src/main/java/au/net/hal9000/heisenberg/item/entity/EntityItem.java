@@ -29,7 +29,7 @@ public abstract class EntityItem extends ItemImpl {
   protected EntityItem() {
     super();
     // By default PCs are living, but this may be changed at any time.
-    ItemProperty.setLiving(this, true);
+    ItemProperty.setLiving(this);
     ItemProperty.setAeration(this, ItemProperty.HEALTH_METRIC_IDEAL);
     ItemProperty.setEntertainment(this, ItemProperty.HEALTH_METRIC_IDEAL);
     ItemProperty.setHydration(this, ItemProperty.HEALTH_METRIC_IDEAL);

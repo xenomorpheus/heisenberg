@@ -13,6 +13,6 @@ public class HumanoidHead extends Location {
   /** Constructor for HumanoidHead. */
   public HumanoidHead() {
     super();
-    ItemProperty.setLiving(this, true);
+    ItemProperty.setLiving(this);
   }
 }

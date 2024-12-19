@@ -13,6 +13,6 @@ public class MagicRing extends Ring {
   /** Constructor. */
   public MagicRing() {
     super();
-    ItemProperty.setMagical(this, true);
+    ItemProperty.setMagical(this);
   }
 }

@@ -33,9 +33,9 @@ public class ItemPropertyTest {
   @Test
   public void testClothing() {
     EntityItem entity = new Cat();
-    ItemProperty.setClothing(entity, true);
+    ItemProperty.setClothing(entity);
     assertTrue("Clothing set", ItemProperty.isClothing(entity));
-    ItemProperty.setClothing(entity, false);
+    ItemProperty.clearClothing(entity);
     assertFalse("Clothing unset", ItemProperty.isClothing(entity));
   }
 
@@ -61,9 +61,9 @@ public class ItemPropertyTest {
   @Test
   public void testHumanoidFood() {
     EntityItem entity = new Cat();
-    ItemProperty.setHumanoidFood(entity, true);
+    ItemProperty.setHumanoidFood(entity);
     assertTrue("HumanoidFood set", ItemProperty.isHumanoidFood(entity));
-    ItemProperty.setHumanoidFood(entity, false);
+    ItemProperty.clearHumanoidFood(entity);
     assertFalse("HumanoidFood unset", ItemProperty.isHumanoidFood(entity));
   }
 
@@ -88,9 +88,9 @@ public class ItemPropertyTest {
   @Test
   public void testLiving() {
     EntityItem entity = new Cat();
-    ItemProperty.setLiving(entity, true);
+    ItemProperty.setLiving(entity);
     assertTrue("Living set", ItemProperty.isLiving(entity));
-    ItemProperty.setLiving(entity, false);
+    ItemProperty.clearLiving(entity);
     assertFalse("Living unset", ItemProperty.isLiving(entity));
   }
 
@@ -98,9 +98,9 @@ public class ItemPropertyTest {
   @Test
   public void testMagical() {
     EntityItem entity = new Cat();
-    ItemProperty.setMagical(entity, true);
+    ItemProperty.setMagical(entity);
     assertTrue("Magical set", ItemProperty.isMagical(entity));
-    ItemProperty.setMagical(entity, false);
+    ItemProperty.clearMagical(entity);
     assertFalse("Magical unset", ItemProperty.isMagical(entity));
   }
 

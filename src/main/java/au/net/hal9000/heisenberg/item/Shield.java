@@ -26,6 +26,6 @@ public class Shield extends ItemImpl implements HumanoidArmClothing {
   /** Constructor for Shield. */
   public Shield() {
     super();
-    ItemProperty.setClothing(this, true);
+    ItemProperty.setClothing(this);
   }
 }
