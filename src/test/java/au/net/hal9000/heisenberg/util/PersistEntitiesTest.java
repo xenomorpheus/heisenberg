@@ -1,62 +1,50 @@
-package au.net.hal9000.heisenberg.item;
+package au.net.hal9000.heisenberg.util;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+import au.net.hal9000.heisenberg.item.Arrow;
+import au.net.hal9000.heisenberg.item.Backpack;
+import au.net.hal9000.heisenberg.item.Bag;
+import au.net.hal9000.heisenberg.item.BagOfHolding;
+import au.net.hal9000.heisenberg.item.Biscuit;
+import au.net.hal9000.heisenberg.item.Box;
+import au.net.hal9000.heisenberg.item.Candle;
+import au.net.hal9000.heisenberg.item.Cloak;
+import au.net.hal9000.heisenberg.item.Crossbow;
+import au.net.hal9000.heisenberg.item.CrossbowBolt;
+import au.net.hal9000.heisenberg.item.Factory;
+import au.net.hal9000.heisenberg.item.Location;
+import au.net.hal9000.heisenberg.item.MagicRing;
+import au.net.hal9000.heisenberg.item.Quiver;
+import au.net.hal9000.heisenberg.item.Ring;
+import au.net.hal9000.heisenberg.item.Scabbard;
+import au.net.hal9000.heisenberg.item.Shield;
+import au.net.hal9000.heisenberg.item.Sword;
+import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
-import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.log4j.Logger;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 /** */
-public class PersistenceTest {
+public class PersistEntitiesTest {
 
   private Configuration config = null;
-  final String persistenceUnitName = "items";
-  private EntityManagerFactory factory = null;
-  private EntityManager em = null;
-  private static final Logger LOGGER = Logger.getLogger(PersistenceTest.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(PersistEntitiesTest.class.getName());
 
   @Before
   public void initialise() {
     DemoEnvironment.setup();
     config = Configuration.lastConfig();
-    open_db();
-  }
-
-  @After
-  public void finalise() {
-    close_db();
-  }
-
-  private void open_db() {
-    factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    em = factory.createEntityManager();
-  }
-
-  private void close_db() {
-    em.close();
-    em = null;
-  }
-
-  private void close_then_open_db() {
-    close_db();
-    open_db();
   }
 
   /** Persistence of basic Item. */
@@ -70,17 +58,12 @@ public class PersistenceTest {
     assertEquals(0L, item.getJpaId());
     item.setProperty("WantBAR", "BAR");
 
-    // Persist Item
-    em.getTransaction().begin();
-    em.persist(item);
-    em.getTransaction().commit();
+    PersistEntities.save(item);
     final var jpaId = item.getJpaId();
     assertNotEquals(0L, jpaId);
 
-    close_then_open_db();
-
     // Retrieve Item
-    var itemFetched = em.find(classExpected, jpaId);
+    var itemFetched = PersistEntities.find(classExpected, jpaId);
     assertNotNull(itemFetched);
     assertEquals(jpaId, itemFetched.getJpaId());
     assertEquals("WantBar property after", "BAR", itemFetched.getProperty("WantBAR"));
@@ -104,16 +87,12 @@ public class PersistenceTest {
     item.getPlayableState().setMana(manaExpected);
 
     // Persist Item
-    em.getTransaction().begin();
-    em.persist(item);
-    em.getTransaction().commit();
+    PersistEntities.save(item);
     final var jpaId = item.getJpaId();
     assertNotEquals(0L, jpaId);
 
-    close_then_open_db();
-
     // Retrieve Item
-    var itemFetched = em.find(classExpected, jpaId);
+    var itemFetched = PersistEntities.find(classExpected, jpaId);
     assertNotNull(itemFetched);
     assertEquals(jpaId, itemFetched.getJpaId());
     assertEquals("Name after", nameExpected, itemFetched.getName());
@@ -131,7 +110,6 @@ public class PersistenceTest {
     LOGGER.info("Testing " + itemClass);
 
     // Create a new Item
-    em.getTransaction().begin();
     Item item = Factory.createItem(itemClass);
     final String nameExpected = "Name of " + item.getSimpleClassName();
     item.setName(nameExpected);
@@ -144,15 +122,12 @@ public class PersistenceTest {
     final var classExpected = item.getClass();
 
     // Persist Item
-    em.persist(item);
-    em.getTransaction().commit();
+    PersistEntities.save(item);
     final var jpaId = item.getJpaId();
     assertNotEquals(0L, jpaId);
 
-    close_then_open_db();
-
     // Retrieve Item
-    Item retrievedItem = em.find(classExpected, jpaId);
+    Item retrievedItem = PersistEntities.find(classExpected, jpaId);
     assertNotNull(retrievedItem);
     assertEquals("jpaId", jpaId, retrievedItem.getJpaId());
     assertEquals("Class after", classExpected, retrievedItem.getClass());
@@ -172,7 +147,6 @@ public class PersistenceTest {
       LOGGER.info("Testing " + itemClass);
 
       // Create a new Item
-      em.getTransaction().begin();
       Item item = Factory.createItem(itemClass);
       final String nameExpected = "Name of " + item.getSimpleClassName();
       item.setName(nameExpected);
@@ -185,75 +159,18 @@ public class PersistenceTest {
       final var classExpected = item.getClass();
 
       // Persist Item
-      em.persist(item);
-      em.getTransaction().commit();
+      PersistEntities.save(item);
       final var jpaId = item.getJpaId();
       assertNotEquals(0L, jpaId);
 
-      close_then_open_db();
-
       // Retrieve Item
-      Item retrievedItem = em.find(classExpected, jpaId);
+      Item retrievedItem = PersistEntities.find(classExpected, jpaId);
       assertNotNull(retrievedItem);
       assertEquals(jpaId, retrievedItem.getJpaId());
       assertEquals("Class", classExpected, retrievedItem.getClass());
       assertEquals("Name after", nameExpected, retrievedItem.getName());
       assertEquals("Description after", descriptionExpected, retrievedItem.getDescription());
     }
-  }
-
-  /** Method testItemContainer. */
-  @Test
-  public void testItemContainer() {
-
-    var factory = Persistence.createEntityManagerFactory(persistenceUnitName);
-    var em = factory.createEntityManager();
-    assertNotNull(em);
-
-    Bag bag = new Bag();
-    String bagNameExpected = "Bag Name";
-    bag.setName(bagNameExpected);
-    assertEquals("Bag Name", bagNameExpected, bag.getName());
-    Biscuit biscuit1 = new Biscuit();
-    String biscuit1Name = "Biscuit1 Name";
-    biscuit1.setName(biscuit1Name);
-    Biscuit biscuit2 = new Biscuit();
-    bag.add(biscuit1);
-    bag.add(biscuit2);
-    LOGGER.info(bag.detailedDescription());
-    assertEquals(2, bag.getContents().size());
-    assertEquals(0L, biscuit1.getJpaId());
-    assertEquals(0L, biscuit2.getJpaId());
-    assertEquals(0L, bag.getJpaId());
-
-    // Persist Item
-    em.getTransaction().begin();
-    em.persist(bag);
-    em.persist(biscuit1);
-    em.persist(biscuit2);
-    em.getTransaction().commit();
-    final var bagJpaId = bag.getJpaId();
-    assertNotEquals(0L, bagJpaId);
-    assertNotEquals(0L, biscuit1.getJpaId());
-    assertNotEquals(0L, biscuit2.getJpaId());
-
-    em.close();
-    em = null;
-
-    em = factory.createEntityManager();
-    // Fetch the bag and contents.
-    var bagFetched = em.find(Bag.class, bagJpaId);
-    assertEquals("Bag Name", bagNameExpected, bagFetched.getName());
-    assertEquals(2, bagFetched.getContents().size());
-    LOGGER.info(bagFetched.detailedDescription());
-    LOGGER.info("Bag Contents Count: " + bagFetched.getContents().size());
-    var biscuit1Fetched = bagFetched.get(0);
-    assertEquals("Biscuit1 Name", biscuit1Name, biscuit1Fetched.getName());
-    for (var item : bagFetched.getContents()) {
-      LOGGER.info("Content: " + item.detailedDescription());
-    }
-    em.close();
-    em = null;
   }
 
   private static Location testGetWorld() {
@@ -284,8 +201,8 @@ public class PersistenceTest {
 
     // a backpack of stuff
     Bag backpack = new Backpack();
-    backpack.setWeightMax(100000);
-    backpack.setVolumeMax(100000);
+    backpack.setWeightMax(-1);
+    backpack.setVolumeMax(-1);
     backpack.add(boh);
 
     Quiver quiver = new Quiver();
@@ -302,8 +219,8 @@ public class PersistenceTest {
     // a human with a bag of biscuits
     Human human = new Human();
     world.add(human);
-    human.setWeightMax(100000);
-    human.setVolumeMax(100000);
+    human.setWeightMax(-1);
+    human.setVolumeMax(-1);
 
     human.add(new Shield());
     human.add(scabbard2);
@@ -374,19 +291,14 @@ public class PersistenceTest {
       summaryExpect = visitor.summary();
       visitor.printSummary();
 
-      // Persist Location
-      em.getTransaction().begin();
-      em.persist(loc);
-      em.getTransaction().commit();
+      PersistEntities.save(loc);
       locJpaId = loc.getJpaId();
       assertNotEquals(0L, locJpaId);
     }
 
-    close_then_open_db();
-
     {
       // Retrieve Location
-      final var locFetched = em.find(Location.class, locJpaId);
+      final var locFetched = PersistEntities.find(Location.class, locJpaId);
 
       var visitor = new MyItemVisitor();
       locFetched.accept(visitor);

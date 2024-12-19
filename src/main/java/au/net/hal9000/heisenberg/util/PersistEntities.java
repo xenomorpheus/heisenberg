@@ -13,7 +13,7 @@ public class PersistEntities {
 
   private static final Logger LOGGER = Logger.getLogger(PersistEntities.class.getName());
 
-  public static void save(final Item item) {
+  public static void save(final Item item) { // TODO List<Item> items
 
     /** Persistence Entity Manager. */
     EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -28,6 +28,16 @@ public class PersistEntities {
     entityManager.persist(item);
     entityManager.getTransaction().commit();
     entityManager.close();
+    factory.close();
     LOGGER.info("Saved");
+  }
+
+  public static <T> T find(Class<T> entityClass, Object primaryKey) {
+    EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    EntityManager em = factory.createEntityManager();
+    var entity = em.find(entityClass, primaryKey);
+    em.close();
+    factory.close();
+    return entity;
   }
 }
