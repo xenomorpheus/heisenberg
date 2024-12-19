@@ -98,19 +98,15 @@ public final class PlayableState implements Serializable {
   public String toString() {
     StringBuilder text = new StringBuilder();
     if (0 != actionPoints) {
-      text.append("Action Points: " + actionPoints);
-      text.append(System.lineSeparator());
+      text.append("Action Points: " + actionPoints + System.lineSeparator());
     }
     if (0 != mana) {
-      text.append("Mana: " + mana);
-      text.append(System.lineSeparator());
+      text.append("Mana: " + mana + System.lineSeparator());
     }
     if (null != memorySet && !memorySet.isEmpty()) {
-      text.append("MemorySet:");
-      text.append(System.lineSeparator());
+      text.append("MemorySet:" + System.lineSeparator());
       for (Memory memory : memorySet) {
-        text.append("  " + memory);
-        text.append(System.lineSeparator());
+        text.append("  " + memory + System.lineSeparator());
       }
     }
     return text.toString();

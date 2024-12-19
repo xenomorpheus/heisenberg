@@ -81,8 +81,7 @@ public class Candle extends ItemImpl implements LightSource {
 
   @Override
   public String detailedDescription() {
-    StringBuilder string = new StringBuilder(super.detailedDescription());
-    string.append(System.lineSeparator());
+    StringBuilder string = new StringBuilder(super.detailedDescription() + System.lineSeparator());
     string.append("The " + getClass().getSimpleName());
 
     if (lit) {

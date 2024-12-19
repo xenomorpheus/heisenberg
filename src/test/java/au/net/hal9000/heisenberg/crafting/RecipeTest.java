@@ -199,56 +199,37 @@ public class RecipeTest {
   /** Method testDetails. */
   @Test
   public void testDetails() {
-    StringBuilder text = new StringBuilder("Id: recipe1");
-    text.append(System.lineSeparator());
-    text.append("Description: the first recipe");
-    text.append(System.lineSeparator());
-    text.append("Process: null");
-    text.append(System.lineSeparator());
-    text.append("Mana:");
-    text.append(REQUIRED_MANA);
-    text.append(System.lineSeparator());
-    text.append("Action Point(s):");
-    text.append(REQUIRED_ACTION_POINTS);
-    text.append(System.lineSeparator());
+    StringBuilder text = new StringBuilder("Id: recipe1" + System.lineSeparator());
+    text.append("Description: the first recipe" + System.lineSeparator());
+    text.append("Process: null" + System.lineSeparator());
+    text.append("Mana:" + REQUIRED_MANA + System.lineSeparator());
+    text.append("Action Point(s):" + REQUIRED_ACTION_POINTS + System.lineSeparator());
     assertEquals("simple", text.toString(), simple.details());
   }
 
   /** Method testDetailsComplex. */
   @Test
   public void testDetailsComplex() {
-    StringBuilder text = new StringBuilder("Id: recipe1");
-    text.append(System.lineSeparator());
-    text.append("Description: the first recipe");
-    text.append(System.lineSeparator());
-    text.append("Process: ");
-    text.append(PROCESS_NAME);
-    text.append(System.lineSeparator());
-    text.append("Mana:");
-    text.append(REQUIRED_MANA);
-    text.append(System.lineSeparator());
-    text.append("Action Point(s):");
-    text.append(REQUIRED_ACTION_POINTS);
-    text.append(System.lineSeparator());
-    text.append("Skill(s):");
-    text.append(System.lineSeparator());
-    text.append("  0: Skill0");
-    text.append(System.lineSeparator());
-    text.append("  1: Skill1");
-    text.append(System.lineSeparator());
-    text.append("  2: Skill2");
-    text.append(System.lineSeparator());
-    text.append("Requirement(s):");
-    text.append(System.lineSeparator());
-    text.append("  FlintAndTinder: Id: FlintAndTinder, consumed, item type FlintAndTinder");
-    text.append(System.lineSeparator());
-    text.append("  Wood: Id: Wood, consumed, item type Wood, weighing at least 3.0");
-    text.append(System.lineSeparator());
-    text.append("Product(s):");
-    text.append(System.lineSeparator());
+    StringBuilder text = new StringBuilder("Id: recipe1" + System.lineSeparator());
+    text.append("Description: the first recipe" + System.lineSeparator());
+    text.append("Process: " + PROCESS_NAME + System.lineSeparator());
+    text.append("Mana:" + REQUIRED_MANA + System.lineSeparator());
+    text.append("Action Point(s):" + REQUIRED_ACTION_POINTS + System.lineSeparator());
+    text.append("Skill(s):" + System.lineSeparator());
+    text.append("  0: Skill0" + System.lineSeparator());
+    text.append("  1: Skill1" + System.lineSeparator());
+    text.append("  2: Skill2" + System.lineSeparator());
+    text.append("Requirement(s):" + System.lineSeparator());
     text.append(
-        "  SmallGroundFire: Id: SmallGroundFire, item type of SmallGroundFire, weightBase 0.0");
-    text.append(System.lineSeparator());
+        "  FlintAndTinder: Id: FlintAndTinder, consumed, item type FlintAndTinder"
+            + System.lineSeparator());
+    text.append(
+        "  Wood: Id: Wood, consumed, item type Wood, weighing at least 3.0"
+            + System.lineSeparator());
+    text.append("Product(s):" + System.lineSeparator());
+    text.append(
+        "  SmallGroundFire: Id: SmallGroundFire, item type of SmallGroundFire, weightBase 0.0"
+            + System.lineSeparator());
     assertEquals("recipeAll", text.toString(), recipeAll.details());
   }
 }

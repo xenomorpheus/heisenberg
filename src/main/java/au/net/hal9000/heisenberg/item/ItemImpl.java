@@ -411,43 +411,33 @@ public abstract class ItemImpl implements Serializable, Item {
 
     temp = getName();
     if (null != temp) {
-      text.append("Name: " + temp);
-      text.append(System.lineSeparator());
+      text.append("Name: " + temp + System.lineSeparator());
     }
-    text.append("Item Class: " + getSimpleClassName());
-    text.append(System.lineSeparator());
+    text.append("Item Class: " + getSimpleClassName() + System.lineSeparator());
 
     temp = getDescription();
     if ((null != temp) && (temp.length() > 0)) {
-      text.append("Description: " + temp);
-      text.append(System.lineSeparator());
+      text.append("Description: " + temp + System.lineSeparator());
     }
-    text.append("Weight Base: " + getWeightBase());
-    text.append(System.lineSeparator());
-    text.append("Volume Base: " + getVolumeBase());
-    text.append(System.lineSeparator());
+    text.append("Weight Base: " + getWeightBase() + System.lineSeparator());
+    text.append("Volume Base: " + getVolumeBase() + System.lineSeparator());
 
     Currency valueBase = getValueBase();
     if (null != valueBase) {
-      text.append("Value Base: " + valueBase);
-      text.append(System.lineSeparator());
+      text.append("Value Base: " + valueBase + System.lineSeparator());
     }
     ItemContainer container = getContainer();
     if (null != container) {
-      text.append("Container: " + container.getName());
-      text.append(System.lineSeparator());
+      text.append("Container: " + container.getName() + System.lineSeparator());
     }
     Position position = getPosition();
     if (null != position) {
-      text.append("Position: " + position);
-      text.append(System.lineSeparator());
+      text.append("Position: " + position + System.lineSeparator());
     }
     if (properties != null && !properties.isEmpty()) {
-      text.append("Properties:");
-      text.append(System.lineSeparator());
+      text.append("Properties:" + System.lineSeparator());
       for (Entry<Object, Object> entry : properties.entrySet()) {
-        text.append(" " + entry.getKey() + ": " + entry.getValue());
-        text.append(System.lineSeparator());
+        text.append(" " + entry.getKey() + ": " + entry.getValue() + System.lineSeparator());
       }
     }
     return text.toString();

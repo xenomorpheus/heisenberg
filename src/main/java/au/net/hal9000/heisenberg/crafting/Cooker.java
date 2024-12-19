@@ -172,11 +172,9 @@ public final class Cooker {
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
       if (null == chef) {
-        string.append("No chef set to supply mana");
-        string.append(System.lineSeparator());
+        string.append("No chef set to supply mana" + System.lineSeparator());
       } else if (manaRequired > chef.getPlayableState().getMana()) {
-        string.append("Not enough mana");
-        string.append(System.lineSeparator());
+        string.append("Not enough mana" + System.lineSeparator());
       }
     }
 
@@ -184,11 +182,9 @@ public final class Cooker {
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
       if (null == chef) {
-        string.append("No chef set to supply action points");
-        string.append(System.lineSeparator());
+        string.append("No chef set to supply action points" + System.lineSeparator());
       } else if (actionPointsRequired > chef.getPlayableState().getActionPoints()) {
-        string.append("Not enough action points");
-        string.append(System.lineSeparator());
+        string.append("Not enough action points" + System.lineSeparator());
       }
     }
 
@@ -198,12 +194,10 @@ public final class Cooker {
       if (chef instanceof EntityItem) {
         final Set<Skill> chefSkills = chef.getCharacterSheet().getSkills();
         if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
-          string.append("Missing Skills");
-          string.append(System.lineSeparator());
+          string.append("Missing Skills" + System.lineSeparator());
         }
       } else {
-        string.append("No chef to supply skills");
-        string.append(System.lineSeparator());
+        string.append("No chef to supply skills" + System.lineSeparator());
       }
     }
 
@@ -241,11 +235,12 @@ public final class Cooker {
     }
     // Not enough Requirement Items.
     if (requirementCount > ingredients.size()) {
-      errors.append("Too few ingredients ");
-      errors.append(requirementCount);
-      errors.append(" vs ");
-      errors.append(ingredients.size());
-      errors.append(System.lineSeparator());
+      errors.append(
+          "Too few ingredients "
+              + requirementCount
+              + " vs "
+              + ingredients.size()
+              + System.lineSeparator());
     }
     Map<String, Requirement> requirements = recipe.getRequirements();
     for (String key : requirements.keySet()) {
@@ -255,8 +250,12 @@ public final class Cooker {
         Item item = ingredients.get(key);
         String reason = requirementItem.meetsRequirements(item);
         if (null != reason) {
-          errors.append("Missing/bad ingredient for requirement " + key + " because " + reason);
-          errors.append(System.lineSeparator());
+          errors.append(
+              "Missing/bad ingredient for requirement "
+                  + key
+                  + " because "
+                  + reason
+                  + System.lineSeparator());
         }
       }
     }
