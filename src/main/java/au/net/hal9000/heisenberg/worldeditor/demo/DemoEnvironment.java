@@ -134,10 +134,15 @@ public final class DemoEnvironment {
     human.setWeightMax(DEMO_WEIGHT_VOLUME);
     human.setVolumeMax(DEMO_WEIGHT_VOLUME);
 
-    // Automatic placement
     human.getRightHand().add(new Sword());
     human.getLeftHand().add(new Shield());
     human.getCore().add(new Scabbard());
+    var humansScabard = new Scabbard();
+    humansScabard.add(new Sword());
+    human.getCore().add(humansScabard);
+    human.getCore().add(new Cloak());
+
+    // Automatic placement
     human.add(quiver);
     human.add(backpack);
     human.add(new MagicRing());
