@@ -1,7 +1,12 @@
 
-Checking Code
+Validating Code
 ================
 mvn validate
+
+Testing Code
+=============
+mvn test
+mvn -Dtest=au.net.hal9000.heisenberg.util.JsonItemsTest test
 
 Checking POM
 ==================
