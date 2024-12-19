@@ -11,8 +11,28 @@ import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacter;
 import au.net.hal9000.heisenberg.fifthed.playercharacter.PlayerCharacterCondition;
 import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
+import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
+import org.apache.log4j.Logger;
 
 public class TestHelper {
+
+  /** Field LOGGER. */
+  private static final Logger LOGGER = Logger.getLogger(TestHelper.class.getName());
+
+  /** file containing test configuration. */
+  private static String TEST_CONFIG_FILE = "src/test/resources/config.xml";
+
+  /** Setup demo environment. */
+  public static void setup() {
+    try {
+      new Configuration(TEST_CONFIG_FILE);
+    } catch (ConfigurationError e) {
+      throw new RuntimeException(e);
+    }
+    LOGGER.info("Test Env setup");
+  }
+
   public static PlayerCharacter getMagus() {
     PlayerCharacter pc = new Human();
     pc.setName("Mr Magus");
