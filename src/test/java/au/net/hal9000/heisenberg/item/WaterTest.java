@@ -26,9 +26,9 @@ public class WaterTest {
     waterBig.setWeightBase(big + small);
     waterBig.setVolumeBase(2.0f * (big + small));
     Water waterSmall = (Water) waterBig.splitByWeight(small);
-    assertEquals("big's weight", big, waterBig.getWeight(), tollerance);
-    assertEquals("big's volume", big * 2.0f, waterBig.getVolume(), tollerance);
-    assertEquals("small's weight", small, waterSmall.getWeight(), tollerance);
-    assertEquals("small's volume", small * 2.0f, waterSmall.getVolume(), tollerance);
+    assertEquals("big's weight", big, waterBig.totalWeight(), tollerance);
+    assertEquals("big's volume", big * 2.0f, waterBig.totalVolume(), tollerance);
+    assertEquals("small's weight", small, waterSmall.totalWeight(), tollerance);
+    assertEquals("small's volume", small * 2.0f, waterSmall.totalVolume(), tollerance);
   }
 }

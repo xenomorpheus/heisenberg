@@ -122,7 +122,7 @@ public interface Item {
    *
    * @return the total value including contained items.
    */
-  Currency getValue();
+  Currency totalValue();
 
   /**
    * Set value before addition of other items such as those carried.
@@ -136,7 +136,7 @@ public interface Item {
    *
    * @return the amount of 3D space that this item occupies.
    */
-  float getVolume();
+  float totalVolume();
 
   /**
    * Get volume before addition of other items such as those carried.
@@ -158,7 +158,7 @@ public interface Item {
    *
    * @return the total weight
    */
-  float getWeight();
+  float totalWeight();
 
   /**
    * Get weight base. weight before addition of other items such as those carried. @return weight
@@ -222,6 +222,12 @@ public interface Item {
    */
   UUID getId();
 
+  /**
+   * Returns the simple type of this item e.g. Biscuit, Arrow, etc. <br>
+   * Also used by Jackson JSON serialisation to remember the object type.
+   *
+   * @return the simple type of this item e.g. Biscuit, Arrow, etc.
+   */
   String getSimpleClassName();
 
   /**

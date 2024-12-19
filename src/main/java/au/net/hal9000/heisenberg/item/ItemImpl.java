@@ -205,7 +205,7 @@ public abstract class ItemImpl implements Serializable, Item {
   }
 
   @Override
-  public Currency getValue() {
+  public Currency totalValue() {
     return valueBase;
   }
 
@@ -217,7 +217,7 @@ public abstract class ItemImpl implements Serializable, Item {
   // volume related
 
   @Override
-  public float getVolume() {
+  public float totalVolume() {
     return volumeBase;
   }
 
@@ -234,7 +234,7 @@ public abstract class ItemImpl implements Serializable, Item {
   // weight related
 
   @Override
-  public float getWeight() {
+  public float totalWeight() {
     return weightBase;
   }
 
@@ -435,11 +435,6 @@ public abstract class ItemImpl implements Serializable, Item {
     visitor.visit(this);
   }
 
-  /**
-   * Returns the simple type of this item e.g. Biscuit, Arrow, etc.
-   *
-   * @return the simple type of this item e.g. Biscuit, Arrow, etc.
-   */
   @Override
   public String getSimpleClassName() {
     return getClass().getSimpleName();

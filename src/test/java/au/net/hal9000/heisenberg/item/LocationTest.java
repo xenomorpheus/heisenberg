@@ -122,7 +122,7 @@ public class LocationTest {
     bag.add(c1);
     bag.add(c2);
     bag.add(c3);
-    assertEquals("weight", 17, bag.getWeight(), TOLLERANCE);
+    assertEquals("weight", 17, bag.totalWeight(), TOLLERANCE);
   }
 
   @Test
@@ -138,7 +138,7 @@ public class LocationTest {
     bag.add(c1);
     bag.add(c2);
     bag.add(c3);
-    assertEquals("volume", 17, bag.getVolume(), TOLLERANCE);
+    assertEquals("volume", 17, bag.totalVolume(), TOLLERANCE);
   }
 
   @Test
@@ -154,7 +154,7 @@ public class LocationTest {
     bag.add(c1);
     bag.add(c2);
     bag.add(c3);
-    assertEquals("value", new Currency(1, 1, 1, 1), bag.getValue());
+    assertEquals("value", new Currency(1, 1, 1, 1), bag.totalValue());
   }
 
   @Test

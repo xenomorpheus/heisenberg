@@ -99,7 +99,7 @@ public class Location extends ItemImpl implements ItemContainer {
    * @return Total weight, including contents.
    */
   @Override
-  public float getWeight() {
+  public float totalWeight() {
     float total = getWeightBase();
     total += getContentsWeight();
     return total;
@@ -109,7 +109,7 @@ public class Location extends ItemImpl implements ItemContainer {
    * @return Total volume, including contents.
    */
   @Override
-  public float getVolume() {
+  public float totalVolume() {
     float total = getVolumeBase();
     total += getContentsVolume();
     return total;
@@ -119,7 +119,7 @@ public class Location extends ItemImpl implements ItemContainer {
    * @return Total value, including contents.
    */
   @Override
-  public Currency getValue() {
+  public Currency totalValue() {
     Currency total = new Currency(getValueBase());
     total.add(getContentsValue());
     return total;
@@ -202,13 +202,13 @@ public class Location extends ItemImpl implements ItemContainer {
     final float weightMax = getWeightMax();
     if (weightMax > 0f) {
       float total = getContentsWeight();
-      total += item.getWeight();
+      total += item.totalWeight();
       if (total > weightMax) {
         throw new TooHeavyException(
             "TooHeavy - Adding "
                 + item.getName()
                 + " weighing "
-                + item.getWeight()
+                + item.totalWeight()
                 + " will total "
                 + total
                 + ", which is too heavy for "
@@ -222,13 +222,13 @@ public class Location extends ItemImpl implements ItemContainer {
     final float volumeMax = getVolumeMax();
     if (volumeMax > 0) {
       float total = getContentsVolume();
-      total += item.getVolume();
+      total += item.totalVolume();
       if (total > volumeMax) {
         throw new TooLargeException(
             "TooLarge - Adding "
                 + item.getName()
                 + " weighing "
-                + item.getWeight()
+                + item.totalWeight()
                 + " will total "
                 + total
                 + ", which is too heavy for "
@@ -294,7 +294,7 @@ public class Location extends ItemImpl implements ItemContainer {
   private float getContentsWeight() {
     float total = 0;
     for (Item item : getContents()) {
-      total += item.getWeight();
+      total += item.totalWeight();
     }
     return total;
   }
@@ -307,7 +307,7 @@ public class Location extends ItemImpl implements ItemContainer {
   private float getContentsVolume() {
     float total = 0;
     for (Item item : getContents()) {
-      total += item.getVolume();
+      total += item.totalVolume();
     }
     return total;
   }
@@ -320,7 +320,7 @@ public class Location extends ItemImpl implements ItemContainer {
   private Currency getContentsValue() {
     Currency total = new Currency();
     for (Item item : getContents()) {
-      total.add(item.getValue());
+      total.add(item.totalValue());
     }
     return total;
   }

@@ -45,8 +45,8 @@ public class ItemSearchMagicalTest {
   public void testAccept4() {
     Box box = new Box();
     Biscuit biscuit = new Biscuit();
-    box.setWeightMax(biscuit.getWeight());
-    box.setVolumeMax(biscuit.getVolume());
+    box.setWeightMax(biscuit.totalWeight());
+    box.setVolumeMax(biscuit.totalVolume());
     box.add(biscuit);
     ItemSearch searchBox2 = new ItemSearchMagical();
     box.accept(searchBox2);
@@ -58,8 +58,8 @@ public class ItemSearchMagicalTest {
   public void testAccept5() {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
-    box.setWeightMax(boh.getWeight());
-    box.setVolumeMax(boh.getVolume());
+    box.setWeightMax(boh.totalWeight());
+    box.setVolumeMax(boh.totalVolume());
     box.add(boh);
     ItemSearch searchBox = new ItemSearchMagical();
     box.accept(searchBox);
@@ -73,8 +73,8 @@ public class ItemSearchMagicalTest {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
     Biscuit biscuit = new Biscuit();
-    box.setWeightMax(boh.getWeight() + biscuit.getWeight());
-    box.setVolumeMax(boh.getVolume() + biscuit.getVolume());
+    box.setWeightMax(boh.totalWeight() + biscuit.totalWeight());
+    box.setVolumeMax(boh.totalVolume() + biscuit.totalVolume());
     box.add(boh);
     box.add(biscuit);
     ItemSearch searchBox = new ItemSearchMagical();

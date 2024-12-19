@@ -188,7 +188,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    * @return the total weight.
    */
   @Override
-  public float getWeight() {
+  public float totalWeight() {
     return getWeightBase();
   }
 
@@ -198,7 +198,7 @@ public class BagOfHolding extends Bag implements ExtraDimensional {
    * @return the total volume.
    */
   @Override
-  public float getVolume() {
+  public float totalVolume() {
     return getVolumeBase();
   }
 

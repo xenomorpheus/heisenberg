@@ -95,7 +95,7 @@ public class ItemTest {
     final float weight = 0.123F;
     Item item = new Biscuit();
     item.setWeightBase(weight);
-    assertEquals("weight", item.getWeight(), weight, WITHIN_MARGIN);
+    assertEquals("weight", item.totalWeight(), weight, WITHIN_MARGIN);
   }
 
   /** test valueBase and value */
@@ -105,7 +105,7 @@ public class ItemTest {
     Currency currency = new Currency();
     item.setValueBase(currency);
     assertTrue("valueBase", currency == item.getValueBase());
-    assertTrue("value", currency == item.getValue());
+    assertTrue("value", currency == item.totalValue());
   }
 
   @Test

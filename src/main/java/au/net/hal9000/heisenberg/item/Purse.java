@@ -39,17 +39,17 @@ public class Purse extends ItemImpl {
   }
 
   @Override
-  public float getWeight() {
+  public float totalWeight() {
     return getWeightBase() + getCoinCount() * COINS_TO_WEIGHT;
   }
 
   @Override
-  public float getVolume() {
+  public float totalVolume() {
     return getVolumeBase() + getCoinCount() * COINS_TO_VOLUME;
   }
 
   @Override
-  public Currency getValue() {
+  public Currency totalValue() {
     // We take a fresh currency so we don't alter the Purse's inner currency
     // object.
     Currency total = new Currency();

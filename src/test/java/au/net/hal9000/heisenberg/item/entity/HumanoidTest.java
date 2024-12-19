@@ -23,7 +23,7 @@ public class HumanoidTest {
     human.getHead().setWeightBase(1F);
     human.getLeftHand().setWeightBase(2F);
     human.getRightHand().setWeightBase(4F);
-    assertEquals("getWeight", human.getWeight(), 7F, WITHIN_MARGIN);
+    assertEquals("getWeight", human.totalWeight(), 7F, WITHIN_MARGIN);
   }
 
   /** Method testWear. */

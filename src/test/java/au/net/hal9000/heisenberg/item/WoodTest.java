@@ -26,9 +26,9 @@ public class WoodTest {
     woodBig.setWeightBase(big + small);
     woodBig.setVolumeBase(2.0f * (big + small));
     Wood woodSmall = (Wood) woodBig.splitByWeight(small);
-    assertEquals("big's weight", big, woodBig.getWeight(), tollerance);
-    assertEquals("big's volume", big * 2.0f, woodBig.getVolume(), tollerance);
-    assertEquals("small's weight", small, woodSmall.getWeight(), tollerance);
-    assertEquals("small's volume", small * 2.0f, woodSmall.getVolume(), tollerance);
+    assertEquals("big's weight", big, woodBig.totalWeight(), tollerance);
+    assertEquals("big's volume", big * 2.0f, woodBig.totalVolume(), tollerance);
+    assertEquals("small's weight", small, woodSmall.totalWeight(), tollerance);
+    assertEquals("small's volume", small * 2.0f, woodSmall.totalVolume(), tollerance);
   }
 }

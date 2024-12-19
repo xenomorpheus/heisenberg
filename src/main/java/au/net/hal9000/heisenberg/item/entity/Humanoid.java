@@ -194,19 +194,19 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   }
 
   @Override
-  public float getWeight() {
+  public float totalWeight() {
     float total = 0;
     for (Item item : items) {
-      total += item.getWeight();
+      total += item.totalWeight();
     }
     return total;
   }
 
   @Override
-  public float getVolume() {
+  public float totalVolume() {
     float total = 0;
     for (Item item : items) {
-      total += item.getVolume();
+      total += item.totalVolume();
     }
     return total;
   }

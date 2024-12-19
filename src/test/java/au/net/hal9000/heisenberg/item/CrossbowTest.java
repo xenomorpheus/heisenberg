@@ -55,7 +55,7 @@ public class CrossbowTest {
     bolt.setWeightBase(0.3f);
     crossbow.setLoadedBolt(bolt);
     assertEquals(
-        "weight: ", crossbow.getWeightBase() + bolt.getWeightBase(), crossbow.getWeight(), 0.01);
+        "weight: ", crossbow.getWeightBase() + bolt.getWeightBase(), crossbow.totalWeight(), 0.01);
   }
 
   /** visit */

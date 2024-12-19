@@ -42,10 +42,10 @@ public class Crossbow extends ItemImpl {
    *
    * @return float
    */
-  public float getWeight() {
-    float total = super.getWeight();
+  public float totalWeight() {
+    float total = super.totalWeight();
     if (null != loadedBolt) {
-      total += loadedBolt.getWeight();
+      total += loadedBolt.totalWeight();
     }
     return total;
   }

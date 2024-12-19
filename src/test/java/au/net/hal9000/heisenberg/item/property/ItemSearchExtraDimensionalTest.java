@@ -46,8 +46,8 @@ public class ItemSearchExtraDimensionalTest {
   public void testAccept4() {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
-    box.setWeightMax(boh.getWeight());
-    box.setVolumeMax(boh.getVolume());
+    box.setWeightMax(boh.totalWeight());
+    box.setVolumeMax(boh.totalVolume());
     box.add(boh);
     ItemSearch searchBox2 = new ItemSearchExtraDimensional();
     box.accept(searchBox2);
@@ -60,8 +60,8 @@ public class ItemSearchExtraDimensionalTest {
   public void testAccept5() {
     Box box = new Box();
     BagOfHolding boh = new BagOfHolding(1);
-    box.setWeightMax(boh.getWeight());
-    box.setVolumeMax(boh.getVolume());
+    box.setWeightMax(boh.totalWeight());
+    box.setVolumeMax(boh.totalVolume());
     box.add(boh);
     ItemSearch searchBox3 = new ItemSearchExtraDimensional();
     box.accept(searchBox3);

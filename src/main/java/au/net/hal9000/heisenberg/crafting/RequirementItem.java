@@ -122,7 +122,7 @@ public class RequirementItem extends Requirement {
     }
 
     // Correct Weight
-    if (item.getWeight() < weightMin) {
+    if (item.totalWeight() < weightMin) {
       return "item must weight at least " + weightMin;
     }
     return null;

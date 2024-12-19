@@ -51,13 +51,13 @@ public class BagOfHoldingTest {
       BagOfHolding boh = new BagOfHolding(type);
       assertEquals("type", boh.getType(), type);
       assertEquals(
-          "type=" + type + ", weight", boh.getWeight(), expectedWeightBase, FLOAT_TOLERANCE);
+          "type=" + type + ", weight", boh.totalWeight(), expectedWeightBase, FLOAT_TOLERANCE);
       assertEquals(
           "type=" + type + ", weightBase",
           boh.getWeightBase(),
           expectedWeightBase,
           FLOAT_TOLERANCE);
-      assertEquals("type=" + type + ", volume", boh.getVolume(), 2F, FLOAT_TOLERANCE);
+      assertEquals("type=" + type + ", volume", boh.totalVolume(), 2F, FLOAT_TOLERANCE);
       assertEquals("type=" + type + ", volumeBase", boh.getVolumeBase(), 2F, FLOAT_TOLERANCE);
       assertTrue("type=" + type + ", cost", expectedCost.equals(boh.getValueBase()));
       // Should look like an ordinary bag :-)
