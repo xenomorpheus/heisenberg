@@ -32,8 +32,8 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
     // DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
     // String s = node.getUserObject().toString();
 
-    if (value instanceof Item) {
-      Item item = (Item) value;
+    if (value instanceof ItemTreeNode) {
+      Item item = ((ItemTreeNode) value).getItem();
       setOpenIcon(item.getItemIcon().getIconOpen());
       setClosedIcon(item.getItemIcon().getIconClosed());
       setLeafIcon(item.getItemIcon().getIconLeaf());
