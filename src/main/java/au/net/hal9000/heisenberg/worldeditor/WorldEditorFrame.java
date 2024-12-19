@@ -6,7 +6,6 @@ import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.util.PersistEntities;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.awt.BorderLayout;
@@ -60,9 +59,6 @@ public class WorldEditorFrame extends JFrame {
 
     /** Config. */
     final Configuration config = Configuration.lastConfig();
-
-    // Icons
-    ItemIcon.setIcon(config);
 
     // Main Frame
     setSize(400, 600);

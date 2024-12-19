@@ -66,7 +66,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 
     setLayout(new BorderLayout());
 
-    tree.setCellRenderer(new ItemTreeCellRenderer());
+    tree.setCellRenderer(new ItemTreeCellRenderer(config));
 
     scrollpane.setViewportView(tree);
 

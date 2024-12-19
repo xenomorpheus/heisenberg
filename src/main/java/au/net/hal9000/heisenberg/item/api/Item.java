@@ -5,7 +5,6 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -231,10 +230,6 @@ public interface Item {
   UUID getId();
 
   String getSimpleClassName();
-
-  ItemIcon getItemIcon();
-
-  void setItemIcon(ItemIcon itemIcon);
 
   /**
    * return the class name and package for this Item type.

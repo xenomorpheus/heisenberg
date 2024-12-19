@@ -15,7 +15,6 @@ import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.util.List;
 import java.util.Properties;
@@ -161,24 +160,13 @@ public class ItemTest {
   }
 
   @Test
-  public void testItemIcon() {
-    Item item = new Biscuit();
-    ItemIcon ii = new ItemIcon(item);
-    ItemIcon ii2 = item.getItemIcon();
-    assertEquals("ItemIcon", ii, ii2);
-  }
-
-  @Test
   public void testSetAllFrom() {
-    Item candle = new Candle();
-    ItemIcon ii = new ItemIcon(candle);
     Item item = new Biscuit();
     Item other = new Biscuit();
     ItemContainer bag = new Bag();
     other.setContainer(bag);
     other.setDescription("other");
     other.setHitPoints(123f);
-    other.setItemIcon(ii);
     other.setName("the biscuit of awesomeness");
     other.setPosition(new Position(1, 2));
     other.setValueBase(new Currency(1, 2, 3, 4));
@@ -188,7 +176,6 @@ public class ItemTest {
     assertEquals("container", item.getContainer(), other.getContainer());
     assertEquals("description", item.getDescription(), other.getDescription());
     assertEquals("hp", item.getHitPoints(), other.getHitPoints(), WITHIN_MARGIN);
-    assertEquals("ItemIon", item.getItemIcon(), other.getItemIcon());
     assertEquals("name", item.getName(), other.getName());
     assertEquals("position", item.getPosition(), other.getPosition());
     assertEquals("properties", item.getProperties(), other.getProperties());
@@ -201,12 +188,10 @@ public class ItemTest {
   public void testHashCode() {
 
     Item item = new Biscuit();
-    ItemIcon ii = new ItemIcon(item);
     ItemContainer bag = new Bag();
     item.setContainer(bag);
     item.setDescription("other");
     item.setHitPoints(123f);
-    item.setItemIcon(ii);
     item.setName("the biscuit of awesomeness");
     item.setPosition(new Position(1, 2));
     item.setValueBase(new Currency(1, 2, 3, 4));

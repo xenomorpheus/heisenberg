@@ -1,33 +1,35 @@
 package au.net.hal9000.heisenberg.worldeditor;
 
+import static org.junit.Assert.assertNotNull;
+
+import au.net.hal9000.heisenberg.TestHelper;
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.util.Configuration;
 import java.awt.Component;
 import javax.swing.JTree;
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * The class <code>ItemTreeCellRendererTest</code> contains tests for the class {@link
  * <code>ItemTreeCellRenderer</code>}
  */
-public class ItemTreeCellRendererTest extends TestCase {
+public class ItemTreeCellRendererTest {
 
-  /**
-   * Construct new test instance
-   *
-   * @param name the test name
-   */
-  public ItemTreeCellRendererTest(String name) {
-    super(name);
+  @Before
+  public void setupClass() {
+    TestHelper.setup();
   }
 
   /**
    * Run the Component getTreeCellRendererComponent(JTree, Object, boolean, boolean, boolean, int,
    * boolean) method test
    */
+  @Test
   public void testGetTreeCellRendererComponent() {
-    // add test code here
-    ItemTreeCellRenderer fixture = new ItemTreeCellRenderer();
+    Configuration config = Configuration.lastConfig();
+    ItemTreeCellRenderer fixture = new ItemTreeCellRenderer(config);
     JTree tree = new JTree();
     Object value = null;
     boolean sel = false;
@@ -44,9 +46,10 @@ public class ItemTreeCellRendererTest extends TestCase {
    * Run the Component getTreeCellRendererComponent(JTree, Object, boolean, boolean, boolean, int,
    * boolean) method test
    */
+  @Test
   public void testGetTreeCellRendererComponentItem() {
-    // add test code here
-    ItemTreeCellRenderer fixture = new ItemTreeCellRenderer();
+    Configuration config = Configuration.lastConfig();
+    ItemTreeCellRenderer fixture = new ItemTreeCellRenderer(config);
     JTree tree = new JTree();
     Item value = new Biscuit();
     boolean sel = false;

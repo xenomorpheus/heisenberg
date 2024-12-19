@@ -7,7 +7,6 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -92,9 +91,6 @@ public abstract class ItemImpl implements Serializable, Item {
 
   /** The weight, excludes contents if this is a container. */
   private float weightBase = 0;
-
-  /** Icon to show in swing. */
-  private ItemIcon itemIcon = null;
 
   // Constructors
   /** Constructor. */
@@ -265,20 +261,6 @@ public abstract class ItemImpl implements Serializable, Item {
     this.weightBase = weightBase;
   }
 
-  @Override
-  public ItemIcon getItemIcon() {
-    if (null == itemIcon) {
-      itemIcon = new ItemIcon(this);
-    }
-    return itemIcon;
-  }
-
-  @Override
-  public void setItemIcon(ItemIcon itemIcon) {
-    this.itemIcon = itemIcon;
-  }
-
-  /* End of Setters and Getters */
   // misc methods
 
   @Override
@@ -286,7 +268,6 @@ public abstract class ItemImpl implements Serializable, Item {
     setContainer(other.getContainer());
     setDescription(other.getDescription());
     setHitPoints(other.getHitPoints());
-    setItemIcon(other.getItemIcon().dupicate());
     setName(other.getName());
     setPosition(other.getPosition());
     setProperties(other.getProperties());
@@ -302,7 +283,6 @@ public abstract class ItemImpl implements Serializable, Item {
     result = prime * result + ((description == null) ? 0 : description.hashCode());
     result = prime * result + Float.floatToIntBits(hitPoints);
     result = prime * result + ((id == null) ? 0 : id.hashCode());
-    result = prime * result + ((itemIcon == null) ? 0 : itemIcon.hashCode());
     result = prime * result + (int) (jpaId ^ (jpaId >>> 32));
     result = prime * result + ((name == null) ? 0 : name.hashCode());
     result = prime * result + ((position == null) ? 0 : position.hashCode());
@@ -342,13 +322,6 @@ public abstract class ItemImpl implements Serializable, Item {
       return false;
     }
     if (Float.floatToIntBits(hitPoints) != Float.floatToIntBits(other.hitPoints)) {
-      return false;
-    }
-    if (itemIcon == null) {
-      if (other.itemIcon != null) {
-        return false;
-      }
-    } else if (!itemIcon.equals(other.itemIcon)) {
       return false;
     }
     if (jpaId != other.jpaId) {

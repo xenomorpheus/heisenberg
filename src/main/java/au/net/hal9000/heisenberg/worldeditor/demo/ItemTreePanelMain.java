@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.worldeditor.demo;
 
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.util.Configuration;
-import au.net.hal9000.heisenberg.util.ItemIcon;
 import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -26,8 +25,6 @@ public class ItemTreePanelMain { // NO_UCD (unused code)
           public void run() {
             DemoEnvironment.setup();
             Configuration config = Configuration.lastConfig();
-            // Add Icons to Items
-            ItemIcon.setIcon(config);
             Location location = DemoEnvironment.getDemoWorld();
             // location.setWeightMax(100000);
             // location.setVolumeMax(100000);
