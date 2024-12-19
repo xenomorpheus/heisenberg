@@ -249,12 +249,12 @@ public class Configuration {
       // iconClosedId
       String iconClosedId = element.getAttributeValue("iconClosedId");
       if (null != iconClosedId) {
-        itemClassConfiguration.setIconOpenId(Integer.parseInt(iconClosedId));
+        itemClassConfiguration.setIconClosedId(Integer.parseInt(iconClosedId));
       }
       // iconLeafId
       String iconLeafId = element.getAttributeValue("iconLeafId");
       if (null != iconLeafId) {
-        itemClassConfiguration.setIconOpenId(Integer.parseInt(iconLeafId));
+        itemClassConfiguration.setIconLeafId(Integer.parseInt(iconLeafId));
       }
       // iconOpenId
       String iconOpenId = element.getAttributeValue("iconOpenId");
