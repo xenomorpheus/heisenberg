@@ -6,6 +6,7 @@ import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.JsonItems;
 import au.net.hal9000.heisenberg.util.PersistEntities;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.awt.BorderLayout;
@@ -13,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -79,6 +82,8 @@ public class WorldEditorFrame extends JFrame {
     // Menus
     final ActionListener menuActionListener =
         new ActionListener() {
+          static final File pathname = new File("/tmp/heisenberg_world_editor.json");
+
           public void actionPerformed(ActionEvent event) {
             String eventName = event.getActionCommand();
             if (MENU_NEW.equals(eventName)) {
@@ -89,10 +94,16 @@ public class WorldEditorFrame extends JFrame {
               PersistEntities.save(location);
             }
             if (MENU_IMPORT.equals(eventName)) {
-              LOGGER.warn("Import not implemented");
+              // TODO choose where in structure to add new items.
+              for (var item : JsonItems.importFromFile(pathname)) {
+                location.add(item);
+              }
             }
             if (MENU_EXPORT.equals(eventName)) {
-              LOGGER.warn("Export not implemented");
+              // TODO choose where in structure to export from.
+              List<Item> items = new ArrayList<>();
+              items.add(location);
+              JsonItems.export(pathname, items);
             }
             if (MENU_LOAD_DEMO.equals(eventName)) {
               setLocation(DemoEnvironment.getDemoWorld());
