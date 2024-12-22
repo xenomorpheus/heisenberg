@@ -2,12 +2,14 @@ package au.net.hal9000.heisenberg.item.api;
 
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Position;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.List;
 
 /**
  * This is an Item that extends the ItemList interface with more advanced features. This container
  * is still an ordered list.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public interface ItemContainer extends Item, ItemList {
 
   // Getters and Setters

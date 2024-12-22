@@ -6,6 +6,11 @@ import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -42,6 +47,8 @@ import java.util.UUID;
  * An item may be repaired which will ...<br>
  */
 @MappedSuperclass
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public abstract class ItemImpl implements Serializable, Item {
 
   /** serial version id. */
@@ -396,6 +403,8 @@ public abstract class ItemImpl implements Serializable, Item {
     StringBuilder text = new StringBuilder();
     String temp;
 
+    text.append("Id: " + getId() + System.lineSeparator());
+
     temp = getName();
     if (null != temp) {
       text.append("Name: " + temp + System.lineSeparator());
@@ -436,9 +445,14 @@ public abstract class ItemImpl implements Serializable, Item {
   }
 
   @Override
+  @JsonProperty
   public String getSimpleClassName() {
     return getClass().getSimpleName();
   }
+
+  @Override
+  @JsonIgnore
+  public void setSimpleClassName(String dummy) {}
 
   @Override
   public void applyDelta(Position delta) {

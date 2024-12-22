@@ -5,9 +5,11 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.Properties;
 import java.util.UUID;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public interface Item {
   /** name of this package. Perhaps move this to config */
   static final String PACKAGE_NAME = "au.net.hal9000.heisenberg.item";
@@ -172,6 +174,9 @@ public interface Item {
    */
   void setWeightBase(float weightBase);
 
+  @Override
+  public boolean equals(Object obj);
+
   /**
    * Attempt to unlink the item from everything so that it can be garbage collected. Won't work if
    * anything is referencing this item.
@@ -229,6 +234,9 @@ public interface Item {
    * @return the simple type of this item e.g. Biscuit, Arrow, etc.
    */
   String getSimpleClassName();
+
+  /** Only used tell Jackson that this is read only */
+  public void setSimpleClassName(String dummy);
 
   /**
    * return the class name and package for this Item type.
