@@ -2,13 +2,14 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-// Custom
+import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Column;
@@ -48,7 +49,16 @@ import java.util.UUID;
  */
 @MappedSuperclass
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "simpleClassName")
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = Biscuit.class, name = "Biscuit"),
+  @JsonSubTypes.Type(value = Box.class, name = "Box"),
+  @JsonSubTypes.Type(value = Location.class, name = "Location"),
+  @JsonSubTypes.Type(value = Cat.class, name = "Cat")
+})
 public abstract class ItemImpl implements Serializable, Item {
 
   /** serial version id. */

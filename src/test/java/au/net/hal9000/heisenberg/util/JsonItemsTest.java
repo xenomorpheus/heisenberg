@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.Test;
 
 public class JsonItemsTest {
+
   @Test
   public void testExportBiscuit() throws IOException {
     File tempFile = File.createTempFile("heisenberg-", ".json");
@@ -22,19 +23,21 @@ public class JsonItemsTest {
     JsonItems.export(tempFile, items);
   }
 
-  // TODO @Test
+  @Test
   public void testSerDeBiscuit() throws IOException {
     File tempFile = File.createTempFile("heisenberg-", ".json");
     tempFile.deleteOnExit();
     List<Item> expected = new ArrayList<>();
-    expected.add(new Biscuit());
+    var biscuit = new Biscuit();
+    biscuit.setName("test");
+    expected.add(biscuit);
     JsonItems.export(tempFile, expected);
     List<Item> got = JsonItems.importFromFile(tempFile);
     assertNotNull(got);
     assertEquals(expected, got);
   }
 
-  // TODO @Test
+  @Test
   public void testSerDeLocation() throws IOException {
     File tempFile = File.createTempFile("heisenberg-", ".json");
     tempFile.deleteOnExit();
@@ -49,19 +52,23 @@ public class JsonItemsTest {
 
   // TODO @Test
   public void testSerDeLocationBiscuit() throws IOException {
+    // File tempFile = File.createTempFile("heisenberg-", ".json");
+    // tempFile.deleteOnExit();
+
     File tempFile = new File("/tmp/heisenberg.json");
     List<Item> expected = new ArrayList<>();
     var location = new Location();
     var biscuit = new Biscuit();
     location.add(biscuit);
     expected.add(location);
-
-    // ObjectMapper objectMapper = new ObjectMapper();
-    // String json = objectMapper.writeValueAsString(expected);
-
     JsonItems.export(tempFile, expected);
     List<Item> got = JsonItems.importFromFile(tempFile);
     assertNotNull(got);
     assertEquals(expected, got);
+  }
+
+  public static void main(String[] args) throws IOException {
+    var test = new JsonItemsTest();
+    test.testSerDeBiscuit();
   }
 }

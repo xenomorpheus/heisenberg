@@ -5,11 +5,9 @@ import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.Properties;
 import java.util.UUID;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public interface Item {
   /** name of this package. Perhaps move this to config */
   static final String PACKAGE_NAME = "au.net.hal9000.heisenberg.item";
