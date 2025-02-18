@@ -72,7 +72,7 @@ public class ItemTest {
   public void testName() {
     Item item = new Biscuit();
     item.setName("fred");
-    assertEquals("setname & getname", "fred", item.getName());
+    assertEquals("setName & getName", "fred", item.getName());
   }
 
   @Test
@@ -197,7 +197,7 @@ public class ItemTest {
     item.setValueBase(new Currency(1, 2, 3, 4));
     item.setVolumeBase(145);
     item.setWeightBase(345);
-    assertTrue("hashcode", 0 != item.hashCode());
+    assertTrue("hashCode", 0 != item.hashCode());
   }
 
   /** Move without a container. */
