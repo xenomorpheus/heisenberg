@@ -1,42 +1,10 @@
-package au.net.hal9000.heisenberg.util;
+package au.net.hal9000.heisenberg.util.jackson;
 
 import static org.junit.Assert.assertEquals;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Test;
-
-// Abstract base class
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = ConcreteA.class, name = "A"),
-  @JsonSubTypes.Type(value = ConcreteB.class, name = "B"),
-  @JsonSubTypes.Type(value = Box.class, name = "Box")
-})
-abstract class Item {
-  public String commonField;
-  public ItemContainer parent;
-}
-
-// Concrete implementations
-class ConcreteA extends Item {
-  public String fieldA;
-}
-
-class ConcreteB extends Item {
-  public String fieldB;
-}
-
-// Class with abstract field
-abstract class ItemContainer extends Item {
-  public List<Item> contents = new ArrayList<>();
-}
-
-class Box extends ItemContainer {}
 
 public class JacksonSimpleTest {
   @Test
@@ -67,12 +35,14 @@ public class JacksonSimpleTest {
     assertEquals(ConcreteB.class, deserializedContainer.contents.get(1).getClass());
 
     System.out.println(
-        "Deserialized AbstractBase type: "
-            + deserializedContainer.contents.get(0).getClass().getSimpleName());
+        "Deserialized AbstractBase type: A:"
+            + deserializedContainer.contents.get(0).getClass().getSimpleName()
+            + ", B:"
+            + deserializedContainer.contents.get(1).getClass().getSimpleName());
   }
 
   public static void main(String[] args) throws JsonProcessingException {
-    var foo = new JacksonSimpleTest();
-    foo.testItems();
+    var jacksonSimpleTest = new JacksonSimpleTest();
+    jacksonSimpleTest.testItems();
   }
 }
