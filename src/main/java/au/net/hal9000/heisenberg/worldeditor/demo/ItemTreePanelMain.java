@@ -26,8 +26,6 @@ public class ItemTreePanelMain { // NO_UCD (unused code)
             DemoEnvironment.setup();
             Configuration config = Configuration.lastConfig();
             Location location = DemoEnvironment.getDemoWorld();
-            // location.setWeightMax(100000);
-            // location.setVolumeMax(100000);
             ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
             itemTreePanel.setVisible(true);
             JFrame jFrame = new JFrame("ItemTreePanel Test");

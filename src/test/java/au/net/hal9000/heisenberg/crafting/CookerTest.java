@@ -231,8 +231,6 @@ public class CookerTest {
   public void testRecipeItemsAvailable() {
 
     Location world = new Location();
-    world.setVolumeMax(-1);
-    world.setWeightMax(-1);
     Map<String, Requirement> requirements = new TreeMap<>();
 
     // RequirementItem
