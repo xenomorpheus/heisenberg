@@ -52,9 +52,6 @@ public class JsonItemsTest {
 
   // TODO @Test
   public void testSerDeLocationBiscuit() throws IOException {
-    // File tempFile = File.createTempFile("heisenberg-", ".json");
-    // tempFile.deleteOnExit();
-
     File tempFile = new File("/tmp/heisenberg.json");
     List<Item> expected = new ArrayList<>();
     var location = new Location();
@@ -64,11 +61,12 @@ public class JsonItemsTest {
     JsonItems.export(tempFile, expected);
     List<Item> got = JsonItems.importFromFile(tempFile);
     assertNotNull(got);
+    assertEquals(expected.size(), got.size()); // TODO remove
     assertEquals(expected, got);
   }
 
   public static void main(String[] args) throws IOException {
     var test = new JsonItemsTest();
-    test.testSerDeBiscuit();
+    test.testSerDeLocationBiscuit();
   }
 }
