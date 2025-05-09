@@ -124,10 +124,10 @@ public class BasicPanel extends JPanel {
   /**
    * Set the CharacterSheet object to show values for.
    *
-   * @param characterSheet the CharacterSheet object to show values for.
-   *     <p>Note we pass the CharacterSheet rather than the values needed to do the display. We do
-   *     this because the values to display may be changed by other tabs, and passing by pc allows a
-   *     refresh of values.
+   * @param characterSheet the CharacterSheet object to show values for. Note we pass the
+   *     CharacterSheet rather than the values needed to do the display. We do this because the
+   *     values to display may be changed by other tabs, and passing by pc allows a refresh of
+   *     values.
    */
   public void setCharacterSheet(final CharacterSheet characterSheet) {
     this.characterSheet = characterSheet;
@@ -563,33 +563,23 @@ public class BasicPanel extends JPanel {
       if (source instanceof JComboBox) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-          // Class
-          if (source == classComboBox) {
+          if (source == classComboBox) { // Class
             PcClass newPcClass = (PcClass) classComboBox.getSelectedItem();
             if (!newPcClass.equals(characterSheet.getPcClass())) {
               characterSheet.setPcClass(newPcClass);
               updateForm = true;
             }
-          }
-
-          // Species
-          else if (source == speciesComboBox) {
+          } else if (source == speciesComboBox) { // Species
             String newSpecies = (String) speciesComboBox.getSelectedItem();
             if (!newSpecies.equals(characterSheet.getSpecies())) {
               characterSheet.setSpecies(newSpecies);
             }
-          }
-
-          // Size
-          else if (source == sizeComboBox) {
+          } else if (source == sizeComboBox) { // Size
             String newSize = (String) sizeComboBox.getSelectedItem();
             if (!newSize.equals(characterSheet.getSize())) {
               characterSheet.setSize(newSize);
             }
-          }
-
-          // Gender
-          else if (source == genderComboBox) {
+          } else if (source == genderComboBox) { // Gender
             String newGender = (String) genderComboBox.getSelectedItem();
             if (!newGender.equals(characterSheet.getGender())) {
               characterSheet.setGender(newGender);

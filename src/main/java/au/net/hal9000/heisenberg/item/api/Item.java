@@ -8,6 +8,10 @@ import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 import java.util.Properties;
 import java.util.UUID;
 
+/**
+ * Represents a game item with various properties and behaviors, such as name, description,
+ * position, and value. This interface defines the contract for all item implementations.
+ */
 public interface Item {
   /** name of this package. Perhaps move this to config */
   static final String PACKAGE_NAME = "au.net.hal9000.heisenberg.item";
@@ -233,14 +237,14 @@ public interface Item {
    */
   String getSimpleClassName();
 
-  /** Only used tell Jackson that this is read only */
+  /** Only used tell Jackson that this is read only. */
   public void setSimpleClassName(String dummy);
 
   /**
    * return the class name and package for this Item type.
    *
-   * @param type
-   * @return
+   * @param type the type of the item, e.g., "Biscuit" or "Arrow".
+   * @return the fully qualified class name for the given item type.
    */
   public static String getClassForType(String type) {
     ItemClassConfiguration itemTypeConfig =

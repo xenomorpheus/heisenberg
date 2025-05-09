@@ -10,11 +10,15 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
 import org.junit.Test;
 
-/** */
+/** Unit tests for the Factory class, which is responsible for creating various items. */
 public class FactoryTest {
   /** Field config. */
   private Configuration config;
 
+  /**
+   * Initializes the test environment by setting up the demo environment and retrieving the last
+   * configuration.
+   */
   @Before
   public void initialize() {
     DemoEnvironment.setup();

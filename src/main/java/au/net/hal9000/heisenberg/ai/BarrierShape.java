@@ -35,7 +35,6 @@ public class BarrierShape implements Barrier {
    * Returns details of any barrier blocking the path.<br>
    * Returns null if not blocked.<br>
    *
-   * @param movement the path traveled between two points.
    * @return null or any details of a barrier.
    */
   @Override

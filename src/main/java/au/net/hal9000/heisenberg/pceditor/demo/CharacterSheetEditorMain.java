@@ -7,6 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+/** Demonstrate the Character Sheet Editor. */
 public class CharacterSheetEditorMain { // NO_UCD (unused code)
 
   /**

@@ -39,6 +39,11 @@ public abstract class EntityItem extends ItemImpl {
 
   // Getters and Setters
 
+  /**
+   * Gets the character sheet for this entity. If the character sheet is null, a new one is created.
+   *
+   * @return the character sheet of this entity
+   */
   public CharacterSheet getCharacterSheet() {
     if (null == characterSheet) {
       characterSheet = new CharacterSheet();
@@ -50,6 +55,11 @@ public abstract class EntityItem extends ItemImpl {
     this.characterSheet = characterSheet;
   }
 
+  /**
+   * Gets the playable state for this entity. If the playable state is null, a new one is created.
+   *
+   * @return the playable state of this entity
+   */
   public PlayableState getPlayableState() {
     if (null == playableState) {
       playableState = new PlayableState();
@@ -83,6 +93,13 @@ public abstract class EntityItem extends ItemImpl {
     getCharacterSheet().setDescription(description);
   }
 
+  /**
+   * Creates a new Cooker instance for the given recipe ID.
+   *
+   * @param recipeId the ID of the recipe to create a Cooker for
+   * @return a new Cooker instance
+   * @throws RuntimeException if the recipe with the given ID is not found
+   */
   public Cooker getCooker(String recipeId) {
     Recipe recipe = Configuration.lastConfig().getRecipe(recipeId);
     if (recipe == null) {
@@ -91,6 +108,11 @@ public abstract class EntityItem extends ItemImpl {
     return recipe.getNewCooker(this);
   }
 
+  /**
+   * Consumes the given item as sustenance.
+   *
+   * @param consumable the item to be consumed
+   */
   public void consume(Item consumable) {
     AnimalConsumeSustenance.eat((Animal) this, consumable); // TODO fix cast to Animal
   }

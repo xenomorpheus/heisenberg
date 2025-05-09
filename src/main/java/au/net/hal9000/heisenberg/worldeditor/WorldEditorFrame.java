@@ -53,7 +53,7 @@ public class WorldEditorFrame extends JFrame {
   /**
    * Constructor.
    *
-   * @throws ConfigurationError
+   * @throws ConfigurationError if there is an error in the configuration.
    */
   public WorldEditorFrame() throws ConfigurationError {
     super();
@@ -62,7 +62,7 @@ public class WorldEditorFrame extends JFrame {
 
   private void init() {
 
-    /** Config. */
+    // Config.
     final Configuration config = Configuration.lastConfig();
 
     // Main Frame

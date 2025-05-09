@@ -7,6 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+/** Demonstrate the Description Pane. */
 public class DescriptionPaneMain { // NO_UCD (unused code)
 
   /** frame width. */
@@ -27,7 +28,6 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -39,6 +39,7 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
               guiFrame.setLocationRelativeTo(null);
 
               DescriptionPane window = new DescriptionPane();
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               window.setCharacterSheet(pc);
 
               // add to JFrame

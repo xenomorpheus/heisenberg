@@ -7,6 +7,7 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+/** Demonstrate the Skills Table. */
 public class SkillsTableMain { // NO_UCD (unused code)
   /** frame width. */
   static final int FRAME_WIDTH = 800;
@@ -29,7 +30,6 @@ public class SkillsTableMain { // NO_UCD (unused code)
           public void run() {
             try {
               DemoEnvironment.setup();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               JFrame guiFrame = new JFrame();
 
               // make sure the program exits when the frame closes
@@ -41,6 +41,7 @@ public class SkillsTableMain { // NO_UCD (unused code)
               guiFrame.setLocationRelativeTo(null);
 
               SkillsTable skillsTable = new SkillsTable();
+              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
               skillsTable.setCharacterSheet(pc);
 
               // add to JFrame

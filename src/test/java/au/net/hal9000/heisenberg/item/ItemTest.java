@@ -22,13 +22,14 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 
-/** */
+/** Unit tests for the Item class and its related functionality. */
 public class ItemTest {
   /** Field WITHIN_MARGIN. (value is 9.0E-5) */
   private static final float WITHIN_MARGIN = 0.00009F;
 
   private Configuration config = null;
 
+  /** Sets up the test environment before each test case. */
   @Before
   public void initialize() {
     DemoEnvironment.setup();
@@ -98,7 +99,7 @@ public class ItemTest {
     assertEquals("weight", item.totalWeight(), weight, WITHIN_MARGIN);
   }
 
-  /** test valueBase and value */
+  /** test valueBase and value. */
   @Test
   public void testValueBase() {
     Item item = new Biscuit();
@@ -161,7 +162,6 @@ public class ItemTest {
 
   @Test
   public void testSetAllFrom() {
-    Item item = new Biscuit();
     Item other = new Biscuit();
     ItemContainer bag = new Bag();
     other.setContainer(bag);
@@ -172,6 +172,7 @@ public class ItemTest {
     other.setValueBase(new Currency(1, 2, 3, 4));
     other.setVolumeBase(145);
     other.setWeightBase(345);
+    Item item = new Biscuit();
     item.setAllFrom(other);
     assertEquals("container", item.getContainer(), other.getContainer());
     assertEquals("description", item.getDescription(), other.getDescription());

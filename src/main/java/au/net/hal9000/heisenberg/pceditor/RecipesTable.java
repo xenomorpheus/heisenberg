@@ -28,10 +28,9 @@ public class RecipesTable extends JTable {
   /**
    * Set the PcClass object to show values for.
    *
-   * @param pc the PcClass object to show values for.
-   *     <p>Note we pass the PcClass rather than the values needed to do the display. We do this
-   *     because the values to display may be changed by other tabs, and passing by pc allows a
-   *     refresh of values.
+   * @param pc the PcClass object to show values for. Note we pass the PcClass rather than the
+   *     values needed to do the display. We do this because the values to display may be changed by
+   *     other tabs, and passing by pc allows a refresh of values.
    */
   public void setCharacterSheet(final CharacterSheet pc) {
     setModel(new MyTableModel(pc));

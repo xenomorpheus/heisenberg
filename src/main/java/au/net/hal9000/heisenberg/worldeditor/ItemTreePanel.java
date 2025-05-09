@@ -59,21 +59,21 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     super();
 
     // The JTree can get big, so allow it to scroll.
-    JScrollPane scrollpane = new JScrollPane();
-
-    // The "Add" Button Panel
-    JPanel addButtonPanel = new JPanel();
+    JScrollPane scrollPane = new JScrollPane();
 
     setLayout(new BorderLayout());
 
     tree.setCellRenderer(new ItemTreeCellRenderer(config));
 
-    scrollpane.setViewportView(tree);
+    scrollPane.setViewportView(tree);
 
     // A JComboBox of Item types we can add
     Set<String> classIds = config.getItemClassIds();
     String[] classIdStrings = classIds.toArray(new String[classIds.size()]);
     itemClassesList = new JComboBox<String>(classIdStrings);
+
+    // The "Add" Button Panel
+    JPanel addButtonPanel = new JPanel();
     addButtonPanel.add(itemClassesList);
 
     // The "Add" Button
@@ -83,7 +83,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     addButton.addActionListener(new ButtonActionListener());
     addButtonPanel.add(addButton);
 
-    add(scrollpane, BorderLayout.NORTH);
+    add(scrollPane, BorderLayout.NORTH);
     add(addButtonPanel, BorderLayout.SOUTH);
     setRoot(location);
   }

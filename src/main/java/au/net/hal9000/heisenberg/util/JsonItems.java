@@ -18,7 +18,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import org.apache.log4j.Logger;
 
 class ItemDeserializer extends JsonDeserializer<Item> {
   @Override
@@ -52,8 +51,6 @@ class ItemDeserializer extends JsonDeserializer<Item> {
 
 /** Store/retrieve Item objects to/from a JSON file. */
 public class JsonItems {
-
-  private static final Logger LOGGER = Logger.getLogger(JsonItems.class.getName());
 
   public static void export(File pathname, final List<Item> items)
       throws StreamWriteException, DatabindException, IOException {

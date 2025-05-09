@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-/** */
+/** Unit tests for the {@link Location} class and related functionality. */
 public class LocationTest {
 
-  static float TOLLERANCE = 0.0001F;
+  static float TOLERANCE = 0.0001F;
 
   // TODO Add unit test for respecting max weight and volume of outer bag,
   // when adding Item to an inner bag.
@@ -81,17 +81,17 @@ public class LocationTest {
   @Test
   public void testAddAll() {
     final int size = 3;
-    ItemContainer bag = new Bag();
     Biscuit c1 = new Biscuit();
     Biscuit c2 = new Biscuit();
     Biscuit c3 = new Biscuit();
-    ItemContainer newBag = new Bag();
     List<Item> items = new ArrayList<Item>();
     items.add(c1);
     items.add(c2);
     items.add(c3);
+    ItemContainer bag = new Bag();
     bag.addAll(items);
     assertEquals("add multi size", size, bag.size());
+    ItemContainer newBag = new Bag();
     bag.empty(newBag);
     assertEquals("bag empty size", 0, bag.size());
     assertEquals("New ItemContainer size", size, newBag.size());
@@ -122,7 +122,7 @@ public class LocationTest {
     bag.add(c1);
     bag.add(c2);
     bag.add(c3);
-    assertEquals("weight", 17, bag.totalWeight(), TOLLERANCE);
+    assertEquals("weight", 17, bag.totalWeight(), TOLERANCE);
   }
 
   @Test
@@ -138,7 +138,7 @@ public class LocationTest {
     bag.add(c1);
     bag.add(c2);
     bag.add(c3);
-    assertEquals("volume", 17, bag.totalVolume(), TOLLERANCE);
+    assertEquals("volume", 17, bag.totalVolume(), TOLERANCE);
   }
 
   @Test
@@ -180,17 +180,17 @@ public class LocationTest {
   @Test
   public void testGetIndexOfChild() {
     ItemContainer bag = new Bag();
-    Scabbard scabbard = new Scabbard();
     Biscuit biscuit1 = new Biscuit();
-    Biscuit biscuit2 = new Biscuit();
-    Biscuit biscuit3 = new Biscuit();
     assertEquals("getIndexOfChild - empty", -1, bag.indexOf(biscuit1));
     bag.add(biscuit1);
     assertEquals("getIndexOfChild - only child", 0, bag.indexOf(biscuit1));
+    Scabbard scabbard = new Scabbard();
     bag.add(scabbard);
     assertEquals("getIndexOfChild - first child", 0, bag.indexOf(biscuit1));
     assertEquals("getIndexOfChild - second child", 1, bag.indexOf(scabbard));
+    Biscuit biscuit2 = new Biscuit();
     assertEquals("getIndexOfChild - not present", -1, bag.indexOf(biscuit2));
+    Biscuit biscuit3 = new Biscuit();
     assertEquals(
         "getIndexOfChild - not present but biscuit3 equal to biscuit1", -1, bag.indexOf(biscuit3));
   }

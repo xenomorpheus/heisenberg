@@ -6,6 +6,7 @@ import au.net.hal9000.heisenberg.worldeditor.ItemTreePanel;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+/** Demonstrate the ItemTreePanel functionality. */
 public class ItemTreePanelMain { // NO_UCD (unused code)
 
   /** panel width. */
@@ -28,13 +29,13 @@ public class ItemTreePanelMain { // NO_UCD (unused code)
             Location location = DemoEnvironment.getDemoWorld();
             ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
             itemTreePanel.setVisible(true);
-            JFrame jFrame = new JFrame("ItemTreePanel Test");
-            jFrame.setContentPane(itemTreePanel);
-            jFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-            jFrame.pack();
+            JFrame frame = new JFrame("ItemTreePanel Test");
+            frame.setContentPane(itemTreePanel);
+            frame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
+            frame.pack();
             // Centre
-            jFrame.setLocationRelativeTo(null);
-            jFrame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
           }
         });
   }

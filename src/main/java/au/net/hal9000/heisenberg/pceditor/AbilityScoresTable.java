@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-/** Abilty scores table. */
+/** Ability scores table. */
 public class AbilityScoresTable extends JTable implements FocusListener {
 
   /** serial id. */
@@ -25,10 +25,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
   /**
    * Set the CharacterSheet object to show values for.
    *
-   * @param pc the CharacterSheet object to show values for.
-   *     <p>Note we pass the CharacterSheet rather than the values needed to do the display. We do
-   *     this because the values to display may be changed by other tabs, and passing by pc allows a
-   *     refresh of values.
+   * @param pc the CharacterSheet object to show values for. Note we pass the CharacterSheet rather
+   *     than the values needed to do the display. We do this because the values to display may be
+   *     changed by other tabs, and passing by pc allows a refresh of values.
    */
   public void setCharacterSheet(final CharacterSheet pc) {
     myTableModel = new MyTableModel(pc);

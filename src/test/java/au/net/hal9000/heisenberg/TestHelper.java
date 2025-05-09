@@ -15,6 +15,7 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import org.apache.log4j.Logger;
 
+/** A helper class for setting up test environments and creating test player characters. */
 public class TestHelper {
 
   /** Field LOGGER. */
@@ -33,6 +34,11 @@ public class TestHelper {
     LOGGER.info("Test Env setup");
   }
 
+  /**
+   * Creates and returns a test PlayerCharacter configured as a Magus.
+   *
+   * @return a PlayerCharacter instance representing a Magus.
+   */
   public static PlayerCharacter getMagus() {
     PlayerCharacter pc = new Human();
     pc.setName("Mr Magus");

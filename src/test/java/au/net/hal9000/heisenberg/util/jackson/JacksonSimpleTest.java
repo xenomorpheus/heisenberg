@@ -6,12 +6,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
+/**
+ * This class contains tests for verifying the serialization and deserialization of objects using
+ * Jackson.
+ */
 public class JacksonSimpleTest {
   @Test
-  public void testItems() throws JsonProcessingException {
-    ObjectMapper mapper = new ObjectMapper();
-
+  public void testSerDeItems() throws JsonProcessingException {
     // Serialize
+    final ObjectMapper mapper = new ObjectMapper();
     ItemContainer container = new Box();
 
     ConcreteA concreteA = new ConcreteA();
@@ -41,8 +44,17 @@ public class JacksonSimpleTest {
             + deserializedContainer.contents.get(1).getClass().getSimpleName());
   }
 
+  /**
+   * Main method to run the test.
+   *
+   * <p>This method creates an instance of the test class and invokes the {@link #testSerDeItems()}
+   * method to demonstrate serialization and deserialization of objects using Jackson.
+   *
+   * @param args command line arguments
+   * @throws JsonProcessingException if there is an error during JSON processing
+   */
   public static void main(String[] args) throws JsonProcessingException {
     var jacksonSimpleTest = new JacksonSimpleTest();
-    jacksonSimpleTest.testItems();
+    jacksonSimpleTest.testSerDeItems();
   }
 }

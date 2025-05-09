@@ -62,7 +62,7 @@ public final class DemoEnvironment {
    * Get Demo CharacterSheet object with a few simple properties.
    *
    * @return CharacterSheet of PC/NPC.
-   * @throws ConfigurationError
+   * @throws ConfigurationError if there is an issue with the configuration setup.
    */
   public static CharacterSheet getCharacterSheet() throws ConfigurationError {
     Configuration config = Configuration.lastConfig();
@@ -76,7 +76,7 @@ public final class DemoEnvironment {
     characterSheet.setLevel(DEMO_LEVEL);
     characterSheet.setSkills(config.getSkillDetails().keySet());
     characterSheet.setRecipes(config.getRecipes().keySet());
-    // TODO modify abilityscores by character level.
+    // TODO modify ability-scores by character level.
     characterSheet.setAbilityScores(
         config.getPcClasses().get(characterSheet.getPcClass().getId()).getAbilityScores());
     return characterSheet;
@@ -137,9 +137,9 @@ public final class DemoEnvironment {
     human.getRightHand().add(new Sword());
     human.getLeftHand().add(new Shield());
     human.getCore().add(new Scabbard());
-    var humansScabard = new Scabbard();
-    humansScabard.add(new Sword());
-    human.getCore().add(humansScabard);
+    var humansScabbard = new Scabbard();
+    humansScabbard.add(new Sword());
+    human.getCore().add(humansScabbard);
     human.getCore().add(new Cloak());
 
     // Automatic placement

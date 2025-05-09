@@ -27,9 +27,11 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
   private double bodyRadiusMax;
 
   /**
-   * @param stepSizeMax
-   * @param directionCount
-   * @param bodyRadiusMax
+   * Constructs an ActionGeneratorMovementAbsoluteBarriers instance with the specified parameters.
+   *
+   * @param stepSizeMax The maximum step size the agent can take in one movement.
+   * @param directionCount The number of directions to generate movement actions.
+   * @param bodyRadiusMax The maximum radius of the agent's body.
    */
   public ActionGeneratorMovementAbsoluteBarriers(
       double stepSizeMax, int directionCount, double bodyRadiusMax) {
@@ -43,7 +45,7 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
   @Override
   public Path generateActions(ModelState modelState) {
     if (stepSizeMax < Position.DEFAULT_AXIS_TOLERANCE) {
-      throw new RuntimeException("Agent's default step size is below Position tollerance.");
+      throw new RuntimeException("Agent's default step size is below Position tolerance.");
     }
     Path actions = new PathImpl();
 
@@ -100,12 +102,12 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
    * Generate movement Action objects in the shape of a wheel spoke, using current position as
    * centre.
    *
-   * @param position
-   * @param positionDelta
-   * @param directionCount
-   * @param bodyRadiusMax
-   * @param barriers
-   * @return
+   * @param position The starting position of the agent.
+   * @param positionDelta The change in position for each movement step.
+   * @param directionCount The number of directions to generate movement actions.
+   * @param bodyRadiusMax The maximum radius of the agent's body.
+   * @param barriers A list of barriers that may block movement.
+   * @return A path containing the generated movement actions.
    */
   private Path generate(
       Position position,
