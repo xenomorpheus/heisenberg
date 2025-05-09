@@ -9,8 +9,10 @@ import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Unit tests for the FringeElementImpl class. */
 public class FringeElementImplTest {
 
+  /** Sets up the demo environment before each test. */
   @Before
   public void initialize() {
     DemoEnvironment.setup();
