@@ -9,12 +9,14 @@ import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.JsonItems;
 import au.net.hal9000.heisenberg.util.PersistEntities;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -94,16 +96,31 @@ public class WorldEditorFrame extends JFrame {
               PersistEntities.save(location);
             }
             if (MENU_IMPORT.equals(eventName)) {
-              // TODO choose where in structure to add new items.
-              for (var item : JsonItems.importFromFile(pathname)) {
-                location.add(item);
+              try {
+                for (var item : JsonItems.importFromFile(pathname)) {
+                  // TODO choose where in structure to add new items.
+                }
+              } catch (JsonProcessingException e) {
+                // TODO show error to user.
+                LOGGER.error("Error importing items from file: " + pathname, e);
+              } catch (IOException e) {
+                // TODO show error to user.
+                LOGGER.error("Error reading file: " + pathname, e);
               }
             }
             if (MENU_EXPORT.equals(eventName)) {
               // TODO choose where in structure to export from.
               List<Item> items = new ArrayList<>();
               items.add(location);
-              JsonItems.export(pathname, items);
+              try {
+                JsonItems.export(pathname, items);
+              } catch (JsonProcessingException e) {
+                // TODO show error to user.
+                LOGGER.error("Error exporting items to file: " + pathname, e);
+              } catch (IOException e) {
+                // TODO show error to user.
+                LOGGER.error("Error writing file: " + pathname, e);
+              }
             }
             if (MENU_LOAD_DEMO.equals(eventName)) {
               setLocation(DemoEnvironment.getDemoWorld());
