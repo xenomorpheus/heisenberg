@@ -16,10 +16,11 @@ public final class ActionConsume extends ActionBase {
   private Object consumable;
 
   /**
-   * Constructor.
+   * Constructs an ActionConsume with the specified entity, consumable, and cost.
    *
-   * @param consumable That to be eaten or drunk.
-   * @param cost The cost of performing this action.
+   * @param entity the entity performing the action
+   * @param consumable the item being consumed
+   * @param cost the cost associated with this action
    */
   public ActionConsume(Object entity, Object consumable, double cost) {
     super(cost);

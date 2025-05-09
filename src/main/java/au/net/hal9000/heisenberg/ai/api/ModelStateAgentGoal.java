@@ -15,7 +15,9 @@ public interface ModelStateAgentGoal extends ModelState {
   Position getGoalPosition();
 
   /**
-   * @param position set agent position.
+   * Sets the position of the agent in the model state.
+   *
+   * @param agentPositionTarget the position to set for the agent
    */
   void setAgentPosition(Position agentPositionTarget);
 }

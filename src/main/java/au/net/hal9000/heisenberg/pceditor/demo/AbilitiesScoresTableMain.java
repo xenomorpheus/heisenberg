@@ -9,6 +9,12 @@ import javax.swing.SwingUtilities;
 
 /** Abilities Score Table Main. */
 public class AbilitiesScoresTableMain { // NO_UCD (unused code)
+
+  /** Default constructor for AbilitiesScoresTableMain. */
+  public AbilitiesScoresTableMain() {
+    super();
+  }
+
   /** frame width. */
   static final int FRAME_WIDTH = 800;
 

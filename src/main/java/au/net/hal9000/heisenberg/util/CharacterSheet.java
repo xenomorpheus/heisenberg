@@ -46,6 +46,11 @@ public class CharacterSheet implements Serializable {
 
   // Getters and Setters
 
+  /**
+   * Gets the name of the character.
+   *
+   * @return the name of the character
+   */
   public String getName() {
     return name;
   }
@@ -68,7 +73,11 @@ public class CharacterSheet implements Serializable {
     this.description = description;
   }
 
-  /** Get the level. @return the level */
+  /**
+   * Gets the level of the character.
+   *
+   * @return the level of the character
+   */
   public final int getLevel() {
     return level;
   }
@@ -131,6 +140,11 @@ public class CharacterSheet implements Serializable {
     this.gender = gender;
   }
 
+  /**
+   * Gets the size of the character.
+   *
+   * @return the size of the character
+   */
   public String getSize() {
     return size;
   }

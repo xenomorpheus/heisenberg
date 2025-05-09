@@ -26,7 +26,7 @@ public interface ItemList {
   /**
    * Add the Item to the contents.
    *
-   * @param item
+   * @param item the item to add
    */
   void add(Item item);
 

@@ -11,6 +11,11 @@ public abstract class ActionBase implements Action {
   /** The cost of the Action */
   private double cost;
 
+  /**
+   * Constructs an ActionBase with the specified cost.
+   *
+   * @param cost the cost associated with this action
+   */
   public ActionBase(double cost) {
     super();
     this.cost = cost;

@@ -17,18 +17,18 @@ public abstract class ItemSearch implements ItemVisitor {
   }
 
   /**
-   * Method addMatchingItems.
+   * Adds an item to the search list.
    *
-   * @param item Item
+   * @param item the item to add to the search list
    */
   void addMatchingItems(Item item) {
     matchingItems.add(item);
   }
 
   /**
-   * Method getMatchingItems.
+   * Retrieves a list of items matching the search criteria.
    *
-   * @return List<Item>
+   * @return a list of items matching the search criteria
    */
   public List<Item> getMatchingItems() {
     return matchingItems;
@@ -44,17 +44,17 @@ public abstract class ItemSearch implements ItemVisitor {
   }
 
   /**
-   * Method visit.
+   * Processes a single item using the visitor pattern.
    *
-   * @param item Item
+   * @param item the item to process
    * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(Item)
    */
   public abstract void visit(Item item);
 
   /**
-   * Method visit.
+   * Processes a list of items using the visitor pattern.
    *
-   * @param item List<Item>
+   * @param item the list of items to process
    * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
    */
   public abstract void visit(List<Item> item);

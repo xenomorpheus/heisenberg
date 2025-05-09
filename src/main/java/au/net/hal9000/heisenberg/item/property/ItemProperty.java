@@ -145,7 +145,6 @@ public final class ItemProperty {
    * Set humanoid food.
    *
    * @param item the item we are changing the property of.
-   * @param isHumanoidFood the new status
    */
   public static void setHumanoidFood(Item item) {
     item.setProperty(IS_HUMANOID_FOOD, TRUE_FLAG);
@@ -206,7 +205,6 @@ public final class ItemProperty {
    * Set living.
    *
    * @param item the item we are changing the property of.
-   * @param living the new status
    */
   public static void setLiving(Item item) {
     item.setProperty(IS_LIVING, TRUE_FLAG);

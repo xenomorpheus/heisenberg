@@ -5,12 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/** Represents a combat arena where battles take place. */
 public final class CombatArena {
   private PlayerCharacter playerCharacter = null;
   private TimerRound timerRound = new TimerRound();
   private List<PlayerCharacter> allies = new ArrayList<PlayerCharacter>();
   private List<PlayerCharacter> opponents = new ArrayList<PlayerCharacter>();
 
+  /**
+   * Constructs a CombatArena with the specified player character.
+   *
+   * @param playerCharacter the player character participating in the combat arena
+   */
   public CombatArena(PlayerCharacter playerCharacter) {
     super();
     this.playerCharacter = playerCharacter;
@@ -50,6 +56,12 @@ public final class CombatArena {
     return this;
   }
 
+  /**
+   * Adds an opponent to the combat arena.
+   *
+   * @param opponent the player character to add as an opponent
+   * @return the updated CombatArena instance
+   */
   public CombatArena opponentAdd(PlayerCharacter opponent) {
     opponents.add(opponent);
     return this;

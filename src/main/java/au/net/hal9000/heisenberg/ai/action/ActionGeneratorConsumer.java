@@ -14,6 +14,8 @@ public class ActionGeneratorConsumer implements ActionGenerator {
   private double consumeCost;
 
   /**
+   * Sets the maximum distance for the action generator.
+   *
    * @param distanceMax Maximum distance
    * @param consumeCost Cost to consume
    */

@@ -17,11 +17,11 @@ import java.util.Set;
  *
  * <p>In order to perform a Recipe all the requirements must be met.
  *
- * <h1>Examples:</h1>
+ * <h2>Examples:</h2>
  *
- * <h2>Mundane:</h2>
+ * <h3>Mundane:</h3>
  *
- * <h3>Cook a meat pie</h3>
+ * <h4>Cook a meat pie</h4>
  *
  * <p>Requires:
  *
@@ -41,7 +41,7 @@ import java.util.Set;
  *   <li>X meat pies
  * </ul>
  *
- * <h3>Carpenter build a basic wooden chair</h3>
+ * <h4>Carpenter build a basic wooden chair</h4>
  *
  * <p>Requires:
  *
@@ -60,7 +60,7 @@ import java.util.Set;
  *   <li>a basic wooden chair, and non-consumed items.
  * </ul>
  *
- * <h3>Build small open fire:</h3>
+ * <h4>Build small open fire:</h4>
  *
  * <p>Requires:
  *
@@ -78,9 +78,9 @@ import java.util.Set;
  *   <li>a small open fire, and non-consumed items.
  * </ul>
  *
- * <h2>Spell</h2>
+ * <h3>Spell</h3>
  *
- * <h3>Wizard casts small light orb</h3>
+ * <h4>Wizard casts small light orb</h4>
  *
  * <p>Requires:
  *

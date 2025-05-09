@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.api.Item;
 
+/** Represents an animal entity in the system. */
 public interface Animal {
 
   /**

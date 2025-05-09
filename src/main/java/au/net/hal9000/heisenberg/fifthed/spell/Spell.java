@@ -22,7 +22,10 @@ public abstract class Spell {
   // Setters and Getters
 
   /**
+   * Sets the name of the spell.
+   *
    * @param name the name to set
+   * @return the updated spell instance
    */
   public Spell setName(String name) {
     this.name = name;
@@ -152,7 +155,9 @@ public abstract class Spell {
   }
 
   /**
-   * @return the description
+   * Gets the description of the spell.
+   *
+   * @return the description of the spell
    */
   public String getDescription() {
     return description;
@@ -174,7 +179,10 @@ public abstract class Spell {
   }
 
   /**
-   * @param url the url to set
+   * Sets the URL associated with the spell.
+   *
+   * @param newUrl the URL to set
+   * @return the updated spell instance
    */
   public Spell setUrl(String newUrl) {
     url = newUrl;

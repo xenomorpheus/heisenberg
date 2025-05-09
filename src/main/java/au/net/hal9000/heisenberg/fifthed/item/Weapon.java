@@ -66,7 +66,10 @@ public abstract class Weapon extends Item {
   }
 
   /**
-   * @param rangeMax the rangeMax to set
+   * Sets the maximum range of the weapon.
+   *
+   * @param rangeMax the maximum range to set
+   * @return the updated weapon instance
    */
   public Weapon setRangeMax(float rangeMax) {
     this.rangeMax = rangeMax;
@@ -74,14 +77,18 @@ public abstract class Weapon extends Item {
   }
 
   /**
-   * @return the damageTypes
+   * Gets the damage types of the weapon.
+   *
+   * @return the damage types of the weapon
    */
   public String getDamageTypes() {
     return damageTypes;
   }
 
   /**
-   * @param damageTypes the damageTypes to set
+   * Sets the damage types of the weapon.
+   *
+   * @param damageTypes the damage types to set
    */
   public Weapon setDamageTypes(String damageTypes) {
     this.damageTypes = damageTypes;
@@ -97,7 +104,13 @@ public abstract class Weapon extends Item {
     return singleHandAttackReduction;
   }
 
-  /** is the opponent within range of this weapon */
+  /**
+   * Determines if the opponent is within range of the attacker.
+   *
+   * @param attacker the character performing the attack
+   * @param opponent the character being attacked
+   * @return true if the opponent is within range, false otherwise
+   */
   public boolean withinRange(PlayerCharacter attacker, PlayerCharacter opponent) {
     return getRangeMax() > attacker.distance(opponent);
   }

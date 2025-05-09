@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.fifthed.item;
 
 import au.net.hal9000.heisenberg.units.Currency;
 
+/** Represents a long bow weapon in the game. */
 public class BowLong extends WeaponRanged {
 
   /** "Longbow 75gp 1d6 1d8 x3 100ft. 3lbs. P" */

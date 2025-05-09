@@ -26,10 +26,9 @@ public class ItemSearchExtraDimensional extends ItemSearch {
   }
 
   /**
-   * Method visit.
+   * Processes a list of items in the search.
    *
-   * @param itemVector List<Item>
-   * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
+   * @param itemVector the list of items to process
    */
   public void visit(List<Item> itemVector) {
     Iterator<Item> itr = itemVector.iterator();

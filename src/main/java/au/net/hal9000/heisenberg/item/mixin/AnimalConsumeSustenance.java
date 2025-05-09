@@ -1,11 +1,17 @@
 package au.net.hal9000.heisenberg.item.mixin;
 
+/** Represents an entity that consumes sustenance. */
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.entity.EntityItem;
 
 public class AnimalConsumeSustenance {
+
+  /** Default constructor for AnimalConsumeSustenance. */
+  public AnimalConsumeSustenance() {
+    // Default constructor
+  }
 
   /**
    * Eat.

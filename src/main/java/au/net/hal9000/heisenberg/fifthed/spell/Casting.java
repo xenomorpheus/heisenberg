@@ -18,6 +18,15 @@ public class Casting {
   private PlayerCharacter target;
   private TimerRound timer;
 
+  /**
+   * Constructs a Casting object with the specified parameters.
+   *
+   * @param self the entity performing the spell casting
+   * @param spellCasterClass the class of the spellcaster
+   * @param spell the spell being cast
+   * @param target the target of the spell
+   * @param timer the timer associated with the spell casting
+   */
   public Casting(
       PlayerCharacter self,
       Spellcaster spellCasterClass,
@@ -91,6 +100,11 @@ public class Casting {
     return true;
   }
 
+  /**
+   * Checks if the action is valid.
+   *
+   * @return true if the action is valid, false otherwise
+   */
   public boolean isActionValid() {
     return isDurationValid() && isRangeValid() && isComponentsValid();
     // TODO check cover

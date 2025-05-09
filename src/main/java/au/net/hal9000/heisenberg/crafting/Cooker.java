@@ -13,7 +13,7 @@ import java.util.TreeMap;
  * The Cooker takes the {@link Recipe} and ingredients and build the products. <br>
  * <br>
  *
- * <h3>User process for Recipe:</h3>
+ * <h2>User process for Recipe:</h2>
  *
  * <br>
  *

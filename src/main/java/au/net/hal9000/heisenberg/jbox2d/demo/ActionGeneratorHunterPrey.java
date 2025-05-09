@@ -9,6 +9,7 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Represents a hunter-prey action generator for AI systems. */
 public class ActionGeneratorHunterPrey implements ActionGenerator {
 
   private List<ActionGenerator> actionGenerators;
