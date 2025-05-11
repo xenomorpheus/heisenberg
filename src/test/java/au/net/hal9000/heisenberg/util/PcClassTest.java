@@ -144,10 +144,10 @@ public class PcClassTest {
   @Test
   public void serialisation() {
     PcClass pcc = new PcClass();
-    try (FileOutputStream fos = new FileOutputStream("/tmp/PcClass.ser");
+    try (FileOutputStream fos = new FileOutputStream("/tmp/heisenberg-PcClass.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos)) {
       oos.writeObject(pcc);
-      System.out.println("characterSheet object serialized successfully.");
+      System.out.println("CharacterSheet object serialized successfully.");
 
     } catch (IOException e) {
       fail(e.toString());
