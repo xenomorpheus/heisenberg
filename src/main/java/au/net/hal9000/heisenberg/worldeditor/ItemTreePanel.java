@@ -171,6 +171,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       super();
     }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
       Object selectedObject = tree.getLastSelectedPathComponent();
       if (selectedObject == null) {
@@ -184,9 +185,15 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
         return;
       }
 
-      MutableTreeNode parent = (MutableTreeNode) selectedObject;
-      if (!parent.getAllowsChildren()) {
-        LOGGER.warn(parent + " does not allow addition of items");
+      MutableTreeNode parentTreeNode = (MutableTreeNode) selectedObject;
+      if (!parentTreeNode.getAllowsChildren()) {
+        LOGGER.warn(parentTreeNode + " does not allow addition of items");
+        toolkit.beep();
+        return;
+      }
+
+      if (!(parentTreeNode instanceof ItemTreeNode)) {
+        LOGGER.warn(parentTreeNode + " treeNode, is not an instanceof ItemTreeNode");
         toolkit.beep();
         return;
       }
@@ -195,26 +202,29 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       String itemClass = itemClassesList.getSelectedItem().toString();
       Item childItem = Factory.createItem(itemClass);
       MutableTreeNode childTreeNode = new ItemTreeNode(childItem);
+      appendMutableTreeNodeToParent(parentTreeNode, childTreeNode);
+    }
 
-      if (!(parent instanceof ItemTreeNode)) {
-        LOGGER.warn(parent + " treeNode, is not an instanceof ItemTreeNode");
-        toolkit.beep();
-        return;
-      }
+    void appendMutableTreeNodeToParent(
+        MutableTreeNode parentMutableTreeNode, MutableTreeNode childTreeNode) {
+
       // Append to selected node
-      ItemTreeNode itemTreeNode = (ItemTreeNode) parent;
-      ItemList container = (ItemList) itemTreeNode.getItem();
+      ItemTreeNode parentTreeNode = (ItemTreeNode) parentMutableTreeNode;
+      ItemList container = (ItemList) parentTreeNode.getItem();
       int insertIndex = container.size();
-      itemTreeNode.insert(childTreeNode, insertIndex);
+      parentTreeNode.insert(childTreeNode, insertIndex);
 
-      TreePath path = getPathToNode(parent);
+      TreePath path = getPathToNode(parentMutableTreeNode);
       LOGGER.warn(
-          "path: " + path + ", insertIndex: " + insertIndex + ", newTreeNode: " + childTreeNode);
+          "actionPerformed. path: "
+              + path
+              + ", insertIndex: "
+              + insertIndex
+              + ", childTreeNode: "
+              + childTreeNode);
       // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
-      // ((DefaultTreeModel) tree.getModel()).nodesWereInserted(itemTreeNode,new
-      // int[]{insertIndex});
-
-      ((DefaultTreeModel) tree.getModel()).nodeStructureChanged(itemTreeNode);
+      int[] childIndices = new int[] {insertIndex};
+      ((DefaultTreeModel) tree.getModel()).nodesWereInserted(parentTreeNode, childIndices);
     }
   }
 }
