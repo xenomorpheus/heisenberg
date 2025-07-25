@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.AbilityScoresTable;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -30,32 +29,28 @@ public class AbilitiesScoresTableMain { // NO_UCD (unused code)
 
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
-        new Runnable() {
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var frame = new JFrame();
 
-          @Override
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              JFrame guiFrame = new JFrame();
+            // make sure the program exits when the frame closes
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Basic Panel");
+            frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-              // make sure the program exits when the frame closes
-              guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              guiFrame.setTitle("Basic Panel");
-              guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            var abilityScoresTable = new AbilityScoresTable();
+            var pc = DemoEnvironment.getCharacterSheet();
+            abilityScoresTable.setCharacterSheet(pc);
 
-              AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-              abilityScoresTable.setCharacterSheet(pc);
-
-              // add to JFrame
-              guiFrame.add(abilityScoresTable);
-              guiFrame.pack();
-              // This will centre the JFrame in the middle of the screen
-              guiFrame.setLocationRelativeTo(null);
-              guiFrame.setVisible(true);
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+            // add to JFrame
+            frame.add(abilityScoresTable);
+            frame.pack();
+            // This will centre the JFrame in the middle of the screen
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

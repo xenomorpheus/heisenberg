@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.DescriptionPane;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -24,31 +23,29 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
   public static void main(String[] args) {
 
     SwingUtilities.invokeLater(
-        new Runnable() {
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              JFrame guiFrame = new JFrame();
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var frame = new JFrame();
 
-              // make sure the program exits when the frame closes
-              guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              guiFrame.setTitle("Description");
-              guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            // make sure the program exits when the frame closes
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Description");
+            frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-              // This will center the JFrame in the middle of the screen
-              guiFrame.setLocationRelativeTo(null);
+            // This will center the JFrame in the middle of the screen
+            frame.setLocationRelativeTo(null);
 
-              DescriptionPane window = new DescriptionPane();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-              window.setCharacterSheet(pc);
+            var window = new DescriptionPane();
+            var pc = DemoEnvironment.getCharacterSheet();
+            window.setCharacterSheet(pc);
 
-              // add to JFrame
-              guiFrame.add(window);
-              guiFrame.setVisible(true);
+            // add to JFrame
+            frame.add(window);
+            frame.setVisible(true);
 
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.SkillsTable;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -24,33 +23,29 @@ public class SkillsTableMain { // NO_UCD (unused code)
 
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
-        new Runnable() {
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var frame = new JFrame();
 
-          @Override
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              JFrame guiFrame = new JFrame();
+            // make sure the program exits when the frame closes
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Skills Table");
+            frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-              // make sure the program exits when the frame closes
-              guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              guiFrame.setTitle("Skills Table");
-              guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            // This will center the JFrame in the middle of the screen
+            frame.setLocationRelativeTo(null);
 
-              // This will center the JFrame in the middle of the screen
-              guiFrame.setLocationRelativeTo(null);
+            var skillsTable = new SkillsTable();
+            var pc = DemoEnvironment.getCharacterSheet();
+            skillsTable.setCharacterSheet(pc);
 
-              SkillsTable skillsTable = new SkillsTable();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-              skillsTable.setCharacterSheet(pc);
-
-              // add to JFrame
-              guiFrame.add(skillsTable);
-              guiFrame.pack();
-              guiFrame.setVisible(true);
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+            // add to JFrame
+            frame.add(skillsTable);
+            frame.pack();
+            frame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

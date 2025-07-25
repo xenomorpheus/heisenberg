@@ -21,22 +21,18 @@ public class WorldEditorFrameMain { // NO_UCD (unused code)
 
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
-        new Runnable() {
-
-          @Override
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              WorldEditorFrame worldEditor = new WorldEditorFrame();
-              // Kill app
-              worldEditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              worldEditor.pack();
-              // Centre
-              worldEditor.setLocationRelativeTo(null);
-              worldEditor.setVisible(true);
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var frame = new WorldEditorFrame();
+            // Kill app
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            // Centre
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

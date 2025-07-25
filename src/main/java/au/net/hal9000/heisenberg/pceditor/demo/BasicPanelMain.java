@@ -24,32 +24,28 @@ public class BasicPanelMain { // NO_UCD (unused code)
 
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
-        new Runnable() {
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var guiFrame = new JFrame();
 
-          @Override
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              JFrame guiFrame = new JFrame();
+            // make sure the program exits when the frame closes
+            guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            guiFrame.setTitle("Basic Panel");
+            guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-              // make sure the program exits when the frame closes
-              guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              guiFrame.setTitle("Basic Panel");
-              guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            var basicPanel = new BasicPanel();
+            CharacterSheet pc = DemoEnvironment.getCharacterSheet();
+            basicPanel.setCharacterSheet(pc);
 
-              BasicPanel basicPanel = new BasicPanel();
-              CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-              basicPanel.setCharacterSheet(pc);
-
-              // add to JFrame
-              guiFrame.add(basicPanel);
-              guiFrame.pack();
-              // This will centre the JFrame in the middle of the screen
-              guiFrame.setLocationRelativeTo(null);
-              guiFrame.setVisible(true);
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+            // add to JFrame
+            guiFrame.add(basicPanel);
+            guiFrame.pack();
+            // This will centre the JFrame in the middle of the screen
+            guiFrame.setLocationRelativeTo(null);
+            guiFrame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

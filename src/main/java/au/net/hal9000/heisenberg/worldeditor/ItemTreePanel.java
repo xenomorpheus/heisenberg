@@ -55,7 +55,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
    * @param config configuration to use for building the selection boxes.
    * @param location the location to display.
    */
-  public ItemTreePanel(Configuration config, final Location location) {
+  public ItemTreePanel(Configuration config, Location location) {
     super();
 
     // The JTree can get big, so allow it to scroll.

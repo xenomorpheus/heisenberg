@@ -239,10 +239,8 @@ public class Configuration {
    * @return a collection of information about each Item type.
    */
   private Map<String, ItemClassConfiguration> xmlToItemClasses(Element itemClassesElement) {
-    Elements itemClassElements = itemClassesElement.getChildElements("item");
     Map<String, ItemClassConfiguration> myItemClasses = new TreeMap<>();
-    for (int i = 0; i < itemClassElements.size(); i++) {
-      Element element = itemClassElements.get(i);
+    for (var element : itemClassesElement.getChildElements("item")) {
       ItemClassConfiguration itemClassConfiguration = new ItemClassConfiguration();
       String id = element.getAttributeValue("id");
       itemClassConfiguration.setId(id);
@@ -279,9 +277,9 @@ public class Configuration {
    * @return a List strings.
    */
   private List<String> xmlToIdList(Elements elements) {
-    List<String> list = new ArrayList<String>();
-    for (int i = 0; i < elements.size(); i++) {
-      list.add(elements.get(i).getAttributeValue("id"));
+    List<String> list = new ArrayList<>();
+    for (var element : elements) {
+      list.add(element.getAttributeValue("id"));
     }
     return list;
   }
@@ -293,9 +291,9 @@ public class Configuration {
    * @return Map of String and PcClass
    */
   private Map<String, PcClass> xmlToPcClasses(Elements pcClassesElements) {
-    Map<String, PcClass> classes = new TreeMap<String, PcClass>();
-    for (int current = 0; current < pcClassesElements.size(); current++) {
-      PcClass pcClass = xmlToPcClass(pcClassesElements.get(current));
+    Map<String, PcClass> classes = new TreeMap<>();
+    for (var element : pcClassesElements) {
+      PcClass pcClass = xmlToPcClass(element);
       classes.put(pcClass.getId(), pcClass);
     }
     return classes;
@@ -309,10 +307,9 @@ public class Configuration {
    * @return Set of Skill Objects.
    */
   private static Set<Skill> xmlToSkills(Elements entries) {
-    Set<Skill> skills = new TreeSet<Skill>();
-
-    for (int current = 0; current < entries.size(); current++) {
-      skills.add(new Skill(entries.get(current).getAttributeValue("id")));
+    Set<Skill> skills = new TreeSet<>();
+    for (var entry : entries) {
+      skills.add(new Skill(entry.getAttributeValue("id")));
     }
     return skills;
   }
@@ -326,8 +323,7 @@ public class Configuration {
    */
   private static Map<String, Requirement> xmlToRecipeRequirementItems(Elements entries) {
     Map<String, Requirement> ingredients = new TreeMap<>();
-    for (int current = 0; current < entries.size(); current++) {
-      Element entry = entries.get(current);
+    for (var entry : entries) {
       String itemId = entry.getAttributeValue("id");
       // type
       String itemType = entry.getAttributeValue("type");
@@ -360,9 +356,8 @@ public class Configuration {
    * @return A list of Recipe Product objects.
    */
   private static List<Product> xmlToRecipeProductItems(Elements entries) {
-    List<Product> products = new ArrayList<Product>();
-    for (int current = 0; current < entries.size(); current++) {
-      Element entry = entries.get(current);
+    List<Product> products = new ArrayList<>();
+    for (var entry : entries) {
       String id = entry.getAttributeValue("id");
       String type = entry.getAttributeValue("itemType");
       if (null == type) {
@@ -386,9 +381,8 @@ public class Configuration {
    * @return A list of Recipe Product objects.
    */
   private static List<Product> xmlToRecipeProductEntityProperties(Elements entries) {
-    List<Product> products = new ArrayList<Product>();
-    for (int current = 0; current < entries.size(); current++) {
-      Element entry = entries.get(current);
+    List<Product> products = new ArrayList<>();
+    for (var entry : entries) {
       String id = entry.getAttributeValue("id");
       String propertyName = entry.getAttributeValue("propertyName");
       if (null == propertyName) {
@@ -495,12 +489,8 @@ public class Configuration {
    * @return A set of Recipe objects. * @throws ParsingException * @throws IOException
    */
   private static Map<String, Recipe> xmlToRecipes(Element element) {
-
-    Elements recipeElementSet = element.getChildElements("recipe");
-    Map<String, Recipe> recipes = new TreeMap<String, Recipe>();
-    for (int recipeCurrent = 0; recipeCurrent < recipeElementSet.size(); recipeCurrent++) {
-      // get current Recipe
-      Element recipeElement = recipeElementSet.get(recipeCurrent);
+    Map<String, Recipe> recipes = new TreeMap<>();
+    for (var recipeElement : element.getChildElements("recipe")) {
       Recipe recipe = xmlToRecipe(recipeElement);
       recipes.put(recipe.getId(), recipe);
     }
@@ -514,11 +504,8 @@ public class Configuration {
    * @return Map of SkillDetail objects.
    */
   private static Map<Skill, SkillDetail> xmlToSkillDetails(Element element) {
-    Elements entries = element.getChildElements("skill");
-    Map<Skill, SkillDetail> skillDetails = new TreeMap<Skill, SkillDetail>();
-    for (int current = 0; current < entries.size(); current++) {
-      // get current Skill
-      Element entry = entries.get(current);
+    Map<Skill, SkillDetail> skillDetails = new TreeMap<>();
+    for (var entry : element.getChildElements("skill")) {
       SkillDetail pw =
           new SkillDetail(entry.getAttributeValue("id"), entry.getAttributeValue("description"));
       skillDetails.put(new Skill(entry.getAttributeValue("id")), pw);
@@ -593,9 +580,8 @@ public class Configuration {
     pcClass.setHealth(Integer.parseInt(health));
 
     // <ability id="dweomerLore" value="0/2" />
-    Elements abilityScores = element.getChildElements("ability");
-    for (int i = 0; i < abilityScores.size(); i++) {
-      pcClass.setAbilityScore(xmlToAbilityScore(abilityScores.get(i)));
+    for (var abilityScore : element.getChildElements("ability")) {
+      pcClass.setAbilityScore(xmlToAbilityScore(abilityScore));
     }
 
     return pcClass;
@@ -627,11 +613,8 @@ public class Configuration {
    * @return Map of String and SpriteSheetConfiguration.
    */
   private Map<String, SpriteSheetConfiguration> xmlToSpriteSheets(Element spriteSheets) {
-    Elements entries = spriteSheets.getChildElements();
-    Map<String, SpriteSheetConfiguration> mySpriteSheets =
-        new TreeMap<String, SpriteSheetConfiguration>();
-    for (int current = 0; current < entries.size(); current++) {
-      Element entry = entries.get(current);
+    Map<String, SpriteSheetConfiguration> mySpriteSheets = new TreeMap<>();
+    for (var entry : spriteSheets.getChildElements()) {
       SpriteSheetConfiguration ssd = new SpriteSheetConfiguration();
       String id = entry.getAttributeValue("id");
       ssd.setId(id);

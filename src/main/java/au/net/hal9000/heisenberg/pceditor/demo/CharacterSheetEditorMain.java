@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.CharacterSheetEditor;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -18,22 +17,20 @@ public class CharacterSheetEditorMain { // NO_UCD (unused code)
   public static void main(String[] args) {
 
     SwingUtilities.invokeLater(
-        new Runnable() {
-          public void run() {
-            try {
-              DemoEnvironment.setup();
-              CharacterSheet cs = DemoEnvironment.getCharacterSheet();
-              CharacterSheetEditor editor = new CharacterSheetEditor();
-              editor.setCharacterSheet(cs);
-              JFrame window = new JFrame();
-              window.add(editor);
-              window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-              window.pack();
-              window.setLocationRelativeTo(null); // Centre
-              window.setVisible(true);
-            } catch (ConfigurationError e) {
-              e.printStackTrace();
-            }
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var cs = DemoEnvironment.getCharacterSheet();
+            var editor = new CharacterSheetEditor();
+            editor.setCharacterSheet(cs);
+            var frame = new JFrame();
+            frame.add(editor);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null); // Centre
+            frame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
           }
         });
   }

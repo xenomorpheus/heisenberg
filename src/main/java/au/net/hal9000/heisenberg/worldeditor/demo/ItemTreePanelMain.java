@@ -22,21 +22,19 @@ public class ItemTreePanelMain { // NO_UCD (unused code)
    */
   public static void main(String[] arg) {
     SwingUtilities.invokeLater(
-        new Runnable() {
-          public void run() {
-            DemoEnvironment.setup();
-            Configuration config = Configuration.lastConfig();
-            Location location = DemoEnvironment.getDemoWorld();
-            ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
-            itemTreePanel.setVisible(true);
-            JFrame frame = new JFrame("ItemTreePanel Test");
-            frame.setContentPane(itemTreePanel);
-            frame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
-            frame.pack();
-            // Centre
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-          }
+        () -> {
+          DemoEnvironment.setup();
+          Configuration config = Configuration.lastConfig();
+          Location location = DemoEnvironment.getDemoWorld();
+          ItemTreePanel itemTreePanel = new ItemTreePanel(config, location);
+          itemTreePanel.setVisible(true);
+          JFrame frame = new JFrame("ItemTreePanel Test");
+          frame.setContentPane(itemTreePanel);
+          frame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
+          frame.pack();
+          // Centre
+          frame.setLocationRelativeTo(null);
+          frame.setVisible(true);
         });
   }
 }
