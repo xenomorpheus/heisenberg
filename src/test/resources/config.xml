@@ -6,10 +6,10 @@
 		<!-- Item types that may be instantiated by Item Factory -->
 		<item id="Arrow" iconOpenId="23" iconClosedId="23" iconLeafId="23" />
 		<item id="Backpack" />
-		<item id="Bag" />
-		<item id="BagOfHolding" />
-		<item id="Box" />
-		<item id="Candle" />
+		<item id="Bag" iconOpenId="162" iconClosedId="162" iconLeafId="162" />
+		<item id="BagOfHolding" iconOpenId="162" iconClosedId="162" iconLeafId="162" />
+		<item id="Box" iconOpenId="167" iconClosedId="167" iconLeafId="167" />
+		<item id="Candle"  iconOpenId="182" iconClosedId="182" iconLeafId="182"/>
 		<item id="Cat" javaClass="entity.Cat" />
 		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
 		<item id="Biscuit" />
