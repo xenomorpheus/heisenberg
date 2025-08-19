@@ -3,6 +3,9 @@ package au.net.hal9000.heisenberg.pceditor;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -68,8 +71,15 @@ public class CharacterSheetEditor extends JPanel {
 
     // Button(s)
     JPanel butPanel = new JPanel();
-    // TODO button perform action
-    butPanel.add(new JButton("Done"));
+
+    JButton exitButton = new JButton("Exit");
+    exitButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+      }
+    });
+    butPanel.add(exitButton);
+
     cons.gridx = 0;
     cons.gridy = 1;
     gridBag.setConstraints(butPanel, cons);
