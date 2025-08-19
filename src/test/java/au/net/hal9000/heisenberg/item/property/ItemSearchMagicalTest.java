@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
 import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
-import au.net.hal9000.heisenberg.item.api.Item;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Test;
 
 /** */
@@ -83,22 +80,4 @@ public class ItemSearchMagicalTest {
     assertEquals("found", boh, searchBox.getMatchingItems().get(0));
   }
 
-  /** Method testAccept. java Container with magical and non-magical inside. */
-  @Test
-  public void testAccept7() {
-    Box box = new Box();
-    BagOfHolding boh = new BagOfHolding(1);
-    Biscuit biscuit = new Biscuit();
-    List<Item> container = new ArrayList<Item>();
-    container.add(box);
-    container.add(boh);
-    container.add(biscuit);
-
-    ItemSearch search = new ItemSearchMagical();
-    search.visit(container);
-
-    box.accept(search);
-    assertEquals("count", 1, search.getMatchingItemsCount());
-    assertEquals("found", boh, search.getMatchingItems().get(0));
-  }
 }

@@ -3,6 +3,7 @@ package au.net.hal9000.heisenberg.worldeditor;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
@@ -82,91 +83,91 @@ public class WorldEditorFrame extends JFrame {
     add(itemTreePanel, BorderLayout.NORTH);
 
     // Menus
-    final ActionListener menuActionListener =
-        new ActionListener() {
-          static final File pathname = new File("/tmp/heisenberg_world_editor.json");
+    final var menuActionListener = new ActionListener() {
+      static final File pathname = new File("/tmp/heisenberg_world_editor.json");
 
-          public void actionPerformed(ActionEvent event) {
-            String eventName = event.getActionCommand();
-            if (MENU_NEW.equals(eventName)) {
-              location = new Location();
-              setLocation(location);
+      public void actionPerformed(ActionEvent event) {
+        String eventName = event.getActionCommand();
+        if (MENU_NEW.equals(eventName)) {
+          location = new Location();
+          setLocation(location);
+        }
+        if (MENU_SAVE.equals(eventName)) {
+          PersistEntities.save(location);
+        }
+        if (MENU_IMPORT.equals(eventName)) {
+          try {
+            for (var item : JsonItems.importFromFile(pathname)) {
+              // TODO choose where in structure to add new items.
             }
-            if (MENU_SAVE.equals(eventName)) {
-              PersistEntities.save(location);
-            }
-            if (MENU_IMPORT.equals(eventName)) {
-              try {
-                for (var item : JsonItems.importFromFile(pathname)) {
-                  // TODO choose where in structure to add new items.
-                }
-              } catch (JsonProcessingException e) {
-                // TODO show error to user.
-                LOGGER.error("Error importing items from file: " + pathname, e);
-              } catch (IOException e) {
-                // TODO show error to user.
-                LOGGER.error("Error reading file: " + pathname, e);
-              }
-            }
-            if (MENU_EXPORT.equals(eventName)) {
-              // TODO choose where in structure to export from.
-              List<Item> items = new ArrayList<>();
-              items.add(location);
-              try {
-                JsonItems.export(pathname, items);
-              } catch (JsonProcessingException e) {
-                // TODO show error to user.
-                LOGGER.error("Error exporting items to file: " + pathname, e);
-              } catch (IOException e) {
-                // TODO show error to user.
-                LOGGER.error("Error writing file: " + pathname, e);
-              }
-            }
-            if (MENU_LOAD_DEMO.equals(eventName)) {
-              setLocation(DemoEnvironment.getDemoWorld());
-            }
-            if (MENU_DEBUG_TREE.equals(eventName)) {
-              debugTreePrint();
-            }
-            if (MENU_QUIT.equals(eventName)) {
-              exitProgram();
-            }
+          } catch (JsonProcessingException e) {
+            // TODO show error to user.
+            LOGGER.error("Error importing items from file: " + pathname, e);
+          } catch (IOException e) {
+            // TODO show error to user.
+            LOGGER.error("Error reading file: " + pathname, e);
           }
+        }
+        if (MENU_EXPORT.equals(eventName)) {
+          // TODO choose where in structure to export from.
+          List<Item> items = new ArrayList<>();
+          items.add(location);
+          try {
+            JsonItems.export(pathname, items);
+          } catch (JsonProcessingException e) {
+            // TODO show error to user.
+            LOGGER.error("Error exporting items to file: " + pathname, e);
+          } catch (IOException e) {
+            // TODO show error to user.
+            LOGGER.error("Error writing file: " + pathname, e);
+          }
+        }
+        if (MENU_LOAD_DEMO.equals(eventName)) {
+          setLocation(DemoEnvironment.getDemoWorld());
+        }
+        if (MENU_DEBUG_TREE.equals(eventName)) {
+          debugTreePrint();
+        }
+        if (MENU_QUIT.equals(eventName)) {
+          exitProgram();
+        }
+      }
 
-          private void debugTreePrint() {
-            ItemVisitor visitor =
-                new ItemVisitor() {
+      private void debugTreePrint() {
+        final var visitor = new ItemVisitor() {
+          private int depth = 0;
 
-                  @Override
-                  public void visit(Item item) {
-                    StringBuilder sb = new StringBuilder(item.toString());
-                    ItemContainer container = item.getContainer();
-                    if (container != null) {
-                      sb.append(" located in " + container);
-                    }
-                    System.out.println(sb.toString());
-                  }
+          @Override
+          public void visit(Item item) {
+            StringBuilder sb = new StringBuilder(item.toString());
+            ItemContainer container = item.getContainer();
+            if (container != null) {
+              sb.append(" located in ").append(container);
+            }
+            System.out.println("   ".repeat(depth)+sb.toString());
+            if (item instanceof ItemList) {
+              var itemList = (ItemList) item;
+              depth++;
+              for (int i=0; i < itemList.size() ; i++) {
+                itemList.get(i).accept(this);
+              }
+              depth--;
+            }
 
-                  @Override
-                  public void visit(List<Item> items) {
-                    for (Item item : items) {
-                      visit(item);
-                    }
-                  }
-                };
-            location.accept(visitor);
           }
         };
+        location.accept(visitor);
+      }
+    };
     JMenuBar jmb = getMenus(menuActionListener);
     setJMenuBar(jmb);
 
     // Exit by closing window
-    addWindowListener(
-        new WindowAdapter() {
-          public void windowClosing(WindowEvent event) {
-            exitProgram();
-          }
-        });
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent event) {
+        exitProgram();
+      }
+    });
   }
 
   /**

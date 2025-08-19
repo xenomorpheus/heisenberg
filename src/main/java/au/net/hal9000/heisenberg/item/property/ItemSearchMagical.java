@@ -1,8 +1,8 @@
 package au.net.hal9000.heisenberg.item.property;
 
 import au.net.hal9000.heisenberg.item.api.Item;
-import java.util.Iterator;
-import java.util.List;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
+
 
 /** Item search magical. */
 class ItemSearchMagical extends ItemSearch {
@@ -18,25 +18,17 @@ class ItemSearchMagical extends ItemSearch {
    * @param item Item
    * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(Item)
    */
+  @Override
   public void visit(Item item) {
     if (ItemProperty.isMagical(item)) {
       addMatchingItems(item);
     }
-  }
-
-  /**
-   * Method visit.
-   *
-   * @param itemVector List of Item.
-   * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
-   */
-  public void visit(List<Item> itemVector) {
-    Iterator<Item> itr = itemVector.iterator();
-    while (itr.hasNext()) {
-      Item item = itr.next();
-      if (ItemProperty.isMagical(item)) {
-        addMatchingItems(item);
+    if (item instanceof ItemContainer) {
+      var container = (ItemContainer) item;
+      for (var child : container.getContents()) {
+        child.accept(this);
       }
     }
   }
+
 }

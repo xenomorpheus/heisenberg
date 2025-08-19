@@ -68,23 +68,4 @@ public class ItemSearchExtraDimensionalTest {
     assertEquals("count", 1, searchBox3.getMatchingItemsCount());
   }
 
-  // java Container with ED and non-ED inside
-  /** Method testAccept. */
-  @Test
-  public void testAccept6() {
-    Box box = new Box();
-    BagOfHolding boh = new BagOfHolding(1);
-    Biscuit biscuit = new Biscuit();
-    List<Item> container = new ArrayList<Item>();
-    container.add(box);
-    container.add(boh);
-    container.add(biscuit);
-
-    ItemSearch search = new ItemSearchExtraDimensional();
-    search.visit(container);
-
-    box.accept(search);
-    assertEquals("count", 1, search.getMatchingItemsCount());
-    assertEquals("found", boh, search.getMatchingItems().get(0));
-  }
 }

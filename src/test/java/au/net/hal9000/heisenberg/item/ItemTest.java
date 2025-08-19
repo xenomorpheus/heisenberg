@@ -16,7 +16,6 @@ import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.util.ItemClassConfiguration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
-import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import org.junit.Before;
@@ -294,9 +293,6 @@ public class ItemTest {
     public void visit(Item item) {
       visited = true;
     }
-
-    @Override
-    public void visit(List<Item> items) {}
   }
 
   @Test

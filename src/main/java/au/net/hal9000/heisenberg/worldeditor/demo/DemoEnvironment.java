@@ -131,6 +131,7 @@ public final class DemoEnvironment {
 
     // a human with a bag of Biscuits
     Human human = new Human();
+    human.setName("Fred");
     human.setWeightMax(DEMO_WEIGHT_VOLUME);
     human.setVolumeMax(DEMO_WEIGHT_VOLUME);
 

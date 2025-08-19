@@ -24,13 +24,13 @@ import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.util.HashMap;
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -267,15 +267,13 @@ public class PersistEntitiesTest {
     public void visit(Item item) {
       incrementCount(item);
       LOGGER.info(item.detailedDescription());
-    }
-
-    @Override
-    public void visit(List<Item> items) {
-      for (var item : items) {
-        incrementCount(item);
-        LOGGER.warn("Content: " + item.detailedDescription());
+      if (item instanceof ItemContainer){
+         for (var child : ((ItemContainer)item).getContents()){
+            child.accept(this);
+         }
       }
     }
+
   }
 
   /** Method testWorld. */

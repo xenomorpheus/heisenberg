@@ -226,20 +226,6 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
     super.beNot();
   }
 
-  // Visitor Design Pattern. Find items that match the criteria
-  @Override
-  public void accept(ItemVisitor visitor) {
-    head.accept(visitor);
-    if (null != leftHand) {
-      leftHand.accept(visitor);
-    }
-    if (null != rightHand) {
-      rightHand.accept(visitor);
-    }
-    core.accept(visitor);
-    visitor.visit(this);
-  }
-
   @Override
   public int size() {
     return items.size();

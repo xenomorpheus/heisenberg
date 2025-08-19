@@ -49,13 +49,7 @@ public abstract class ItemSearch implements ItemVisitor {
    * @param item the item to process
    * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(Item)
    */
+  @Override
   public abstract void visit(Item item);
 
-  /**
-   * Processes a list of items using the visitor pattern.
-   *
-   * @param item the list of items to process
-   * @see au.net.hal9000.heisenberg.item.property.ItemVisitor#visit(List)
-   */
-  public abstract void visit(List<Item> item);
 }

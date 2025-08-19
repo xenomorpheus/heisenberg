@@ -4,7 +4,6 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.exception.TooHeavyException;
 import au.net.hal9000.heisenberg.item.exception.TooLargeException;
-import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.units.Currency;
 import au.net.hal9000.heisenberg.units.Position;
 import jakarta.persistence.Entity;
@@ -323,16 +322,6 @@ public class Location extends ItemImpl implements ItemContainer {
       total.add(item.totalValue());
     }
     return total;
-  }
-
-  @Override
-  public void accept(ItemVisitor visitor) {
-    // Search the Items directly declared in this class.
-    for (Item item : getContents()) {
-      item.accept(visitor);
-    }
-    // Get super to do the rest.
-    visitor.visit(this);
   }
 
   /** Destroy this object. */
