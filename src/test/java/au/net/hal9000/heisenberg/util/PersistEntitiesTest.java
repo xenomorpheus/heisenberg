@@ -24,7 +24,7 @@ import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.Sword;
 import au.net.hal9000.heisenberg.item.Torch;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.entity.Cat;
 import au.net.hal9000.heisenberg.item.entity.Horse;
 import au.net.hal9000.heisenberg.item.entity.Human;
@@ -267,10 +267,11 @@ public class PersistEntitiesTest {
     public void visit(Item item) {
       incrementCount(item);
       LOGGER.info(item.detailedDescription());
-      if (item instanceof ItemContainer){
-         for (var child : ((ItemContainer)item).getContents()){
-            child.accept(this);
-         }
+      if (item instanceof ItemList) {
+        var itemList = (ItemList) item;
+        for (int i = 0; i < itemList.size(); i++) {
+          itemList.get(i).accept(this);
+        }
       }
     }
 

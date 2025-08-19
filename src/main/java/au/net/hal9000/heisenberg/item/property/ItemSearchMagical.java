@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.item.property;
 
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.api.ItemContainer;
+import au.net.hal9000.heisenberg.item.api.ItemList;
 
 
 /** Item search magical. */
@@ -23,10 +23,10 @@ class ItemSearchMagical extends ItemSearch {
     if (ItemProperty.isMagical(item)) {
       addMatchingItems(item);
     }
-    if (item instanceof ItemContainer) {
-      var container = (ItemContainer) item;
-      for (var child : container.getContents()) {
-        child.accept(this);
+    if (item instanceof ItemList) {
+      var itemList = (ItemList) item;
+      for (int i = 0; i < itemList.size(); i++) {
+        itemList.get(i).accept(this);
       }
     }
   }
