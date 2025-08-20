@@ -88,16 +88,18 @@ public class WorldEditorFrame extends JFrame {
 
       public void actionPerformed(ActionEvent event) {
         String eventName = event.getActionCommand();
-        if (MENU_NEW.equals(eventName)) {
+        switch (eventName) {
+        case MENU_NEW:
           location = new Location();
           setLocation(location);
-        }
-        if (MENU_SAVE.equals(eventName)) {
+          break;
+        case MENU_SAVE:
           PersistEntities.save(location);
-        }
-        if (MENU_IMPORT.equals(eventName)) {
+          break;
+        case MENU_IMPORT:
           try {
             for (var item : JsonItems.importFromFile(pathname)) {
+              System.out.println(item);
               // TODO choose where in structure to add new items.
             }
           } catch (JsonProcessingException e) {
@@ -107,8 +109,8 @@ public class WorldEditorFrame extends JFrame {
             // TODO show error to user.
             LOGGER.error("Error reading file: " + pathname, e);
           }
-        }
-        if (MENU_EXPORT.equals(eventName)) {
+          break;
+        case MENU_EXPORT:
           // TODO choose where in structure to export from.
           List<Item> items = new ArrayList<>();
           items.add(location);
@@ -121,15 +123,16 @@ public class WorldEditorFrame extends JFrame {
             // TODO show error to user.
             LOGGER.error("Error writing file: " + pathname, e);
           }
-        }
-        if (MENU_LOAD_DEMO.equals(eventName)) {
+          break;
+        case MENU_LOAD_DEMO:
           setLocation(DemoEnvironment.getDemoWorld());
-        }
-        if (MENU_DEBUG_TREE.equals(eventName)) {
+          break;
+        case MENU_DEBUG_TREE:
           debugTreePrint();
-        }
-        if (MENU_QUIT.equals(eventName)) {
+          break;
+        case MENU_QUIT:
           exitProgram();
+          break;
         }
       }
 
