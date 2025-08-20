@@ -214,7 +214,7 @@ public class PcClass implements Serializable, Comparable<PcClass> {
   /**
    * Get the species allow.
    *
-   * @return the raceAllow
+   * @return the speciesAllow
    */
   public final String getSpeciesAllow() {
     return speciesAllow;
