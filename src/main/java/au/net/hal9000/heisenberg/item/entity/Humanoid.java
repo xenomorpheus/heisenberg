@@ -15,6 +15,7 @@ import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /** Humanoid is more to do with the physical body shape, so can be undead. */
@@ -254,4 +255,22 @@ abstract class Humanoid extends EntityItem implements Animal, ItemList {
   public void remove(int index) {
     items.remove(index);
   }
+
+  @Override
+  public Iterator<Item> iterator() {
+      return new Iterator<Item>() {
+          private int index = 0;
+
+          @Override
+          public boolean hasNext() {
+              return index < items.size();
+          }
+
+          @Override
+          public Item next() {
+              return items.get(index++);
+          }
+      };
+  }
+
 }

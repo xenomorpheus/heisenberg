@@ -5,7 +5,7 @@ package au.net.hal9000.heisenberg.item.api;
  * of core, head, arms and legs. <br>
  * Note that this object doesn't need to be an Item.
  */
-public interface ItemList {
+public interface ItemList extends Iterable<Item>{
 
   /**
    * Get the number of items top level Item objects in the container.Items with other items don't

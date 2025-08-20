@@ -144,7 +144,7 @@ public class WorldEditorFrame extends JFrame {
             if (container != null) {
               sb.append(" located in ").append(container);
             }
-            System.out.println("   ".repeat(depth)+sb.toString());
+            System.out.println("   ".repeat(depth) + sb.toString());
             if (item instanceof ItemList) {
               var itemList = (ItemList) item;
               depth++;
