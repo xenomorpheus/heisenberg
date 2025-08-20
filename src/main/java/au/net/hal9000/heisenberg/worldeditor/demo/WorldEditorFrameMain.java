@@ -2,7 +2,6 @@ package au.net.hal9000.heisenberg.worldeditor.demo;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.WorldEditorFrame;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 
@@ -24,7 +23,6 @@ public class WorldEditorFrameMain { // NO_UCD (unused code)
       try {
         DemoEnvironment.setup();
         var frame = new WorldEditorFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Kill app on close
         frame.pack();
         frame.setLocationRelativeTo(null); // Centre
         frame.setVisible(true);

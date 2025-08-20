@@ -107,27 +107,26 @@ public class BasicPanel extends JPanel {
     genderComboBox.addItemListener(basicItemListener);
 
     // Listen for changes to PC's level
-    levelSpinner.addChangeListener(
-        new ChangeListener() {
+    levelSpinner.addChangeListener(new ChangeListener() {
 
-          public void stateChanged(ChangeEvent e) {
-            SpinnerModel levelModel = levelSpinner.getModel();
-            if (levelModel instanceof SpinnerNumberModel) {
-              int newPcLevel =
-                  Integer.parseInt(((SpinnerNumberModel) levelModel).getValue().toString());
-              characterSheet.setLevel(newPcLevel);
-            }
-          }
-        });
+      public void stateChanged(ChangeEvent e) {
+        SpinnerModel levelModel = levelSpinner.getModel();
+        if (levelModel instanceof SpinnerNumberModel) {
+          int newPcLevel = Integer.parseInt(((SpinnerNumberModel) levelModel).getValue().toString());
+          characterSheet.setLevel(newPcLevel);
+        }
+      }
+    });
   }
 
   /**
    * Set the CharacterSheet object to show values for.
    *
-   * @param characterSheet the CharacterSheet object to show values for. Note we pass the
-   *     CharacterSheet rather than the values needed to do the display. We do this because the
-   *     values to display may be changed by other tabs, and passing by pc allows a refresh of
-   *     values.
+   * @param characterSheet the CharacterSheet object to show values for. Note we
+   *                       pass the CharacterSheet rather than the values needed
+   *                       to do the display. We do this because the values to
+   *                       display may be changed by other tabs, and passing by pc
+   *                       allows a refresh of values.
    */
   public void setCharacterSheet(final CharacterSheet characterSheet) {
     this.characterSheet = characterSheet;
@@ -165,7 +164,7 @@ public class BasicPanel extends JPanel {
    * A row of the UI.
    *
    * @param gridBag the gridBag layout.
-   * @param cons cell constraints.
+   * @param cons    cell constraints.
    */
   private void row0(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -217,7 +216,7 @@ public class BasicPanel extends JPanel {
    * A row of the UI.
    *
    * @param gridBag the gridBag layout.
-   * @param cons cell constraints.
+   * @param cons    cell constraints.
    */
   private void row1(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -271,7 +270,7 @@ public class BasicPanel extends JPanel {
    * A row of the UI.
    *
    * @param gridBag the gridBag layout.
-   * @param cons cell constraints.
+   * @param cons    cell constraints.
    */
   private void row2(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -352,7 +351,7 @@ public class BasicPanel extends JPanel {
    * A row of the UI.
    *
    * @param gridBag the gridBag layout.
-   * @param cons cell constraints.
+   * @param cons    cell constraints.
    */
   private void row3(GridBagLayout gridBag, GridBagConstraints cons) {
 
@@ -368,13 +367,10 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
 
     // Level Spinner
-    levelModel =
-        new SpinnerNumberModel(
-            1, // initial
-            // value
-            0, // min
-            999, // max
-            1); // step
+    levelModel = new SpinnerNumberModel(1, // initialvalue
+        0, // min
+        999, // max
+        1); // step
 
     levelSpinner = new JSpinner(levelModel);
     cons.gridx = pos;
@@ -439,7 +435,7 @@ public class BasicPanel extends JPanel {
    * A row of the UI.
    *
    * @param gridBag the gridBag layout.
-   * @param cons cell constraints.
+   * @param cons    cell constraints.
    */
   private void row4(GridBagLayout gridBag, GridBagConstraints cons) {
     final int row = 4;
@@ -527,8 +523,8 @@ public class BasicPanel extends JPanel {
     }
 
     /**
-     * Handle changes in text fields. Changes are processed when field loses focus. No need to
-     * updateForm as changes are already visible.
+     * Handle changes in text fields. Changes are processed when field loses focus.
+     * No need to updateForm as changes are already visible.
      *
      * @param e FocusEvent
      * @see java.awt.event.FocusListener#focusLost(FocusEvent)
@@ -597,26 +593,34 @@ public class BasicPanel extends JPanel {
   private void updateForm() {
     if (null != characterSheet) {
 
+      var pcClass = characterSheet.getPcClass();
+      System.out.println("class now "+pcClass);
+
       // TODO only change values if required.
       // e.g. don't trigger needless change events.
       // Fields
       // Row 0
       nameTextField.setText(characterSheet.getName());
-      classComboBox.setSelectedItem(characterSheet.getPcClass());
+      if (pcClass != null) {
+        classComboBox.setSelectedItem(pcClass);
+      }
       // Row 1
       descriptionTextField.setText(characterSheet.getDescription());
       speciesComboBox.setSelectedItem(characterSheet.getSpecies());
       // Row 2
-      comTextField.setText(Integer.toString(characterSheet.getPcClass().getCombatDice()));
-      magTextField.setText(Integer.toString(characterSheet.getPcClass().getMagicDice()));
-      steTextField.setText(Integer.toString(characterSheet.getPcClass().getStealthDice()));
-      genTextField.setText(Integer.toString(characterSheet.getPcClass().getGeneralDice()));
+      if (pcClass != null) {
+        comTextField.setText(Integer.toString(pcClass.getCombatDice()));
+        magTextField.setText(Integer.toString(pcClass.getMagicDice()));
+        steTextField.setText(Integer.toString(pcClass.getStealthDice()));
+        genTextField.setText(Integer.toString(pcClass.getGeneralDice()));
+      }
       // Row 3
       levelModel.setValue(characterSheet.getLevel());
-      actionPointsTextField.setText(
-          Integer.toString(characterSheet.getPcClass().getActionPoints()));
-      healthTextField.setText(Integer.toString(characterSheet.getPcClass().getHealth()));
-      manaTextField.setText(Integer.toString(characterSheet.getPcClass().getMana()));
+      if (pcClass != null) {
+        actionPointsTextField.setText(Integer.toString(pcClass.getActionPoints()));
+        healthTextField.setText(Integer.toString(pcClass.getHealth()));
+        manaTextField.setText(Integer.toString(pcClass.getMana()));
+      }
       // Row 4
       sizeComboBox.setSelectedItem(characterSheet.getSize());
       genderComboBox.setSelectedItem(characterSheet.getGender());

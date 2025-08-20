@@ -25,7 +25,6 @@ public class CharacterSheetEditorMain { // NO_UCD (unused code)
             editor.setCharacterSheet(cs);
             var frame = new JFrame();
             frame.add(editor);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null); // Centre
             frame.setVisible(true);

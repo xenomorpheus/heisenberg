@@ -25,12 +25,12 @@ public class AbilityScoresTable extends JTable implements FocusListener {
   /**
    * Set the CharacterSheet object to show values for.
    *
-   * @param pc the CharacterSheet object to show values for. Note we pass the CharacterSheet rather
+   * @param cs the CharacterSheet object to show values for. Note we pass the CharacterSheet rather
    *     than the values needed to do the display. We do this because the values to display may be
    *     changed by other tabs, and passing by pc allows a refresh of values.
    */
-  public void setCharacterSheet(final CharacterSheet pc) {
-    myTableModel = new MyTableModel(pc);
+  public void setCharacterSheet(final CharacterSheet cs) {
+    myTableModel = new MyTableModel(cs);
     setModel(myTableModel);
   }
 

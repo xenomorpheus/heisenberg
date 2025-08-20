@@ -3,12 +3,11 @@ package au.net.hal9000.heisenberg.pceditor;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 
 /** CharacterSheet editor. */
 public class CharacterSheetEditor extends JPanel {
@@ -72,13 +71,15 @@ public class CharacterSheetEditor extends JPanel {
     // Button(s)
     JPanel butPanel = new JPanel();
 
-    JButton exitButton = new JButton("Exit");
-    exitButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
+    JButton closeButton = new JButton("Close");
+    // Action inside panel to close the owning JFrame
+    closeButton.addActionListener(e -> {
+      var window = SwingUtilities.getWindowAncestor(butPanel);
+      if (window != null) {
+        window.dispose(); // closes just this frame
       }
     });
-    butPanel.add(exitButton);
+    butPanel.add(closeButton);
 
     cons.gridx = 0;
     cons.gridy = 1;

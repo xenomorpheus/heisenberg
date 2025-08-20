@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
 import au.net.hal9000.heisenberg.item.BagOfHolding;
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Box;
-import au.net.hal9000.heisenberg.item.api.Item;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Test;
 
 /** */

@@ -12,7 +12,6 @@ import au.net.hal9000.heisenberg.item.api.ItemList;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.mixin.AnimalConsumeSustenance;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
-import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import java.util.ArrayList;

@@ -4,11 +4,16 @@ import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemList;
+import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.pceditor.CharacterSheetEditor;
+import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -16,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -52,7 +58,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   /**
    * Constructor.
    *
-   * @param config configuration to use for building the selection boxes.
+   * @param config   configuration to use for building the selection boxes.
    * @param location the location to display.
    */
   public ItemTreePanel(Configuration config, Location location) {
@@ -64,6 +70,29 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     setLayout(new BorderLayout());
 
     tree.setCellRenderer(new ItemTreeCellRenderer(config));
+
+    // Mouse listener for triple-click
+    tree.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() != 3) {
+          return;
+        }
+        TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+        if (path == null) {
+          return;
+        }
+        Object nodeObj = path.getLastPathComponent();
+        if (nodeObj instanceof ItemTreeNode) {
+          var node = (ItemTreeNode) nodeObj;
+          var item = node.getItem();
+          System.out.println("Triple click on item: "+item.getClass().getSimpleName());
+          if (item instanceof Human) {
+            launchCharacterSheetEditor(((Human) item).getCharacterSheet());
+          }
+        }
+      }
+    });
 
     scrollPane.setViewportView(tree);
 
@@ -86,6 +115,17 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     add(scrollPane, BorderLayout.NORTH);
     add(addButtonPanel, BorderLayout.SOUTH);
     setRoot(location);
+  }
+
+  private void launchCharacterSheetEditor(CharacterSheet cs) {
+    var editor = new CharacterSheetEditor();
+    editor.setCharacterSheet(cs);
+    var frame = new JFrame();
+    frame.add(editor);
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    frame.pack();
+    frame.setLocationRelativeTo(null); // Centre
+    frame.setVisible(true);
   }
 
   /**
@@ -129,16 +169,16 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     LOGGER.error("treeNodesChanged - code not finished");
 
     /*
-     * If the event lists children, then the changed node is the child of
-     * the node we've already gotten. Otherwise, the changed node and the
-     * specified node are the same.
+     * If the event lists children, then the changed node is the child of the node
+     * we've already gotten. Otherwise, the changed node and the specified node are
+     * the same.
      */
 
     // int index = e.getChildIndices()[0];
-    // DefaultMutableTreeNode node = (DefaultMutableTreeNode) (node.getChildAt(index));
+    // DefaultMutableTreeNode node = (DefaultMutableTreeNode)
+    // (node.getChildAt(index));
 
-    LOGGER.info(
-        "treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
+    LOGGER.info("treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
     // LOGGER.debug("New value: " + node.getUserObject());
   }
 
@@ -205,8 +245,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       appendMutableTreeNodeToParent(parentTreeNode, childTreeNode);
     }
 
-    void appendMutableTreeNodeToParent(
-        MutableTreeNode parentMutableTreeNode, MutableTreeNode childTreeNode) {
+    void appendMutableTreeNodeToParent(MutableTreeNode parentMutableTreeNode, MutableTreeNode childTreeNode) {
 
       // Append to selected node
       ItemTreeNode parentTreeNode = (ItemTreeNode) parentMutableTreeNode;
@@ -216,14 +255,9 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 
       TreePath path = getPathToNode(parentMutableTreeNode);
       LOGGER.warn(
-          "actionPerformed. path: "
-              + path
-              + ", insertIndex: "
-              + insertIndex
-              + ", childTreeNode: "
-              + childTreeNode);
+          "actionPerformed. path: " + path + ", insertIndex: " + insertIndex + ", childTreeNode: " + childTreeNode);
       // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
-      int[] childIndices = new int[] {insertIndex};
+      int[] childIndices = new int[] { insertIndex };
       ((DefaultTreeModel) tree.getModel()).nodesWereInserted(parentTreeNode, childIndices);
     }
   }
