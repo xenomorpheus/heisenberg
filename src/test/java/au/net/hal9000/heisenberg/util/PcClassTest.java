@@ -75,9 +75,9 @@ public class PcClassTest {
     assertEquals(pc.getMana(), 4);
   }
 
-  /** Method testRaceAllow. */
+  /** Method testSpeciesAllow. */
   @Test
-  public final void testRaceAllow() {
+  public final void testSpeciesAllow() {
     PcClass pc = new PcClass();
     pc.setSpeciesAllow("human");
     assertEquals(pc.getSpeciesAllow(), "human");
