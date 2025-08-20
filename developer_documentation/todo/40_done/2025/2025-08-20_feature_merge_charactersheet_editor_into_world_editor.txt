@@ -1,0 +1,2 @@
+In tree view, right click on Species then edit using Charactersheet editor.
+

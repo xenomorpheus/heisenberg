@@ -1,2 +1,0 @@
-In tree view, right click on Species then edit using PcCreator.
-
