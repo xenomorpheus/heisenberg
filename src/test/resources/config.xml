@@ -10,21 +10,21 @@
 		<item id="BagOfHolding" iconOpenId="162" iconClosedId="162" iconLeafId="162" />
 		<item id="Box" iconOpenId="167" iconClosedId="167" iconLeafId="167" />
 		<item id="Candle"  iconOpenId="182" iconClosedId="182" iconLeafId="182"/>
-		<item id="Cat" javaClass="entity.Cat" />
+		<item id="Cat" javaClass="being.Cat" />
 		<item id="Cloak" iconOpenId="46" iconClosedId="46" iconLeafId="46" />
 		<item id="Biscuit" />
 		<item id="Crossbow" iconOpenId="280" iconClosedId="280"
 			iconLeafId="280" />
 		<item id="CrossbowBolt" iconOpenId="23" iconClosedId="23"
 			iconLeafId="23" />
-		<item id="Elf" javaClass="entity.Elf" />
+		<item id="Elf" javaClass="being.Elf" />
 		<item id="FlintAndTinder" />
 		<item id="Fungus" />
-		<item id="Halfling" javaClass="entity.Halfling" />
+		<item id="Halfling" javaClass="being.Halfling" />
 		<item id="Hand" />
-		<item id="Horse" javaClass="entity.Horse" />
+		<item id="Horse" javaClass="being.Horse" />
 		<item id="Human" iconOpenId="126" iconClosedId="126" iconLeafId="126"
-			javaClass="entity.Human" />
+			javaClass="being.Human" />
 		<item id="HumanoidHead" />
 		<item id="Location" />
 		<item id="MagicRing" iconOpenId="312" iconClosedId="312"
@@ -32,7 +32,7 @@
 		<item id="OrbOfLight" />
 		<item id="Purse" />
 		<item id="Quiver" />
-		<item id="Rat" javaClass="entity.Rat" />
+		<item id="Rat" javaClass="being.Rat" />
 		<item id="Ring" iconOpenId="312" iconClosedId="312" iconLeafId="312" />
 		<item id="Scabbard" />
 		<item id="Shield" iconOpenId="31" iconClosedId="31" iconLeafId="31" />

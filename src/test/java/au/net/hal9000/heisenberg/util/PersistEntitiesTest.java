@@ -106,7 +106,7 @@ public class PersistEntitiesTest {
    */
   @Test
   public void itemFromFactoryHasCharacterSheet() {
-    String itemClass = "entity.Human";
+    String itemClass = "being.Human";
     LOGGER.info("Testing " + itemClass);
 
     // Create a new Item

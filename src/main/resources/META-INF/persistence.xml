@@ -10,25 +10,25 @@
 		<class>au.net.hal9000.heisenberg.item.BagOfHolding</class>
 		<class>au.net.hal9000.heisenberg.item.Box</class>
 		<class>au.net.hal9000.heisenberg.item.Candle</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Cat</class>
+		<class>au.net.hal9000.heisenberg.item.being.Cat</class>
 		<class>au.net.hal9000.heisenberg.item.Cloak</class>
 		<class>au.net.hal9000.heisenberg.item.Biscuit</class>
 		<class>au.net.hal9000.heisenberg.item.Crossbow</class>
 		<class>au.net.hal9000.heisenberg.item.CrossbowBolt</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Elf</class>
+		<class>au.net.hal9000.heisenberg.item.being.Elf</class>
 		<class>au.net.hal9000.heisenberg.item.FlintAndTinder</class>
 		<class>au.net.hal9000.heisenberg.item.Fungus</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Halfling</class>
+		<class>au.net.hal9000.heisenberg.item.being.Halfling</class>
 		<class>au.net.hal9000.heisenberg.item.Hand</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Horse</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Human</class>
+		<class>au.net.hal9000.heisenberg.item.being.Horse</class>
+		<class>au.net.hal9000.heisenberg.item.being.Human</class>
 		<class>au.net.hal9000.heisenberg.item.HumanoidHead</class>
 		<class>au.net.hal9000.heisenberg.item.Location</class>
 		<class>au.net.hal9000.heisenberg.item.MagicRing</class>
 		<class>au.net.hal9000.heisenberg.item.OrbOfLight</class>
 		<class>au.net.hal9000.heisenberg.item.Purse</class>
 		<class>au.net.hal9000.heisenberg.item.Quiver</class>
-		<class>au.net.hal9000.heisenberg.item.entity.Rat</class>
+		<class>au.net.hal9000.heisenberg.item.being.Rat</class>
 		<class>au.net.hal9000.heisenberg.item.Ring</class>
 		<class>au.net.hal9000.heisenberg.item.Scabbard</class>
 		<class>au.net.hal9000.heisenberg.item.Shield</class>
