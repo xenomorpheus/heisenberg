@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.crafting;
 
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
+import au.net.hal9000.heisenberg.item.being.Being;
 import au.net.hal9000.heisenberg.units.Skill;
 import java.util.Iterator;
 import java.util.List;
@@ -303,10 +303,10 @@ public class Recipe {
   /**
    * A Cooker object for this recipe.
    *
-   * @param chef The EntityItem doing the cooking
+   * @param chef The Being doing the cooking
    * @return A Cooker object for this recipe.
    */
-  public final Cooker getNewCooker(EntityItem chef) {
+  public final Cooker getNewCooker(Being chef) {
     Cooker cooker = new Cooker(this);
     cooker.setChef(chef);
     return cooker;

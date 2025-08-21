@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Water;
+import au.net.hal9000.heisenberg.item.being.Cat;
+import au.net.hal9000.heisenberg.item.being.Rat;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.units.Position;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;

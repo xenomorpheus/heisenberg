@@ -3,6 +3,9 @@ package au.net.hal9000.heisenberg.item.entity;
 import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Human;
+
 import org.junit.Test;
 
 /** */
@@ -15,7 +18,7 @@ public class HumanTest {
     Object human = new Human();
     assertTrue("is Human", human instanceof Human);
     assertTrue("is Humanoid", human instanceof Human);
-    assertTrue("is EntityItem", human instanceof EntityItem);
+    assertTrue("is Being", human instanceof Being);
     assertTrue("is item", human instanceof Item);
   }
 

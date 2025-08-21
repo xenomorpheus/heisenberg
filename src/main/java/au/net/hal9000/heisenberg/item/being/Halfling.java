@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item.being;
 
 import jakarta.persistence.Entity;
 

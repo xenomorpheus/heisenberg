@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.item.Factory;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemList;
-import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.being.Human;
 import au.net.hal9000.heisenberg.pceditor.CharacterSheetEditor;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;

@@ -11,8 +11,8 @@ import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.Water;
 import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
-import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Human;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -59,7 +59,7 @@ public class CookerTest {
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     Location world = new Location();
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     chef.setContainer(world);
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
     chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
@@ -112,7 +112,7 @@ public class CookerTest {
 
     // Setup the chef
     Location world = new Location();
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     chef.setContainer(world);
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
     chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
@@ -166,7 +166,7 @@ public class CookerTest {
             products);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(REQUIRED_MANA + manaRemaining);
@@ -345,7 +345,7 @@ public class CookerTest {
         new Recipe("test-general-null", "Null case. No requirements", null, 0, 0, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
 
     // Get a cooker
     recipe.getNewCooker(chef);
@@ -369,7 +369,7 @@ public class CookerTest {
         new Recipe("test-mana-1", "Mana test, just enough.", null, 1, 0, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
@@ -403,7 +403,7 @@ public class CookerTest {
         new Recipe("test-mana-2", "Mana test, not enough.", null, 3, 0, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     assertTrue("check test pre-condition", recipe.getMana() > manaRemaining);
@@ -442,7 +442,7 @@ public class CookerTest {
         new Recipe("test-mana-3", "Mana test, more than enough.", null, 3, 0, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -477,7 +477,7 @@ public class CookerTest {
             "test-actionPoints-1", "ActionPoints test, just enough.", null, 0, 1, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -513,7 +513,7 @@ public class CookerTest {
             "test-actionPoints-2", "ActionPoints test, not enough.", null, 0, 3, null, null, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -558,7 +558,7 @@ public class CookerTest {
             null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -598,7 +598,7 @@ public class CookerTest {
             "test-skills-1", "Skill test, just enough.", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -639,7 +639,7 @@ public class CookerTest {
             "test-skills-2", "Less skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining);
@@ -685,7 +685,7 @@ public class CookerTest {
             "test-skills-3", "More skills than required", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -734,7 +734,7 @@ public class CookerTest {
             null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());
@@ -793,7 +793,7 @@ public class CookerTest {
             null);
 
     // Set the chef
-    final EntityItem chef = new Human();
+    final Being chef = new Human();
     final int manaRemaining = 1;
     final int actionPointsRemaining = 2;
     chef.getPlayableState().setMana(manaRemaining + recipe.getMana());

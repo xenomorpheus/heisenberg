@@ -1,7 +1,8 @@
 package au.net.hal9000.heisenberg.scenario;
 
 import au.net.hal9000.heisenberg.item.Cloak;
-import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.being.Human;
+
 import org.junit.Test;
 
 /** */

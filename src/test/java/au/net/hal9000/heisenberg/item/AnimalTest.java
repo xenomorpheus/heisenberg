@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.item;
 
-import au.net.hal9000.heisenberg.item.entity.Cat;
+import au.net.hal9000.heisenberg.item.being.Cat;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import junit.framework.TestCase;
 import org.junit.Test;

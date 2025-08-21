@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item.being;
 
 import au.net.hal9000.heisenberg.crafting.Cooker;
 import au.net.hal9000.heisenberg.crafting.Recipe;
@@ -13,11 +13,11 @@ import au.net.hal9000.heisenberg.util.PlayableState;
 import jakarta.persistence.MappedSuperclass;
 
 /**
- * Entity is the basis of conscious entities. <br>
+ * Being is the basis of conscious entities. <br>
  * May living or undead. May be PC, NPC, animal, etc.
  */
 @MappedSuperclass
-public abstract class EntityItem extends ItemImpl {
+public abstract class Being extends ItemImpl {
 
   private CharacterSheet characterSheet = null;
 
@@ -25,8 +25,7 @@ public abstract class EntityItem extends ItemImpl {
   private PlayableState playableState = null;
 
   // Constructor
-  /** Constructor for Entity. */
-  protected EntityItem() {
+  protected Being() {
     super();
     // By default PCs are living, but this may be changed at any time.
     ItemProperty.setLiving(this);

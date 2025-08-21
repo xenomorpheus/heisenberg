@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.crafting;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
+import au.net.hal9000.heisenberg.item.being.Being;
 import au.net.hal9000.heisenberg.units.Skill;
 import java.util.Map;
 import java.util.Set;
@@ -58,7 +58,7 @@ public final class Cooker {
   private Location pot = new Location();
 
   /** The CharacterSheet doing the cooking. Supplies any actionPoints and mana. */
-  private EntityItem chef = null;
+  private Being chef = null;
 
   /** Ingredients we will cook with. */
   private Map<String, Item> ingredients = new TreeMap<>();
@@ -80,7 +80,7 @@ public final class Cooker {
    *
    * @param chef the person doing the cooking.
    */
-  public void setChef(final EntityItem chef) {
+  public void setChef(final Being chef) {
     this.chef = chef;
   }
 
@@ -191,7 +191,7 @@ public final class Cooker {
     // skills
     final Set<Skill> required = recipe.getSkills();
     if ((null != required) && (required.size() > 0)) {
-      if (chef instanceof EntityItem) {
+      if (chef instanceof Being) {
         final Set<Skill> chefSkills = chef.getCharacterSheet().getSkills();
         if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
           string.append("Missing Skills" + System.lineSeparator());

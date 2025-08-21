@@ -1,16 +1,16 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item.being;
 
 import jakarta.persistence.Entity;
 
-/** A common rat. */
+/** A common human. */
 @Entity
-public class Rat extends EntityItem {
+public class Human extends Humanoid {
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
-  /** Constructor for Rat. */
-  public Rat() {
+  /** Constructor for Human. */
+  public Human() {
     super();
   }
 }

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.units;
 
 /**
- * The skills learnt by an {@link au.net.hal9000.heisenberg.item.entity.EntityItem}.
+ * The skills learnt by an {@link au.net.hal9000.heisenberg.item.being.Being}.
  *
  * <ul>
  *   <li>carpentry

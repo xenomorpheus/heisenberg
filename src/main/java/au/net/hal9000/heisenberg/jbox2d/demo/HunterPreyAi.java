@@ -15,9 +15,9 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Cat;
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
-import au.net.hal9000.heisenberg.item.entity.Rat;
+import au.net.hal9000.heisenberg.item.being.Cat;
+import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Rat;
 import au.net.hal9000.heisenberg.units.Position;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class HunterPreyAi {
   private Path hunterPath;
 
   /** hunter - Thinking game item. */
-  private EntityItem hunter;
+  private Being hunter;
 
   /** prey - Generic game item. */
   private Item prey;

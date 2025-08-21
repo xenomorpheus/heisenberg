@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.Shield;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.being.Human;
+import au.net.hal9000.heisenberg.item.being.Humanoid;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import org.junit.Test;
 

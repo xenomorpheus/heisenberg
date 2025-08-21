@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item.being;
 
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.api.Item;
@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 
 /** Cat. */
 @Entity
-public class Cat extends EntityItem implements Animal {
+public class Cat extends Being implements Animal {
 
   /** serial id. */
   private static final long serialVersionUID = 1L;

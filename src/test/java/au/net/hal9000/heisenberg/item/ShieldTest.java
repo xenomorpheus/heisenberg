@@ -3,7 +3,7 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.entity.Human;
+import au.net.hal9000.heisenberg.item.being.Human;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import org.junit.Test;
 

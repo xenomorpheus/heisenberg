@@ -1,4 +1,4 @@
-package au.net.hal9000.heisenberg.item.entity;
+package au.net.hal9000.heisenberg.item.being;
 
 import au.net.hal9000.heisenberg.item.Animal;
 import au.net.hal9000.heisenberg.item.Hand;
@@ -20,7 +20,7 @@ import java.util.List;
 
 /** Humanoid is more to do with the physical body shape, so can be undead. */
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class Humanoid extends EntityItem implements Animal, ItemList {
+abstract class Humanoid extends Being implements Animal, ItemList {
 
   /** head percentage of max weight and volume. */
   private static final float HEAD_PERCENTAGE_MAX_WEIGHT_VOLUME = 9;

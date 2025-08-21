@@ -4,11 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import au.net.hal9000.heisenberg.item.entity.Cat;
-import au.net.hal9000.heisenberg.item.entity.EntityItem;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.item.being.Cat;
+import au.net.hal9000.heisenberg.item.being.Being;
 
 /** */
 public class ItemPropertyTest {
@@ -20,7 +21,7 @@ public class ItemPropertyTest {
   public void testAeration() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setAeration(entity, startValue);
     ItemProperty.alterAeration(entity, propertyDelta);
     assertEquals(
@@ -32,7 +33,7 @@ public class ItemPropertyTest {
   /** Method testClothing. */
   @Test
   public void testClothing() {
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setClothing(entity);
     assertTrue("Clothing set", ItemProperty.isClothing(entity));
     ItemProperty.clearClothing(entity);
@@ -44,7 +45,7 @@ public class ItemPropertyTest {
   public void testEntertainment() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setEntertainment(entity, startValue);
     ItemProperty.alterEntertainment(entity, propertyDelta);
     assertEquals(
@@ -60,7 +61,7 @@ public class ItemPropertyTest {
   /** Method testHumanoidFood. */
   @Test
   public void testHumanoidFood() {
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setHumanoidFood(entity);
     assertTrue("HumanoidFood set", ItemProperty.isHumanoidFood(entity));
     ItemProperty.clearHumanoidFood(entity);
@@ -72,7 +73,7 @@ public class ItemPropertyTest {
   public void testNourishment() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setNourishment(entity, startValue);
     ItemProperty.alterNourishment(entity, propertyDelta);
     assertEquals(
@@ -87,7 +88,7 @@ public class ItemPropertyTest {
   /** Method testLiving. */
   @Test
   public void testLiving() {
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setLiving(entity);
     assertTrue("Living set", ItemProperty.isLiving(entity));
     ItemProperty.clearLiving(entity);
@@ -97,7 +98,7 @@ public class ItemPropertyTest {
   /** Method testMagical. */
   @Test
   public void testMagical() {
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setMagical(entity);
     assertTrue("Magical set", ItemProperty.isMagical(entity));
     ItemProperty.clearMagical(entity);
@@ -109,7 +110,7 @@ public class ItemPropertyTest {
   public void testHydration() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setHydration(entity, startValue);
     ItemProperty.alterHydration(entity, propertyDelta);
     assertEquals(
@@ -126,7 +127,7 @@ public class ItemPropertyTest {
   public void testRest() {
     final float startValue = 12.3f;
     final float propertyDelta = 1.6f;
-    EntityItem entity = new Cat();
+    Being entity = new Cat();
     ItemProperty.setRest(entity, startValue);
     ItemProperty.alterRest(entity, propertyDelta);
     assertEquals("Rest alter", startValue + propertyDelta, ItemProperty.getRest(entity), TOLERANCE);
@@ -146,7 +147,7 @@ public class ItemPropertyTest {
     final float startValue = 12.3f;
     for (String propertyName : properties) {
       final float propertyDelta = 1.6f;
-      EntityItem entity = new Cat();
+      Being entity = new Cat();
       ItemProperty.setAeration(entity, startValue);
       ItemProperty.setEntertainment(entity, startValue);
       ItemProperty.setHydration(entity, startValue);

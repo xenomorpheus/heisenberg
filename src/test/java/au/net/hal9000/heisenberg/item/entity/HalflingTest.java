@@ -4,6 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
+import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Halfling;
+import au.net.hal9000.heisenberg.item.being.Humanoid;
 import au.net.hal9000.heisenberg.item.exception.InvalidTypeException;
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
@@ -23,7 +26,7 @@ public class HalflingTest {
   public void testInstanceof() {
     Object halfling = new Halfling();
     assertTrue("is Humanoid", halfling instanceof Humanoid);
-    assertTrue("is EntityItem", halfling instanceof EntityItem);
+    assertTrue("is Being", halfling instanceof Being);
     assertTrue("is item", halfling instanceof Item);
   }
 
