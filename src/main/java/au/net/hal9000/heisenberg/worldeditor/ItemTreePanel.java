@@ -75,7 +75,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     tree.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() != 3) {
+        if (e.getClickCount() != 1) {
           return;
         }
         TreePath path = tree.getPathForLocation(e.getX(), e.getY());
@@ -86,7 +86,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
         if (nodeObj instanceof ItemTreeNode) {
           var node = (ItemTreeNode) nodeObj;
           var item = node.getItem();
-          System.out.println("Triple click on item: "+item.getClass().getSimpleName());
+          System.out.println("Click on item: "+item.getClass().getSimpleName());
           if (item instanceof Human) {
             launchCharacterSheetEditor(((Human) item).getCharacterSheet());
           }

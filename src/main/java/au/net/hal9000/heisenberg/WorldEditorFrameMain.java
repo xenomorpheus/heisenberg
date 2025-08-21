@@ -1,7 +1,9 @@
-package au.net.hal9000.heisenberg.worldeditor.demo;
+package au.net.hal9000.heisenberg;
 
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.WorldEditorFrame;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+
 import javax.swing.SwingUtilities;
 import org.apache.log4j.Logger;
 
