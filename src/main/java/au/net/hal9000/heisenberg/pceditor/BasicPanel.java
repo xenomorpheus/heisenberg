@@ -559,7 +559,7 @@ public class BasicPanel extends JPanel {
       if (source instanceof JComboBox) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
-          if (source == classComboBox) { // Class
+          if (source == classComboBox) { // PcClass
             PcClass newPcClass = (PcClass) classComboBox.getSelectedItem();
             if (!newPcClass.equals(characterSheet.getPcClass())) {
               characterSheet.setPcClass(newPcClass);

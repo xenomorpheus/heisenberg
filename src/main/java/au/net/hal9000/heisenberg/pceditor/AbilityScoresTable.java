@@ -42,6 +42,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
 
   @Override
   public void focusLost(FocusEvent e) {
+    System.out.println("focusLost");
     // Nothing
   }
 
@@ -51,18 +52,18 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     private static final long serialVersionUID = 1L;
 
     /** column names. */
-    private String[] columnNames = {"Id", "Description"};
+    private String[] columnNames = {"Ability", "Description"};
 
     /** Field pcAbilityScores. */
-    private ArrayList<AbilityScore> pcAbilityScores;
+    private ArrayList<AbilityScore> pcAbilityScores = new ArrayList<AbilityScore>();
 
     /**
      * Constructor for MyTableModel.
      *
-     * @param pc CharacterSheet
+     * @param cs CharacterSheet
      */
-    private MyTableModel(CharacterSheet pc) {
-      Map<String, AbilityScore> abilityScores = pc.getAbilityScores();
+    private MyTableModel(CharacterSheet cs) {
+      Map<String, AbilityScore> abilityScores = cs.getAbilityScores();
       if (null != abilityScores) {
         pcAbilityScores = new ArrayList<AbilityScore>(abilityScores.values());
       }
@@ -87,11 +88,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public int getRowCount() {
-      int count = 0;
-      if (null != pcAbilityScores) {
-        count = pcAbilityScores.size();
-      }
-      return count;
+      return pcAbilityScores.size();
     }
 
     /**
@@ -116,9 +113,8 @@ public class AbilityScoresTable extends JTable implements FocusListener {
       AbilityScore abilityScore = pcAbilityScores.get(row);
       if (0 == col) {
         return abilityScore.getName();
-      } else {
-        return abilityScore.valueOptionalMod();
       }
+      return abilityScore.valueOptionalMod();
     }
 
     /**

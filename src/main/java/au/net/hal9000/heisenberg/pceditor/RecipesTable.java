@@ -18,7 +18,7 @@ public class RecipesTable extends JTable {
   private static final long serialVersionUID = 1L;
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = {"Id", "Description"};
+  private static final String[] COLUMN_NAMES = {"Recipe", "Description"};
 
   /** Constructor. */
   public RecipesTable() {

@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
@@ -59,9 +60,9 @@ public class CharacterSheetEditor extends JPanel {
     // Tabbed Pane
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.addTab("Basics", null, basicPanel, null);
-    tabbedPane.addTab("Abilities", null, abilityScoresTable, null);
-    tabbedPane.addTab("Skills", null, skillsTable, null);
-    tabbedPane.addTab("Recipes", null, recipesTable, null);
+    tabbedPane.addTab("Abilities", null,  new JScrollPane(abilityScoresTable), null);
+    tabbedPane.addTab("Skills", null, new JScrollPane(skillsTable), null);
+    tabbedPane.addTab("Recipes", null, new JScrollPane(recipesTable), null);
     tabbedPane.addTab("Description", null, descriptionPane, null);
     cons.gridx = 0;
     cons.gridy = 0;

@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class SkillsTable extends JTable {
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = {"Id", "Description"};
+  private static final String[] COLUMN_NAMES = {"Skill", "Description"};
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
