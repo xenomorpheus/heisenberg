@@ -11,6 +11,7 @@ import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PlayableState;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Setter;
 
 /**
  * Being is the basis of conscious entities. <br>
@@ -19,9 +20,11 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Being extends ItemImpl {
 
+  @Setter
   private CharacterSheet characterSheet = null;
 
   // TODO probably mark as not storable in database
+  @Setter
   private PlayableState playableState = null;
 
   // Constructor
@@ -50,10 +53,6 @@ public abstract class Being extends ItemImpl {
     return characterSheet;
   }
 
-  public void setCharacterSheet(CharacterSheet characterSheet) {
-    this.characterSheet = characterSheet;
-  }
-
   /**
    * Gets the playable state for this entity. If the playable state is null, a new one is created.
    *
@@ -64,10 +63,6 @@ public abstract class Being extends ItemImpl {
       playableState = new PlayableState();
     }
     return playableState;
-  }
-
-  public void setPlayableState(PlayableState playableState) {
-    this.playableState = playableState;
   }
 
   // Getters and Setters redirected to CharacterSheet

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A-Star Search &amp; Uniform Cost Search.<br>
@@ -21,12 +23,15 @@ public class SearchAStar extends SearchBase {
   private ActionGenerator actionGenerator;
 
   /** maximum fringe expansion. */
+  @Setter
   private int fringeExpansionMax = 0;
 
   /** how many fringe expansions so far */
+  @Getter
   private int fringeExpansionCount = 0;
 
   /** */
+  @Getter
   private List<ModelState> fringeAdded;
 
   /**
@@ -42,18 +47,6 @@ public class SearchAStar extends SearchBase {
       ActionGenerator actionGenerator) {
     super(successorFunction, modelStateEvaluator);
     this.actionGenerator = actionGenerator;
-  }
-
-  // Setters and Getters.
-  /**
-   * @return the number of Fringes elements that were expanded.
-   */
-  public int getFringeExpansionCount() {
-    return fringeExpansionCount;
-  }
-
-  public void setFringeExpansionMax(int fringeExpansionMax) {
-    this.fringeExpansionMax = fringeExpansionMax;
   }
 
   // Misc.
@@ -124,14 +117,5 @@ public class SearchAStar extends SearchBase {
       }
     }
     return resultPath;
-  }
-
-  /**
-   * Used for debugging.
-   *
-   * @return the contents of FringeAdded.
-   */
-  public List<ModelState> getFringeAdded() {
-    return fringeAdded;
   }
 }

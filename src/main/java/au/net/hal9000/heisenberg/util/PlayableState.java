@@ -4,6 +4,9 @@ import au.net.hal9000.heisenberg.ai.MemoryAbstract;
 import au.net.hal9000.heisenberg.ai.MemorySetImpl;
 import au.net.hal9000.heisenberg.ai.api.Memory;
 import au.net.hal9000.heisenberg.ai.api.MemorySet;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 public final class PlayableState implements Serializable {
@@ -15,9 +18,11 @@ public final class PlayableState implements Serializable {
    * A measure of the amount of things the entity can do in the current round. This is the
    * remaining, not the maximum.
    */
+  @Getter @Setter
   private int actionPoints;
 
   /** The size of the magic user's fuel tank. This is the remaining, not the maximum. */
+  @Getter @Setter
   private int mana;
 
   private MemorySet memorySet = null;
@@ -29,40 +34,12 @@ public final class PlayableState implements Serializable {
   // Getters and Setters
 
   /**
-   * @return the actionPoints
-   */
-  public final int getActionPoints() {
-    return actionPoints;
-  }
-
-  /**
-   * @param actionPoints the actionPoints to set
-   */
-  public final void setActionPoints(final int actionPoints) {
-    this.actionPoints = actionPoints;
-  }
-
-  /**
    * Adjust the amount of action points of this item.
    *
    * @param adjust amount to adjust by.
    */
   public void actionPointsAdjust(final int adjust) {
     actionPoints += adjust;
-  }
-
-  /**
-   * @return the mana
-   */
-  public final int getMana() {
-    return mana;
-  }
-
-  /**
-   * @param mana the mana to set
-   */
-  public final void setMana(int mana) {
-    this.mana = mana;
   }
 
   /**

@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.units;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
 public class Position {
@@ -18,9 +20,13 @@ public class Position {
   public static final Position WEST = new Position(-1, 0);
 
   public static final double DEFAULT_AXIS_TOLERANCE = 0.05;
-  private double xpos;
-  private double ypos;
-  private double zpos;
+
+  @Setter @Getter
+  private double x;
+  @Setter @Getter
+  private double y;
+  @Setter @Getter
+  private double z;
 
   // Constructors
   /**
@@ -31,9 +37,9 @@ public class Position {
    * @param zpos y position.
    */
   public Position(double xpos, double ypos, double zpos) {
-    this.xpos = xpos;
-    this.ypos = ypos;
-    this.zpos = zpos;
+    this.x = xpos;
+    this.y = ypos;
+    this.z = zpos;
   }
 
   /**
@@ -60,61 +66,6 @@ public class Position {
     this(0, 0, 0);
   }
 
-  // Getters and Setters
-  /**
-   * get x position.
-   *
-   * @return x position
-   */
-  public double getX() {
-    return xpos;
-  }
-
-  /**
-   * Set x position.
-   *
-   * @param xpos new x position.
-   */
-  public void setX(double xpos) {
-    this.xpos = xpos;
-  }
-
-  /**
-   * get y position.
-   *
-   * @return y position
-   */
-  public double getY() {
-    return ypos;
-  }
-
-  /**
-   * Set y position.
-   *
-   * @param ypos new y position.
-   */
-  public void setY(double ypos) {
-    this.ypos = ypos;
-  }
-
-  /**
-   * get z position.
-   *
-   * @return z position
-   */
-  public double getZ() {
-    return zpos;
-  }
-
-  /**
-   * Set z position.
-   *
-   * @param zpos new z position.
-   */
-  public void setZ(double zpos) {
-    this.zpos = zpos;
-  }
-
   // Misc
   /**
    * Change the position object by the delta.
@@ -123,9 +74,9 @@ public class Position {
    * @return current Position object.
    */
   public Position applyDelta(Position delta) {
-    xpos += delta.getX();
-    ypos += delta.getY();
-    zpos += delta.getZ();
+    x += delta.getX();
+    y += delta.getY();
+    z += delta.getZ();
     return this;
   }
 
@@ -136,7 +87,7 @@ public class Position {
    * @return Return a new Position object that is the current Position, plus argument.
    */
   public Position add(Position delta) {
-    return new Position(xpos + delta.getX(), ypos + delta.getY(), zpos + delta.getZ());
+    return new Position(x + delta.getX(), y + delta.getY(), z + delta.getZ());
   }
 
   /**
@@ -146,7 +97,7 @@ public class Position {
    * @return Return a new Position object that is the current Position, minus argument.
    */
   public Position subtract(Position other) {
-    return new Position(xpos - other.getX(), ypos - other.getY(), zpos - other.getZ());
+    return new Position(x - other.getX(), y - other.getY(), z - other.getZ());
   }
 
   /**
@@ -185,11 +136,11 @@ public class Position {
     final int prime = 31;
     int result = 1;
     long temp;
-    temp = Double.doubleToLongBits(xpos);
+    temp = Double.doubleToLongBits(x);
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(ypos);
+    temp = Double.doubleToLongBits(y);
     result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(zpos);
+    temp = Double.doubleToLongBits(z);
     result = prime * result + (int) (temp ^ (temp >>> 32));
     return result;
   }
@@ -231,9 +182,9 @@ public class Position {
    */
   public boolean equals(Position other, double tolerance) {
     return (other != null)
-        && (Math.abs(xpos - other.getX()) < tolerance)
-        && (Math.abs(ypos - other.getY()) < tolerance)
-        && (Math.abs(zpos - other.getZ()) < tolerance);
+        && (Math.abs(x - other.getX()) < tolerance)
+        && (Math.abs(y - other.getY()) < tolerance)
+        && (Math.abs(z - other.getZ()) < tolerance);
   }
 
   /**
@@ -242,9 +193,9 @@ public class Position {
    * @param c multiplier.
    */
   public void vectorMul(double c) {
-    xpos *= c;
-    ypos *= c;
-    zpos *= c;
+    x *= c;
+    y *= c;
+    z *= c;
   }
 
   /**
@@ -253,9 +204,9 @@ public class Position {
    * @param theta in radians.
    */
   public void rotateX(double theta) {
-    double newY = ypos * Math.cos(theta) + zpos * Math.sin(theta);
-    zpos = -ypos * Math.sin(theta) + zpos * Math.cos(theta);
-    ypos = newY;
+    double newY = y * Math.cos(theta) + z * Math.sin(theta);
+    z = -y * Math.sin(theta) + z * Math.cos(theta);
+    y = newY;
   }
 
   /**
@@ -265,9 +216,9 @@ public class Position {
    */
   public void rotateY(double theta) {
 
-    double newX = xpos * Math.cos(theta) - zpos * Math.sin(theta);
-    zpos = xpos * Math.sin(theta) + zpos * Math.cos(theta);
-    xpos = newX;
+    double newX = x * Math.cos(theta) - z * Math.sin(theta);
+    z = x * Math.sin(theta) + z * Math.cos(theta);
+    x = newX;
   }
 
   /**
@@ -276,9 +227,9 @@ public class Position {
    * @param theta in radians.
    */
   public void rotateZ(double theta) {
-    double newX = xpos * Math.cos(theta) + ypos * Math.sin(theta);
-    ypos = -xpos * Math.sin(theta) + ypos * Math.cos(theta);
-    xpos = newX;
+    double newX = x * Math.cos(theta) + y * Math.sin(theta);
+    y = -x * Math.sin(theta) + y * Math.cos(theta);
+    x = newX;
   }
 
   /** Return string representation of this object. */
@@ -303,8 +254,8 @@ public class Position {
    * @param other Position
    */
   public void set(Position other) {
-    xpos = other.getX();
-    ypos = other.getY();
-    zpos = other.getZ();
+    x = other.getX();
+    y = other.getY();
+    z = other.getZ();
   }
 }

@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.ai;
 
 import au.net.hal9000.heisenberg.ai.api.ModelStateAgentGoal;
 import au.net.hal9000.heisenberg.units.Position;
+import lombok.NonNull;
 
 /** A very simple model state. It holds agent position and goal position. */
 public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
@@ -18,14 +19,8 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
    * @param agentPosition agent position.
    * @param goalPosition goal position.
    */
-  ModelStateAgentGoalImpl(Position agentPosition, Position goalPosition) {
+  ModelStateAgentGoalImpl(@NonNull Position agentPosition, @NonNull Position goalPosition) {
     super();
-    if (null == agentPosition) {
-      throw new IllegalArgumentException("agentPosition may not be null");
-    }
-    if (null == goalPosition) {
-      throw new IllegalArgumentException("goalPosition may not be null");
-    }
     this.goalPosition = goalPosition;
     this.agentPosition = agentPosition;
   }

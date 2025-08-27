@@ -8,6 +8,7 @@ import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
 import au.net.hal9000.heisenberg.units.Skill;
 import au.net.hal9000.heisenberg.units.SkillDetail;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
+import lombok.Setter;
+import lombok.Getter; 
 
 /**
  * Configuration read the XML config file and return in an object to easily access the properties.
@@ -33,31 +36,43 @@ import nu.xom.ParsingException;
 public class Configuration {
 
   /** Singleton. Holder of the config */
+  @Setter
   private static Configuration lastConfig = null;
 
   /** A list of genders. */
+    // TODO remove/refactor so caller can't modify genders
+  @Getter
   private List<String> genders;
 
   /** A map of ItemClassConfiguration objects. */
+  @Getter
   private Map<String, ItemClassConfiguration> itemClasses;
 
-  // TODO private TreeMap<String,PcClass> npcClasses;
+  // TODO private TreeMap<String,PcClass> pcClasses;
   /** A map of possible pcClass details. */
+  @Getter
   private Map<String, PcClass> pcClasses;
 
+  // TODO remove/refactor so caller can't modify species
   /** list of valid species. */
+  @Getter
   private List<String> species;
 
   /** A map of Recipe objects. */
+  @Getter
   private Map<String, Recipe> recipes;
 
   /** A map of SkillDetail objects. */
+  @Getter
   private Map<Skill, SkillDetail> skillDetails;
 
   /** A list of sizes. */
+  // TODO refactor so caller can't modify sizes
+  @Getter
   private List<String> sizes;
 
   /** Images to show in UI. */
+  @Getter
   private Map<String, SpriteSheetConfiguration> spriteSheets;
 
   /**
@@ -72,16 +87,6 @@ public class Configuration {
     setLastConfig(this);
   }
 
-  // Static - Getters and Setters
-  /**
-   * Change a static variable. Required by findbugs.
-   *
-   * @param config Configuration.
-   */
-  private static void setLastConfig(Configuration config) {
-    Configuration.lastConfig = config;
-  }
-
   /**
    * Get the last configuration.
    *
@@ -92,83 +97,6 @@ public class Configuration {
       throw new RuntimeException("Please fetch config before using Singleton");
     }
     return lastConfig;
-  }
-
-  // Getters and Setters
-  /**
-   * Get the item classes.
-   *
-   * @return the itemClasses
-   */
-  public final Map<String, ItemClassConfiguration> getItemClasses() {
-    return itemClasses;
-  }
-
-  /**
-   * get skill details.
-   *
-   * @return skill details.
-   */
-  public final Map<Skill, SkillDetail> getSkillDetails() {
-    return skillDetails;
-  }
-
-  /**
-   * Get the recipes.
-   *
-   * @return Map of String and Recipe
-   */
-  public final Map<String, Recipe> getRecipes() {
-    return recipes;
-  }
-
-  // TODO remove/refactor so caller can't modify pcClasses
-  /**
-   * Method getPcClasses.
-   *
-   * @return Map of String and PcClass.
-   */
-  public Map<String, PcClass> getPcClasses() {
-    return pcClasses;
-  }
-
-  // TODO remove/refactor so caller can't modify species
-  /**
-   * Method getSpecies.
-   *
-   * @return List of strings.
-   */
-  public List<String> getSpecies() {
-    return species;
-  }
-
-  // TODO remove/refactor so caller can't modify sizes
-  /**
-   * Get the sizes.
-   *
-   * @return List of Strings
-   */
-  public List<String> getSizes() {
-    return sizes;
-  }
-
-  // TODO remove/refactor so caller can't modify genders
-  /**
-   * Get the genders.
-   *
-   * @return List of Strings.
-   */
-  public List<String> getGenders() {
-    return genders;
-  }
-
-  /**
-   * Get the sprite sheet details.
-   *
-   * @return the sprite sheet details
-   */
-  public Map<String, SpriteSheetConfiguration> getSpriteSheets() {
-    return spriteSheets;
   }
 
   // Misc

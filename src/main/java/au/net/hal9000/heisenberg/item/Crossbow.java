@@ -2,6 +2,8 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import jakarta.persistence.Entity;
+import lombok.Setter;
+import lombok.Getter;
 
 /** A Crossbow. */
 @Entity
@@ -11,29 +13,12 @@ public class Crossbow extends ItemImpl {
   private static final long serialVersionUID = 1L;
 
   /** Field loadedBolt. */
+  @Setter @Getter
   private CrossbowBolt loadedBolt = null;
 
   /** Constructor for Crossbow. */
   public Crossbow() {
     super();
-  }
-
-  /**
-   * Method getLoadedBolt.
-   *
-   * @return CrossbowBolt
-   */
-  public CrossbowBolt getLoadedBolt() {
-    return loadedBolt;
-  }
-
-  /**
-   * Method setLoadedBolt.
-   *
-   * @param bolt CrossbowBolt
-   */
-  public void setLoadedBolt(final CrossbowBolt bolt) {
-    loadedBolt = bolt;
   }
 
   // bow plus bolt if present.

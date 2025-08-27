@@ -8,6 +8,9 @@ import au.net.hal9000.heisenberg.units.Skill;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.NonNull; 
 
 /**
  * The Cooker takes the {@link Recipe} and ingredients and build the products. <br>
@@ -38,9 +41,6 @@ import java.util.TreeMap;
 public final class Cooker {
 
   /** error message. * */
-  static final String ITEM_MAY_NOT_BE_NULL = "item must exist";
-
-  /** error message. * */
   static final String ALREADY_CONTAINS_THAT_ITEM = "already contains that item";
 
   /** error message. * */
@@ -58,6 +58,8 @@ public final class Cooker {
   private Location pot = new Location();
 
   /** The CharacterSheet doing the cooking. Supplies any actionPoints and mana. */
+  @Setter
+  @Getter
   private Being chef = null;
 
   /** Ingredients we will cook with. */
@@ -73,26 +75,6 @@ public final class Cooker {
     this.recipe = recipe;
   }
 
-  // Setters and Getters
-
-  /**
-   * set the chef.
-   *
-   * @param chef the person doing the cooking.
-   */
-  public void setChef(final Being chef) {
-    this.chef = chef;
-  }
-
-  /**
-   * get the chef.
-   *
-   * @return the person doing the cooking.
-   */
-  public final Item getChef() {
-    return chef;
-  }
-
   // misc
 
   /**
@@ -101,11 +83,7 @@ public final class Cooker {
    * @param key where to add Item
    * @param item the Item we are making available.
    */
-  public final void setItemsAvailable(final String key, final Item item) {
-    // item exists
-    if (null == item) {
-      throw new RuntimeException(ITEM_MAY_NOT_BE_NULL);
-    }
+  public final void setItemsAvailable(final String key, @NonNull final Item item) {
 
     // spot is free?
     if (null != ingredients.get(key)) {

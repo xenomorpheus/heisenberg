@@ -28,6 +28,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
+import lombok.Getter;
+import lombok.Setter; 
 
 public class HunterPreyAi {
 
@@ -75,6 +77,7 @@ public class HunterPreyAi {
   private Location world;
 
   /** is the test finished. */
+  @Getter @Setter
   private boolean complete;
 
   HunterPreyAi(Body hunterBody, Body preyBody) {
@@ -84,16 +87,6 @@ public class HunterPreyAi {
 
     // Initialise AI
     aiInit();
-  }
-
-  // Getters and Setters
-
-  public boolean isComplete() {
-    return complete;
-  }
-
-  public void setComplete(boolean complete) {
-    this.complete = complete;
   }
 
   // Misc

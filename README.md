@@ -71,6 +71,7 @@ Java Technologies:
 * Derby - Data store
 * Log4j2 - Logging
 * Jacoco - Test code coverage
+* Lombok - Reduce boilerplate code
 
 Other Technologies:
 * XSD - XML checking
@@ -95,9 +96,9 @@ All main classes:
 
 See above for JAVA_HOME and CLASSPATH
 
-java au.net.hal9000.heisenberg.jbox2d.demo.Main
+java au.net.hal9000.heisenberg.WorldEditorFrameMain
 
-java au.net.hal9000.heisenberg.worldeditor.demo.WorldEditorFrameMain
+java au.net.hal9000.heisenberg.jbox2d.demo.Main
 
 java au.net.hal9000.heisenberg.pceditor.demo.CharacterSheetEditorMain
 

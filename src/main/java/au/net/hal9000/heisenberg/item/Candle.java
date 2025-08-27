@@ -2,6 +2,7 @@ package au.net.hal9000.heisenberg.item;
 
 import au.net.hal9000.heisenberg.item.api.LightSource;
 import jakarta.persistence.Entity;
+import lombok.Setter;
 
 /** A simple tallow candle. */
 @Entity
@@ -17,6 +18,7 @@ public class Candle extends ItemImpl implements LightSource {
   static final float VOLUME_DEFAULT = 0.02f;
 
   /** true if candle is lit. */
+  @Setter
   private boolean lit = false;
 
   // TODO time the burn by use of fuel or rounds.
@@ -28,14 +30,6 @@ public class Candle extends ItemImpl implements LightSource {
   }
 
   // Getters and Setters
-  /**
-   * Set the lit/unlit status of this torch.
-   *
-   * @param lit the lit/unlit status of this torch
-   */
-  public void setLit(boolean lit) {
-    this.lit = lit;
-  }
 
   @Override
   public boolean isLit() {

@@ -3,23 +3,50 @@ package au.net.hal9000.heisenberg.fifthed.spell;
 import au.net.hal9000.heisenberg.fifthed.combat.ActionDuration;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
 
 public abstract class Spell {
+
+  @Getter
   private String name = null;
-  private Set<SpellComponent> spellComponents = new HashSet<SpellComponent>();
+
+  @Getter
   private boolean rangeTouch = false;
+
+  @Getter
+  private Set<SpellComponent> spellComponents = new HashSet<SpellComponent>();
+
+  @Getter
   private ActionDuration actionDuration = null;
+
+  @Getter
   private SpellSavingThrow spellSavingThrow;
+
+  @Getter
   private int effectDurationSeconds = 0;
+
+  @Getter
   private EffectArea effectAreaType = null;
+
+  @Getter
   private int effectAreaFeet = 0;
+
+  @Getter
   private int effectRangeBase = 0;
+
+  @Getter
   private int effectRangeLevelMultiplier = 0;
+
+  @Getter
   private boolean effectSpellResistance = false;
+
+  @Getter
   private String description = null;
+
+  @Getter
   private String url = null;
 
-  // Setters and Getters
+  // Setters and Getters. Builder pattern.
 
   /**
    * Sets the name of the spell.
@@ -32,29 +59,9 @@ public abstract class Spell {
     return this;
   }
 
-  public String getName() {
-    return name;
-  }
-
   protected Spell setRangeTouch(boolean rangeTouch) {
     this.rangeTouch = rangeTouch;
     return this;
-  }
-
-  /**
-   * @return the rangeTouch
-   */
-  public boolean isRangeTouch() {
-    return rangeTouch;
-  }
-
-  /**
-   * The actionDuration.
-   *
-   * @return the actionDuration
-   */
-  public ActionDuration getActionDuration() {
-    return actionDuration;
   }
 
   /**
@@ -98,15 +105,6 @@ public abstract class Spell {
   }
 
   /**
-   * Get the spell components.
-   *
-   * @return the spellComponents
-   */
-  public Set<SpellComponent> getSpellComponents() {
-    return spellComponents;
-  }
-
-  /**
    * Set the spell components.
    *
    * @param spellComponents the spellComponents to set
@@ -118,25 +116,11 @@ public abstract class Spell {
   }
 
   /**
-   * @return the spellSavingThrow
-   */
-  public SpellSavingThrow getSpellSavingThrow() {
-    return spellSavingThrow;
-  }
-
-  /**
    * @param spellSavingThrow the spellSavingThrow to set
    */
   public Spell setSpellSavingThrow(SpellSavingThrow spellSavingThrow) {
     this.spellSavingThrow = spellSavingThrow;
     return this;
-  }
-
-  /**
-   * @return the effectDurationSeconds
-   */
-  public int getEffectDurationSeconds() {
-    return effectDurationSeconds;
   }
 
   /**
@@ -148,34 +132,11 @@ public abstract class Spell {
   }
 
   /**
-   * @return the effectRangeLevelMultiplier
-   */
-  public int getEffectRangeLevelMultiplier() {
-    return effectRangeLevelMultiplier;
-  }
-
-  /**
-   * Gets the description of the spell.
-   *
-   * @return the description of the spell
-   */
-  public String getDescription() {
-    return description;
-  }
-
-  /**
    * @param description the description to set
    */
   public Spell setDescription(String description) {
     this.description = description;
     return this;
-  }
-
-  /**
-   * @return the url
-   */
-  public String getUrl() {
-    return url;
   }
 
   /**
@@ -190,27 +151,6 @@ public abstract class Spell {
   }
 
   /**
-   * @return the effectAreaType
-   */
-  public EffectArea getEffectAreaType() {
-    return effectAreaType;
-  }
-
-  /**
-   * @return the effectAreaFeet
-   */
-  public int getEffectAreaFeet() {
-    return effectAreaFeet;
-  }
-
-  /**
-   * @return the effectRangeBase
-   */
-  public int getEffectRangeBase() {
-    return effectRangeBase;
-  }
-
-  /**
    * @param actionDuration the actionDuration to set
    */
   public Spell setActionDuration(ActionDuration actionDuration) {
@@ -218,26 +158,20 @@ public abstract class Spell {
     return this;
   }
 
-  // Misc
-
-  /**
-   * @return the effectSpellResistance
-   */
-  public boolean isEffectSpellResistance() {
-    return effectSpellResistance;
-  }
-
   /**
    * @param effectSpellResistance the effectSpellResistance to set
    */
-  public void setEffectSpellResistance(boolean effectSpellResistance) {
+  public Spell setEffectSpellResistance(boolean effectSpellResistance) {
     this.effectSpellResistance = effectSpellResistance;
+    return this;
   }
 
   public Spell componentsAdd(SpellComponent spellComponent) {
     this.spellComponents.add(spellComponent);
     return this;
   }
+
+  // Misc
 
   public String toString() {
     return getName();

@@ -263,7 +263,7 @@ public class CookerTest {
       cooker.setItemsAvailable("FlintAndTinder", null);
     } catch (RuntimeException e) {
       assertEquals(
-          "item 0 - missing item and location", Cooker.ITEM_MAY_NOT_BE_NULL, e.getMessage());
+          "item 0 - missing item and location", "item is marked non-null but is null", e.getMessage());
     }
 
     try {

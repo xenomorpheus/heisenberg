@@ -2,6 +2,8 @@ package au.net.hal9000.heisenberg.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * AbilityScore properties.<br>
@@ -9,6 +11,7 @@ import java.util.regex.Pattern;
  */
 public class AbilityScore implements Comparable<AbilityScore> {
   /** name. */
+  @Setter @Getter
   private String name;
 
   /**
@@ -16,6 +19,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
    * a) For PcClass this is the base prior to modification for levels<br>
    * b) For CharacterSheet this includes the all modifications.
    */
+  @Setter @Getter
   private int value = 0;
 
   /**
@@ -23,6 +27,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
    * a) For PcClass this is the value to add on per level<br>
    * b) For CharacterSheet this is the customisation of the ability.
    */
+  @Setter @Getter
   private int mod = 0;
 
   /**
@@ -73,60 +78,6 @@ public class AbilityScore implements Comparable<AbilityScore> {
       valueString = valueString.substring(1);
     }
     value = Integer.parseInt(valueString);
-  }
-
-  /**
-   * Name.
-   *
-   * @return the name
-   */
-  public final String getName() {
-    return name;
-  }
-
-  /**
-   * Set name.
-   *
-   * @param name the name to set
-   */
-  public final void setName(String name) {
-    this.name = name;
-  }
-
-  /**
-   * Get the value.
-   *
-   * @return the value
-   */
-  public final int getValue() {
-    return value;
-  }
-
-  /**
-   * Set the value.
-   *
-   * @param value the value to set
-   */
-  public final void setValue(int value) {
-    this.value = value;
-  }
-
-  /**
-   * Get the modifier.
-   *
-   * @return the mod
-   */
-  public final int getMod() {
-    return mod;
-  }
-
-  /**
-   * Set the modifier.
-   *
-   * @param mod the mod to set
-   */
-  public final void setMod(int mod) {
-    this.mod = mod;
   }
 
   // misc

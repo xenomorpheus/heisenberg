@@ -1,11 +1,15 @@
 package au.net.hal9000.heisenberg.util;
 
 import au.net.hal9000.heisenberg.units.Skill;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 /** A Character Sheet of PC/NPC. */
 public class CharacterSheet implements Serializable {
@@ -15,28 +19,38 @@ public class CharacterSheet implements Serializable {
   // It's a good practice to declare a serialVersionUID
   private static final long serialVersionUID = 1L;
 
+  @Getter @Setter @NonNull
   private String name = null;
 
+  @Getter @Setter @NonNull
   private String description = null;
 
   /** How skilled in the chosen profession AKA PcClass. Multi-classing not supported. */
+  @Getter
   private int level = 0;
 
   /** profession e.g. Soldier, Wizard etc. */
+  @Getter @NonNull
   private PcClass pcClass = null;
 
   /** The species. Previously known as race. */
+  @Getter @Setter @NonNull
   private String species = null;
 
+  @Getter @Setter @NonNull
   private String gender = null;
 
+  @Getter @Setter @NonNull
   private String size = null;
 
+  @Getter @Setter @NonNull
   private Set<Skill> skills = new TreeSet<>();
 
+  @Getter @Setter @NonNull
   private Set<String> recipes = new TreeSet<>();
 
   /** Field abilityScores. */
+  @Getter @Setter @NonNull
   private Map<String, AbilityScore> abilityScores = new TreeMap<>();
 
   /** Constructor */
@@ -45,42 +59,6 @@ public class CharacterSheet implements Serializable {
   }
 
   // Getters and Setters
-
-  /**
-   * Gets the name of the character.
-   *
-   * @return the name of the character
-   */
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    if (null == name) {
-      this.name = new String();
-    }
-    this.name = name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    if (null == description) {
-      this.description = new String();
-    }
-    this.description = description;
-  }
-
-  /**
-   * Gets the level of the character.
-   *
-   * @return the level of the character
-   */
-  public final int getLevel() {
-    return level;
-  }
 
   /**
    * Set the level.
@@ -96,82 +74,26 @@ public class CharacterSheet implements Serializable {
   }
 
   /**
-   * Get the PC class,
-   *
-   * @return the pcClass
-   */
-  public final PcClass getPcClass() {
-    return pcClass;
-  }
-
-  /**
    * Set the PC class
    *
    * @param pcClass the pcClass to set
    */
   public final void setPcClass(final PcClass pcClass) {
     this.pcClass = pcClass;
-  }
-
-  /**
-   * Get the name of the species.
-   *
-   * @return the name of the species.
-   */
-  public String getSpecies() {
-    return species;
-  }
-
-  public void setSpecies(String species) {
-    if (null == species) {
-      this.species = new String();
+    // TODO we should recalculate the ability scores here.
+    // We need to make sure that we preserve any ability scores that aren't
+    // on the pcClass.
+    if (null != pcClass) {
+      for (String key : pcClass.getAbilityScores().keySet()) {
+        if (!abilityScores.containsKey(key)) {
+          abilityScores.put(key, pcClass.getAbilityScores().get(key));
+        }
+      }
     }
-    this.species = species;
-  }
-
-  public String getGender() {
-    return gender;
-  }
-
-  public void setGender(String gender) {
-    if (null == gender) {
-      this.gender = new String();
-    }
-    this.gender = gender;
-  }
-
-  /**
-   * Gets the size of the character.
-   *
-   * @return the size of the character
-   */
-  public String getSize() {
-    return size;
-  }
-
-  public void setSize(String size) {
-    this.size = size;
+    // TODO other class based attributes.
   }
 
   // Skills
-  /**
-   * Get the Skill objects.
-   *
-   * @return a set of Skill objects
-   */
-  public final Set<Skill> getSkills() {
-    return skills;
-  }
-
-  /**
-   * Set the skills of this entity.
-   *
-   * @param skills skills to set.
-   */
-  public final void setSkills(final Set<Skill> skills) {
-    this.skills = skills;
-  }
-
   /**
    * The Entity object has learnt a new Skill.
    *
@@ -182,23 +104,6 @@ public class CharacterSheet implements Serializable {
   }
 
   // Recipe objects
-  /**
-   * Get the Recipe objects this Entity object knows.
-   *
-   * @return the set of Recipe objects
-   */
-  public Set<String> getRecipes() {
-    return recipes;
-  }
-
-  /**
-   * Set the Recipe objects this Entity object knows.
-   *
-   * @param recipes the set of Recipe objects
-   */
-  public void setRecipes(Set<String> recipes) {
-    this.recipes = recipes;
-  }
 
   /**
    * Add to the of Recipe objects this Entity object knows.
@@ -207,20 +112,6 @@ public class CharacterSheet implements Serializable {
    */
   public void recipeAdd(String recipeId) {
     recipes.add(recipeId);
-  }
-
-  /**
-   * @return the abilityScores.
-   */
-  public final Map<String, AbilityScore> getAbilityScores() {
-    return abilityScores;
-  }
-
-  /**
-   * @param abilityScores the abilityScores to set.
-   */
-  public final void setAbilityScores(Map<String, AbilityScore> abilityScores) {
-    this.abilityScores = abilityScores;
   }
 
   /**

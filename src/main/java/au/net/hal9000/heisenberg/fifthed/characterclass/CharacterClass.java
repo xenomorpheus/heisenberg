@@ -2,6 +2,9 @@ package au.net.hal9000.heisenberg.fifthed.characterclass;
 
 import au.net.hal9000.heisenberg.fifthed.combat.Action;
 import au.net.hal9000.heisenberg.fifthed.combat.CombatArena;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
 /**
@@ -9,26 +12,12 @@ import java.util.Set;
  * multi-classed which means multiple CharacterClass objects.
  */
 public abstract class CharacterClass {
+  @Setter
+  @Getter
   private int classLevel = 0;
 
   public CharacterClass() {
     super();
-  }
-
-  // Getters and Setters
-
-  /**
-   * @return the level
-   */
-  public int getClassLevel() {
-    return classLevel;
-  }
-
-  /**
-   * @param classLevel the level to set
-   */
-  public void setClassLevel(int classLevel) {
-    this.classLevel = classLevel;
   }
 
   // Misc
