@@ -89,14 +89,13 @@ public class WorldEditorFrame extends JFrame {
       public void actionPerformed(ActionEvent event) {
         String eventName = event.getActionCommand();
         switch (eventName) {
-        case MENU_NEW:
+        case MENU_NEW ->{
           location = new Location();
           setLocation(location);
-          break;
-        case MENU_SAVE:
+        }
+        case MENU_SAVE ->
           PersistEntities.save(location);
-          break;
-        case MENU_IMPORT:
+        case MENU_IMPORT -> {
           try {
             for (var item : JsonItems.importFromFile(pathname)) {
               System.out.println(item);
@@ -109,8 +108,8 @@ public class WorldEditorFrame extends JFrame {
             // TODO show error to user.
             LOGGER.error("Error reading file: " + pathname, e);
           }
-          break;
-        case MENU_EXPORT:
+        }
+        case MENU_EXPORT -> {
           // TODO choose where in structure to export from.
           List<Item> items = new ArrayList<>();
           items.add(location);
@@ -123,16 +122,13 @@ public class WorldEditorFrame extends JFrame {
             // TODO show error to user.
             LOGGER.error("Error writing file: " + pathname, e);
           }
-          break;
-        case MENU_LOAD_DEMO:
+        }
+        case MENU_LOAD_DEMO ->
           setLocation(DemoEnvironment.getDemoWorld());
-          break;
-        case MENU_DEBUG_TREE:
+        case MENU_DEBUG_TREE ->
           debugTreePrint();
-          break;
-        case MENU_QUIT:
+        case MENU_QUIT ->
           exitProgram();
-          break;
         }
       }
 

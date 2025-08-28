@@ -31,22 +31,18 @@ class ItemDeserializer extends JsonDeserializer<Item> {
     }
     String type = typeNode.asText();
 
-    switch (type) {
-      case "Biscuit":
-      case "au.net.hal9000.heisenberg.item.Biscuit":
-        return jp.getCodec().treeToValue(node, Biscuit.class);
-      case "Cat":
-      case "au.net.hal9000.heisenberg.item.Cat":
-        return jp.getCodec().treeToValue(node, Cat.class);
-      case "Location":
-      case "au.net.hal9000.heisenberg.item.Location":
-        return jp.getCodec().treeToValue(node, Location.class);
-      case "Box":
-      case "au.net.hal9000.heisenberg.item.Box":
-        return jp.getCodec().treeToValue(node, Box.class);
-      default:
+    return switch (type) {
+      case "Biscuit", "au.net.hal9000.heisenberg.item.Biscuit" ->
+        jp.getCodec().treeToValue(node, Biscuit.class);
+      case "Cat", "au.net.hal9000.heisenberg.item.Cat" ->
+        jp.getCodec().treeToValue(node, Cat.class);
+      case "Location", "au.net.hal9000.heisenberg.item.Location" ->
+        jp.getCodec().treeToValue(node, Location.class);
+      case "Box", "au.net.hal9000.heisenberg.item.Box" ->
+        jp.getCodec().treeToValue(node, Box.class);
+      default->
         throw new IllegalArgumentException("Unknown type: " + type);
-    }
+    };
   }
 }
 
