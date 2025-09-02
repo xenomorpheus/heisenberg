@@ -23,11 +23,11 @@ public class PersistEntities {
 
     // Persistence Entity Manager.
     EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-    if (null == factory) {
+    if (factory == null) {
       throw new RuntimeException("No JPA factory");
     }
     EntityManager entityManager = factory.createEntityManager();
-    if (null == entityManager) {
+    if (entityManager == null) {
       throw new RuntimeException("No JPA entity manager");
     }
     entityManager.getTransaction().begin();

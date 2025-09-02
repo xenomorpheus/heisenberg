@@ -41,7 +41,7 @@ public class DescriptionPane extends JScrollPane {
         new FocusAdapter() {
           @Override
           public void focusGained(FocusEvent e) {
-            if (null == characterSheet) {
+            if (characterSheet == null) {
               descriptionTextArea.setText("");
               LOGGER.error("characterSheet is NULL");
             } else {
@@ -60,7 +60,7 @@ public class DescriptionPane extends JScrollPane {
    */
   public void setCharacterSheet(final CharacterSheet characterSheet) {
     this.characterSheet = characterSheet;
-    if (null == characterSheet) {
+    if (characterSheet == null) {
       descriptionTextArea.setText("");
     } else {
       descriptionTextArea.setText(characterSheet.detailedDescription());

@@ -26,7 +26,7 @@ public final class Factory {
   public static Item createItem(String type, Object[] arguments) {
     try {
       Class<?> itemClass = Class.forName(Item.getClassForType(type));
-      if (null == arguments) {
+      if (arguments == null) {
         return (Item) itemClass.getDeclaredConstructor().newInstance();
       } else {
         final Class<?>[] partypes = new Class[arguments.length];

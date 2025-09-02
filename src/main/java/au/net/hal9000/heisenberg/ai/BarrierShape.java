@@ -61,7 +61,7 @@ public class BarrierShape implements Barrier {
     PathBlockDetails blocker = null;
     for (Line2D line2D : barrierLines) {
       Position point = Geometry.getLineIntersection(movement, line2D);
-      if (null != point) {
+      if (point != null) {
         blocker = new PathBlockDetails(point, blocker);
         break;
       }
@@ -80,7 +80,7 @@ public class BarrierShape implements Barrier {
     StringBuilder stringBuilder = new StringBuilder(11);
     DecimalFormat df = new DecimalFormat("#.###");
     stringBuilder.append(getClass().getSimpleName()).append("=[blocker=").append(blocker);
-    if (null == barrierLines) {
+    if (barrierLines == null) {
       stringBuilder.append(", null");
     } else {
       for (Line2D barrierLine : barrierLines) {

@@ -29,7 +29,7 @@ public class Crossbow extends ItemImpl {
    */
   public float totalWeight() {
     float total = super.totalWeight();
-    if (null != loadedBolt) {
+    if (loadedBolt != null) {
       total += loadedBolt.totalWeight();
     }
     return total;
@@ -43,7 +43,7 @@ public class Crossbow extends ItemImpl {
    */
   public void visit(final ItemVisitor visitor) {
     // Search fields defined in this class.
-    if (null != loadedBolt) {
+    if (loadedBolt != null) {
       visitor.visit(loadedBolt);
     }
     // Let our super handle the rest.

@@ -65,7 +65,7 @@ public class ProductItem extends Product {
     // TODO Complain unless there is a Location to place item.
 
     Item location = cooker.findIngredientByName("Location");
-    if (null == location) {
+    if (location == null) {
       return "Missing Location";
     }
     return null;

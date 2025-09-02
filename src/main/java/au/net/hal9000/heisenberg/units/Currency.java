@@ -243,7 +243,7 @@ public class Currency implements Serializable, Cloneable {
     if (this == obj) {
       return true;
     }
-    if (null == obj) {
+    if (obj == null) {
       return false;
     }
     if (getClass() != obj.getClass()) {

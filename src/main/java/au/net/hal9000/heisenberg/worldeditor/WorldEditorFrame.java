@@ -175,7 +175,7 @@ public class WorldEditorFrame extends JFrame {
    * @param newLocation new location.
    */
   public void setLocation(Location newLocation) {
-    if (null != location) {
+    if (location != null) {
       location.beNot();
       location = null;
     }

@@ -65,7 +65,7 @@ public class AbilityScore implements Comparable<AbilityScore> {
 
     // Modifier
     String modString = matcher.group(2);
-    if (null != modString) {
+    if (modString != null) {
       if (modString.length() > 0 && '+' == modString.charAt(0)) {
         modString = modString.substring(1);
       }

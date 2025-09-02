@@ -83,7 +83,7 @@ public class CharacterSheet implements Serializable {
     // TODO we should recalculate the ability scores here.
     // We need to make sure that we preserve any ability scores that aren't
     // on the pcClass.
-    if (null != pcClass) {
+    if (pcClass != null) {
       for (String key : pcClass.getAbilityScores().keySet()) {
         if (!abilityScores.containsKey(key)) {
           abilityScores.put(key, pcClass.getAbilityScores().get(key));
@@ -158,7 +158,7 @@ public class CharacterSheet implements Serializable {
     StringBuilder text = new StringBuilder();
 
     text.append("Name: ");
-    if (null == name) {
+    if (name == null) {
       text.append("<none>" + ls);
     } else {
       text.append(name + ls);

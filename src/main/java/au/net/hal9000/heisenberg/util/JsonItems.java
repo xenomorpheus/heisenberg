@@ -25,7 +25,7 @@ class ItemDeserializer extends JsonDeserializer<Item> {
   public Item deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
     JsonNode node = jp.getCodec().readTree(jp);
     var typeNode = node.get("simpleClassName");
-    if (null == typeNode) {
+    if (typeNode == null) {
       throw new IllegalArgumentException(
           "Failure to deserialize JSON due to missing type 'simpleClassName'");
     }

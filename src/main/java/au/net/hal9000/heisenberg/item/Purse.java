@@ -32,7 +32,7 @@ public class Purse extends ItemImpl {
    * @return number of coins
    */
   public int getCoinCount() {
-    if (null == coins) {
+    if (coins == null) {
       return 0;
     }
     return coins.getCp() + coins.getSp() + coins.getGp() + coins.getPp();
@@ -54,10 +54,10 @@ public class Purse extends ItemImpl {
     // object.
     Currency total = new Currency();
     var value = getValueBase();
-    if (null != value) {
+    if (value != null) {
       total.add(value);
     }
-    if (null != coins) {
+    if (coins != null) {
       total.add(coins);
     }
     return total;
@@ -69,7 +69,7 @@ public class Purse extends ItemImpl {
    * @param fromCoins coins passed in.
    */
   public void add(Currency fromCoins) {
-    if (null == coins) {
+    if (coins == null) {
       coins = new Currency();
     }
     coins.transfer(fromCoins);

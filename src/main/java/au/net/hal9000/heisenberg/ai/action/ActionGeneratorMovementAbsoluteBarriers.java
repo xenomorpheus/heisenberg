@@ -56,7 +56,7 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
       ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
       Position agentPos = modelStateAgentGoal.getAgentPosition();
       Position goalPos = modelStateAgentGoal.getGoalPosition();
-      if (null != goalPos) {
+      if (goalPos != null) {
         agentPositionDelta = goalPos.subtract(agentPos);
         double goalDist = agentPositionDelta.length();
 
@@ -135,7 +135,7 @@ public class ActionGeneratorMovementAbsoluteBarriers implements ActionGenerator 
           PathBlockDetails pathBlockDetails =
               barrier.getPathBlockDetailsDetails(position, positionNew);
           // Are we blocked in this direction?
-          if (null != pathBlockDetails) {
+          if (pathBlockDetails != null) {
             movementPartial = pathBlockDetails.getBlockingPoint().subtract(position);
 
             // Reduce movement to allow for body width.

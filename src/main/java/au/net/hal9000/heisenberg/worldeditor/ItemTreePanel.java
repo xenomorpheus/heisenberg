@@ -156,7 +156,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   static TreePath getPathToNode(TreeNode node) {
     TreeNode currentNode = node;
     List<TreeNode> itemList = new ArrayList<>();
-    while ((null != currentNode)) {
+    while (currentNode != null) {
       itemList.add(0, currentNode);
       currentNode = currentNode.getParent();
     }

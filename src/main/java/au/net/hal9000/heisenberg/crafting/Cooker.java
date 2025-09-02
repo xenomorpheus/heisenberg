@@ -95,13 +95,13 @@ public final class Cooker {
     }
     // is there a requirement to fulfill ?
     final RequirementItem requirementItem = (RequirementItem) recipe.getRequirement(key);
-    if (null == requirementItem) {
+    if (requirementItem == null) {
       throw new RuntimeException(NO_SUCH_REQUIREMENT + ": " + key);
     }
 
     // Does the Item fulfill the Requirement?
     final String rejectionReason = requirementItem.meetsRequirements(item);
-    if (null != rejectionReason) {
+    if (rejectionReason != null) {
       throw new RuntimeException(rejectionReason);
     }
 
@@ -149,7 +149,7 @@ public final class Cooker {
     // mana
     int manaRequired = recipe.getMana();
     if (manaRequired > 0) {
-      if (null == chef) {
+      if (chef == null) {
         string.append("No chef set to supply mana" + System.lineSeparator());
       } else if (manaRequired > chef.getPlayableState().getMana()) {
         string.append("Not enough mana" + System.lineSeparator());
@@ -159,7 +159,7 @@ public final class Cooker {
     // actionPoints
     int actionPointsRequired = recipe.getActionPoints();
     if (actionPointsRequired > 0) {
-      if (null == chef) {
+      if (chef == null) {
         string.append("No chef set to supply action points" + System.lineSeparator());
       } else if (actionPointsRequired > chef.getPlayableState().getActionPoints()) {
         string.append("Not enough action points" + System.lineSeparator());
@@ -168,10 +168,10 @@ public final class Cooker {
 
     // skills
     final Set<Skill> required = recipe.getSkills();
-    if ((null != required) && (required.size() > 0)) {
+    if ((required != null) && (required.size() > 0)) {
       if (chef instanceof Being) {
         final Set<Skill> chefSkills = chef.getCharacterSheet().getSkills();
-        if ((null == chefSkills) || (!chefSkills.containsAll(required))) {
+        if ((chefSkills == null) || (!chefSkills.containsAll(required))) {
           string.append("Missing Skills" + System.lineSeparator());
         }
       } else {
@@ -181,7 +181,7 @@ public final class Cooker {
 
     // Requirement
     final String requiredItems = requirementsItemMet();
-    if (null != requiredItems) {
+    if (requiredItems != null) {
       string.append(requiredItems);
     }
 
@@ -189,7 +189,7 @@ public final class Cooker {
     if (recipe.getProductCount() > 0) {
       for (Product product : recipe.getProducts()) {
         String missingRequirement = product.meetsRequirements(this);
-        if (null != missingRequirement) {
+        if (missingRequirement != null) {
           string.append(missingRequirement);
         }
       }
@@ -227,7 +227,7 @@ public final class Cooker {
         RequirementItem requirementItem = (RequirementItem) requirement;
         Item item = ingredients.get(key);
         String reason = requirementItem.meetsRequirements(item);
-        if (null != reason) {
+        if (reason != null) {
           errors.append(
               "Missing/bad ingredient for requirement "
                   + key
@@ -315,7 +315,7 @@ public final class Cooker {
    * @param key the ID of the requirement.
    */
   final void clearItemsAvailable(final String key, final ItemContainer container) {
-    if (null == container) {
+    if (container == null) {
       throw new IllegalArgumentException("container may not be null");
     }
     Item item = ingredients.get(key);

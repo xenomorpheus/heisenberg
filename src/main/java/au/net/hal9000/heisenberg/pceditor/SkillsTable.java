@@ -57,7 +57,7 @@ public class SkillsTable extends JTable {
      */
     private MyTableModel(final CharacterSheet cs) {
       Set<Skill> pcSkills = cs.getSkills();
-      if (null == pcSkills) {
+      if (pcSkills == null) {
         orderedSkills = new ArrayList<Skill>();
       } else {
         orderedSkills = new ArrayList<Skill>(pcSkills);
@@ -113,7 +113,7 @@ public class SkillsTable extends JTable {
         result = skill.getId();
       } else {
         SkillDetail skillDetail = skillDetails.get(skill);
-        if (null != skillDetail) {
+        if (skillDetail != null) {
           result = skillDetail.getDescription();
         }
       }

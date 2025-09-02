@@ -141,7 +141,7 @@ public class PcClass implements Serializable, Comparable<PcClass> {
     text.append(prefix + "Size Allow:" + sizeAllow + System.lineSeparator());
     text.append(prefix + "Encumbrance: " + encumbrance + System.lineSeparator());
 
-    if (null != abilityScores) {
+    if (abilityScores != null) {
       text.append(prefix + "Abilities:" + System.lineSeparator());
       Iterator<AbilityScore> itr = abilityScores.values().iterator();
       while (itr.hasNext()) {

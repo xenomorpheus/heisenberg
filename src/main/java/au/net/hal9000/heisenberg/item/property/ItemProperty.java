@@ -338,7 +338,7 @@ public final class ItemProperty {
    */
   public static void alterPropertyByName(Item item, String propertyName, float propertyDelta) {
 
-    if (null == propertyName) {
+    if (propertyName == null) {
       throw new RuntimeException("Missing property name");
     } else if (AERATION.equals(propertyName)) {
       ItemProperty.alterAeration(item, propertyDelta);

@@ -48,7 +48,7 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
       setClosedIcon(itemClassIcon.getClassIconClosedDefault(simpleClassName));
       setLeafIcon(itemClassIcon.getClassIconLeafDefault(simpleClassName));
     } else {
-      if (null == value) {
+      if (value == null) {
         LOGGER.warn("Cell value: IS NULL");
       } else {
         LOGGER.warn("Cell value getSimpleName: " + value.getClass().getSimpleName());

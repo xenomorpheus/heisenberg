@@ -20,7 +20,7 @@ public class MemorySetImpl implements MemorySet {
   /** Constructor. Similar to clone */
   MemorySetImpl(MemorySet memorySet) {
     super();
-    if (null == memorySet) {
+    if (memorySet == null) {
       setMemorySet(null);
     } else {
       setMemorySet(new ArrayList<Memory>(memorySet.getMemorySet()));

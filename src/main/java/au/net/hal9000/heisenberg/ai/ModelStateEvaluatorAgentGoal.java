@@ -45,11 +45,11 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
   public double costToGoalEstimate(ModelState modelState) {
     ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
     Position agentPosition = modelStateAgentGoal.getAgentPosition();
-    if (null == agentPosition) {
+    if (agentPosition == null) {
       throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
     }
     Position goalPosition = modelStateAgentGoal.getGoalPosition();
-    if (null == goalPosition) {
+    if (goalPosition == null) {
       throw new IllegalArgumentException(GOAL_MAY_MAY_NOT_BE_NULL);
     }
     return agentPosition.distance(goalPosition);
@@ -75,13 +75,13 @@ public class ModelStateEvaluatorAgentGoal implements ModelStateEvaluator {
       if (modelState instanceof ModelStateAgentGoal) {
         ModelStateAgentGoal modelStateAgentGoal = (ModelStateAgentGoal) modelState;
         Position agentPosition = modelStateAgentGoal.getAgentPosition();
-        if (null == agentPosition) {
+        if (agentPosition == null) {
           throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
         }
 
         ModelStateAgentGoal modelStateOtherAgentGoal = (ModelStateAgentGoal) modelStateOther;
         Position agentOtherPosition = modelStateOtherAgentGoal.getAgentPosition();
-        if (null == agentOtherPosition) {
+        if (agentOtherPosition == null) {
           throw new IllegalArgumentException(AGENT_MAY_MAY_NOT_BE_NULL);
         }
 

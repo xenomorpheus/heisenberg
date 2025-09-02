@@ -47,7 +47,7 @@ public abstract class Being extends ItemImpl {
    * @return the character sheet of this entity
    */
   public CharacterSheet getCharacterSheet() {
-    if (null == characterSheet) {
+    if (characterSheet == null) {
       characterSheet = new CharacterSheet();
     }
     return characterSheet;
@@ -59,7 +59,7 @@ public abstract class Being extends ItemImpl {
    * @return the playable state of this entity
    */
   public PlayableState getPlayableState() {
-    if (null == playableState) {
+    if (playableState == null) {
       playableState = new PlayableState();
     }
     return playableState;

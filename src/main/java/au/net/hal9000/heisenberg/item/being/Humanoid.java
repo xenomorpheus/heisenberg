@@ -214,10 +214,10 @@ public abstract class Humanoid extends Being implements Animal, ItemList {
   @Override
   public void beNot() {
     // Call beNot on the Items directly declared in this class.
-    if (null != leftHand) {
+    if (leftHand != null) {
       leftHand.beNot();
     }
-    if (null != rightHand) {
+    if (rightHand != null) {
       rightHand.beNot();
     }
     core.beNot();

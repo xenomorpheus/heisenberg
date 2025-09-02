@@ -150,7 +150,7 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public void setDescription(final String description) {
-    if (null == this.description) {
+    if (this.description == null) {
       this.description = new String();
     }
     this.description = description;
@@ -173,7 +173,7 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public void setName(final String name) {
-    if (null == this.name) {
+    if (this.name == null) {
       this.name = new String();
     }
     this.name = name;
@@ -374,7 +374,7 @@ public abstract class ItemImpl implements Serializable, Item {
     // may be referenced by other objects?
     // Perhaps listeners on the containers?
     ItemContainer container = getContainer();
-    if (null != container) {
+    if (container != null) {
       container.remove(this);
     }
   }
@@ -392,7 +392,7 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   public void moveWithinContainer(Position requestedPosition) {
-    if (null == container) {
+    if (container == null) {
       throw new UnsupportedOperationException("No ItemContainer - Can't move");
     } else {
       container.moveItemAbsolute(this, requestedPosition);
@@ -402,7 +402,7 @@ public abstract class ItemImpl implements Serializable, Item {
   @Override
   public String toString() {
     String name = getName();
-    if ((null == name) || (0 == name.length())) {
+    if ((name == null) || (0 == name.length())) {
       name = getClass().getSimpleName().toLowerCase();
     }
     return name;
@@ -416,28 +416,28 @@ public abstract class ItemImpl implements Serializable, Item {
     text.append("Id: " + getId() + System.lineSeparator());
 
     temp = getName();
-    if (null != temp) {
+    if (temp != null) {
       text.append("Name: " + temp + System.lineSeparator());
     }
     text.append("Item Class: " + getSimpleClassName() + System.lineSeparator());
 
     temp = getDescription();
-    if ((null != temp) && (temp.length() > 0)) {
+    if ((temp != null) && (temp.length() > 0)) {
       text.append("Description: " + temp + System.lineSeparator());
     }
     text.append("Weight Base: " + getWeightBase() + System.lineSeparator());
     text.append("Volume Base: " + getVolumeBase() + System.lineSeparator());
 
     Currency valueBase = getValueBase();
-    if (null != valueBase) {
+    if (valueBase != null) {
       text.append("Value Base: " + valueBase + System.lineSeparator());
     }
     ItemContainer container = getContainer();
-    if (null != container) {
+    if (container != null) {
       text.append("Container: " + container.getName() + System.lineSeparator());
     }
     Position position = getPosition();
-    if (null != position) {
+    if (position != null) {
       text.append("Position: " + position + System.lineSeparator());
     }
     if (properties != null && !properties.isEmpty()) {
@@ -467,7 +467,7 @@ public abstract class ItemImpl implements Serializable, Item {
   @Override
   public void applyDelta(Position delta) {
     Position positionInContainer = getPosition();
-    if (null == positionInContainer) {
+    if (positionInContainer == null) {
       position = new Position();
     }
     position.applyDelta(delta);

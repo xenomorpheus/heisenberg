@@ -20,7 +20,7 @@ public class ModelStateAgentGoalMemorySetImpl extends ModelStateAgentGoalImpl
   public ModelStateAgentGoalMemorySetImpl(
       Position agentPosition, Position goalPosition, MemorySet memorySet) {
     super(agentPosition, goalPosition);
-    if (null == memorySet) {
+    if (memorySet == null) {
       throw new IllegalArgumentException("memorySet may not be null");
     }
     this.memorySet = memorySet;

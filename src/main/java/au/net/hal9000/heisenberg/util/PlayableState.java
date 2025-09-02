@@ -57,14 +57,14 @@ public final class PlayableState implements Serializable {
    * @return MemorySet
    */
   public MemorySet getMemorySet() {
-    if (null == memorySet) {
+    if (memorySet == null) {
       memorySet = new MemorySetImpl();
     }
     return memorySet;
   }
 
   public void memoryAdd(MemoryAbstract memory) {
-    if (null == memorySet) {
+    if (memorySet == null) {
       memorySet = new MemorySetImpl();
     }
     memorySet.add(memory);

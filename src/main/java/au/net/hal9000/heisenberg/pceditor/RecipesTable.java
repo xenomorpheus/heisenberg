@@ -61,12 +61,12 @@ public class RecipesTable extends JTable {
     private MyTableModel(CharacterSheet cs) {
       recipes = config.getRecipes();
       Set<String> pcRecipeIds = null;
-      if (null == cs) {
+      if (cs == null) {
         logger.error("PC is NULL");
       } else {
         pcRecipeIds = cs.getRecipes();
       }
-      if (null != pcRecipeIds) {
+      if (pcRecipeIds != null) {
         recipeIds = new ArrayList<String>(pcRecipeIds);
       }
     }
@@ -90,7 +90,7 @@ public class RecipesTable extends JTable {
      */
     public int getRowCount() {
       int count = 0;
-      if (null != recipeIds) {
+      if (recipeIds != null) {
         count = recipeIds.size();
       }
       return count;
@@ -121,7 +121,7 @@ public class RecipesTable extends JTable {
         result = recipeId;
       } else {
         Recipe recipe = recipes.get(recipeId);
-        if (null != recipe) {
+        if (recipe != null) {
           result = recipe.getDescription();
         }
       }

@@ -72,7 +72,7 @@ public class Location extends ItemImpl implements ItemContainer {
 
   @Override
   public int size() {
-    if (null != contents) {
+    if (contents != null) {
       return contents.size();
     }
     return 0;
@@ -154,7 +154,7 @@ public class Location extends ItemImpl implements ItemContainer {
   public int hashCode() {
     final int prime = 31;
     int result = super.hashCode();
-    result = prime * result + ((null == contents) ? 0 : contents.hashCode());
+    result = prime * result + ((contents == null) ? 0 : contents.hashCode());
     result = prime * result + Float.floatToIntBits(volumeMax);
     result = prime * result + Float.floatToIntBits(weightMax);
     return result;
@@ -180,7 +180,7 @@ public class Location extends ItemImpl implements ItemContainer {
       return false;
     }
     Location other = (Location) obj;
-    if (null == contents) {
+    if (contents == null) {
       if (null != other.contents) {
         return false;
       }
@@ -204,7 +204,7 @@ public class Location extends ItemImpl implements ItemContainer {
   @Override
   public void add(int index, Item item) {
     ItemContainer itemCurrentContainer = item.getContainer();
-    if (null != itemCurrentContainer) {
+    if (itemCurrentContainer != null) {
       if (equals(itemCurrentContainer)) {
         LOGGER.error("Item " + this + " was already in container " + itemCurrentContainer);
         // Nothing to do.
@@ -237,7 +237,7 @@ public class Location extends ItemImpl implements ItemContainer {
     }
 
     // remove item from existing location
-    if (null != itemCurrentContainer) {
+    if (itemCurrentContainer != null) {
       itemCurrentContainer.remove(item);
     }
 

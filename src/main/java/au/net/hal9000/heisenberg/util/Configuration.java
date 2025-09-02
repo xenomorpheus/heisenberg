@@ -93,7 +93,7 @@ public class Configuration {
    * @return Return the last config that was read.
    */
   public static Configuration lastConfig() {
-    if (null == lastConfig) {
+    if (lastConfig == null) {
       throw new RuntimeException("Please fetch config before using Singleton");
     }
     return lastConfig;
@@ -174,22 +174,22 @@ public class Configuration {
       itemClassConfiguration.setId(id);
       // iconClosedId
       String iconClosedId = element.getAttributeValue("iconClosedId");
-      if (null != iconClosedId) {
+      if (iconClosedId != null) {
         itemClassConfiguration.setIconClosedId(Integer.parseInt(iconClosedId));
       }
       // iconLeafId
       String iconLeafId = element.getAttributeValue("iconLeafId");
-      if (null != iconLeafId) {
+      if (iconLeafId != null) {
         itemClassConfiguration.setIconLeafId(Integer.parseInt(iconLeafId));
       }
       // iconOpenId
       String iconOpenId = element.getAttributeValue("iconOpenId");
-      if (null != iconOpenId) {
+      if (iconOpenId != null) {
         itemClassConfiguration.setIconOpenId(Integer.parseInt(iconOpenId));
       }
       // javaClass
       String javaClass = element.getAttributeValue("javaClass");
-      if (null != javaClass) {
+      if (javaClass != null) {
         itemClassConfiguration.setJavaClass(javaClass);
       }
       // Add item class to list
@@ -255,19 +255,19 @@ public class Configuration {
       String itemId = entry.getAttributeValue("id");
       // type
       String itemType = entry.getAttributeValue("type");
-      if (null == itemType) {
+      if (itemType == null) {
         itemType = itemId;
       }
       // consumed
       String consumedString = entry.getAttributeValue("consumed");
       boolean consumed = true;
-      if (null != consumedString) {
+      if (consumedString != null) {
         consumed = Boolean.parseBoolean(consumedString);
       }
       // weightMin
       float weightMin = 0;
       String weightMinString = entry.getAttributeValue("weightMin");
-      if (null != weightMinString) {
+      if (weightMinString != null) {
         weightMin = Float.parseFloat(weightMinString);
       }
 
@@ -288,12 +288,12 @@ public class Configuration {
     for (var entry : entries) {
       String id = entry.getAttributeValue("id");
       String type = entry.getAttributeValue("itemType");
-      if (null == type) {
+      if (type == null) {
         type = id;
       }
       String weightBaseString = entry.getAttributeValue("weightBase");
       float weightBase = 0;
-      if (null != weightBaseString) {
+      if (weightBaseString != null) {
         weightBase = Float.parseFloat(weightBaseString);
       }
       ProductItem product = new ProductItem(id, type, weightBase);
@@ -313,12 +313,12 @@ public class Configuration {
     for (var entry : entries) {
       String id = entry.getAttributeValue("id");
       String propertyName = entry.getAttributeValue("propertyName");
-      if (null == propertyName) {
+      if (propertyName == null) {
         propertyName = id;
       }
       String propertyDeltaString = entry.getAttributeValue("propertyDelta");
       float propertyDelta = 0;
-      if (null != propertyDeltaString) {
+      if (propertyDeltaString != null) {
         propertyDelta = Float.parseFloat(propertyDeltaString);
       }
       ProductEntityProperty product = new ProductEntityProperty(id, propertyName, propertyDelta);
@@ -336,14 +336,14 @@ public class Configuration {
   private static List<Product> xmlToRecipeProducts(Element entry) {
 
     List<Product> products = new ArrayList<Product>();
-    if (null != entry) {
+    if (entry != null) {
       Elements items = entry.getChildElements("item");
-      if (null != items) {
+      if (items != null) {
         products.addAll(xmlToRecipeProductItems(items));
       }
 
       Elements properties = entry.getChildElements("property");
-      if (null != properties) {
+      if (properties != null) {
         products.addAll(xmlToRecipeProductEntityProperties(properties));
       }
     }
@@ -375,19 +375,19 @@ public class Configuration {
     // mana
     int mana = 0;
     Attribute manaAttribute = recipeElement.getAttribute("mana");
-    if (null != manaAttribute) {
+    if (manaAttribute != null) {
       mana = Integer.parseInt(manaAttribute.getValue());
     }
     // actionPoints
     int actionPoints = 0;
     Attribute actionPointsAttribute = recipeElement.getAttribute("actionPoints");
-    if (null != actionPointsAttribute) {
+    if (actionPointsAttribute != null) {
       actionPoints = Integer.parseInt(actionPointsAttribute.getValue());
     }
     // process
     String process = null;
     Attribute processAttribute = recipeElement.getAttribute("process");
-    if (null != processAttribute) {
+    if (processAttribute != null) {
       process = processAttribute.getValue();
     }
 
@@ -452,57 +452,57 @@ public class Configuration {
 
     // id
     String id = element.getAttributeValue("id");
-    if (null == id) {
+    if (id == null) {
       throw new IllegalArgumentException("id must be set");
     }
     pcClass.setId(id);
 
     // combatDice
     String combatDice = element.getAttributeValue("combatDice");
-    if (null == combatDice) {
+    if (combatDice == null) {
       throw new IllegalArgumentException("combatDice must be set");
     }
     pcClass.setCombatDice(Integer.parseInt(combatDice));
 
     // magicDice
     String magicDice = element.getAttributeValue("magicDice");
-    if (null == magicDice) {
+    if (magicDice == null) {
       throw new IllegalArgumentException("magicDice must be set");
     }
     pcClass.setMagicDice(Integer.parseInt(magicDice));
     // stealthDice
     String stealthDice = element.getAttributeValue("stealthDice");
-    if (null == stealthDice) {
+    if (stealthDice == null) {
       throw new IllegalArgumentException("stealthDice must be set");
     }
     pcClass.setStealthDice(Integer.parseInt(stealthDice));
     // generalDice
     String generalDice = element.getAttributeValue("generalDice");
-    if (null == generalDice) {
+    if (generalDice == null) {
       throw new IllegalArgumentException("generalDice must be set");
     }
     pcClass.setGeneralDice(Integer.parseInt(generalDice));
     // encumbrance
     String encumbrance = element.getAttributeValue("encumbrance");
-    if (null == encumbrance) {
+    if (encumbrance == null) {
       throw new IllegalArgumentException("encumbrance must be set");
     }
     pcClass.setEncumbrance(Integer.parseInt(encumbrance));
     // mana
     String mana = element.getAttributeValue("mana");
-    if (null == mana) {
+    if (mana == null) {
       throw new IllegalArgumentException("mana must be set");
     }
     pcClass.setMana(Integer.parseInt(mana));
     // actionPoint
     String actionPoint = element.getAttributeValue("actionPoint");
-    if (null == actionPoint) {
+    if (actionPoint == null) {
       throw new IllegalArgumentException("actionPoint must be set");
     }
     pcClass.setActionPoints(Integer.parseInt(actionPoint));
     // health
     String health = element.getAttributeValue("health");
-    if (null == health) {
+    if (health == null) {
       throw new IllegalArgumentException("health must be set");
     }
     pcClass.setHealth(Integer.parseInt(health));
@@ -524,11 +524,11 @@ public class Configuration {
   private static AbilityScore xmlToAbilityScore(Element element) {
 
     String id = element.getAttributeValue("id");
-    if (null == id) {
+    if (id == null) {
       throw new IllegalArgumentException("id missing");
     }
     String value = element.getAttributeValue("value");
-    if (null == value) {
+    if (value == null) {
       throw new IllegalArgumentException("value missing");
     }
     return new AbilityScore(id, value);
