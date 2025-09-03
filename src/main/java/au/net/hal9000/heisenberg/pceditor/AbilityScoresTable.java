@@ -4,10 +4,9 @@ import au.net.hal9000.heisenberg.util.AbilityScore;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.ArrayList;
-import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import lombok.NonNull;
 
 /** Ability scores table. */
 public class AbilityScoresTable extends JTable implements FocusListener {
@@ -18,24 +17,15 @@ public class AbilityScoresTable extends JTable implements FocusListener {
   private MyTableModel myTableModel;
 
   /** Constructor for AbilityScoresTable. */
-  public AbilityScoresTable() {
+  public AbilityScoresTable(@NonNull CharacterSheet characterSheet) {
     super();
-  }
-
-  /**
-   * Set the CharacterSheet object to show values for.
-   *
-   * @param cs the CharacterSheet object to show values for. Note we pass the CharacterSheet rather
-   *     than the values needed to do the display. We do this because the values to display may be
-   *     changed by other tabs, and passing by pc allows a refresh of values.
-   */
-  public void setCharacterSheet(final CharacterSheet cs) {
-    myTableModel = new MyTableModel(cs);
+    myTableModel = new MyTableModel(characterSheet);
     setModel(myTableModel);
   }
 
   @Override
   public void focusGained(FocusEvent e) {
+    System.out.println("focusGained "+this.getClass().getSimpleName());
     // PC's level may have changed so we need to refresh the values in the table
     myTableModel.fireTableStructureChanged();
   }
@@ -52,22 +42,23 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     private static final long serialVersionUID = 1L;
 
     /** column names. */
-    private String[] columnNames = {"Ability", "Description"};
+    private static final String[] columnNames = {"Ability", "Description"};
 
-    /** Field pcAbilityScores. */
-    private ArrayList<AbilityScore> pcAbilityScores = new ArrayList<AbilityScore>();
+    private CharacterSheet characterSheet = null;
 
     /**
      * Constructor for MyTableModel.
      *
-     * @param cs CharacterSheet
+     * @param characterSheet CharacterSheet
      */
-    private MyTableModel(CharacterSheet cs) {
-      Map<String, AbilityScore> abilityScores = cs.getAbilityScores();
-      if (null != abilityScores) {
-        pcAbilityScores = new ArrayList<AbilityScore>(abilityScores.values());
-      }
+    private MyTableModel(@NonNull CharacterSheet characterSheet) {
+      this.characterSheet = characterSheet;
     }
+
+    public void fireTableStructureChanged() {
+      System.out.println("fireTableStructureChanged "+this.getClass().getSimpleName()); 
+      super.fireTableStructureChanged();
+    } 
 
     /**
      * Get the column name.
@@ -88,7 +79,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public int getRowCount() {
-      return pcAbilityScores.size();
+      return characterSheet.getAbilityScores().size();
     }
 
     /**
@@ -110,7 +101,11 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public Object getValueAt(int row, int col) {
-      AbilityScore abilityScore = pcAbilityScores.get(row);
+      AbilityScore abilityScore = characterSheet.getAbilityScores().stream().skip(row).findFirst().orElse(null);
+      if (abilityScore == null) {
+        System.err.println("Error: AbilityScore is null at row " + row);
+        return null;
+      }
       if (0 == col) {
         return abilityScore.getName();
       }

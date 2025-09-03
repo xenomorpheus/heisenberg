@@ -1,9 +1,8 @@
 package au.net.hal9000.heisenberg.util;
 
 import java.io.Serializable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +21,8 @@ public class PcClass implements Serializable, Comparable<PcClass> {
 
   // It's a good practice to declare a serialVersionUID
   private static final long serialVersionUID = 1L;
+
+  private static final String ls = System.lineSeparator();
 
   // e.g. "Soldier"
   /** Field id. */
@@ -75,7 +76,7 @@ public class PcClass implements Serializable, Comparable<PcClass> {
 
   /** Field abilityScores. */
   @Getter @Setter
-  private Map<String, AbilityScore> abilityScores = new TreeMap<String, AbilityScore>();
+  private Set<AbilityScore> abilityScores = new TreeSet<>();
 
   /** Constructor for PcClass. */
   public PcClass() {
@@ -91,7 +92,7 @@ public class PcClass implements Serializable, Comparable<PcClass> {
    * @return the AbilityScore object
    */
   public AbilityScore getAbilityScore(String name) {
-    return abilityScores.get(name);
+    return abilityScores.stream().filter(a -> a.getName().equals(name)).findFirst().orElse(null);
   }
 
   /**
@@ -100,8 +101,9 @@ public class PcClass implements Serializable, Comparable<PcClass> {
    * @param abilityScore the AbilityScore to put.<br>
    *     Any existing AbilityScore with this name will be removed.
    */
-  public void setAbilityScore(AbilityScore abilityScore) {
-    abilityScores.put(abilityScore.getName(), abilityScore);
+  public void setAbilityScore(@NonNull AbilityScore abilityScore) {
+    abilityScores.removeIf(a -> a.getName().equals(abilityScore.getName()));
+    abilityScores.add(abilityScore);
   }
 
   /**
@@ -142,10 +144,9 @@ public class PcClass implements Serializable, Comparable<PcClass> {
     text.append(prefix + "Encumbrance: " + encumbrance + System.lineSeparator());
 
     if (abilityScores != null) {
-      text.append(prefix + "Abilities:" + System.lineSeparator());
-      Iterator<AbilityScore> itr = abilityScores.values().iterator();
-      while (itr.hasNext()) {
-        text.append(prefix + "  " + itr.next() + System.lineSeparator());
+      text.append(prefix).append("Class Abilities:").append(ls);
+      for (var score : abilityScores) {
+        text.append(prefix).append("  ").append(score).append(ls);
       }
     }
     return text.toString();

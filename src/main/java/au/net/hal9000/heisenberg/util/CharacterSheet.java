@@ -3,9 +3,7 @@ package au.net.hal9000.heisenberg.util;
 import au.net.hal9000.heisenberg.units.Skill;
 
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import lombok.Getter;
 import lombok.NonNull;
@@ -51,7 +49,7 @@ public class CharacterSheet implements Serializable {
 
   /** Field abilityScores. */
   @Getter @Setter @NonNull
-  private Map<String, AbilityScore> abilityScores = new TreeMap<>();
+  private Set<AbilityScore> abilityScores = new TreeSet<>();
 
   /** Constructor */
   public CharacterSheet() {
@@ -109,7 +107,10 @@ public class CharacterSheet implements Serializable {
    * @return the AbilityScore object
    */
   public AbilityScore getAbilityScore(String name) {
-    return abilityScores.get(name);
+    return abilityScores.stream()
+        .filter(abilityScore -> abilityScore.getName().equals(name))
+        .findFirst()
+        .orElse(null);
   }
 
   /**
@@ -117,24 +118,27 @@ public class CharacterSheet implements Serializable {
    *     Any existing AbilityScore with this name will be removed.
    */
   public void setAnAbilityScore(AbilityScore abilityScore) {
-    abilityScores.put(abilityScore.getName(), abilityScore);
+    abilityScores.removeIf(a -> a.getName().equals(abilityScore.getName()));
+    abilityScores.add(abilityScore);
   }
 
   // Misc
 
   /**
    * recalculate the AbilityScore objects. <br>
-   * e.g. when a PC levels.<br>
+   * e.g. when a PC levels up.<br>
    * Should be safe to call any time.
    */
   private void abilityScoresRecalculate() {
-    if (pcClass != null && abilityScores != null) {
-      for (String key : pcClass.getAbilityScores().keySet()) {
-        if (abilityScores.get(key) == null) {
-          abilityScores.put(key, new AbilityScore(key, "0"));
-        }   
-        var abilityScore = abilityScores.get(key);
-        AbilityScore pcClassAbility = pcClass.getAbilityScore(key);
+    if (pcClass != null) {
+      for (var pcClassAbility: pcClass.getAbilityScores()) {
+
+        var abilityScore = getAbilityScore(pcClassAbility.getName());
+        if ( abilityScore == null) {
+          abilityScore = new AbilityScore(pcClassAbility.getName(), 0, 0);
+          abilityScores.add(abilityScore);
+        }
+
         abilityScore.setValue(abilityScore.getMod() + pcClassAbility.getValue() + (level * pcClassAbility.getMod()));
       }
     }
@@ -181,7 +185,7 @@ public class CharacterSheet implements Serializable {
     }
     if (null != abilityScores && !abilityScores.isEmpty()) {
       text.append("Abilities:" ).append( ls);
-      for (AbilityScore abilityScore : abilityScores.values()) {
+      for (AbilityScore abilityScore : abilityScores) {
         text.append("  " ).append( abilityScore ).append( ls);
       }
     }

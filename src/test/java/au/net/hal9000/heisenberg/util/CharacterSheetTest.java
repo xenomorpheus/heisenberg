@@ -11,9 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -133,7 +131,7 @@ public class CharacterSheetTest {
   /** Test abilityScores. */
   @Test
   public void testAbilityScores() {
-    final Map<String, AbilityScore> expectedValue = new TreeMap<>();
+    final Set<AbilityScore> expectedValue = new TreeSet<>();
     // TODO set a meaningful value for expectedValue
     CharacterSheet characterSheet = new CharacterSheet();
     assertEquals(0, characterSheet.getAbilityScores().size());

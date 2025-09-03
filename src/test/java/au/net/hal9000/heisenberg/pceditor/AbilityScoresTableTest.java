@@ -1,9 +1,8 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
@@ -25,17 +24,16 @@ public class AbilityScoresTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
-    CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-    AbilityScoresTable basicPanel = new AbilityScoresTable();
-    basicPanel.setCharacterSheet(pc);
+    AbilityScoresTable basicPanel = new AbilityScoresTable(DemoEnvironment.getCharacterSheet());
     assertNotNull("BasicPanel not null", basicPanel);
   }
 
-  /** Method testGetRowCount. */
+  /** Method testGetRowCount. 
+   * @throws ConfigurationError */
   @Test
-  public void testGetRowCount() {
+  public void testGetRowCount() throws ConfigurationError {
 
-    AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
-    assertEquals(0, abilityScoresTable.getRowCount());
+    AbilityScoresTable abilityScoresTable = new AbilityScoresTable(DemoEnvironment.getCharacterSheet());
+    assertNotEquals(0, abilityScoresTable.getRowCount());
   }
 }
