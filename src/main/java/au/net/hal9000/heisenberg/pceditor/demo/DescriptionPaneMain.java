@@ -36,12 +36,10 @@ public class DescriptionPaneMain { // NO_UCD (unused code)
             // This will center the JFrame in the middle of the screen
             frame.setLocationRelativeTo(null);
 
-            var window = new DescriptionPane();
-            var pc = DemoEnvironment.getCharacterSheet();
-            window.setCharacterSheet(pc);
+            var pane = new DescriptionPane(DemoEnvironment.getCharacterSheet());
 
             // add to JFrame
-            frame.add(window);
+            frame.add(pane);
             frame.setVisible(true);
 
           } catch (ConfigurationError e) {

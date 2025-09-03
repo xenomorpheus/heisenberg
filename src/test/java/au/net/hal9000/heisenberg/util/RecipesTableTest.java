@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
@@ -22,17 +22,16 @@ public class RecipesTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
-    CharacterSheet pc = DemoEnvironment.getCharacterSheet();
-    RecipesTable basicPanel = new RecipesTable();
-    basicPanel.setCharacterSheet(pc);
+    RecipesTable basicPanel = new RecipesTable(DemoEnvironment.getCharacterSheet());
     assertNotNull("BasicPanel not null", basicPanel);
   }
 
-  /** Test getRowCount. */
+  /** Test getRowCount. 
+   * @throws ConfigurationError */
   @Test
-  public void testGetRowCount() {
+  public void testGetRowCount() throws ConfigurationError {
 
-    RecipesTable recipesTable = new RecipesTable();
-    assertEquals(0, recipesTable.getRowCount());
+    RecipesTable recipesTable = new RecipesTable(DemoEnvironment.getCharacterSheet());
+    assertNotEquals(0, recipesTable.getRowCount());
   }
 }

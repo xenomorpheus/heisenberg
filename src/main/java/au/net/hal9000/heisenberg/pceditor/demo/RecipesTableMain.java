@@ -34,9 +34,7 @@ public class RecipesTableMain { // NO_UCD (unused code)
             frame.setTitle("Recipes Table");
             frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-            var recipesTable = new RecipesTable();
-            var pc = DemoEnvironment.getCharacterSheet();
-            recipesTable.setCharacterSheet(pc);
+            var recipesTable = new RecipesTable(DemoEnvironment.getCharacterSheet());
 
             // add to JFrame
             frame.add(recipesTable);

@@ -42,7 +42,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     private static final long serialVersionUID = 1L;
 
     /** column names. */
-    private static final String[] columnNames = {"Ability", "Description"};
+    private static final String[] columnNames = {"Ability", "Total", "Adjustment"};
 
     private CharacterSheet characterSheet = null;
 
@@ -89,7 +89,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public int getColumnCount() {
-      return 2;
+      return 3;
     }
 
     /**
@@ -109,7 +109,10 @@ public class AbilityScoresTable extends JTable implements FocusListener {
       if (0 == col) {
         return abilityScore.getName();
       }
-      return abilityScore.valueOptionalMod();
+      if (1 == col) {
+        return abilityScore.getValue();
+      }
+      return abilityScore.getMod();
     }
 
     /**

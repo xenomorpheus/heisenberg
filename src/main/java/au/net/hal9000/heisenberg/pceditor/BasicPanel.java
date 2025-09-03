@@ -87,8 +87,9 @@ public class BasicPanel extends JPanel {
   private JComboBox<String> genderComboBox;
 
   /** Constructor for BasicPanel. */
-  public BasicPanel() {
+  public BasicPanel(CharacterSheet characterSheet) {
     super();
+    this.characterSheet = characterSheet;
 
     addComponents();
 
@@ -113,23 +114,12 @@ public class BasicPanel extends JPanel {
         SpinnerModel levelModel = levelSpinner.getModel();
         if (levelModel instanceof SpinnerNumberModel) {
           int newPcLevel = Integer.parseInt(((SpinnerNumberModel) levelModel).getValue().toString());
+          System.out.println("Level changed to " + newPcLevel);
           characterSheet.setLevel(newPcLevel);
         }
       }
     });
-  }
 
-  /**
-   * Set the CharacterSheet object to show values for.
-   *
-   * @param characterSheet the CharacterSheet object to show values for. Note we
-   *                       pass the CharacterSheet rather than the values needed
-   *                       to do the display. We do this because the values to
-   *                       display may be changed by other tabs, and passing by pc
-   *                       allows a refresh of values.
-   */
-  public void setCharacterSheet(final CharacterSheet characterSheet) {
-    this.characterSheet = characterSheet;
     updateForm();
   }
 
@@ -181,6 +171,8 @@ public class BasicPanel extends JPanel {
     nameTextField = new JTextField();
     nameTextField.setColumns(10);
     nameTextField.putClientProperty("id", "name");
+    nameTextField.setToolTipText("Character name");
+    nameTextField.setText(characterSheet.getName());
     cons.gridx = pos;
     cons.gridy = row;
     cons.gridwidth = 6;
@@ -201,6 +193,12 @@ public class BasicPanel extends JPanel {
     Collection<PcClass> pcClassesItr = config.getPcClasses().values();
     for (var pcClass : pcClassesItr) {
       classComboBox.addItem(pcClass);
+    }
+    var pcClass = characterSheet.getPcClass();
+    if (pcClass == null) {
+        classComboBox.setSelectedIndex(-1);
+    } else {
+        classComboBox.setSelectedItem(pcClass);
     }
 
     cons.gridx = pos;
@@ -235,6 +233,8 @@ public class BasicPanel extends JPanel {
     descriptionTextField = new JTextField();
     descriptionTextField.setColumns(10);
     descriptionTextField.putClientProperty("id", "description");
+    descriptionTextField.setToolTipText("Character description");
+    descriptionTextField.setText(characterSheet.getDescription());
     cons.gridx = pos;
     cons.gridy = row;
     cons.gridwidth = 6;
@@ -255,6 +255,12 @@ public class BasicPanel extends JPanel {
     Collection<String> speciesItr = config.getSpecies();
     for (var name : speciesItr) {
       speciesComboBox.addItem(name);
+    }
+    var species = characterSheet.getSpecies();
+    if (species == null) {
+        speciesComboBox.setSelectedIndex(-1);
+    } else {
+        speciesComboBox.setSelectedItem(species);
     }
 
     cons.gridx = pos;
@@ -288,6 +294,7 @@ public class BasicPanel extends JPanel {
 
     comTextField = new JTextField();
     comTextField.setColumns(3);
+    comTextField.setToolTipText("Combat dice");
     comTextField.setEditable(false);
     cons.gridx = pos;
     cons.gridy = row;
@@ -305,6 +312,7 @@ public class BasicPanel extends JPanel {
 
     magTextField = new JTextField();
     magTextField.setColumns(3);
+    magTextField.setToolTipText("Magic dice");
     magTextField.setEditable(false);
     cons.gridx = pos;
     cons.gridy = row;
@@ -322,6 +330,7 @@ public class BasicPanel extends JPanel {
 
     steTextField = new JTextField();
     steTextField.setColumns(3);
+    steTextField.setToolTipText("Stealth dice");
     steTextField.setEditable(false);
     cons.gridx = pos;
     cons.gridy = row;
@@ -339,6 +348,7 @@ public class BasicPanel extends JPanel {
 
     genTextField = new JTextField();
     genTextField.setColumns(3);
+    genTextField.setToolTipText("General dice");
     genTextField.setEditable(false);
     cons.gridx = pos;
     cons.gridy = row;
@@ -367,7 +377,7 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
 
     // Level Spinner
-    levelModel = new SpinnerNumberModel(1, // initialvalue
+    levelModel = new SpinnerNumberModel(characterSheet.getLevel(), // initialvalue
         0, // min
         999, // max
         1); // step
@@ -455,7 +465,13 @@ public class BasicPanel extends JPanel {
     for (var name : sizes) {
       sizeComboBox.addItem(name);
     }
-    sizeComboBox.setSelectedIndex(0);
+    var size = characterSheet.getSize();
+    if (size == null) {
+        sizeComboBox.setSelectedIndex(-1);
+    } else {
+        sizeComboBox.setSelectedItem(size);
+    }
+
     cons.gridx = pos;
     cons.gridy = row;
     cons.gridwidth = 3;
@@ -478,7 +494,13 @@ public class BasicPanel extends JPanel {
     for (var gender : genders) {
       genderComboBox.addItem(gender);
     }
-    genderComboBox.setSelectedIndex(0);
+    var gender = characterSheet.getGender();
+    if (gender == null) {
+        genderComboBox.setSelectedIndex(-1);
+    } else {
+        genderComboBox.setSelectedItem(gender);
+    }
+
     cons.gridx = pos;
     cons.gridy = row;
     cons.gridwidth = 3;
@@ -501,8 +523,11 @@ public class BasicPanel extends JPanel {
     public void actionPerformed(ActionEvent e) {
       if (e.getSource() == nameTextField) {
         characterSheet.setName(nameTextField.getText());
-      } else if (e.getSource() == descriptionTextField) {
+        return;
+      }
+      if (e.getSource() == descriptionTextField) {
         characterSheet.setDescription(descriptionTextField.getText());
+        return;
       }
     }
   }
@@ -591,7 +616,7 @@ public class BasicPanel extends JPanel {
 
   /** update the form. */
   private void updateForm() {
-    if (null != characterSheet) {
+    if (characterSheet != null) {
 
       var pcClass = characterSheet.getPcClass();
       System.out.println("class now "+pcClass);

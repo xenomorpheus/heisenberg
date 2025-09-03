@@ -36,9 +36,7 @@ public class SkillsTableMain { // NO_UCD (unused code)
             // This will center the JFrame in the middle of the screen
             frame.setLocationRelativeTo(null);
 
-            var skillsTable = new SkillsTable();
-            var pc = DemoEnvironment.getCharacterSheet();
-            skillsTable.setCharacterSheet(pc);
+            var skillsTable = new SkillsTable(DemoEnvironment.getCharacterSheet());
 
             // add to JFrame
             frame.add(skillsTable);

@@ -118,8 +118,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   }
 
   private void launchCharacterSheetEditor(CharacterSheet cs) {
-    var editor = new CharacterSheetEditor();
-    editor.setCharacterSheet(cs);
+    var editor = new CharacterSheetEditor(cs);
     var frame = new JFrame();
     frame.add(editor);
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

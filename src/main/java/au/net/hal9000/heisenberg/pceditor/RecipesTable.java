@@ -21,19 +21,12 @@ public class RecipesTable extends JTable {
   private static final String[] COLUMN_NAMES = {"Recipe", "Description"};
 
   /** Constructor. */
-  public RecipesTable() {
+  public RecipesTable(CharacterSheet characterSheet) {
     super();
-  }
-
-  /**
-   * Set the PcClass object to show values for.
-   *
-   * @param pc the PcClass object to show values for. Note we pass the PcClass rather than the
-   *     values needed to do the display. We do this because the values to display may be changed by
-   *     other tabs, and passing by pc allows a refresh of values.
-   */
-  public void setCharacterSheet(final CharacterSheet pc) {
-    setModel(new MyTableModel(pc));
+    if (characterSheet == null) {
+      throw new IllegalArgumentException("characterSheet is NULL");
+    }
+    setModel(new MyTableModel(characterSheet));
   }
 
   /** My table model. */
@@ -62,7 +55,7 @@ public class RecipesTable extends JTable {
       recipes = config.getRecipes();
       Set<String> pcRecipeIds = null;
       if (cs == null) {
-        logger.error("PC is NULL");
+        logger.error("CharacterSheet is NULL");
       } else {
         pcRecipeIds = cs.getRecipes();
       }

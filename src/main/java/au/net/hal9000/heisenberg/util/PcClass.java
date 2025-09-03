@@ -4,18 +4,13 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
- * TODO Refactor this into two classes:<br>
- * 1) Holder of configuration of a PC Class<br>
- * 2) The actual character sheet class.
- *
- * <p>Ideas: New class CharacterSheet will hold a PC's stats and maybe items.<br>
- * CharacterSheet will hold the following for each ability score:<br>
- * 1) (no extension) - The current value Equals:<br>
- * CharacterClass ability base + (level * CharacterClass ability inc) + Mod <br>
- * 2) "Mod" - Any modifiers the character has chosen.
+ * A Profession or Class that a PC can have e.g. Soldier, Wizard etc.
+ * Consider each instance read-only after creation.
+ * Consider each object a refernce data object, which may be shared by many CharacterSheet objects.
  */
 public class PcClass implements Serializable, Comparable<PcClass> {
 
@@ -45,7 +40,6 @@ public class PcClass implements Serializable, Comparable<PcClass> {
   @Getter @Setter
   private int generalDice = 0;
 
-  // misc
   /** Field actionPoints. */
   @Getter @Setter
   private int actionPoints = 0;
@@ -81,6 +75,12 @@ public class PcClass implements Serializable, Comparable<PcClass> {
   /** Constructor for PcClass. */
   public PcClass() {
     super();
+  }
+
+  // Comparable
+  @Override
+  public int compareTo(PcClass other) {
+    return id.compareTo(other.getId());
   }
 
   // misc
@@ -130,18 +130,18 @@ public class PcClass implements Serializable, Comparable<PcClass> {
    * @return Plain text description of the object
    */
   public String getDetailedDescription(String prefix) {
-    StringBuilder text = new StringBuilder(prefix + "Id: " + id + System.lineSeparator());
-    text.append(prefix + "Combat Dice: D" + combatDice + System.lineSeparator());
-    text.append(prefix + "Magic Dice: D" + magicDice + System.lineSeparator());
-    text.append(prefix + "Stealth Dice: D" + stealthDice + System.lineSeparator());
-    text.append(prefix + "General Dice: D" + generalDice + System.lineSeparator());
-    text.append(prefix + "Action Points: " + actionPoints + System.lineSeparator());
-    text.append(prefix + "Health: " + health + System.lineSeparator());
-    text.append(prefix + "Mana: " + mana + System.lineSeparator());
-    text.append(prefix + "Species Allow: " + speciesAllow + System.lineSeparator());
-    text.append(prefix + "Gender Allow: " + genderAllow + System.lineSeparator());
-    text.append(prefix + "Size Allow:" + sizeAllow + System.lineSeparator());
-    text.append(prefix + "Encumbrance: " + encumbrance + System.lineSeparator());
+    StringBuilder text = new StringBuilder(prefix).append("Id: ").append(id).append(ls);
+    text.append(prefix).append("Combat Dice: d").append(combatDice).append(ls);
+    text.append(prefix).append("Magic Dice: d").append(magicDice).append(ls);
+    text.append(prefix).append("Stealth Dice: d").append(stealthDice).append(ls);
+    text.append(prefix).append("General Dice: d").append(generalDice).append(ls);
+    text.append(prefix).append("Action Points: ").append(actionPoints).append(ls);
+    text.append(prefix).append("Health: ").append(health).append(ls);
+    text.append(prefix).append("Mana: ").append(mana).append(ls);
+    text.append(prefix).append("Species Allow: ").append(speciesAllow).append(ls);
+    text.append(prefix).append("Gender Allow: ").append(genderAllow).append(ls);
+    text.append(prefix).append("Size Allow:").append(sizeAllow).append(ls);
+    text.append(prefix).append("Encumbrance: ").append(encumbrance).append(ls);
 
     if (abilityScores != null) {
       text.append(prefix).append("Class Abilities:").append(ls);
@@ -150,10 +150,5 @@ public class PcClass implements Serializable, Comparable<PcClass> {
       }
     }
     return text.toString();
-  }
-
-  @Override
-  public int compareTo(PcClass other) {
-    return id.compareTo(other.getId());
   }
 }

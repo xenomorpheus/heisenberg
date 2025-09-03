@@ -1,8 +1,11 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.util.CharacterSheet;
+import lombok.NonNull;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -27,27 +30,30 @@ public class CharacterSheetEditor extends JPanel {
   /** serial version id. */
   private static final long serialVersionUID = 1L;
 
-  /** Field CharacterSheet. */
-  private CharacterSheet charactersheet;
-
   /** Field basicPanel. */
-  private BasicPanel basicPanel = new BasicPanel();
+  private BasicPanel basicPanel = null;
 
   /** Field abilityScoresTable. */
-  private AbilityScoresTable abilityScoresTable = new AbilityScoresTable();
+  private AbilityScoresTable abilityScoresTable = null;
 
   /** Field skillsTable. */
-  private SkillsTable skillsTable = new SkillsTable();
+  private SkillsTable skillsTable = null;
 
   /** Field recipesTable. */
-  private RecipesTable recipesTable = new RecipesTable();
+  private RecipesTable recipesTable = null;
 
   /** Field descriptionPane. */
-  private DescriptionPane descriptionPane = new DescriptionPane();
+  private DescriptionPane descriptionPane = null;
 
   /** Create the application. */
-  public CharacterSheetEditor() {
-    setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
+  public CharacterSheetEditor(@NonNull CharacterSheet charactersheet) {
+    basicPanel = new BasicPanel(charactersheet);
+    abilityScoresTable = new AbilityScoresTable(charactersheet);
+    skillsTable = new SkillsTable(charactersheet);
+    recipesTable = new RecipesTable(charactersheet);
+    descriptionPane = new DescriptionPane(charactersheet);
+
+  setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
     // Main container
     GridBagConstraints cons = new GridBagConstraints();
@@ -60,14 +66,43 @@ public class CharacterSheetEditor extends JPanel {
     // Tabbed Pane
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.addTab("Basics", null, basicPanel, null);
-    tabbedPane.addTab("Abilities", null,  new JScrollPane(abilityScoresTable), null);
-    tabbedPane.addTab("Skills", null, new JScrollPane(skillsTable), null);
-    tabbedPane.addTab("Recipes", null, new JScrollPane(recipesTable), null);
+
+    var abilityScoreScrollPane = new JScrollPane(abilityScoresTable);
+    abilityScoreScrollPane.setFocusable(false);
+    tabbedPane.addTab("Abilities", null,  abilityScoreScrollPane, null);
+
+    var skillsScrollPane = new JScrollPane(skillsTable);
+    skillsScrollPane.setFocusable(false);
+    tabbedPane.addTab("Skills", null, skillsScrollPane, null);
+
+    var recipesScrollPane = new JScrollPane(recipesTable);
+    recipesScrollPane.setFocusable(false);
+    tabbedPane.addTab("Recipes", null, recipesScrollPane, null);
+
     tabbedPane.addTab("Description", null, descriptionPane, null);
     cons.gridx = 0;
     cons.gridy = 0;
     gridBag.setConstraints(tabbedPane, cons);
     add(tabbedPane);
+
+    // listen for selection changes
+    tabbedPane.addChangeListener(e -> {
+        int index = tabbedPane.getSelectedIndex();
+        var selected = tabbedPane.getComponentAt(index);
+        System.out.println("Selected tab: " + index + ", component: " + selected.getClass().getSimpleName());
+
+        if (selected instanceof JScrollPane) {
+            var viewport = ((JScrollPane) selected).getViewport();
+            selected = viewport.getView();
+            System.out.println("Viewport view is: " + selected.getClass().getSimpleName());
+        }
+
+        if (selected instanceof FocusListener) {
+            System.out.println("Focusing " + selected.getClass().getSimpleName());
+            ((FocusListener) selected).focusGained(null);
+        }
+    });
+
 
     // Button(s)
     JPanel butPanel = new JPanel();
@@ -88,26 +123,4 @@ public class CharacterSheetEditor extends JPanel {
     add(butPanel);
   }
 
-  /**
-   * Get the CharacterSheet object we are editing.
-   *
-   * @return the CharacterSheet object we are editing.
-   */
-  public CharacterSheet getCharactersheet() {
-    return charactersheet;
-  }
-
-  /**
-   * Set the CharacterSheet we are editing.
-   *
-   * @param cs the CharacterSheet we are editing.
-   */
-  public void setCharacterSheet(CharacterSheet cs) {
-    charactersheet = cs;
-    basicPanel.setCharacterSheet(cs);
-    abilityScoresTable.setCharacterSheet(cs);
-    skillsTable.setCharacterSheet(cs);
-    recipesTable.setCharacterSheet(cs);
-    descriptionPane.setCharacterSheet(cs);
-  }
 }
