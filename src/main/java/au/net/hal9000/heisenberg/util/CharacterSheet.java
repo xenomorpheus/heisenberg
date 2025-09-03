@@ -147,45 +147,47 @@ public class CharacterSheet implements Serializable {
     StringBuilder text = new StringBuilder();
 
     text.append("Name: ");
-    if (name == null) {
-      text.append("<none>" + ls);
+    if (name == null || name.isBlank()) {
+      text.append("Un-named" ).append( ls);
     } else {
-      text.append(name + ls);
+      text.append(name ).append( ls);
     }
-    if (null != description) {
-      text.append("Description: " + description + ls);
+    if (description != null) {
+      text.append("Description: " ).append( description ).append( ls);
     }
-    text.append("Level: " + level + ls);
-    text.append("Species: " + species + ls);
-    if (null != gender) {
-      text.append("Gender: " + gender + ls);
+    text.append("Level: " ).append( level ).append( ls);
+    if (species != null) {
+      text.append("Species: " ).append( species ).append( ls);
     }
-    if (null != size) {
-      text.append("Size: " + size + ls);
+    if (gender != null) {
+      text.append("Gender: " ).append( gender ).append( ls);
+    }
+    if (size != null) {
+      text.append("Size: " ).append( size ).append( ls);
     }
     final Set<Skill> skills = getSkills();
     if (null != skills && !skills.isEmpty()) {
-      text.append("Skills:" + ls);
+      text.append("Skills:" ).append( ls);
       for (Skill skill : skills) {
-        text.append("  " + skill + ls);
+        text.append("  " ).append( skill ).append( ls);
       }
     }
     final Set<String> recipes = getRecipes();
     if (null != recipes && !recipes.isEmpty()) {
-      text.append("Recipes:" + ls);
+      text.append("Recipes:" ).append( ls);
       for (String recipeId : recipes) {
-        text.append("  " + recipeId + ls);
+        text.append("  " ).append( recipeId ).append( ls);
       }
     }
-    if (null != abilityScores) {
-      text.append("Abilities:" + ls);
+    if (null != abilityScores && !abilityScores.isEmpty()) {
+      text.append("Abilities:" ).append( ls);
       for (AbilityScore abilityScore : abilityScores.values()) {
-        text.append("  " + abilityScore + ls);
+        text.append("  " ).append( abilityScore ).append( ls);
       }
     }
-    if (null != pcClass) {
-      text.append("Class: " + pcClass.getId() + ls);
-      text.append(pcClass.getDetailedDescription("    ") + ls);
+    if (pcClass != null) {
+      text.append("Class: " ).append( pcClass.getId() ).append( ls);
+      text.append(pcClass.getDetailedDescription("    ") ).append( ls);
     }
     return text.toString();
   }
