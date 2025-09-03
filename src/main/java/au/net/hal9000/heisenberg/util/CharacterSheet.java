@@ -80,17 +80,7 @@ public class CharacterSheet implements Serializable {
    */
   public final void setPcClass(final PcClass pcClass) {
     this.pcClass = pcClass;
-    // TODO we should recalculate the ability scores here.
-    // We need to make sure that we preserve any ability scores that aren't
-    // on the pcClass.
-    if (pcClass != null) {
-      for (String key : pcClass.getAbilityScores().keySet()) {
-        if (!abilityScores.containsKey(key)) {
-          abilityScores.put(key, pcClass.getAbilityScores().get(key));
-        }
-      }
-    }
-    // TODO other class based attributes.
+    abilityScoresRecalculate();
   }
 
   // Skills
@@ -138,15 +128,14 @@ public class CharacterSheet implements Serializable {
    * Should be safe to call any time.
    */
   private void abilityScoresRecalculate() {
-    // TODO we should be iterating over pcClass's ability key set.
-    // We need to make sure that we preserve any ability scores that aren't
-    // on the pcClass.
-    if (null != pcClass) {
-      for (String key : abilityScores.keySet()) {
-        AbilityScore abilityScore = abilityScores.get(key);
+    if (pcClass != null && abilityScores != null) {
+      for (String key : pcClass.getAbilityScores().keySet()) {
+        if (abilityScores.get(key) == null) {
+          abilityScores.put(key, new AbilityScore(key, "0"));
+        }   
+        var abilityScore = abilityScores.get(key);
         AbilityScore pcClassAbility = pcClass.getAbilityScore(key);
-        abilityScore.setValue(
-            pcClassAbility.getValue() + (level * pcClassAbility.getMod()) + abilityScore.getMod());
+        abilityScore.setValue(abilityScore.getMod() + pcClassAbility.getValue() + (level * pcClassAbility.getMod()));
       }
     }
   }
