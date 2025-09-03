@@ -1,0 +1,2 @@
+Able to CRUD AbilitityScore entries.
+Only the mod field should be changed, not the value field as it is recalculated.
