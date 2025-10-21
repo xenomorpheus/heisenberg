@@ -110,6 +110,12 @@ public class WorldEditorFrame extends JFrame {
       }
 
       private void exportSubTree(){
+        var selectedItem = itemTreePanel.getSelectedItem();
+        if (selectedItem == null) {
+            LOGGER.error("Please select an item"); // TODO Dialogue box
+            return;
+        }
+        
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(new File("heisenberg.json"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
@@ -131,9 +137,8 @@ public class WorldEditorFrame extends JFrame {
 
         var pathname = selectedFile.getAbsolutePath();
 
-        // TODO choose where in structure to export from.
         List<Item> items = new ArrayList<>();
-        items.add(location);
+        items.add(selectedItem);
         try {
           JsonItems.export(selectedFile, items);
         } catch (JsonProcessingException e) {
@@ -146,6 +151,17 @@ public class WorldEditorFrame extends JFrame {
       }
 
       private void importSubTree(){
+        var selectedItem = itemTreePanel.getSelectedItem();
+        if (selectedItem == null) {
+            LOGGER.error("Please select an item"); // TODO Dialogue box
+            return;
+        }
+        if (!(selectedItem instanceof ItemContainer)){
+            LOGGER.error("Please select a container item"); // TODO Dialogue box
+            return;
+        }
+        ItemContainer selectedContainer = (ItemContainer) selectedItem;
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(new File("heisenberg.json"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
@@ -168,7 +184,7 @@ public class WorldEditorFrame extends JFrame {
         try {
           for (var item : JsonItems.importFromFile(selectedFile)) {
             LOGGER.trace(item);
-            // TODO choose where in structure to add new items.
+            selectedContainer.add(item);
           }
         } catch (JsonProcessingException e) {
           // TODO show error to user.
@@ -190,7 +206,7 @@ public class WorldEditorFrame extends JFrame {
             if (container != null) {
               sb.append(" located in ").append(container);
             }
-            LOGGER.trace("   ".repeat(depth) + sb.toString());
+            System.out.println("   ".repeat(depth) + sb.toString());
             if (item instanceof ItemList) {
               var itemList = (ItemList) item;
               depth++;

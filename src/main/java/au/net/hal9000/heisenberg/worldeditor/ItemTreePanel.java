@@ -33,6 +33,8 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import org.apache.log4j.Logger;
+import lombok.Getter;
+import lombok.Setter;
 
 /** A window with hierarchical representation of the game objects. */
 public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
@@ -55,6 +57,10 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   /** Swing toolkit. */
   private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
+  @Getter
+  @Setter
+  Item selectedItem = null;
+
   /**
    * Constructor.
    *
@@ -71,13 +77,10 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 
     tree.setCellRenderer(new ItemTreeCellRenderer(config));
 
-    // Mouse listener for triple-click
+    // Mouse listener for clicks
     tree.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() != 1) {
-          return;
-        }
         TreePath path = tree.getPathForLocation(e.getX(), e.getY());
         if (path == null) {
           return;
@@ -87,8 +90,14 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
           var node = (ItemTreeNode) nodeObj;
           var item = node.getItem();
           System.out.println("Click on item: "+item.getClass().getSimpleName());
-          if (item instanceof Human) {
-            launchCharacterSheetEditor(((Human) item).getCharacterSheet());
+          if (e.getClickCount() == 1) {
+            LOGGER.info("Selected item: "+item.getClass().getSimpleName());
+            setSelectedItem(item);
+          }
+          else if (e.getClickCount() == 2) {
+            if (item instanceof Human) {
+              launchCharacterSheetEditor(((Human) item).getCharacterSheet());
+            }
           }
         }
       }
