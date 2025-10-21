@@ -63,6 +63,7 @@ Project Technologies:
 ======================
 
 Java Technologies:
+* Swing - GUI
 * Maven - Build automation
 * Checkstyle - Code standards compliance
 * JUnit - Unit tests
