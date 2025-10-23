@@ -112,7 +112,12 @@ public class WorldEditorFrame extends JFrame {
       private void exportSubTree(){
         var selectedItem = itemTreePanel.getSelectedItem();
         if (selectedItem == null) {
-            LOGGER.error("Please select an item"); // TODO Dialogue box
+            JOptionPane.showMessageDialog(
+              null,
+              "Please select an item to export",
+              "Error",
+              JOptionPane.ERROR_MESSAGE
+            );
             return;
         }
         
@@ -152,12 +157,13 @@ public class WorldEditorFrame extends JFrame {
 
       private void importSubTree(){
         var selectedItem = itemTreePanel.getSelectedItem();
-        if (selectedItem == null) {
-            LOGGER.error("Please select an item"); // TODO Dialogue box
-            return;
-        }
-        if (!(selectedItem instanceof ItemContainer)){
-            LOGGER.error("Please select a container item"); // TODO Dialogue box
+        if ((selectedItem == null) || !(selectedItem instanceof ItemContainer)) {
+            JOptionPane.showMessageDialog(
+              null,
+              "Please select a container item to import into",
+              "Error",
+              JOptionPane.ERROR_MESSAGE
+            );
             return;
         }
         ItemContainer selectedContainer = (ItemContainer) selectedItem;
