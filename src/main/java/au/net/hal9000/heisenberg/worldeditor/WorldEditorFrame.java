@@ -27,6 +27,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 /** The main application window. Shows a tree of the items in this world. */
