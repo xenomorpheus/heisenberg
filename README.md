@@ -85,7 +85,7 @@ sh build.sh
 
 Running
 ========
-export JAVA_HOME="`/usr/libexec/java_home -v 20`"
+export JAVA_HOME="`/usr/libexec/java_home -v 21`"
 export CLASSPATH="$HOME/git/Java_Projects/heisenberg/target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 
 The following will run the default application - jbox2d.demo.Main
