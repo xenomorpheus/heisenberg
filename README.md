@@ -1,4 +1,3 @@
-
 Heisenberg:
 ===================
 
@@ -81,22 +80,34 @@ Other Technologies:
 
 Building
 =========
+```bash
 sh build.sh
+```
 
 Running
 ========
+
+```bash
+
 export JAVA_HOME="`/usr/libexec/java_home -v 21`"
 
 export CLASSPATH="$HOME/git/Java_Projects/heisenberg/target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
+```
 
 The following will run the default application - jbox2d.demo.Main
 
+```bash
 java -jar target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
+java -cp target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar au.net.hal9000.heisenberg.WorldEditorFrameMain
+
+```
 
 All main classes:
 
 See above for JAVA_HOME and CLASSPATH
+
+```bash
 
 java au.net.hal9000.heisenberg.WorldEditorFrameMain
 
@@ -106,3 +117,4 @@ java au.net.hal9000.heisenberg.pceditor.demo.CharacterSheetEditorMain
 
 java au.net.hal9000.heisenberg.worldeditor.demo.ItemTreePanelMain
 
+```
