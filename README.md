@@ -89,7 +89,7 @@ Running
 
 ```bash
 
-export JAVA_HOME="`/usr/libexec/java_home -v 21`"
+export JAVA_HOME="`/usr/libexec/java_home -v 25`"
 
 export CLASSPATH="$HOME/git/Java_Projects/heisenberg/target/heisenberg-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 ```

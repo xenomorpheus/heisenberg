@@ -3,7 +3,7 @@
 # List available compilers
 # /usr/libexec/java_home -V
 unset JAVA_HOME
-export JAVA_HOME="`/usr/libexec/java_home -v 21`"
+export JAVA_HOME="`/usr/libexec/java_home -v 25`"
 
 
 # mvn clean test package -f pom.xml
