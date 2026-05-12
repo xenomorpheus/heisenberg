@@ -13,14 +13,11 @@ import au.net.hal9000.heisenberg.fifthed.spell.BladeLash;
 import au.net.hal9000.heisenberg.fifthed.spell.Fireball;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** A helper class for setting up test environments and creating test player characters. */
+@Log4j2
 public class TestHelper {
-
-  /** Field LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(TestHelper.class.getName());
-
   /** file containing test configuration. */
   private static String TEST_CONFIG_FILE = "src/test/resources/config.xml";
 
@@ -31,7 +28,7 @@ public class TestHelper {
     } catch (ConfigurationError e) {
       throw new RuntimeException(e);
     }
-    LOGGER.info("Test Env setup");
+    log.info("Test Env setup");
   }
 
   /**

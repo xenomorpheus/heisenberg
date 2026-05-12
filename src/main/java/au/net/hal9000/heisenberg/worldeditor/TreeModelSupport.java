@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * JTree nodes may be listened to for changes. This class provides support for adding and removing
  * listeners, also for sending events to those listeners.
  */
+@Log4j2
 public class TreeModelSupport {
-
-  /** class logger. */
-  private static final Logger LOGGER = Logger.getLogger(TreeModelSupport.class.getName());
 
   /**
    * Those that listen for changes to the model.<br>
@@ -40,7 +38,7 @@ public class TreeModelSupport {
    * @see javax.swing.tree.TreeModel#addTreeModelListener(TreeModelListener)
    */
   public void addTreeModelListener(TreeModelListener listener) {
-    LOGGER.debug("listener: " + listener);
+    log.debug("listener: " + listener);
     synchronized (objLock) {
       if (listener != null && !listeners.contains(listener)) {
         listeners.add(listener);
@@ -55,7 +53,7 @@ public class TreeModelSupport {
    * @see javax.swing.tree.TreeModel#removeTreeModelListener(TreeModelListener)
    */
   public void removeTreeModelListener(TreeModelListener listener) {
-    LOGGER.debug("listener: " + listener);
+    log.debug("listener: " + listener);
     synchronized (objLock) {
       if (listener != null) {
         listeners.remove(listener);
@@ -70,7 +68,7 @@ public class TreeModelSupport {
    * @param e event
    */
   public void fireTreeNodesChanged(TreeModelEvent e) {
-    LOGGER.debug("TreeModelEvent=" + e);
+    log.debug("TreeModelEvent=" + e);
 
     TreeModelListener[] tmpListeners = null;
     // Don't leak the lock.
@@ -88,7 +86,7 @@ public class TreeModelSupport {
    * @param e event
    */
   public void fireTreeNodesInserted(TreeModelEvent e) {
-    LOGGER.debug("TreeModelEvent=" + e);
+    log.debug("TreeModelEvent=" + e);
 
     TreeModelListener[] tmpListeners = null;
     // Don't leak the lock.
@@ -106,7 +104,7 @@ public class TreeModelSupport {
    * @param e event
    */
   public void fireTreeNodesRemoved(TreeModelEvent e) {
-    LOGGER.debug("TreeModelEvent=" + e);
+    log.debug("TreeModelEvent=" + e);
 
     TreeModelListener[] tmpListeners = null;
     // Don't leak the lock.
@@ -124,7 +122,7 @@ public class TreeModelSupport {
    * @param e event
    */
   public void fireTreeStructureChanged(TreeModelEvent e) {
-    LOGGER.debug("TreeModelEvent=" + e);
+    log.debug("TreeModelEvent=" + e);
 
     TreeModelListener[] tmpListeners = null;
     // Don't leak the lock.

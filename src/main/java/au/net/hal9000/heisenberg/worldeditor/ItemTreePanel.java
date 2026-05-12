@@ -32,18 +32,16 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import lombok.Getter;
 import lombok.Setter;
 
 /** A window with hierarchical representation of the game objects. */
+@Log4j2
 public class ItemTreePanel extends JPanel implements TreeModelListener, PropertyChangeListener {
 
   /** Class serial version id. */
   private static final long serialVersionUID = 1L;
-
-  /** LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(ItemTreePanel.class.getName());
 
   /** The TreeModel will translate our custom structure into Swing paths etc.. */
   private TreeModel treeModel = null;
@@ -91,7 +89,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
           var item = node.getItem();
           System.out.println("Click on item: "+item.getClass().getSimpleName());
           if (e.getClickCount() == 1) {
-            LOGGER.info("Selected item: "+item.getClass().getSimpleName());
+            log.info("Selected item: "+item.getClass().getSimpleName());
             setSelectedItem(item);
           }
           else if (e.getClickCount() == 2) {
@@ -174,7 +172,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   @Override
   public void treeNodesChanged(TreeModelEvent e) {
     Object o = e.getTreePath().getLastPathComponent();
-    LOGGER.error("treeNodesChanged - code not finished");
+    log.error("treeNodesChanged - code not finished");
 
     /*
      * If the event lists children, then the changed node is the child of the node
@@ -186,32 +184,32 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     // DefaultMutableTreeNode node = (DefaultMutableTreeNode)
     // (node.getChildAt(index));
 
-    LOGGER.info("treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
-    // LOGGER.debug("New value: " + node.getUserObject());
+    log.info("treeNodesChanged: The user has finished editing the node " + o + ", " + o.getClass());
+    // log.debug("New value: " + node.getUserObject());
   }
 
   @Override
   public void treeNodesInserted(TreeModelEvent e) {
     // TODO finish treeNodesInserted
-    LOGGER.info("TODO treeNodesInserted: " + e.toString());
+    log.info("TODO treeNodesInserted: " + e.toString());
   }
 
   @Override
   public void treeNodesRemoved(TreeModelEvent e) {
     // TODO finish treeNodesRemoved
-    LOGGER.info("TODO treeNodesRemoved: " + e.toString());
+    log.info("TODO treeNodesRemoved: " + e.toString());
   }
 
   @Override
   public void treeStructureChanged(TreeModelEvent e) {
     // TODO finish treeStructureChanged
-    LOGGER.info("TODO treeStructureChanged: " + e.toString());
+    log.info("TODO treeStructureChanged: " + e.toString());
   }
 
   @Override
   public void propertyChange(PropertyChangeEvent e) {
     // TODO Auto-generated method stub propertyChange
-    LOGGER.info("TODO propertyChange: " + e.toString());
+    log.info("TODO propertyChange: " + e.toString());
   }
 
   private class ButtonActionListener implements ActionListener {
@@ -224,24 +222,24 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       Object selectedObject = tree.getLastSelectedPathComponent();
       if (selectedObject == null) {
         toolkit.beep();
-        LOGGER.warn("No component was selected");
+        log.warn("No component was selected");
         return;
       }
       if (!(selectedObject instanceof MutableTreeNode)) {
         toolkit.beep();
-        LOGGER.warn(selectedObject + " is not a MutableTreeNode");
+        log.warn(selectedObject + " is not a MutableTreeNode");
         return;
       }
 
       MutableTreeNode parentTreeNode = (MutableTreeNode) selectedObject;
       if (!parentTreeNode.getAllowsChildren()) {
-        LOGGER.warn(parentTreeNode + " does not allow addition of items");
+        log.warn(parentTreeNode + " does not allow addition of items");
         toolkit.beep();
         return;
       }
 
       if (!(parentTreeNode instanceof ItemTreeNode)) {
-        LOGGER.warn(parentTreeNode + " treeNode, is not an instanceof ItemTreeNode");
+        log.warn(parentTreeNode + " treeNode, is not an instanceof ItemTreeNode");
         toolkit.beep();
         return;
       }
@@ -262,7 +260,7 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       parentTreeNode.insert(childTreeNode, insertIndex);
 
       TreePath path = getPathToNode(parentMutableTreeNode);
-      LOGGER.warn(
+      log.warn(
           "actionPerformed. path: " + path + ", insertIndex: " + insertIndex + ", childTreeNode: " + childTreeNode);
       // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
       int[] childIndices = new int[] { insertIndex };

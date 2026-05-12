@@ -10,17 +10,15 @@ import jakarta.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 // import org.apache.log4j.BasicConfigurator;
 /** The container has control of the movement of Item objects within it. */
 @Entity
+@Log4j2
 public class Location extends ItemImpl implements ItemContainer {
   /** */
   private static final long serialVersionUID = 1L;
-
-  /** Field LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(Location.class.getName());
 
   /** Field weightMax. */
   private float weightMax = -1;
@@ -206,7 +204,7 @@ public class Location extends ItemImpl implements ItemContainer {
     ItemContainer itemCurrentContainer = item.getContainer();
     if (itemCurrentContainer != null) {
       if (equals(itemCurrentContainer)) {
-        LOGGER.error("Item " + this + " was already in container " + itemCurrentContainer);
+        log.error("Item " + this + " was already in container " + itemCurrentContainer);
         // Nothing to do.
         return;
       }

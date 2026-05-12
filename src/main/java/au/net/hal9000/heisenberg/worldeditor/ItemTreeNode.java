@@ -7,12 +7,11 @@ import java.util.Collections;
 import java.util.Enumeration;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** An adapter/wrapper around a Item object to make it look like a ItemTreeNode. */
+@Log4j2
 public class ItemTreeNode implements MutableTreeNode {
-  /** Field LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(ItemTreeNode.class.getName());
 
   private Item item;
 
@@ -28,12 +27,12 @@ public class ItemTreeNode implements MutableTreeNode {
       ItemList container = (ItemList) item;
       Item childItem = container.get(childIndex);
       if (childItem == null) {
-        LOGGER.error("getChildAt failed to get childIndex='" + childIndex + "' of " + item);
+        log.error("getChildAt failed to get childIndex='" + childIndex + "' of " + item);
       } else {
         child = new ItemTreeNode(childItem);
       }
     } else {
-      LOGGER.warn("getChildAt called on non-container " + item);
+      log.warn("getChildAt called on non-container " + item);
     }
     return child;
   }
@@ -45,7 +44,7 @@ public class ItemTreeNode implements MutableTreeNode {
       ItemList container = (ItemList) item;
       count = container.size();
     } else {
-      LOGGER.warn("getChildCount called on non-container " + item);
+      log.warn("getChildCount called on non-container " + item);
     }
     return count;
   }
@@ -63,8 +62,8 @@ public class ItemTreeNode implements MutableTreeNode {
 
   @Override
   public int getIndex(TreeNode node) {
-    LOGGER.trace("getIndex - item " + item);
-    LOGGER.trace("getIndex - node " + node + " of " + node.getClass());
+    log.trace("getIndex - item " + item);
+    log.trace("getIndex - node " + node + " of " + node.getClass());
     int index = -1;
     if (node instanceof ItemTreeNode) {
       Item nodeItem = ((ItemTreeNode) node).getItem();
@@ -72,14 +71,14 @@ public class ItemTreeNode implements MutableTreeNode {
         ItemList ItemList = (ItemList) item;
         index = ItemList.indexOf(nodeItem);
       } else {
-        LOGGER.error(
+        log.error(
             "getIndex failed as item not of class ItemList. node "
                 + node
                 + " of "
                 + node.getClass());
       }
     } else {
-      LOGGER.error(
+      log.error(
           "getIndex failed as node is not of type ItemTreeNode. item "
               + item
               + ", node "
@@ -87,7 +86,7 @@ public class ItemTreeNode implements MutableTreeNode {
               + " of "
               + node.getClass());
     }
-    LOGGER.trace("getIndex - index " + index);
+    log.trace("getIndex - index " + index);
     return index;
   }
 
@@ -97,7 +96,7 @@ public class ItemTreeNode implements MutableTreeNode {
     if (item instanceof ItemList) {
       allowsChildren = true;
     } else {
-      LOGGER.trace("getAllowsChildren called on: " + item);
+      log.trace("getAllowsChildren called on: " + item);
     }
     return allowsChildren;
   }
@@ -135,11 +134,11 @@ public class ItemTreeNode implements MutableTreeNode {
         Item childItem = childItemTreeNode.getItem();
         container.add(index, childItem);
       } else {
-        LOGGER.error(
+        log.error(
             "insert failed as wrong type for child " + child + " type " + child.getClass());
       }
     } else {
-      LOGGER.error(
+      log.error(
           "insert failed as wrong type for container item " + item + " type " + item.getClass());
     }
   }
@@ -154,7 +153,7 @@ public class ItemTreeNode implements MutableTreeNode {
       ItemList container = (ItemList) item;
       container.remove(index);
     } else {
-      LOGGER.error(
+      log.error(
           "remove failed as wrong type for container item " + item + " type " + item.getClass());
     }
   }
@@ -168,18 +167,18 @@ public class ItemTreeNode implements MutableTreeNode {
         Item childItem = childTreeNode.getItem();
         container.remove(childItem);
       } else {
-        LOGGER.error(
+        log.error(
             "remove failed as wrong type for child " + child + " type " + child.getClass());
       }
     } else {
-      LOGGER.error(
+      log.error(
           "remove failed as wrong type for container item " + item + " type " + item.getClass());
     }
   }
 
   @Override
   public void setUserObject(Object object) {
-    LOGGER.info("TODO setUserObject item '" + item + "' was passed object " + object.getClass());
+    log.info("TODO setUserObject item '" + item + "' was passed object " + object.getClass());
     // if (object instanceof Item) {
     //   item = (Item) object;
     // }
@@ -189,7 +188,7 @@ public class ItemTreeNode implements MutableTreeNode {
   public void removeFromParent() {
     ItemList container = item.getContainer();
     if (container == null) {
-      LOGGER.error("removeFromParent container is null");
+      log.error("removeFromParent container is null");
     } else {
       container.remove(item);
     }
@@ -204,12 +203,12 @@ public class ItemTreeNode implements MutableTreeNode {
         ItemList container = (ItemList) parentItem;
         container.add(item);
       } else {
-        LOGGER.error(
+        log.error(
             "setParent failed as newParent's Item is not an ItemList as type is "
                 + parentItem.getClass());
       }
     } else {
-      LOGGER.error(
+      log.error(
           "setParent failed as newParent not an ItemTreeNode as is type " + newParent.getClass());
     }
   }

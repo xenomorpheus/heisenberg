@@ -4,18 +4,15 @@ import static org.junit.Assert.assertEquals;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 /**
  * This class contains tests for verifying the serialization and deserialization of objects using
  * Jackson.
  */
+@Log4j2
 public class JacksonSimpleTest {
-
-  /** Field LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(JacksonSimpleTest.class.getName());
-
   @Test
   public void testSerDeItems() throws JsonProcessingException {
     // Serialize
@@ -33,7 +30,7 @@ public class JacksonSimpleTest {
     container.contents.add(concreteB);
 
     String json = mapper.writeValueAsString(container);
-    LOGGER.info("Serialised JSON: " + json);
+    log.info("Serialised JSON: " + json);
 
     // Deserialize
     ItemContainer deserializedContainer = mapper.readValue(json, ItemContainer.class);
@@ -41,7 +38,7 @@ public class JacksonSimpleTest {
     assertEquals(ConcreteA.class, deserializedContainer.contents.get(0).getClass());
     assertEquals(ConcreteB.class, deserializedContainer.contents.get(1).getClass());
 
-    LOGGER.info(
+    log.info(
         "Deserialized AbstractBase type: A:"
             + deserializedContainer.contents.get(0).getClass().getSimpleName()
             + ", B:"

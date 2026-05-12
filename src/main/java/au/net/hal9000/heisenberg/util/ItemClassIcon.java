@@ -4,12 +4,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class ItemClassIcon {
-
-  /** Logger. */
-  private static final Logger LOGGER = Logger.getLogger(ItemClassIcon.class.getName());
 
   /**
    * For each class of Item, if it is a container and shown in the UI in tree view, then this is the
@@ -86,7 +84,7 @@ public class ItemClassIcon {
         ICON_OPEN_DEFAULT_FOR_CLASS.put(
             itemClassConfiguration.getId(), new ImageIcon(spritePack.getSprite(iconOpenId)));
       } else {
-        LOGGER.info(
+        log.info(
             "Missing config for open icon for item class: " + itemClassConfiguration.getId());
       }
       int iconClosedId = itemClassConfiguration.getIconClosedId();
@@ -94,7 +92,7 @@ public class ItemClassIcon {
         ICON_CLOSED_DEFAULT_FOR_CLASS.put(
             itemClassConfiguration.getId(), new ImageIcon(spritePack.getSprite(iconClosedId)));
       } else {
-        LOGGER.info(
+        log.info(
             "Missing config for closed icon for item class: " + itemClassConfiguration.getId());
       }
       int iconLeafId = itemClassConfiguration.getIconLeafId();
@@ -102,7 +100,7 @@ public class ItemClassIcon {
         ICON_LEAF_DEFAULT_FOR_CLASS.put(
             itemClassConfiguration.getId(), new ImageIcon(spritePack.getSprite(iconLeafId)));
       } else {
-        LOGGER.info(
+        log.info(
             "Missing config for leaf icon for item class: " + itemClassConfiguration.getId());
       }
     }

@@ -4,15 +4,14 @@ import au.net.hal9000.heisenberg.item.api.Item;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** Utility class for persisting and retrieving entities using JPA. */
+@Log4j2
 public class PersistEntities {
 
   /** Persistence unit name for Entity Manager. */
   private static final String PERSISTENCE_UNIT_NAME = "items";
-
-  private static final Logger LOGGER = Logger.getLogger(PersistEntities.class.getName());
 
   /**
    * Saves the given item to the database.
@@ -35,7 +34,7 @@ public class PersistEntities {
     entityManager.getTransaction().commit();
     entityManager.close();
     factory.close();
-    LOGGER.info("Saved");
+    log.info("Saved");
   }
 
   /**

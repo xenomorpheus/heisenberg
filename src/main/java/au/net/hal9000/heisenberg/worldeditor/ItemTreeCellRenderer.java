@@ -5,13 +5,11 @@ import au.net.hal9000.heisenberg.util.ItemClassIcon;
 import java.awt.Component;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** Set the Icon to be shown next to each Icon when in a JTree in the UI. */
+@Log4j2
 class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
-
-  /** Logger. */
-  private static final Logger LOGGER = Logger.getLogger(ItemTreeCellRenderer.class.getName());
 
   private ItemClassIcon itemClassIcon = null;
 
@@ -49,9 +47,9 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
       setLeafIcon(itemClassIcon.getClassIconLeafDefault(simpleClassName));
     } else {
       if (value == null) {
-        LOGGER.warn("Cell value: IS NULL");
+        log.warn("Cell value: IS NULL");
       } else {
-        LOGGER.warn("Cell value getSimpleName: " + value.getClass().getSimpleName());
+        log.warn("Cell value getSimpleName: " + value.getClass().getSimpleName());
       }
       setOpenIcon(getDefaultOpenIcon());
       setClosedIcon(getDefaultClosedIcon());

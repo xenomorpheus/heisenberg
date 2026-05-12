@@ -29,9 +29,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** The main application window. Shows a tree of the items in this world. */
+@Log4j2
 public class WorldEditorFrame extends JFrame {
 
   private static final String MENU_NEW = "New";
@@ -53,8 +54,6 @@ public class WorldEditorFrame extends JFrame {
 
   /** The panel showing the tree of Item objects. */
   private ItemTreePanel itemTreePanel = null;
-
-  private static final Logger LOGGER = Logger.getLogger(WorldEditorFrame.class.getName());
 
   /**
    * Constructor.
@@ -130,7 +129,7 @@ public class WorldEditorFrame extends JFrame {
         fileChooser.setCurrentDirectory(filePathDefault);
         int result = fileChooser.showSaveDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {
-            LOGGER.trace("File selection cancelled.");
+            log.trace("File selection cancelled.");
             return;
         }
         File selectedFile = fileChooser.getSelectedFile();
@@ -140,7 +139,7 @@ public class WorldEditorFrame extends JFrame {
             selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
         }
 
-        LOGGER.trace("Selected file: " + selectedFile.getAbsolutePath());
+        log.trace("Selected file: " + selectedFile.getAbsolutePath());
 
         var pathname = selectedFile.getAbsolutePath();
 
@@ -150,10 +149,10 @@ public class WorldEditorFrame extends JFrame {
           JsonItems.export(selectedFile, items);
         } catch (JsonProcessingException e) {
           // TODO show error to user.
-          LOGGER.error("Error exporting items to file: " + pathname, e);
+          log.error("Error exporting items to file: " + pathname, e);
         } catch (IOException e) {
           // TODO show error to user.
-          LOGGER.error("Error writing file: " + pathname, e);
+          log.error("Error writing file: " + pathname, e);
         }
       }
 
@@ -177,7 +176,7 @@ public class WorldEditorFrame extends JFrame {
         fileChooser.setCurrentDirectory(filePathDefault);
         int result = fileChooser.showOpenDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {
-            LOGGER.trace("File selection cancelled.");
+            log.trace("File selection cancelled.");
             return;
         }
         File selectedFile = fileChooser.getSelectedFile();
@@ -186,20 +185,20 @@ public class WorldEditorFrame extends JFrame {
             selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
         }
 
-        LOGGER.trace("Selected file: " + selectedFile.getAbsolutePath());
+        log.trace("Selected file: " + selectedFile.getAbsolutePath());
         var pathname = selectedFile.getAbsolutePath();
 
         try {
           for (var item : JsonItems.importFromFile(selectedFile)) {
-            LOGGER.trace(item);
+            log.trace(item);
             selectedContainer.add(item);
           }
         } catch (JsonProcessingException e) {
           // TODO show error to user.
-          LOGGER.error("Error importing items from file: " + pathname, e);
+          log.error("Error importing items from file: " + pathname, e);
         } catch (IOException e) {
           // TODO show error to user.
-          LOGGER.error("Error reading file: " + pathname, e);
+          log.error("Error reading file: " + pathname, e);
         }
       }
 
@@ -256,7 +255,7 @@ public class WorldEditorFrame extends JFrame {
 
   /** quit the program. */
   public void exitProgram() {
-    LOGGER.info("Exiting");
+    log.info("Exiting");
     System.exit(0);
   }
 

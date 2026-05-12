@@ -5,13 +5,11 @@ import au.net.hal9000.heisenberg.worldeditor.WorldEditorFrame;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
 import javax.swing.SwingUtilities;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** World Editor Frame Main. Has menus. */
+@Log4j2
 public class WorldEditorFrameMain { // NO_UCD (unused code)
-
-  /** Field LOGGER. */
-  static final Logger LOGGER = Logger.getLogger(WorldEditorFrameMain.class.getName());
 
   /**
    * app to test the world editor.

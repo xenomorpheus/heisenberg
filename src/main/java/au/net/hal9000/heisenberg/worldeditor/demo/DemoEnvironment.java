@@ -27,13 +27,11 @@ import au.net.hal9000.heisenberg.item.being.Human;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** Utility class for setting up test environment and building test Item objects. */
+@Log4j2
 public final class DemoEnvironment {
-  /** Field LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(DemoEnvironment.class.getName());
-
   /** file containing test configuration. */
   private static String DEMO_CONFIG_FILE = "src/test/resources/config.xml";
 
@@ -50,7 +48,7 @@ public final class DemoEnvironment {
 
   /** Setup demo environment. */
   public static void setup() {
-    LOGGER.info("Demo Env setup");
+    log.info("Demo Env setup");
     try {
       new Configuration(DEMO_CONFIG_FILE);
     } catch (ConfigurationError e) {

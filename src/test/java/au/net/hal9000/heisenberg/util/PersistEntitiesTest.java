@@ -31,15 +31,14 @@ import au.net.hal9000.heisenberg.item.being.Human;
 import au.net.hal9000.heisenberg.item.property.ItemVisitor;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.util.HashMap;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
 
 /** */
+@Log4j2
 public class PersistEntitiesTest {
-
   private Configuration config = null;
-  private static final Logger LOGGER = Logger.getLogger(PersistEntitiesTest.class.getName());
 
   @Before
   public void initialise() {
@@ -107,7 +106,7 @@ public class PersistEntitiesTest {
   @Test
   public void itemFromFactoryHasCharacterSheet() {
     String itemClass = "being.Human";
-    LOGGER.info("Testing " + itemClass);
+    log.info("Testing " + itemClass);
 
     // Create a new Item
     Item item = Factory.createItem(itemClass);
@@ -144,7 +143,7 @@ public class PersistEntitiesTest {
     assertNotEquals(0, config.getItemClasses().values().size());
     for (ItemClassConfiguration itemClassConfiguration : config.getItemClasses().values()) {
       String itemClass = itemClassConfiguration.getId();
-      LOGGER.info("Testing " + itemClass);
+      log.info("Testing " + itemClass);
 
       // Create a new Item
       Item item = Factory.createItem(itemClass);
@@ -255,7 +254,7 @@ public class PersistEntitiesTest {
 
     private void printSummary() {
       for (final var entry : summary.entrySet()) {
-        LOGGER.info("ClassName: " + entry.getKey() + ", count: " + entry.getValue());
+        log.info("ClassName: " + entry.getKey() + ", count: " + entry.getValue());
       }
     }
 
@@ -266,7 +265,7 @@ public class PersistEntitiesTest {
     @Override
     public void visit(Item item) {
       incrementCount(item);
-      LOGGER.info(item.detailedDescription());
+      log.info(item.detailedDescription());
       if (item instanceof ItemList) {
         var itemList = (ItemList) item;
         for (int i = 0; i < itemList.size(); i++) {

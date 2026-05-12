@@ -9,9 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /** Recipe table. */
+@Log4j2
 public class RecipesTable extends JTable {
 
   /** serial version id. */
@@ -37,9 +38,6 @@ public class RecipesTable extends JTable {
     /** Field config. */
     private Configuration config = Configuration.lastConfig();
 
-    /** Field logger. */
-    private final Logger logger = Logger.getLogger(RecipesTable.class.getName());
-
     /** Field recipeIds. */
     private List<String> recipeIds;
 
@@ -55,7 +53,7 @@ public class RecipesTable extends JTable {
       recipes = config.getRecipes();
       Set<String> pcRecipeIds = null;
       if (cs == null) {
-        logger.error("CharacterSheet is NULL");
+        log.error("CharacterSheet is NULL");
       } else {
         pcRecipeIds = cs.getRecipes();
       }
