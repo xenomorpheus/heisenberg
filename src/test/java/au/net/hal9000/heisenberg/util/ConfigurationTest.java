@@ -221,8 +221,8 @@ public class ConfigurationTest {
     assertNotNull("product 0 not null", product);
     assertTrue("product 0 ProductItem", product instanceof ProductItem);
     ProductItem productItem = (ProductItem) product;
-    assertEquals("product 0 id", "SmallGroundFire", productItem.getId());
-    assertEquals("product 0 itemType", "SmallGroundFire", productItem.getType());
+    assertEquals("product 0 id", "FireGroundSmall", productItem.getId());
+    assertEquals("product 0 itemType", "FireGroundSmall", productItem.getType());
   }
 
   /** Method testSpell1. */

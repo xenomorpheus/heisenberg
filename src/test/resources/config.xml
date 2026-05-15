@@ -36,7 +36,7 @@
 		<item id="Ring" iconOpenId="312" iconClosedId="312" iconLeafId="312" />
 		<item id="Scabbard" />
 		<item id="Shield" iconOpenId="31" iconClosedId="31" iconLeafId="31" />
-		<item id="SmallGroundFire" />
+		<item id="FireGroundSmall" />
 		<item id="Sword" iconOpenId="3" iconClosedId="3" iconLeafId="3" />
 		<item id="Torch" />
 		<item id="Water" />
@@ -532,7 +532,7 @@
 				<item id="Location" type="Location" consumed="false" />
 			</requirements>
 			<products>
-				<item id="smallGroundFire" />
+				<item id="FireGroundSmall" />
 			</products>
 		</recipe>
 		<recipe id="LightOrb1" description="small light orb" mana="2"
@@ -566,7 +566,7 @@
 				<item id="FlintAndTinder" consumed="false" />
 			</requirements>
 			<products>
-				<item id="SmallGroundFire" />
+				<item id="FireGroundSmall" />
 			</products>
 		</recipe>
 		<recipe id="testSpell1" description="spell test 1" mana="2"

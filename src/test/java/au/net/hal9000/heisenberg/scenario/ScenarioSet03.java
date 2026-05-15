@@ -66,7 +66,7 @@ public class ScenarioSet03 {
     // TODO set XYZ location
     location.add(pc);
 
-    // Prepare to create SmallGroundFire.
+    // Prepare to create FireGroundSmall.
     Cooker cooker = pc.getCooker("testFireGround1");
 
     // <item id="Location" type="ItemContainer" consumed="no" />
@@ -84,7 +84,7 @@ public class ScenarioSet03 {
     // Check the item produced
     final int todo = 1; // TODO item number
     Item item = location.get(todo);
-    assertEquals("item type", "SmallGroundFire", item.getClass().getSimpleName());
+    assertEquals("item type", "FireGroundSmall", item.getClass().getSimpleName());
 
     // Check the chef has paid in Mana and ActionPoints
     assertEquals("mana", expectedMana, pc.getPlayableState().getMana());

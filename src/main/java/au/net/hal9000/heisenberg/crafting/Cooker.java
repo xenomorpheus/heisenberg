@@ -30,7 +30,7 @@ import lombok.NonNull;
  *   <li>Any new Item objects will be at the newItemLocation.
  * </ol>
  *
- * <p>// Example: // Create a SmallGroundFire. <br>
+ * <p>// Example: // Create a FireGroundSmall. <br>
  * var pc = new Human(); <br>
  * Cooker cooker = pc.getCooker("testFireGround1"); <br>
  * cooker.setItemsAvailable("Location", location); <br>

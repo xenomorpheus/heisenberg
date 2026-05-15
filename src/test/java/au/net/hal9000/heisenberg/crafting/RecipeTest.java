@@ -59,7 +59,7 @@ public class RecipeTest {
 
     // Product(s)
     List<Product> products = new ArrayList<Product>();
-    products.add(new ProductItem("SmallGroundFire"));
+    products.add(new ProductItem("FireGroundSmall"));
 
     // Skills
     Set<Skill> skills = new TreeSet<Skill>();
@@ -159,7 +159,7 @@ public class RecipeTest {
   public void testGetProductCount() {
     // Product(s)
     List<Product> products = new ArrayList<Product>();
-    products.add(new ProductItem("SmallGroundFire"));
+    products.add(new ProductItem("FireGroundSmall"));
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =
@@ -228,7 +228,7 @@ public class RecipeTest {
             + System.lineSeparator());
     text.append("Product(s):" + System.lineSeparator());
     text.append(
-        "  SmallGroundFire: Id: SmallGroundFire, item type of SmallGroundFire, weightBase 0.0"
+        "  FireGroundSmall: Id: FireGroundSmall, item type of FireGroundSmall, weightBase 0.0"
             + System.lineSeparator());
     assertEquals("recipeAll", text.toString(), recipeAll.details());
   }

@@ -32,7 +32,7 @@
 		<class>au.net.hal9000.heisenberg.item.Ring</class>
 		<class>au.net.hal9000.heisenberg.item.Scabbard</class>
 		<class>au.net.hal9000.heisenberg.item.Shield</class>
-		<class>au.net.hal9000.heisenberg.item.SmallGroundFire</class>
+		<class>au.net.hal9000.heisenberg.item.FireGroundSmall</class>
 		<class>au.net.hal9000.heisenberg.item.Sword</class>
 		<class>au.net.hal9000.heisenberg.item.Torch</class>
 		<class>au.net.hal9000.heisenberg.item.Water</class>
