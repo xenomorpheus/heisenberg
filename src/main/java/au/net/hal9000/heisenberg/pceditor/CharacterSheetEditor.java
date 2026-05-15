@@ -53,7 +53,7 @@ public class CharacterSheetEditor extends JPanel {
     recipesTable = new RecipesTable(charactersheet);
     descriptionPane = new DescriptionPane(charactersheet);
 
-  setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
+    setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
     // Main container
     GridBagConstraints cons = new GridBagConstraints();
@@ -69,7 +69,7 @@ public class CharacterSheetEditor extends JPanel {
 
     var abilityScoreScrollPane = new JScrollPane(abilityScoresTable);
     abilityScoreScrollPane.setFocusable(false);
-    tabbedPane.addTab("Abilities", null,  abilityScoreScrollPane, null);
+    tabbedPane.addTab("Abilities", null, abilityScoreScrollPane, null);
 
     var skillsScrollPane = new JScrollPane(skillsTable);
     skillsScrollPane.setFocusable(false);
@@ -87,22 +87,21 @@ public class CharacterSheetEditor extends JPanel {
 
     // listen for selection changes
     tabbedPane.addChangeListener(e -> {
-        int index = tabbedPane.getSelectedIndex();
-        var selected = tabbedPane.getComponentAt(index);
-        System.out.println("Selected tab: " + index + ", component: " + selected.getClass().getSimpleName());
+      int index = tabbedPane.getSelectedIndex();
+      var selected = tabbedPane.getComponentAt(index);
+      System.out.println("Selected tab: " + index + ", component: " + selected.getClass().getSimpleName());
 
-        if (selected instanceof JScrollPane) {
-            var viewport = ((JScrollPane) selected).getViewport();
-            selected = viewport.getView();
-            System.out.println("Viewport view is: " + selected.getClass().getSimpleName());
-        }
+      if (selected instanceof JScrollPane) {
+        var viewport = ((JScrollPane) selected).getViewport();
+        selected = viewport.getView();
+        System.out.println("Viewport view is: " + selected.getClass().getSimpleName());
+      }
 
-        if (selected instanceof FocusListener) {
-            System.out.println("Focusing " + selected.getClass().getSimpleName());
-            ((FocusListener) selected).focusGained(null);
-        }
+      if (selected instanceof FocusListener) {
+        System.out.println("Focusing " + selected.getClass().getSimpleName());
+        ((FocusListener) selected).focusGained(null);
+      }
     });
-
 
     // Button(s)
     JPanel butPanel = new JPanel();
