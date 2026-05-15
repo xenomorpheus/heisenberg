@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.util.CharacterSheet;
+import au.net.hal9000.heisenberg.util.Configuration;
 import lombok.NonNull;
 
 import java.awt.GridBagConstraints;
@@ -30,28 +31,8 @@ public class CharacterSheetEditor extends JPanel {
   /** serial version id. */
   private static final long serialVersionUID = 1L;
 
-  /** Field basicPanel. */
-  private BasicPanel basicPanel = null;
-
-  /** Field abilityScoresTable. */
-  private AbilityScoresTable abilityScoresTable = null;
-
-  /** Field skillsTable. */
-  private SkillsTable skillsTable = null;
-
-  /** Field recipesTable. */
-  private RecipesTable recipesTable = null;
-
-  /** Field descriptionPane. */
-  private DescriptionPane descriptionPane = null;
-
   /** Create the application. */
   public CharacterSheetEditor(@NonNull CharacterSheet charactersheet) {
-    basicPanel = new BasicPanel(charactersheet);
-    abilityScoresTable = new AbilityScoresTable(charactersheet);
-    skillsTable = new SkillsTable(charactersheet);
-    recipesTable = new RecipesTable(charactersheet);
-    descriptionPane = new DescriptionPane(charactersheet);
 
     setBounds(X_POS, Y_POS, WIDTH, HEIGHT);
 
@@ -65,21 +46,29 @@ public class CharacterSheetEditor extends JPanel {
 
     // Tabbed Pane
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+
+    var     basicPanel = new BasicPanel(charactersheet);
     tabbedPane.addTab("Basics", null, basicPanel, null);
 
+    var abilityScoresTable = new AbilityScoresTable(charactersheet.getAbilityScores());
     var abilityScoreScrollPane = new JScrollPane(abilityScoresTable);
     abilityScoreScrollPane.setFocusable(false);
     tabbedPane.addTab("Abilities", null, abilityScoreScrollPane, null);
 
-    var skillsScrollPane = new JScrollPane(skillsTable);
-    skillsScrollPane.setFocusable(false);
-    tabbedPane.addTab("Skills", null, skillsScrollPane, null);
+    var config = Configuration.lastConfig();
 
+    var skillsPane = new SkillsPane(charactersheet.getSkills(),config.getSkillDetails());
+    skillsPane.setFocusable(false);
+    tabbedPane.addTab("Skills", null, skillsPane, null);
+
+    var recipesTable = new RecipesTable(charactersheet.getRecipes(), config.getRecipeDetails());
     var recipesScrollPane = new JScrollPane(recipesTable);
     recipesScrollPane.setFocusable(false);
     tabbedPane.addTab("Recipes", null, recipesScrollPane, null);
 
+    var descriptionPane = new DescriptionPane(charactersheet);
     tabbedPane.addTab("Description", null, descriptionPane, null);
+
     cons.gridx = 0;
     cons.gridy = 0;
     gridBag.setConstraints(tabbedPane, cons);

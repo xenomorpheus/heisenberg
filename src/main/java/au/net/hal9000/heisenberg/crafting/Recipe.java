@@ -336,7 +336,7 @@ public class Recipe {
 
     if (skills != null) {
       int index = 0;
-      string.append("SkillId(s):" + System.lineSeparator());
+      string.append("Skill(s):" + System.lineSeparator());
       for (Iterator<SkillId> itr = skills.iterator(); itr.hasNext(); ) {
         string.append("  " + index + ": " + itr.next() + System.lineSeparator());
         index++;

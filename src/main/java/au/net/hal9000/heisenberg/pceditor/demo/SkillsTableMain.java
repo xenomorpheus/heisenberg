@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.SkillsTable;
+import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
@@ -24,7 +25,6 @@ public class SkillsTableMain { // NO_UCD (unused code)
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
         () -> {
-          try {
             DemoEnvironment.setup();
             var frame = new JFrame();
 
@@ -36,15 +36,13 @@ public class SkillsTableMain { // NO_UCD (unused code)
             // This will center the JFrame in the middle of the screen
             frame.setLocationRelativeTo(null);
 
-            var skillsTable = new SkillsTable(DemoEnvironment.getCharacterSheet());
+            var skillDetails = Configuration.lastConfig().getSkillDetails();
+            var skillsTable = new SkillsTable(skillDetails.keySet(), skillDetails);
 
             // add to JFrame
             frame.add(skillsTable);
             frame.pack();
             frame.setVisible(true);
-          } catch (ConfigurationError e) {
-            e.printStackTrace();
-          }
         });
   }
 }

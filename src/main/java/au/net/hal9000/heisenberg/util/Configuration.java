@@ -60,7 +60,7 @@ public class Configuration {
 
   /** A map of Recipe objects. */
   @Getter
-  private Map<String, Recipe> recipes;
+  private Map<String, Recipe> recipeDetails;
 
   /** A map of SkillDetail objects. */
   @Getter
@@ -128,7 +128,7 @@ public class Configuration {
     itemClasses = xmlToItemClasses(root.getFirstChildElement("items"));
 
     // recipes
-    recipes = xmlToRecipes(root.getFirstChildElement("recipes"));
+    recipeDetails = xmlToRecipes(root.getFirstChildElement("recipes"));
 
     // character
     Element characterElement = root.getFirstChildElement("character");
@@ -575,7 +575,7 @@ public class Configuration {
    * @return the Recipe object
    */
   public Recipe getRecipe(String recipeId) {
-    return recipes.get(recipeId);
+    return recipeDetails.get(recipeId);
   }
 
   /**

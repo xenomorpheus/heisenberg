@@ -147,7 +147,7 @@ public class ConfigurationTest {
   /** Method testRecipes. */
   @Test
   public void testRecipes() {
-    Map<String, Recipe> recipes = config.getRecipes();
+    var recipes = config.getRecipeDetails();
     assertNotNull("ingredients !=null", recipes);
     assertTrue("requirement count", 2 <= recipes.size());
     for (Recipe recipe : recipes.values()) {
@@ -165,9 +165,9 @@ public class ConfigurationTest {
     assertEquals("Mana", 2, recipe.getMana());
     assertEquals("ActionPoints", 10, recipe.getActionPoints());
     assertEquals("Process", "createItem1", recipe.getProcess());
-    assertEquals("SkillId Count", 1, recipe.getSkillCount());
+    assertEquals("Skill Count", 1, recipe.getSkillCount());
     Set<SkillId> skills = recipe.getSkills();
-    assertTrue("SkillId 0 ID", skills.contains(new SkillId("testSkill1")));
+    assertTrue("Skill 0 ID", skills.contains(new SkillId("testSkill1")));
     assertEquals("Requirement count", 2, recipe.getRequirementCount());
     // Requirement 0
     Requirement requirement = recipe.getRequirement("Location");
@@ -206,7 +206,7 @@ public class ConfigurationTest {
   /** Method testFireGround1. */
   @Test
   public void testFireGround1() {
-    Map<String, Recipe> recipes = config.getRecipes();
+    var recipes = config.getRecipeDetails();
     Recipe recipe = recipes.get("testFireGround1");
     assertEquals("description", "small open ground fire", recipe.getDescription());
     assertEquals("process", "createItem1", recipe.getProcess());
@@ -228,7 +228,7 @@ public class ConfigurationTest {
   /** Method testSpell1. */
   @Test
   public void testSpell1() {
-    Map<String, Recipe> recipes = config.getRecipes();
+    var recipes = config.getRecipeDetails();
     Recipe recipe = recipes.get("testSpell1");
     assertEquals("description", "spell test 1", recipe.getDescription());
     assertEquals("process", "testSpell1", recipe.getProcess());

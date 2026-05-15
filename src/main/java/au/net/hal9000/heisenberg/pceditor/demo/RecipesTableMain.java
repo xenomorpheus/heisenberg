@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
 import au.net.hal9000.heisenberg.pceditor.RecipesTable;
-import au.net.hal9000.heisenberg.util.ConfigurationError;
+import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -25,26 +25,24 @@ public class RecipesTableMain { // NO_UCD (unused code)
     // Use the event dispatch thread for Swing components
     SwingUtilities.invokeLater(
         () -> {
-          try {
-            DemoEnvironment.setup();
-            var frame = new JFrame();
+          DemoEnvironment.setup();
+          var frame = new JFrame();
 
-            // make sure the program exits when the frame closes
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setTitle("Recipes Table");
-            frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+          // make sure the program exits when the frame closes
+          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+          frame.setTitle("Recipes Table");
+          frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-            var recipesTable = new RecipesTable(DemoEnvironment.getCharacterSheet());
+          var recipeDetails = Configuration.lastConfig().getRecipeDetails();
 
-            // add to JFrame
-            frame.add(recipesTable);
-            frame.pack();
-            // This will centre the JFrame in the middle of the screen
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-          } catch (ConfigurationError e) {
-            e.printStackTrace();
-          }
+          var recipesTable = new RecipesTable(recipeDetails.keySet(), recipeDetails);
+
+          // add to JFrame
+          frame.add(recipesTable);
+          frame.pack();
+          // This will centre the JFrame in the middle of the screen
+          frame.setLocationRelativeTo(null);
+          frame.setVisible(true);
         });
   }
 }

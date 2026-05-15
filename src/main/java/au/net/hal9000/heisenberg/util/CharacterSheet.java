@@ -83,7 +83,7 @@ public class CharacterSheet implements Serializable {
 
   // Skills
   /**
-   * The Entity object has learnt a new SkillId.
+   * The Character has learnt a new SkillId.
    *
    * @param skill The freshly learnt SkillId.
    */
@@ -94,11 +94,11 @@ public class CharacterSheet implements Serializable {
   // Recipe objects
 
   /**
-   * Add to the of Recipe objects this Entity object knows.
+   * Add to the set of Recipe IDs this Character knows.
    *
    * @param recipeId a Recipe id
    */
-  public void recipeAdd(String recipeId) {
+  public void recipesAdd(String recipeId) {
     recipes.add(recipeId);
   }
 

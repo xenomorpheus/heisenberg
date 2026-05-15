@@ -64,7 +64,7 @@ public class CookerTest {
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
     chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
     chef.getCharacterSheet().skillsAdd(new SkillId("testSkill1"));
-    chef.getCharacterSheet().recipeAdd("testItem1");
+    chef.getCharacterSheet().recipesAdd("testItem1");
 
     // Prepare to cook
     Cooker cooker = new Cooker(recipe);
@@ -116,7 +116,7 @@ public class CookerTest {
     chef.setContainer(world);
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
     chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
-    chef.getCharacterSheet().recipeAdd("testSpell1");
+    chef.getCharacterSheet().recipesAdd("testSpell1");
 
     // Prepare to cast a spell
     Cooker cooker = new Cooker(recipe);
@@ -147,7 +147,7 @@ public class CookerTest {
     List<Product> products = new ArrayList<Product>();
     products.add(new ProductItem("Biscuit"));
 
-    // SkillId(s)
+    // Skill(s)
     Set<SkillId> skills = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
       skills.add(new SkillId(REQUIRED_SKILLS[i]));

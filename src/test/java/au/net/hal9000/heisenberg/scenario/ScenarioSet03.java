@@ -61,7 +61,7 @@ public class ScenarioSet03 {
     pc.getPlayableState().setMana(recipe.getMana() + expectedMana);
     pc.getPlayableState().setActionPoints(recipe.getActionPoints() + expectedActionPoints);
     pc.getCharacterSheet().skillsAdd(new SkillId("testFireLighting"));
-    pc.getCharacterSheet().recipeAdd("testFireGround1");
+    pc.getCharacterSheet().recipesAdd("testFireGround1");
 
     // TODO set XYZ location
     location.add(pc);

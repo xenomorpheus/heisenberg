@@ -1,9 +1,10 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.util.AbilityScore;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Set;
+
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import lombok.NonNull;
@@ -17,9 +18,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
   private MyTableModel myTableModel;
 
   /** Constructor for AbilityScoresTable. */
-  public AbilityScoresTable(@NonNull CharacterSheet characterSheet) {
+  public AbilityScoresTable(@NonNull Set<AbilityScore> abilityScores) {
     super();
-    myTableModel = new MyTableModel(characterSheet);
+    myTableModel = new MyTableModel(abilityScores);
     setModel(myTableModel);
   }
 
@@ -44,15 +45,15 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     /** column names. */
     private static final String[] columnNames = {"Ability", "Total", "Adjustment"};
 
-    private CharacterSheet characterSheet = null;
+    private final Set<AbilityScore> abilityScores;
 
     /**
      * Constructor for MyTableModel.
      *
-     * @param characterSheet CharacterSheet
+     * @param abilityScores Set<AbilityScore>
      */
-    private MyTableModel(@NonNull CharacterSheet characterSheet) {
-      this.characterSheet = characterSheet;
+    private MyTableModel(@NonNull Set<AbilityScore> abilityScores) {
+      this.abilityScores = abilityScores;
     }
 
     public void fireTableStructureChanged() {
@@ -79,7 +80,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public int getRowCount() {
-      return characterSheet.getAbilityScores().size();
+      return abilityScores.size();
     }
 
     /**
@@ -101,7 +102,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
      */
     @Override
     public Object getValueAt(int row, int col) {
-      AbilityScore abilityScore = characterSheet.getAbilityScores().stream().skip(row).findFirst().orElse(null);
+      AbilityScore abilityScore = abilityScores.stream().skip(row).findFirst().orElse(null);
       if (abilityScore == null) {
         System.err.println("Error: AbilityScore is null at row " + row);
         return null;

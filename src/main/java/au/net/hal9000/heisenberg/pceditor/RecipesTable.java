@@ -1,14 +1,14 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
-import au.net.hal9000.heisenberg.util.Configuration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+
+import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 
 /** Recipe table. */
@@ -19,15 +19,12 @@ public class RecipesTable extends JTable {
   private static final long serialVersionUID = 1L;
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = {"Recipe", "Description"};
+  private static final String[] COLUMN_NAMES = { "Recipe", "Description" };
 
   /** Constructor. */
-  public RecipesTable(CharacterSheet characterSheet) {
+  public RecipesTable(@NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
     super();
-    if (characterSheet == null) {
-      throw new IllegalArgumentException("characterSheet is NULL");
-    }
-    setModel(new MyTableModel(characterSheet));
+    setModel(new MyTableModel(recipeIds, recipeDetails));
   }
 
   /** My table model. */
@@ -35,31 +32,20 @@ public class RecipesTable extends JTable {
     /** serial id. */
     private static final long serialVersionUID = 1L;
 
-    /** Field config. */
-    private Configuration config = Configuration.lastConfig();
-
     /** Field recipeIds. */
-    private List<String> recipeIds;
+    private final List<String> recipeIds;
 
-    /** Field recipes. */
-    private Map<String, Recipe> recipes;
+    /** Field recipeDetails. */
+    private final Map<String, Recipe> recipeDetails;
 
     /**
      * Constructor for MyTableModel.
      *
      * @param cs CharacterSheet
      */
-    private MyTableModel(CharacterSheet cs) {
-      recipes = config.getRecipes();
-      Set<String> pcRecipeIds = null;
-      if (cs == null) {
-        log.error("CharacterSheet is NULL");
-      } else {
-        pcRecipeIds = cs.getRecipes();
-      }
-      if (pcRecipeIds != null) {
-        recipeIds = new ArrayList<String>(pcRecipeIds);
-      }
+    private MyTableModel(@NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
+      this.recipeIds = recipeIds.stream().sorted().toList();
+      this.recipeDetails = recipeDetails;
     }
 
     /**
@@ -107,16 +93,14 @@ public class RecipesTable extends JTable {
      */
     public Object getValueAt(int row, int col) {
       String recipeId = recipeIds.get(row);
-      String result = null;
       if (0 == col) {
-        result = recipeId;
-      } else {
-        Recipe recipe = recipes.get(recipeId);
-        if (recipe != null) {
-          result = recipe.getDescription();
-        }
+        return recipeId;
       }
-      return result;
+      var recipe = recipeDetails.get(recipeId);
+      if (recipe == null) {
+        return null;
+      }
+      return recipe.getDescription();
     }
 
     /**
@@ -135,8 +119,8 @@ public class RecipesTable extends JTable {
      * Method setValueAt.
      *
      * @param value Object
-     * @param row int
-     * @param col int
+     * @param row   int
+     * @param col   int
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
      */
     public void setValueAt(Object value, int row, int col) {

@@ -215,7 +215,7 @@ public class RecipeTest {
     text.append("Process: " + PROCESS_NAME + System.lineSeparator());
     text.append("Mana:" + REQUIRED_MANA + System.lineSeparator());
     text.append("Action Point(s):" + REQUIRED_ACTION_POINTS + System.lineSeparator());
-    text.append("SkillId(s):" + System.lineSeparator());
+    text.append("Skill(s):" + System.lineSeparator());
     text.append("  0: Skill0" + System.lineSeparator());
     text.append("  1: Skill1" + System.lineSeparator());
     text.append("  2: Skill2" + System.lineSeparator());

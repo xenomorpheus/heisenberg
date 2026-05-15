@@ -39,7 +39,7 @@ public class AbilitiesScoresTableMain { // NO_UCD (unused code)
             frame.setTitle("Basic Panel");
             frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-            var abilityScoresTable = new AbilityScoresTable(DemoEnvironment.getCharacterSheet());
+            var abilityScoresTable = new AbilityScoresTable(DemoEnvironment.getCharacterSheet().getAbilityScores());
 
             // add to JFrame
             frame.add(abilityScoresTable);

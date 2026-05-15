@@ -3,9 +3,10 @@ package au.net.hal9000.heisenberg.pceditor;
 // Imports
 import static org.junit.Assert.assertNotNull;
 
-import au.net.hal9000.heisenberg.util.ConfigurationError;
-import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Test;
+
+import au.net.hal9000.heisenberg.util.Configuration;
+import au.net.hal9000.heisenberg.util.ConfigurationError;
 
 /** */
 public class SkillsTableTest {
@@ -17,8 +18,10 @@ public class SkillsTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
+    var config = Configuration.lastConfig();
+    var skillDetails = config.getSkillDetails();
 
-    SkillsTable skillsTable = new SkillsTable(DemoEnvironment.getCharacterSheet());
+    SkillsTable skillsTable = new SkillsTable(skillDetails.keySet(), skillDetails);
     assertNotNull("not Null", skillsTable);
   }
 }

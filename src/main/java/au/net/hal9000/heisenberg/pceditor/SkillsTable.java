@@ -2,44 +2,36 @@ package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
-import au.net.hal9000.heisenberg.util.CharacterSheet;
-import au.net.hal9000.heisenberg.util.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import lombok.NonNull;
 
 /** Skills table. */
 public class SkillsTable extends JTable {
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = {"SkillId", "Description"};
+  private static final String[] COLUMN_NAMES = { "SkillId", "Description" };
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
 
   /** Constructor for SkillsTable. */
-  public SkillsTable(CharacterSheet characterSheet) {
+  public SkillsTable(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
     super();
-    if (characterSheet == null) {
-      throw new IllegalArgumentException("characterSheet is NULL");
-    }
-    setModel(new MyTableModel(characterSheet));
+    setModel(new MyTableModel(skills, skillDetails));
   }
-
 
   /** My table model. */
   private class MyTableModel extends AbstractTableModel {
     /** serial id. */
     private static final long serialVersionUID = 1L;
 
-    /** Field config. */
-    private Configuration config = Configuration.lastConfig();
-
-    /** Field orderedSkills. */
-    private List<SkillId> orderedSkills;
+    /** Field skills. */
+    private List<SkillId> skills;
 
     /** Field skillDetails. */
     private Map<SkillId, SkillDetail> skillDetails;
@@ -47,16 +39,15 @@ public class SkillsTable extends JTable {
     /**
      * Constructor for MyTableModel.
      *
-     * @param cs CharacterSheet
+     * @param skills Set of SkillIds
      */
-    private MyTableModel(final CharacterSheet cs) {
-      Set<SkillId> pcSkills = cs.getSkills();
-      if (pcSkills == null) {
-        orderedSkills = new ArrayList<SkillId>();
-      } else {
-        orderedSkills = new ArrayList<SkillId>(pcSkills);
-      }
-      skillDetails = config.getSkillDetails();
+    private MyTableModel(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
+
+      List<SkillId> sortedIds = new ArrayList<SkillId>(skills);
+      sortedIds.sort((a, b) -> a.getId().compareTo(b.getId()));
+      this.skills = sortedIds;
+
+      this.skillDetails = skillDetails;
     }
 
     /**
@@ -72,13 +63,13 @@ public class SkillsTable extends JTable {
     }
 
     /**
-     * Method getRowCount.
+     * Method getRowCount
      *
      * @return int
      * @see javax.swing.table.TableModel#getRowCount()
      */
     public int getRowCount() {
-      return orderedSkills.size();
+      return skills.size();
     }
 
     /**
@@ -100,18 +91,16 @@ public class SkillsTable extends JTable {
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
     public Object getValueAt(int row, int col) {
-      SkillId skillCell = orderedSkills.get(row);
-      SkillId skill = new SkillId(skillCell.toString());
-      String result = null;
+      var skillCell = skills.get(row);
+      var skill = new SkillId(skillCell.toString());
       if (0 == col) {
-        result = skill.getId();
-      } else {
-        SkillDetail skillDetail = skillDetails.get(skill);
-        if (skillDetail != null) {
-          result = skillDetail.getDescription();
-        }
+        return skill.getId();
       }
-      return result;
+      var skillDetail = skillDetails.get(skill);
+      if (skillDetail == null) {
+        return null;
+      }
+      return skillDetail.getDescription();
     }
 
     /**
@@ -131,8 +120,8 @@ public class SkillsTable extends JTable {
      * Method setValueAt.
      *
      * @param value Object
-     * @param row int
-     * @param col int
+     * @param row   int
+     * @param col   int
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
      */
     @Override
