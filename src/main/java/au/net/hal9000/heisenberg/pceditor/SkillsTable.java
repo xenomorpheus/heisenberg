@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class SkillsTable extends JTable {
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = {"Skill", "Description"};
+  private static final String[] COLUMN_NAMES = {"SkillId", "Description"};
 
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
@@ -39,10 +39,10 @@ public class SkillsTable extends JTable {
     private Configuration config = Configuration.lastConfig();
 
     /** Field orderedSkills. */
-    private List<Skill> orderedSkills;
+    private List<SkillId> orderedSkills;
 
     /** Field skillDetails. */
-    private Map<Skill, SkillDetail> skillDetails;
+    private Map<SkillId, SkillDetail> skillDetails;
 
     /**
      * Constructor for MyTableModel.
@@ -50,11 +50,11 @@ public class SkillsTable extends JTable {
      * @param cs CharacterSheet
      */
     private MyTableModel(final CharacterSheet cs) {
-      Set<Skill> pcSkills = cs.getSkills();
+      Set<SkillId> pcSkills = cs.getSkills();
       if (pcSkills == null) {
-        orderedSkills = new ArrayList<Skill>();
+        orderedSkills = new ArrayList<SkillId>();
       } else {
-        orderedSkills = new ArrayList<Skill>(pcSkills);
+        orderedSkills = new ArrayList<SkillId>(pcSkills);
       }
       skillDetails = config.getSkillDetails();
     }
@@ -100,8 +100,8 @@ public class SkillsTable extends JTable {
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
     public Object getValueAt(int row, int col) {
-      Skill skillCell = orderedSkills.get(row);
-      Skill skill = new Skill(skillCell.toString());
+      SkillId skillCell = orderedSkills.get(row);
+      SkillId skill = new SkillId(skillCell.toString());
       String result = null;
       if (0 == col) {
         result = skill.getId();

@@ -5,12 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /** */
-public class SkillTest {
+public class SkillIdTest {
 
   /** Method testSkillString. */
   @Test
   public void testSkillString() {
-    Skill skill = new Skill("theId");
+    SkillId skill = new SkillId("theId");
     assertEquals("id", "theId", skill.getId());
   }
 }

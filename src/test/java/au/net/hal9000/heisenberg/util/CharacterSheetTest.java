@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -107,8 +107,8 @@ public class CharacterSheetTest {
   /** Test skills. */
   @Test
   public void testSkills() {
-    final Set<Skill> expectedValue =
-        Stream.of(new Skill("testSkill1"), new Skill("testSkill2"))
+    final Set<SkillId> expectedValue =
+        Stream.of(new SkillId("testSkill1"), new SkillId("testSkill2"))
             .collect(Collectors.toCollection(() -> new TreeSet<>()));
     CharacterSheet characterSheet = new CharacterSheet();
     assertEquals(0, characterSheet.getSkills().size());

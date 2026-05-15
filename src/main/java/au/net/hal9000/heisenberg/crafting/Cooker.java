@@ -4,7 +4,7 @@ import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemContainer;
 import au.net.hal9000.heisenberg.item.being.Being;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -167,10 +167,10 @@ public final class Cooker {
     }
 
     // skills
-    final Set<Skill> required = recipe.getSkills();
+    final Set<SkillId> required = recipe.getSkills();
     if ((required != null) && (required.size() > 0)) {
       if (chef instanceof Being) {
-        final Set<Skill> chefSkills = chef.getCharacterSheet().getSkills();
+        final Set<SkillId> chefSkills = chef.getCharacterSheet().getSkills();
         if ((chefSkills == null) || (!chefSkills.containsAll(required))) {
           string.append("Missing Skills" + System.lineSeparator());
         }

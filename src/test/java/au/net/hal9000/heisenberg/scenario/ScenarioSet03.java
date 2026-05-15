@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.being.Being;
 import au.net.hal9000.heisenberg.item.being.Human;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import org.junit.Before;
@@ -60,7 +60,7 @@ public class ScenarioSet03 {
     final int expectedActionPoints = 2;
     pc.getPlayableState().setMana(recipe.getMana() + expectedMana);
     pc.getPlayableState().setActionPoints(recipe.getActionPoints() + expectedActionPoints);
-    pc.getCharacterSheet().skillsAdd(new Skill("testFireLighting"));
+    pc.getCharacterSheet().skillsAdd(new SkillId("testFireLighting"));
     pc.getCharacterSheet().recipeAdd("testFireGround1");
 
     // TODO set XYZ location

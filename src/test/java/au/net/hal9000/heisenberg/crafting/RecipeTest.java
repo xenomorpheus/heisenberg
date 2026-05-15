@@ -2,7 +2,7 @@ package au.net.hal9000.heisenberg.crafting;
 
 import static org.junit.Assert.assertEquals;
 
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,9 +62,9 @@ public class RecipeTest {
     products.add(new ProductItem("FireGroundSmall"));
 
     // Skills
-    Set<Skill> skills = new TreeSet<Skill>();
+    Set<SkillId> skills = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-      skills.add(new Skill(REQUIRED_SKILLS[i]));
+      skills.add(new SkillId(REQUIRED_SKILLS[i]));
     }
 
     // Build a recipe with the list of required ingredients
@@ -215,7 +215,7 @@ public class RecipeTest {
     text.append("Process: " + PROCESS_NAME + System.lineSeparator());
     text.append("Mana:" + REQUIRED_MANA + System.lineSeparator());
     text.append("Action Point(s):" + REQUIRED_ACTION_POINTS + System.lineSeparator());
-    text.append("Skill(s):" + System.lineSeparator());
+    text.append("SkillId(s):" + System.lineSeparator());
     text.append("  0: Skill0" + System.lineSeparator());
     text.append("  1: Skill1" + System.lineSeparator());
     text.append("  2: Skill2" + System.lineSeparator());

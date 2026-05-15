@@ -10,14 +10,14 @@ package au.net.hal9000.heisenberg.units;
  *
  * <p>Developer Notes:Lets try making Skills immutable and see how it goes
  */
-public class Skill extends Keyword {
+public class SkillId extends Keyword {
 
   /**
-   * Constructor for Skill.
+   * Constructor for SkillId.
    *
    * @param name String
    */
-  public Skill(String name) {
+  public SkillId(String name) {
     super(name);
   }
 }

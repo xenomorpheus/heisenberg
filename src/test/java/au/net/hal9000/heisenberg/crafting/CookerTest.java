@@ -13,7 +13,7 @@ import au.net.hal9000.heisenberg.item.Wood;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.being.Being;
 import au.net.hal9000.heisenberg.item.being.Human;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class CookerTest {
     chef.setContainer(world);
     chef.getPlayableState().setMana(recipe.getMana() + manaRemaining);
     chef.getPlayableState().setActionPoints(recipe.getActionPoints() + actionPointsRemaining);
-    chef.getCharacterSheet().skillsAdd(new Skill("testSkill1"));
+    chef.getCharacterSheet().skillsAdd(new SkillId("testSkill1"));
     chef.getCharacterSheet().recipeAdd("testItem1");
 
     // Prepare to cook
@@ -147,10 +147,10 @@ public class CookerTest {
     List<Product> products = new ArrayList<Product>();
     products.add(new ProductItem("Biscuit"));
 
-    // Skill(s)
-    Set<Skill> skills = new TreeSet<Skill>();
+    // SkillId(s)
+    Set<SkillId> skills = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-      skills.add(new Skill(REQUIRED_SKILLS[i]));
+      skills.add(new SkillId(REQUIRED_SKILLS[i]));
     }
 
     // Build a recipe with the list of required ingredients
@@ -576,7 +576,7 @@ public class CookerTest {
 
   /**
    * ID: test-skills-1. <br>
-   * Desc: Skill test, just enough <br>
+   * Desc: SkillId test, just enough <br>
    * Equal skills to requirements <br>
    * overall: true <br>
    * output: no other change <br>
@@ -585,17 +585,17 @@ public class CookerTest {
   public void testCookSkills1() {
 
     // Skills
-    Set<Skill> skillsRequired = new TreeSet<Skill>();
-    Set<Skill> skillsGot = new TreeSet<Skill>();
+    Set<SkillId> skillsRequired = new TreeSet<SkillId>();
+    Set<SkillId> skillsGot = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-      skillsRequired.add(new Skill(REQUIRED_SKILLS[i]));
-      skillsGot.add(new Skill(REQUIRED_SKILLS[i]));
+      skillsRequired.add(new SkillId(REQUIRED_SKILLS[i]));
+      skillsGot.add(new SkillId(REQUIRED_SKILLS[i]));
     }
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =
         new Recipe(
-            "test-skills-1", "Skill test, just enough.", null, 0, 0, null, skillsRequired, null);
+            "test-skills-1", "SkillId test, just enough.", null, 0, 0, null, skillsRequired, null);
 
     // Set the chef
     final Being chef = new Human();
@@ -625,13 +625,13 @@ public class CookerTest {
   public void testCookSkills2() {
 
     // Skills
-    Set<Skill> skillsRequired = new TreeSet<Skill>();
-    Set<Skill> skillsGot = new TreeSet<Skill>();
+    Set<SkillId> skillsRequired = new TreeSet<SkillId>();
+    Set<SkillId> skillsGot = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-      skillsRequired.add(new Skill(REQUIRED_SKILLS[i]));
-      skillsGot.add(new Skill(REQUIRED_SKILLS[i]));
+      skillsRequired.add(new SkillId(REQUIRED_SKILLS[i]));
+      skillsGot.add(new SkillId(REQUIRED_SKILLS[i]));
     }
-    skillsRequired.add(new Skill("MissingSkill"));
+    skillsRequired.add(new SkillId("MissingSkill"));
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =
@@ -671,13 +671,13 @@ public class CookerTest {
   public void testCookSkills3() {
 
     // Skills
-    Set<Skill> skillsRequired = new TreeSet<Skill>();
-    Set<Skill> skillsGot = new TreeSet<Skill>();
+    Set<SkillId> skillsRequired = new TreeSet<SkillId>();
+    Set<SkillId> skillsGot = new TreeSet<SkillId>();
     for (int i = REQUIRED_SKILLS.length - 1; i >= 0; i--) {
-      skillsRequired.add(new Skill(REQUIRED_SKILLS[i]));
-      skillsGot.add(new Skill(REQUIRED_SKILLS[i]));
+      skillsRequired.add(new SkillId(REQUIRED_SKILLS[i]));
+      skillsGot.add(new SkillId(REQUIRED_SKILLS[i]));
     }
-    skillsGot.add(new Skill("MissingSkill"));
+    skillsGot.add(new SkillId("MissingSkill"));
 
     // Build a recipe with the list of required ingredients
     Recipe recipe =

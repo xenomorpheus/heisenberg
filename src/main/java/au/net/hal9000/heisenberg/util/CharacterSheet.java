@@ -1,6 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -42,7 +42,7 @@ public class CharacterSheet implements Serializable {
   private String size = null;
 
   @Getter @Setter @NonNull
-  private Set<Skill> skills = new TreeSet<>();
+  private Set<SkillId> skills = new TreeSet<>();
 
   @Getter @Setter @NonNull
   private Set<String> recipes = new TreeSet<>();
@@ -83,11 +83,11 @@ public class CharacterSheet implements Serializable {
 
   // Skills
   /**
-   * The Entity object has learnt a new Skill.
+   * The Entity object has learnt a new SkillId.
    *
-   * @param skill The freshly learnt Skill.
+   * @param skill The freshly learnt SkillId.
    */
-  public final void skillsAdd(final Skill skill) {
+  public final void skillsAdd(final SkillId skill) {
     skills.add(skill);
   }
 
@@ -169,10 +169,10 @@ public class CharacterSheet implements Serializable {
     if (size != null) {
       text.append("Size: " ).append( size ).append( ls);
     }
-    final Set<Skill> skills = getSkills();
+    final Set<SkillId> skills = getSkills();
     if (null != skills && !skills.isEmpty()) {
       text.append("Skills:" ).append( ls);
-      for (Skill skill : skills) {
+      for (SkillId skill : skills) {
         text.append("  " ).append( skill ).append( ls);
       }
     }

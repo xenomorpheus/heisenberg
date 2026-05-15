@@ -6,7 +6,7 @@ import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 
 import java.io.File;
@@ -64,7 +64,7 @@ public class Configuration {
 
   /** A map of SkillDetail objects. */
   @Getter
-  private Map<Skill, SkillDetail> skillDetails;
+  private Map<SkillId, SkillDetail> skillDetails;
 
   /** A list of sizes. */
   // TODO refactor so caller can't modify sizes
@@ -228,16 +228,16 @@ public class Configuration {
   }
 
   /**
-   * Read in an XML list of Skill IDs and produce an ingredient object.<br>
+   * Read in an XML list of SkillId IDs and produce an ingredient object.<br>
    * <&lt;> skill id="fire lighting" /<&gt;>
    *
-   * @param entries XML list of Skill IDs
-   * @return Set of Skill Objects.
+   * @param entries XML list of SkillId IDs
+   * @return Set of SkillId Objects.
    */
-  private static Set<Skill> xmlToSkills(Elements entries) {
-    Set<Skill> skills = new TreeSet<>();
+  private static Set<SkillId> xmlToSkills(Elements entries) {
+    Set<SkillId> skills = new TreeSet<>();
     for (var entry : entries) {
-      skills.add(new Skill(entry.getAttributeValue("id")));
+      skills.add(new SkillId(entry.getAttributeValue("id")));
     }
     return skills;
   }
@@ -392,7 +392,7 @@ public class Configuration {
     }
 
     // Skills
-    Set<Skill> skills = new TreeSet<Skill>();
+    Set<SkillId> skills = new TreeSet<SkillId>();
     Elements skillElements = recipeElement.getChildElements("skill");
     skills.addAll(xmlToSkills(skillElements));
 
@@ -431,12 +431,12 @@ public class Configuration {
    * @param element xml element.
    * @return Map of SkillDetail objects.
    */
-  private static Map<Skill, SkillDetail> xmlToSkillDetails(Element element) {
-    Map<Skill, SkillDetail> skillDetails = new TreeMap<>();
+  private static Map<SkillId, SkillDetail> xmlToSkillDetails(Element element) {
+    Map<SkillId, SkillDetail> skillDetails = new TreeMap<>();
     for (var entry : element.getChildElements("skill")) {
       SkillDetail pw =
           new SkillDetail(entry.getAttributeValue("id"), entry.getAttributeValue("description"));
-      skillDetails.put(new Skill(entry.getAttributeValue("id")), pw);
+      skillDetails.put(new SkillId(entry.getAttributeValue("id")), pw);
     }
     return skillDetails;
   }

@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.crafting;
 
 import au.net.hal9000.heisenberg.item.being.Being;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -130,8 +130,8 @@ public class Recipe {
   /** What the recipe produces. */
   private final List<Product> products;
 
-  /** The {@link Skill} objects required. */
-  private final Set<Skill> skills;
+  /** The {@link SkillId} objects required. */
+  private final Set<SkillId> skills;
 
   /**
    * {@summary Recipe constructor. }
@@ -142,7 +142,7 @@ public class Recipe {
    * @param mana amount of mana required
    * @param actionPoints number of actionPoints required.
    * @param requirements the Requirement list.
-   * @param skills the Skill objects required
+   * @param skills the SkillId objects required
    * @param products the results that will be produced.
    */
   public Recipe(
@@ -152,7 +152,7 @@ public class Recipe {
       final int mana,
       final int actionPoints,
       final Map<String, Requirement> requirements,
-      final Set<Skill> skills,
+      final Set<SkillId> skills,
       final List<Product> products) {
     super();
     this.id = id;
@@ -282,20 +282,20 @@ public class Recipe {
 
   // skills
   /**
-   * Get the count of Skill objects.
+   * Get the count of SkillId objects.
    *
-   * @return a count of Skill objects
+   * @return a count of SkillId objects
    */
   public final int getSkillCount() {
     return skills.size();
   }
 
   /**
-   * Get the Skill objects.
+   * Get the SkillId objects.
    *
-   * @return a set of Skill objects
+   * @return a set of SkillId objects
    */
-  public final Set<Skill> getSkills() {
+  public final Set<SkillId> getSkills() {
     return skills;
   }
 
@@ -336,8 +336,8 @@ public class Recipe {
 
     if (skills != null) {
       int index = 0;
-      string.append("Skill(s):" + System.lineSeparator());
-      for (Iterator<Skill> itr = skills.iterator(); itr.hasNext(); ) {
+      string.append("SkillId(s):" + System.lineSeparator());
+      for (Iterator<SkillId> itr = skills.iterator(); itr.hasNext(); ) {
         string.append("  " + index + ": " + itr.next() + System.lineSeparator());
         index++;
       }

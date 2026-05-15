@@ -11,7 +11,7 @@ import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.units.Skill;
+import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 import java.util.List;
@@ -101,7 +101,7 @@ public class ConfigurationTest {
   @Test
   public void testSkills() {
     var skillDetails = config.getSkillDetails();
-    SkillDetail fireLighting = skillDetails.get(new Skill("testFireLighting"));
+    SkillDetail fireLighting = skillDetails.get(new SkillId("testFireLighting"));
     assertEquals("FireLighting-id", "testFireLighting", fireLighting.getId());
     assertEquals(
         "FireLighting-Description",
@@ -165,9 +165,9 @@ public class ConfigurationTest {
     assertEquals("Mana", 2, recipe.getMana());
     assertEquals("ActionPoints", 10, recipe.getActionPoints());
     assertEquals("Process", "createItem1", recipe.getProcess());
-    assertEquals("Skill Count", 1, recipe.getSkillCount());
-    Set<Skill> skills = recipe.getSkills();
-    assertTrue("Skill 0 ID", skills.contains(new Skill("testSkill1")));
+    assertEquals("SkillId Count", 1, recipe.getSkillCount());
+    Set<SkillId> skills = recipe.getSkills();
+    assertTrue("SkillId 0 ID", skills.contains(new SkillId("testSkill1")));
     assertEquals("Requirement count", 2, recipe.getRequirementCount());
     // Requirement 0
     Requirement requirement = recipe.getRequirement("Location");
@@ -215,7 +215,7 @@ public class ConfigurationTest {
     assertEquals("requirement count", 3, recipe.getRequirementCount());
     // TODO requirement
     assertEquals("skill count", 1, recipe.getSkillCount());
-    assertTrue("skill 0", recipe.getSkills().contains(new Skill("testFireLighting")));
+    assertTrue("skill 0", recipe.getSkills().contains(new SkillId("testFireLighting")));
     assertEquals("product count", 1, recipe.getProductCount());
     Product product = recipe.getProduct(0);
     assertNotNull("product 0 not null", product);
