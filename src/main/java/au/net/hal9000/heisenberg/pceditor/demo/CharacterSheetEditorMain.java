@@ -16,19 +16,17 @@ public class CharacterSheetEditorMain { // NO_UCD (unused code)
    */
   public static void main(String[] args) {
 
-    SwingUtilities.invokeLater(
-        () -> {
-          // try {
-            DemoEnvironment.setup();
-            // var cs = DemoEnvironment.getCharacterSheet();
-            var cs = new CharacterSheet();
-            var editor = new CharacterSheetEditor( cs);
-            var frame = new JFrame();
-            frame.add(editor);
-            frame.pack();
-            frame.setLocationRelativeTo(null); // Centre
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        });
+    SwingUtilities.invokeLater(() -> {
+      DemoEnvironment.setup();
+      // var cs = DemoEnvironment.getCharacterSheet();
+      var cs = new CharacterSheet();
+      var editor = new CharacterSheetEditor(cs);
+      var frame = new JFrame();
+      frame.add(editor);
+      frame.pack();
+      frame.setLocationRelativeTo(null); // Centre
+      frame.setVisible(true);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    });
   }
 }

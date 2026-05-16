@@ -47,7 +47,7 @@ public class CharacterSheetEditor extends JPanel {
     // Tabbed Pane
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-    var     basicPanel = new BasicPanel(charactersheet);
+    var basicPanel = new BasicPanel(charactersheet);
     tabbedPane.addTab("Basics", null, basicPanel, null);
 
     var abilityScoresTable = new AbilityScoresTable(charactersheet.getAbilityScores());
@@ -57,7 +57,7 @@ public class CharacterSheetEditor extends JPanel {
 
     var config = Configuration.lastConfig();
 
-    var skillsPane = new SkillsPane(charactersheet.getSkills(),config.getSkillDetails());
+    var skillsPane = new SkillsPane(charactersheet.getSkills(), config.getSkillDetails());
     skillsPane.setFocusable(false);
     tabbedPane.addTab("Skills", null, skillsPane, null);
 
@@ -95,7 +95,7 @@ public class CharacterSheetEditor extends JPanel {
     // Button(s)
     JPanel butPanel = new JPanel();
 
-    JButton closeButton = new JButton("Close");
+    JButton closeButton = new JButton("Close Character Sheet Editor");
     // Action inside panel to close the owning JFrame
     closeButton.addActionListener(e -> {
       var window = SwingUtilities.getWindowAncestor(butPanel);
