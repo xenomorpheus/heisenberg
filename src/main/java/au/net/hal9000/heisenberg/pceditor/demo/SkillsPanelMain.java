@@ -4,8 +4,6 @@ import au.net.hal9000.heisenberg.pceditor.SkillsPanel;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
 
-import java.util.stream.Collectors;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 

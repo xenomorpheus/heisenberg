@@ -9,8 +9,10 @@ import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import lombok.NonNull;
+import lombok.extern.log4j.Log4j2;
 
 /** Skills table. */
+@Log4j2
 public class SkillsTable extends JTable {
 
   /** Field serialVersionUID. (value is 1) */
@@ -30,7 +32,7 @@ public class SkillsTable extends JTable {
   }
 
   public void updateSkills() {
-    model.fireTableDataChanged();
+    model.updateSkills();
   }
 
   /** My table model. */
@@ -39,10 +41,13 @@ public class SkillsTable extends JTable {
     private static final long serialVersionUID = 1L;
 
     /** Field skills. */
-    private List<SkillId> skills;
+    private final Set<SkillId> skills;
 
     /** Field skillDetails. */
-    private Map<SkillId, SkillDetail> skillDetails;
+    private final Map<SkillId, SkillDetail> skillDetails;
+
+    /** Field skills. */
+    private List<SkillId> skillsSorted;
 
     /**
      * Constructor for MyTableModel.
@@ -50,12 +55,19 @@ public class SkillsTable extends JTable {
      * @param skills Set of SkillIds
      */
     private MyTableModel(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
-
-      List<SkillId> sortedIds = new ArrayList<SkillId>(skills);
-      sortedIds.sort((a, b) -> a.getId().compareTo(b.getId()));
-      this.skills = sortedIds;
-
+      this.skills = skills;
       this.skillDetails = skillDetails;
+      sortSkills();
+    }
+
+    public void updateSkills() {
+      sortSkills();
+      fireTableDataChanged();
+    }
+
+    void sortSkills() {
+      skillsSorted = new ArrayList<>(skills);
+      skillsSorted.sort((s1, s2) -> s1.getId().compareTo(s2.getId()));
     }
 
     /**
@@ -77,6 +89,7 @@ public class SkillsTable extends JTable {
      * @see javax.swing.table.TableModel#getRowCount()
      */
     public int getRowCount() {
+      log.info("Getting row count: " + skills.size());
       return skills.size();
     }
 
@@ -99,7 +112,7 @@ public class SkillsTable extends JTable {
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
     public Object getValueAt(int row, int col) {
-      var skillCell = skills.get(row);
+      var skillCell = skillsSorted.get(row);
       var skill = new SkillId(skillCell.toString());
       if (0 == col) {
         return skill.getId();

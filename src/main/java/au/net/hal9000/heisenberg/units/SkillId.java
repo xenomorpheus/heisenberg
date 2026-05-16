@@ -18,7 +18,24 @@ public class SkillId extends Keyword {
    *
    * @param name String
    */
-  public SkillId(String name) {
-    super(name);
+  public SkillId(String id) {
+    super(id);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    SkillId skillId = (SkillId) obj;
+    return getId().equals(skillId.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getId().hashCode();
   }
 }

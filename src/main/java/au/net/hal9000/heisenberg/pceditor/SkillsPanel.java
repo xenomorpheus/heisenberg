@@ -57,10 +57,8 @@ public class SkillsPanel extends JPanel {
       if (selectedSkill != null) {
         if (skillIds.contains(selectedSkill)) {
           skillIds.remove(selectedSkill);
-          log.info("Removed skill: " + selectedSkill);
         } else {
           skillIds.add(selectedSkill);
-          log.info("Added skill: " + selectedSkill);
         }
         skillsTable.updateSkills();
       }
@@ -70,8 +68,7 @@ public class SkillsPanel extends JPanel {
     skillsTable.addFocusListener(new FocusAdapter() {
       @Override
       public void focusGained(FocusEvent e) {
-        log.info("TODO Skills table got focus, updating text");
-        // skillsTable.setText(characterSheet.detailedSkills());
+        skillsTable.updateSkills();
       }
     });
   }
