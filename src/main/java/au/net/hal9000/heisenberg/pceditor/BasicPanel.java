@@ -30,38 +30,38 @@ public class BasicPanel extends JPanel {
 
   // Misc
   /** Field characterSheet. */
-  private CharacterSheet characterSheet;
+  private final CharacterSheet characterSheet;
 
   /** Field config. */
-  private Configuration config = Configuration.lastConfig();
+  private final Configuration config = Configuration.lastConfig();
 
   // Fields
   // Row 0
   /** Field nameTextField. */
-  private JTextField nameTextField;
+  private final JTextField nameTextField = new JTextField();
 
   /** Field classComboBox. */
-  private JComboBox<PcClass> classComboBox;
+  private final JComboBox<PcClass> classComboBox = new JComboBox<>();
 
   // Row 1
   /** Field descriptionTextField. */
-  private JTextField descriptionTextField;
+  private final JTextField descriptionTextField = new JTextField();
 
   /** Field speciesComboBox. */
-  private JComboBox<String> speciesComboBox;
+  private final JComboBox<String> speciesComboBox = new JComboBox<>();
 
   // Row 2
   /** Field comTextField. */
-  private JTextField comTextField;
+  private final JTextField comTextField = new JTextField();
 
   /** Field magTextField. */
-  private JTextField magTextField;
+  private final JTextField magTextField = new JTextField();
 
   /** Field steTextField. */
-  private JTextField steTextField;
+  private final JTextField steTextField = new JTextField();
 
   /** Field genTextField. */
-  private JTextField genTextField;
+  private final JTextField genTextField = new JTextField();
 
   // Row 3
   /** Field levelSpinner. */
@@ -71,20 +71,20 @@ public class BasicPanel extends JPanel {
   private SpinnerModel levelModel;
 
   /** Field actionPointsTextField. */
-  private JTextField actionPointsTextField;
+  private final JTextField actionPointsTextField = new JTextField();
 
   /** Field healthTextField. */
-  private JTextField healthTextField;
+  private final JTextField healthTextField = new JTextField();
 
   /** Field manaTextField. */
-  private JTextField manaTextField;
+  private final JTextField manaTextField = new JTextField();
 
   // Row 4
   /** Field sizeComboBox. */
-  private JComboBox<String> sizeComboBox;
+  private final JComboBox<String> sizeComboBox = new JComboBox<>();
 
   /** Field genderComboBox. */
-  private JComboBox<String> genderComboBox;
+  private final JComboBox<String> genderComboBox = new JComboBox<>();
 
   /** Constructor for BasicPanel. */
   public BasicPanel(CharacterSheet characterSheet) {
@@ -168,7 +168,6 @@ public class BasicPanel extends JPanel {
     add(nameLbl);
     pos += cons.gridwidth;
 
-    nameTextField = new JTextField();
     nameTextField.setColumns(10);
     nameTextField.putClientProperty("id", "name");
     nameTextField.setToolTipText("Character name");
@@ -189,16 +188,15 @@ public class BasicPanel extends JPanel {
     add(classLbl);
     pos += cons.gridwidth;
 
-    classComboBox = new JComboBox<>();
     Collection<PcClass> pcClassesItr = config.getPcClasses().values();
     for (var pcClass : pcClassesItr) {
       classComboBox.addItem(pcClass);
     }
     var pcClass = characterSheet.getPcClass();
     if (pcClass == null) {
-        classComboBox.setSelectedIndex(-1);
+      classComboBox.setSelectedIndex(-1);
     } else {
-        classComboBox.setSelectedItem(pcClass);
+      classComboBox.setSelectedItem(pcClass);
     }
 
     cons.gridx = pos;
@@ -230,7 +228,6 @@ public class BasicPanel extends JPanel {
     add(descriptionLbl);
     pos += cons.gridwidth;
 
-    descriptionTextField = new JTextField();
     descriptionTextField.setColumns(10);
     descriptionTextField.putClientProperty("id", "description");
     descriptionTextField.setToolTipText("Character description");
@@ -251,16 +248,15 @@ public class BasicPanel extends JPanel {
     add(speciesLbl);
     pos += cons.gridwidth;
 
-    speciesComboBox = new JComboBox<>();
     Collection<String> speciesItr = config.getSpecies();
     for (var name : speciesItr) {
       speciesComboBox.addItem(name);
     }
     var species = characterSheet.getSpecies();
     if (species == null) {
-        speciesComboBox.setSelectedIndex(-1);
+      speciesComboBox.setSelectedIndex(-1);
     } else {
-        speciesComboBox.setSelectedItem(species);
+      speciesComboBox.setSelectedItem(species);
     }
 
     cons.gridx = pos;
@@ -292,7 +288,6 @@ public class BasicPanel extends JPanel {
     add(comLbl);
     pos += cons.gridwidth;
 
-    comTextField = new JTextField();
     comTextField.setColumns(3);
     comTextField.setToolTipText("Combat dice");
     comTextField.setEditable(false);
@@ -310,7 +305,6 @@ public class BasicPanel extends JPanel {
     add(magLbl);
     pos += cons.gridwidth;
 
-    magTextField = new JTextField();
     magTextField.setColumns(3);
     magTextField.setToolTipText("Magic dice");
     magTextField.setEditable(false);
@@ -328,7 +322,6 @@ public class BasicPanel extends JPanel {
     add(steLbl);
     pos += cons.gridwidth;
 
-    steTextField = new JTextField();
     steTextField.setColumns(3);
     steTextField.setToolTipText("Stealth dice");
     steTextField.setEditable(false);
@@ -346,7 +339,6 @@ public class BasicPanel extends JPanel {
     add(genLbl);
     pos += cons.gridwidth;
 
-    genTextField = new JTextField();
     genTextField.setColumns(3);
     genTextField.setToolTipText("General dice");
     genTextField.setEditable(false);
@@ -397,7 +389,6 @@ public class BasicPanel extends JPanel {
     add(apLbl);
     pos += cons.gridwidth;
 
-    actionPointsTextField = new JTextField();
     actionPointsTextField.setColumns(3);
     actionPointsTextField.setEditable(false);
     cons.gridx = pos;
@@ -414,7 +405,6 @@ public class BasicPanel extends JPanel {
     add(healthLbl);
     pos += cons.gridwidth;
 
-    healthTextField = new JTextField();
     healthTextField.setColumns(3);
     healthTextField.setEditable(false);
     cons.gridx = pos;
@@ -431,7 +421,6 @@ public class BasicPanel extends JPanel {
     add(manaLbl);
     pos += cons.gridwidth;
 
-    manaTextField = new JTextField();
     manaTextField.setColumns(3);
     manaTextField.setEditable(false);
     cons.gridx = pos;
@@ -460,16 +449,15 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
 
     // Size List
-    sizeComboBox = new JComboBox<>();
     Collection<String> sizes = config.getSizes();
     for (var name : sizes) {
       sizeComboBox.addItem(name);
     }
     var size = characterSheet.getSize();
     if (size == null) {
-        sizeComboBox.setSelectedIndex(-1);
+      sizeComboBox.setSelectedIndex(-1);
     } else {
-        sizeComboBox.setSelectedItem(size);
+      sizeComboBox.setSelectedItem(size);
     }
 
     cons.gridx = pos;
@@ -489,16 +477,15 @@ public class BasicPanel extends JPanel {
     pos += cons.gridwidth;
 
     // Gender List
-    genderComboBox = new JComboBox<>();
     Collection<String> genders = config.getGenders();
     for (var gender : genders) {
       genderComboBox.addItem(gender);
     }
     var gender = characterSheet.getGender();
     if (gender == null) {
-        genderComboBox.setSelectedIndex(-1);
+      genderComboBox.setSelectedIndex(-1);
     } else {
-        genderComboBox.setSelectedItem(gender);
+      genderComboBox.setSelectedItem(gender);
     }
 
     cons.gridx = pos;
@@ -619,7 +606,7 @@ public class BasicPanel extends JPanel {
     if (characterSheet != null) {
 
       var pcClass = characterSheet.getPcClass();
-      System.out.println("class now "+pcClass);
+      System.out.println("class now " + pcClass);
 
       // TODO only change values if required.
       // e.g. don't trigger needless change events.
