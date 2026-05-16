@@ -57,14 +57,13 @@ public class CharacterSheetEditor extends JPanel {
 
     var config = Configuration.lastConfig();
 
-    var skillsPane = new SkillsPanel(charactersheet.getSkills(), config.getSkillDetails());
-    skillsPane.setFocusable(false);
-    tabbedPane.addTab("Skills", null, skillsPane, null);
+    var skillsPanel = new SkillsPanel(charactersheet.getSkills(), config.getSkillDetails());
+    skillsPanel.setFocusable(false);
+    tabbedPane.addTab("Skills", null, skillsPanel, null);
 
-    var recipesTable = new RecipesTable(charactersheet.getRecipes(), config.getRecipeDetails());
-    var recipesScrollPane = new JScrollPane(recipesTable);
-    recipesScrollPane.setFocusable(false);
-    tabbedPane.addTab("Recipes", null, recipesScrollPane, null);
+    var recipesPanel = new RecipesPanel(charactersheet.getRecipes(), config.getRecipeDetails());
+    recipesPanel.setFocusable(false);
+    tabbedPane.addTab("Recipes", null, recipesPanel, null);
 
     var descriptionPane = new DescriptionPanel(charactersheet);
     tabbedPane.addTab("Description", null, descriptionPane, null);

@@ -1,6 +1,9 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
+import au.net.hal9000.heisenberg.units.SkillId;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,10 +24,18 @@ public class RecipesTable extends JTable {
   /** column names. */
   private static final String[] COLUMN_NAMES = { "Recipe", "Description" };
 
+  /** Field model. */
+  private final MyTableModel model;
+
   /** Constructor. */
   public RecipesTable(@NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
     super();
-    setModel(new MyTableModel(recipeIds, recipeDetails));
+    model = new MyTableModel(recipeIds, recipeDetails);
+    setModel(model);
+  }
+
+  public void update() {
+    model.update();
   }
 
   /** My table model. */
@@ -33,10 +44,13 @@ public class RecipesTable extends JTable {
     private static final long serialVersionUID = 1L;
 
     /** Field recipeIds. */
-    private final List<String> recipeIds;
+    private final Set<String> recipeIds;
 
     /** Field recipeDetails. */
     private final Map<String, Recipe> recipeDetails;
+
+    /** Field recipes. */
+    private List<String> recipesSorted;
 
     /**
      * Constructor for MyTableModel.
@@ -44,8 +58,19 @@ public class RecipesTable extends JTable {
      * @param cs CharacterSheet
      */
     private MyTableModel(@NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
-      this.recipeIds = recipeIds.stream().sorted().toList();
+      this.recipeIds = recipeIds;
       this.recipeDetails = recipeDetails;
+      sortRecipes();
+    }
+
+    public void update() {
+      sortRecipes();
+      fireTableDataChanged();
+    }
+
+    void sortRecipes() {
+      recipesSorted = new ArrayList<>(recipeIds);
+      recipesSorted.sort(String::compareTo);
     }
 
     /**
@@ -92,7 +117,7 @@ public class RecipesTable extends JTable {
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
     public Object getValueAt(int row, int col) {
-      String recipeId = recipeIds.get(row);
+      String recipeId = recipesSorted.get(row);
       if (0 == col) {
         return recipeId;
       }

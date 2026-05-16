@@ -60,7 +60,7 @@ public class SkillsPanel extends JPanel {
         } else {
           skillIds.add(selectedSkill);
         }
-        skillsTable.updateSkills();
+        skillsTable.update();
       }
     });
 
@@ -68,7 +68,7 @@ public class SkillsPanel extends JPanel {
     skillsTable.addFocusListener(new FocusAdapter() {
       @Override
       public void focusGained(FocusEvent e) {
-        skillsTable.updateSkills();
+        skillsTable.update();
       }
     });
   }

@@ -31,8 +31,8 @@ public class SkillsTable extends JTable {
     setModel(model);
   }
 
-  public void updateSkills() {
-    model.updateSkills();
+  public void update() {
+    model.update();
   }
 
   /** My table model. */
@@ -60,7 +60,7 @@ public class SkillsTable extends JTable {
       sortSkills();
     }
 
-    public void updateSkills() {
+    public void update() {
       sortSkills();
       fireTableDataChanged();
     }
