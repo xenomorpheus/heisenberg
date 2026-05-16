@@ -1,6 +1,8 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.util.CharacterSheet;
+import lombok.NonNull;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -8,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /** Description Pane. */
-public class DescriptionPane extends JScrollPane {
+public class DescriptionPanel extends JScrollPane {
 
   /** serial version id. */
   private static final long serialVersionUID = 1L;
@@ -17,11 +19,8 @@ public class DescriptionPane extends JScrollPane {
   private JTextArea descriptionTextArea = new JTextArea(30, 25);
 
   /** Constructor for DescriptionPane. */
-  public DescriptionPane(CharacterSheet characterSheet) {
+  public DescriptionPanel(@NonNull CharacterSheet characterSheet) {
     super();
-    if (characterSheet == null) {
-      throw new IllegalArgumentException("characterSheet is NULL");
-    }
 
     // Description Panel
 
@@ -35,12 +34,11 @@ public class DescriptionPane extends JScrollPane {
     setVisible(true);
 
     // Update the text when the description gets focus
-    descriptionTextArea.addFocusListener(
-        new FocusAdapter() {
-          @Override
-          public void focusGained(FocusEvent e) {
-              descriptionTextArea.setText(characterSheet.detailedDescription());
-          }
-        });
+    descriptionTextArea.addFocusListener(new FocusAdapter() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        descriptionTextArea.setText(characterSheet.detailedDescription());
+      }
+    });
   }
 }

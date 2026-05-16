@@ -3,6 +3,8 @@ package au.net.hal9000.heisenberg.pceditor;
 import au.net.hal9000.heisenberg.util.CharacterSheet;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.PcClass;
+import lombok.NonNull;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -87,7 +89,7 @@ public class BasicPanel extends JPanel {
   private final JComboBox<String> genderComboBox = new JComboBox<>();
 
   /** Constructor for BasicPanel. */
-  public BasicPanel(CharacterSheet characterSheet) {
+  public BasicPanel(@NonNull CharacterSheet characterSheet) {
     super();
     this.characterSheet = characterSheet;
 

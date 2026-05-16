@@ -21,26 +21,27 @@ class ItemTreeCellRenderer extends DefaultTreeCellRenderer {
   /**
    * Method getTreeCellRendererComponent.
    *
-   * @param tree JTree
-   * @param value Object
-   * @param sel boolean
-   * @param exp boolean
-   * @param leaf boolean
-   * @param row int
+   * @param tree     JTree
+   * @param value    Object
+   * @param sel      boolean
+   * @param exp      boolean
+   * @param leaf     boolean
+   * @param row      int
    * @param hasFocus boolean
    * @return Component
-   * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(JTree, Object, boolean,
-   *     boolean, boolean, int, boolean)
+   * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(JTree,
+   *      Object, boolean, boolean, boolean, int, boolean)
    */
   @Override
-  public Component getTreeCellRendererComponent(
-      JTree tree, Object value, boolean sel, boolean exp, boolean leaf, int row, boolean hasFocus) {
+  public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean exp, boolean leaf,
+      int row, boolean hasFocus) {
     // TODO should we be passed a MutableTreeNode ?
     // DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
     // String s = node.getUserObject().toString();
     if (value instanceof ItemTreeNode) {
       var simpleClassName = ((ItemTreeNode) value).getItem().getSimpleClassName();
-      // The icon getters may return null which gives no icon which is better than the default
+      // The icon getters may return null which gives no icon which is better than the
+      // default
       // filesystem icons.
       setOpenIcon(itemClassIcon.getClassIconOpenDefault(simpleClassName));
       setClosedIcon(itemClassIcon.getClassIconClosedDefault(simpleClassName));

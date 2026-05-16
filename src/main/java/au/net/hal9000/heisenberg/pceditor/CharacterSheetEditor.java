@@ -57,7 +57,7 @@ public class CharacterSheetEditor extends JPanel {
 
     var config = Configuration.lastConfig();
 
-    var skillsPane = new SkillsPane(charactersheet.getSkills(), config.getSkillDetails());
+    var skillsPane = new SkillsPanel(charactersheet.getSkills(), config.getSkillDetails());
     skillsPane.setFocusable(false);
     tabbedPane.addTab("Skills", null, skillsPane, null);
 
@@ -66,7 +66,7 @@ public class CharacterSheetEditor extends JPanel {
     recipesScrollPane.setFocusable(false);
     tabbedPane.addTab("Recipes", null, recipesScrollPane, null);
 
-    var descriptionPane = new DescriptionPane(charactersheet);
+    var descriptionPane = new DescriptionPanel(charactersheet);
     tabbedPane.addTab("Description", null, descriptionPane, null);
 
     cons.gridx = 0;

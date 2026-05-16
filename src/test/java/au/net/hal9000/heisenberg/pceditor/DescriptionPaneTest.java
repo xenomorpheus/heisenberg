@@ -17,7 +17,7 @@ public class DescriptionPaneTest {
   @Test
   public void testBasicOperations() throws ConfigurationError {
 
-    DescriptionPane window = new DescriptionPane(DemoEnvironment.getCharacterSheet());
+    DescriptionPanel window = new DescriptionPanel(DemoEnvironment.getCharacterSheet());
     assertNotNull("not Null", window);
   }
 }
