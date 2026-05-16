@@ -479,7 +479,6 @@
 
 	<skills>
 		<!-- Game Skills -->
-		<skill id="CHRSTNAHNDRX" description="The biggest ball of flame" />
 		<skill id="SUDO" description="Doppleganger god" />
 		<skill id="FireLighting" description="lighting a fire, typically with flint and tinder" />
 		<!-- Unit Test Skills -->
@@ -501,6 +500,14 @@
 		<!-- 2. Most specific Ingredient before less-specific to help the matching
 			process -->
 		<!-- Game Recipes -->
+
+		<recipe id="CHRSTNAHNDRX" description="The biggest ball of flame" mana="2"
+			actionPoints="10">
+			<requirements>
+				<!-- TODO <item id="Target" class="PC" consumed="no" /> -->
+			</requirements>
+		</recipe>
+
 		<!-- Unit Test Recipes -->
 		<!-- Animal Recipes -->
 		<recipe id="AnimalDrink" description="Animal drink"

@@ -13,16 +13,24 @@ import lombok.NonNull;
 /** Skills table. */
 public class SkillsTable extends JTable {
 
-  /** column names. */
-  private static final String[] COLUMN_NAMES = { "SkillId", "Description" };
-
   /** Field serialVersionUID. (value is 1) */
   private static final long serialVersionUID = 1L;
+
+  /** column names. */
+  private static final String[] COLUMN_NAMES = { "Skill", "Description" };
+
+  /** Field model. */
+  private final MyTableModel model;
 
   /** Constructor for SkillsTable. */
   public SkillsTable(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
     super();
-    setModel(new MyTableModel(skills, skillDetails));
+    model = new MyTableModel(skills, skillDetails);
+    setModel(model);
+  }
+
+  public void updateSkills() {
+    model.fireTableDataChanged();
   }
 
   /** My table model. */
@@ -130,4 +138,5 @@ public class SkillsTable extends JTable {
       fireTableCellUpdated(row, col);
     }
   }
+
 }

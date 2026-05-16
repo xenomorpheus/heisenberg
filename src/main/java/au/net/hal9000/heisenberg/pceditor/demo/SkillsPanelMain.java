@@ -1,13 +1,16 @@
 package au.net.hal9000.heisenberg.pceditor.demo;
 
-import au.net.hal9000.heisenberg.pceditor.SkillsTable;
+import au.net.hal9000.heisenberg.pceditor.SkillsPanel;
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+
+import java.util.stream.Collectors;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-/** Demonstrate the Skills Table. */
-public class SkillsTableMain { // NO_UCD (unused code)
+/** Demonstrate the Skills Panel. */
+public class SkillsPanelMain { // NO_UCD (unused code)
   /** frame width. */
   static final int FRAME_WIDTH = 800;
 
@@ -28,14 +31,14 @@ public class SkillsTableMain { // NO_UCD (unused code)
 
       // make sure the program exits when the frame closes
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setTitle("Skills Table");
+      frame.setTitle("Skills Panel");
       frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
       // This will center the JFrame in the middle of the screen
       frame.setLocationRelativeTo(null);
 
       var skillDetails = Configuration.lastConfig().getSkillDetails();
-      var skillsTable = new SkillsTable(skillDetails.keySet(), skillDetails);
+      var skillsTable = new SkillsPanel(skillDetails.keySet(), skillDetails);
 
       // add to JFrame
       frame.add(skillsTable);
