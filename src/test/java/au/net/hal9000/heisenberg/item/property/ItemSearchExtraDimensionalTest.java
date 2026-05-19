@@ -64,5 +64,4 @@ public class ItemSearchExtraDimensionalTest {
     box.accept(searchBox3);
     assertEquals("count", 1, searchBox3.getMatchingItemsCount());
   }
-
 }

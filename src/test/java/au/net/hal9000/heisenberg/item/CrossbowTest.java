@@ -11,8 +11,7 @@ class MyItemVisitor implements ItemVisitor {
 
   double weight = 0.0;
 
-  public MyItemVisitor() {
-  }
+  public MyItemVisitor() {}
 
   public double getWeight() {
     return weight;
@@ -54,7 +53,8 @@ public class CrossbowTest {
     var bolt = new CrossbowBolt();
     bolt.setWeightBase(0.3f);
     crossbow.setLoadedBolt(bolt);
-    assertEquals("weight: ", crossbow.getWeightBase() + bolt.getWeightBase(), crossbow.totalWeight(), 0.01);
+    assertEquals(
+        "weight: ", crossbow.getWeightBase() + bolt.getWeightBase(), crossbow.totalWeight(), 0.01);
   }
 
   /** visit */
@@ -67,7 +67,11 @@ public class CrossbowTest {
     bolt.setWeightBase(0.3f);
     crossbow.setLoadedBolt(bolt);
     crossbow.visit(visitor);
-    assertEquals("visit weight: ", crossbow.getWeightBase() + bolt.getWeightBase(), visitor.getWeight(), 0.01);
+    assertEquals(
+        "visit weight: ",
+        crossbow.getWeightBase() + bolt.getWeightBase(),
+        visitor.getWeight(),
+        0.01);
   }
 
   /** visit */

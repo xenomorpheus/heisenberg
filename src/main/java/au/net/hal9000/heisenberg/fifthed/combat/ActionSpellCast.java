@@ -8,10 +8,8 @@ import lombok.Setter;
 /** Represents an action where a spell is cast in the combat system. */
 public class ActionSpellCast extends Action {
 
-  @Setter
-  @Getter
-  private Spell spell;
- 
+  @Setter @Getter private Spell spell;
+
   private PlayerCharacter playerCharacter = null;
 
   /**

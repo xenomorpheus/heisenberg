@@ -11,24 +11,21 @@ import lombok.Setter;
  */
 public class AbilityScore implements Comparable<AbilityScore> {
   /** name. */
-  @Setter @Getter
-  private String name;
+  @Setter @Getter private String name;
 
   /**
    * value <br>
    * a) For PcClass this is the base prior to modification for levels<br>
    * b) For CharacterSheet this includes the all modifications.
    */
-  @Setter @Getter
-  private int value = 0;
+  @Setter @Getter private int value = 0;
 
   /**
    * modifier<br>
    * a) For PcClass this is the value to add on per level<br>
    * b) For CharacterSheet this is the customisation of the ability.
    */
-  @Setter @Getter
-  private int mod = 0;
+  @Setter @Getter private int mod = 0;
 
   /**
    * Constructor.

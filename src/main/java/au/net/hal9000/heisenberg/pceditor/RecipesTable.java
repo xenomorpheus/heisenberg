@@ -1,15 +1,12 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 
@@ -21,7 +18,7 @@ public class RecipesTable extends JTable {
   private static final long serialVersionUID = 1L;
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = { "Recipe", "Description" };
+  private static final String[] COLUMN_NAMES = {"Recipe", "Description"};
 
   /** Field model. */
   private final MyTableModel model;
@@ -56,7 +53,8 @@ public class RecipesTable extends JTable {
      *
      * @param cs CharacterSheet
      */
-    private MyTableModel(@NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
+    private MyTableModel(
+        @NonNull Set<String> recipeIds, @NonNull Map<String, Recipe> recipeDetails) {
       this.recipeIds = recipeIds;
       this.recipeDetails = recipeDetails;
       sortRecipes();
@@ -143,8 +141,8 @@ public class RecipesTable extends JTable {
      * Method setValueAt.
      *
      * @param value Object
-     * @param row   int
-     * @param col   int
+     * @param row int
+     * @param col int
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
      */
     public void setValueAt(Object value, int row, int col) {

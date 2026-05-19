@@ -20,15 +20,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
 import lombok.extern.log4j.Log4j2;
 
 /** The main application window. Shows a tree of the items in this world. */
@@ -87,144 +85,153 @@ public class WorldEditorFrame extends JFrame {
     add(itemTreePanel, BorderLayout.NORTH);
 
     // Menus
-    final var menuActionListener = new ActionListener() {
-      static final File filePathDefault = new File(System.getProperty("user.home") + "/Desktop");
+    final var menuActionListener =
+        new ActionListener() {
+          static final File filePathDefault =
+              new File(System.getProperty("user.home") + "/Desktop");
 
-      public void actionPerformed(ActionEvent event) {
-        String eventName = event.getActionCommand();
-        switch (eventName) {
-        case MENU_NEW -> {
-          location = new Location();
-          setLocation(location);
-        }
-        case MENU_SAVE -> PersistEntities.save(location);
-        case MENU_IMPORT -> {
-          var selectedItem = itemTreePanel.getSelectedItem();
-          if ((selectedItem == null) || !(selectedItem instanceof ItemContainer)) {
-            JOptionPane.showMessageDialog(null, "Please select a container item to import into", "Error",
-                JOptionPane.ERROR_MESSAGE);
-            return;
-          }
-          importSubTree((ItemContainer) selectedItem);
-        }
-        case MENU_EXPORT -> {
-          var selectedItem = itemTreePanel.getSelectedItem();
-          if (selectedItem == null) {
-            JOptionPane.showMessageDialog(null, "Please select an item to export", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-          }
-          exportSubTree(selectedItem);
-        }
-        case MENU_LOAD_DEMO -> setLocation(DemoEnvironment.getDemoWorld());
-        case MENU_DEBUG_TREE -> debugTreePrint();
-        case MENU_QUIT -> exitProgram();
-        }
-      }
-
-      private void exportSubTree(Item selectedItem) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File("heisenberg.json"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
-        fileChooser.setFileFilter(filter);
-        fileChooser.setCurrentDirectory(filePathDefault);
-        int result = fileChooser.showSaveDialog(null);
-        if (result != JFileChooser.APPROVE_OPTION) {
-          log.trace("File selection cancelled.");
-          return;
-        }
-        File selectedFile = fileChooser.getSelectedFile();
-
-        // Append ".json" if missing
-        if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
-          selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
-        }
-
-        log.trace("Selected file: " + selectedFile.getAbsolutePath());
-
-        var pathname = selectedFile.getAbsolutePath();
-
-        List<Item> items = new ArrayList<>();
-        items.add(selectedItem);
-        try {
-          JsonItems.export(selectedFile, items);
-        } catch (JsonProcessingException e) {
-          // TODO show error to user.
-          log.error("Error exporting items to file: " + pathname, e);
-        } catch (IOException e) {
-          // TODO show error to user.
-          log.error("Error writing file: " + pathname, e);
-        }
-      }
-
-      private void importSubTree(ItemContainer selectedContainer) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File("heisenberg.json"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
-        fileChooser.setFileFilter(filter);
-        fileChooser.setCurrentDirectory(filePathDefault);
-        int result = fileChooser.showOpenDialog(null);
-        if (result != JFileChooser.APPROVE_OPTION) {
-          log.trace("File selection cancelled.");
-          return;
-        }
-        File selectedFile = fileChooser.getSelectedFile();
-        // Append ".json" if missing
-        if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
-          selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
-        }
-
-        log.trace("Selected file: " + selectedFile.getAbsolutePath());
-        var pathname = selectedFile.getAbsolutePath();
-
-        try {
-          for (var item : JsonItems.importFromFile(selectedFile)) {
-            log.trace(item);
-            selectedContainer.add(item);
-          }
-        } catch (JsonProcessingException e) {
-          // TODO show error to user.
-          log.error("Error importing items from file: " + pathname, e);
-        } catch (IOException e) {
-          // TODO show error to user.
-          log.error("Error reading file: " + pathname, e);
-        }
-      }
-
-      private void debugTreePrint() {
-        final var visitor = new ItemVisitor() {
-          private int depth = 0;
-
-          @Override
-          public void visit(Item item) {
-            StringBuilder sb = new StringBuilder(item.toString());
-            ItemContainer container = item.getContainer();
-            if (container != null) {
-              sb.append(" located in ").append(container);
-            }
-            System.out.println("   ".repeat(depth) + sb.toString());
-            if (item instanceof ItemList) {
-              var itemList = (ItemList) item;
-              depth++;
-              for (int i = 0; i < itemList.size(); i++) {
-                itemList.get(i).accept(this);
+          public void actionPerformed(ActionEvent event) {
+            String eventName = event.getActionCommand();
+            switch (eventName) {
+              case MENU_NEW -> {
+                location = new Location();
+                setLocation(location);
               }
-              depth--;
+              case MENU_SAVE -> PersistEntities.save(location);
+              case MENU_IMPORT -> {
+                var selectedItem = itemTreePanel.getSelectedItem();
+                if ((selectedItem == null) || !(selectedItem instanceof ItemContainer)) {
+                  JOptionPane.showMessageDialog(
+                      null,
+                      "Please select a container item to import into",
+                      "Error",
+                      JOptionPane.ERROR_MESSAGE);
+                  return;
+                }
+                importSubTree((ItemContainer) selectedItem);
+              }
+              case MENU_EXPORT -> {
+                var selectedItem = itemTreePanel.getSelectedItem();
+                if (selectedItem == null) {
+                  JOptionPane.showMessageDialog(
+                      null, "Please select an item to export", "Error", JOptionPane.ERROR_MESSAGE);
+                  return;
+                }
+                exportSubTree(selectedItem);
+              }
+              case MENU_LOAD_DEMO -> setLocation(DemoEnvironment.getDemoWorld());
+              case MENU_DEBUG_TREE -> debugTreePrint();
+              case MENU_QUIT -> exitProgram();
+            }
+          }
+
+          private void exportSubTree(Item selectedItem) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setSelectedFile(new File("heisenberg.json"));
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
+            fileChooser.setFileFilter(filter);
+            fileChooser.setCurrentDirectory(filePathDefault);
+            int result = fileChooser.showSaveDialog(null);
+            if (result != JFileChooser.APPROVE_OPTION) {
+              log.trace("File selection cancelled.");
+              return;
+            }
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Append ".json" if missing
+            if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
+              selectedFile =
+                  new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
             }
 
+            log.trace("Selected file: " + selectedFile.getAbsolutePath());
+
+            var pathname = selectedFile.getAbsolutePath();
+
+            List<Item> items = new ArrayList<>();
+            items.add(selectedItem);
+            try {
+              JsonItems.export(selectedFile, items);
+            } catch (JsonProcessingException e) {
+              // TODO show error to user.
+              log.error("Error exporting items to file: " + pathname, e);
+            } catch (IOException e) {
+              // TODO show error to user.
+              log.error("Error writing file: " + pathname, e);
+            }
+          }
+
+          private void importSubTree(ItemContainer selectedContainer) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setSelectedFile(new File("heisenberg.json"));
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
+            fileChooser.setFileFilter(filter);
+            fileChooser.setCurrentDirectory(filePathDefault);
+            int result = fileChooser.showOpenDialog(null);
+            if (result != JFileChooser.APPROVE_OPTION) {
+              log.trace("File selection cancelled.");
+              return;
+            }
+            File selectedFile = fileChooser.getSelectedFile();
+            // Append ".json" if missing
+            if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
+              selectedFile =
+                  new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
+            }
+
+            log.trace("Selected file: " + selectedFile.getAbsolutePath());
+            var pathname = selectedFile.getAbsolutePath();
+
+            try {
+              for (var item : JsonItems.importFromFile(selectedFile)) {
+                log.trace(item);
+                selectedContainer.add(item);
+              }
+            } catch (JsonProcessingException e) {
+              // TODO show error to user.
+              log.error("Error importing items from file: " + pathname, e);
+            } catch (IOException e) {
+              // TODO show error to user.
+              log.error("Error reading file: " + pathname, e);
+            }
+          }
+
+          private void debugTreePrint() {
+            final var visitor =
+                new ItemVisitor() {
+                  private int depth = 0;
+
+                  @Override
+                  public void visit(Item item) {
+                    StringBuilder sb = new StringBuilder(item.toString());
+                    ItemContainer container = item.getContainer();
+                    if (container != null) {
+                      sb.append(" located in ").append(container);
+                    }
+                    System.out.println("   ".repeat(depth) + sb.toString());
+                    if (item instanceof ItemList) {
+                      var itemList = (ItemList) item;
+                      depth++;
+                      for (int i = 0; i < itemList.size(); i++) {
+                        itemList.get(i).accept(this);
+                      }
+                      depth--;
+                    }
+                  }
+                };
+            location.accept(visitor);
           }
         };
-        location.accept(visitor);
-      }
-    };
     JMenuBar jmb = getMenus(menuActionListener);
     setJMenuBar(jmb);
 
     // Exit by closing window
-    addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent event) {
-        exitProgram();
-      }
-    });
+    addWindowListener(
+        new WindowAdapter() {
+          public void windowClosing(WindowEvent event) {
+            exitProgram();
+          }
+        });
   }
 
   /**

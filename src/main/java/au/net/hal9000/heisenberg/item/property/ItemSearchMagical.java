@@ -3,7 +3,6 @@ package au.net.hal9000.heisenberg.item.property;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.api.ItemList;
 
-
 /** Item search magical. */
 class ItemSearchMagical extends ItemSearch {
 
@@ -30,5 +29,4 @@ class ItemSearchMagical extends ItemSearch {
       }
     }
   }
-
 }

@@ -4,9 +4,8 @@ import static org.junit.Assert.*;
 
 import au.net.hal9000.heisenberg.item.Biscuit;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.being.Elf;
 import au.net.hal9000.heisenberg.item.being.Being;
-
+import au.net.hal9000.heisenberg.item.being.Elf;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

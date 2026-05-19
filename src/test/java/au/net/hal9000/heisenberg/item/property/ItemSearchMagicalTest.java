@@ -79,5 +79,4 @@ public class ItemSearchMagicalTest {
     assertEquals("count", 1, searchBox.getMatchingItemsCount());
     assertEquals("found", boh, searchBox.getMatchingItems().get(0));
   }
-
 }

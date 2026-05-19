@@ -4,12 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Cat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-
-import au.net.hal9000.heisenberg.item.being.Cat;
-import au.net.hal9000.heisenberg.item.being.Being;
 
 /** */
 public class ItemPropertyTest {

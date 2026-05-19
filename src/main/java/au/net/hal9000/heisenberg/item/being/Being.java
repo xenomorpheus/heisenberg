@@ -20,12 +20,10 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class Being extends ItemImpl {
 
-  @Setter
-  private CharacterSheet characterSheet = null;
+  @Setter private CharacterSheet characterSheet = null;
 
   // TODO probably mark as not storable in database
-  @Setter
-  private PlayableState playableState = null;
+  @Setter private PlayableState playableState = null;
 
   // Constructor
   protected Being() {

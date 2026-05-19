@@ -21,12 +21,9 @@ public class Position {
 
   public static final double DEFAULT_AXIS_TOLERANCE = 0.05;
 
-  @Setter @Getter
-  private double x;
-  @Setter @Getter
-  private double y;
-  @Setter @Getter
-  private double z;
+  @Setter @Getter private double x;
+  @Setter @Getter private double y;
+  @Setter @Getter private double z;
 
   // Constructors
   /**

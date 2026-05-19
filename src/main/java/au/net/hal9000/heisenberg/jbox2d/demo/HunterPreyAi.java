@@ -15,12 +15,14 @@ import au.net.hal9000.heisenberg.ai.api.Path;
 import au.net.hal9000.heisenberg.ai.api.TransitionFunction;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
-import au.net.hal9000.heisenberg.item.being.Cat;
 import au.net.hal9000.heisenberg.item.being.Being;
+import au.net.hal9000.heisenberg.item.being.Cat;
 import au.net.hal9000.heisenberg.item.being.Rat;
 import au.net.hal9000.heisenberg.units.Position;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.callbacks.RayCastCallback;
 import org.jbox2d.common.Color3f;
@@ -28,8 +30,6 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
-import lombok.Getter;
-import lombok.Setter; 
 
 public class HunterPreyAi {
 
@@ -77,8 +77,7 @@ public class HunterPreyAi {
   private Location world;
 
   /** is the test finished. */
-  @Getter @Setter
-  private boolean complete;
+  @Getter @Setter private boolean complete;
 
   HunterPreyAi(Body hunterBody, Body preyBody) {
     super();

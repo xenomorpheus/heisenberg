@@ -218,8 +218,17 @@ public class Location extends ItemImpl implements ItemContainer {
       float total = getContentsWeight();
       total += item.totalWeight();
       if (total > weightMax) {
-        throw new TooHeavyException("TooHeavy - Adding " + item.getName() + " weighing " + item.totalWeight()
-            + " will total " + total + ", which is too heavy for " + getName() + ", weightMax=" + weightMax);
+        throw new TooHeavyException(
+            "TooHeavy - Adding "
+                + item.getName()
+                + " weighing "
+                + item.totalWeight()
+                + " will total "
+                + total
+                + ", which is too heavy for "
+                + getName()
+                + ", weightMax="
+                + weightMax);
       }
     }
 
@@ -229,8 +238,17 @@ public class Location extends ItemImpl implements ItemContainer {
       float total = getContentsVolume();
       total += item.totalVolume();
       if (total > volumeMax) {
-        throw new TooLargeException("TooLarge - Adding " + item.getName() + " weighing " + item.totalWeight()
-            + " will total " + total + ", which is too heavy for " + getName() + ", weightMax=" + weightMax);
+        throw new TooLargeException(
+            "TooLarge - Adding "
+                + item.getName()
+                + " weighing "
+                + item.totalWeight()
+                + " will total "
+                + total
+                + ", which is too heavy for "
+                + getName()
+                + ", weightMax="
+                + weightMax);
       }
     }
 
@@ -242,8 +260,15 @@ public class Location extends ItemImpl implements ItemContainer {
     // Add the item and update the item's location.
     int currentSize = contents.size();
     if (index > (currentSize + 1)) {
-      throw new RuntimeException("Requested position " + index + " much greater " + currentSize + ". container is a "
-          + getName() + ", added item is " + item.getName());
+      throw new RuntimeException(
+          "Requested position "
+              + index
+              + " much greater "
+              + currentSize
+              + ". container is a "
+              + getName()
+              + ", added item is "
+              + item.getName());
     }
     contents.add(index, item);
     // check
@@ -277,8 +302,7 @@ public class Location extends ItemImpl implements ItemContainer {
   }
 
   /**
-   * Use getWeight() to get total including contents. Magic containers will
-   * override getWeight().
+   * Use getWeight() to get total including contents. Magic containers will override getWeight().
    *
    * @return the weight of just the contents.
    */
@@ -291,8 +315,7 @@ public class Location extends ItemImpl implements ItemContainer {
   }
 
   /**
-   * Use getVolume() to get total including contents. Magic containers will
-   * override getVolume().
+   * Use getVolume() to get total including contents. Magic containers will override getVolume().
    *
    * @return the volume of just the contents.
    */
@@ -305,8 +328,7 @@ public class Location extends ItemImpl implements ItemContainer {
   }
 
   /**
-   * Use getValue() to get total including contents. Magic containers will
-   * override getValue().
+   * Use getValue() to get total including contents. Magic containers will override getValue().
    *
    * @return the value of just the contents.
    */
@@ -344,7 +366,8 @@ public class Location extends ItemImpl implements ItemContainer {
   public void moveItemAbsolute(Item item, Position requestedPosition) {
     ItemContainer container = item.getContainer();
     if (container != this) {
-      throw new RuntimeException("attempting to move item not in container. item=" + item + ", container=" + container);
+      throw new RuntimeException(
+          "attempting to move item not in container. item=" + item + ", container=" + container);
     }
     item.setPosition(requestedPosition);
   }
@@ -353,7 +376,8 @@ public class Location extends ItemImpl implements ItemContainer {
   public void moveItemDelta(Item item, Position delta) {
     ItemContainer container = item.getContainer();
     if (container != this) {
-      throw new RuntimeException("attempting to move item not in container. item=" + item + ", container=" + container);
+      throw new RuntimeException(
+          "attempting to move item not in container. item=" + item + ", container=" + container);
     }
     item.applyDelta(delta);
   }

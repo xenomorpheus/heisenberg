@@ -84,8 +84,7 @@ public class ItemClassIcon {
         ICON_OPEN_DEFAULT_FOR_CLASS.put(
             itemClassConfiguration.getId(), new ImageIcon(spritePack.getSprite(iconOpenId)));
       } else {
-        log.info(
-            "Missing config for open icon for item class: " + itemClassConfiguration.getId());
+        log.info("Missing config for open icon for item class: " + itemClassConfiguration.getId());
       }
       int iconClosedId = itemClassConfiguration.getIconClosedId();
       if (0 != iconClosedId) {
@@ -100,8 +99,7 @@ public class ItemClassIcon {
         ICON_LEAF_DEFAULT_FOR_CLASS.put(
             itemClassConfiguration.getId(), new ImageIcon(spritePack.getSprite(iconLeafId)));
       } else {
-        log.info(
-            "Missing config for leaf icon for item class: " + itemClassConfiguration.getId());
+        log.info("Missing config for leaf icon for item class: " + itemClassConfiguration.getId());
       }
     }
   }

@@ -11,5 +11,4 @@ public interface ItemVisitor {
    * @param item item to visit.
    */
   void visit(Item item);
-
 }

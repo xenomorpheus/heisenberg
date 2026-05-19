@@ -4,7 +4,6 @@ import au.net.hal9000.heisenberg.util.AbilityScore;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Set;
-
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import lombok.NonNull;
@@ -26,7 +25,7 @@ public class AbilityScoresTable extends JTable implements FocusListener {
 
   @Override
   public void focusGained(FocusEvent e) {
-    System.out.println("focusGained "+this.getClass().getSimpleName());
+    System.out.println("focusGained " + this.getClass().getSimpleName());
     // PC's level may have changed so we need to refresh the values in the table
     myTableModel.fireTableStructureChanged();
   }
@@ -57,9 +56,9 @@ public class AbilityScoresTable extends JTable implements FocusListener {
     }
 
     public void fireTableStructureChanged() {
-      System.out.println("fireTableStructureChanged "+this.getClass().getSimpleName()); 
+      System.out.println("fireTableStructureChanged " + this.getClass().getSimpleName());
       super.fireTableStructureChanged();
-    } 
+    }
 
     /**
      * Get the column name.

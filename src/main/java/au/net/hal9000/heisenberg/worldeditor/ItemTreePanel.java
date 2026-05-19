@@ -32,9 +32,9 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-import lombok.extern.log4j.Log4j2;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 /** A window with hierarchical representation of the game objects. */
 @Log4j2
@@ -55,14 +55,12 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
   /** Swing toolkit. */
   private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-  @Getter
-  @Setter
-  Item selectedItem = null;
+  @Getter @Setter Item selectedItem = null;
 
   /**
    * Constructor.
    *
-   * @param config   configuration to use for building the selection boxes.
+   * @param config configuration to use for building the selection boxes.
    * @param location the location to display.
    */
   public ItemTreePanel(Configuration config, Location location) {
@@ -76,30 +74,30 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
     tree.setCellRenderer(new ItemTreeCellRenderer(config));
 
     // Mouse listener for clicks
-    tree.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        TreePath path = tree.getPathForLocation(e.getX(), e.getY());
-        if (path == null) {
-          return;
-        }
-        Object nodeObj = path.getLastPathComponent();
-        if (nodeObj instanceof ItemTreeNode) {
-          var node = (ItemTreeNode) nodeObj;
-          var item = node.getItem();
-          System.out.println("Click on item: "+item.getClass().getSimpleName());
-          if (e.getClickCount() == 1) {
-            log.info("Selected item: "+item.getClass().getSimpleName());
-            setSelectedItem(item);
-          }
-          else if (e.getClickCount() == 2) {
-            if (item instanceof Human) {
-              launchCharacterSheetEditor(((Human) item).getCharacterSheet());
+    tree.addMouseListener(
+        new MouseAdapter() {
+          @Override
+          public void mouseClicked(MouseEvent e) {
+            TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+            if (path == null) {
+              return;
+            }
+            Object nodeObj = path.getLastPathComponent();
+            if (nodeObj instanceof ItemTreeNode) {
+              var node = (ItemTreeNode) nodeObj;
+              var item = node.getItem();
+              System.out.println("Click on item: " + item.getClass().getSimpleName());
+              if (e.getClickCount() == 1) {
+                log.info("Selected item: " + item.getClass().getSimpleName());
+                setSelectedItem(item);
+              } else if (e.getClickCount() == 2) {
+                if (item instanceof Human) {
+                  launchCharacterSheetEditor(((Human) item).getCharacterSheet());
+                }
+              }
             }
           }
-        }
-      }
-    });
+        });
 
     scrollPane.setViewportView(tree);
 
@@ -251,7 +249,8 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
       appendMutableTreeNodeToParent(parentTreeNode, childTreeNode);
     }
 
-    void appendMutableTreeNodeToParent(MutableTreeNode parentMutableTreeNode, MutableTreeNode childTreeNode) {
+    void appendMutableTreeNodeToParent(
+        MutableTreeNode parentMutableTreeNode, MutableTreeNode childTreeNode) {
 
       // Append to selected node
       ItemTreeNode parentTreeNode = (ItemTreeNode) parentMutableTreeNode;
@@ -261,9 +260,14 @@ public class ItemTreePanel extends JPanel implements TreeModelListener, Property
 
       TreePath path = getPathToNode(parentMutableTreeNode);
       log.warn(
-          "actionPerformed. path: " + path + ", insertIndex: " + insertIndex + ", childTreeNode: " + childTreeNode);
+          "actionPerformed. path: "
+              + path
+              + ", insertIndex: "
+              + insertIndex
+              + ", childTreeNode: "
+              + childTreeNode);
       // https://stackoverflow.com/questions/21150160/jtree-adding-nodes-and-updating
-      int[] childIndices = new int[] { insertIndex };
+      int[] childIndices = new int[] {insertIndex};
       ((DefaultTreeModel) tree.getModel()).nodesWereInserted(parentTreeNode, childIndices);
     }
   }

@@ -51,5 +51,4 @@ public abstract class ItemSearch implements ItemVisitor {
    */
   @Override
   public abstract void visit(Item item);
-
 }

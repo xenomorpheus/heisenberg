@@ -22,27 +22,28 @@ public class BasicPanelMain { // NO_UCD (unused code)
   public static void main(String[] args) {
 
     // Use the event dispatch thread for Swing components
-    SwingUtilities.invokeLater(() -> {
-      try {
-        DemoEnvironment.setup();
-        var guiFrame = new JFrame();
+    SwingUtilities.invokeLater(
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var guiFrame = new JFrame();
 
-        // make sure the program exits when the frame closes
-        guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        guiFrame.setTitle("Basic Panel");
-        guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            // make sure the program exits when the frame closes
+            guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            guiFrame.setTitle("Basic Panel");
+            guiFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-        var basicPanel = new BasicPanel(DemoEnvironment.getCharacterSheet());
+            var basicPanel = new BasicPanel(DemoEnvironment.getCharacterSheet());
 
-        // add to JFrame
-        guiFrame.add(basicPanel);
-        guiFrame.pack();
-        // This will centre the JFrame in the middle of the screen
-        guiFrame.setLocationRelativeTo(null);
-        guiFrame.setVisible(true);
-      } catch (ConfigurationError e) {
-        e.printStackTrace();
-      }
-    });
+            // add to JFrame
+            guiFrame.add(basicPanel);
+            guiFrame.pack();
+            // This will centre the JFrame in the middle of the screen
+            guiFrame.setLocationRelativeTo(null);
+            guiFrame.setVisible(true);
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
+          }
+        });
   }
 }

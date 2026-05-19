@@ -6,9 +6,8 @@ import au.net.hal9000.heisenberg.crafting.ProductItem;
 import au.net.hal9000.heisenberg.crafting.Recipe;
 import au.net.hal9000.heisenberg.crafting.Requirement;
 import au.net.hal9000.heisenberg.crafting.RequirementItem;
-import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
-
+import au.net.hal9000.heisenberg.units.SkillId;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,14 +16,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import lombok.Getter;
+import lombok.Setter;
 import nu.xom.Attribute;
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
 import nu.xom.ParsingException;
-import lombok.Setter;
-import lombok.Getter; 
 
 /**
  * Configuration read the XML config file and return in an object to easily access the properties.
@@ -36,44 +35,35 @@ import lombok.Getter;
 public class Configuration {
 
   /** Singleton. Holder of the config */
-  @Setter
-  private static Configuration lastConfig = null;
+  @Setter private static Configuration lastConfig = null;
 
   /** A list of genders. */
-    // TODO remove/refactor so caller can't modify genders
-  @Getter
-  private List<String> genders;
+  // TODO remove/refactor so caller can't modify genders
+  @Getter private List<String> genders;
 
   /** A map of ItemClassConfiguration objects. */
-  @Getter
-  private Map<String, ItemClassConfiguration> itemClasses;
+  @Getter private Map<String, ItemClassConfiguration> itemClasses;
 
   // TODO private TreeMap<String,PcClass> pcClasses;
   /** A map of possible pcClass details. */
-  @Getter
-  private Map<String, PcClass> pcClasses;
+  @Getter private Map<String, PcClass> pcClasses;
 
   // TODO remove/refactor so caller can't modify species
   /** list of valid species. */
-  @Getter
-  private List<String> species;
+  @Getter private List<String> species;
 
   /** A map of Recipe objects. */
-  @Getter
-  private Map<String, Recipe> recipeDetails;
+  @Getter private Map<String, Recipe> recipeDetails;
 
   /** A map of SkillDetail objects. */
-  @Getter
-  private Map<SkillId, SkillDetail> skillDetails;
+  @Getter private Map<SkillId, SkillDetail> skillDetails;
 
   /** A list of sizes. */
   // TODO refactor so caller can't modify sizes
-  @Getter
-  private List<String> sizes;
+  @Getter private List<String> sizes;
 
   /** Images to show in UI. */
-  @Getter
-  private Map<String, SpriteSheetConfiguration> spriteSheets;
+  @Getter private Map<String, SpriteSheetConfiguration> spriteSheets;
 
   /**
    * Constructor.

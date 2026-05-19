@@ -134,8 +134,7 @@ public class ItemTreeNode implements MutableTreeNode {
         Item childItem = childItemTreeNode.getItem();
         container.add(index, childItem);
       } else {
-        log.error(
-            "insert failed as wrong type for child " + child + " type " + child.getClass());
+        log.error("insert failed as wrong type for child " + child + " type " + child.getClass());
       }
     } else {
       log.error(
@@ -167,8 +166,7 @@ public class ItemTreeNode implements MutableTreeNode {
         Item childItem = childTreeNode.getItem();
         container.remove(childItem);
       } else {
-        log.error(
-            "remove failed as wrong type for child " + child + " type " + child.getClass());
+        log.error("remove failed as wrong type for child " + child + " type " + child.getClass());
       }
     } else {
       log.error(

@@ -24,39 +24,41 @@ import java.util.UUID;
 /**
  * Base abstract class for all items in this world.
  *
- * <p>
- * The Item package is the base class for the game objects.<br>
+ * <p>The Item package is the base class for the game objects.<br>
  * e.g. People, equipment, locations, etc.
  *
- * <p>
- * See the ItemContainer class for items that may contain other items, e.g.
- * bags, scabbards, even people.
+ * <p>See the ItemContainer class for items that may contain other items, e.g. bags, scabbards, even
+ * people.
  *
- * <p>
- * An item has a globally pseudo-unique identifier.<br>
+ * <p>An item has a globally pseudo-unique identifier.<br>
  * An item has a name which is text.<br>
  * An item has a description which is text.<br>
  * An item has a weight which is measured in pounds which defaults to zero.<br>
  * An item has a valueBase measured in coins which defaults to zero.<br>
  * An item has a location (e.g. ground, a bag, an arm)<br>
- * (discuss) An item has a condition (0-100) 100=new, 0=worn away. Or hit
- * points? An item may have any number of defences.<br>
- * An item by default does not offer protection (e.g armour, magic resistance)
- * <br>
+ * (discuss) An item has a condition (0-100) 100=new, 0=worn away. Or hit points? An item may have
+ * any number of defences.<br>
+ * An item by default does not offer protection (e.g armour, magic resistance) <br>
  * An item may offer any number of protections.<br>
  * Actions<br>
- * An item may be dropped, which will cause the location to be changed to the
- * ground below the object.<br>
+ * An item may be dropped, which will cause the location to be changed to the ground below the
+ * object.<br>
  * An item may be damaged by fire which will...<br>
  * An item may be damaged by acid which will...<br>
  * An item may be repaired which will ...<br>
  */
 @MappedSuperclass
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "simpleClassName")
-@JsonSubTypes({ @JsonSubTypes.Type(value = Biscuit.class, name = "Biscuit"),
-    @JsonSubTypes.Type(value = Box.class, name = "Box"), @JsonSubTypes.Type(value = Location.class, name = "Location"),
-    @JsonSubTypes.Type(value = Cat.class, name = "Cat") })
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "simpleClassName")
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = Biscuit.class, name = "Biscuit"),
+  @JsonSubTypes.Type(value = Box.class, name = "Box"),
+  @JsonSubTypes.Type(value = Location.class, name = "Location"),
+  @JsonSubTypes.Type(value = Cat.class, name = "Cat")
+})
 public abstract class ItemImpl implements Serializable, Item {
 
   /** serial version id. */
@@ -65,8 +67,8 @@ public abstract class ItemImpl implements Serializable, Item {
   // Initialise as many values as possible.
   /**
    * The ID of the object. <br>
-   * This field is unique for all Item objects, so no two Item objects can be
-   * equals. JPA doesn't care if we change this.
+   * This field is unique for all Item objects, so no two Item objects can be equals. JPA doesn't
+   * care if we change this.
    */
   // Note: Id is required so UI getIndexOfChild() will work
   // when two objects have the same properties.
@@ -81,7 +83,7 @@ public abstract class ItemImpl implements Serializable, Item {
 
   /** where this item is located. */
   @JsonIgnore // Don't serialize the container as it will be serialized as part of the
-              // container's contents. Also prevents infinite recursion.
+  // container's contents. Also prevents infinite recursion.
   private ItemContainer container = null;
 
   /** A short description of the item. */
@@ -96,10 +98,7 @@ public abstract class ItemImpl implements Serializable, Item {
   /** The position within the container. */
   private Position position = null;
 
-  /**
-   * Misc properties about this item that don't deserve their own setters and
-   * getters.
-   */
+  /** Misc properties about this item that don't deserve their own setters and getters. */
   private Properties properties = new Properties();
 
   /** The value (in Currency), excludes contents if this is a container. */
@@ -465,8 +464,7 @@ public abstract class ItemImpl implements Serializable, Item {
 
   @Override
   @JsonIgnore
-  public void setSimpleClassName(String dummy) {
-  }
+  public void setSimpleClassName(String dummy) {}
 
   @Override
   public void applyDelta(Position delta) {

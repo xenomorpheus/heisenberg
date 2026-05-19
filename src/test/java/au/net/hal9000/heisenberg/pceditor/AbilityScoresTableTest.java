@@ -24,16 +24,21 @@ public class AbilityScoresTableTest {
    */
   @Test
   public void testBasicOperations() throws ConfigurationError {
-    AbilityScoresTable basicPanel = new AbilityScoresTable(DemoEnvironment.getCharacterSheet().getAbilityScores());
+    AbilityScoresTable basicPanel =
+        new AbilityScoresTable(DemoEnvironment.getCharacterSheet().getAbilityScores());
     assertNotNull("BasicPanel not null", basicPanel);
   }
 
-  /** Method testGetRowCount. 
-   * @throws ConfigurationError */
+  /**
+   * Method testGetRowCount.
+   *
+   * @throws ConfigurationError
+   */
   @Test
   public void testGetRowCount() throws ConfigurationError {
 
-    AbilityScoresTable abilityScoresTable = new AbilityScoresTable(DemoEnvironment.getCharacterSheet().getAbilityScores());
+    AbilityScoresTable abilityScoresTable =
+        new AbilityScoresTable(DemoEnvironment.getCharacterSheet().getAbilityScores());
     assertNotEquals(0, abilityScoresTable.getRowCount());
   }
 }

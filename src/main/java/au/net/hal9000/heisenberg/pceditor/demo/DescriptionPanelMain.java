@@ -22,28 +22,29 @@ public class DescriptionPanelMain { // NO_UCD (unused code)
    */
   public static void main(String[] args) {
 
-    SwingUtilities.invokeLater(() -> {
-      try {
-        DemoEnvironment.setup();
-        var frame = new JFrame();
+    SwingUtilities.invokeLater(
+        () -> {
+          try {
+            DemoEnvironment.setup();
+            var frame = new JFrame();
 
-        // make sure the program exits when the frame closes
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Description");
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+            // make sure the program exits when the frame closes
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("Description");
+            frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
-        // This will center the JFrame in the middle of the screen
-        frame.setLocationRelativeTo(null);
+            // This will center the JFrame in the middle of the screen
+            frame.setLocationRelativeTo(null);
 
-        var pane = new DescriptionPanel(DemoEnvironment.getCharacterSheet());
+            var pane = new DescriptionPanel(DemoEnvironment.getCharacterSheet());
 
-        // add to JFrame
-        frame.add(pane);
-        frame.setVisible(true);
+            // add to JFrame
+            frame.add(pane);
+            frame.setVisible(true);
 
-      } catch (ConfigurationError e) {
-        e.printStackTrace();
-      }
-    });
+          } catch (ConfigurationError e) {
+            e.printStackTrace();
+          }
+        });
   }
 }

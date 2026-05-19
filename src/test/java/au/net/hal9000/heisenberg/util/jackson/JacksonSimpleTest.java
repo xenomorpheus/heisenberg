@@ -8,8 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 /**
- * This class contains tests for verifying the serialization and deserialization
- * of objects using Jackson.
+ * This class contains tests for verifying the serialization and deserialization of objects using
+ * Jackson.
  */
 @Log4j2
 public class JacksonSimpleTest {
@@ -38,17 +38,18 @@ public class JacksonSimpleTest {
     assertEquals(ConcreteA.class, deserializedContainer.contents.get(0).getClass());
     assertEquals(ConcreteB.class, deserializedContainer.contents.get(1).getClass());
 
-    log.trace("Deserialized AbstractBase type: A:" + deserializedContainer.contents.get(0).getClass().getSimpleName()
-        + ", B:" + deserializedContainer.contents.get(1).getClass().getSimpleName());
+    log.trace(
+        "Deserialized AbstractBase type: A:"
+            + deserializedContainer.contents.get(0).getClass().getSimpleName()
+            + ", B:"
+            + deserializedContainer.contents.get(1).getClass().getSimpleName());
   }
 
   /**
    * Main method to run the test.
    *
-   * <p>
-   * This method creates an instance of the test class and invokes the
-   * {@link #testSerDeItems()} method to demonstrate serialization and
-   * deserialization of objects using Jackson.
+   * <p>This method creates an instance of the test class and invokes the {@link #testSerDeItems()}
+   * method to demonstrate serialization and deserialization of objects using Jackson.
    *
    * @param args command line arguments
    * @throws JsonProcessingException if there is an error during JSON processing

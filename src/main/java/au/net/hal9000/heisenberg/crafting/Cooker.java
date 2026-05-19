@@ -8,9 +8,9 @@ import au.net.hal9000.heisenberg.units.SkillId;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import lombok.Setter;
 import lombok.Getter;
-import lombok.NonNull; 
+import lombok.NonNull;
+import lombok.Setter;
 
 /**
  * The Cooker takes the {@link Recipe} and ingredients and build the products. <br>
@@ -58,9 +58,7 @@ public final class Cooker {
   private Location pot = new Location();
 
   /** The CharacterSheet doing the cooking. Supplies any actionPoints and mana. */
-  @Setter
-  @Getter
-  private Being chef = null;
+  @Setter @Getter private Being chef = null;
 
   /** Ingredients we will cook with. */
   private Map<String, Item> ingredients = new TreeMap<>();

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.being.Being;
 import au.net.hal9000.heisenberg.item.being.Human;
-
 import org.junit.Test;
 
 /** */

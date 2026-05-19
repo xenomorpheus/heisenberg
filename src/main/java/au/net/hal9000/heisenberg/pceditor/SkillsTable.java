@@ -1,7 +1,7 @@
 package au.net.hal9000.heisenberg.pceditor;
 
-import au.net.hal9000.heisenberg.units.SkillId;
 import au.net.hal9000.heisenberg.units.SkillDetail;
+import au.net.hal9000.heisenberg.units.SkillId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +19,14 @@ public class SkillsTable extends JTable {
   private static final long serialVersionUID = 1L;
 
   /** column names. */
-  private static final String[] COLUMN_NAMES = { "Skill", "Description" };
+  private static final String[] COLUMN_NAMES = {"Skill", "Description"};
 
   /** Field model. */
   private final MyTableModel model;
 
   /** Constructor for SkillsTable. */
-  public SkillsTable(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
+  public SkillsTable(
+      @NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
     super();
     model = new MyTableModel(skills, skillDetails);
     setModel(model);
@@ -54,7 +55,8 @@ public class SkillsTable extends JTable {
      *
      * @param skills Set of SkillIds
      */
-    private MyTableModel(@NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
+    private MyTableModel(
+        @NonNull Set<SkillId> skills, @NonNull Map<SkillId, SkillDetail> skillDetails) {
       this.skills = skills;
       this.skillDetails = skillDetails;
       sortSkills();
@@ -141,8 +143,8 @@ public class SkillsTable extends JTable {
      * Method setValueAt.
      *
      * @param value Object
-     * @param row   int
-     * @param col   int
+     * @param row int
+     * @param col int
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
      */
     @Override
@@ -151,5 +153,4 @@ public class SkillsTable extends JTable {
       fireTableCellUpdated(row, col);
     }
   }
-
 }

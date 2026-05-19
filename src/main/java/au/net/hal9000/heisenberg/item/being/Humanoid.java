@@ -258,19 +258,18 @@ public abstract class Humanoid extends Being implements Animal, ItemList {
 
   @Override
   public Iterator<Item> iterator() {
-      return new Iterator<Item>() {
-          private int index = 0;
+    return new Iterator<Item>() {
+      private int index = 0;
 
-          @Override
-          public boolean hasNext() {
-              return index < items.size();
-          }
+      @Override
+      public boolean hasNext() {
+        return index < items.size();
+      }
 
-          @Override
-          public Item next() {
-              return items.get(index++);
-          }
-      };
+      @Override
+      public Item next() {
+        return items.get(index++);
+      }
+    };
   }
-
 }

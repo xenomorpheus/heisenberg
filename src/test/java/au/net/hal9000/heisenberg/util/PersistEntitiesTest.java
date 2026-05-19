@@ -273,7 +273,6 @@ public class PersistEntitiesTest {
         }
       }
     }
-
   }
 
   /** Method testWorld. */

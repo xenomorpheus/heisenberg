@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.util;
 
 import au.net.hal9000.heisenberg.units.SkillId;
-
 import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,39 +16,29 @@ public class CharacterSheet implements Serializable {
   // It's a good practice to declare a serialVersionUID
   private static final long serialVersionUID = 1L;
 
-  @Getter @Setter @NonNull
-  private String name = null;
+  @Getter @Setter @NonNull private String name = null;
 
-  @Getter @Setter @NonNull
-  private String description = null;
+  @Getter @Setter @NonNull private String description = null;
 
   /** How skilled in the chosen profession AKA PcClass. Multi-classing not supported. */
-  @Getter
-  private int level = 0;
+  @Getter private int level = 0;
 
   /** profession e.g. Soldier, Wizard etc. */
-  @Getter @NonNull
-  private PcClass pcClass = null;
+  @Getter @NonNull private PcClass pcClass = null;
 
   /** The species. Previously known as race. */
-  @Getter @Setter @NonNull
-  private String species = null;
+  @Getter @Setter @NonNull private String species = null;
 
-  @Getter @Setter @NonNull
-  private String gender = null;
+  @Getter @Setter @NonNull private String gender = null;
 
-  @Getter @Setter @NonNull
-  private String size = null;
+  @Getter @Setter @NonNull private String size = null;
 
-  @Getter @Setter @NonNull
-  private Set<SkillId> skills = new TreeSet<>();
+  @Getter @Setter @NonNull private Set<SkillId> skills = new TreeSet<>();
 
-  @Getter @Setter @NonNull
-  private Set<String> recipes = new TreeSet<>();
+  @Getter @Setter @NonNull private Set<String> recipes = new TreeSet<>();
 
   /** Field abilityScores. */
-  @Getter @Setter @NonNull
-  private Set<AbilityScore> abilityScores = new TreeSet<>();
+  @Getter @Setter @NonNull private Set<AbilityScore> abilityScores = new TreeSet<>();
 
   /** Constructor */
   public CharacterSheet() {
@@ -131,15 +120,16 @@ public class CharacterSheet implements Serializable {
    */
   private void abilityScoresRecalculate() {
     if (pcClass != null) {
-      for (var pcClassAbility: pcClass.getAbilityScores()) {
+      for (var pcClassAbility : pcClass.getAbilityScores()) {
 
         var abilityScore = getAbilityScore(pcClassAbility.getName());
-        if ( abilityScore == null) {
+        if (abilityScore == null) {
           abilityScore = new AbilityScore(pcClassAbility.getName(), 0, 0);
           abilityScores.add(abilityScore);
         }
 
-        abilityScore.setValue(abilityScore.getMod() + pcClassAbility.getValue() + (level * pcClassAbility.getMod()));
+        abilityScore.setValue(
+            abilityScore.getMod() + pcClassAbility.getValue() + (level * pcClassAbility.getMod()));
       }
     }
   }
@@ -152,46 +142,46 @@ public class CharacterSheet implements Serializable {
 
     text.append("Name: ");
     if (name == null || name.isBlank()) {
-      text.append("Un-named" ).append( ls);
+      text.append("Un-named").append(ls);
     } else {
-      text.append(name ).append( ls);
+      text.append(name).append(ls);
     }
     if (description != null) {
-      text.append("Description: " ).append( description ).append( ls);
+      text.append("Description: ").append(description).append(ls);
     }
-    text.append("Level: " ).append( level ).append( ls);
+    text.append("Level: ").append(level).append(ls);
     if (species != null) {
-      text.append("Species: " ).append( species ).append( ls);
+      text.append("Species: ").append(species).append(ls);
     }
     if (gender != null) {
-      text.append("Gender: " ).append( gender ).append( ls);
+      text.append("Gender: ").append(gender).append(ls);
     }
     if (size != null) {
-      text.append("Size: " ).append( size ).append( ls);
+      text.append("Size: ").append(size).append(ls);
     }
     final Set<SkillId> skills = getSkills();
     if (null != skills && !skills.isEmpty()) {
-      text.append("Skills:" ).append( ls);
+      text.append("Skills:").append(ls);
       for (SkillId skill : skills) {
-        text.append("  " ).append( skill ).append( ls);
+        text.append("  ").append(skill).append(ls);
       }
     }
     final Set<String> recipes = getRecipes();
     if (null != recipes && !recipes.isEmpty()) {
-      text.append("Recipes:" ).append( ls);
+      text.append("Recipes:").append(ls);
       for (String recipeId : recipes) {
-        text.append("  " ).append( recipeId ).append( ls);
+        text.append("  ").append(recipeId).append(ls);
       }
     }
     if (null != abilityScores && !abilityScores.isEmpty()) {
-      text.append("Abilities:" ).append( ls);
+      text.append("Abilities:").append(ls);
       for (AbilityScore abilityScore : abilityScores) {
-        text.append("  " ).append( abilityScore ).append( ls);
+        text.append("  ").append(abilityScore).append(ls);
       }
     }
     if (pcClass != null) {
-      text.append("Class: " ).append( pcClass.getId() ).append( ls);
-      text.append(pcClass.getDetailedDescription("    ") ).append( ls);
+      text.append("Class: ").append(pcClass.getId()).append(ls);
+      text.append(pcClass.getDetailedDescription("    ")).append(ls);
     }
     return text.toString();
   }

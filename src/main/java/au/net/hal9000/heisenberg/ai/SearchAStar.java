@@ -23,16 +23,13 @@ public class SearchAStar extends SearchBase {
   private ActionGenerator actionGenerator;
 
   /** maximum fringe expansion. */
-  @Setter
-  private int fringeExpansionMax = 0;
+  @Setter private int fringeExpansionMax = 0;
 
   /** how many fringe expansions so far */
-  @Getter
-  private int fringeExpansionCount = 0;
+  @Getter private int fringeExpansionCount = 0;
 
   /** */
-  @Getter
-  private List<ModelState> fringeAdded;
+  @Getter private List<ModelState> fringeAdded;
 
   /**
    * constructor - A-Star search.

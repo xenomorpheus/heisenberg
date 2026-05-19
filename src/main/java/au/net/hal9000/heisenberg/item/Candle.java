@@ -18,8 +18,7 @@ public class Candle extends ItemImpl implements LightSource {
   static final float VOLUME_DEFAULT = 0.02f;
 
   /** true if candle is lit. */
-  @Setter
-  private boolean lit = false;
+  @Setter private boolean lit = false;
 
   // TODO time the burn by use of fuel or rounds.
 

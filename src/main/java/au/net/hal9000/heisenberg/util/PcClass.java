@@ -8,9 +8,9 @@ import lombok.NonNull;
 import lombok.Setter;
 
 /**
- * A Profession or Class that a PC can have e.g. Soldier, Wizard etc.
- * Consider each instance read-only after creation.
- * Consider each object a refernce data object, which may be shared by many CharacterSheet objects.
+ * A Profession or Class that a PC can have e.g. Soldier, Wizard etc. Consider each instance
+ * read-only after creation. Consider each object a refernce data object, which may be shared by
+ * many CharacterSheet objects.
  */
 public class PcClass implements Serializable, Comparable<PcClass> {
 
@@ -21,56 +21,43 @@ public class PcClass implements Serializable, Comparable<PcClass> {
 
   // e.g. "Soldier"
   /** Field id. */
-  @Getter @Setter
-  private String id = null;
+  @Getter @Setter private String id = null;
 
   /** combat dice. */
-  @Getter @Setter
-  private int combatDice = 0;
+  @Getter @Setter private int combatDice = 0;
 
   /** magic dice. */
-  @Getter @Setter
-  private int magicDice = 0;
+  @Getter @Setter private int magicDice = 0;
 
   /** stealth dice. */
-  @Getter @Setter
-  private int stealthDice = 0;
+  @Getter @Setter private int stealthDice = 0;
 
   /** general dice. */
-  @Getter @Setter
-  private int generalDice = 0;
+  @Getter @Setter private int generalDice = 0;
 
   /** Field actionPoints. */
-  @Getter @Setter
-  private int actionPoints = 0;
+  @Getter @Setter private int actionPoints = 0;
 
   /** Field health. */
-  @Getter @Setter
-  private int health = 0;
+  @Getter @Setter private int health = 0;
 
   /** Field mana. */
-  @Getter @Setter
-  private int mana = 0;
+  @Getter @Setter private int mana = 0;
 
   /** Field speciesAllow. */
-  @Getter @Setter
-  private String speciesAllow;
+  @Getter @Setter private String speciesAllow;
 
   /** Field genderAllow. */
-  @Getter @Setter
-  private String genderAllow = null;
+  @Getter @Setter private String genderAllow = null;
 
   /** Field sizeAllow. */
-  @Getter @Setter
-  private String sizeAllow = null;
+  @Getter @Setter private String sizeAllow = null;
 
   /** Field encumbrance. */
-  @Getter @Setter
-  private int encumbrance = 0;
+  @Getter @Setter private int encumbrance = 0;
 
   /** Field abilityScores. */
-  @Getter @Setter
-  private Set<AbilityScore> abilityScores = new TreeSet<>();
+  @Getter @Setter private Set<AbilityScore> abilityScores = new TreeSet<>();
 
   /** Constructor for PcClass. */
   public PcClass() {

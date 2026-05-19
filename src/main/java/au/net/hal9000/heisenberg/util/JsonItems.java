@@ -5,7 +5,6 @@ import au.net.hal9000.heisenberg.item.Box;
 import au.net.hal9000.heisenberg.item.Location;
 import au.net.hal9000.heisenberg.item.api.Item;
 import au.net.hal9000.heisenberg.item.being.Cat;
-
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -33,15 +32,14 @@ class ItemDeserializer extends JsonDeserializer<Item> {
 
     return switch (type) {
       case "Biscuit", "au.net.hal9000.heisenberg.item.Biscuit" ->
-        jp.getCodec().treeToValue(node, Biscuit.class);
+          jp.getCodec().treeToValue(node, Biscuit.class);
       case "Cat", "au.net.hal9000.heisenberg.item.Cat" ->
-        jp.getCodec().treeToValue(node, Cat.class);
+          jp.getCodec().treeToValue(node, Cat.class);
       case "Location", "au.net.hal9000.heisenberg.item.Location" ->
-        jp.getCodec().treeToValue(node, Location.class);
+          jp.getCodec().treeToValue(node, Location.class);
       case "Box", "au.net.hal9000.heisenberg.item.Box" ->
-        jp.getCodec().treeToValue(node, Box.class);
-      default->
-        throw new IllegalArgumentException("Unknown type: " + type);
+          jp.getCodec().treeToValue(node, Box.class);
+      default -> throw new IllegalArgumentException("Unknown type: " + type);
     };
   }
 }

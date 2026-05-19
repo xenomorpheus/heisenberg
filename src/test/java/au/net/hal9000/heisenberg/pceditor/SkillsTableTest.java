@@ -3,10 +3,9 @@ package au.net.hal9000.heisenberg.pceditor;
 // Imports
 import static org.junit.Assert.assertNotNull;
 
-import org.junit.Test;
-
 import au.net.hal9000.heisenberg.util.Configuration;
 import au.net.hal9000.heisenberg.util.ConfigurationError;
+import org.junit.Test;
 
 /** */
 public class SkillsTableTest {

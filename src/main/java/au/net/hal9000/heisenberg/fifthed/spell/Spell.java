@@ -7,44 +7,31 @@ import lombok.Getter;
 
 public abstract class Spell {
 
-  @Getter
-  private String name = null;
+  @Getter private String name = null;
 
-  @Getter
-  private boolean rangeTouch = false;
+  @Getter private boolean rangeTouch = false;
 
-  @Getter
-  private Set<SpellComponent> spellComponents = new HashSet<SpellComponent>();
+  @Getter private Set<SpellComponent> spellComponents = new HashSet<SpellComponent>();
 
-  @Getter
-  private ActionDuration actionDuration = null;
+  @Getter private ActionDuration actionDuration = null;
 
-  @Getter
-  private SpellSavingThrow spellSavingThrow;
+  @Getter private SpellSavingThrow spellSavingThrow;
 
-  @Getter
-  private int effectDurationSeconds = 0;
+  @Getter private int effectDurationSeconds = 0;
 
-  @Getter
-  private EffectArea effectAreaType = null;
+  @Getter private EffectArea effectAreaType = null;
 
-  @Getter
-  private int effectAreaFeet = 0;
+  @Getter private int effectAreaFeet = 0;
 
-  @Getter
-  private int effectRangeBase = 0;
+  @Getter private int effectRangeBase = 0;
 
-  @Getter
-  private int effectRangeLevelMultiplier = 0;
+  @Getter private int effectRangeLevelMultiplier = 0;
 
-  @Getter
-  private boolean effectSpellResistance = false;
+  @Getter private boolean effectSpellResistance = false;
 
-  @Getter
-  private String description = null;
+  @Getter private String description = null;
 
-  @Getter
-  private String url = null;
+  @Getter private String url = null;
 
   // Setters and Getters. Builder pattern.
 
