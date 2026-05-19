@@ -82,6 +82,8 @@ public abstract class ItemImpl implements Serializable, Item {
   private long jpaId;
 
   /** where this item is located. */
+  @JsonIgnore // Don't serialize the container as it will be serialized as part of the
+              // container's contents. Also prevents infinite recursion.
   private ItemContainer container = null;
 
   /** A short description of the item. */
