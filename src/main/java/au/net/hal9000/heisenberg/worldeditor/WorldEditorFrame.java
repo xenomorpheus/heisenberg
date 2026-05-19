@@ -93,35 +93,35 @@ public class WorldEditorFrame extends JFrame {
       public void actionPerformed(ActionEvent event) {
         String eventName = event.getActionCommand();
         switch (eventName) {
-        case MENU_NEW ->{
+        case MENU_NEW -> {
           location = new Location();
           setLocation(location);
         }
-        case MENU_SAVE ->
-          PersistEntities.save(location);
-        case MENU_IMPORT -> importSubTree();
-        case MENU_EXPORT -> exportSubTree();
-        case MENU_LOAD_DEMO ->
-          setLocation(DemoEnvironment.getDemoWorld());
-        case MENU_DEBUG_TREE ->
-          debugTreePrint();
-        case MENU_QUIT ->
-          exitProgram();
+        case MENU_SAVE -> PersistEntities.save(location);
+        case MENU_IMPORT -> {
+          var selectedItem = itemTreePanel.getSelectedItem();
+          if ((selectedItem == null) || !(selectedItem instanceof ItemContainer)) {
+            JOptionPane.showMessageDialog(null, "Please select a container item to import into", "Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+          }
+          importSubTree((ItemContainer) selectedItem);
+        }
+        case MENU_EXPORT -> {
+          var selectedItem = itemTreePanel.getSelectedItem();
+          if (selectedItem == null) {
+            JOptionPane.showMessageDialog(null, "Please select an item to export", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+          }
+          exportSubTree(selectedItem);
+        }
+        case MENU_LOAD_DEMO -> setLocation(DemoEnvironment.getDemoWorld());
+        case MENU_DEBUG_TREE -> debugTreePrint();
+        case MENU_QUIT -> exitProgram();
         }
       }
 
-      private void exportSubTree(){
-        var selectedItem = itemTreePanel.getSelectedItem();
-        if (selectedItem == null) {
-            JOptionPane.showMessageDialog(
-              null,
-              "Please select an item to export",
-              "Error",
-              JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
-        
+      private void exportSubTree(Item selectedItem) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(new File("heisenberg.json"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
@@ -129,14 +129,14 @@ public class WorldEditorFrame extends JFrame {
         fileChooser.setCurrentDirectory(filePathDefault);
         int result = fileChooser.showSaveDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {
-            log.trace("File selection cancelled.");
-            return;
+          log.trace("File selection cancelled.");
+          return;
         }
         File selectedFile = fileChooser.getSelectedFile();
 
         // Append ".json" if missing
         if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
-            selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
+          selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
         }
 
         log.trace("Selected file: " + selectedFile.getAbsolutePath());
@@ -156,19 +156,7 @@ public class WorldEditorFrame extends JFrame {
         }
       }
 
-      private void importSubTree(){
-        var selectedItem = itemTreePanel.getSelectedItem();
-        if ((selectedItem == null) || !(selectedItem instanceof ItemContainer)) {
-            JOptionPane.showMessageDialog(
-              null,
-              "Please select a container item to import into",
-              "Error",
-              JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
-        ItemContainer selectedContainer = (ItemContainer) selectedItem;
-
+      private void importSubTree(ItemContainer selectedContainer) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(new File("heisenberg.json"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
@@ -176,13 +164,13 @@ public class WorldEditorFrame extends JFrame {
         fileChooser.setCurrentDirectory(filePathDefault);
         int result = fileChooser.showOpenDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {
-            log.trace("File selection cancelled.");
-            return;
+          log.trace("File selection cancelled.");
+          return;
         }
         File selectedFile = fileChooser.getSelectedFile();
         // Append ".json" if missing
         if (!selectedFile.getName().toLowerCase().endsWith(".json")) {
-            selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
+          selectedFile = new File(selectedFile.getParentFile(), selectedFile.getName() + ".json");
         }
 
         log.trace("Selected file: " + selectedFile.getAbsolutePath());
@@ -217,7 +205,7 @@ public class WorldEditorFrame extends JFrame {
             if (item instanceof ItemList) {
               var itemList = (ItemList) item;
               depth++;
-              for (int i=0; i < itemList.size() ; i++) {
+              for (int i = 0; i < itemList.size(); i++) {
                 itemList.get(i).accept(this);
               }
               depth--;
