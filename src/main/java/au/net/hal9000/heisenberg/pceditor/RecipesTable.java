@@ -1,7 +1,6 @@
 package au.net.hal9000.heisenberg.pceditor;
 
 import au.net.hal9000.heisenberg.crafting.Recipe;
-import au.net.hal9000.heisenberg.units.SkillId;
 
 import java.util.ArrayList;
 import java.util.List;

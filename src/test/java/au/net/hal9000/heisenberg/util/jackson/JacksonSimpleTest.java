@@ -30,7 +30,7 @@ public class JacksonSimpleTest {
     container.contents.add(concreteB);
 
     String json = mapper.writeValueAsString(container);
-    log.info("Serialised JSON: " + json);
+    log.trace("Serialised JSON: " + json);
 
     // Deserialize
     ItemContainer deserializedContainer = mapper.readValue(json, ItemContainer.class);
@@ -38,11 +38,8 @@ public class JacksonSimpleTest {
     assertEquals(ConcreteA.class, deserializedContainer.contents.get(0).getClass());
     assertEquals(ConcreteB.class, deserializedContainer.contents.get(1).getClass());
 
-    log.info(
-        "Deserialized AbstractBase type: A:"
-            + deserializedContainer.contents.get(0).getClass().getSimpleName()
-            + ", B:"
-            + deserializedContainer.contents.get(1).getClass().getSimpleName());
+    log.trace("Deserialized AbstractBase type: A:" + deserializedContainer.contents.get(0).getClass().getSimpleName()
+        + ", B:" + deserializedContainer.contents.get(1).getClass().getSimpleName());
   }
 
   /**
