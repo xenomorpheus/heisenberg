@@ -36,7 +36,6 @@ public class PlayableStateTest {
     var state = new PlayableState();
     state.setMana(12);
     state.manaAdjust(-3);
-
   }
 
   @Test
