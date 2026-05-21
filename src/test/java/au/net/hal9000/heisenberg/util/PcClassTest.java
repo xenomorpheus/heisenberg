@@ -110,22 +110,26 @@ public class PcClassTest {
   // TODO testAbilityScores
   /** Method testAbilityScores. */
   @Test
-  public final void testAbilityScores() {}
+  public final void testAbilityScores() {
+  }
 
   // TODO testAbilityScore
   /** Method testAbilityScore. */
   @Test
-  public final void testAbilityScore() {}
+  public final void testAbilityScore() {
+  }
 
   // TODO PcClass testToString
   /** Method testToString. */
   @Test
-  public final void testToString() {}
+  public final void testToString() {
+  }
 
   // TODO PcClass testDescription
   /** Method testDescription. */
   @Test
-  public final void testDescription() {}
+  public final void testDescription() {
+  }
 
   /** Method testCompareTo. */
   @Test
@@ -151,6 +155,12 @@ public class PcClassTest {
 
     } catch (IOException e) {
       fail(e.toString());
+    } finally {
+      // Clean up the file after the test
+      var file = new java.io.File("/tmp/heisenberg-PcClass.ser");
+      if (file.exists()) {
+        file.delete();
+      }
     }
   }
 }

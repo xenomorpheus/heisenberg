@@ -14,13 +14,20 @@ public final class PlayableState implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * A measure of the amount of things the entity can do in the current round. This is the
-   * remaining, not the maximum.
+   * A measure of the amount of things the entity can do in the current round.
+   * This is the remaining, not the maximum.
    */
-  @Getter @Setter private int actionPoints;
+  @Getter
+  @Setter
+  private int actionPoints = 0;
 
-  /** The size of the magic user's fuel tank. This is the remaining, not the maximum. */
-  @Getter @Setter private int mana;
+  /**
+   * The size of the magic user's fuel tank. This is the remaining, not the
+   * maximum.
+   */
+  @Getter
+  @Setter
+  private int mana = 0;
 
   private MemorySet memorySet = null;
 

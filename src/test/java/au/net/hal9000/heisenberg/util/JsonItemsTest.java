@@ -16,7 +16,7 @@ public class JsonItemsTest {
 
   @Test
   public void testExportBiscuit() throws IOException {
-    var tempFile = File.createTempFile("heisenberg-export-biscuit-", ".json");
+    var tempFile = File.createTempFile("/tmp/heisenberg-export-biscuit-", ".json");
     tempFile.deleteOnExit();
     List<Item> items = new ArrayList<>();
     items.add(new Biscuit());
@@ -25,7 +25,7 @@ public class JsonItemsTest {
 
   @Test
   public void testSerDeBiscuit() throws IOException {
-    var tempFile = File.createTempFile("heisenberg-SerDe-biscuit-", ".json");
+    var tempFile = File.createTempFile("/tmp/heisenberg-SerDe-biscuit-", ".json");
     tempFile.deleteOnExit();
     List<Item> expected = new ArrayList<>();
     var biscuit = new Biscuit();
@@ -39,7 +39,7 @@ public class JsonItemsTest {
 
   @Test
   public void testSerDeLocation() throws IOException {
-    var tempFile = File.createTempFile("heisenberg-SerDe-location-", ".json");
+    var tempFile = File.createTempFile("/tmp/heisenberg-SerDe-location-", ".json");
     tempFile.deleteOnExit();
     List<Item> expected = new ArrayList<>();
     var location = new Location();
@@ -50,11 +50,10 @@ public class JsonItemsTest {
     assertEquals(expected, got);
   }
 
-  // TODO @Test
+  @Test
   public void testSerDeLocationBiscuit() throws IOException {
-    var tempFile = new File("/tmp/heisenberg-SerDe-location-biscuit.json");
-    // TODO when test works - var tempFile =
-    // File.createTempFile("/tmp/heisenberg-SerDe-location-biscuit-", ".json");
+    var tempFile = File.createTempFile("/tmp/heisenberg-SerDe-location-biscuit-", ".json");
+    tempFile.deleteOnExit();
     List<Item> expected = new ArrayList<>();
     var location = new Location();
     var biscuit = new Biscuit();
@@ -63,7 +62,6 @@ public class JsonItemsTest {
     JsonItems.export(tempFile, expected);
     List<Item> got = JsonItems.importFromFile(tempFile);
     assertNotNull(got);
-    assertEquals(expected.size(), got.size()); // TODO remove when got equals expected
     assertEquals(expected, got);
   }
 
