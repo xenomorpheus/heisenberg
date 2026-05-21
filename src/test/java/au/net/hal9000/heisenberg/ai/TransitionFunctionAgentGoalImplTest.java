@@ -23,6 +23,6 @@ public class TransitionFunctionAgentGoalImplTest {
     ModelStateAgentGoalImpl dest =
         (ModelStateAgentGoalImpl) transitionFunction.transition(modelState, action);
     expectedAgentPos.applyDelta(action.getPositionDelta());
-    assertTrue(expectedAgentPos.equals(dest.getAgentPosition(), tolerance));
+    assertTrue(expectedAgentPos.equalsApproximately(dest.getAgentPosition(), tolerance));
   }
 }

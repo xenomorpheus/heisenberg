@@ -33,7 +33,7 @@ public class ModelStateAgentGoalImplTest {
     Position agentPositionNew = new Position(0, 1);
     assertFalse(
         "test integrity. Positions must be different",
-        agentPositionInitial.equals(agentPositionNew));
+        agentPositionInitial.equalsApproximately(agentPositionNew));
     // Run test
     modelStateAgentGoal.setAgentPosition(agentPositionNew);
     Position agentPositionGot = modelStateAgentGoal.getAgentPosition();
@@ -54,7 +54,9 @@ public class ModelStateAgentGoalImplTest {
     // goal
     Position newGoalPosition = newModelState.getGoalPosition();
     assertFalse("ensure a new goalPosition is created", goalPosition == newGoalPosition);
-    assertTrue("ensure a new goalPosition equals() old", goalPosition.equals(newGoalPosition));
+    assertTrue(
+        "ensure a new goalPosition equals() old",
+        goalPosition.equalsApproximately(newGoalPosition));
   }
 
   /** test hashCode. */

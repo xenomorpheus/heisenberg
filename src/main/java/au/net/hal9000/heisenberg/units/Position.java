@@ -1,6 +1,7 @@
 package au.net.hal9000.heisenberg.units;
 
 import jakarta.persistence.Embeddable;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -130,16 +131,7 @@ public class Position {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    long temp;
-    temp = Double.doubleToLongBits(x);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(y);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
-    temp = Double.doubleToLongBits(z);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
-    return result;
+    return Objects.hash(x, y, z);
   }
 
   @Override
@@ -147,17 +139,14 @@ public class Position {
     if (this == obj) {
       return true;
     }
-    if (obj == null) {
+
+    if (!(obj instanceof Position other)) {
       return false;
     }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    Position other = (Position) obj;
-    if (equals(other)) {
-      return false;
-    }
-    return true;
+
+    return Double.compare(x, other.x) == 0
+        && Double.compare(y, other.y) == 0
+        && Double.compare(z, other.z) == 0;
   }
 
   /**
@@ -166,8 +155,8 @@ public class Position {
    * @param other position to compare to.
    * @return true IFF each axis of the two positions are all within default tolerance.
    */
-  public boolean equals(Position other) {
-    return equals(other, DEFAULT_AXIS_TOLERANCE);
+  public boolean equalsApproximately(Position other) {
+    return equalsApproximately(other, DEFAULT_AXIS_TOLERANCE);
   }
 
   /**
@@ -177,11 +166,11 @@ public class Position {
    * @param tolerance error factor to allow when comparing.
    * @return Return true IFF each axis of the two positions are all within the tolerance.
    */
-  public boolean equals(Position other, double tolerance) {
-    return (other != null)
-        && (Math.abs(x - other.getX()) < tolerance)
-        && (Math.abs(y - other.getY()) < tolerance)
-        && (Math.abs(z - other.getZ()) < tolerance);
+  public boolean equalsApproximately(Position other, double tolerance) {
+    return other != null
+        && Math.abs(x - other.x) < tolerance
+        && Math.abs(y - other.y) < tolerance
+        && Math.abs(z - other.z) < tolerance;
   }
 
   /**

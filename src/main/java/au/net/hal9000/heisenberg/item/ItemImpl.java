@@ -344,7 +344,7 @@ public abstract class ItemImpl implements Serializable, Item {
       if (other.position != null) {
         return false;
       }
-    } else if (!position.equals(other.position)) {
+    } else if (!position.equalsApproximately(other.position)) {
       return false;
     }
     if (properties == null) {

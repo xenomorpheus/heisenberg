@@ -86,7 +86,7 @@ public class SearchAStarGridTest {
         modelStateCurrent instanceof ModelStateAgentGoalImpl);
     assertTrue(
         "assert path leads to goal",
-        goalPosition.equals(
+        goalPosition.equalsApproximately(
             ((ModelStateAgentGoalImpl) modelStateCurrent).getAgentPosition(),
             Position.DEFAULT_AXIS_TOLERANCE));
   }
@@ -191,7 +191,7 @@ public class SearchAStarGridTest {
         "modelStateCurrent instanceof ModelStateAgentGoal",
         modelStateCurrent instanceof ModelStateAgentGoalImpl);
     assertTrue(
-        goalPosition.equals(
+        goalPosition.equalsApproximately(
             ((ModelStateAgentGoalImpl) modelStateCurrent).getAgentPosition(),
             Position.DEFAULT_AXIS_TOLERANCE));
   }

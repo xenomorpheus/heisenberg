@@ -104,7 +104,7 @@ public final class ActionAgentMoveAbsoluteImpl extends ActionBase
       if (other.getAgentTarget() != null) {
         return false;
       }
-    } else if (!agentPositionTarget.equals(other.getAgentTarget())) {
+    } else if (!agentPositionTarget.equalsApproximately(other.getAgentTarget())) {
       return false;
     }
     return true;

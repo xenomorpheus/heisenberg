@@ -27,10 +27,10 @@ public class CatTest {
     Cat cat = new Cat();
     cat.move(dungeon, new Position());
     Position pos = new Position();
-    assertTrue(pos.equals(cat.getPosition()));
+    assertTrue(pos.equalsApproximately(cat.getPosition()));
     cat.moveWithinContainer(new Position(10, 10));
     pos = new Position(10, 10);
-    assertTrue(pos.equals(cat.getPosition()));
+    assertTrue(pos.equalsApproximately(cat.getPosition()));
   }
 
   @Test

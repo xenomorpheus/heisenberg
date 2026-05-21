@@ -75,10 +75,10 @@ public class ModelStateAgentGoalImpl implements ModelStateAgentGoal {
     ModelStateAgentGoalImpl other = (ModelStateAgentGoalImpl) obj;
     if (agentPosition == null) {
       if (other.agentPosition != null) return false;
-    } else if (!agentPosition.equals(other.agentPosition)) return false;
+    } else if (!agentPosition.equalsApproximately(other.agentPosition)) return false;
     if (goalPosition == null) {
       if (other.goalPosition != null) return false;
-    } else if (!goalPosition.equals(other.goalPosition)) return false;
+    } else if (!goalPosition.equalsApproximately(other.goalPosition)) return false;
     return true;
   }
 

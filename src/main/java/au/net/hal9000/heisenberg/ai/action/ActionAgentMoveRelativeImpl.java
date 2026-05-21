@@ -105,7 +105,7 @@ public final class ActionAgentMoveRelativeImpl extends ActionBase
       if (other.getPositionDelta() != null) {
         return false;
       }
-    } else if (!agentPositionDelta.equals(other.getPositionDelta())) {
+    } else if (!agentPositionDelta.equalsApproximately(other.getPositionDelta())) {
       return false;
     }
     return true;

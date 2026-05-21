@@ -42,7 +42,9 @@ public class ModelStateAgentGoalMemorySetTest {
     // goal
     Position newGoalPosition = newModelState.getGoalPosition();
     assertFalse("ensure a new goalPosition is created", goalPosition == newGoalPosition);
-    assertTrue("ensure a new goalPosition equals() old", goalPosition.equals(newGoalPosition));
+    assertTrue(
+        "ensure a new goalPosition equals() old",
+        goalPosition.equalsApproximately(newGoalPosition));
   }
 
   /** test hashCode. */

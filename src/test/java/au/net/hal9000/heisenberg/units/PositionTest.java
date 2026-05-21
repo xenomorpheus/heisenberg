@@ -79,24 +79,24 @@ public class PositionTest {
   public void testEqualsPositionDouble() {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
-    assertTrue("equals", point.equals(point2));
+    assertTrue("equals", point.equalsApproximately(point2));
     // x
     point.setX(X_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true x", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertTrue("true x", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setX(X_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false x", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertFalse("false x", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setX(X_TEST);
     // y
     point.setY(Y_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true y", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertTrue("true y", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setY(Y_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false y", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertFalse("false y", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setY(Y_TEST);
     // z
     point.setZ(Z_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true z", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertTrue("true z", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false z", point.equals(point2, Position.DEFAULT_AXIS_TOLERANCE));
+    assertFalse("false z", point.equalsApproximately(point2, Position.DEFAULT_AXIS_TOLERANCE));
     point.setX(Z_TEST);
   }
 
@@ -108,21 +108,21 @@ public class PositionTest {
 
     // x
     point.setX(X_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true x", point.equals(point2));
+    assertTrue("true x", point.equalsApproximately(point2));
     point.setX(X_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false x", point.equals(point2));
+    assertFalse("false x", point.equalsApproximately(point2));
     point.setX(X_TEST);
     // y
     point.setY(Y_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true y", point.equals(point2));
+    assertTrue("true y", point.equalsApproximately(point2));
     point.setY(Y_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false y", point.equals(point2));
+    assertFalse("false y", point.equalsApproximately(point2));
     point.setY(Y_TEST);
     // z
     point.setZ(Z_TEST + WITHIN_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertTrue("true z", point.equals(point2));
+    assertTrue("true z", point.equalsApproximately(point2));
     point.setZ(Z_TEST + OUTSIDE_TOLERANCE * Position.DEFAULT_AXIS_TOLERANCE);
-    assertFalse("false z", point.equals(point2));
+    assertFalse("false z", point.equalsApproximately(point2));
     point.setX(Z_TEST);
   }
 
@@ -139,7 +139,7 @@ public class PositionTest {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     Position other = new Position(point);
     assertTrue("differnt object", point != other);
-    assertTrue("equals returns true", point.equals(other));
+    assertTrue("equals returns true", point.equalsApproximately(other));
     assertEquals("X", X_TEST, other.getX(), TEST_TOLERANCE);
     assertEquals("Y", Y_TEST, other.getY(), TEST_TOLERANCE);
     assertEquals("Z", Z_TEST, other.getZ(), TEST_TOLERANCE);
@@ -209,9 +209,9 @@ public class PositionTest {
   public void testEqualsObject() {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     Position point2 = new Position(X_TEST, Y_TEST, Z_TEST);
-    assertTrue(point.equals(point2));
+    assertTrue(point.equalsApproximately(point2));
     assertFalse(point.equals("foo"));
-    assertFalse(point.equals(null));
+    assertFalse(point.equalsApproximately(null));
   }
 
   @Test
@@ -229,7 +229,7 @@ public class PositionTest {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     point.rotateX(Math.PI / 2);
     Position expect = new Position(X_TEST, Z_TEST, -Y_TEST);
-    assertTrue(expect.equals(point));
+    assertTrue(expect.equalsApproximately(point));
   }
 
   @Test
@@ -237,7 +237,7 @@ public class PositionTest {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     point.rotateY(Math.PI / 2);
     Position expect = new Position(-Z_TEST, Y_TEST, X_TEST);
-    assertTrue(expect.equals(point));
+    assertTrue(expect.equalsApproximately(point));
   }
 
   @Test
@@ -245,6 +245,6 @@ public class PositionTest {
     Position point = new Position(X_TEST, Y_TEST, Z_TEST);
     point.rotateZ(Math.PI / 2);
     Position expect = new Position(Y_TEST, -X_TEST, Z_TEST);
-    assertTrue(expect.equals(point));
+    assertTrue(expect.equalsApproximately(point));
   }
 }

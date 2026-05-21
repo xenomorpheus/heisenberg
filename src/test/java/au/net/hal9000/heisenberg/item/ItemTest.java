@@ -215,7 +215,8 @@ public class ItemTest {
     } catch (UnsupportedOperationException e) {
 
       Position actualPosition = item.getPosition();
-      assertTrue("No ItemContainer - final pos", expectedPosition.equals(actualPosition));
+      assertTrue(
+          "No ItemContainer - final pos", expectedPosition.equalsApproximately(actualPosition));
       throw e;
     }
   }
@@ -230,7 +231,8 @@ public class ItemTest {
     Position expectedPosition = new Position(2, 4, 8);
     item.moveWithinContainer(expectedPosition);
     Position actualPosition = item.getPosition();
-    assertTrue("Has ItemContainer - final pos", expectedPosition.equals(actualPosition));
+    assertTrue(
+        "Has ItemContainer - final pos", expectedPosition.equalsApproximately(actualPosition));
   }
 
   @Test
