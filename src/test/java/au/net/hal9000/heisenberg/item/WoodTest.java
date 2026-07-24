@@ -3,11 +3,21 @@ package au.net.hal9000.heisenberg.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import org.junit.Before;
+
 import au.net.hal9000.heisenberg.item.property.ItemProperty;
+import au.net.hal9000.heisenberg.worldeditor.demo.DemoEnvironment;
+
 import org.junit.Test;
 
 /** Unit tests for the {@link Wood} class. */
 public class WoodTest {
+
+  /** Sets up the test environment before each test case. */
+  @Before
+  public void initialize() {
+    DemoEnvironment.setup();
+  }
 
   /** Method testIsHumanoidFood. */
   @Test
